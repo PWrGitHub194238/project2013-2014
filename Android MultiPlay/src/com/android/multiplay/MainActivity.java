@@ -2,23 +2,48 @@ package com.android.multiplay;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface.OnClickListener;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
+	
+	Button button, helper;
+	Context context;
+	EditText ssid, key;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-    }
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		context = getApplicationContext();
+		button = (Button) findViewById(R.id.buttonssidkey);
+		ssid = (EditText) findViewById(R.id.ssidtextedit);
+		key = (EditText) findViewById(R.id.keytextedit);
+		button.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if ((ssid.getText().toString().matches(""))
+						|| (key.getText().toString().matches(""))) {
+					Toast.makeText(
+							context,
+							"You must enter the name and password for your network !",
+							Toast.LENGTH_LONG).show();
+				} else {
+					Toast.makeText(context, "Life is beautiful",
+							Toast.LENGTH_LONG).show();
+				}
+			}
+		});
+	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-    
 }

@@ -25,6 +25,7 @@ public class MainActivity extends Activity {
 		Port = (EditText) findViewById(R.id.PorteditText);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
+				//Sprawdzanie czy pola są puste
 				if ((IP.getText().toString().matches(""))
 						|| (Port.getText().toString().matches(""))) {
 					Toast.makeText(
@@ -35,6 +36,8 @@ public class MainActivity extends Activity {
 					Toast.makeText(context, "Life is beautiful",
 							Toast.LENGTH_LONG).show();
 				}
+				
+				/*miejsce na laczenie sie z serwerem na komputerze i wywoływanie nowego activity, niedlugo dopisze. */
 			}
 		});
 	}

@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
 							Toast.LENGTH_LONG).show();
 				}
 				
-				/*miejsce na laczenie sie z serwerem na komputerze i wywoływanie nowego activity, niedlugo dopisze.*/
+				/*miejsce na laczenie sie z serwerem na komputerze i wywoływanie nowego activity, niedlugo dopisze. */
 			}
 		});
 	}

@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
 							"You must enter the name and password for your network !",
 							Toast.LENGTH_LONG).show();
 				} else {
-					Toast.makeText(context, "Life is beautiful:)",
+					Toast.makeText(context, "Life is beautiful",
 							Toast.LENGTH_LONG).show();
 				}
 			}

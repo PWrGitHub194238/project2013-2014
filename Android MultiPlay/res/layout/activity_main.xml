@@ -9,50 +9,51 @@
     tools:context=".MainActivity" >
 
     <TextView
-        android:id="@+id/keytextview"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Key"
+        android:layout_marginTop="47dp"
+        android:text="IP"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Port"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
-        android:id="@+id/ssidtextedit"
+        android:id="@+id/IPeditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/keytextview"
+        android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="42dp"
+        android:layout_marginTop="23dp"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/PorteditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
         android:ems="10" />
 
-    <TextView
-        android:id="@+id/ssidtextview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/ssidtextedit"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="18dp"
-        android:text="SSID"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <Button
-        android:id="@+id/buttonssidkey"
+        android:id="@+id/buttonactivity1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="43dp"
-        android:text="Confirm" />
-
-    <EditText
-        android:id="@+id/keytextedit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ssidtextedit"
-        android:layout_below="@+id/keytextview"
-        android:layout_marginTop="31dp"
-        android:ems="10"
-        android:inputType="textPassword" />
+        android:layout_marginBottom="42dp"
+        android:text="OK" />
 
 </RelativeLayout>

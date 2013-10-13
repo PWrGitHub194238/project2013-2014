@@ -12,21 +12,21 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
-	Button button, helper;
+	Button button;
 	Context context;
-	EditText ssid, key;
+	EditText IP, Port;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		context = getApplicationContext();
-		button = (Button) findViewById(R.id.buttonssidkey);
-		ssid = (EditText) findViewById(R.id.ssidtextedit);
-		key = (EditText) findViewById(R.id.keytextedit);
+		button = (Button) findViewById(R.id.buttonactivity1);
+		IP = (EditText) findViewById(R.id.IPeditText);
+		Port = (EditText) findViewById(R.id.PorteditText);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				if ((ssid.getText().toString().matches(""))
-						|| (key.getText().toString().matches(""))) {
+				if ((IP.getText().toString().matches(""))
+						|| (Port.getText().toString().matches(""))) {
 					Toast.makeText(
 							context,
 							"You must enter the name and password for your network !",

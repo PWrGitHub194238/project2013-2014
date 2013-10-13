@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
 						|| (Port.getText().toString().matches(""))) {
 					Toast.makeText(
 							context,
-							"You must enter the name and password for your network !",
+							"You must enter the IP and Port for your computer !",
 							Toast.LENGTH_LONG).show();
 				} else {
 					Toast.makeText(context, "Life is beautiful",

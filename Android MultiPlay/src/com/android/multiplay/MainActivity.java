@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
 		context = getApplicationContext();
 		button = (Button) findViewById(R.id.buttonactivity1);
 		IP = (EditText) findViewById(R.id.IPeditText);
-		Port = (EditText) findViewById(R.id.PorteditText);
+		Port = (EditText) findViewById(R.id.Porteditnumber);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				//Sprawdzanie czy pola są puste

@@ -18,13 +18,14 @@
         android:text="IP"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/textView2"
+    <Button
+        android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Port"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/imageButton1"
+        android:layout_marginBottom="66dp"
+        android:text="search" />
 
     <EditText
         android:id="@+id/IPeditText"
@@ -32,29 +33,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="31dp"
         android:ems="10" >
 
         <requestFocus />
     </EditText>
 
     <Button
-        android:id="@+id/buttonactivity1"
+        android:id="@+id/imageButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/search"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="42dp"
+        android:layout_marginBottom="56dp"
         android:text="OK" />
-
-    <EditText
-        android:id="@+id/Porteditnumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonactivity1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="19dp"
-        android:ems="10"
-        android:inputType="number" />
 
 </RelativeLayout>

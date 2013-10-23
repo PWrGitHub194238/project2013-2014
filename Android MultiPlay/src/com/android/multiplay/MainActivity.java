@@ -1,45 +1,33 @@
 package com.android.multiplay;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
-	
-	Button button;
-	Context context;
-	EditText IP, Port;
+public class MainActivity extends Activity implements OnClickListener {
 
+	private EditText IP;
+	private Button nextButton, search;
+	private Context context;
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		context = getApplicationContext();
-		button = (Button) findViewById(R.id.buttonactivity1);
-		IP = (EditText) findViewById(R.id.IPeditText);
-		Port = (EditText) findViewById(R.id.Porteditnumber);
-		button.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				//Sprawdzanie czy pola są puste
-				if ((IP.getText().toString().matches(""))
-						|| (Port.getText().toString().matches(""))) {
-					Toast.makeText(
-							context,
-							"You must enter the IP and Port for your computer !",
-							Toast.LENGTH_LONG).show();
-				} else {
-					Toast.makeText(context, "Life is beautiful",
-							Toast.LENGTH_LONG).show();
-				}
-				
-				/*miejsce na laczenie sie z serwerem na komputerze i wywoływanie nowego activity, niedlugo dopisze. */
-			}
-		});
+		context = super.getApplicationContext();
+		search = (Button) super.findViewById(R.id.search);
+		search.setOnClickListener(this);
+		IP = (EditText) super.findViewById(R.id.IPeditText);
+		nextButton = (Button) super.findViewById(R.id.imageButton1);
+		nextButton.setOnClickListener(this);
 	}
 
 	@Override
@@ -49,4 +37,22 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	@Override
+	public void onClick(View arg0) {
+		switch (arg0.getId()) {
+		case R.id.imageButton1:
+			if (IP.getText().toString().equals("")) {
+				Toast.makeText(context, "Brak IP ", Toast.LENGTH_LONG).show();
+			} else {
+				Intent intent = new Intent(context, FirstMenu.class);
+				intent.putExtra("ip", IP.getText().toString());
+				super.startActivity(intent);
+			}
+			break;
+		case R.id.search:
+			Intent intent = new Intent(context, FirstMenu.class);
+			super.startActivity(intent);
+			break;
+		}
+	}
 }

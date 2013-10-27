@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_title_in_main_activity">MultiPlay</string>
+    <string name="default_title_description_in_main_activity">Chose one of the options on your right to navigate application. To enable or disable device connections tap leds below.</string>
+  
+    <string name="option_0_title_in_main_activity">MultiPlay Explorer</string>
+    <string name="option_0_title_description_in_main_activity">Connects you to remote server</string>
+    
+    <string name="option_1_title_in_main_activity">System controller</string>
+    <string name="option_1_title_description_in_main_activity">f the options on your right to navigate application. To enable or disable device connections tap leds below.</string>
+    
+    <string name="option_2_title_in_main_activity">MultiPlay\'s help</string>
+    <string name="option_2_title_description_in_main_activity">ons on your right to navigate application. To enable or disable device connections tap leds below.</string>
+    
+    <string name="option_3_title_in_main_activity">Configuration</string>
+	<string name="option_3_title_description_in_main_activity"> right to navigate application. To enable or disable device connections tap leds below.</string>
+    
+</resources>

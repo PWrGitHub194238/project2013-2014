@@ -1,58 +1,113 @@
 package com.android.multiplay;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.ImageButton;
 
-public class MainActivity extends Activity implements OnClickListener {
+import com.android.extendedWidgets.ImageToogleButton;
 
-	private EditText IP;
-	private Button nextButton, search;
-	private Context context;
+public class MainActivity extends Activity {
 
+	private ImageButton b_multiplay_explorer = null;
+	private ImageButton b_system_controller = null;
+	private ImageButton b_help = null;
+	private ImageButton b_options = null;
+	
+	private ImageToogleButton b_wireless_network_switch = null;
+	private ImageToogleButton b_bluetooth_switch = null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		context = super.getApplicationContext();
-		search = (Button) super.findViewById(R.id.search);
-		search.setOnClickListener(this);
-		IP = (EditText) super.findViewById(R.id.IPeditText);
-		nextButton = (Button) super.findViewById(R.id.imageButton1);
-		nextButton.setOnClickListener(this);
+		
+		initB_multiplay_explorer(R.id.b_multiplay_explorer_icon);
+		initB_system_controller(R.id.b_system_controller_icon);
+		initB_help(R.id.b_help_icon);
+		initB_options(R.id.b_options_icon);
+		
+		initB_bluetooth_switch(R.id.b_bluetooth_switch);
+		initB_wireless_network_switch(R.id.b_wireless_network_switch);
+		
+		init();
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+	
+//////////////////// Methods for onClick events
+	
+	
+	
+	public void multiplay_explorer_OnClick( View view ) {
+		Intent intent = new Intent(this, MultiplayExplorerActivity.class);
+		super.startActivity(intent);
+	}
+	
+	public void system_controller_OnClick( View view ) {
+		Intent intent = new Intent(this, SystemControllerActivity.class);
+		super.startActivity(intent);
+	}
+	
+	public void help_OnClick( View view ) {
+		Intent intent = new Intent(this, HelpActivity.class);
+		super.startActivity(intent);
+	}
+	
+	public void options_OnClick( View view ) {
+		Intent intent = new Intent(this, OptionsActivity.class);
+		super.startActivity(intent);
+	}
+	
+	public void toogleBluetooth_onClick( View view ) {
+		b_bluetooth_switch.setBackgroundResource(R.drawable.main_activity_button_pending);
+		b_bluetooth_switch.toogleButton();
+	}
+	
+	public void toogleWirelessNetwork_onClick( View view ) {
+		b_wireless_network_switch.setBackgroundResource(R.drawable.main_activity_button_pending);
+		b_wireless_network_switch.toogleButton();
+	}
+	
+	
+	
+////////////////////Methods for init objects
+	
+	
+	
+	private void init() {
+		super.findViewById(R.id.tv_title_of_selected_item).requestFocus();
+	}
+	
+	private void initB_multiplay_explorer( int id) {
+		this.b_multiplay_explorer = (ImageButton) super.findViewById(id);
+		this.b_multiplay_explorer.setOnFocusChangeListener(
+				new MainActivityFocusChangeListener(this,id));
+	}
+	
+	private void initB_system_controller( int id ) {
+		this.b_system_controller = (ImageButton) super.findViewById(id);
+		this.b_system_controller.setOnFocusChangeListener(
+				new MainActivityFocusChangeListener(this,id));
+	}
+	
+	private void initB_help( int id ) {
+		this.b_help = (ImageButton) super.findViewById(id);
+		this.b_help.setOnFocusChangeListener(
+				new MainActivityFocusChangeListener(this,id));
+	}
+	
+	private void initB_options( int id ) {
+		this.b_options = (ImageButton) super.findViewById(id);
+		this.b_options.setOnFocusChangeListener(
+				new MainActivityFocusChangeListener(this,id));
+	}
+	
+	private void initB_wireless_network_switch( int id ) {
+		this.b_wireless_network_switch = (ImageToogleButton) super.findViewById(id);
 	}
 
-	@Override
-	public void onClick(View arg0) {
-		switch (arg0.getId()) {
-		case R.id.imageButton1:
-			if (IP.getText().toString().equals("")) {
-				Toast.makeText(context, "Brak IP ", Toast.LENGTH_LONG).show();
-			} else {
-				Intent intent = new Intent(context, FirstMenu.class);
-				intent.putExtra("ip", IP.getText().toString());
-				super.startActivity(intent);
-			}
-			break;
-		case R.id.search:
-			Intent intent = new Intent(context, FirstMenu.class);
-			super.startActivity(intent);
-			break;
-		}
+	private void initB_bluetooth_switch( int id ) {
+		this.b_bluetooth_switch = (ImageToogleButton) super.findViewById(id);
 	}
 }

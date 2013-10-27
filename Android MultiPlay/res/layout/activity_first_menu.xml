@@ -15,6 +15,9 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="29dp"
+        
+        android:onClick="onClick"
+        
         android:text="Button" />
 
     <Button
@@ -24,6 +27,9 @@
         android:layout_above="@+id/button1"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="68dp"
+        
+        android:onClick="onClick"
+        
         android:text="Button" />
 
     <Button
@@ -34,6 +40,9 @@
         android:layout_alignBottom="@+id/button1"
         android:layout_marginLeft="21dp"
         android:layout_toRightOf="@+id/button2"
+        
+        android:onClick="onClick"
+        
         android:text="Button" />
 
     <Button
@@ -43,6 +52,9 @@
         android:layout_below="@+id/button1"
         android:layout_marginTop="74dp"
         android:layout_toRightOf="@+id/button1"
+        
+        android:onClick="onClick"
+        
         android:text="Button" />
 
 </RelativeLayout>

@@ -3,7 +3,19 @@
 
     <string name="app_name">MultiPlay</string>
     <string name="action_settings">Settings</string>
+    <string name="cd_bluetooth_icon">Bluetooth icon for main menu</string>
+    <string name="cd_bluetooth_enable_switch">Button to toogle bluetooth enable or disable at the main menu</string>
+    <string name="cd_wireless_network_switch">Button to toogle WiFi enable or disable at the main menu</string>
+    <string name="cd_wireless_network_icon">Wireless network icon for main menu</string>
+    <string name="cd_multiplay_explorer_icon">ImageButton that leaves to the next activity: MultiPlay Explorer</string>
+    <string name="cd_system_controller_icon">ImageButton that leaves to the next activity: System Controller</string>
+    <string name="cd_help_icon">ImageButton that leaves to the next activity: Help activity</string>
+    <string name="cd_options_icon">ImageButton that leaves to the next activity: Options activity</string>
+    <string name="title_activity_multiplay_explorer">Multiplay Explorer</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_first_menu">FirstMenu</string>
+    <string name="title_activity_system_controller">SystemControllerActivity</string>
+    <string name="title_activity_help">HelpActivity</string>
+    <string name="title_activity_options">OptionsActivity</string>
+    <string name="title_activity_first_menu">TOBEDELETED</string>
 
 </resources>

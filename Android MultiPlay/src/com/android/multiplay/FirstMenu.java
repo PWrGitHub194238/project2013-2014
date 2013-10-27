@@ -12,7 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class FirstMenu extends Activity implements OnClickListener {
+public class FirstMenu extends Activity {
 	Bundle bundle;
 	private Button button1, button2, button3, button4;
 
@@ -25,10 +25,6 @@ public class FirstMenu extends Activity implements OnClickListener {
 		button2 = (Button) super.findViewById(R.id.button2);
 		button3 = (Button) super.findViewById(R.id.button3);
 		button4 = (Button) super.findViewById(R.id.button4);
-		button1.setOnClickListener(this);
-		button2.setOnClickListener(this);
-		button3.setOnClickListener(this);
-		button4.setOnClickListener(this);
 	}
 
 	@Override
@@ -38,7 +34,6 @@ public class FirstMenu extends Activity implements OnClickListener {
 		return true;
 	}
 
-	@Override
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
 		case R.id.button1:

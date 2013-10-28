@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class OptionsActivity extends Activity implements OnClickListener {
+public class OptionsActivity extends Activity {
 
 	private EditText IP;
 	private Button nextButton, search;
@@ -22,8 +22,6 @@ public class OptionsActivity extends Activity implements OnClickListener {
 		search = (Button) super.findViewById(R.id.search);
 		IP = (EditText) super.findViewById(R.id.IPeditText);
 		nextButton = (Button) super.findViewById(R.id.imageButton1);
-		search.setOnClickListener(this);
-		IP.setOnClickListener(this);
 	}
 
 	public void onClick(View arg0) {

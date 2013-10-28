@@ -4,26 +4,28 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class OptionsActivity extends Activity {
+public class OptionsActivity extends Activity implements OnClickListener {
 
 	private EditText IP;
 	private Button nextButton, search;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_options);
-		
+
 		search = (Button) super.findViewById(R.id.search);
 		IP = (EditText) super.findViewById(R.id.IPeditText);
 		nextButton = (Button) super.findViewById(R.id.imageButton1);
+		search.setOnClickListener(this);
+		IP.setOnClickListener(this);
 	}
-	
-	
+
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
 		case R.id.imageButton1:
@@ -37,6 +39,7 @@ public class OptionsActivity extends Activity {
 			break;
 		case R.id.search:
 			Intent intent = new Intent(this, FirstMenu.class);
+			
 			super.startActivity(intent);
 			break;
 		}

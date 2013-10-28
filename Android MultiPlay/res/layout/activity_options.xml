@@ -49,6 +49,7 @@
         android:layout_above="@+id/search"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="56dp"
+         android:onClick="onClick"
         android:text="OK" />
 
 </RelativeLayout>

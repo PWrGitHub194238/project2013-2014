@@ -25,10 +25,13 @@ public class Sender extends AsyncTask<Object, Object, Object> {
 	DataOutputStream dataOutputStream = null;
 	DataInputStream dataInputStream = null;
 	int x, y;
+	String ip=null;
 
 	public Sender() {
 	}
-
+	public void setip(String ip) {
+	this.ip=ip;
+	}
 	public void getxy(int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -37,7 +40,7 @@ public class Sender extends AsyncTask<Object, Object, Object> {
 	@Override
 	protected Object doInBackground(Object... arg0) {
 		try {
-			Socket socket = new Socket(InetAddress.getByName("192.168.0.22"),
+			Socket socket = new Socket(InetAddress.getByName(ip),
 					8888);
 			try {
 				dataOutputStream = new DataOutputStream(

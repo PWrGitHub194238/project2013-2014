@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,10 +23,9 @@ public class FirstMenu extends Activity {
 		setContentView(R.layout.activity_first_menu);
 		bundle = super.getIntent().getExtras();
 		ip = bundle.getString("ip");
-		button1 = (Button) super.findViewById(R.id.button1);
-		button2 = (Button) super.findViewById(R.id.button2);
-		button3 = (Button) super.findViewById(R.id.button3);
-		button4 = (Button) super.findViewById(R.id.button4);
+		button1 = (Button) super.findViewById(R.id.keyboardb);
+		button2 = (Button) super.findViewById(R.id.mouseb);
+		
 	}
 
 	@Override
@@ -37,30 +37,17 @@ public class FirstMenu extends Activity {
 
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
-		case R.id.button1:
-			Sender sender = new Sender();
-			sender.setip(ip);
-			sender.getxy(-10, 0);
-			sender.execute();
+		case R.id.keyboardb:
+			Intent intent = new Intent(this, KeyboardActivity.class);
+			intent.putExtra("ip", ip);
+			super.startActivity(intent);
 			break;
-		case R.id.button2:
-			Sender sender2 = new Sender();
-			sender2.setip(ip);
-			sender2.getxy(0, -10);
-			sender2.execute();
+		case R.id.mouseb:
+			 intent = new Intent(this, MouseActivity.class);
+			intent.putExtra("ip", ip);
+			super.startActivity(intent);
 			break;
-		case R.id.button3:
-			Sender sender3 = new Sender();
-			sender3.setip(ip);
-			sender3.getxy(10, 0);
-			sender3.execute();
-			break;
-		case R.id.button4:
-			Sender sender4 = new Sender();
-			sender4.setip(ip);
-			sender4.getxy(0, 10);
-			sender4.execute();
-			break;
+		
 		}
 	}
 }

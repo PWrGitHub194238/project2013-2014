@@ -33,11 +33,10 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-        
         <service
-            android:name="com.android.services.ConnectionService" 
-            android:exported="false"/>
-        
+            android:name="com.android.services.ConnectionService"
+            android:exported="false" />
+
         <activity
             android:name="com.android.multiplay.MainActivity"
             android:label="@string/app_name"
@@ -80,10 +79,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.multiplay.MainActivity" />
         </activity>
-        
         <activity
             android:name="com.android.multiplay.FirstMenu"
             android:label="@string/title_activity_first_menu" >
+        </activity>
+        <activity
+            android:name="com.android.multiplay.KeyboardActivity"
+            android:label="@string/title_activity_keyboard" >
+        </activity>
+        <activity
+            android:name="com.android.multiplay.MouseActivity"
+            android:label="@string/title_activity_mouse" >
         </activity>
     </application>
 

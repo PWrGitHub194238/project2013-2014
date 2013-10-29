@@ -9,52 +9,23 @@
     tools:context=".FirstMenu" >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/mouseb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="29dp"
-        
-        android:onClick="onClick"
-        
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginBottom="68dp"
-        
         android:onClick="onClick"
-        
-        android:text="Button" />
+        android:text="mouse" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/keyboardb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_marginLeft="21dp"
-        android:layout_toRightOf="@+id/button2"
-        
+        android:layout_above="@+id/mouseb"
+        android:layout_alignLeft="@+id/mouseb"
+        android:layout_marginBottom="63dp"
         android:onClick="onClick"
-        
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
-        android:layout_marginTop="74dp"
-        android:layout_toRightOf="@+id/button1"
-        
-        android:onClick="onClick"
-        
-        android:text="Button" />
+        android:text="keyboard" />
 
 </RelativeLayout>

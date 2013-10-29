@@ -15,8 +15,9 @@ import android.widget.EditText;
 
 public class FirstMenu extends Activity {
 	Bundle bundle;
-	private Button button1, button2, button3, button4;
+	private Button button1, button2;
 	private String ip;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,7 +26,6 @@ public class FirstMenu extends Activity {
 		ip = bundle.getString("ip");
 		button1 = (Button) super.findViewById(R.id.keyboardb);
 		button2 = (Button) super.findViewById(R.id.mouseb);
-		
 	}
 
 	@Override
@@ -43,11 +43,11 @@ public class FirstMenu extends Activity {
 			super.startActivity(intent);
 			break;
 		case R.id.mouseb:
-			 intent = new Intent(this, MouseActivity.class);
+			intent = new Intent(this, MouseActivity.class);
 			intent.putExtra("ip", ip);
 			super.startActivity(intent);
 			break;
-		
+
 		}
 	}
 }

@@ -91,12 +91,12 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         
-        android:onClick="toogleBluetooth_onClick"
+        android:onClick="toggleBluetooth_onClick"
         
         android:contentDescription="@string/cd_bluetooth_icon"
         android:background="@drawable/main_activity_icon_bluetooth" />
 
-    <com.android.extendedWidgets.ImageToogleButton
+    <com.android.extendedWidgets.ImageToggleButton
         android:id="@+id/b_bluetooth_switch"
         
         android:layout_width="wrap_content"
@@ -104,12 +104,12 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@id/iv_bluetooth_icon"
         
-        android:onClick="toogleBluetooth_onClick"
+        android:onClick="toggleBluetooth_onClick"
         
         android:contentDescription="@string/cd_bluetooth_enable_switch"
        	android:background="@drawable/main_activity_button_off" />
 
-    <com.android.extendedWidgets.ImageToogleButton
+    <com.android.extendedWidgets.ImageToggleButton
         android:id="@+id/b_wireless_network_switch"
         
         android:layout_width="wrap_content"
@@ -117,7 +117,7 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@id/b_bluetooth_switch"
         
-        android:onClick="toogleWirelessNetwork_onClick"
+        android:onClick="toggleWirelessNetwork_onClick"
         
         android:contentDescription="@string/cd_wireless_network_switch"
         android:background="@drawable/main_activity_button_off" />
@@ -130,7 +130,7 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@id/b_wireless_network_switch"
         
-        android:onClick="toogleWirelessNetwork_onClick"
+        android:onClick="toggleWirelessNetwork_onClick"
         
         android:contentDescription="@string/cd_wireless_network_switch"
         android:background="@drawable/main_activity_icon_wifi" />

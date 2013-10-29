@@ -1,4 +1,10 @@
-package com.android.multiplay;
+package com.android.controllers.keyboard;
+
+import com.android.multiplay.R;
+import com.android.multiplay.Sender;
+import com.android.multiplay.R.id;
+import com.android.multiplay.R.layout;
+import com.android.multiplay.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;

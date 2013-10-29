@@ -50,6 +50,7 @@
         <activity
             android:name="com.android.multiplay.MultiplayExplorerActivity"
             android:label="@string/title_activity_multiplay_explorer"
+            android:screenOrientation="landscape"
             android:parentActivityName="com.android.multiplay.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -58,6 +59,7 @@
         <activity
             android:name="com.android.multiplay.SystemControllerActivity"
             android:label="@string/title_activity_system_controller"
+            android:screenOrientation="landscape"
             android:parentActivityName="com.android.multiplay.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -66,6 +68,7 @@
         <activity
             android:name="com.android.multiplay.HelpActivity"
             android:label="@string/title_activity_help"
+            android:screenOrientation="landscape"
             android:parentActivityName="com.android.multiplay.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -74,6 +77,7 @@
         <activity
             android:name="com.android.multiplay.OptionsActivity"
             android:label="@string/title_activity_options"
+            android:screenOrientation="landscape"
             android:parentActivityName="com.android.multiplay.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -81,14 +85,17 @@
         </activity>
         <activity
             android:name="com.android.multiplay.FirstMenu"
+            android:screenOrientation="landscape"
             android:label="@string/title_activity_first_menu" >
         </activity>
         <activity
-            android:name="com.android.multiplay.KeyboardActivity"
+            android:name="com.android.controllers.keyboard.KeyboardActivity"
+            android:screenOrientation="landscape"
             android:label="@string/title_activity_keyboard" >
         </activity>
         <activity
-            android:name="com.android.multiplay.MouseActivity"
+            android:name="com.android.controllers.mouse.MouseActivity"
+            android:screenOrientation="landscape"
             android:label="@string/title_activity_mouse" >
         </activity>
     </application>

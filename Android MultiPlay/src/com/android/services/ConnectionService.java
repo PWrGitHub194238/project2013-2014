@@ -10,38 +10,38 @@ import android.util.Log;
 
 public class ConnectionService extends IntentService {
 
-//	public ConnectionService(String name) {
-//		super(name);
-//		// TODO Auto-generated constructor stub
-//	}
-//
-//	@Override
-//	protected void onHandleIntent(Intent intent) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-	
-	 public static final String PARAM_IN_MSG = "imsg";
-	    public static final String PARAM_OUT_MSG = "omsg";
-	    public ConnectionService() {
-	        super("SimpleIntentService");
-	    }
-	    @Override
-	    protected void onHandleIntent(Intent intent) {
-	        String msg = intent.getStringExtra(PARAM_IN_MSG);
-	        SystemClock.sleep(3000); // 3 seconds
-	        String resultTxt = msg + " "
-	            + DateFormat.format("MM/dd/yy h:mmaa", System.currentTimeMillis());
-	        
-	        
-	        Intent broadcastIntent = new Intent();
-	        broadcastIntent.setAction(ConnectionServiceResponseReceiver.ACTION_RESP);
-	        broadcastIntent.addCategory(Intent.CATEGORY_DEFAULT);
-	        broadcastIntent.putExtra(PARAM_OUT_MSG, resultTxt);
-	        sendBroadcast(broadcastIntent);
-	        Log.i("OK", "send");
-	    }
-	    
-	    
+	public static final String INPUT_DATA_CONNECTION_SELECT = "com.android.multiplay.MainActivity.CONNECTION_SELECT";
+	public static final String INPUT_DATA_CONNECTION_SWITH = "com.android.multiplay.MainActivity.CONNECTION_SWITH";
+    public static final String OUTPUT_DATA = "com.android.service.recivers.ConnectionServiece";
 
+    private boolean isBluetoothSelected = false;
+    private boolean isWirelessNetworkSelected = false;
+    private boolean switchOnOff = false;
+   
+    private Intent broadcastIntent = null;
+    
+    public static final String PARAM_IN_MSG = "imsg";
+    public static final String PARAM_OUT_MSG = "omsg";
+    
+    public ConnectionService() {
+		super("ConnectionService");
+	}
+
+	@Override
+	protected void onHandleIntent(Intent intent) {
+		isBluetoothSelected = intent.getBooleanExtra(INPUT_DATA_CONNECTION_SELECT, isBluetoothSelected);
+		isWirelessNetworkSelected = !isBluetoothSelected;
+		switchOnOff = intent.getBooleanExtra(INPUT_DATA_CONNECTION_SWITH, switchOnOff);
+		
+		SystemClock.sleep(3000); // 3 seconds
+	    String resultTxt = ((isBluetoothSelected) ? "Bluetooth " : "Wireless ") + ((switchOnOff) ? "Swith ON " : "Swith OFF ") +DateFormat.format("MM/dd/yy h:mmaa", System.currentTimeMillis()).toString();
+	    
+	    broadcastIntent = new Intent();
+	    broadcastIntent.setAction(ConnectionServiceResponseReceiver.ACTION_RESP);
+	    broadcastIntent.addCategory(Intent.CATEGORY_DEFAULT);
+	    broadcastIntent.putExtra(OUTPUT_DATA, resultTxt);
+	    sendBroadcast(broadcastIntent);
+	    Log.i("OK", "send");
+		
+	}
 }

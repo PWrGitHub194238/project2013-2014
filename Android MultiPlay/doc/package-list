@@ -1,3 +1,6 @@
+com.android.controllers.keyboard
+com.android.controllers.mouse
+com.android.dialogs.mainactivity
 com.android.extendedWidgets
 com.android.multiplay
 com.android.service.receivers

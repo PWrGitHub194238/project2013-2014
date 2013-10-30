@@ -95,13 +95,10 @@ public class MainActivity extends Activity {
 		
 		init();
 
-		intentFilter = new IntentFilter(ConnectionServiceResponseReceiver.ACTION_RESP);
-		intentFilter.addCategory(Intent.CATEGORY_DEFAULT);
-	        connectionServiceResponseReceiver = new ConnectionServiceResponseReceiver(this);
-	        super.registerReceiver(connectionServiceResponseReceiver, intentFilter);
-	        Log.i("OK", "reg");
+		initConnectionCheck();
 	}
-	
+
+
 	@Override
 	protected void onRestart() {
 		super.onRestart();
@@ -227,6 +224,18 @@ public class MainActivity extends Activity {
 	 */
 	private void init() {
 		super.findViewById(R.id.tv_title_of_selected_item).requestFocus();
+	}
+	
+	private void initConnectionCheck() {
+		intentFilter = new IntentFilter(ConnectionServiceResponseReceiver.ACTION_RESP);
+		intentFilter.addCategory(Intent.CATEGORY_DEFAULT);
+	    connectionServiceResponseReceiver = new ConnectionServiceResponseReceiver(this);
+	    super.registerReceiver(connectionServiceResponseReceiver, intentFilter);
+	    
+	    Intent outputIntent = new Intent(this, ConnectionService.class);
+	    outputIntent.putExtra(ConnectionService.INPUT_DATA_CONNECTION_INIT, true);
+		outputIntent.addCategory(Intent.CATEGORY_DEFAULT);
+		super.startService(outputIntent);
 	}
 	
 	/** Initialize method that links {@link #b_multiplay_explorer} object with correct View by id.

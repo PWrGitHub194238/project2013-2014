@@ -8,11 +8,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.android.controllers.keyboard.KeyboardActivity;
+import com.android.controllers.mouse.Gyromouse;
 import com.android.controllers.mouse.MouseActivity;
 
 public class FirstMenu extends Activity {
 	Bundle bundle;
-	private Button button1, button2;
+	private Button button1, button2,button3;
 	private String ip;
 
 	@Override
@@ -23,6 +24,8 @@ public class FirstMenu extends Activity {
 		ip = bundle.getString("ip");
 		button1 = (Button) super.findViewById(R.id.keyboardb);
 		button2 = (Button) super.findViewById(R.id.mouseb);
+		button3 = (Button) super.findViewById(R.id.gyromouse);
+
 	}
 
 	public void onClick(View arg0) {
@@ -37,6 +40,11 @@ public class FirstMenu extends Activity {
 			intent.putExtra("ip", ip);
 			super.startActivity(intent);
 			break;
+		case R.id.gyromouse:
+			intent = new Intent(this, Gyromouse.class);
+			intent.putExtra("ip", ip);
+
+			super.startActivity(intent);
 
 		}
 	}

@@ -19,5 +19,6 @@
     <string name="title_activity_first_menu">TOBEDELETED</string>
     <string name="title_activity_keyboard">KeyboardActivity</string>
     <string name="title_activity_mouse">MouseActivity</string>
+    <string name="title_activity_gyromouse">Gyromouse</string>
 
 </resources>

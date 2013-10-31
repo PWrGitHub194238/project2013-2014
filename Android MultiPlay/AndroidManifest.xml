@@ -8,21 +8,21 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="18" />
 
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-	<uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
         android:required="false" />
 
     <application
+        android:name="com.android.multiplay.MultiPlayApplication"
         android:allowBackup="true"
-        android:name="MultiPlayApplication"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
@@ -43,8 +43,8 @@
         <activity
             android:name="com.android.multiplay.MultiplayExplorerActivity"
             android:label="@string/title_activity_multiplay_explorer"
-            android:screenOrientation="landscape"
-            android:parentActivityName="com.android.multiplay.MainActivity" >
+            android:parentActivityName="com.android.multiplay.MainActivity"
+            android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.multiplay.MainActivity" />
@@ -52,8 +52,8 @@
         <activity
             android:name="com.android.multiplay.SystemControllerActivity"
             android:label="@string/title_activity_system_controller"
-            android:screenOrientation="landscape"
-            android:parentActivityName="com.android.multiplay.MainActivity" >
+            android:parentActivityName="com.android.multiplay.MainActivity"
+            android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.multiplay.MainActivity" />
@@ -61,8 +61,8 @@
         <activity
             android:name="com.android.multiplay.HelpActivity"
             android:label="@string/title_activity_help"
-            android:screenOrientation="landscape"
-            android:parentActivityName="com.android.multiplay.MainActivity" >
+            android:parentActivityName="com.android.multiplay.MainActivity"
+            android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.multiplay.MainActivity" />
@@ -70,26 +70,30 @@
         <activity
             android:name="com.android.multiplay.OptionsActivity"
             android:label="@string/title_activity_options"
-            android:screenOrientation="landscape"
-            android:parentActivityName="com.android.multiplay.MainActivity" >
+            android:parentActivityName="com.android.multiplay.MainActivity"
+            android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.multiplay.MainActivity" />
         </activity>
         <activity
             android:name="com.android.multiplay.FirstMenu"
-            android:screenOrientation="landscape"
-            android:label="@string/title_activity_first_menu" >
+            android:label="@string/title_activity_first_menu"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.android.controllers.keyboard.KeyboardActivity"
-            android:screenOrientation="landscape"
-            android:label="@string/title_activity_keyboard" >
+            android:label="@string/title_activity_keyboard"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.android.controllers.mouse.MouseActivity"
-            android:screenOrientation="landscape"
-            android:label="@string/title_activity_mouse" >
+            android:label="@string/title_activity_mouse"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.mouse.Gyromouse"
+            android:label="@string/title_activity_gyromouse" >
         </activity>
     </application>
 

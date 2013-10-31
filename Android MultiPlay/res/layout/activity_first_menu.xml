@@ -28,4 +28,13 @@
         android:onClick="onClick"
         android:text="keyboard" />
 
+    <Button
+        android:id="@+id/gyromouse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/keyboardb"
+        android:layout_below="@+id/mouseb"
+        android:onClick="onClick"
+        android:text="gyromouse" />
+
 </RelativeLayout>

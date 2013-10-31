@@ -2,6 +2,8 @@ package com.android.multiplay;
 
 import java.net.Socket;
 
+import com.android.database.MultiPlayDataBase;
+
 import android.app.Application;
 import android.bluetooth.BluetoothSocket;
 
@@ -13,6 +15,7 @@ public class MultiPlayApplication extends Application {
 	
 	private Socket wirelessSocket = null;
 	private  BluetoothSocket bluetoothSocket = null;
+	private MultiPlayDataBase multiPlayDataBase = null;
 	
 	public Socket getWirelessSocket() {
 		return wirelessSocket;
@@ -25,5 +28,11 @@ public class MultiPlayApplication extends Application {
 	}
 	public void setBluetoothSocket(BluetoothSocket bluetoothSocket) {
 		this.bluetoothSocket = bluetoothSocket;
+	}
+	public MultiPlayDataBase getMultiPlayDataBase() {
+		return multiPlayDataBase;
+	}
+	public void setMultiPlayDataBase(MultiPlayDataBase multiPlayDataBase) {
+		this.multiPlayDataBase = multiPlayDataBase;
 	}
 }

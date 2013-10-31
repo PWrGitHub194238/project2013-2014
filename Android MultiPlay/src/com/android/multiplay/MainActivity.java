@@ -155,11 +155,8 @@ public class MainActivity extends Activity {
 	 * 
 	 * Newly created {@link Intent} has two extras: <br>
 	 * <ol>
-	 * 	<li> {@link ConnectionService#INPUT_DATA_CONNECTION_SELECT} - 
-	 * 		boolean value which is true when this method was triggered by taping
-	 * 		{@link #b_bluetooth_switch} to enable or disable bluetooth service
-	 * 		or false when button {@link #b_bluetooth_switch} was tapped 
-	 * 		and {@link #toggleWirelessNetwork_onClick(View)} was called.</li>
+	 * 	<li> {@link ConnectionService#INPUT_DATA_CALLED_REASON} - 
+	 * 		Integer value that defines a behavior of {@link ConnectionService} that will be called.</li>
 	 * 	<li> {@link ConnectionService#INPUT_DATA_CONNECTION_SWITH} - 
 	 * 		boolean value which is true when user switches button from OFF to ON, false otherwise.</li>
 	 * </ol>
@@ -168,7 +165,7 @@ public class MainActivity extends Activity {
 	 */
 	private void sendToggleBluetoothIntentToService( boolean toggle ) {
 		Intent outputIntent = new Intent(this, ConnectionService.class);
-		outputIntent.putExtra(ConnectionService.INPUT_DATA_CONNECTION_SELECT, true);
+		outputIntent.putExtra(ConnectionService.INPUT_DATA_CALLED_REASON, ConnectionService.BLUETOOTH);
 		outputIntent.putExtra(ConnectionService.INPUT_DATA_CONNECTION_SWITH, toggle);
 		outputIntent.addCategory(Intent.CATEGORY_DEFAULT);
 		super.startService(outputIntent);
@@ -207,7 +204,7 @@ public class MainActivity extends Activity {
 	 */
 	private void sendToggleWirelessNetworkSwitchIntentToService( boolean toggle ) {
 		Intent outputIntent = new Intent(this, ConnectionService.class);
-		outputIntent.putExtra(ConnectionService.INPUT_DATA_CONNECTION_SELECT, false);
+		outputIntent.putExtra(ConnectionService.INPUT_DATA_CALLED_REASON, ConnectionService.WIFI);
 		outputIntent.putExtra(ConnectionService.INPUT_DATA_CONNECTION_SWITH, toggle);
 		outputIntent.addCategory(Intent.CATEGORY_DEFAULT);
 		super.startService(outputIntent);
@@ -233,8 +230,8 @@ public class MainActivity extends Activity {
 	    super.registerReceiver(connectionServiceResponseReceiver, intentFilter);
 	    
 	    Intent outputIntent = new Intent(this, ConnectionService.class);
-	    outputIntent.putExtra(ConnectionService.INPUT_DATA_CONNECTION_INIT, true);
 		outputIntent.addCategory(Intent.CATEGORY_DEFAULT);
+		outputIntent.putExtra(ConnectionService.INPUT_DATA_CALLED_REASON, ConnectionService.INIT);
 		super.startService(outputIntent);
 	}
 	

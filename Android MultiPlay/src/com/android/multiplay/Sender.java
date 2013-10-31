@@ -47,9 +47,7 @@ public class Sender extends AsyncTask<Object, Object, Object> {
 				if (((String) arg0[0]).equals("mouse")) {
 					dataOutputStream = new DataOutputStream(
 							socket.getOutputStream());
-					dataOutputStream.writeUTF("mouse");
-					dataOutputStream.writeUTF(Integer.toString(x));
-					dataOutputStream.writeUTF(Integer.toString(y));
+					
 					dataOutputStream.flush();
 					dataOutputStream.close();
 					socket.close();

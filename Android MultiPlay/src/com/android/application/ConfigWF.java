@@ -1,4 +1,4 @@
-package com.android.multiplay;
+package com.android.application;
 
 public class ConfigWF {
 	private String  ip;

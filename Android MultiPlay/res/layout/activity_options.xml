@@ -1,55 +1,133 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    
+    tools:context=".OptionsActivity" >
 
-    <TextView
-        android:id="@+id/pochyl"
+    
+
+<!--     Menu buttons to other activities -->
+    
+    <ImageButton 
+        android:id="@+id/b_multiplay_explorer_icon"
+        
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="150dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="47dp"
-        android:text="IP"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_marginTop="10dp"
+        
+        android:onClick="multiplay_explorer_OnClick"
+        android:focusableInTouchMode="true"
+        
+        android:background="@drawable/main_activity_multiplay_explorer_icon"
+        android:contentDescription="@string/cd_multiplay_explorer_icon"/>
+    
+    <ImageButton 
+        android:id="@+id/b_system_controller_icon"
+        
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        
+        android:onClick="system_controller_OnClick"
+        android:focusableInTouchMode="true"
+        
+        android:background="@drawable/main_activity_system_controller_icon"
+        android:contentDescription="@string/cd_system_controller_icon"/>
+    
+    <ImageButton 
+        android:id="@+id/b_help_icon"
+        
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        
+        android:onClick="help_OnClick"
+        android:focusableInTouchMode="true"
+        
+       	android:background="@drawable/main_activity_help_icon"
+        android:contentDescription="@string/cd_help_icon"/>
+    
+    <ImageButton 
+        android:id="@+id/b_options_icon"
+        
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="270dp"
+        
+        android:onClick="options_OnClick"
+        android:focusableInTouchMode="true"
+        
+        android:background="@drawable/main_activity_options_icon"
+        android:contentDescription="@string/cd_options_icon"/>
+    
+    
+    
+<!-- Right-bottom components for network switching on/off. -->
 
-    <Button
-        android:id="@+id/search"
+
+
+    <fragment android:name="com.android.multiplay.fragments.ConnectionPanel"
+        android:id="@+id/connection_panel_for_activity_views"
+        
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/imageButton1"
-        android:layout_marginBottom="66dp"
-        
-        android:onClick="onClick"
-        
-        android:text="search" />
+        android:layout_alignParentLeft="true" />
+    
+    
+    
+    
+<!--     Text hints forselection -->
 
-    <EditText
-        android:id="@+id/IPeditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/pochyl"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp"
-        android:ems="10" >
 
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/imageButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/search"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="56dp"
-         android:onClick="onClick"
-        android:text="OK" />
+	
+	<TextView
+	    android:id="@+id/tv_title_of_selected_item"
+	    
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentTop="true"
+	    android:layout_marginTop="50dp"
+	    
+	    android:focusable="true"
+	    
+	    android:text="@string/default_title_in_main_activity"
+	    android:textAppearance="@style/main_activity_titles"
+	    android:drawableLeft="@drawable/main_activity_0_title_icon"
+	    android:drawablePadding="10dp"/>
+	
+	<TextView
+	    android:id="@+id/tv_describtion_of_selected_item"
+	    
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    
+	    android:layout_above="@id/connection_panel_for_activity_views"
+	    android:layout_alignParentLeft="true"
+	    android:layout_below="@id/tv_title_of_selected_item"
+	    android:layout_marginLeft="10dp"
+	    android:layout_toLeftOf="@+id/b_options_icon"
+	    
+	    android:background="@drawable/main_activity_0_title_big_background_icon"
+	    android:text="@string/default_title_description_in_main_activity"
+	    android:textAppearance="@style/main_activity_titles_description" />
 
 </RelativeLayout>

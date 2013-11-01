@@ -58,12 +58,12 @@ public class ConnectionService extends IntentService {
     
     public ConnectionService() {
 		super("ConnectionService");
-		Log.i("ConnectionService", "Default contructor");
+		Log.i("Fragment", "Default contructor");
 	}
 
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		Log.i("ConnectionService", "onHandle");
+		Log.i("Fragment", "onHandle");
 		bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 		called_reason_id = intent.getIntExtra(INPUT_DATA_CALLED_REASON, 0);
@@ -73,7 +73,7 @@ public class ConnectionService extends IntentService {
 			broadcastIntent.putExtra(INPUT_DATA_CALLED_REASON, called_reason_id);
 			
 			if ( called_reason_id == ConnectionService.INIT ) {
-				Log.i("ConnectionService", "INIT");
+				Log.i("Fragment", "INIT");
 				initService();
 			} else {
 				switchOnOff = intent.getBooleanExtra(INPUT_DATA_CONNECTION_SWITH, true);
@@ -86,7 +86,6 @@ public class ConnectionService extends IntentService {
 			}
 		}
 		
-		SystemClock.sleep(3000); // 3 seconds
 		sendBroadcast(broadcastIntent);
 		Log.i("ConnectionService", "sent");
 	}
@@ -96,7 +95,7 @@ public class ConnectionService extends IntentService {
 	}
 	
 	private void searchForEnableServices() {
-		Log.i("ConnectionService", "search");
+		Log.i("Fragment", "search");
 		searchForEnableBluetoothService();
 		searchForEnableWifiService();
 	}
@@ -104,7 +103,7 @@ public class ConnectionService extends IntentService {
 	private void searchForEnableBluetoothService() {
 		if ( bluetoothAdapter != null ) {
 			if ( isBluetoothServiceEnabled() ) {
-				Log.i("ConnectionService", "BT enabled");
+				Log.i("Fragment", "BT enabled");
 
 				if ( isBluetoothSavedConfAvailable() ) {
 					setBluetoothDefaultConnectionFromHistory();
@@ -122,12 +121,18 @@ public class ConnectionService extends IntentService {
 	}
 	
 	private boolean isBluetoothSavedConfAvailable() {
-		boolean isBluetoothDefaultConfAvaliable = false;
+		boolean isBluetoothDefaultConfAvaliable = findBluetoothSavedConf();
 		broadcastIntent.putExtra(ConnectionService.OUTPUT_DATA_BT_DEFAULT_CONF_AVAILABLE,isBluetoothDefaultConfAvaliable);
 		return isBluetoothDefaultConfAvaliable;
 	}
 	
-	private void setBluetoothDefaultConnectionFromHistory() {
+	public boolean findBluetoothSavedConf() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	//Jakiś argument z sqlite.
+	public void setBluetoothDefaultConnectionFromHistory() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -135,7 +140,7 @@ public class ConnectionService extends IntentService {
 	private void searchForEnableWifiService() {
 		if ( wifiManager != null ) {
 			if ( isWirelessNetworkServiceEnabled() ) {
-				Log.i("ConnectionService", "WiFI enabled");
+				Log.i("Fragment", "WiFI enabled");
 
 				if ( isWirelessNetworkSavedConfAvailable() ) {
 					setWirelessNetworkDefaultConnectionFromHistory();
@@ -153,24 +158,54 @@ public class ConnectionService extends IntentService {
 	}
 	
 	private boolean isWirelessNetworkSavedConfAvailable() {
-		boolean isWirelessNetworkDefaultConfAvaliable = false;
+		boolean isWirelessNetworkDefaultConfAvaliable = findWirelessNetworkSavedConf();
 		broadcastIntent.putExtra(ConnectionService.OUTPUT_DATA_WIFI_DEFAULT_CONF_AVAILABLE,isWirelessNetworkDefaultConfAvaliable);
 		return isWirelessNetworkDefaultConfAvaliable;
 	}
 	
-	private void setWirelessNetworkDefaultConnectionFromHistory() {
+	public boolean findWirelessNetworkSavedConf() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void setWirelessNetworkDefaultConnectionFromHistory() {
 		// TODO Auto-generated method stub
 		
 	}
 	
 	private void bluetoothService() {
 		// TODO Auto-generated method stub
-		Toast.makeText(this.getApplicationContext(), ((switchOnOff) ? " BT ON" : " BT OFF"), Toast.LENGTH_SHORT).show();
+		Log.i("Fragment", "BT CLICK");
+		if ( switchOnOff ) {
+			enableBlurtoothService();
+		} else {
+			disableBlurtoothService();
+		}
+		initService();
 	}
 	
-	private void wifiService() {
-		Toast.makeText(this.getApplicationContext(), ((switchOnOff) ? " WIFI ON" : " WIFI OFF"), Toast.LENGTH_SHORT).show();
+	private void enableBlurtoothService() {
+		Log.i("Fragment", "BT enabling BT:"+switchOnOff);
+	}
+	
+	private void disableBlurtoothService() {
+		Log.i("Fragment", "BT disabling BT:"+switchOnOff);
+	}
 
-		
+	private void wifiService() {
+		if ( switchOnOff ) {
+			enableWirelessNetworkService();
+		} else {
+			disableWirelessNetworkService();
+		}
+		initService();
+	}
+
+	private void enableWirelessNetworkService() {
+		Log.i("Fragment", "WIFI enabling WIFI:"+switchOnOff);
+	}
+	
+	private void disableWirelessNetworkService() {
+		Log.i("Fragment", "WIFI disabling WIFI:"+switchOnOff);
 	}
 }

@@ -1,13 +1,8 @@
 package com.android.multiplay;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 public class OptionsActivity extends Activity {
 
@@ -43,4 +38,16 @@ public class OptionsActivity extends Activity {
 //		}
 //	}
 
+	
+	public void controllers_OnClick( View view ) {
+		
+	}
+	
+public void connections_OnClick( View view ) {
+		
+	}
+
+public void resetdata_OnClick( View view ) {
+	
+}
 }

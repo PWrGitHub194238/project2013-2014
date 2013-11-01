@@ -1,7 +1,6 @@
 package com.android.multiplay;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.TextView;
@@ -21,16 +20,16 @@ public class MainActivityFocusChangeListener implements OnFocusChangeListener {
 	public void onFocusChange( View view, boolean hasFocus ) {
 		if ( hasFocus ) {
 			switch (sourseID) {
-			case R.id.b_multiplay_explorer_icon:
+			case R.id.b_main_activity_multiplay_explorer_icon:
 				multiplay_explorer_hasFocus();
 				break;
-			case R.id.b_system_controller_icon:
+			case R.id.b_main_activity_system_controller_icon:
 				system_controller_hasFocus();
 				break;
-			case R.id.b_help_icon:
+			case R.id.b_main_activity_help_icon:
 				help_hasFocus();
 				break;
-			case R.id.b_options_icon:
+			case R.id.b_main_activity_options_icon:
 				options_hasFocus();
 				break;
 			}
@@ -41,6 +40,7 @@ public class MainActivityFocusChangeListener implements OnFocusChangeListener {
 		title_of_selected_item.setCompoundDrawablesWithIntrinsicBounds(
 				R.drawable.main_activity_0_title_icon, 0, 0, 0);
 		title_of_selected_item.setText(R.string.option_0_title_in_main_activity);
+		title_of_selected_item.setBackgroundResource(R.drawable.main_activity_0_title_glow);
 		describtion_of_selected_item.setBackgroundResource(R.drawable.main_activity_0_title_big_background_icon);
 		describtion_of_selected_item.setText(R.string.option_0_title_description_in_main_activity);
 	}
@@ -49,6 +49,7 @@ public class MainActivityFocusChangeListener implements OnFocusChangeListener {
 		title_of_selected_item.setCompoundDrawablesWithIntrinsicBounds(
 				R.drawable.main_activity_1_title_icon, 0, 0, 0);
 		title_of_selected_item.setText(R.string.option_1_title_in_main_activity);
+		title_of_selected_item.setBackgroundResource(R.drawable.main_activity_1_title_glow);
 		describtion_of_selected_item.setBackgroundResource(R.drawable.main_activity_1_title_big_background_icon);
 		describtion_of_selected_item.setText(R.string.option_1_title_description_in_main_activity);
 	}
@@ -57,6 +58,7 @@ public class MainActivityFocusChangeListener implements OnFocusChangeListener {
 		title_of_selected_item.setCompoundDrawablesWithIntrinsicBounds(
 				R.drawable.main_activity_2_title_icon, 0, 0, 0);
 		title_of_selected_item.setText(R.string.option_2_title_in_main_activity);
+		title_of_selected_item.setBackgroundResource(R.drawable.main_activity_2_title_glow);
 		describtion_of_selected_item.setBackgroundResource(R.drawable.main_activity_2_title_big_background_icon);
 		describtion_of_selected_item.setText(R.string.option_2_title_description_in_main_activity);
 	}
@@ -65,6 +67,7 @@ public class MainActivityFocusChangeListener implements OnFocusChangeListener {
 		title_of_selected_item.setCompoundDrawablesWithIntrinsicBounds(
 				R.drawable.main_activity_3_title_icon, 0, 0, 0);
 		title_of_selected_item.setText(R.string.option_3_title_in_main_activity);
+		title_of_selected_item.setBackgroundResource(R.drawable.main_activity_3_title_glow);
 		describtion_of_selected_item.setBackgroundResource(R.drawable.main_activity_3_title_big_background_icon);
 		describtion_of_selected_item.setText(R.string.option_3_title_description_in_main_activity);
 	}

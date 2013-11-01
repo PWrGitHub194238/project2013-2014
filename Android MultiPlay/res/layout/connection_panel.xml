@@ -12,7 +12,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         
-        android:contentDescription="@string/cd_bluetooth_icon"
+        android:contentDescription="@string/contentDescription_bluetooth_icon"
         android:background="@drawable/main_activity_icon_bluetooth" />
 
     <com.android.extendedWidgets.ImageToggleButton
@@ -23,7 +23,7 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@id/iv_bluetooth_icon"
         
-        android:contentDescription="@string/cd_bluetooth_enable_switch"
+        android:contentDescription="@string/contentDescription_bluetooth_enable_switch"
        	android:background="@drawable/main_activity_button_off" />
 
     <com.android.extendedWidgets.ImageToggleButton
@@ -35,7 +35,7 @@
         android:layout_toRightOf="@id/b_bluetooth_switch"
         
         
-        android:contentDescription="@string/cd_wireless_network_switch"
+        android:contentDescription="@string/contentDescription_wireless_network_switch"
         android:background="@drawable/main_activity_button_off" />
 
     <ImageButton
@@ -46,7 +46,7 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@id/b_wireless_network_switch"
         
-        android:contentDescription="@string/cd_wireless_network_switch"
+        android:contentDescription="@string/contentDescription_wireless_network_switch"
         android:background="@drawable/main_activity_icon_wifi" />
 
 </RelativeLayout>

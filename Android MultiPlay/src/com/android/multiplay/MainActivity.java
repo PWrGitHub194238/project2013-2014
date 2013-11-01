@@ -1,14 +1,14 @@
 package com.android.multiplay;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.DialogFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
 import com.android.dialogs.mainactivity.MainActivityDialogList;
 
@@ -61,10 +61,10 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		initB_multiplay_explorer(R.id.b_multiplay_explorer_icon);
-		initB_system_controller(R.id.b_system_controller_icon);
-		initB_help(R.id.b_help_icon);
-		initB_options(R.id.b_options_icon);
+		initB_multiplay_explorer(R.id.b_main_activity_multiplay_explorer_icon);
+		initB_system_controller(R.id.b_main_activity_system_controller_icon);
+		initB_help(R.id.b_main_activity_help_icon);
+		initB_options(R.id.b_main_activity_options_icon);
 		
 		init();
 	}
@@ -72,6 +72,7 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	@Override
 	protected void onResume() {
 		super.onResume();
+		Log.i("Main", "Resume");
 		init();
 	}
 	

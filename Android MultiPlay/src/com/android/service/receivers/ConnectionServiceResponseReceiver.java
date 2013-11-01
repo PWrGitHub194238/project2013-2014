@@ -8,6 +8,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
+import com.android.dialogs.AlertDialogs;
+import com.android.dialogs.mainactivity.MainActivityDialogList;
 import com.android.extendedWidgets.ImageToggleButton;
 import com.android.multiplay.R;
 import com.android.services.ConnectionService;
@@ -48,20 +50,34 @@ public class ConnectionServiceResponseReceiver extends BroadcastReceiver {
 	    is_wireless_network_default_conf_available= intent.getBooleanExtra(ConnectionService.OUTPUT_DATA_WIFI_DEFAULT_CONF_AVAILABLE,false);
 
 	      if ( called_reason_id == ConnectionService.INIT ) {
-	    	  initUpdateButtonStatus();
-	    	  if ( is_bluetooth_default_conf_available ) {
-	    		  setUpBluetoothDefaultConnection();
-	    	  } else if ( is_wireless_network_default_conf_available ) {
-	    		  setUpWirelessNetworkDefaultConnection();
+	    	  updateButtonStatus();
+	    	  if ( b_bluetooth_switch.isToggle() ) {
+	    		  if ( is_bluetooth_default_conf_available ) {
+	    			  AlertDialogs.showDialog(
+	    					  activity,
+	    					  MainActivityDialogList.TAG_BLUETOOTH_CONNECTED,
+	    					  null,
+	    					  MainActivityDialogList.ID_TITLE_BLUETOOTH_CONNECTED,
+	    					  MainActivityDialogList.ID_MESSAGE_BLUETOOTH_CONNECTED,
+	    					  MainActivityDialogList.ID_BUTTON_OK,
+	    					  null,
+	    					  null);
+	    		  } else {
+	    			  AlertDialogs.showDialog(
+	    					  activity,
+	    					  MainActivityDialogList.TAG_BLUETOOTH_ENABLED,
+	    					  null,
+	    					  MainActivityDialogList.ID_TITLE_BLUETOOTH_ENABLED,
+	    					  MainActivityDialogList.ID_MESSAGE_BLUETOOTH_ENABLED,
+	    					  MainActivityDialogList.ID_BUTTON_OPTIONS,
+	    					  null,
+	    					  MainActivityDialogList.ID_BUTTON_CANCEL);
+	    		  }
 	    	  }
 	      } else if ( called_reason_id == ConnectionService.BLUETOOTH ) {
-	    	  if ( is_service_enabling ) {
-	    		  enableBluetoothService();
-	    	  }
+
 	      } else if ( called_reason_id == ConnectionService.WIFI ) {
-	    	  if ( is_service_enabling ) {
-	    		  enableBluetoothService();
-	    	  }
+
 	      }
 	    	 
 	       
@@ -71,26 +87,16 @@ public class ConnectionServiceResponseReceiver extends BroadcastReceiver {
 	   
 	   
 
-	private void enableBluetoothService() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	private void setUpWirelessNetworkDefaultConnection() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void setUpBluetoothDefaultConnection() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void initUpdateButtonStatus() {
+	private void updateButtonStatus() {
 		b_bluetooth_switch.setBackgroundResource(
 				(is_bluetooth_service_enabled) ? R.drawable.main_activity_button_on : R.drawable.main_activity_button_off);
+		b_bluetooth_switch.setToggle(
+				(is_bluetooth_service_enabled) ? true : false);
 		b_wireless_network_switch.setBackgroundResource(
 				(is_wireless_network_service_enabled) ? R.drawable.main_activity_button_on : R.drawable.main_activity_button_off);
+		b_wireless_network_switch.setToggle(
+				(is_wireless_network_service_enabled) ? true : false);
 	}
 
 	private static boolean isConnected(Context context) {

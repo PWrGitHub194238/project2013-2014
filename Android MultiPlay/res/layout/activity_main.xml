@@ -81,59 +81,16 @@
     
 <!-- Right-bottom components for network switching on/off. -->
 
-
-
-    <ImageButton
-        android:id="@+id/iv_bluetooth_icon"
+ 
+ 
+    <fragment android:name="com.android.multiplay.fragments.ConnectionPanel"
+        android:id="@+id/connection_panel_for_activity_views"
         
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        
-        android:onClick="toggleBluetooth_onClick"
-        
-        android:contentDescription="@string/cd_bluetooth_icon"
-        android:background="@drawable/main_activity_icon_bluetooth" />
-
-    <com.android.extendedWidgets.ImageToggleButton
-        android:id="@+id/b_bluetooth_switch"
-        
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/iv_bluetooth_icon"
-        
-        android:onClick="toggleBluetooth_onClick"
-        
-        android:contentDescription="@string/cd_bluetooth_enable_switch"
-       	android:background="@drawable/main_activity_button_off" />
-
-    <com.android.extendedWidgets.ImageToggleButton
-        android:id="@+id/b_wireless_network_switch"
-        
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/b_bluetooth_switch"
-        
-        android:onClick="toggleWirelessNetwork_onClick"
-        
-        android:contentDescription="@string/cd_wireless_network_switch"
-        android:background="@drawable/main_activity_button_off" />
-
-    <ImageButton
-        android:id="@+id/iv_wireless_network_icon"
-        
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/b_wireless_network_switch"
-        
-        android:onClick="toggleWirelessNetwork_onClick"
-        
-        android:contentDescription="@string/cd_wireless_network_switch"
-        android:background="@drawable/main_activity_icon_wifi" />
+        android:layout_alignParentLeft="true" />
+    
     
     
     
@@ -149,6 +106,7 @@
 	    android:layout_alignParentLeft="true"
 	    android:layout_alignParentTop="true"
 	    android:layout_marginTop="50dp"
+	    android:layout_toLeftOf="@+id/b_multiplay_explorer_icon"
 	    
 	    android:focusable="true"
 	    
@@ -162,7 +120,7 @@
 	    
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_above="@id/b_bluetooth_switch"
+	    android:layout_above="@id/connection_panel_for_activity_views"
 	    android:layout_alignParentLeft="true"
 	    android:layout_below="@id/tv_title_of_selected_item"
 	    android:layout_marginLeft="10dp"

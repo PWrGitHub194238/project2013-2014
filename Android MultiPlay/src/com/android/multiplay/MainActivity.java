@@ -158,6 +158,7 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	}
 
 	
+	
 ////////////////////Methods for initialize objects
 	
 	
@@ -173,51 +174,51 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	 * 
 	 * Also creates a new listener for this button's events 
 	 * by passing this {@link Activity} and id parameter 
-	 * to {@link MainActivityFocusChangeListener#MainActivityFocusChangeListener(Activity, int)} .
+	 * to {@link OptionsFocusChangeListener#MainActivityFocusChangeListener(Activity, int)} .
 	 * @param id ID of view in {@link com.android.multiplay.R}
 	 */
 	private void initB_multiplay_explorer( int id) {
 		this.b_multiplay_explorer = (ImageButton) super.findViewById(id);
 		this.b_multiplay_explorer.setOnFocusChangeListener(
-				new MainActivityFocusChangeListener(this,id));
+				new OptionsFocusChangeListener(this,id));
 	}
 	
 	/** Initialize method that links {@link #b_system_controller} object with correct View by id.
 	 * 
 	 * Also creates a new listener for this button's events 
 	 * by passing this {@link Activity} and id parameter 
-	 * to {@link MainActivityFocusChangeListener#MainActivityFocusChangeListener(Activity, int)} .
+	 * to {@link OptionsFocusChangeListener#MainActivityFocusChangeListener(Activity, int)} .
 	 * @param id ID of view in {@link com.android.multiplay.R}
 	 */
 	private void initB_system_controller( int id ) {
 		this.b_system_controller = (ImageButton) super.findViewById(id);
 		this.b_system_controller.setOnFocusChangeListener(
-				new MainActivityFocusChangeListener(this,id));
+				new OptionsFocusChangeListener(this,id));
 	}
 	
 	/** Initialize method that links {@link #b_help} object with correct View by id.
 	 * 
 	 * Also creates a new listener for this button's events 
 	 * by passing this {@link Activity} and id parameter 
-	 * to {@link MainActivityFocusChangeListener#MainActivityFocusChangeListener(Activity, int)} .
+	 * to {@link OptionsFocusChangeListener#MainActivityFocusChangeListener(Activity, int)} .
 	 * @param id ID of view in {@link com.android.multiplay.R}
 	 */
 	private void initB_help( int id ) {
 		this.b_help = (ImageButton) super.findViewById(id);
 		this.b_help.setOnFocusChangeListener(
-				new MainActivityFocusChangeListener(this,id));
+				new OptionsFocusChangeListener(this,id));
 	}
 	
 	/** Initialize method that links {@link #b_options} object with correct View by id.
 	 * 
 	 * Also creates a new listener for this button's events 
 	 * by passing this {@link Activity} and id parameter 
-	 * to {@link MainActivityFocusChangeListener#MainActivityFocusChangeListener(Activity, int)} .
+	 * to {@link OptionsFocusChangeListener#MainActivityFocusChangeListener(Activity, int)} .
 	 * @param id ID of view in {@link com.android.multiplay.R}
 	 */
 	private void initB_options( int id ) {
 		this.b_options = (ImageButton) super.findViewById(id);
 		this.b_options.setOnFocusChangeListener(
-				new MainActivityFocusChangeListener(this,id));
+				new OptionsFocusChangeListener(this,id));
 	}
 }

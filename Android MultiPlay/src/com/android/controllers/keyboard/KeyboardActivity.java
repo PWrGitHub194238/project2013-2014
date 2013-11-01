@@ -23,10 +23,10 @@ public class KeyboardActivity extends Activity {
 		setContentView(R.layout.activity_keyboard);
 		bundle = super.getIntent().getExtras();
 		ip = bundle.getString("ip");
-		button1 = (Button) super.findViewById(R.id.left);		//przyciski przykładowe do klawiatury które 
-		button2 = (Button) super.findViewById(R.id.right);		//należy dodać w przyszłości
-		button3 = (Button) super.findViewById(R.id.up);			//do wysyłania jest ju prawie zainplementowane
-		button4 = (Button) super.findViewById(R.id.down);		//wystarczy dodać kilka if'ow
+		button1 = (Button) super.findViewById(R.id.leftb);		//przyciski przykładowe do klawiatury które 
+		button2 = (Button) super.findViewById(R.id.rightb);		//należy dodać w przyszłości
+		button3 = (Button) super.findViewById(R.id.upb);			//do wysyłania jest ju prawie zainplementowane
+		button4 = (Button) super.findViewById(R.id.downb);		//wystarczy dodać kilka if'ow
 		button5 = (Button) super.findViewById(R.id.enterb);
 	}
 
@@ -39,22 +39,22 @@ public class KeyboardActivity extends Activity {
 
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
-		case R.id.left:
+		case R.id.leftb:
 			Sender sender = new Sender();
 			sender.setip(ip);
 			sender.execute("keyboard", "left");
 			break;
-		case R.id.right:
+		case R.id.rightb:
 			Sender sender2 = new Sender();
 			sender2.setip(ip);
 			sender2.execute("keyboard", "right");
 			break;
-		case R.id.up:
+		case R.id.upb:
 			Sender sender3 = new Sender();
 			sender3.setip(ip);						//wywyla odpowiednie klawisze poprzez klase Sender
 			sender3.execute("keyboard", "up");
 			break;
-		case R.id.down:
+		case R.id.downb:
 			Sender sender4 = new Sender();
 			sender4.setip(ip);
 			sender4.execute("keyboard", "down");

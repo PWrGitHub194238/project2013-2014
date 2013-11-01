@@ -95,6 +95,14 @@
             android:name="com.android.controllers.mouse.Gyromouse"
             android:label="@string/title_activity_gyromouse" >
         </activity>
+        <activity
+            android:name="com.android.controllers.keyboard.Collection"
+            android:label="@string/title_activity_collection" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.steeringwheel.SteeringwheelActivity"
+            android:label="@string/title_activity_steeringwheel" >
+        </activity>
     </application>
 
 </manifest>

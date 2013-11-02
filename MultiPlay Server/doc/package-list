@@ -1,0 +1,14 @@
+
+com.android.application
+com.android.controllers.keyboard
+com.android.controllers.mouse
+com.android.controllers.steeringwheel
+com.android.database
+com.android.database.tables
+com.android.dialogs
+com.android.dialogs.mainactivity
+com.android.extendedWidgets
+com.android.multiplay
+com.android.multiplay.fragments
+com.android.service.receivers
+com.android.services

@@ -1,20 +1,40 @@
 package com.android.controllers.steeringwheel;
+
 //ewentualna kierownica jeśli sie uda zrobić sterowniki po stronie komputera
 
 import com.android.multiplay.R;
 import com.android.multiplay.R.layout;
 import com.android.multiplay.R.menu;
 
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.view.Menu;
+import android.widget.TextView;
 
-public class SteeringwheelActivity extends Activity {
+public class SteeringwheelActivity extends Activity implements
+		SensorEventListener {
+	SensorManager sm;
+	TextView tv;
+	private String ip;
+	Bundle bundle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_steeringwheel);
+		bundle = super.getIntent().getExtras();
+		ip = bundle.getString("ip");
+		tv = (TextView) findViewById(R.id.stopv);
+		sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+		sm.registerListener(this,
+				sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+				SensorManager.SENSOR_DELAY_NORMAL);
+
 	}
 
 	@Override
@@ -24,4 +44,19 @@ public class SteeringwheelActivity extends Activity {
 		return true;
 	}
 
+	@Override
+	public void onAccuracyChanged(Sensor arg0, int arg1) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onSensorChanged(SensorEvent arg0) {
+		float y = arg0.values[1];
+		if (y < 0) {
+			tv.setText("w lewo");
+		} else {
+			tv.setText("w prawo");
+		}
+	}
 }

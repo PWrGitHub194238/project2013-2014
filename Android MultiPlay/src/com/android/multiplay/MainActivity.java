@@ -104,7 +104,7 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	}
 	
 	public void help_OnClick( View view ) {
-		Intent intent = new Intent(this, HelpActivity.class);
+		Intent intent = new Intent(this, FirstMenu.class);
 		super.startActivity(intent);
 	}
 	

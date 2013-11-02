@@ -20,12 +20,12 @@ public class FirstMenu extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_first_menu);
-		bundle = super.getIntent().getExtras();
-		ip = bundle.getString("ip");
+		//bundle = super.getIntent().getExtras();
+		//ip = bundle.getString("ip");
 		button1 = (Button) super.findViewById(R.id.keyboardb);
 		button2 = (Button) super.findViewById(R.id.mouseb);
 		button3 = (Button) super.findViewById(R.id.gyromouse);
-
+		ip="192.168.1.100";
 	}
 
 	public void onClick(View arg0) {
@@ -43,9 +43,7 @@ public class FirstMenu extends Activity {
 		case R.id.gyromouse:
 			intent = new Intent(this, Gyromouse.class);
 			intent.putExtra("ip", ip);
-
 			super.startActivity(intent);
-
 		}
 	}
 }

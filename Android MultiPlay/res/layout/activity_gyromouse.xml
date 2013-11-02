@@ -578,6 +578,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/downbu"
         android:layout_alignBottom="@+id/downbu"
+        android:layout_alignRight="@+id/stopbu"
         android:layout_toRightOf="@+id/downbu"
         android:text=">" />
 
@@ -628,19 +629,11 @@
         android:text="stop" />
 
     <Button
-        android:id="@+id/button40"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/enterbu"
-        android:layout_alignLeft="@+id/stopbu"
-        android:text="\" />
-
-    <Button
         android:id="@+id/enterbu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/upbu"
-        android:layout_toRightOf="@+id/upbu"
-        android:text="ENTER" />
+        android:layout_toRightOf="@+id/button53"
+        android:text="enter" />
 
 </RelativeLayout>

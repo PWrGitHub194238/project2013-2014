@@ -1,6 +1,9 @@
+package Frame;
+
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
+
 
 public class MFrame extends JFrame {
 	int port = 8888;

@@ -1,8 +1,11 @@
+package Frame;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
 
 class Namelistener implements ActionListener {
 	MJTabbedPane tabbedPane;
@@ -15,7 +18,7 @@ class Namelistener implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		ServerThread thread = new ServerThread(tabbedPane, name);
+		Server thread = new Server(tabbedPane, name);
 
 	}
 

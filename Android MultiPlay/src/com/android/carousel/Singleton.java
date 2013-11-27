@@ -1,4 +1,4 @@
-package Carousel;
+package com.android.carousel;
 
 import android.app.Activity;
 import android.app.Application;

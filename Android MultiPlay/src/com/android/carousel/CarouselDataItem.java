@@ -1,4 +1,4 @@
-package Carousel;
+package com.android.carousel;
 
 public class CarouselDataItem {
 	String m_szImgPath;

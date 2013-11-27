@@ -1,4 +1,4 @@
-package Carousel;
+package com.android.carousel;
 
 import android.content.Context;
 import android.graphics.Bitmap;

@@ -1,4 +1,4 @@
-package Carousel;
+package com.android.carousel;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

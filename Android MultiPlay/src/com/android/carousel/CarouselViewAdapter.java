@@ -1,4 +1,4 @@
-package Carousel;
+package com.android.carousel;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -9,7 +9,7 @@ import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.android.dialogs.AlertDialogs;
-import com.android.dialogs.mainactivity.MainActivityDialogList;
+import com.android.dialogs.elements.MainActivityDialogList;
 import com.android.extendedWidgets.ImageToggleButton;
 import com.android.multiplay.R;
 import com.android.services.ConnectionService;
@@ -20,7 +20,7 @@ public class ConnectionServiceResponseReceiver extends BroadcastReceiver {
 
 	public static final String ACTION_RESP = CLASS + "ACTION_RESP";
 	
-	Activity activity = null;
+	private Activity activity = null;
 	
 	private ImageToggleButton b_wireless_network_switch = null;
 	private ImageToggleButton b_bluetooth_switch = null;
@@ -97,28 +97,5 @@ public class ConnectionServiceResponseReceiver extends BroadcastReceiver {
 				(is_wireless_network_service_enabled) ? R.drawable.main_activity_button_on : R.drawable.main_activity_button_off);
 		b_wireless_network_switch.setToggle(
 				(is_wireless_network_service_enabled) ? true : false);
-	}
-
-	private static boolean isConnected(Context context) {
-			ConnectivityManager connectivityManager = (ConnectivityManager)
-			        context.getSystemService(Context.CONNECTIVITY_SERVICE);
-		    NetworkInfo networkInfo = null;
-		    if (connectivityManager != null) {
-		        networkInfo =
-		            connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-		    }
-		    return networkInfo == null ? false : networkInfo.isConnected();
-		}
-		
-		private static boolean isConnectedBT(Context context) {
-		    ConnectivityManager connectivityManager = (ConnectivityManager)
-		        context.getSystemService(Context.CONNECTIVITY_SERVICE);
-		    NetworkInfo networkInfo = null;
-		    if (connectivityManager != null) {
-		        networkInfo =
-		            connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_BLUETOOTH);
-		    }
-		    return networkInfo == null ? false : networkInfo.isConnected();
-		}
-		
-	}
+	}		
+}

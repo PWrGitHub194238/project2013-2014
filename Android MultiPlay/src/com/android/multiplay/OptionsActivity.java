@@ -40,7 +40,7 @@ private ImageButton b_controllers = null;
 */
 private ImageButton b_resetdata = null;
 
-
+private ImageButton b_goback = null;
 
 ////////////////////Methods
 
@@ -58,6 +58,8 @@ private ImageButton b_resetdata = null;
 		initB_connecions(R.id.b_options_activity_connecions_icon);
 		initB_controllers(R.id.b_options_activity_controllers_icon);
 		initB_resetdata(R.id.b_options_activity_resetdata_icon);
+		
+		initB_goback(0);
 		
 		init();
 	}
@@ -148,6 +150,12 @@ private ImageButton b_resetdata = null;
 	private void initB_resetdata( int id ) {
 		this.b_resetdata = (ImageButton) super.findViewById(id);
 		this.b_resetdata.setOnFocusChangeListener(
+		new OptionsFocusChangeListener(this,id));
+	}
+	
+	private void initB_goback( int id ) {
+		this.b_goback = (ImageButton) super.findViewById(id);
+		this.b_goback.setOnFocusChangeListener(
 		new OptionsFocusChangeListener(this,id));
 	}
 

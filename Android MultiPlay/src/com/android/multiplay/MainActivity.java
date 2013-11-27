@@ -1,5 +1,8 @@
 package com.android.multiplay;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
@@ -9,8 +12,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.database.DBHelper;
+import com.android.database.tables.ASCIIButton;
+import com.android.database.tables.SteeringWheel;
 import com.android.dialogs.DialogButtonClickListener;
-import com.android.dialogs.mainactivity.MainActivityDialogList;
+import com.android.dialogs.elements.MainActivityDialogList;
 
 public class MainActivity extends Activity implements DialogButtonClickListener {
 
@@ -67,6 +73,13 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 		initB_options(R.id.b_main_activity_options_icon);
 		
 		init();
+		HashMap<String,String> newValues = new HashMap<String,String>();
+		newValues.put(ASCIIButton.DBSchema.COLUMN_1, "col1");
+		newValues.put(ASCIIButton.DBSchema.COLUMN_2, "col1");
+		ASCIIButton.SQL_UPDATE_ROW(1, newValues);
+		ASCIIButton.SQL_INSERT_ROW(1, newValues);
+		ASCIIButton.SQL_DELETE_ROW(1);
+		DBHelper.sql_generate_minID(SteeringWheel.DBSchema.TABLE_NAME);
 	}
 
 	@Override

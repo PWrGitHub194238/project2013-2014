@@ -2,34 +2,24 @@ package com.android.multiplay;
 
 import java.util.ArrayList;
 
-import com.android.controllers.mouse.Gyromouse;
-
-import Carousel.AppUtils;
-import Carousel.CarouselDataItem;
-import Carousel.CarouselView;
-import Carousel.CarouselViewAdapter;
-import Carousel.Singleton;
-import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.text.Editable;
-import android.text.TextWatcher;
+
+import com.android.carousel.AppUtils;
+import com.android.carousel.CarouselDataItem;
+import com.android.carousel.CarouselView;
+import com.android.carousel.CarouselViewAdapter;
+import com.android.carousel.Singleton;
 
 public class FirstMenu extends Activity implements OnItemSelectedListener,
 		TextWatcher {

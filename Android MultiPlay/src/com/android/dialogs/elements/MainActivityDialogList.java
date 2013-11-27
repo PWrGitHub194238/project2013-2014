@@ -1,4 +1,4 @@
-package com.android.dialogs.mainactivity;
+package com.android.dialogs.elements;
 
 import com.android.multiplay.R;
 

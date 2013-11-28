@@ -11,15 +11,15 @@ import com.android.database.DBHelper;
 
 /** Class that is representing table with the same name in application's database.
  * 
- * This is a helper class that generates questions relevant to the table 
+ * This is a helper class that generates queries relevant to the table 
  * that this class represents. The example below shows how to deal with
  * any {@link HashMap} type arguments such as "newValues" in {@link #SQL_UPDATE_ROW(int, HashMap)}:
  * 
  * <a name="example"></a>
  * {@code
  * HashMap<String,String> newValues = new HashMap<String,String>();
- * 	newValues.put(ASCIIButton.DBSchema.COLUMN_1, "col1");
- * 	newValues.put(ASCIIButton.DBSchema.COLUMN_2, "col1");
+ * 	newValues.put(ASCIIButton.DBSchema.COLUMN_1, "[Crtl]+[A]");
+ * 	newValues.put(ASCIIButton.DBSchema.COLUMN_2, "[Crtl]+[B]");
  * ASCIIButton.SQL_UPDATE_ROW(1, newValues);
  * }
  *
@@ -32,7 +32,7 @@ public class ASCIIButton {
 
 	/** Inner class for {@link ASCIIButton} that implements {@link BaseColumns}.
 	 * 
-	 * Additionally, it stores the names of the columns, along with all the other values ​​
+	 * Additionally, it stores the names of the columns, along with all the other values
 	 * that are important to the table, as static final {@link String}s to help you build queries.
 	 * All column names are listed like follows:
 	 * 
@@ -43,8 +43,11 @@ public class ASCIIButton {
 	 * 	<li> KEY_UNIQUE_1 </li>
 	 * 	<li> KEY_UNIQUE_2 </li>
 	 * 	<li> ... </li>
+	 * </ul>
 	 * 
-	 * and so another table attributes that might be used.
+	 * and so another table attributes that might be used. Be aware that although values 
+	 * from KEY_UNIQUE_2 to KEY_UNIQUE_n are optional, values KEY_UNIQUE_1 and TABLE_NAME 
+	 * are required to provide correct functionality and they should not be changed.
 	 *
 	 */
 	public static abstract class DBSchema implements BaseColumns {
@@ -58,18 +61,18 @@ public class ASCIIButton {
 	 * 
 	 */
 	public static final String SQL_CREATE_TABLE =
-	    "CREATE TABLE " + DBSchema.TABLE_NAME + " ("
-	    		+ DBSchema._ID + " INTEGER PRIMARY KEY,"
-	    		+ DBSchema.COLUMN_1 + DBHelper.TYPE_TEXT
-	    		+ DBSchema.COLUMN_2 + DBHelper.TYPE_TEXT
-	    		+ DBSchema.KEY_UNIQUE_1 + DBHelper.TYPE_PK_INT
+	    "CREATE TABLE IF NOT EXISTS " + DBSchema.TABLE_NAME + " ("
+	    		+ DBSchema._ID + DBHelper.TYPE_PK_INT + ","
+	    		+ DBSchema.COLUMN_1 + DBHelper.TYPE_TEXT + ","
+	    		+ DBSchema.COLUMN_2 + DBHelper.TYPE_TEXT + ","
+	    		+ DBSchema.KEY_UNIQUE_1 + DBHelper.TYPE_SK_INT
 	    	+ " )";
 
 	/** Generates String that contains query to database for deleting ASCIIButton table.
 	 * 
 	 */
 	public static final String SQL_DROP_TABLE =
-	    "DROP TABLE IF EXISTS " + DBSchema.TABLE_NAME + DBHelper.SEMICOLON_SEP;
+	    "DROP TABLE IF EXISTS " + DBSchema.TABLE_NAME;
 	
 	/** String that contains query to database for selecting rows from table.
 	 * 

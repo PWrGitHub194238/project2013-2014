@@ -1,6 +1,6 @@
 package com.android.database.tables;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import android.provider.BaseColumns;
 
@@ -10,11 +10,9 @@ import com.android.database.DBHelper;
  * 
  * This is a helper class that generates queries relevant to the table 
  * that this class represents. The example below shows how to deal with
- * any {@link HashMap} type arguments such as "newValues" in {@link #SQL_UPDATE_ROW(int, HashMap)}:
- * 
- * <a name="example"></a>
+ * any {@link Map} type arguments such as "newValues" in {@link DBHelper#sql_insert_row(Map, int)}:
  * {@code
- * HashMap<String,String> newValues = new HashMap<String,String>();
+ * Map<String,String> newValues = new HashMap<String,String>();
  * 	newValues.put(MovementButton.DBSchema.COLUMN_1, 0.56);
  * 	newValues.put(MovementButton.DBSchema.COLUMN_2, DBHelper.FALSE);
  * 	newValues.put(MovementButton.DBSchema.COLUMN_3, "[Crtl]+[A]");
@@ -26,7 +24,7 @@ import com.android.database.DBHelper;
  *  which this class represents.
  *
  */
-public class MovementButton {
+public class MovementButton implements DBHelper.TableIF {
 
 	/** Inner class for {@link MovementButton} that implements {@link BaseColumns}.
 	 * 
@@ -55,17 +53,37 @@ public class MovementButton {
         public static final String COLUMN_3 = "ShortTap_Key_Combination";
         public static final String KEY_UNIQUE_1 = "MovementButtonID";
 	}
+	
+	/** Implementation of {@link DBHelper.TableIF#getTableName()} method.
+	 * 
+	 * As mentioned here ({@link DBSchema}), {@link DBSchema#TABLE_NAME} value is necessary 
+	 * for full functionality and they should not be changed.
+	 */
+	@Override
+	public String getTableName() {
+		return DBSchema.TABLE_NAME;
+	}
+
+	/** Implementation of {@link DBHelper.TableIF#getKeyUnique1()} method.
+	 * 
+	 * As mentioned here ({@link DBSchema}), {@link DBSchema#KEY_UNIQUE_1} value is necessary 
+	 * for full functionality and they should not be changed.
+	 */
+	@Override
+	public String getKeyUnique1() {
+		return DBSchema.KEY_UNIQUE_1;
+	}
 
 	/** Generates String that contains query to database for creating MovementButton table.
 	 * 
 	 */
 	public static final String SQL_CREATE_TABLE =
 		    "CREATE TABLE IF NOT EXISTS " + DBSchema.TABLE_NAME + " ("
-		    		+ DBSchema._ID + DBHelper.TYPE_PK_INT + ","
-		    		+ DBSchema.COLUMN_1 + DBHelper.TYPE_REAL + ","
-		    		+ DBSchema.COLUMN_2 + DBHelper.TYPE_INT + ","
-		    		+ DBSchema.COLUMN_3 + DBHelper.TYPE_TEXT + ","
-		    		+ DBSchema.KEY_UNIQUE_1 + DBHelper.TYPE_PK_INT
+		    		+ DBSchema._ID + " " + DBHelper.TYPE_PK_INT + ", "
+		    		+ DBSchema.COLUMN_1 + " " + DBHelper.TYPE_REAL + ", "
+		    		+ DBSchema.COLUMN_2 + " " + DBHelper.TYPE_INT + ", "
+		    		+ DBSchema.COLUMN_3 + " " + DBHelper.TYPE_TEXT + ", "
+		    		+ DBSchema.KEY_UNIQUE_1 + " " + DBHelper.TYPE_SK_INT
 		    	+ " )";
 
 	/** Generates String that contains query to database for deleting MovementButton table.

@@ -12,9 +12,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.application.MultiPlayApplication;
 import com.android.database.DBHelper;
-import com.android.database.tables.ASCIIButton;
-import com.android.database.tables.SteeringWheel;
+import com.android.database.tables.General;
 import com.android.dialogs.DialogButtonClickListener;
 import com.android.dialogs.elements.MainActivityDialogList;
 
@@ -73,13 +73,26 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 		initB_options(R.id.b_main_activity_options_icon);
 		
 		init();
-		HashMap<String,String> newValues = new HashMap<String,String>();
-		newValues.put(ASCIIButton.DBSchema.COLUMN_1, "col1");
-		newValues.put(ASCIIButton.DBSchema.COLUMN_2, "col1");
-		ASCIIButton.SQL_UPDATE_ROW(1, newValues);
-		ASCIIButton.SQL_INSERT_ROW(1, newValues);
-		ASCIIButton.SQL_DELETE_ROW(1);
-		DBHelper.sql_generate_minID(SteeringWheel.DBSchema.TABLE_NAME);
+		
+		try {
+			((MultiPlayApplication) getApplication()).getDbHelper().sql_delete_row(General.class);
+			 Map<String,String> newValues = new HashMap<String,String>();
+			 newValues.put(General.DBSchema.COLUMN_1, "Name A");
+			 newValues.put(General.DBSchema.COLUMN_2, DBHelper.FALSE);
+			((MultiPlayApplication) getApplication()).getDbHelper().sql_insert_row(General.class, newValues,DBHelper.CLEAR_YES);
+			newValues.put(General.DBSchema.COLUMN_1, "Name B");
+			 newValues.put(General.DBSchema.COLUMN_2, DBHelper.FALSE);
+			((MultiPlayApplication) getApplication()).getDbHelper().sql_insert_row(General.class, newValues,DBHelper.CLEAR_YES);
+			newValues.put(General.DBSchema.COLUMN_1, "Name B");
+			 newValues.put(General.DBSchema.COLUMN_2, DBHelper.FALSE);
+			((MultiPlayApplication) getApplication()).getDbHelper().sql_insert_row(General.class, newValues,DBHelper.CLEAR_YES);
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -98,6 +111,7 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	@Override 
 	protected void onDestroy() {
 		super.onDestroy();
+		((MultiPlayApplication) getApplication()).getDbHelper().closeConnection();
 	}
 	
 	

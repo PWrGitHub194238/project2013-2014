@@ -1,103 +1,92 @@
 package VJoy;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
-import com.sun.jna.Library;
-import com.sun.jna.Native;
-import com.sun.jna.Structure;
-
 public class VJoyTest {
-
-	public interface VJoy64 extends Library {
-	    VJoy64 INSTANCE = (VJoy64)Native.loadLibrary("VJoy64", VJoy64.class);
-	    boolean VJoy_Initialize(String name,String serial);
-	    void VJoy_Shutdown();
-	    boolean VJoy_UpdateJoyState(int id, JOYSTICK_STATE.ByReference pJoyState);
-	    
-		public static class JOYSTICK_STATE extends Structure {
-			public static class ByReference extends JOYSTICK_STATE implements Structure.ByReference {}
-	    	public byte ReportId; //unsigned
-	    	public short XAxis;
-	    	public short YAxis;
-	    	public short ZAxis;
-	    	public short XRotation;
-	    	public short YRotation;
-	    	public short ZRotation;
-	    	public short Slider;
-	    	public short Dial;
-	    	public short Wheel;
-	    	public short POV; //unsigned
-	    	public int Buttons; //unsigned
-	    	
-	        @Override
-	        protected List<String> getFieldOrder() {
-	            return Arrays.asList(new String[] {
-	                    "ReportId", "XAxis", "YAxis", "ZAxis", "XRotation", "YRotation", "ZRotation", "Slider", "Dial", "Wheel", "POV", "Buttons"  });
-	        }
-		}
-		
-	}
+	
 	public static void main(String[] args) {
-		
-		String myLibraryPath = System.getProperty("user.dir")+"\\dll\\";
-		System.setProperty("jna.library.path", myLibraryPath);
-		
-		System.out.printf(myLibraryPath+"\n");
-		
-		VJoy64 vDLL=VJoy64.INSTANCE;
-		
-		boolean result=vDLL.VJoy_Initialize("","");
-		if(result==true)		
-		System.out.printf("Inicjalizacja zakonczona powodzeniem");
-		else
-		System.out.printf("Inicjalizacja nieudana");
-		
-		VJoy64.JOYSTICK_STATE.ByReference m_joyState= new VJoy64.JOYSTICK_STATE.ByReference(); 
-		
-		//m_joyState.XAxis = 32767; 
-		//m_joyState.YAxis = 15767;
-		//m_joyState.ZAxis = 0;
-		//m_joyState.ZRotation = 2000;
-		//m_joyState.Wheel=(short)Math.pow(2,12);
-		//m_joyState.POV=3;
-		vDLL.VJoy_UpdateJoyState(0, m_joyState);
+			
+		VJoyDriver driver=new VJoyDriver();
+		driver.VJoyInit();
 			
         Scanner s = new Scanner(System.in);
-        String input;
+        String input;       
+     
+        int i=0;
+        
+        for(i=-127;i<=127;i++)
+        {        	
+    		driver.updateAxes(1,i,i*3);
+    		driver.updateAxes(2,i,i*3);
+    		
+        	try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+        
+		driver.updateAxes(1,0,0);
+		driver.updateAxes(2,0,0);
+        
+        System.out.printf("\nTest osi zakoñczony.");
+       
+        for(i=1;i<=24;i++)
+        {
+        	driver.buttonPress(i);
+        	try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+        
+        for(i=1;i<=24;i++)
+        {
+        	driver.buttonRelease(i);
+        	try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+        
+        System.out.printf("\nTest przyciskow zakoñczony.");   
+        System.out.printf("\nOczekiwanie na dane wejsciowe:"); 
+        
         while (true)
         {
         	input=s.next();
         	
         	if(input.equals("0"))
         	{
-        		m_joyState.Wheel=0;
-        		vDLL.VJoy_UpdateJoyState(0, m_joyState);
+        		driver.buttonRelease(1);
+        		driver.buttonRelease(2);
+        		driver.buttonRelease(3);
+        		driver.buttonRelease(4);
         	}
         	
         	if(input.equals("1"))
         	{
-        		m_joyState.Wheel=(short)Math.pow(2,8);
-        		vDLL.VJoy_UpdateJoyState(0, m_joyState);
+        		driver.buttonPress(1);        		
         	}
         	
         	if(input.equals("2"))
         	{
-        		m_joyState.Wheel=(short)Math.pow(2,9);
-        		vDLL.VJoy_UpdateJoyState(0, m_joyState);
+        		driver.buttonPress(2);
         	}
         	
         	if(input.equals("3"))
         	{
-        		m_joyState.Wheel=(short)Math.pow(2,10);
-        		vDLL.VJoy_UpdateJoyState(0, m_joyState);
+        		driver.buttonPress(3);
         	}
         	
         	if(input.equals("4"))
         	{
-        		m_joyState.Wheel=(short)Math.pow(2,11);
-        		vDLL.VJoy_UpdateJoyState(0, m_joyState);
+        		driver.buttonPress(4);
         	}
         	
         	if(input.equals("exit"))
@@ -105,7 +94,7 @@ public class VJoyTest {
         }
         		
 		s.close();
-		vDLL.VJoy_Shutdown();
+		driver.close();
 	}
 
 }

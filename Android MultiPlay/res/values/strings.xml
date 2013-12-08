@@ -7,16 +7,17 @@
     <string name="contentDescription_bluetooth_enable_switch">Button to toogle bluetooth enable or disable at the main menu</string>
     <string name="contentDescription_wireless_network_switch">Button to toogle WiFi enable or disable at the main menu</string>
     <string name="contentDescription_wireless_network_icon">Wireless network icon for main menu</string>
-   
     <string name="contentDescription_main_activity_multiplay_explorer_icon">ImageButton that leaves to the next activity: MultiPlay Explorer</string>
     <string name="contentDescription_main_activity_system_controller_icon">ImageButton that leaves to the next activity: System Controller</string>
     <string name="contentDescription_main_activity_help_icon">ImageButton that leaves to the next activity: Help activity</string>
     <string name="contentDescription_main_activity_options_icon">ImageButton that leaves to the next activity: Options activity</string>
-  
     <string name="contentDescription_options_activity_connections_icon">Choose between Wi-Fi or BT connection and manage your own devices to which you want to connect.</string>
     <string name="contentDescription_options_activity_controllers_icon">Manage your controllers by editing their preferences or adding new ones.</string>
     <string name="contentDescription_options_activity_resetdata_icon">Hard reset entire application\'s data ant restore it\'s default configuration.</string>
-
+    <string name="contentDescription_b_go_back">button handles an alternative way to go back to the parent activity</string>
+    <string name="contentDescription_list_connections_element_is_device_stored">TODO</string>
+    <string name="contentDescription_list_connections_element_device_icon">TODO</string>
+    <string name="contentDescription_iv_activity_glow_horizontal_line">TODO</string>
     <string name="title_activity_multiplay_explorer">Multiplay Explorer</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_system_controller">SystemControllerActivity</string>
@@ -29,5 +30,7 @@
     <string name="title_activity_collection">Collection</string>
     <string name="title_activity_steeringwheel">SteeringwheelActivity</string>
     <string name="title_activity_joystick">Joystick</string>
+    <string name="title_activity_connections">ConnectionsActivity</string>
+    <string name="title_activity_test">TestActivity</string>
 
 </resources>

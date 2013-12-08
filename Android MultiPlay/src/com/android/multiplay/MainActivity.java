@@ -74,25 +74,25 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 		
 		init();
 		
-		try {
-			((MultiPlayApplication) getApplication()).getDbHelper().sql_delete_row(General.class);
-			 Map<String,String> newValues = new HashMap<String,String>();
-			 newValues.put(General.DBSchema.COLUMN_1, "Name A");
-			 newValues.put(General.DBSchema.COLUMN_2, DBHelper.FALSE);
-			((MultiPlayApplication) getApplication()).getDbHelper().sql_insert_row(General.class, newValues,DBHelper.CLEAR_YES);
-			newValues.put(General.DBSchema.COLUMN_1, "Name B");
-			 newValues.put(General.DBSchema.COLUMN_2, DBHelper.FALSE);
-			((MultiPlayApplication) getApplication()).getDbHelper().sql_insert_row(General.class, newValues,DBHelper.CLEAR_YES);
-			newValues.put(General.DBSchema.COLUMN_1, "Name B");
-			 newValues.put(General.DBSchema.COLUMN_2, DBHelper.FALSE);
-			((MultiPlayApplication) getApplication()).getDbHelper().sql_insert_row(General.class, newValues,DBHelper.CLEAR_YES);
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			((MultiPlayApplication) getApplication()).getDbHelper().sql_delete_row(General.class);
+//			 Map<String,String> newValues = new HashMap<String,String>();
+//			 newValues.put(General.DBSchema.COLUMN_1, "Name A");
+//			 newValues.put(General.DBSchema.COLUMN_2, DBHelper.FALSE);
+//			((MultiPlayApplication) getApplication()).getDbHelper().sql_insert_row(General.class, newValues,DBHelper.CLEAR_YES);
+//			newValues.put(General.DBSchema.COLUMN_1, "Name B");
+//			 newValues.put(General.DBSchema.COLUMN_2, DBHelper.FALSE);
+//			((MultiPlayApplication) getApplication()).getDbHelper().sql_insert_row(General.class, newValues,DBHelper.CLEAR_YES);
+//			newValues.put(General.DBSchema.COLUMN_1, "Name B");
+//			 newValues.put(General.DBSchema.COLUMN_2, DBHelper.FALSE);
+//			((MultiPlayApplication) getApplication()).getDbHelper().sql_insert_row(General.class, newValues,DBHelper.CLEAR_YES);
+//		} catch (InstantiationException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IllegalAccessException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	@Override

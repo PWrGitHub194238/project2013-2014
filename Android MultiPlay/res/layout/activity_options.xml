@@ -63,6 +63,10 @@
         
         android:background="@drawable/options_activity_resetdata_icon"
         android:contentDescription="@string/contentDescription_options_activity_resetdata_icon"/>    
+
+
+    
+<!--     Go-back button --> 
     
     
     
@@ -119,5 +123,15 @@
 	    android:background="@drawable/main_activity_0_title_big_background_icon"
 	    android:text="@string/default_title_description_in_main_activity"
 	    android:textAppearance="@style/main_activity_titles_description" />
+
+	<ImageButton
+	    android:id="@+id/b_go_back"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentBottom="true"
+	    android:layout_alignParentRight="true"
+	    android:onClick="go_back_onClick"
+	    android:contentDescription="@string/contentDescription_b_go_back"
+	    android:src="@drawable/main_activity_0_title_icon" />
 
 </RelativeLayout>

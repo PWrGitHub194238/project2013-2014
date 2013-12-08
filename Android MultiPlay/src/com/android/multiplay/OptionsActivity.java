@@ -1,6 +1,7 @@
 package com.android.multiplay;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -59,7 +60,7 @@ private ImageButton b_goback = null;
 		initB_controllers(R.id.b_options_activity_controllers_icon);
 		initB_resetdata(R.id.b_options_activity_resetdata_icon);
 		
-		initB_goback(0);
+		initB_goback(R.id.b_go_back);
 		
 		init();
 	}
@@ -94,11 +95,15 @@ private ImageButton b_goback = null;
 	}
 	
 	public void connections_OnClick( View view ) {
-			
-		}
+		Intent intent = new Intent(this, ConnectionsActivity.class);
+		super.startActivity(intent);
+	}
 	
 	public void resetdata_OnClick( View view ) {
-		
+	}
+	
+	public void go_back_OnClick( View view ) {
+		super.finish();
 	}
 
 	

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="empty">--</string>
+    
     <string name="default_title_in_main_activity">MultiPlay</string>
     <string name="default_title_description_in_main_activity">Chose one of the options on your right to navigate application. To enable or disable device connections tap leds below.</string>
   
@@ -18,10 +20,16 @@
 		<string name="option_0_title_in_options_activity">Connections</string>
 		<string name="option_0_title_description_in_options_activity"> Choose between Wi-Fi and BT connection and search for available devices to connect with.</string>
     
+			<string name="activity_title_connections">Connectivity options</string>
+			
 		<string name="option_1_title_in_options_activity">Controllers</string>
 		<string name="option_1_title_description_in_options_activity"> Manage your controllers by editing their preferences or adding new ones.</string>
     
 		<string name="option_2_title_in_options_activity">Reset data</string>
 		<string name="option_2_title_description_in_options_activity"> Hard reset all data sored by application and load default configuration.</string>
     
+		
+	<string name="list_connections_element_prefix_wifi">IP:</string>
+	<string name="list_connections_element_prefix_bt">MAC:</string>
+	<string name="list_connections_element_server_status">Status: </string>
 </resources>

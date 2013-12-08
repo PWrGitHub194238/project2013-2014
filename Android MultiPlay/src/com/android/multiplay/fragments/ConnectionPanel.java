@@ -117,7 +117,7 @@ public class ConnectionPanel extends Fragment implements OnClickListener {
 	 * @param view Default parameter.
 	 */
 	public void toggleBluetooth_onClick( View view ) {
-		b_bluetooth_switch.setBackgroundResource(R.drawable.main_activity_button_pending);
+		b_bluetooth_switch.setBackgroundResource(R.drawable.activity_button_pending);
 		b_bluetooth_switch.toggleButton();
 		sendToggleBluetoothIntentToService(b_bluetooth_switch.isToggle());
 		Log.i("Fragment", "B ON CLICK");
@@ -155,7 +155,7 @@ public class ConnectionPanel extends Fragment implements OnClickListener {
 	 * @param view Default parameter.
 	 */
 	public void toggleWirelessNetwork_onClick( View view ) {
-		b_wireless_network_switch.setBackgroundResource(R.drawable.main_activity_button_pending);
+		b_wireless_network_switch.setBackgroundResource(R.drawable.activity_button_pending);
 		b_wireless_network_switch.toggleButton();
 		sendToggleWirelessNetworkSwitchIntentToService(b_wireless_network_switch.isToggle());
 		Log.i("OK", "start");

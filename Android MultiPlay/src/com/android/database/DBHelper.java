@@ -585,9 +585,10 @@ public class DBHelper {
 		
 		DBHelper.TableIF table = tableClass.newInstance();
 		String TABLE_NAME = table.getTableName();
+		String KEY_UNIQUE1 = table.getKeyUnique1();
 
 		StringBuilder query = new StringBuilder(
-				"DELETE FROM " + TABLE_NAME
+				"DELETE FROM " + TABLE_NAME + " WHERE " + KEY_UNIQUE1 + " = " + KEY_UNIQUE
 				);
 		Log.i("DB",query.toString());
 		db.execSQL(query.toString());

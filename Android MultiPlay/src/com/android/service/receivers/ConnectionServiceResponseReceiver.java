@@ -90,11 +90,11 @@ public class ConnectionServiceResponseReceiver extends BroadcastReceiver {
 
 	private void updateButtonStatus() {
 		b_bluetooth_switch.setBackgroundResource(
-				(is_bluetooth_service_enabled) ? R.drawable.main_activity_button_on : R.drawable.main_activity_button_off);
+				(is_bluetooth_service_enabled) ? R.drawable.activity_button_on : R.drawable.activity_button_off);
 		b_bluetooth_switch.setToggle(
 				(is_bluetooth_service_enabled) ? true : false);
 		b_wireless_network_switch.setBackgroundResource(
-				(is_wireless_network_service_enabled) ? R.drawable.main_activity_button_on : R.drawable.main_activity_button_off);
+				(is_wireless_network_service_enabled) ? R.drawable.activity_button_on : R.drawable.activity_button_off);
 		b_wireless_network_switch.setToggle(
 				(is_wireless_network_service_enabled) ? true : false);
 	}		

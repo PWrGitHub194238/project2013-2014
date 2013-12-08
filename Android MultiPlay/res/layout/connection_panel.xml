@@ -24,7 +24,7 @@
         android:layout_toRightOf="@id/iv_bluetooth_icon"
         
         android:contentDescription="@string/contentDescription_bluetooth_enable_switch"
-       	android:background="@drawable/main_activity_button_off" />
+       	android:background="@drawable/activity_button_off" />
 
     <com.android.extendedWidgets.ImageToggleButton
         android:id="@+id/b_wireless_network_switch"
@@ -36,7 +36,7 @@
         
         
         android:contentDescription="@string/contentDescription_wireless_network_switch"
-        android:background="@drawable/main_activity_button_off" />
+        android:background="@drawable/activity_button_off" />
 
     <ImageButton
         android:id="@+id/iv_wireless_network_icon"

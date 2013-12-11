@@ -33,8 +33,8 @@ public class Gyromouse extends Activity implements SensorEventListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gyromouse);
 		button = (Button) super.findViewById(R.id.stopbu);
-		bundle = super.getIntent().getExtras();
-		ip = bundle.getString("ip");
+		//bundle = super.getIntent().getExtras();
+		//ip = bundle.getString("ip");
 		tv = (TextView) findViewById(R.id.stopv);
 		stop = 0;
 		button1 = (Button) super.findViewById(R.id.leftbu); // przyciski

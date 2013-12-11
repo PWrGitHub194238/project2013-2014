@@ -19,7 +19,7 @@ import android.widget.TextView;
 public class SteeringwheelActivity extends Activity implements
 		SensorEventListener {
 	SensorManager sm;
-	TextView tv;
+	//TextView tv;
 	private String ip;
 	Bundle bundle;
 
@@ -27,9 +27,9 @@ public class SteeringwheelActivity extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_steeringwheel);
-		bundle = super.getIntent().getExtras();
-		ip = bundle.getString("ip");
-		tv = (TextView) findViewById(R.id.stopv);
+		//bundle = super.getIntent().getExtras();
+		//ip = bundle.getString("ip");
+		//tv = (TextView) findViewById(R.id.stopv);
 		sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
 		sm.registerListener(this,
 				sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
@@ -54,9 +54,9 @@ public class SteeringwheelActivity extends Activity implements
 	public void onSensorChanged(SensorEvent arg0) {
 		float y = arg0.values[1];
 		if (y < 0) {
-			tv.setText("w lewo");
+		//	tv.setText("w lewo");
 		} else {
-			tv.setText("w prawo");
+		//	tv.setText("w prawo");
 		}
 	}
 }

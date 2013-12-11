@@ -21,8 +21,8 @@ public class KeyboardActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_keyboard);
-		bundle = super.getIntent().getExtras();
-		ip = bundle.getString("ip");
+	//	bundle = super.getIntent().getExtras();
+		//ip = bundle.getString("ip");
 		button1 = (Button) super.findViewById(R.id.leftb);		//przyciski przykładowe do klawiatury które 
 		button2 = (Button) super.findViewById(R.id.rightb);		//należy dodać w przyszłości
 		button3 = (Button) super.findViewById(R.id.upb);			//do wysyłania jest ju prawie zainplementowane

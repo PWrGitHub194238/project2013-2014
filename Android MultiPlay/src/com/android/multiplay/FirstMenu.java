@@ -3,34 +3,44 @@ package com.android.multiplay;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.android.carousel.AppUtils;
 import com.android.carousel.CarouselDataItem;
 import com.android.carousel.CarouselView;
 import com.android.carousel.CarouselViewAdapter;
 import com.android.carousel.Singleton;
+import com.android.controllers.keyboard.KeyboardActivity;
+import com.android.controllers.mouse.Gyromouse;
+import com.android.controllers.mouse.MouseActivity;
+import com.android.controllers.steeringwheel.SteeringwheelActivity;
 
 public class FirstMenu extends Activity implements OnItemSelectedListener,
 		TextWatcher {
+	Context context;
 	CarouselDataItem docu;
 	Singleton m_Inst = Singleton.getInstance();
 	CarouselViewAdapter m_carouselAdapter = null;
 	private final int m_nFirstItem = 1000;
 
-	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		context = getApplicationContext();
 
 		getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -39,17 +49,14 @@ public class FirstMenu extends Activity implements OnItemSelectedListener,
 
 		int padding = m_Inst.Scale(10);
 		RelativeLayout panel = new RelativeLayout(this);
-		
-		
 
 		panel.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 				LayoutParams.FILL_PARENT));
 		panel.setPadding(padding, padding, padding, padding);
 		panel.setBackgroundDrawable(new GradientDrawable(
 				GradientDrawable.Orientation.TOP_BOTTOM, new int[] {
-						Color.WHITE, Color.GRAY }));
+						Color.WHITE, Color.BLACK }));
 		setContentView(panel);
-	
 
 		// copy images from assets to sdcard
 		AppUtils.AssetFileCopy(this, "/mnt/sdcard/Gyroscope_operation.gif",
@@ -60,7 +67,6 @@ public class FirstMenu extends Activity implements OnItemSelectedListener,
 				"klawiatura.jpg", false);
 		AppUtils.AssetFileCopy(this, "/mnt/sdcard/mysz.png", "mysz.png", false);
 
-		
 		ArrayList<CarouselDataItem> Docus = new ArrayList<CarouselDataItem>();
 		for (int i = 0; i < 1000; i++) {
 			CarouselDataItem docu;
@@ -78,12 +84,9 @@ public class FirstMenu extends Activity implements OnItemSelectedListener,
 			Docus.add(docu);
 		}
 
-		
 		// create the carousel
 		CarouselView coverFlow = new CarouselView(this);
-		
 
-		
 		m_carouselAdapter = new CarouselViewAdapter(this, Docus,
 				m_Inst.Scale(400), m_Inst.Scale(300));
 		coverFlow.setAdapter(m_carouselAdapter);
@@ -92,6 +95,39 @@ public class FirstMenu extends Activity implements OnItemSelectedListener,
 		coverFlow.setAnimationDuration(1000);
 		coverFlow.setOnItemSelectedListener((OnItemSelectedListener) this);
 
+		// Create Carousel Click Listener
+		if (coverFlow != null) {
+			coverFlow.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1,
+						int position, long arg3) {
+					if (position % 4 == 1) {
+						// Toast.makeText(FirstMenu.this, "Position=kierownica",
+						// Toast.LENGTH_SHORT).show();
+						Intent intent = new Intent(context,
+								SteeringwheelActivity.class);
+						startActivity(intent);
+					} else if (position % 4 == 0) {
+						// Toast.makeText(FirstMenu.this, "Position=Gyroskope",
+						// Toast.LENGTH_SHORT).show();
+						Intent intent = new Intent(context, Gyromouse.class);
+						startActivity(intent);
+					} else if (position % 4 == 2) {
+						// Toast.makeText(FirstMenu.this, "Position=Klawiatura",
+						// Toast.LENGTH_SHORT).show();
+						Intent intent = new Intent(context,
+								KeyboardActivity.class);
+						startActivity(intent);
+					} else {
+						// Toast.makeText(FirstMenu.this, "Position=Mysz",
+						// Toast.LENGTH_SHORT).show();
+						Intent intent = new Intent(context, MouseActivity.class);
+						startActivity(intent);
+					}
+				}
+			});
+		}
 		AppUtils.AddView(panel, coverFlow, LayoutParams.FILL_PARENT,
 				LayoutParams.WRAP_CONTENT,
 				new int[][] { new int[] { RelativeLayout.CENTER_IN_PARENT } },
@@ -110,10 +146,6 @@ public class FirstMenu extends Activity implements OnItemSelectedListener,
 
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
 			long arg3) {
-		// CarouselDataItem docu = (CarouselDataItem)
-		// m_carouselAdapter.getItem((int) arg3);
-		// if (docu!=null){
-	//}
 	}
 
 	public void onNothingSelected(AdapterView<?> arg0) {

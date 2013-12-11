@@ -21,8 +21,8 @@ public class MouseActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mouse);
-		bundle = super.getIntent().getExtras();
-		ip = bundle.getString("ip");
+		//bundle = super.getIntent().getExtras();
+		//ip = bundle.getString("ip");
 		button1 = (Button) super.findViewById(R.id.left);
 		button2 = (Button) super.findViewById(R.id.right);
 		button3 = (Button) super.findViewById(R.id.up);

@@ -15,7 +15,7 @@ public class Main {
 		int port=1234;
 		try {
 			ServerSocket serversocket= new ServerSocket(port);
-			Socket socket=new Socket(); //= serversocket.accept();
+			Socket socket= serversocket.accept();
 			Serverwifi wifi= new Serverwifi(socket);
 			wifi.run();
 		

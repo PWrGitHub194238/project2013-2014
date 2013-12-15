@@ -51,6 +51,7 @@ public class ConnectionHistory implements DBHelper.TableIF {
         public static final String COLUMN_1 = "Name";
         public static final String COLUMN_2 = "Last_Date";
         public static final String KEY_UNIQUE_1 = "ConnectionHistoryID";
+        public static final String KEY_UNIQUE_2 = "HistoryID";
 	}
 	
 	/** Implementation of {@link DBHelper.TableIF#getTableName()} method.
@@ -81,7 +82,8 @@ public class ConnectionHistory implements DBHelper.TableIF {
 	    		+ DBSchema._ID + " " + DBHelper.TYPE_PK_INT + ", "
 	    		+ DBSchema.COLUMN_1 + " " + DBHelper.TYPE_TEXT + ", "
 	    		+ DBSchema.COLUMN_2 + " " + DBHelper.TYPE_DATE_AS_INT + ", "
-	    		+ DBSchema.KEY_UNIQUE_1 + " " + DBHelper.TYPE_SK_INT
+	    		+ DBSchema.KEY_UNIQUE_1 + " " + DBHelper.TYPE_SK_INT + ", "
+	    		+ DBSchema.KEY_UNIQUE_2 + " " + DBHelper.TYPE_SK_INT
 	    	+ " )";
 
 	/** Generates String that contains query to database for deleting ConnectionHistory table.

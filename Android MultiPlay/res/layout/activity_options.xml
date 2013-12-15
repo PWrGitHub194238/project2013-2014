@@ -104,7 +104,7 @@
 	    
 	    android:focusable="true"
 	    
-	    android:text="@string/default_title_in_main_activity"
+	    android:text="@string/tv_default_title_in_main_activity"
 	    android:textAppearance="@style/main_activity_titles"
 	    android:drawableLeft="@drawable/main_activity_0_title_icon"
 	    android:drawablePadding="10dp" 
@@ -121,7 +121,7 @@
 	    android:paddingLeft="@dimen/activity_horizontal_margin"    
 	    
 	    android:background="@drawable/main_activity_0_title_big_background_icon"
-	    android:text="@string/default_title_description_in_main_activity"
+	    android:text="@string/tv_default_title_description_in_main_activity"
 	    android:textAppearance="@style/main_activity_titles_description" />
 
 	<ImageButton

@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="main_activity_ID_TITLE_NO_TITLE">(no title)</string>
-    <string name="main_activity_ID_TITLE_BLUETOOTH_CONNECTED">Connected via BT</string>
-    <string name="main_activity_ID_TITLE_BLUETOOTH_ENABLED">Bluetooth enabled</string>
-    <string name="main_activity_ID_TITLE_WIFI_CONNECTED">Connected via WiFi</string>
-    <string name="main_activity_ID_TITLE_WIFI_ENABLED">WiFi enabled</string>
+    <string name="dialog_ID_TITLE_NO_TITLE">(no title)</string>
+    <string name="dialog_ID_TITLE_BLUETOOTH_CONNECTED">Connected via BT</string>
+    <string name="dialog_ID_TITLE_BLUETOOTH_ENABLED">Bluetooth enabled</string>
+    <string name="dialog_ID_TITLE_WIFI_CONNECTED">Connected via WiFi</string>
+    <string name="dialog_ID_TITLE_WIFI_ENABLED">WiFi enabled</string>
     
-    <string name="main_activity_ID_MESSAGE_NO_MESSAGE">(no message)</string>
-	<string name="main_activity_ID_MESSAGE_BLUETOOTH_CONNECTED">Connected to default device.</string>
-	<string name="main_activity_ID_MESSAGE_BLUETOOTH_ENABLED">Bluetooth conecions available.\n Go to options to choose one.</string>
-	<string name="main_activity_ID_MESSAGE_WIFI_CONNECTED">Connected to default device.</string>
-	<string name="main_activity_ID_MESSAGE_WIFI_ENABLED">WiFi conecions available.\n Go to options to choose one.</string>
+    <string name="dialog_ID_MESSAGE_NO_MESSAGE">(no message)</string>
+	<string name="dialog_ID_MESSAGE_BLUETOOTH_CONNECTED">Connected to default device.</string>
+	<string name="dialog_ID_MESSAGE_BLUETOOTH_ENABLED">Bluetooth conecions available.\n Go to options to choose one.</string>
+	<string name="dialog_ID_MESSAGE_WIFI_CONNECTED">Connected to default device.</string>
+	<string name="dialog_ID_MESSAGE_WIFI_ENABLED">WiFi conecions available.\n Go to options to choose one.</string>
 
-	<string name="main_activity_ID_BUTTON_CANCEL">Cancel</string>
-	<string name="main_activity_ID_BUTTON_OPTIONS">Options</string>
-	<string name="main_activity_ID_BUTTON_OK">OK</string>
+	<string name="dialog_ID_BUTTON_CANCEL">Cancel</string>
+	<string name="dialog_ID_BUTTON_OPTIONS">Options</string>
+	<string name="dialog_ID_BUTTON_OK">OK</string>
+	<string name="dialog_ID_BUTTON_ADD">Add</string>
+	<string name="dialog_ID_BUTTON_EMPTY">&#160;</string>
+	
+	<string name="dialog_ID_TITLE_ADD_CONNECTION">Add connection</string>
 </resources>

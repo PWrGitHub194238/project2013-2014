@@ -1,6 +1,7 @@
 package com.android.extendedWidgets.lists;
 
 import com.android.multiplay.R;
+import com.android.services.ConnectionHelper;
 
 public class ElementOfConnectionsList {
 	
@@ -8,29 +9,23 @@ public class ElementOfConnectionsList {
 		R.drawable.connections_activity_icon_1
 	};
 
-	public static final int ICON_BT = R.drawable.connections_activity_bt_list_icon;
-	public static final int ICON_WIFI = R.drawable.connections_activity_wifi_list_icon;
+	public static final int ICON_BT = R.drawable.connections_activity_icon_bt_on;
+	public static final int ICON_WIFI = R.drawable.connections_activity_icon_wifi_on;
 	
-	public static final int STATUS_ON = R.drawable.activity_button_on;
-	public static final int STATUS_WARNING = R.drawable.activity_button_warning;
-	public static final int STATUS_NOT_IN_RANGE = R.drawable.activity_button_not_in_range;
-
-	public static final boolean TYPE_BT = true;
-	public static final boolean TYPE_WIFI = false;
+	public static final boolean STORED_YES = true;
+	public static final boolean STORED_NO = false;
 	
-	public static final int STORED_YES = R.drawable.connections_activity_stored_yes;
-	public static final int STORED_NO = R.drawable.connections_activity_stored_no;
-	
-	
+	public static final int ICON_STORED_YES = R.drawable.connections_activity_stored_yes;
+	public static final int ICON_STORED_NO = R.drawable.connections_activity_stored_no;
 	
 	public ElementOfConnectionsList(String deviceName, String deviceDetail,
-			int deviceDetailStatus, int isStored, boolean BTorWiFi) {
+			int deviceDetailStatus, boolean isStored, boolean BTorWiFi) {
 		this.icon_type_id = ICON[0];
 		this.deviceName = deviceName;
 		this.deviceDetailStatus = deviceDetailStatus;
 		this.deviceDetail = deviceDetail;
 		this.isStored = isStored;
-		if (BTorWiFi == TYPE_BT) {
+		if (BTorWiFi == ConnectionHelper.CONNECTION_TYPE_BT) {
 			deviceDetailPrefix = "MAC: ";
 			connectionTypeIcon = ICON_BT;
 		} else {
@@ -46,7 +41,7 @@ public class ElementOfConnectionsList {
 	private int deviceDetailStatus = -1;
 	private String deviceDetailPrefix = null;
 	private String deviceDetail = null;
-	private int isStored = -1;
+	private boolean isStored = false;
 
 
 
@@ -86,12 +81,10 @@ public class ElementOfConnectionsList {
 	public final void setDeviceDetail(String deviceDetail) {
 		this.deviceDetail = deviceDetail;
 	}
-	public final int getIsStored() {
+	public final boolean isStored() {
 		return isStored;
 	}
-	public final void setIsStored(int isStored) {
+	public final void setStored(boolean isStored) {
 		this.isStored = isStored;
 	}
-	
-	
 }

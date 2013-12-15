@@ -73,6 +73,8 @@ public class DBHelper {
 	public static final String TYPE_REAL = "REAL";
 	public static final String TYPE_BLOB = "BLOB";
 	
+	public static final String DEFAULT_NULL = "DEFAULT NULL";
+	
 	/** Date format. The number of seconds since 1970-01-01 00:00:00 UTC.
 	 * 
 	 */
@@ -169,15 +171,15 @@ public class DBHelper {
 	};
 
 	public static final String SQL_DROP_DATABASE = 
-			ASCIIButton.SQL_DROP_TABLE
-			+ ConnectionHistory.SQL_DROP_TABLE
-			+ Controllers_detail.SQL_DROP_TABLE
-			+ Controllers.SQL_DROP_TABLE
-			+ General.SQL_DROP_TABLE
-			+ MovementButton.SQL_DROP_TABLE
-			+ NetworkBTSettings.SQL_DROP_TABLE
-			+ NetworkWiFiSettings.SQL_DROP_TABLE
-			+ SteeringWheel.SQL_DROP_TABLE;
+			ASCIIButton.SQL_DROP_TABLE + "; "
+			+ ConnectionHistory.SQL_DROP_TABLE + "; "
+			+ Controllers_detail.SQL_DROP_TABLE + "; "
+			+ Controllers.SQL_DROP_TABLE + "; "
+			+ General.SQL_DROP_TABLE + "; "
+			+ MovementButton.SQL_DROP_TABLE + "; "
+			+ NetworkBTSettings.SQL_DROP_TABLE + "; "
+			+ NetworkWiFiSettings.SQL_DROP_TABLE + "; "
+			+ SteeringWheel.SQL_DROP_TABLE + "; ";
 	
 	
 	public static final boolean CLEAR_YES = true;
@@ -198,6 +200,7 @@ public class DBHelper {
 	}
 	
 	public void closeConnection() {
+		Log.d("DB","CLOSING");
 	    db.close();
 	}
 
@@ -224,6 +227,7 @@ public class DBHelper {
 		StringBuilder query = new StringBuilder(
 				"SELECT " + KEY_UNIQUE_1 + " FROM " + table.getTableName() + " ORDER BY " + KEY_UNIQUE_1
 		);
+		Log.d("DB",(db.isOpen())?"true":"false");
 		cur = db.rawQuery(query.toString(), null);
 		if ( cur.moveToFirst() == true ) {
 			int columnIndex = cur.getColumnIndex(KEY_UNIQUE_1);
@@ -258,6 +262,7 @@ public class DBHelper {
 	 * @throws IllegalAccessException
 	 */
 	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass) throws InstantiationException, IllegalAccessException {
+		Cursor cursor = null;
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
 		
@@ -269,7 +274,9 @@ public class DBHelper {
 				);
 		
 		Log.d("DB", query.toString());
-		return db.rawQuery(query.toString(), null);
+		cursor = db.rawQuery(query.toString(), null);
+		cursor.moveToFirst();
+		return cursor;
 	}
 	
 	/** Select query to database that returns one row which matches to KEY_UNIQUE.
@@ -293,6 +300,7 @@ public class DBHelper {
 	 * @throws IllegalAccessException
 	 */
 	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, int KEY_UNIQUE) throws InstantiationException, IllegalAccessException {
+		Cursor cursor = null;
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
 		
@@ -307,7 +315,9 @@ public class DBHelper {
 				);
 		
 		Log.d("DB", query.toString());
-		return db.rawQuery(query.toString(), null);
+		cursor = db.rawQuery(query.toString(), null);
+		cursor.moveToFirst();
+		return cursor;
 	}
 	
 	/** Select query to database that returns selected columns in one row which matches to KEY_UNIQUE.
@@ -334,6 +344,7 @@ public class DBHelper {
 	 * @throws IllegalAccessException
 	 */
 	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, Set<String> columnNames, int KEY_UNIQUE) throws InstantiationException, IllegalAccessException {
+		Cursor cursor = null;
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
 		
@@ -354,7 +365,9 @@ public class DBHelper {
 					);
 			
 			Log.d("DB", query.toString());
-			return db.rawQuery(query.toString(), null);
+			cursor = db.rawQuery(query.toString(), null);
+			cursor.moveToFirst();
+			return cursor;
 			
 		} else {
 			return sql_select_by_id(tableClass,KEY_UNIQUE);
@@ -384,6 +397,7 @@ public class DBHelper {
 	 * @throws IllegalAccessException
 	 */
 	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, Set<Integer> KEY_UNIQUEs) throws InstantiationException, IllegalAccessException {
+		Cursor cursor = null;
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
 		
@@ -402,7 +416,9 @@ public class DBHelper {
 						KEY_UNIQUEs.iterator()));
 		
 		Log.d("DB", query.toString());
-		return db.rawQuery(query.toString(), null);
+		cursor = db.rawQuery(query.toString(), null);
+		cursor.moveToFirst();
+		return cursor;
 	}
 	
 	/** Select query to database that returns selected columns in rows which matches to one of KEY_UNIQUEs.
@@ -431,6 +447,7 @@ public class DBHelper {
 	 * @throws IllegalAccessException
 	 */
 	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, Set<String> columnNames, Set<Integer> KEY_UNIQUEs) throws InstantiationException, IllegalAccessException {
+		Cursor cursor = null;
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
 		
@@ -455,7 +472,9 @@ public class DBHelper {
 						KEY_UNIQUEs.iterator()));
 		
 		Log.d("DB", query.toString());
-		return db.rawQuery(query.toString(), null);
+		cursor = db.rawQuery(query.toString(), null);
+		cursor.moveToFirst();
+		return cursor;
 	}
 	
 	/** Insert query to database.

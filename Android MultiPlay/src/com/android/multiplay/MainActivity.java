@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +16,11 @@ import android.widget.Toast;
 import com.android.application.MultiPlayApplication;
 import com.android.database.DBHelper;
 import com.android.database.tables.General;
+import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
+import com.android.dialogs.AddConnectionDialog;
 import com.android.dialogs.elements.MainActivityDialogList;
+import com.android.dialogs.elements.OptionsActivityDialogList;
 
 public class MainActivity extends Activity implements DialogButtonClickListener {
 
@@ -111,7 +115,7 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	@Override 
 	protected void onDestroy() {
 		super.onDestroy();
-		((MultiPlayApplication) getApplication()).getDbHelper().closeConnection();
+		MultiPlayApplication.getDbHelper().closeConnection();
 	}
 	
 	

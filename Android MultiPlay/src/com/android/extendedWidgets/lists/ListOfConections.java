@@ -51,7 +51,8 @@ public class ListOfConections extends BaseAdapter {
 			server_status.setBackgroundResource(elementOfConnections.getDeviceDetailStatus());
 			device_detail_prefix.setText(elementOfConnections.getDeviceDetailPrefix());
 			device_detail.setText(elementOfConnections.getDeviceDetail());
-			device_isStored.setBackgroundResource(elementOfConnections.getIsStored());
+			device_isStored.setBackgroundResource(
+					(elementOfConnections.isStored())?ElementOfConnectionsList.ICON_STORED_YES:ElementOfConnectionsList.ICON_STORED_NO);
 		}
     }
  

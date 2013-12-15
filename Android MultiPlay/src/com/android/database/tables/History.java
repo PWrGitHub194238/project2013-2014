@@ -14,11 +14,9 @@ import com.android.database.DBHelper;
  * 
  * {@code
  * Map<String,String> newValues = new HashMap<String,String>();
- * 	newValues.put(NetworkBTSettings.DBSchema.COLUMN_1, "Device name");
- * 	newValues.put(NetworkBTSettings.DBSchema.COLUMN_2, "a68af780-5850-11e3-adbe-0002a5d5c51b");
- * 	newValues.put(NetworkBTSettings.DBSchema.COLUMN_3, "FF:FF:FF:FF:FF:FF");
- * 	newValues.put(NetworkBTSettings.DBSchema.COLUMN_4, 1);
- * NetworkBTSettings.SQL_UPDATE_ROW(1, newValues);
+ * 	newValues.put(History.DBSchema.COLUMN_1, "Name");
+ * 	newValues.put(History.DBSchema.COLUMN_2, 12000);
+ * ConnectionHistory.SQL_UPDATE_ROW(1, newValues);
  * }
  *
  * 
@@ -26,9 +24,9 @@ import com.android.database.DBHelper;
  *  which this class represents.
  *
  */
-public class NetworkBTSettings implements DBHelper.TableIF {
+public class History implements DBHelper.TableIF {
 
-	/** Inner class for {@link NetworkBTSettings} that implements {@link BaseColumns}.
+	/** Inner class for {@link History} that implements {@link BaseColumns}.
 	 * 
 	 * Additionally, it stores the names of the columns, along with all the other values
 	 * that are important to the table, as static final {@link String}s to help you build queries.
@@ -49,14 +47,13 @@ public class NetworkBTSettings implements DBHelper.TableIF {
 	 *
 	 */
 	public static abstract class DBSchema implements BaseColumns {
-		public static final String TABLE_NAME = "NetworkBTSettings";
-		public static final String COLUMN_1 = "Name";
-        public static final String COLUMN_2 = "UUID";
-        public static final String COLUMN_3 = "Adress";
-        public static final String COLUMN_4 = "ConnectionHistoryID";
-        public static final String KEY_UNIQUE_1 = "NetworkBTSettingsID";
+		public static final String TABLE_NAME = "ConnectionHistory";
+        public static final String COLUMN_1 = "Name";
+        public static final String COLUMN_2 = "Last_Date";
+        public static final String COLUMN_3 = "ConnectionHistoryID";
+        public static final String KEY_UNIQUE_1 = "HistoryID";
 	}
-
+	
 	/** Implementation of {@link DBHelper.TableIF#getTableName()} method.
 	 * 
 	 * As mentioned here ({@link DBSchema}), {@link DBSchema#TABLE_NAME} value is necessary 
@@ -77,24 +74,23 @@ public class NetworkBTSettings implements DBHelper.TableIF {
 		return DBSchema.KEY_UNIQUE_1;
 	}
 	
-	/** Generates String that contains query to database for creating NetworkBTSettings table.
+	/** Generates String that contains query to database for creating ConnectionHistory table.
 	 * 
 	 */
 	public static final String SQL_CREATE_TABLE =
-		    "CREATE TABLE IF NOT EXISTS " + DBSchema.TABLE_NAME + " ("
-		    		+ DBSchema._ID + " " + DBHelper.TYPE_PK_INT + ", "
-		    		+ DBSchema.COLUMN_1 + " " + DBHelper.TYPE_TEXT + ", "
-		    		+ DBSchema.COLUMN_2 + " " + DBHelper.TYPE_TEXT + ", "
-		    		+ DBSchema.COLUMN_3 + " " + DBHelper.TYPE_TEXT + ", "
-		    		+ DBSchema.COLUMN_4 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_NULL + ", "
-		    		+ DBSchema.KEY_UNIQUE_1 + " " + DBHelper.TYPE_SK_INT + ", "
-		    		+ DBHelper.TYPE_FK(
-		    				DBSchema.COLUMN_4, 
+	    "CREATE TABLE IF NOT EXISTS " + DBSchema.TABLE_NAME + " ("
+	    		+ DBSchema._ID + " " + DBHelper.TYPE_PK_INT + ", "
+	    		+ DBSchema.COLUMN_1 + " " + DBHelper.TYPE_TEXT + ", "
+	    		+ DBSchema.COLUMN_2 + " " + DBHelper.TYPE_DATE_AS_INT + ", "
+	    		+ DBSchema.COLUMN_3 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_NULL + ", "
+	    		+ DBSchema.KEY_UNIQUE_1 + " " + DBHelper.TYPE_SK_INT + ", "
+	    		+ DBHelper.TYPE_FK(
+		    				DBSchema.COLUMN_3, 
 		    				ConnectionHistory.DBSchema.TABLE_NAME, 
-		    				ConnectionHistory.DBSchema.KEY_UNIQUE_1)
+		    				ConnectionHistory.DBSchema.KEY_UNIQUE_2)
 		    	+ " )";
 
-	/** Generates String that contains query to database for deleting NetworkBTSettings table.
+	/** Generates String that contains query to database for deleting ConnectionHistory table.
 	 * 
 	 */
 	public static final String SQL_DROP_TABLE =

@@ -48,64 +48,64 @@ public class OptionsFocusChangeListener implements OnFocusChangeListener {
 	private void multiplay_explorer_hasFocus() {
 		hasFocus(
 				R.drawable.main_activity_0_title_icon,
-				R.string.option_0_title_in_main_activity,
+				R.string.tv_option_0_title_in_main_activity,
 				R.drawable.main_activity_0_title_glow,
 				R.drawable.main_activity_0_title_big_background_icon,
-				R.string.option_0_title_description_in_main_activity);
+				R.string.tv_option_0_title_description_in_main_activity);
 	}
 	
 	private void system_controller_hasFocus() {
 		hasFocus(
 				R.drawable.main_activity_1_title_icon,
-				R.string.option_1_title_in_main_activity,
+				R.string.tv_option_1_title_in_main_activity,
 				R.drawable.main_activity_1_title_glow,
 				R.drawable.main_activity_1_title_big_background_icon,
-				R.string.option_1_title_description_in_main_activity);
+				R.string.tv_option_1_title_description_in_main_activity);
 	}
 
 	private void help_hasFocus() {
 		hasFocus(
 				R.drawable.main_activity_2_title_icon,
-				R.string.option_2_title_in_main_activity,
+				R.string.tv_option_2_title_in_main_activity,
 				R.drawable.main_activity_2_title_glow,
 				R.drawable.main_activity_2_title_big_background_icon,
-				R.string.option_2_title_description_in_main_activity);
+				R.string.tv_option_2_title_description_in_main_activity);
 	}
 	
 	private void options_hasFocus() {
 		hasFocus(
 				R.drawable.main_activity_3_title_icon,
-				R.string.option_3_title_in_main_activity,
+				R.string.tv_option_3_title_in_main_activity,
 				R.drawable.main_activity_3_title_glow,
 				R.drawable.main_activity_3_title_big_background_icon,
-				R.string.option_3_title_description_in_main_activity);
+				R.string.tv_option_3_title_description_in_main_activity);
 	}
 	
 	private void connections_hasFocus() {
 		hasFocus(
 				R.drawable.main_activity_0_title_icon,
-				R.string.option_0_title_in_options_activity,
+				R.string.tv_option_0_title_in_options_activity,
 				R.drawable.main_activity_0_title_glow,
 				R.drawable.main_activity_0_title_big_background_icon,
-				R.string.option_0_title_description_in_options_activity);
+				R.string.tv_option_0_title_description_in_options_activity);
 	}
 	
 	private void controllers_hasFocus() {
 		hasFocus(
 				R.drawable.main_activity_1_title_icon,
-				R.string.option_1_title_in_options_activity,
+				R.string.tv_option_1_title_in_options_activity,
 				R.drawable.main_activity_1_title_glow,
 				R.drawable.main_activity_1_title_big_background_icon,
-				R.string.option_1_title_description_in_options_activity);
+				R.string.tv_option_1_title_description_in_options_activity);
 	}
 	
 	private void resetdata_hasFocus() {
 		hasFocus(
 				R.drawable.main_activity_2_title_icon,
-				R.string.option_2_title_in_options_activity,
+				R.string.tv_option_2_title_in_options_activity,
 				R.drawable.main_activity_2_title_glow,
 				R.drawable.main_activity_2_title_big_background_icon,
-				R.string.option_2_title_description_in_options_activity);
+				R.string.tv_option_2_title_description_in_options_activity);
 	}
 	
 	private void hasFocus(int titleIconID, int titleTextID, int titleBackgroundID, int descBackgroundID, int descTextID ) {

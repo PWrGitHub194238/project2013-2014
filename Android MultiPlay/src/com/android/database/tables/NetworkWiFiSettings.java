@@ -14,8 +14,9 @@ import com.android.database.DBHelper;
  * 
  * {@code
  * Map<String,String> newValues = new HashMap<String,String>();
- * 	newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_1, " 255.255.255.255");
- * 	newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_2, 4000);
+ * 	newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_1, " Device name");
+ * 	newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_2, " 255.255.255.255");
+ * 	newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_3, 4000);
  * NetworkWiFiSettings.SQL_UPDATE_ROW(1, newValues);
  * }
  *
@@ -48,9 +49,10 @@ public class NetworkWiFiSettings implements DBHelper.TableIF {
 	 */
 	public static abstract class DBSchema implements BaseColumns {
 		public static final String TABLE_NAME = "NetworkWiFiSettings";
-        public static final String COLUMN_1 = "IP";
-        public static final String COLUMN_2 = "Host";
-        public static final String COLUMN_3 = "ConnectionHistoryID";
+        public static final String COLUMN_1 = "Name";
+        public static final String COLUMN_2 = "IP";
+        public static final String COLUMN_3 = "Host";
+        public static final String COLUMN_4 = "ConnectionHistoryID";
         public static final String KEY_UNIQUE_1 = "NetworkWiFiSettingsID";
 	}
 	
@@ -81,11 +83,12 @@ public class NetworkWiFiSettings implements DBHelper.TableIF {
 		    "CREATE TABLE IF NOT EXISTS " + DBSchema.TABLE_NAME + " ("
 		    		+ DBSchema._ID + " " + DBHelper.TYPE_PK_INT + ", "
 		    		+ DBSchema.COLUMN_1 + " " + DBHelper.TYPE_TEXT + ", "
-		    		+ DBSchema.COLUMN_2 + " " + DBHelper.TYPE_INT + ", "
+		    		+ DBSchema.COLUMN_2 + " " + DBHelper.TYPE_TEXT + ", "
 		    		+ DBSchema.COLUMN_3 + " " + DBHelper.TYPE_INT + ", "
+		    		+ DBSchema.COLUMN_4 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_NULL + ", "
 		    		+ DBSchema.KEY_UNIQUE_1 + " " + DBHelper.TYPE_SK_INT + ", "
 		    		+ DBHelper.TYPE_FK(
-		    				DBSchema.COLUMN_3, 
+		    				DBSchema.COLUMN_4, 
 		    				ConnectionHistory.DBSchema.TABLE_NAME, 
 		    				ConnectionHistory.DBSchema.KEY_UNIQUE_1)
 		    	+ " )";

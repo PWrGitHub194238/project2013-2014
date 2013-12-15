@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@id/list_connections_element_device_icon"
         android:layout_alignBottom="@id/list_connections_element_device_icon"
-        android:background="@drawable/connections_activity_bt_list_icon"
+        android:background="@drawable/connections_activity_icon_bt_on"
         android:contentDescription="@string/contentDescription_list_connections_element_device_icon" />
     
     <TextView
@@ -29,7 +29,7 @@
         android:layout_toRightOf="@id/list_connections_element_device_icon"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
-        android:text="@string/empty"
+        android:text="@string/tv_empty"
         android:textAppearance="@style/list_connections_device_name" />
     
     <TextView
@@ -39,7 +39,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/list_connections_element_device_icon"
         android:layout_marginLeft="10dp"
-        android:text="@string/list_connections_element_server_status"
+        android:text="@string/tv_list_connections_element_server_status"
         android:textAppearance="@style/list_connections_device_details" />
     
     <ImageView
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/list_connections_element_device_icon"
         android:layout_toRightOf="@id/list_connections_element_connection_server_status"
-        android:text="@string/list_connections_element_prefix_bt"
+        android:text="@string/tv_list_connections_element_prefix_bt"
         android:textAppearance="@style/list_connections_device_details" />
     
     <TextView
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/list_connections_element_device_detail_prefix"
         android:layout_toRightOf="@id/list_connections_element_device_detail_prefix"
-        android:text="@string/empty"
+        android:text="@string/tv_empty"
         android:textAppearance="@style/list_connections_device_detail_value" />
     
     <ImageView

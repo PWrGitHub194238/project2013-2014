@@ -28,7 +28,7 @@
         android:paddingBottom="1dp"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingTop="1dp"
-        android:text="@string/activity_title_connections"
+        android:text="@string/tv_activity_title_connections"
         android:textAppearance="@style/main_activity_titles" />
 
     <ImageView
@@ -46,50 +46,119 @@
 
 	
     <com.android.extendedWidgets.ImageToggleButton
-        android:id="@+id/b_connections_activity_only_bt"
+        android:id="@+id/b_connections_activity_bluetooth_switcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
         android:layout_below="@id/iv_activity_glow_horizontal_line"
-        android:background="@drawable/connections_activity_button_bt_on" />
+        android:background="@drawable/connections_activity_button_bt_on"
+        android:contentDescription="@string/contentDescription_b_connections_activity_only_bt" />
 
     <com.android.extendedWidgets.ImageToggleButton
-        android:id="@+id/b_connections_activity_only_wifi"
+        android:id="@+id/b_connections_activity_wireless_switcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/b_connections_activity_only_bt"
-        android:background="@drawable/connections_activity_button_wifi_on" />
+        android:layout_below="@id/b_connections_activity_bluetooth_switcher"
+        android:background="@drawable/connections_activity_button_wifi_on"
+        android:contentDescription="@string/contentDescription_b_connections_activity_only_wifi" />
 
-	<com.android.extendedWidgets.ImageToggleButton
+	<ImageButton
         android:id="@+id/b_connections_activity_add_new_connection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/b_connections_activity_only_wifi"
-        android:background="@drawable/connections_activity_button_add_new" />
-
-	<com.android.extendedWidgets.ImageToggleButton
+        android:layout_below="@id/b_connections_activity_wireless_switcher"
+        android:background="@drawable/connections_activity_button_add_new"
+        android:contentDescription="@string/contentDescription_b_connections_activity_add_new_connection" />
+	
+	<ImageButton
         android:id="@+id/b_connections_activity_refresh_connections_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@id/b_connections_activity_add_new_connection"
-        android:onClick="refresh_connections_check_OnClick"
-        android:background="@drawable/connections_activity_button_refresh" />
+        android:background="@drawable/connections_activity_button_refresh"
+        android:contentDescription="@string/contentDescription_b_connections_activity_refresh_connections_check" />
     
     
     
 <!--     List of found devices. -->
 
+	
+	
 	<ListView
         android:id="@+id/lv_connections_activity_device_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_activity_glow_horizontal_line"
-        android:layout_toLeftOf="@id/b_connections_activity_only_bt"
-        android:layout_marginTop="10dp" >
+        android:layout_toLeftOf="@id/b_connections_activity_bluetooth_switcher"
+        android:layout_marginTop="10dp"
+        android:visibility="invisible" >
     </ListView>
+    
+	<RelativeLayout
+	    android:id="@+id/rl_connections_activity_device_list_background_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_toLeftOf="@id/b_connections_activity_bluetooth_switcher"
+	    android:layout_alignLeft="@id/lv_connections_activity_device_list"
+	    android:layout_alignTop="@id/lv_connections_activity_device_list" >
+	    
+	    <TextView
+	        android:id="@+id/tv_connections_activity_need_refresh_2"
+	        android:layout_width="wrap_content"
+      	 	android:layout_height="wrap_content"
+      	 	android:layout_centerInParent="true"
+	        android:text="@string/tv_connections_activity_need_refresh_2"/>
+
+	    <TextView
+	        android:id="@+id/tv_connections_activity_need_refresh_3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/tv_connections_activity_need_refresh_2"
+	        android:layout_centerHorizontal="true"
+	        android:layout_marginTop="25dp"
+	        android:text="@string/tv_connections_activity_need_refresh_3" />
+
+	    <ImageView
+	        android:id="@+id/iv_connections_activity_icon_refresh"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerVertical="true"
+	        android:layout_marginRight="25dp"
+	        android:layout_toLeftOf="@+id/tv_connections_activity_need_refresh_2"
+	        android:background="@drawable/connections_activity_icon_refresh"
+	        android:contentDescription="@string/contentDescription_iv_connections_activity_icon_refresh" />
+
+	    <ImageView
+	        android:id="@+id/iv_connections_activity_icon_add_new"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerVertical="true"
+	        android:layout_marginLeft="25dp"
+	        android:layout_toRightOf="@+id/tv_connections_activity_need_refresh_2"
+	        android:background="@drawable/connections_activity_icon_add_new"
+	        android:contentDescription="@string/contentDescription_iv_connections_activity_icon_add_new" />
+
+	    <TextView
+	        android:id="@+id/tv_connections_activity_need_refresh_1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_above="@+id/tv_connections_activity_need_refresh_2"
+	        android:layout_centerHorizontal="true"
+	        android:layout_marginBottom="25dp"
+	        android:text="@string/tv_connections_activity_need_refresh_1" />
+
+	    <ProgressBar
+	        android:id="@+id/pb_connections_activity_refreshing"
+	        style="?android:attr/progressBarStyleLarge"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerInParent="true"
+	        android:visibility="visible" />
+	    
+	</RelativeLayout>
 
 </RelativeLayout>

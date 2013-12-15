@@ -1,7 +1,9 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 	
-	<style name="noAnimTheme" parent="android:Theme.NoTitleBar.Fullscreen">
+	<style name="MultiPlayTheme" parent="android:Theme.DeviceDefault">
 	    <item name="android:windowAnimationStyle">@null</item>
+	    <item name="android:windowNoTitle">true</item>
+	    <item name="android:windowFullscreen">true</item>
 	</style>
 
 </resources>

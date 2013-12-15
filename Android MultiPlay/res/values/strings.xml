@@ -18,6 +18,21 @@
     <string name="contentDescription_list_connections_element_is_device_stored">TODO</string>
     <string name="contentDescription_list_connections_element_device_icon">TODO</string>
     <string name="contentDescription_iv_activity_glow_horizontal_line">TODO</string>
+    <string name="contentDescription_b_connections_activity_only_bt">TODO</string>
+    <string name="contentDescription_b_connections_activity_only_wifi">TODO</string>
+    <string name="contentDescription_b_connections_activity_add_new_connection">TODO</string>
+    <string name="contentDescription_b_connections_activity_refresh_connections_check">TODO</string>
+    <string name="contentDescription_iv_connections_activity_icon_refresh">TODO</string>
+    <string name="contentDescription_iv_connections_activity_icon_add_new">TODO</string>
+    <string name="contentDescription_iv_connections_activity_icon_wifi">TODO</string>
+    <string name="contentDescription_iv_connections_activity_icon_bt">TODO</string>
+    
+    <string name="hint_device_name">Device name</string>
+    <string name="hint_device_ip">127.0.0.10</string>
+    <string name="hint_device_port">8000</string>
+    <string name="hint_device_mac">01:02:03:04:05:06</string>
+    <string name="hint_device_uuid">01234567&#8211;0123&#8211;0123&#8211;0123&#8211;0123456789ab</string>
+    
     <string name="title_activity_multiplay_explorer">Multiplay Explorer</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_system_controller">SystemControllerActivity</string>

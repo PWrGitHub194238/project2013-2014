@@ -1,35 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="empty">--</string>
+    <string name="tv_empty">--</string>
     
-    <string name="default_title_in_main_activity">MultiPlay</string>
-    <string name="default_title_description_in_main_activity">Chose one of the options on your right to navigate application. To enable or disable device connections tap leds below.</string>
+    <string name="tv_default_title_in_main_activity">MultiPlay</string>
+    <string name="tv_default_title_description_in_main_activity">Chose one of the options on your right to navigate application. To enable or disable device connections tap leds below.</string>
   
-    <string name="option_0_title_in_main_activity">MultiPlay Explorer</string>
-    <string name="option_0_title_description_in_main_activity">Connects you to remote server</string>
+    <string name="tv_option_0_title_in_main_activity">MultiPlay Explorer</string>
+    <string name="tv_option_0_title_description_in_main_activity">Connects you to remote server</string>
     
-    <string name="option_1_title_in_main_activity">System controller</string>
-    <string name="option_1_title_description_in_main_activity">f the options on your right to navigate application. To enable or disable device connections tap leds below.</string>
+    <string name="tv_option_1_title_in_main_activity">System controller</string>
+    <string name="tv_option_1_title_description_in_main_activity">f the options on your right to navigate application. To enable or disable device connections tap leds below.</string>
     
-    <string name="option_2_title_in_main_activity">MultiPlay\'s help</string>
-    <string name="option_2_title_description_in_main_activity">ons on your right to navigate application. To enable or disable device connections tap leds below.</string>
+    <string name="tv_option_2_title_in_main_activity">MultiPlay\'s help</string>
+    <string name="tv_option_2_title_description_in_main_activity">ons on your right to navigate application. To enable or disable device connections tap leds below.</string>
     
-    <string name="option_3_title_in_main_activity">Configuration</string>
-	<string name="option_3_title_description_in_main_activity"> right to navigate application. To enable or disable device connections tap leds below.</string>
+    <string name="tv_option_3_title_in_main_activity">Configuration</string>
+	<string name="tv_option_3_title_description_in_main_activity"> right to navigate application. To enable or disable device connections tap leds below.</string>
     
-		<string name="option_0_title_in_options_activity">Connections</string>
-		<string name="option_0_title_description_in_options_activity"> Choose between Wi-Fi and BT connection and search for available devices to connect with.</string>
+		<string name="tv_option_0_title_in_options_activity">Connections</string>
+		<string name="tv_option_0_title_description_in_options_activity"> Choose between Wi-Fi and BT connection and search for available devices to connect with.</string>
     
-			<string name="activity_title_connections">Connectivity options</string>
+			<string name="tv_activity_title_connections">Connectivity options</string>
+			<string name="tv_connections_activity_need_refresh_1">You need to tap</string>
+			<string name="tv_connections_activity_need_refresh_2"> or </string>
+			<string name="tv_connections_activity_need_refresh_3">in order to find a list of available connections.</string>
+	
+			<string name="tv_connections_activity_connection_type">Connection type:</string>
+			<string name="tv_connections_activity_device_name">Device:</string>
+			<string name="tv_connections_activity_device_ip">IP:</string>
+			<string name="tv_connections_activity_device_port">Port:</string>
+			<string name="cb_save_connection">Save connection</string>
+			<string name="tv_connections_activity_device_uuid">UUID:</string>
+			<string name="tv_connections_activity_device_mac">MAC address:</string>
 			
-		<string name="option_1_title_in_options_activity">Controllers</string>
-		<string name="option_1_title_description_in_options_activity"> Manage your controllers by editing their preferences or adding new ones.</string>
+		<string name="tv_option_1_title_in_options_activity">Controllers</string>
+		<string name="tv_option_1_title_description_in_options_activity"> Manage your controllers by editing their preferences or adding new ones.</string>
     
-		<string name="option_2_title_in_options_activity">Reset data</string>
-		<string name="option_2_title_description_in_options_activity"> Hard reset all data sored by application and load default configuration.</string>
+		<string name="tv_option_2_title_in_options_activity">Reset data</string>
+		<string name="tv_option_2_title_description_in_options_activity"> Hard reset all data sored by application and load default configuration.</string>
     
 		
-	<string name="list_connections_element_prefix_wifi">IP:</string>
-	<string name="list_connections_element_prefix_bt">MAC:</string>
-	<string name="list_connections_element_server_status">Status: </string>
+	<string name="tv_list_connections_element_prefix_wifi">IP:</string>
+	<string name="tv_list_connections_element_prefix_bt">MAC:</string>
+	<string name="tv_list_connections_element_server_status">Status: </string>
 </resources>

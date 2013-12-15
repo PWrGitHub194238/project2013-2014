@@ -1,56 +1,71 @@
 package com.android.application;
 
-import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Collection;
 
+import android.app.Application;
+
+import com.android.asychs.SocketMainThread;
 import com.android.database.DBHelper;
 import com.android.database.MultiPlayDataBase;
 
-import android.app.Application;
-import android.bluetooth.BluetoothSocket;
-
 public class MultiPlayApplication extends Application {
 
-	private DBHelper dbHelper = null;
+	public final static boolean BLUETOOTH = true;
+	public final static boolean WIRELESS = false;
+	
+	private static DBHelper dbHelper = null;
+	private static Collection<BluetoothConfigurationClass> discoveredBluetoothDevices = null;
+	private static Collection<WirelessConfigurationClass> discoveredWirelessDevices = null;
+	private MultiPlayDataBase multiPlayDataBase = null;
+	
+	private SocketMainThread socketMainThread = null;
 	
 	@Override
 	public void onCreate() {
 		super.onCreate();
 	    
+		discoveredBluetoothDevices = new ArrayList<BluetoothConfigurationClass>();
+		discoveredWirelessDevices = new ArrayList<WirelessConfigurationClass>();
 		dbHelper = new DBHelper(this.getApplicationContext());
 		dbHelper.openConnection();
 		
 	}
 	
 	public void onDestroy() {
-
-		dbHelper.closeConnection();
-		
+		dbHelper.closeConnection();	
 	}
-	
-	public final DBHelper getDbHelper() {
+
+	public static final DBHelper getDbHelper() {
 		return dbHelper;
 	}
 
-	private Socket wirelessSocket = null;
-	private  BluetoothSocket bluetoothSocket = null;
-	private MultiPlayDataBase multiPlayDataBase = null;
-	
-	public Socket getWirelessSocket() {
-		return wirelessSocket;
+	public final void setDbHelper(DBHelper dbHelper) {
+		this.dbHelper = dbHelper;
 	}
-	public void setWirelessSocket(Socket wirelessSocket) {
-		this.wirelessSocket = wirelessSocket;
+
+	public static final Collection<BluetoothConfigurationClass> getDiscoveredBluetoothDevices() {
+		return discoveredBluetoothDevices;
 	}
-	public BluetoothSocket getBluetoothSocket() {
-		return bluetoothSocket;
+
+	public static final Collection<WirelessConfigurationClass> getDiscoveredWirelessDevices() {
+		return discoveredWirelessDevices;
 	}
-	public void setBluetoothSocket(BluetoothSocket bluetoothSocket) {
-		this.bluetoothSocket = bluetoothSocket;
-	}
-	public MultiPlayDataBase getMultiPlayDataBase() {
+
+
+	public final MultiPlayDataBase getMultiPlayDataBase() {
 		return multiPlayDataBase;
 	}
-	public void setMultiPlayDataBase(MultiPlayDataBase multiPlayDataBase) {
+
+	public final void setMultiPlayDataBase(MultiPlayDataBase multiPlayDataBase) {
 		this.multiPlayDataBase = multiPlayDataBase;
+	}
+
+	public final SocketMainThread getSocketMainThread() {
+		return socketMainThread;
+	}
+
+	public final void setSocketMainThread(SocketMainThread socketMainThread) {
+		this.socketMainThread = socketMainThread;
 	}
 }

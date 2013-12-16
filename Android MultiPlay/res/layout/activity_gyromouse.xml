@@ -9,7 +9,7 @@
     tools:context=".Gyromouse" >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/tyl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -17,48 +17,48 @@
         android:text="esc" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/leftb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_toRightOf="@+id/button1"
+        android:layout_alignBaseline="@+id/tyl"
+        android:layout_alignBottom="@+id/tyl"
+        android:layout_toRightOf="@+id/tyl"
         android:text="f1" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/downb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button2"
-        android:layout_alignBottom="@+id/button2"
-        android:layout_toRightOf="@+id/button2"
+        android:layout_alignBaseline="@+id/leftb"
+        android:layout_alignBottom="@+id/leftb"
+        android:layout_toRightOf="@+id/leftb"
         android:text="f2" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/rightb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button3"
-        android:layout_alignBottom="@+id/button3"
-        android:layout_toRightOf="@+id/button3"
+        android:layout_alignBaseline="@+id/downb"
+        android:layout_alignBottom="@+id/downb"
+        android:layout_toRightOf="@+id/downb"
         android:text="f3" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/upb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button4"
-        android:layout_alignBottom="@+id/button4"
-        android:layout_toRightOf="@+id/button4"
+        android:layout_alignBaseline="@+id/rightb"
+        android:layout_alignBottom="@+id/rightb"
+        android:layout_toRightOf="@+id/rightb"
         android:text="f4" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button5"
-        android:layout_alignBottom="@+id/button5"
-        android:layout_toRightOf="@+id/button5"
+        android:layout_alignBaseline="@+id/upb"
+        android:layout_alignBottom="@+id/upb"
+        android:layout_toRightOf="@+id/upb"
         android:text="f5" />
 
     <Button
@@ -120,7 +120,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/button1"
+        android:layout_below="@+id/tyl"
         android:text="`" />
 
     <Button
@@ -163,7 +163,7 @@
         android:id="@+id/button18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button4"
+        android:layout_below="@+id/rightb"
         android:layout_toRightOf="@+id/button17"
         android:text="4" />
 
@@ -171,7 +171,7 @@
         android:id="@+id/button20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button5"
+        android:layout_below="@+id/upb"
         android:layout_toRightOf="@+id/button19"
         android:text="6" />
 

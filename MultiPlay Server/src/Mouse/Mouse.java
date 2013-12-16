@@ -1,4 +1,4 @@
-package Wifi;
+package Mouse;
 
 import java.awt.AWTException;
 import java.awt.Robot;

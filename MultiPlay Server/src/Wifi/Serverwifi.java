@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import Keyboard.Keyboard;
+import Mouse.Mouse;
 import VJoy.VJoyTest;
 
 public class Serverwifi implements Runnable {

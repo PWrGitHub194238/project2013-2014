@@ -18,7 +18,6 @@ public class Main {
 			Socket socket= serversocket.accept();
 			Serverwifi wifi= new Serverwifi(socket);
 			wifi.run();
-		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

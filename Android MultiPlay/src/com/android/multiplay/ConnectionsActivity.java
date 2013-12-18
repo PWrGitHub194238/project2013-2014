@@ -2,6 +2,7 @@ package com.android.multiplay;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.UUID;
 
 import android.app.Activity;
@@ -29,6 +30,7 @@ import android.widget.Toast;
 
 import com.android.application.BluetoothConfigurationClass;
 import com.android.application.ConnectionsConfigurationClass;
+import com.android.application.MultiPlayApplication;
 import com.android.application.WirelessConfigurationClass;
 import com.android.asychs.GenerateConnectionList;
 import com.android.dialogs.AddConnectionDialog;
@@ -110,8 +112,9 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int id, long arg3) {
-		// TODO Auto-generated method stub
-		
+		Log.d("ListView","Click index: "+id);
+		ConnectionsConfigurationClass config = MultiPlayApplication.getDiscoveredWirelessDevices().get(id);
+		MultiPlayApplication.setSetMainConfiguration(config);
 	}
 
 	@Override
@@ -235,42 +238,13 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 			}
 			pb_connections_activity_refreshing.setVisibility(ProgressBar.VISIBLE);
 			
-			listOfElements.add(new ElementOfConnectionsList(
-					"LIFEBOOK-PC", "10.0.0.127", ConnectionHelper.STATUS_NOT_IN_RANGE,
-					ElementOfConnectionsList.STORED_YES,
-					ConnectionHelper.CONNECTION_TYPE_WIFI));
-			listOfElements.add(new ElementOfConnectionsList(
-					"LIFEBOOK-PC", "00:0A:E6:3E:FD:E1", ConnectionHelper.STATUS_WARNING,
-					ElementOfConnectionsList.STORED_YES,
-					ConnectionHelper.CONNECTION_TYPE_BT));
-			listOfElements.add(new ElementOfConnectionsList(
-					"LIFEBOOK-PC", "10.0.0.127", ConnectionHelper.STATUS_ON,
-					ElementOfConnectionsList.STORED_NO,
-					ConnectionHelper.CONNECTION_TYPE_BT));
-			listOfElements.add(new ElementOfConnectionsList(
-					"LIFEBOOK-PC", "10.0.0.127", ConnectionHelper.STATUS_NOT_IN_RANGE,
-					ElementOfConnectionsList.STORED_YES,
-					ConnectionHelper.CONNECTION_TYPE_WIFI));
-			listOfElements.add(new ElementOfConnectionsList(
-					"LIFEBOOK-PC", "00:0A:E6:3E:FD:E1", ConnectionHelper.STATUS_WARNING,
-					ElementOfConnectionsList.STORED_YES,
-					ConnectionHelper.CONNECTION_TYPE_BT));
-			listOfElements.add(new ElementOfConnectionsList(
-					"LIFEBOOK-PC", "10.0.0.127", ConnectionHelper.STATUS_ON,
-					ElementOfConnectionsList.STORED_NO,
-					ConnectionHelper.CONNECTION_TYPE_WIFI));
-			
+			refreshList(true, false);
 			 
 			ListOfConections adapter_listy = new ListOfConections(this, listOfElements);
 			lv_connections_activity_device_list.setAdapter(adapter_listy);
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			rl_connections_activity_device_list_background_layout.setVisibility(RelativeLayout.INVISIBLE);
 			lv_connections_activity_device_list.setVisibility(ListView.VISIBLE);
+			
 		}
 	}
 	
@@ -312,12 +286,14 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	}
 	
 	private void initLv_connections_activity_device_list(int id) {
+		Log.d("ListView","OK");
 		this.lv_connections_activity_device_list = (ListView) super.findViewById(id);
 		this.lv_connections_activity_device_list.setVisibility(
 				ListView.INVISIBLE);
 		this.lv_connections_activity_device_list.setOnItemClickListener(this);
 		this.lv_connections_activity_device_list.setOnItemLongClickListener(this);
 		this.listOfElements = new ArrayList<ElementOfConnectionsList>();
+		Log.d("ListView","OK");
 	}
 
 	private void initB_connections_activity_bluetooth_switcher(int id) {
@@ -364,7 +340,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 			AddConnectionDialog d = (AddConnectionDialog) dialog;
 			Log.d("Connections","Name-> "+d.getReturnedData().get(AddConnectionDialog.DEVICE_NAME));
 
-			if (d.isS_connections_activity_connection_type_switch_state() == false ) {
+			if (d.isS_connections_activity_connection_type_switch_state() == ConnectionHelper.CONNECTION_TYPE_WIFI ) {
 				
 				Log.d("Connections","IP-> "+d.getReturnedData().get(AddConnectionDialog.DEVICE_IP));
 				Log.d("Connections","Port-> "+d.getReturnedData().get(AddConnectionDialog.DEVICE_PORT));
@@ -372,18 +348,12 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 						d.getReturnedData().get(AddConnectionDialog.DEVICE_IP),
 						Integer.valueOf(d.getReturnedData().get(AddConnectionDialog.DEVICE_PORT)));
 				
+				config.setConnectionStatus(ConnectionHelper.STATUS_NOT_IN_RANGE);
 				config.setName(d.getReturnedData().get(AddConnectionDialog.DEVICE_NAME));
 				config.setStored(
 						(d.getReturnedData().get(AddConnectionDialog.DEVICE_IS_STORED).contentEquals("TRUE"))?true:false);
-				if (AddConnectionDialog.DEVICE_IS_STORED.contentEquals("TRUE")) {
-					config.setStoredIndex(1);
-				}
 				
 				ConnectionHelper.insertNewConnectionToList(ConnectionHelper.CONNECTION_TYPE_WIFI, config);
-				listOfElements.add(new ElementOfConnectionsList(
-						config.getName(), ((WirelessConfigurationClass) config).getIP(), config.getConnectionStatus(),
-						(config.getStoredIndex()!=-1)?ElementOfConnectionsList.STORED_YES:ElementOfConnectionsList.STORED_NO,
-						ConnectionHelper.CONNECTION_TYPE_WIFI));
 			} else {
 				
 				Log.d("Connections","UUID-> "+d.getReturnedData().get(AddConnectionDialog.DEVICE_UUID));
@@ -422,5 +392,56 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	public void onDialogNegativeClick(DialogFragment dialog) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void refreshList(boolean isWirelessOn, boolean isBluetoothOn) {
+		listOfElements.clear();
+		if ( isWirelessOn == true ) {
+			Log.d("Connections","Refresh list");
+			refreshWirelessList();
+		}
+		if ( isBluetoothOn == true ) {
+
+		}
+	}
+	
+	public void refreshWirelessList() {
+		Iterator<WirelessConfigurationClass> wirelessConfigInterator = MultiPlayApplication.getDiscoveredWirelessDevices().iterator();
+		WirelessConfigurationClass configuration = null;
+		boolean isConfigurationStored = false;
+		while (wirelessConfigInterator.hasNext()) {
+			configuration = wirelessConfigInterator.next();
+			if (configuration.getStoredIndex() != -1) {
+				isConfigurationStored = ElementOfConnectionsList.STORED_YES;
+			} else {
+				isConfigurationStored = ElementOfConnectionsList.STORED_NO;
+			}
+			isConfigurationStored = 
+			listOfElements.add(new ElementOfConnectionsList(
+					configuration.getName(), configuration.getIP(),
+					configuration.getConnectionStatus(),
+					isConfigurationStored,
+					ConnectionHelper.CONNECTION_TYPE_WIFI));
+		}
+	}
+	
+	public void refreshBluetoothList() {
+		Iterator<BluetoothConfigurationClass> bluetoothConfigInterator = MultiPlayApplication.getDiscoveredBluetoothDevices().iterator();
+		BluetoothConfigurationClass configuration = null;
+		boolean isConfigurationStored = false;
+		while (bluetoothConfigInterator.hasNext()) {
+			configuration = bluetoothConfigInterator.next();
+			if (configuration.getStoredIndex() != -1) {
+				isConfigurationStored = ElementOfConnectionsList.STORED_YES;
+			} else {
+				isConfigurationStored = ElementOfConnectionsList.STORED_NO;
+			}
+			isConfigurationStored = 
+			listOfElements.add(new ElementOfConnectionsList(
+					configuration.getName(), configuration.getAdress(),
+					configuration.getConnectionStatus(),
+					isConfigurationStored,
+					ConnectionHelper.CONNECTION_TYPE_BT));
+		}
 	}
 }

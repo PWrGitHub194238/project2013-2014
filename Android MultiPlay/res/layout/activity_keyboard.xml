@@ -208,7 +208,7 @@
         android:layout_alignBaseline="@+id/button1"
         android:layout_alignBottom="@+id/button1"
         android:layout_toLeftOf="@+id/button29"
-        android:text="&lt;" />
+        android:text="@string/key_left_arrow_2" />
 
     <Button
         android:id="@+id/button34"
@@ -307,7 +307,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/button36"
         android:layout_toLeftOf="@+id/button8"
-        android:text="V" />
+        android:text="@string/key_down_arrow_2" />
 
     <Button
         android:id="@+id/upb"
@@ -317,7 +317,7 @@
         android:layout_alignBaseline="@+id/button36"
         android:layout_alignBottom="@+id/button36"
         android:layout_toLeftOf="@+id/button8"
-        android:text="^" />
+        android:text="@string/key_up_arrow_2" />
 
     <Button
         android:id="@+id/button7"
@@ -338,10 +338,10 @@
         android:layout_alignBaseline="@+id/downb"
         android:layout_alignBottom="@+id/downb"
         android:layout_alignLeft="@+id/button8"
-        android:text=">" />
+        android:text="@string/key_right_arrow_2" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/enterb"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

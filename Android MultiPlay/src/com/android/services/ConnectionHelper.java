@@ -14,6 +14,8 @@ import com.android.application.BluetoothConfigurationClass;
 import com.android.application.ConnectionsConfigurationClass;
 import com.android.application.MultiPlayApplication;
 import com.android.application.WirelessConfigurationClass;
+import com.android.asychs.CheckConnectionStatus;
+import com.android.asychs.SocketMainThread;
 import com.android.database.DBHelper;
 import com.android.database.tables.NetworkWiFiSettings;
 import com.android.multiplay.R;
@@ -52,18 +54,20 @@ public class ConnectionHelper {
 	public static int insertNewConnectionToList(boolean connectionType, ConnectionsConfigurationClass configuration) {
 		if (connectionType == CONNECTION_TYPE_WIFI) {
 			WirelessConfigurationClass wifiConfiguration = (WirelessConfigurationClass) configuration;
+			Log.d("Connections","> Name: " + configuration.getName());
 			Log.d("Connections","> IP: " + wifiConfiguration.getIP());
 			Log.d("Connections","> Port: " + wifiConfiguration.getPort());
 			
 			
 			 Map<String,String> newValues = new HashMap<String,String>();
-			 newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_1, " Device name");
+			 newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_1, "configuration.getName()");
 			 newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_2, wifiConfiguration.getIP());
 			 newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_3, wifiConfiguration.getPort().toString());
-			 	try {
-					MultiPlayApplication.getDbHelper().sql_insert_row(NetworkWiFiSettings.class, newValues,DBHelper.CLEAR_YES);
-					Cursor cursor = null;
-					if (configuration.isStored() == true) {
+				Cursor cursor = null;
+
+			 try {
+			 		if (configuration.isStored() == true) {
+						MultiPlayApplication.getDbHelper().sql_insert_row(NetworkWiFiSettings.class, newValues,DBHelper.CLEAR_YES);
 						int i = DBHelper.sql_generate_not_exitsting_minID(NetworkWiFiSettings.class) - 1;
 						wifiConfiguration.setStoredIndex(i);
 					}
@@ -72,9 +76,11 @@ public class ConnectionHelper {
 					cursor = MultiPlayApplication.getDbHelper().sql_select_by_id(NetworkWiFiSettings.class);
 					
 					Log.d("DB",DatabaseUtils.dumpCursorToString(cursor));
-					
+					Log.d("APP","Checking connection...");
+					new CheckConnectionStatus().execute(wifiConfiguration);
 					MultiPlayApplication.getDiscoveredWirelessDevices().add(wifiConfiguration);
 					Log.d("APP",MultiPlayApplication.getDiscoveredWirelessDevices().iterator().next().toString());
+					
 			 	} catch (InstantiationException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

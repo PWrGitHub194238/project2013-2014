@@ -2,8 +2,11 @@ package com.android.application;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.android.asychs.SocketMainThread;
 import com.android.database.DBHelper;
@@ -16,11 +19,23 @@ public class MultiPlayApplication extends Application {
 	
 	private static DBHelper dbHelper = null;
 	private static Collection<BluetoothConfigurationClass> discoveredBluetoothDevices = null;
-	private static Collection<WirelessConfigurationClass> discoveredWirelessDevices = null;
+	private static ArrayList<WirelessConfigurationClass> discoveredWirelessDevices = null;
+	private static ConnectionsConfigurationClass setMainConfiguration = null;
 	private MultiPlayDataBase multiPlayDataBase = null;
 	
-	private SocketMainThread socketMainThread = null;
+	private static BlockingQueue<Byte> socketQueue = null;
 	
+	private static SocketMainThread socketMainThread = null;
+	
+	public static void runThread() {
+		socketQueue = new LinkedBlockingQueue<Byte>();
+		socketMainThread = new SocketMainThread("name",socketQueue);
+		socketMainThread.execute("OK");
+	}
+	
+	public static void add() {
+		socketQueue.add(Byte.MIN_VALUE);
+	}
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -48,10 +63,23 @@ public class MultiPlayApplication extends Application {
 		return discoveredBluetoothDevices;
 	}
 
-	public static final Collection<WirelessConfigurationClass> getDiscoveredWirelessDevices() {
+	public static final ArrayList<WirelessConfigurationClass> getDiscoveredWirelessDevices() {
 		return discoveredWirelessDevices;
 	}
 
+
+	public static ConnectionsConfigurationClass getSetMainConfiguration() {
+		return setMainConfiguration;
+	}
+
+	public static void setSetMainConfiguration(ConnectionsConfigurationClass setMainConfiguration) {
+		MultiPlayApplication.setMainConfiguration = setMainConfiguration;
+		Log.d("ListView","Name: "+setMainConfiguration.getName());
+		Log.d("ListView","ConStatus: "+setMainConfiguration.getConnectionStatus());
+		Log.d("ListView","IP: "+((WirelessConfigurationClass) setMainConfiguration).getIP());
+		Log.d("ListView","Port: "+((WirelessConfigurationClass) setMainConfiguration).getPort());
+		Log.d("ListView","Stored index: "+setMainConfiguration.getStoredIndex());
+	}
 
 	public final MultiPlayDataBase getMultiPlayDataBase() {
 		return multiPlayDataBase;
@@ -61,7 +89,7 @@ public class MultiPlayApplication extends Application {
 		this.multiPlayDataBase = multiPlayDataBase;
 	}
 
-	public final SocketMainThread getSocketMainThread() {
+	public final static SocketMainThread getSocketMainThread() {
 		return socketMainThread;
 	}
 

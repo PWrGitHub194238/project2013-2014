@@ -29,7 +29,7 @@ public class Serverwifi implements Runnable {
 		while (true) {
 			try {
 				data = new DataInputStream((socket.getInputStream()));
-				device = data.readUTF();
+				device = Integer.toString((data.read()));
 				System.out.println("proba");
 				if (device.equals("mouse")) {
 					try {

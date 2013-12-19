@@ -104,7 +104,7 @@ public class KeyboardActivity extends Activity implements OnClickListener, Dialo
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
 		case R.id.leftb:
-			  MultiPlayApplication.add(N.dev_signal.keyboard);
+			  MultiPlayApplication.add((byte)11);
 			break;
 		case R.id.rightb:
 			MultiPlayApplication.add(N.dev_signal.keyboard);

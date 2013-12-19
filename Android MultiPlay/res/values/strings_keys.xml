@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="key_up_arrow_1">&#9650;</string>
+    <string name="key_down_arrow_1">&#9660;</string>
+    <string name="key_left_arrow_1">&#9664;</string>
+    <string name="key_right_arrow_1">&#9654;</string>
+    
+    <string name="key_up_arrow_2">&#9651;</string>
+    <string name="key_down_arrow_2">&#9661;</string>
+    <string name="key_left_arrow_2">&#9665;</string>
+    <string name="key_right_arrow_2">&#9655;</string>
+    
+</resources>

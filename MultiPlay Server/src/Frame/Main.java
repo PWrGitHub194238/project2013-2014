@@ -16,6 +16,7 @@ public class Main {
 		try {
 			ServerSocket serversocket= new ServerSocket(port);
 			Socket socket= serversocket.accept();
+			System.out.println("fdf");
 			Serverwifi wifi= new Serverwifi(socket);
 			wifi.run();
 		} catch (IOException e) {

@@ -1,5 +1,6 @@
 package com.android.controllers.keyboard;
 
+import com.android.multiplay.ConnectionsActivity;
 import com.android.multiplay.R;
 import com.android.multiplay.Sender;
 import com.android.multiplay.R.id;
@@ -8,26 +9,89 @@ import com.android.multiplay.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.DialogFragment;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
+import com.android.application.MultiPlayApplication;
+import com.android.application.N;
+import com.android.dialogs.AlertDialogs;
+import com.android.dialogs.DialogButtonClickListener;
+import com.android.dialogs.elements.DialogListCore;
+import com.android.dialogs.elements.MultiPlayExplorerActivityDialogList;
 
-public class KeyboardActivity extends Activity {
+public class KeyboardActivity extends Activity implements OnClickListener, DialogButtonClickListener {
+	int shiftflag = 0, altflag = 0;
 	Bundle bundle;
 	private String ip;
-	private Button button1, button2, button3, button4, button5;
+	private Button button1, button2, button3, button4, button5, button6,
+			button7, button8, button9, button10, button11, button12, button13,
+			button14, button15, button16, button17, button18, button19,
+			button20, button21, button22, button23, button24, button25,
+			button26, button27, button28, button29, button30, button31,
+			button32, button33, button34, button35, button36;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_keyboard);
-	//	bundle = super.getIntent().getExtras();
-		//ip = bundle.getString("ip");
-		button1 = (Button) super.findViewById(R.id.leftb);		//przyciski przyk≈Çadowe do klawiatury kt√≥re 
-		button2 = (Button) super.findViewById(R.id.rightb);		//nale≈ºy dodaƒá w przysz≈Ço≈õci
-		button3 = (Button) super.findViewById(R.id.upb);			//do wysy≈Çania jest ju prawie zainplementowane
-		button4 = (Button) super.findViewById(R.id.downb);		//wystarczy dodaƒá kilka if'ow
+	    if (MultiPlayApplication.getSetMainConfiguration() != null) {
+		// bundle = super.getIntent().getExtras();
+		// ip = bundle.getString("ip");
+		button1 = (Button) super.findViewById(R.id.leftb); // przyciski
+															// przyk≈Çadowe do
+															// klawiatury kt√≥re
+		button2 = (Button) super.findViewById(R.id.rightb); // nale≈ºy dodaƒá w
+															// przysz≈Ço≈õci
+		button3 = (Button) super.findViewById(R.id.upb); // do wysy≈Çania jest
+															// ju prawie
+															// zainplementowane
+		button4 = (Button) super.findViewById(R.id.downb); // wystarczy dodaƒá
+															// kilka if'ow
 		button5 = (Button) super.findViewById(R.id.enterb);
+		button6 = (Button) super.findViewById(R.id.bshift);
+		button33 = (Button) super.findViewById(R.id.bspace);
+		button7 = (Button) super.findViewById(R.id.bq);
+		button8 = (Button) super.findViewById(R.id.bw);
+		button9 = (Button) super.findViewById(R.id.be);
+		button10 = (Button) super.findViewById(R.id.br);
+		button11 = (Button) super.findViewById(R.id.bt);
+		button12 = (Button) super.findViewById(R.id.by);
+		button13 = (Button) super.findViewById(R.id.bu);
+		button14 = (Button) super.findViewById(R.id.bi);
+		button15 = (Button) super.findViewById(R.id.bo);
+		button16 = (Button) super.findViewById(R.id.bp);
+		button17 = (Button) super.findViewById(R.id.ba);
+		button18 = (Button) super.findViewById(R.id.bs);
+		button19 = (Button) super.findViewById(R.id.bd);
+		button20 = (Button) super.findViewById(R.id.bf);
+		button21 = (Button) super.findViewById(R.id.bg);
+		button22 = (Button) super.findViewById(R.id.bh);
+		button23 = (Button) super.findViewById(R.id.bj);
+		button24 = (Button) super.findViewById(R.id.bk);
+		button25 = (Button) super.findViewById(R.id.bl);
+		button26 = (Button) super.findViewById(R.id.bz);
+		button27 = (Button) super.findViewById(R.id.bx);
+		button28 = (Button) super.findViewById(R.id.bc);
+		button29 = (Button) super.findViewById(R.id.bv);
+		button30 = (Button) super.findViewById(R.id.bb);
+		button31 = (Button) super.findViewById(R.id.bn);
+		button32 = (Button) super.findViewById(R.id.bm);
+		button33 = (Button) super.findViewById(R.id.balt);
+	    } else {
+	    	        
+	    	        AlertDialogs.showDialog(this,
+	    	            MultiPlayExplorerActivityDialogList.TAG_NO_CONNECTION_FOUND,
+	    	            DialogListCore.IT_TITLE_ICON_WARNING,
+	    	            MultiPlayExplorerActivityDialogList.ID_TITLE_NO_CONNECTION_FOUND,
+	    	            MultiPlayExplorerActivityDialogList.ID_MESSAGE_NO_CONNECTION_FOUND,
+	    	           DialogListCore.ID_BUTTON_OPTIONS,
+	    	          null,
+	    	            DialogListCore.ID_BUTTON_CANCEL);
+	    	     }
+
 	}
 
 	@Override
@@ -40,30 +104,381 @@ public class KeyboardActivity extends Activity {
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
 		case R.id.leftb:
-			Sender sender = new Sender();
-			sender.setip(ip);
-			sender.execute("keyboard", "left");
+			  MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.rightb:
-			Sender sender2 = new Sender();
-			sender2.setip(ip);
-			sender2.execute("keyboard", "right");
+			MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.upb:
-			Sender sender3 = new Sender();
-			sender3.setip(ip);						//wywyla odpowiednie klawisze poprzez klase Sender
-			sender3.execute("keyboard", "up");
+			MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.downb:
-			Sender sender4 = new Sender();
-			sender4.setip(ip);
-			sender4.execute("keyboard", "down");
+			MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.enterb:
-			Sender sender5 = new Sender();
-			sender5.setip(ip);
-			sender5.execute("keyboard", "enter");
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bshift:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (altflag == 0) {
+				switch (shiftflag) {
+				case 0:
+					shiftflag = 1;
+					// wyslij ze zostal nacisniety shift
+					button7.setText("Q");
+					button8.setText("W");
+					button9.setText("E");
+					button10.setText("R");
+					button11.setText("T");
+					button12.setText("Y");
+					button13.setText("U");
+					button14.setText("I");
+					button15.setText("O");
+					button16.setText("P");
+					button17.setText("A");
+					button18.setText("S");
+					button19.setText("D");
+					button20.setText("F");
+					button21.setText("G");
+					button22.setText("H");
+					button23.setText("J");
+					button24.setText("K");
+					button25.setText("L");
+					button26.setText("Z");
+					button27.setText("X");
+					button28.setText("C");
+					button29.setText("V");
+					button30.setText("B");
+					button31.setText("N");
+					button32.setText("M");
+					break;
+				case 1:
+					shiftflag = 2;
+					button7.setText("Q");
+					button8.setText("W");
+					button9.setText("E");
+					button10.setText("R");
+					button11.setText("T");
+					button12.setText("Y");
+					button13.setText("U");
+					button14.setText("I");
+					button15.setText("O");
+					button16.setText("P");
+					button17.setText("A");
+					button18.setText("S");
+					button19.setText("D");
+					button20.setText("F");
+					button21.setText("G");
+					button22.setText("H");
+					button23.setText("J");
+					button24.setText("K");
+					button25.setText("L");
+					button26.setText("Z");
+					button27.setText("X");
+					button28.setText("C");
+					button29.setText("V");
+					button30.setText("B");
+					button31.setText("N");
+					button32.setText("M");
+					break;
+				case 2:
+					// wyslij ze zostal odcisniety shift
+					shiftflag = 0;
+					button7.setText("q");
+					button8.setText("w");
+					button9.setText("e");
+					button10.setText("r");
+					button11.setText("t");
+					button12.setText("y");
+					button13.setText("u");
+					button14.setText("i");
+					button15.setText("o");
+					button16.setText("p");
+					button17.setText("a");
+					button18.setText("s");
+					button19.setText("d");
+					button20.setText("f");
+					button21.setText("g");
+					button22.setText("h");
+					button23.setText("j");
+					button24.setText("k");
+					button25.setText("l");
+					button26.setText("z");
+					button27.setText("x");
+					button28.setText("c");
+					button29.setText("v");
+					button30.setText("b");
+					button31.setText("n");
+					button32.setText("m");
+					break;
+				}
+			}
+			else if (altflag == 1) {
+				switch (shiftflag) {
+				case 0:
+					shiftflag = 1;
+					// wyslij ze zostal nacisniety shift
+					button7.setText("!");
+					button8.setText("@");
+					button9.setText("#");
+					button10.setText("$");
+					button11.setText("%");
+					button12.setText("^");
+					button13.setText("&");
+					button14.setText("*");
+					button15.setText("(");
+					button16.setText(")");
+					button17.setText("_");
+					button18.setText("+");
+					button19.setText("{");
+					button20.setText("}");
+					button21.setText("|");
+					button22.setText("\\");
+					button23.setText(":");
+					button24.setText("\"");
+					button25.setText("<");
+					button26.setText(">");
+					button27.setText("?");
+					button28.setText("/");
+					button29.setText("=");
+					button30.setText("-");
+					button31.setText("~");
+					button32.setText("`");
+					break;
+				case 1:
+					shiftflag = 2;
+					button7.setText("1");
+					button8.setText("2");
+					button9.setText("3");
+					button10.setText("4");
+					button11.setText("5");
+					button12.setText("6");
+					button13.setText("7");
+					button14.setText("8");
+					button15.setText("9");
+					button16.setText("0");
+					button17.setText("Í");
+					button18.setText("Û");
+					button19.setText("π");
+					button20.setText("ú");
+					button21.setText("≥");
+					button26.setText("ø");
+					button27.setText("ü");
+					button28.setText("Ê");
+					button29.setText("Ò");
+					button26.setText("[");
+					button27.setText("]");
+					button28.setText(";");
+					button29.setText("'");
+					button30.setText(",");
+					button31.setText(".");
+					button32.setText("?");
+					break;
+				case 2:
+					// wyslij ze zostal odcisniety shift
+					shiftflag = 0;
+					button7.setText("q");
+					button8.setText("w");
+					button9.setText("e");
+					button10.setText("r");
+					button11.setText("t");
+					button12.setText("y");
+					button13.setText("u");
+					button14.setText("i");
+					button15.setText("o");
+					button16.setText("p");
+					button17.setText("a");
+					button18.setText("s");
+					button19.setText("d");
+					button20.setText("f");
+					button21.setText("g");
+					button22.setText("h");
+					button23.setText("j");
+					button24.setText("k");
+					button25.setText("l");
+					button26.setText("z");
+					button27.setText("x");
+					button28.setText("c");
+					button29.setText("v");
+					button30.setText("b");
+					button31.setText("n");
+					button32.setText("m");
+					break;
+				}
+			}
+			break;
+
+		case R.id.bspace:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bq:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
+
+			break;
+		case R.id.bw:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.be:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.br:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bt:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.by:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bu:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bi:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bo:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bp:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.ba:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bs:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bd:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bf:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bg:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bh:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bj:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bk:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bl:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bz:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bx:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bc:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bv:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bb:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bn:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.bm:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			break;
+		case R.id.balt:
+			MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 || shiftflag == 2) {
+			} else {
+				switch (altflag) {
+				case 1:
+					altflag = 0;
+					// wyslij ze zostal nacisniety shift
+					button7.setText("1");
+					button8.setText("2");
+					button9.setText("3");
+					button10.setText("4");
+					button11.setText("5");
+					button12.setText("6");
+					button13.setText("7");
+					button14.setText("8");
+					button15.setText("9");
+					button16.setText("0");
+					button17.setText("Í");
+					button18.setText("Û");
+					button19.setText("π");
+					button20.setText("ú");
+					button21.setText("≥");
+					button26.setText("ø");
+					button27.setText("ü");
+					button28.setText("Ê");
+					button29.setText("Ò");
+					button26.setText("[");
+					button27.setText("]");
+					button28.setText(";");
+					button29.setText("'");
+					button30.setText(",");
+					button31.setText(".");
+					button32.setText("?");
+					shiftflag=0;
+					break;
+				case 0:
+					altflag = 1;
+					button7.setText("q");
+					button8.setText("w");
+					button9.setText("e");
+					button10.setText("r");
+					button11.setText("t");
+					button12.setText("y");
+					button13.setText("u");
+					button14.setText("i");
+					button15.setText("o");
+					button16.setText("p");
+					button17.setText("a");
+					button18.setText("s");
+					button19.setText("d");
+					button20.setText("f");
+					button21.setText("g");
+					button22.setText("h");
+					button23.setText("j");
+					button24.setText("k");
+					button25.setText("l");
+					button26.setText("z");
+					button27.setText("x");
+					button28.setText("c");
+					button29.setText("v");
+					button30.setText("b");
+					button31.setText("n");
+					button32.setText("m");
+					shiftflag=0;
+					break;
+
+				}
+			}
 			break;
 		}
 	}
+	public void onDialogPositiveClick(DialogFragment dialog) {
+		     Intent intent = new Intent(this, ConnectionsActivity.class);
+		     super.startActivity(intent);
+		     this.finish();
+		  }
+		 
+		   public void onDialogNeutralClick(DialogFragment dialog) {
+		   }
+		 
+		   public void onDialogNegativeClick(DialogFragment dialog) {
+		    this.finish();
+		    }
 }

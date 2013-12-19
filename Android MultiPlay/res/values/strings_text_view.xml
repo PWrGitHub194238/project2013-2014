@@ -8,6 +8,8 @@
     <string name="tv_option_0_title_in_main_activity">MultiPlay Explorer</string>
     <string name="tv_option_0_title_description_in_main_activity">Connects you to remote server</string>
     
+    	<string name="tv_activity_title_multiplay_explorer">MultiPlay Explorer</string>
+    	
     <string name="tv_option_1_title_in_main_activity">System controller</string>
     <string name="tv_option_1_title_description_in_main_activity">f the options on your right to navigate application. To enable or disable device connections tap leds below.</string>
     

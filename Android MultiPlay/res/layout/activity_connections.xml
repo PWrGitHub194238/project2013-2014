@@ -21,8 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/main_activity_0_title_glow"
-        android:drawableLeft="@drawable/main_activity_0_title_icon"
+        android:background="@drawable/activity_title_glow_blue"
+        android:drawableLeft="@drawable/activity_title_icon_blue"
         android:drawablePadding="10dp"
         android:focusable="true"
         android:paddingBottom="1dp"
@@ -38,7 +38,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginTop="10dp"
         android:layout_below="@id/tv_activity_title_connections"
-        android:background="@drawable/activity_glow_horizontal_line"
+        android:background="@drawable/activity_glow_horizontal_line_blue"
         android:contentDescription="@string/contentDescription_iv_activity_glow_horizontal_line" />
     
 <!--     Right bar -->

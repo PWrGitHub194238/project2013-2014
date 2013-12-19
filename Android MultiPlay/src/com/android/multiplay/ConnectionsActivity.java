@@ -1,5 +1,6 @@
 package com.android.multiplay;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -34,7 +35,9 @@ import com.android.application.MultiPlayApplication;
 import com.android.application.WirelessConfigurationClass;
 import com.android.asychs.GenerateConnectionList;
 import com.android.dialogs.AddConnectionDialog;
+import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
+import com.android.dialogs.elements.DialogListCore;
 import com.android.dialogs.elements.OptionsActivityDialogList;
 import com.android.extendedWidgets.ImageToggleButton;
 import com.android.extendedWidgets.lists.ElementOfConnectionsList;
@@ -57,6 +60,8 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	ImageButton b_connections_activity_add_new_connection = null;
 	
 	ImageButton b_connections_activity_refresh_connections_check = null;
+	
+	ConnectionsConfigurationClass selectedConfig = null;
 	
 	Collection<ElementOfConnectionsList> listOfElements = null;
 	boolean lv_connections_activity_device_list_visibly = false;
@@ -113,8 +118,15 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int id, long arg3) {
 		Log.d("ListView","Click index: "+id);
-		ConnectionsConfigurationClass config = MultiPlayApplication.getDiscoveredWirelessDevices().get(id);
-		MultiPlayApplication.setSetMainConfiguration(config);
+		selectedConfig = MultiPlayApplication.getDiscoveredWirelessDevices().get(id);
+		AlertDialogs.showDialog(this,
+				OptionsActivityDialogList.TAG_CONNECT_CONFIRMATION,
+				OptionsActivityDialogList.IT_TITLE_ICON_WIFI,
+				OptionsActivityDialogList.ID_TITLE_CONNECT_CONFIRMATION,
+				DialogListCore.ID_MESSAGE_NO_MESSAGE,
+				DialogListCore.ID_BUTTON_CONNECT,
+				null,
+				DialogListCore.ID_BUTTON_CANCEL);
 	}
 
 	@Override
@@ -173,9 +185,9 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 				  OptionsActivityDialogList.IT_TITLE_ICON_CONNECTION_CREATOR,
 				  OptionsActivityDialogList.ID_TITLE_ADD_CONNECTION,
 				  AddConnectionDialog.getViewFromResource(this,R.layout.dialog_add_new_connection),
-				  OptionsActivityDialogList.ID_BUTTON_ADD,
-				  OptionsActivityDialogList.ID_BUTTON_EMPTY,
-				  OptionsActivityDialogList.ID_BUTTON_CANCEL);
+				  DialogListCore.ID_BUTTON_ADD,
+				  DialogListCore.ID_BUTTON_EMPTY,
+				  DialogListCore.ID_BUTTON_CANCEL);
 		
 	}
 
@@ -374,6 +386,10 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 				
 			}
 			return;
+		} else if (dialogTag.equals(OptionsActivityDialogList.TAG_CONNECT_CONFIRMATION)) {
+			Toast.makeText(this, "Make connection",Toast.LENGTH_LONG).show();
+			MultiPlayApplication.setSetMainConfiguration(selectedConfig);
+			//TODO
 		}
 		
 	}

@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.android.dialogs.AlertDialogs;
+import com.android.dialogs.elements.DialogListCore;
 import com.android.dialogs.elements.MainActivityDialogList;
 import com.android.extendedWidgets.ImageToggleButton;
 import com.android.multiplay.R;
@@ -59,7 +60,7 @@ public class ConnectionServiceResponseReceiver extends BroadcastReceiver {
 	    					  null,
 	    					  MainActivityDialogList.ID_TITLE_BLUETOOTH_CONNECTED,
 	    					  MainActivityDialogList.ID_MESSAGE_BLUETOOTH_CONNECTED,
-	    					  MainActivityDialogList.ID_BUTTON_OK,
+	    					  DialogListCore.ID_BUTTON_OK,
 	    					  null,
 	    					  null);
 	    		  } else {
@@ -69,9 +70,9 @@ public class ConnectionServiceResponseReceiver extends BroadcastReceiver {
 	    					  null,
 	    					  MainActivityDialogList.ID_TITLE_BLUETOOTH_ENABLED,
 	    					  MainActivityDialogList.ID_MESSAGE_BLUETOOTH_ENABLED,
-	    					  MainActivityDialogList.ID_BUTTON_OPTIONS,
+	    					  DialogListCore.ID_BUTTON_OPTIONS,
 	    					  null,
-	    					  MainActivityDialogList.ID_BUTTON_CANCEL);
+	    					  DialogListCore.ID_BUTTON_CANCEL);
 	    		  }
 	    	  }
 	      } else if ( called_reason_id == ConnectionService.BLUETOOTH ) {

@@ -6,17 +6,21 @@
     <string name="dialog_ID_TITLE_BLUETOOTH_ENABLED">Bluetooth enabled</string>
     <string name="dialog_ID_TITLE_WIFI_CONNECTED">Connected via WiFi</string>
     <string name="dialog_ID_TITLE_WIFI_ENABLED">WiFi enabled</string>
+    <string name="dialog_ID_TITLE_CONNECT_CONFIRMATION">Confirmation</string>
+    <string name="dialog_ID_TITLE_NO_CONNECTION_FOUND">Connection not found</string>
     
     <string name="dialog_ID_MESSAGE_NO_MESSAGE">(no message)</string>
 	<string name="dialog_ID_MESSAGE_BLUETOOTH_CONNECTED">Connected to default device.</string>
 	<string name="dialog_ID_MESSAGE_BLUETOOTH_ENABLED">Bluetooth conecions available.\n Go to options to choose one.</string>
 	<string name="dialog_ID_MESSAGE_WIFI_CONNECTED">Connected to default device.</string>
 	<string name="dialog_ID_MESSAGE_WIFI_ENABLED">WiFi conecions available.\n Go to options to choose one.</string>
+	<string name="dialog_ID_MESSAGE_NO_CONNECTION_FOUND">No active network connection was found.\n Go to Options to create one.</string>
 
-	<string name="dialog_ID_BUTTON_CANCEL">Cancel</string>
+		<string name="dialog_ID_BUTTON_CANCEL">Cancel</string>
 	<string name="dialog_ID_BUTTON_OPTIONS">Options</string>
 	<string name="dialog_ID_BUTTON_OK">OK</string>
 	<string name="dialog_ID_BUTTON_ADD">Add</string>
+	<string name="dialog_ID_BUTTON_CONNECT">Connect</string>
 	<string name="dialog_ID_BUTTON_EMPTY">&#160;</string>
 	
 	<string name="dialog_ID_TITLE_ADD_CONNECTION">Add connection</string>

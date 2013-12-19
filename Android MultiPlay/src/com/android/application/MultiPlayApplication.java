@@ -1,14 +1,16 @@
 package com.android.application;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import android.app.Application;
+import android.os.AsyncTask;
 import android.util.Log;
 
-import com.android.asychs.SocketMainThread;
+import com.android.asychs.SocketMainWiFiSender;
 import com.android.database.DBHelper;
 import com.android.database.MultiPlayDataBase;
 
@@ -25,16 +27,27 @@ public class MultiPlayApplication extends Application {
 	
 	private static BlockingQueue<Byte> socketQueue = null;
 	
-	private static SocketMainThread socketMainThread = null;
+	private static SocketMainWiFiSender socketMainThread = null;
 	
-	public static void runThread() {
+	public static void runThread() throws IOException {
+		Log.d("THREAD","Run thread...");
 		socketQueue = new LinkedBlockingQueue<Byte>();
-		socketMainThread = new SocketMainThread("name",socketQueue);
-		socketMainThread.execute("OK");
+		socketMainThread = new SocketMainWiFiSender((WirelessConfigurationClass) setMainConfiguration);
+		socketMainThread.execute(N.signal.need_to_connect);
 	}
 	
-	public static void add() {
-		socketQueue.add(Byte.MIN_VALUE);
+	public static void execute() {
+	}
+	
+	public static void add(byte signal) {
+		synchronized (socketMainThread) {
+			socketMainThread.queue.add(signal);
+			Log.d("THREAD","Added "+signal);
+			Log.d("THREAD","Executing "+socketMainThread.queue.size()+" signals...");
+		
+			MultiPlayApplication.getSocketMainThread().notify();
+		}
+		Log.d("THREAD","Finish.");
 	}
 	@Override
 	public void onCreate() {
@@ -89,11 +102,11 @@ public class MultiPlayApplication extends Application {
 		this.multiPlayDataBase = multiPlayDataBase;
 	}
 
-	public final static SocketMainThread getSocketMainThread() {
+	public final static SocketMainWiFiSender getSocketMainThread() {
 		return socketMainThread;
 	}
 
-	public final void setSocketMainThread(SocketMainThread socketMainThread) {
+	public final void setSocketMainThread(SocketMainWiFiSender socketMainThread) {
 		this.socketMainThread = socketMainThread;
 	}
 }

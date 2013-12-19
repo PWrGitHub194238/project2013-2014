@@ -15,7 +15,7 @@ import com.android.application.ConnectionsConfigurationClass;
 import com.android.application.MultiPlayApplication;
 import com.android.application.WirelessConfigurationClass;
 import com.android.asychs.CheckConnectionStatus;
-import com.android.asychs.SocketMainThread;
+import com.android.asychs.SocketMainWiFiSender;
 import com.android.database.DBHelper;
 import com.android.database.tables.NetworkWiFiSettings;
 import com.android.multiplay.R;

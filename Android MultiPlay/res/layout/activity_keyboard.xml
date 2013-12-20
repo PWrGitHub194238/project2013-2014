@@ -172,7 +172,7 @@
         android:text="l" />
 
     <Button
-        android:id="@+id/bctrl"
+        android:id="@+id/lctrl"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -194,11 +194,11 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/bctrl"
-        android:layout_alignBottom="@+id/bctrl"
+        android:layout_alignBaseline="@+id/lctrl"
+        android:layout_alignBottom="@+id/lctrl"
         android:layout_alignRight="@+id/bx"
-        android:layout_toRightOf="@+id/bctrl"
-         android:onClick="onButtonClick" />
+        android:layout_toRightOf="@+id/lctrl"
+        android:onClick="onClick"
         android:text="alt" />
 
     <Button
@@ -209,8 +209,8 @@
         android:layout_alignBaseline="@+id/balt"
         android:layout_alignBottom="@+id/balt"
         android:layout_toLeftOf="@+id/bl"
-         android:onClick="onButtonClick" />
-        android:text="@string/key_left_arrow_2" />
+        android:onClick="onClick"
+        android:text="&lt;" />
 
     <Button
         android:id="@+id/bb"
@@ -246,6 +246,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/ba"
         android:layout_below="@+id/ba"
+        android:onClick="onClick"
         android:text="shift" />
 
     <Button
@@ -300,7 +301,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/bshift"
         android:layout_below="@+id/bshift"
-         android:onClick="onButtonClick" />
+        android:onClick="onClick"
         android:text="esc" />
 
     <Button

@@ -312,7 +312,7 @@
         android:text="P" />
 
     <Button
-        android:id="@+id/bctrl"
+        android:id="@+id/lctrl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/button37"
@@ -324,9 +324,9 @@
         android:id="@+id/button39"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/bctrl"
-        android:layout_alignBottom="@+id/bctrl"
-        android:layout_toRightOf="@+id/bctrl"
+        android:layout_alignBaseline="@+id/lctrl"
+        android:layout_alignBottom="@+id/lctrl"
+        android:layout_toRightOf="@+id/lctrl"
         android:text="]" />
 
     <Button

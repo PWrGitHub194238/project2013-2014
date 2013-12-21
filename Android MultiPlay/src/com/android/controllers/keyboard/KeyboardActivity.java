@@ -22,7 +22,8 @@ import com.android.dialogs.DialogButtonClickListener;
 import com.android.dialogs.elements.DialogListCore;
 import com.android.dialogs.elements.MultiPlayExplorerActivityDialogList;
 
-public class KeyboardActivity extends Activity implements OnClickListener, DialogButtonClickListener {
+public class KeyboardActivity extends Activity implements OnClickListener,
+		DialogButtonClickListener {
 	int shiftflag = 0, altflag = 0;
 	Bundle bundle;
 	private String ip;
@@ -39,16 +40,10 @@ public class KeyboardActivity extends Activity implements OnClickListener, Dialo
 		setContentView(R.layout.activity_keyboard);
 		// bundle = super.getIntent().getExtras();
 		// ip = bundle.getString("ip");
-		button1 = (Button) super.findViewById(R.id.leftb); // przyciski
-															// przykładowe do
-															// klawiatury które
-		button2 = (Button) super.findViewById(R.id.rightb); // należy dodać w
-															// przyszłości
-		button3 = (Button) super.findViewById(R.id.upb); // do wysyłania jest
-															// ju prawie
-															// zainplementowane
-		button4 = (Button) super.findViewById(R.id.downb); // wystarczy dodać
-															// kilka if'ow
+		button1 = (Button) super.findViewById(R.id.leftb);
+		button2 = (Button) super.findViewById(R.id.rightb);
+		button3 = (Button) super.findViewById(R.id.upb);
+		button4 = (Button) super.findViewById(R.id.downb);
 		button5 = (Button) super.findViewById(R.id.enterb);
 		button6 = (Button) super.findViewById(R.id.bshift);
 		button33 = (Button) super.findViewById(R.id.bspace);
@@ -79,22 +74,18 @@ public class KeyboardActivity extends Activity implements OnClickListener, Dialo
 		button31 = (Button) super.findViewById(R.id.bn);
 		button32 = (Button) super.findViewById(R.id.bm);
 		button33 = (Button) super.findViewById(R.id.balt);
-	
-	    if (MultiPlayApplication.getSetMainConfiguration() != null) {
-	
-	    } else {
-	    	
-	    	        
-	    	        AlertDialogs.showDialog(this,
-	    	            MultiPlayExplorerActivityDialogList.TAG_NO_CONNECTION_FOUND,
-	    	            DialogListCore.IT_TITLE_ICON_WARNING,
-	    	            MultiPlayExplorerActivityDialogList.ID_TITLE_NO_CONNECTION_FOUND,
-	    	            MultiPlayExplorerActivityDialogList.ID_MESSAGE_NO_CONNECTION_FOUND,
-	    	           DialogListCore.ID_BUTTON_OPTIONS,
-	    	          null,
-	    	            DialogListCore.ID_BUTTON_CANCEL);
-	    	     }
-
+		if (MultiPlayApplication.getSetMainConfiguration() != null) {
+		} else {
+			AlertDialogs
+					.showDialog(
+							this,
+							MultiPlayExplorerActivityDialogList.TAG_NO_CONNECTION_FOUND,
+							DialogListCore.IT_TITLE_ICON_WARNING,
+							MultiPlayExplorerActivityDialogList.ID_TITLE_NO_CONNECTION_FOUND,
+							MultiPlayExplorerActivityDialogList.ID_MESSAGE_NO_CONNECTION_FOUND,
+							DialogListCore.ID_BUTTON_OPTIONS, null,
+							DialogListCore.ID_BUTTON_CANCEL);
+		}
 	}
 
 	@Override
@@ -107,22 +98,22 @@ public class KeyboardActivity extends Activity implements OnClickListener, Dialo
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
 		case R.id.leftb:
-			  //MultiPlayApplication.add((byte)11);
+			// MultiPlayApplication.add((byte)11);
 			break;
 		case R.id.rightb:
-			//MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.upb:
-			//MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.downb:
-			//MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.enterb:
-			//MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bshift:
-			//MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			if (altflag == 0) {
 				switch (shiftflag) {
 				case 0:
@@ -215,8 +206,7 @@ public class KeyboardActivity extends Activity implements OnClickListener, Dialo
 					button32.setText("m");
 					break;
 				}
-			}
-			else if (altflag == 1) {
+			} else if (altflag == 1) {
 				switch (shiftflag) {
 				case 0:
 					shiftflag = 1;
@@ -312,14 +302,14 @@ public class KeyboardActivity extends Activity implements OnClickListener, Dialo
 			break;
 
 		case R.id.bspace:
-			//MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bq:
-			//MultiPlayApplication.add(N.dev_signal.keyboard);
-			if (shiftflag == 1) {
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
 				// nacisniecie "q"
 				// odcisniecie shifta
-				shiftflag=0;
+				shiftflag = 0;
 				button7.setText("q");
 				button8.setText("w");
 				button9.setText("e");
@@ -346,7 +336,6 @@ public class KeyboardActivity extends Activity implements OnClickListener, Dialo
 				button30.setText("b");
 				button31.setText("n");
 				button32.setText("m");
-
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -354,82 +343,82 @@ public class KeyboardActivity extends Activity implements OnClickListener, Dialo
 
 			break;
 		case R.id.bw:
-			//MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.be:
-			//MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.br:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bt:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.by:
-			//MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bu:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bi:
-			//MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bo:
-			//MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bp:
-			//MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.ba:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bs:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bd:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bf:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bg:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bh:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bj:
-			//MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bk:
-			//MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bl:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bz:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bx:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bc:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bv:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bb:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bn:
-			//MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.bm:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			break;
 		case R.id.balt:
-		//	MultiPlayApplication.add(N.dev_signal.keyboard);
+			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			if (shiftflag == 1 || shiftflag == 2) {
 			} else {
 				switch (altflag) {
@@ -462,7 +451,7 @@ public class KeyboardActivity extends Activity implements OnClickListener, Dialo
 					button30.setText(",");
 					button31.setText(".");
 					button32.setText("?");
-					shiftflag=0;
+					shiftflag = 0;
 					break;
 				case 0:
 					altflag = 1;
@@ -492,24 +481,24 @@ public class KeyboardActivity extends Activity implements OnClickListener, Dialo
 					button30.setText("b");
 					button31.setText("n");
 					button32.setText("m");
-					shiftflag=0;
+					shiftflag = 0;
 					break;
-
 				}
 			}
 			break;
 		}
 	}
+
 	public void onDialogPositiveClick(DialogFragment dialog) {
-		     Intent intent = new Intent(this, ConnectionsActivity.class);
-		     super.startActivity(intent);
-		     this.finish();
-		  }
-		 
-		   public void onDialogNeutralClick(DialogFragment dialog) {
-		   }
-		 
-		   public void onDialogNegativeClick(DialogFragment dialog) {
-		    this.finish();
-		    }
+		Intent intent = new Intent(this, ConnectionsActivity.class);
+		super.startActivity(intent);
+		this.finish();
+	}
+
+	public void onDialogNeutralClick(DialogFragment dialog) {
+	}
+
+	public void onDialogNegativeClick(DialogFragment dialog) {
+		this.finish();
+	}
 }

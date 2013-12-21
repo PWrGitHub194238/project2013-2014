@@ -7,12 +7,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Gyromouse" >
- <Button
+
+    <Button
         android:id="@+id/bq"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:onClick="onClick"
         android:text="q" />
 
     <Button
@@ -22,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/bq"
         android:layout_toRightOf="@+id/bq"
+        android:onClick="onClick"
         android:text="w" />
 
     <Button
@@ -31,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/bw"
         android:layout_toRightOf="@+id/bw"
+        android:onClick="onClick"
         android:text="e" />
 
     <Button
@@ -40,6 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/be"
         android:layout_toRightOf="@+id/be"
+        android:onClick="onClick"
         android:text="r" />
 
     <Button
@@ -49,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/bt"
         android:layout_toRightOf="@+id/bt"
+        android:onClick="onClick"
         android:text="y" />
 
     <Button
@@ -59,6 +65,7 @@
         android:layout_alignBaseline="@+id/br"
         android:layout_alignBottom="@+id/br"
         android:layout_toRightOf="@+id/br"
+        android:onClick="onClick"
         android:text="t" />
 
     <Button
@@ -69,6 +76,7 @@
         android:layout_alignBaseline="@+id/by"
         android:layout_alignBottom="@+id/by"
         android:layout_toRightOf="@+id/by"
+        android:onClick="onClick"
         android:text="u" />
 
     <Button
@@ -78,6 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/bu"
         android:layout_toRightOf="@+id/bu"
+        android:onClick="onClick"
         android:text="i" />
 
     <Button
@@ -86,6 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/bi"
+        android:onClick="onClick"
         android:text="o" />
 
     <Button
@@ -95,6 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/bq"
+        android:onClick="onClick"
         android:text="a" />
 
     <Button
@@ -105,6 +116,7 @@
         android:layout_alignBaseline="@+id/ba"
         android:layout_alignBottom="@+id/ba"
         android:layout_toRightOf="@+id/ba"
+        android:onClick="onClick"
         android:text="s" />
 
     <Button
@@ -114,6 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/be"
         android:layout_toLeftOf="@+id/br"
+        android:onClick="onClick"
         android:text="d" />
 
     <Button
@@ -123,6 +136,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/bd"
         android:layout_toRightOf="@+id/bd"
+        android:onClick="onClick"
         android:text="f" />
 
     <Button
@@ -132,6 +146,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/bf"
         android:layout_toRightOf="@+id/bf"
+        android:onClick="onClick"
         android:text="g" />
 
     <Button
@@ -141,6 +156,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/bg"
         android:layout_toRightOf="@+id/bg"
+        android:onClick="onClick"
         android:text="h" />
 
     <Button
@@ -150,6 +166,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/bh"
         android:layout_toRightOf="@+id/bh"
+        android:onClick="onClick"
         android:text="j" />
 
     <Button
@@ -159,6 +176,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/bj"
         android:layout_toRightOf="@+id/bj"
+        android:onClick="onClick"
         android:text="k" />
 
     <Button
@@ -168,6 +186,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/bk"
         android:layout_toRightOf="@+id/bk"
+        android:onClick="onClick"
         android:text="l" />
 
     <Button
@@ -175,8 +194,9 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button37"
-        android:layout_toRightOf="@+id/button37"
+        android:layout_alignTop="@+id/besc"
+        android:layout_toRightOf="@+id/besc"
+        android:onClick="onClick"
         android:text="ctrl" />
 
     <Button
@@ -186,6 +206,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/bl"
         android:layout_toRightOf="@+id/bo"
+        android:onClick="onClick"
         android:text="p" />
 
     <Button
@@ -218,6 +239,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bh"
         android:layout_toLeftOf="@+id/bj"
+        android:onClick="onClick"
         android:text="b" />
 
     <Button
@@ -227,6 +249,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bg"
         android:layout_toLeftOf="@+id/bh"
+        android:onClick="onClick"
         android:text="v" />
 
     <Button
@@ -236,6 +259,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/balt"
         android:layout_toLeftOf="@+id/bv"
+        android:onClick="onClick"
         android:text="c" />
 
     <Button
@@ -255,6 +279,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bj"
         android:layout_toRightOf="@+id/bj"
+        android:onClick="onClick"
         android:text="m" />
 
     <Button
@@ -264,6 +289,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bj"
         android:layout_toLeftOf="@+id/bk"
+        android:onClick="onClick"
         android:text="n" />
 
     <Button
@@ -273,6 +299,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bs"
         android:layout_toLeftOf="@+id/bx"
+        android:onClick="onClick"
         android:text="z" />
 
     <Button
@@ -282,6 +309,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bs"
         android:layout_toRightOf="@+id/bs"
+        android:onClick="onClick"
         android:text="x" />
 
     <Button
@@ -291,10 +319,11 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/bl"
         android:layout_toRightOf="@+id/bl"
-       android:text="@string/key_backspace"/>
+        android:onClick="onClick"
+        android:text="@string/key_backspace" />
 
     <Button
-        android:id="@+id/button37"
+        android:id="@+id/besc"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -310,6 +339,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bm"
         android:layout_toLeftOf="@+id/bbackspace"
+        android:onClick="onClick"
         android:text="@string/key_down_arrow_2" />
 
     <Button
@@ -320,6 +350,7 @@
         android:layout_alignBaseline="@+id/bm"
         android:layout_alignBottom="@+id/bm"
         android:layout_toLeftOf="@+id/bbackspace"
+        android:onClick="onClick"
         android:text="@string/key_up_arrow_2" />
 
     <Button
@@ -331,7 +362,8 @@
         android:layout_alignBottom="@+id/leftb"
         android:layout_alignLeft="@+id/bc"
         android:layout_toLeftOf="@+id/leftb"
-         android:text="@string/key_space" />
+        android:onClick="onClick"
+        android:text="@string/key_space" />
 
     <Button
         android:id="@+id/rightb"
@@ -341,6 +373,7 @@
         android:layout_alignBaseline="@+id/downb"
         android:layout_alignBottom="@+id/downb"
         android:layout_alignLeft="@+id/bbackspace"
+        android:onClick="onClick"
         android:text="@string/key_right_arrow_2" />
 
     <Button
@@ -351,14 +384,15 @@
         android:layout_alignBaseline="@+id/upb"
         android:layout_alignBottom="@+id/upb"
         android:layout_toRightOf="@+id/bl"
-       android:text="@string/key_enter"/>
+        android:onClick="onClick"
+        android:text="@string/key_enter" />
 
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button37"
+        android:layout_alignLeft="@+id/besc"
         android:layout_below="@+id/lctrl"
         android:text="text" />
-    
+
 </RelativeLayout>

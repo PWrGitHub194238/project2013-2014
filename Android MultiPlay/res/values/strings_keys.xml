@@ -9,5 +9,8 @@
     <string name="key_down_arrow_2">&#9661;</string>
     <string name="key_left_arrow_2">&#9665;</string>
     <string name="key_right_arrow_2">&#9655;</string>
+     <string name="key_backspace">&#8592;</string>
+      <string name="key_enter">&#8629;</string>
+      <string name="key_space">&#032;</string>
     
 </resources>

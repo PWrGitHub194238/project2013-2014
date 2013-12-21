@@ -265,10 +265,10 @@ public class KeyboardActivity extends Activity implements OnClickListener, Dialo
 					button19.setText("¹");
 					button20.setText("œ");
 					button21.setText("³");
-					button26.setText("¿");
-					button27.setText("Ÿ");
-					button28.setText("æ");
-					button29.setText("ñ");
+					button22.setText("¿");
+					button23.setText("Ÿ");
+					button24.setText("æ");
+					button25.setText("ñ");
 					button26.setText("[");
 					button27.setText("]");
 					button28.setText(";");
@@ -319,6 +319,34 @@ public class KeyboardActivity extends Activity implements OnClickListener, Dialo
 			if (shiftflag == 1) {
 				// nacisniecie "q"
 				// odcisniecie shifta
+				shiftflag=0;
+				button7.setText("q");
+				button8.setText("w");
+				button9.setText("e");
+				button10.setText("r");
+				button11.setText("t");
+				button12.setText("y");
+				button13.setText("u");
+				button14.setText("i");
+				button15.setText("o");
+				button16.setText("p");
+				button17.setText("a");
+				button18.setText("s");
+				button19.setText("d");
+				button20.setText("f");
+				button21.setText("g");
+				button22.setText("h");
+				button23.setText("j");
+				button24.setText("k");
+				button25.setText("l");
+				button26.setText("z");
+				button27.setText("x");
+				button28.setText("c");
+				button29.setText("v");
+				button30.setText("b");
+				button31.setText("n");
+				button32.setText("m");
+
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"

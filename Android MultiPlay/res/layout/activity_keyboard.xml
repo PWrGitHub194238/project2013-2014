@@ -210,7 +210,7 @@
         android:layout_alignBottom="@+id/balt"
         android:layout_toLeftOf="@+id/bl"
         android:onClick="onClick"
-        android:text="&lt;" />
+        android:text="@string/key_left_arrow_2" />
 
     <Button
         android:id="@+id/bb"
@@ -286,13 +286,13 @@
         android:text="x" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/bbackspace"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/bl"
         android:layout_toRightOf="@+id/bl"
-        android:text="&lt;-" />
+       android:text="@string/key_backspace"/>
 
     <Button
         android:id="@+id/button37"
@@ -310,7 +310,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bm"
-        android:layout_toLeftOf="@+id/button8"
+        android:layout_toLeftOf="@+id/bbackspace"
         android:text="@string/key_down_arrow_2" />
 
     <Button
@@ -320,7 +320,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/bm"
         android:layout_alignBottom="@+id/bm"
-        android:layout_toLeftOf="@+id/button8"
+        android:layout_toLeftOf="@+id/bbackspace"
         android:text="@string/key_up_arrow_2" />
 
     <Button
@@ -332,7 +332,7 @@
         android:layout_alignBottom="@+id/leftb"
         android:layout_alignLeft="@+id/bc"
         android:layout_toLeftOf="@+id/leftb"
-        android:text="space" />
+         android:text="@string/key_space" />
 
     <Button
         android:id="@+id/rightb"
@@ -341,7 +341,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/downb"
         android:layout_alignBottom="@+id/downb"
-        android:layout_alignLeft="@+id/button8"
+        android:layout_alignLeft="@+id/bbackspace"
         android:text="@string/key_right_arrow_2" />
 
     <Button
@@ -352,6 +352,6 @@
         android:layout_alignBaseline="@+id/upb"
         android:layout_alignBottom="@+id/upb"
         android:layout_toRightOf="@+id/bl"
-        android:text="Enter" />
+       android:text="@string/key_enter"/>
 
 </RelativeLayout>

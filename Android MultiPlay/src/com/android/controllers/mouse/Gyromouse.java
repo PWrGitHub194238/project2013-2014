@@ -48,16 +48,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 		// ip = bundle.getString("ip");
 		tv = (TextView) findViewById(R.id.text);
 		stop = 0;
-		button1 = (Button) super.findViewById(R.id.leftb); // przyciski
-		// przykładowe do
-		// klawiatury które
-		button2 = (Button) super.findViewById(R.id.rightb); // należy dodać w
-		// przyszłości
-		button3 = (Button) super.findViewById(R.id.upb); // do wysyłania jest
-		// ju prawie
-		// zainplementowane
-		button4 = (Button) super.findViewById(R.id.downb); // wystarczy dodać
-		// kilka if'ow
+		button1 = (Button) super.findViewById(R.id.leftb); 
+		button2 = (Button) super.findViewById(R.id.rightb); 
+		button3 = (Button) super.findViewById(R.id.upb);
+		
+		button4 = (Button) super.findViewById(R.id.downb); 
 		button5 = (Button) super.findViewById(R.id.enterb);
 		button6 = (Button) super.findViewById(R.id.bshift);
 		button7 = (Button) super.findViewById(R.id.bq);
@@ -129,6 +124,8 @@ public class Gyromouse extends Activity implements SensorEventListener,
 
 		return false;
 	}
+	
+	//volume and camera button
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		super.onKeyDown(keyCode, event);

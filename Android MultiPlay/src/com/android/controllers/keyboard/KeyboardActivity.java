@@ -2,11 +2,6 @@ package com.android.controllers.keyboard;
 
 import com.android.multiplay.ConnectionsActivity;
 import com.android.multiplay.R;
-import com.android.multiplay.Sender;
-import com.android.multiplay.R.id;
-import com.android.multiplay.R.layout;
-import com.android.multiplay.R.menu;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -16,7 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import com.android.application.MultiPlayApplication;
-import com.android.application.N;
+import com.android.controllers.mouse.smalkey;
 import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
 import com.android.dialogs.elements.DialogListCore;
@@ -46,7 +41,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 		button4 = (Button) super.findViewById(R.id.downb);
 		button5 = (Button) super.findViewById(R.id.enterb);
 		button6 = (Button) super.findViewById(R.id.bshift);
-		button33 = (Button) super.findViewById(R.id.bspace);
+
 		button7 = (Button) super.findViewById(R.id.bq);
 		button8 = (Button) super.findViewById(R.id.bw);
 		button9 = (Button) super.findViewById(R.id.be);
@@ -74,6 +69,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 		button31 = (Button) super.findViewById(R.id.bn);
 		button32 = (Button) super.findViewById(R.id.bm);
 		button33 = (Button) super.findViewById(R.id.balt);
+		button34 = (Button) super.findViewById(R.id.bspace);
 		if (MultiPlayApplication.getSetMainConfiguration() != null) {
 		} else {
 			AlertDialogs
@@ -310,32 +306,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 				// nacisniecie "q"
 				// odcisniecie shifta
 				shiftflag = 0;
-				button7.setText("q");
-				button8.setText("w");
-				button9.setText("e");
-				button10.setText("r");
-				button11.setText("t");
-				button12.setText("y");
-				button13.setText("u");
-				button14.setText("i");
-				button15.setText("o");
-				button16.setText("p");
-				button17.setText("a");
-				button18.setText("s");
-				button19.setText("d");
-				button20.setText("f");
-				button21.setText("g");
-				button22.setText("h");
-				button23.setText("j");
-				button24.setText("k");
-				button25.setText("l");
-				button26.setText("z");
-				button27.setText("x");
-				button28.setText("c");
-				button29.setText("v");
-				button30.setText("b");
-				button31.setText("n");
-				button32.setText("m");
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button33);
+
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -344,78 +321,432 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 			break;
 		case R.id.bw:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.be:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.br:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bt:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.by:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bu:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bi:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bo:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bp:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.ba:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bs:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bd:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bf:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bg:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bh:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bj:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bk:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bl:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bz:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bx:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bc:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bv:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bb:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bn:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.bm:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			if (shiftflag == 1 && altflag != 1) {
+				// nacisniecie "q"
+				// odcisniecie shifta
+				shiftflag = 0;
+				smalkey key = new smalkey(button7, button8, button9, button10,
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
+				shiftflag = 0;
+			} else if (shiftflag == 2) {
+				// nacisniecie "q"
+			}
 			break;
 		case R.id.balt:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);

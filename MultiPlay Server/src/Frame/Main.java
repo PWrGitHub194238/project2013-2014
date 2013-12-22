@@ -29,13 +29,12 @@ public class Main {
 			if (data == N.signal.need_authorization) {
 				dos.writeByte(N.signal.need_authorization);
 				System.out.println("autoryzowane");
-				dis.close();
-				dos.close();
-				Serverwifi wifi = new Serverwifi(socket);
+				Serverwifi wifi = new Serverwifi(socket,dis,dos);
 				wifi.run();
+				
 			} else if (data == N.signal.need_to_connect) {
 				dos.writeByte(N.signal.need_to_connect);
-				System.out.println("fdf");
+				
 
 			}
 		} catch (IOException e) {

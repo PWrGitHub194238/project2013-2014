@@ -1,6 +1,7 @@
 package Wifi;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,24 +16,27 @@ public class Serverwifi implements Runnable {
 	int x = 3, y = 3;
 	String pm, x1, y1,key;
 	Socket socket;
-	DataInputStream data;
+	DataInputStream dis;
+	DataOutputStream dos;
 
-	public Serverwifi(Socket socket) {
+	public Serverwifi(Socket socket,DataInputStream dis,DataOutputStream dos) {
 		this.socket = socket;
+		this.dis=dis;
+		this.dos=dos;
 	}
 
 	@Override
 	public void run() {
 		Mouse mouse = new Mouse();
 		Keyboard keyboard= new Keyboard();
-		byte device ;
-		while (true) {
+		int device=0 ;
+		//while (true) {
 			try {
-				data = new DataInputStream((socket.getInputStream()));
-				device=data.readByte();
-				if (device==1) {
+				dis = new DataInputStream((socket.getInputStream()));
+				device=dis.readByte();
+				//if (device==1) {
 					System.out.println("mysz");
-				}
+				//}
 				
 				/*device = Integer.toString((data.read()));
 				System.out.println("proba");
@@ -58,11 +62,12 @@ public class Serverwifi implements Runnable {
 					break;
 				}*/
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return ;
+			
 			}
 
-		}
+		//}
 
 	}
 

@@ -19,27 +19,38 @@ public class Main {
 		window.setSize(500, 500);
 		window.setVisible(true);
 		int port = 1234;
+		byte data = 0;
+		ServerSocket serversocket;
 		try {
-			ServerSocket serversocket = new ServerSocket(port);
-			Socket socket = serversocket.accept();
-			dis = new DataInputStream(socket.getInputStream());
-			dos = new DataOutputStream(socket.getOutputStream());
-			byte data = 0;
-			data = dis.readByte();
-			if (data == N.signal.need_authorization) {
-				dos.writeByte(N.signal.need_authorization);
-				System.out.println("autoryzowane");
-				Serverwifi wifi = new Serverwifi(socket,dis,dos);
-				wifi.run();
-				
-			} else if (data == N.signal.need_to_connect) {
-				dos.writeByte(N.signal.need_to_connect);
-				
+			serversocket = new ServerSocket(port);
+			try {
+				Socket socket = serversocket.accept();
+				dis = new DataInputStream(socket.getInputStream());
+				dos = new DataOutputStream(socket.getOutputStream());
+				System.out.println("RUN");
+				// TODO Auto-generated method stub
 
+				System.out.println("Read...");
+				data = dis.readByte();
+				if (data == N.signal.need_authorization) {
+					System.out.println("Send back authorization code...");
+					dos.writeByte(N.signal.need_authorization);
+					System.out.println("Over");
+					Serverwifi wifi = new Serverwifi(socket, dis, dos);
+					wifi.run();
+				} else if (data == N.signal.need_to_connect) {
+					System.out.println("Send back connect code...");
+					dos.writeByte(N.signal.need_to_connect);
+
+				}
+			} catch (IOException e) {
+
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
+
+		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
 
 	}

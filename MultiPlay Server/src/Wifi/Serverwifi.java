@@ -30,9 +30,9 @@ public class Serverwifi implements Runnable {
 		Mouse mouse = new Mouse();
 		Keyboard keyboard= new Keyboard();
 		int device=0 ;
+		System.out.println("watek");
 		//while (true) {
 			try {
-				dis = new DataInputStream((socket.getInputStream()));
 				device=dis.readByte();
 				//if (device==1) {
 					System.out.println("mysz");

@@ -101,7 +101,7 @@
                 android:layout_below="@id/et_connections_activity_device_name"
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="100dp"
-               	android:inputType="number"
+               	android:inputType="text"
                 android:ems="10"
                 android:textAppearance="@style/input_small"
                 android:hint="@string/hint_device_ip"

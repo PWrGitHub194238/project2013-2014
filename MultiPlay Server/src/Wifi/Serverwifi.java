@@ -25,11 +25,16 @@ public class Serverwifi implements Runnable {
 	public void run() {
 		Mouse mouse = new Mouse();
 		Keyboard keyboard= new Keyboard();
-		String device = new String();
+		byte device ;
 		while (true) {
 			try {
 				data = new DataInputStream((socket.getInputStream()));
-				device = Integer.toString((data.read()));
+				device=data.readByte();
+				if (device==1) {
+					System.out.println("mysz");
+				}
+				
+				/*device = Integer.toString((data.read()));
 				System.out.println("proba");
 				if (device.equals("mouse")) {
 					try {
@@ -51,7 +56,7 @@ public class Serverwifi implements Runnable {
 
 				} else if (device.equals("exit")) {
 					break;
-				}
+				}*/
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

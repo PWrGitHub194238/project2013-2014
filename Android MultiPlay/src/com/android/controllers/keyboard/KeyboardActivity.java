@@ -94,7 +94,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
 		case R.id.leftb:
-			// MultiPlayApplication.add((byte)11);
+			 MultiPlayApplication.add((byte)1);
 			break;
 		case R.id.rightb:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);

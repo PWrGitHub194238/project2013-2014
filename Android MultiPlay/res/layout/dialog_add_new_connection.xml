@@ -101,7 +101,7 @@
                 android:layout_below="@id/et_connections_activity_device_name"
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="100dp"
-               	android:inputType="text"
+               	android:inputType="number"
                 android:ems="10"
                 android:textAppearance="@style/input_small"
                 android:hint="@string/hint_device_ip"
@@ -114,6 +114,7 @@
                 android:layout_alignParentLeft="true"
                 android:textAppearance="@style/input_small"
                 android:text="@string/tv_connections_activity_device_port"
+                android:inputType="number" 
                 android:layout_alignBaseline="@+id/et_connections_activity_device_port" />
             
             <EditText
@@ -123,7 +124,7 @@
                 android:layout_below="@id/et_connections_activity_device_ip"
                 android:layout_alignParentRight="true"
               	android:layout_marginStart="100dp"
-                android:inputType="text"
+                android:inputType="number"
                 android:ems="10"
                 android:textAppearance="@style/input_small"
                 android:hint="@string/hint_device_port"

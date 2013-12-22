@@ -57,7 +57,7 @@ public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationCla
 				Log.d("THREAD","RECIVED: "+recived);
 				dis.close();
 				dos.close();
-				socket.close();
+				//socket.close();
 				if ( N.signal.need_authorization == recived ) {
 					networkConfiguration.setConnectionStatus(ConnectionHelper.STATUS_ON);
 				}

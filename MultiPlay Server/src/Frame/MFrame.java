@@ -5,22 +5,36 @@ import java.awt.GridLayout;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.Enumeration;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 
 import Wifi.Connect;
+
 //Menu Frame
 public class MFrame extends JFrame {
 
-	public MFrame() {
+	public MFrame(Connect connect) {
 		super();
+
 		// -------------------------MenuBar---------------------
 		this.setTitle("MultiPlay");
 		MenuBar mb = new MenuBar();
@@ -33,41 +47,25 @@ public class MFrame extends JFrame {
 		MenuItem exit = new MenuItem("Exit");
 		MenuItem about = new MenuItem("About");
 		MenuItem helps = new MenuItem("Help");
+		MenuItem controllers = new MenuItem("Controllers");
+		MenuItem connects = new MenuItem("Connect");
 		help.add(about);
 		help.add(helps);
+		options.add(controllers);
+		options.add(connects);
 
-		//----------------------- settings controllers-------------------
-		JPanel mainPanel = new JPanel(new GridLayout(2, 2, 0, 0));
+		// ----------------------- settings controllers-------------------
+		JPanel mainPanel = new JPanel();
 		this.add(mainPanel);
-		
-		//Mouse
-		JPanel panelmouse = new JPanel();
-		mainPanel.add(panelmouse);
-		JRadioButton left = new JRadioButton("Left");
-		left.setSelected(true);
-		JRadioButton right = new JRadioButton("Right");
 
-		ButtonGroup group = new ButtonGroup();
-		group.add(left);
-		group.add(right);
-		panelmouse.add(left);
-		panelmouse.add(right);
-		
-		left.setVisible(true);
-		//Keyboard
-		JPanel panelkeyboard = new JPanel();
-		mainPanel.add(panelkeyboard);
-		JLabel keyboard = new JLabel("Keyboard: ");
-		panelkeyboard.add(keyboard);
-		
-		
-		left.setVisible(true);
-		//Wheel
-		JPanel panelwheel = new JPanel();
-		//Pad
-		JPanel panelpad = new JPanel();
+		// Connect info
+		JPanel kon = new JPanel();
+		mainPanel.add(kon);
+		JLabel con = new JLabel("Your IP: " + connect.getIP() + "    "
+				+ "Port: " + connect.getport());
+		kon.add(con);
 
-		//----------------------------Help Frame----------------------
+		// ----------------------------Help Frame----------------------
 		helps.addActionListener(new ActionListener() {
 
 			@Override
@@ -77,8 +75,8 @@ public class MFrame extends JFrame {
 				helpframe.setVisible(true);
 			}
 		});
-		
-		//-----------------------About Frame-----------------------
+
+		// -----------------------About Frame-----------------------
 		about.addActionListener(new ActionListener() {
 
 			@Override
@@ -91,5 +89,48 @@ public class MFrame extends JFrame {
 		});
 		file.add(exit);
 		setMenuBar(mb);
+		// -----------------------EXIT Frame-----------------------
+
+		exit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				JDialog.setDefaultLookAndFeelDecorated(true);
+				int response = JOptionPane
+						.showConfirmDialog(null, "Do you want to exit?",
+								"Confirm", JOptionPane.YES_NO_OPTION,
+								JOptionPane.QUESTION_MESSAGE);
+				if (response == JOptionPane.NO_OPTION) {
+					System.out.println("No button clicked");
+				} else if (response == JOptionPane.YES_OPTION) {
+					System.out.println("Yes button clicked");
+					System.exit(0);
+				} else if (response == JOptionPane.CLOSED_OPTION) {
+					System.out.println("JOptionPane closed");
+				}
+			}
+
+		});
+		// X Button
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				JDialog.setDefaultLookAndFeelDecorated(true);
+				int response = JOptionPane
+						.showConfirmDialog(null, "Do you want to exit?",
+								"Confirm", JOptionPane.YES_NO_OPTION,
+								JOptionPane.QUESTION_MESSAGE);
+				if (response == JOptionPane.NO_OPTION) {
+					System.out.println("No button clicked");
+				} else if (response == JOptionPane.YES_OPTION) {
+					System.out.println("Yes button clicked");
+					System.exit(0);
+				} else if (response == JOptionPane.CLOSED_OPTION) {
+					System.out.println("JOptionPane closed");
+				}
+			}
+		});
+
 	}
 }

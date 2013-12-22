@@ -1,15 +1,23 @@
 package Mouse;
 
 import java.awt.AWTException;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
+import java.awt.event.MouseEvent;
 
 public class Mouse {
 
 	public void run(int x, int y) {
 		try {
 			Robot robot = new Robot();
-			robot.mouseMove(x, y);
+			PointerInfo a = MouseInfo.getPointerInfo();
+			Point b = a.getLocation();
+			int x1 = (int) b.getX();
+			int y1 = (int) b.getY();
+			robot.mouseMove(x1 + x, y1 + y);
 		} catch (AWTException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -35,4 +43,5 @@ public class Mouse {
 		}
 
 	}
+
 }

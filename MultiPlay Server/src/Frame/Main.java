@@ -1,11 +1,18 @@
 package Frame;
 
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import Mouse.Mouse;
+import Mouse.Pos;
+import Wifi.Connect;
 import Wifi.N;
 import Wifi.Serverwifi;
 
@@ -14,16 +21,20 @@ public class Main {
 	static DataOutputStream dos = null;
 
 	public static void main(String[] args) {
-
-		MFrame window = new MFrame();
-		window.setSize(500, 500);
+		Connect connect = new Connect();
+		MFrame window = new MFrame(connect);
+		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+		window.setSize((int) d.getWidth(), 100);
 		window.setVisible(true);
-		int port = 1234;
-		byte data = 0;
+		window.setResizable(false);
+		byte data;
+		Pos p = new Pos();
+		p.run();
 		while (true) {
+			data = 0;
 			ServerSocket serversocket;
 			try {
-				serversocket = new ServerSocket(port);
+				serversocket = new ServerSocket(connect.getport());
 				try {
 					Socket socket = serversocket.accept();
 					dis = new DataInputStream(socket.getInputStream());
@@ -54,4 +65,5 @@ public class Main {
 		}
 
 	}
+
 }

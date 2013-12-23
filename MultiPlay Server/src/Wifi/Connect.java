@@ -16,7 +16,6 @@ public class Connect {
 					.getNetworkInterfaces();
 			while (interfaces.hasMoreElements()) {
 				NetworkInterface iface = interfaces.nextElement();
-				// filters out 127.0.0.1 and inactive interfaces
 				if (iface.isLoopback() || !iface.isUp())
 					continue;
 				Enumeration<InetAddress> addresses = iface.getInetAddresses();
@@ -26,7 +25,7 @@ public class Connect {
 				}
 			}
 			IP = ip;
-			return ip;
+			return IP;
 		} catch (SocketException e) {
 			throw new RuntimeException(e);
 		}

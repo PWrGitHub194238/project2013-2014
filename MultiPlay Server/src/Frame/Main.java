@@ -21,6 +21,12 @@ public class Main {
 	static DataOutputStream dos = null;
 
 	public static void main(String[] args) {
+		System.out.println("System: " + System.getProperty("os.name") + "\n"
+				+ "User: " + System.getProperty("user.name") + "\n"
+				+ "language: " + System.getProperty("user.language") + "\n"
+				+ "Arch: " + System.getProperty("sun.cpu.isalist"));
+		//System.getProperties() show all system info
+		// System.out.println("System: " + System.getProperties());
 		Connect connect = new Connect();
 		MFrame window = new MFrame(connect);
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -28,8 +34,9 @@ public class Main {
 		window.setVisible(true);
 		window.setResizable(false);
 		byte data;
-		Pos p = new Pos();
-		p.run();
+		//thread get mouse positions
+		// Pos p = new Pos();
+		// p.run();
 		while (true) {
 			data = 0;
 			ServerSocket serversocket;

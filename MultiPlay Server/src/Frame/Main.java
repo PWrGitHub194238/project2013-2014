@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -21,10 +22,10 @@ public class Main {
 	static DataOutputStream dos = null;
 
 	public static void main(String[] args) {
-		System.out.println("System: " + System.getProperty("os.name") + "\n"
+		System.out.println("System: "+ ManagementFactory.getOperatingSystemMXBean().getName() + "\n"
 				+ "User: " + System.getProperty("user.name") + "\n"
 				+ "language: " + System.getProperty("user.language") + "\n"
-				+ "Arch: " + System.getProperty("sun.cpu.isalist"));
+				+ "Arch: "+ManagementFactory.getOperatingSystemMXBean().getArch());
 		//System.getProperties() show all system info
 		// System.out.println("System: " + System.getProperties());
 		Connect connect = new Connect();

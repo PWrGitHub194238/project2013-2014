@@ -12,6 +12,6 @@
         android:id="@+id/stopv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/0" />
+        android:text="0" />
 
 </RelativeLayout>

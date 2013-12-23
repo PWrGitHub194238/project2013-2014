@@ -28,6 +28,7 @@ import com.android.carousel.Singleton;
 import com.android.controllers.keyboard.KeyboardActivity;
 import com.android.controllers.mouse.Gyromouse;
 import com.android.controllers.mouse.MouseActivity;
+import com.android.controllers.mouse.TouchPadActivity;
 import com.android.controllers.steeringwheel.SteeringwheelActivity;
 
 public class FirstMenu extends Activity implements OnItemSelectedListener,
@@ -70,13 +71,16 @@ public class FirstMenu extends Activity implements OnItemSelectedListener,
 		ArrayList<CarouselDataItem> Docus = new ArrayList<CarouselDataItem>();
 		for (int i = 0; i < 1000; i++) {
 			CarouselDataItem docu;
-			if (i % 4 == 0)
+			if (i % 5 == 0)
 				docu = new CarouselDataItem(
 						"/mnt/sdcard/Gyroscope_operation.gif", 0, "Gyroscope");
-			else if (i % 4 == 1) {
+			else if (i % 5 == 1) {
 				docu = new CarouselDataItem("/mnt/sdcard/kierownica.jpg", 0,
 						"kierownica");
-			} else if (i % 4 == 2)
+			} else if (i % 5 == 2)
+				docu = new CarouselDataItem("/mnt/sdcard/klawiatura.jpg", 0,
+						"klawiatura");
+			else if (i % 5 == 3)
 				docu = new CarouselDataItem("/mnt/sdcard/klawiatura.jpg", 0,
 						"klawiatura");
 			else
@@ -102,22 +106,28 @@ public class FirstMenu extends Activity implements OnItemSelectedListener,
 				@Override
 				public void onItemClick(AdapterView<?> arg0, View arg1,
 						int position, long arg3) {
-					if (position % 4 == 1) {
+					if (position % 5 == 1) {
 						// Toast.makeText(FirstMenu.this, "Position=kierownica",
 						// Toast.LENGTH_SHORT).show();
 						Intent intent = new Intent(context,
 								SteeringwheelActivity.class);
 						startActivity(intent);
-					} else if (position % 4 == 0) {
+					} else if (position % 5 == 0) {
 						// Toast.makeText(FirstMenu.this, "Position=Gyroskope",
 						// Toast.LENGTH_SHORT).show();
 						Intent intent = new Intent(context, Gyromouse.class);
 						startActivity(intent);
-					} else if (position % 4 == 2) {
+					} else if (position % 5 == 2) {
 						// Toast.makeText(FirstMenu.this, "Position=Klawiatura",
 						// Toast.LENGTH_SHORT).show();
 						Intent intent = new Intent(context,
 								KeyboardActivity.class);
+						startActivity(intent);
+					} else if (position % 5 == 3) {
+						// Toast.makeText(FirstMenu.this, "Position=Klawiatura",
+						// Toast.LENGTH_SHORT).show();
+						Intent intent = new Intent(context,
+								TouchPadActivity.class);
 						startActivity(intent);
 					} else {
 						// Toast.makeText(FirstMenu.this, "Position=Mysz",

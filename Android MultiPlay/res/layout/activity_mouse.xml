@@ -8,45 +8,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MouseActivity" >
 
-    <Button
-        android:id="@+id/left"
+    <TextView
+        android:id="@+id/texty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="21dp"
-        android:onClick="onClick"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/left"
-        android:layout_alignBottom="@+id/left"
-        android:layout_marginLeft="44dp"
-        android:layout_toRightOf="@+id/right"
-        android:onClick="onClick"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/down"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/up"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp"
-        android:onClick="onClick"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/left"
-        android:layout_alignLeft="@+id/down"
-        android:layout_marginBottom="31dp"
-        android:onClick="onClick"
-        android:text="Button" />
+        android:layout_marginTop="78dp"
+        android:text="TextView" />
 
 </RelativeLayout>

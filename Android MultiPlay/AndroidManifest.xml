@@ -31,15 +31,18 @@
         <service
             android:name="com.android.services.ConnectionService"
             android:exported="false" />
-		<service android:name="com.android.services.ConnectionCheckService"
+        <service
+            android:name="com.android.services.ConnectionCheckService"
             android:exported="false" />
-        <service android:name="com.android.services.WirelessConnectionCheck"
+        <service
+            android:name="com.android.services.WirelessConnectionCheck"
             android:exported="false" />
+
         <activity
             android:name="com.android.multiplay.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/MultiPlayTheme"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,8 +53,8 @@
             android:name="com.android.multiplay.MultiplayExplorerActivity"
             android:label="@string/title_activity_multiplay_explorer"
             android:parentActivityName="com.android.multiplay.MainActivity"
-            android:theme="@style/MultiPlayTheme"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.multiplay.MainActivity" />
@@ -60,8 +63,8 @@
             android:name="com.android.multiplay.SystemControllerActivity"
             android:label="@string/title_activity_system_controller"
             android:parentActivityName="com.android.multiplay.MainActivity"
-            android:theme="@style/MultiPlayTheme"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.multiplay.MainActivity" />
@@ -70,8 +73,8 @@
             android:name="com.android.multiplay.HelpActivity"
             android:label="@string/title_activity_help"
             android:parentActivityName="com.android.multiplay.MainActivity"
-            android:theme="@style/MultiPlayTheme"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.multiplay.MainActivity" />
@@ -80,8 +83,8 @@
             android:name="com.android.multiplay.OptionsActivity"
             android:label="@string/title_activity_options"
             android:parentActivityName="com.android.multiplay.MainActivity"
-            android:theme="@style/MultiPlayTheme"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.multiplay.MainActivity" />
@@ -89,26 +92,26 @@
         <activity
             android:name="com.android.multiplay.FirstMenu"
             android:label="@string/title_activity_first_menu"
-            android:theme="@style/MultiPlayTheme"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
         </activity>
         <activity
             android:name="com.android.controllers.keyboard.KeyboardActivity"
             android:label="@string/title_activity_keyboard"
-            android:theme="@style/MultiPlayTheme"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
         </activity>
         <activity
             android:name="com.android.controllers.mouse.MouseActivity"
             android:label="@string/title_activity_mouse"
-            android:theme="@style/MultiPlayTheme"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
         </activity>
         <activity
             android:name="com.android.controllers.mouse.Gyromouse"
-            android:label="@string/title_activity_gyromouse" 
-            android:theme="@style/MultiPlayTheme"
-            android:screenOrientation="landscape" >
+            android:label="@string/title_activity_gyromouse"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
         </activity>
         <activity
             android:name="com.android.controllers.keyboard.Collection"
@@ -116,16 +119,16 @@
         </activity>
         <activity
             android:name="com.android.controllers.steeringwheel.SteeringwheelActivity"
-            android:label="@string/title_activity_steeringwheel" 
-             android:theme="@style/MultiPlayTheme"
-            android:screenOrientation="landscape" >
+            android:label="@string/title_activity_steeringwheel"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
         </activity>
         <activity
             android:name="com.android.multiplay.ConnectionsActivity"
             android:label="@string/title_activity_connections"
             android:parentActivityName="com.android.multiplay.OptionsActivity"
-            android:theme="@style/MultiPlayTheme"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.multiplay.OptionsActivity" />
@@ -134,12 +137,16 @@
             android:name="com.android.multiplay.TestActivity"
             android:label="@string/title_activity_test" >
         </activity>
+        <activity
+            android:name="com.android.controllers.mouse.TouchPadActivity"
+            android:label="@string/title_activity_touch_pad" >
+        </activity>
     </application>
     <application
         android:name="com.android.carousel.Singleton"
+        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:allowBackup="true" >
+        android:label="@string/app_name" >
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -63,7 +64,19 @@ public class MFrame extends JFrame {
 		mainPanel.add(kon);
 		JLabel con = new JLabel("Your IP: " + connect.getIP() + "    "
 				+ "Port: " + connect.getport());
+		JLabel sys = new JLabel(
+				"                                                                                                                                                                                                                                                                                                            System: "
+						+ ManagementFactory.getOperatingSystemMXBean()
+								.getName()
+						+ "\n"
+						+ "   User: "
+						+ System.getProperty("user.name")
+						+ "\n"
+						+ "   Arch: "
+						+ ManagementFactory.getOperatingSystemMXBean()
+								.getArch());
 		kon.add(con);
+		kon.add(sys);
 
 		// ----------------------------Help Frame----------------------
 		helps.addActionListener(new ActionListener() {
@@ -102,9 +115,7 @@ public class MFrame extends JFrame {
 								"Confirm", JOptionPane.YES_NO_OPTION,
 								JOptionPane.QUESTION_MESSAGE);
 				if (response == JOptionPane.NO_OPTION) {
-					System.out.println("No button clicked");
 				} else if (response == JOptionPane.YES_OPTION) {
-					System.out.println("Yes button clicked");
 					System.exit(0);
 				} else if (response == JOptionPane.CLOSED_OPTION) {
 					System.out.println("JOptionPane closed");
@@ -122,9 +133,7 @@ public class MFrame extends JFrame {
 								"Confirm", JOptionPane.YES_NO_OPTION,
 								JOptionPane.QUESTION_MESSAGE);
 				if (response == JOptionPane.NO_OPTION) {
-					System.out.println("No button clicked");
 				} else if (response == JOptionPane.YES_OPTION) {
-					System.out.println("Yes button clicked");
 					System.exit(0);
 				} else if (response == JOptionPane.CLOSED_OPTION) {
 					System.out.println("JOptionPane closed");

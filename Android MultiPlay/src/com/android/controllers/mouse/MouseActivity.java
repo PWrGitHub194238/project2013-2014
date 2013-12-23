@@ -9,8 +9,10 @@ import com.android.multiplay.R.menu;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MouseActivity extends Activity {
 	Bundle bundle;
@@ -36,9 +38,18 @@ public class MouseActivity extends Activity {
 		getMenuInflater().inflate(R.menu.mouse, menu);
 		return true;
 	}
+	public boolean onTouchEvent(MotionEvent event) {
+		String x=Integer.toString((int)event.getX());
+		String y=Integer.toString((int)event.getY());
+		 Toast.makeText(this, x+" "+y, Toast.LENGTH_SHORT).show();
+
+	 
+	    return true;
+	    //RETURN SUPER.ONTOUCHEVENT(EVENT);
+	}
 
 	public void onClick(View arg0) {
-		switch (arg0.getId()) {
+		/*switch (arg0.getId()) {
 		case R.id.left:
 			Sender sender = new Sender();
 			sender.setip(ip);
@@ -63,7 +74,7 @@ public class MouseActivity extends Activity {
 			sender4.getxy(0, 10);
 			sender4.execute("mouse");
 			break;
-		}
+		}*/
 	}
 
 }

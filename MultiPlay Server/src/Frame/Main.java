@@ -22,11 +22,7 @@ public class Main {
 	static DataOutputStream dos = null;
 
 	public static void main(String[] args) {
-		System.out.println("System: "+ ManagementFactory.getOperatingSystemMXBean().getName() + "\n"
-				+ "User: " + System.getProperty("user.name") + "\n"
-				+ "language: " + System.getProperty("user.language") + "\n"
-				+ "Arch: "+ManagementFactory.getOperatingSystemMXBean().getArch());
-		//System.getProperties() show all system info
+		// System.getProperties() show all system info
 		// System.out.println("System: " + System.getProperties());
 		Connect connect = new Connect();
 		MFrame window = new MFrame(connect);
@@ -35,7 +31,7 @@ public class Main {
 		window.setVisible(true);
 		window.setResizable(false);
 		byte data;
-		//thread get mouse positions
+		// thread get mouse positions
 		// Pos p = new Pos();
 		// p.run();
 		while (true) {

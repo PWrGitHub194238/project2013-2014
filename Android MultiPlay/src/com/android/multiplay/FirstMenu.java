@@ -67,6 +67,8 @@ public class FirstMenu extends Activity implements OnItemSelectedListener,
 		AppUtils.AssetFileCopy(this, "/mnt/sdcard/klawiatura.jpg",
 				"klawiatura.jpg", false);
 		AppUtils.AssetFileCopy(this, "/mnt/sdcard/mysz.png", "mysz.png", false);
+		AppUtils.AssetFileCopy(this, "/mnt/sdcard/touchpad.jpg",
+				"touchpad.jpg", false);
 
 		ArrayList<CarouselDataItem> Docus = new ArrayList<CarouselDataItem>();
 		for (int i = 0; i < 1000; i++) {
@@ -81,8 +83,8 @@ public class FirstMenu extends Activity implements OnItemSelectedListener,
 				docu = new CarouselDataItem("/mnt/sdcard/klawiatura.jpg", 0,
 						"klawiatura");
 			else if (i % 5 == 3)
-				docu = new CarouselDataItem("/mnt/sdcard/klawiatura.jpg", 0,
-						"klawiatura");
+				docu = new CarouselDataItem("/mnt/sdcard/touchpad.jpg", 0,
+						"Touchpad");
 			else
 				docu = new CarouselDataItem("/mnt/sdcard/mysz.png", 0, "Mysz");
 			Docus.add(docu);
@@ -124,7 +126,7 @@ public class FirstMenu extends Activity implements OnItemSelectedListener,
 								KeyboardActivity.class);
 						startActivity(intent);
 					} else if (position % 5 == 3) {
-						// Toast.makeText(FirstMenu.this, "Position=Klawiatura",
+						// Toast.makeText(FirstMenu.this, "Position=Touchpad",
 						// Toast.LENGTH_SHORT).show();
 						Intent intent = new Intent(context,
 								TouchPadActivity.class);

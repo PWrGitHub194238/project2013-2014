@@ -29,18 +29,14 @@ public class Serverwifi implements Runnable {
 	public void run() {
 		Mouse mouse = new Mouse();
 		Keyboard keyboard = new Keyboard();
-		byte device = 0;
+		int signals = 0;
 		System.out.println("watek");
 		// while (true) {
 		try {
-			device = dis.readByte();
-			 if (device==N.dev_signal.mouse) {
-			System.out.println("mysz");
-			 }else if (device==N.dev_signal.keyboard){
-					System.out.println("klawiatura");
-
-			 }
-
+			signals = dis.readInt();
+			switch(signals){
+			
+			}
 			/*
 			 * device = Integer.toString((data.read()));
 			 * System.out.println("proba"); if (device.equals("mouse")) { try {

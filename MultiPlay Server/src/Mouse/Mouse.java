@@ -30,18 +30,18 @@ public class Mouse {
 		}
 	}
 
-	public void click(String pm) {
+	public void click(int pm) {
 		try {
 			Robot robot = new Robot();
-			if (pm.equals("l")) {
+			switch (pm) {
+			case (1):
 				robot.mousePress(InputEvent.BUTTON1_MASK);
 				robot.mouseRelease(InputEvent.BUTTON1_MASK);
-			} else if (pm.equals("m")) {
+				break;
+			case (2):
 				robot.mousePress(InputEvent.BUTTON2_MASK);
 				robot.mouseRelease(InputEvent.BUTTON2_MASK);
-			} else if (pm.equals("r")) {
-				robot.mousePress(InputEvent.BUTTON3_MASK);
-				robot.mouseRelease(InputEvent.BUTTON3_MASK);
+				break;
 			}
 		} catch (AWTException e) {
 			// TODO Auto-generated catch block

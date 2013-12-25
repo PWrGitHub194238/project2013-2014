@@ -15,6 +15,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -26,6 +28,8 @@ import android.widget.Toast;
 public class Gyromouse extends Activity implements SensorEventListener,
 		OnTouchListener {
 	int shiftflag = 0, altflag = 0;
+	private static final int MENU_NEW_GAME = Menu.FIRST;
+	private static final int MENU_QUIT = Menu.FIRST + 1;
 	private SensorManager sm;
 	private TextView tv;
 	private String ip;
@@ -91,18 +95,14 @@ public class Gyromouse extends Activity implements SensorEventListener,
 
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.gyromouse, menu);
-		return true;
-	}
+
 
 	@Override
 	public void onAccuracyChanged(Sensor arg0, int arg1) {
 		// TODO Auto-generated method stub
 
 	}
+
 
 	@Override
 	public void onSensorChanged(SensorEvent arg0) {

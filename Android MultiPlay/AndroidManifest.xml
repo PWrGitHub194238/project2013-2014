@@ -141,6 +141,10 @@
             android:name="com.android.controllers.mouse.TouchPadActivity"
             android:label="@string/title_activity_touch_pad" >
         </activity>
+        <activity
+            android:name="com.android.multiplay.Your"
+            android:label="@string/title_activity_your" >
+        </activity>
     </application>
     <application
         android:name="com.android.carousel.Singleton"

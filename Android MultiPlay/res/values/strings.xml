@@ -47,5 +47,6 @@
     <string name="title_activity_connections">ConnectionsActivity</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_touch_pad">TouchPadActivity</string>
+    <string name="title_activity_your">Your</string>
 
 </resources>

@@ -6,15 +6,23 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipDescription;
 import android.content.Context;
+import android.util.Log;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.DragShadowBuilder;
+import android.view.View.OnDragListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -23,11 +31,15 @@ public class Your extends Activity implements SensorEventListener,
 	private static final int GYROMOUSE = Menu.FIRST;
 	private static final int KEYBOARD = Menu.FIRST + 1;
 	private static final int MOUSE = Menu.FIRST + 2;
+	private static final String IMAGEVIEW_TAG = "Android Logo";
+
+	Button b;
 	int hotx = 245, hoty = 176, flagmouse = 0, gyroflag = 0;
 	TextView txv;
 	private SensorManager sm;
 	ScrollView sv;
-	LinearLayout ll;
+	GridLayout ll;
+	private android.widget.GridLayout.LayoutParams layoutParams;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +47,7 @@ public class Your extends Activity implements SensorEventListener,
 		setContentView(R.layout.activity_your);
 		sv = new ScrollView(this);
 
-		ll = new LinearLayout(this);
+		ll = new GridLayout(this);
 		sv.addView(ll);
 
 		txv = (TextView) super.findViewById(R.id.texty);
@@ -72,8 +84,68 @@ public class Your extends Activity implements SensorEventListener,
 	}
 
 	public void newKey() {
-		Button b = new Button(this);
+		final Button b = new Button(this);
 		b.setText("Hurra");
+		this.b = b;
+		this.b.setTag(IMAGEVIEW_TAG);
+		this.b.setOnLongClickListener(new View.OnLongClickListener() {
+
+			@Override
+			public boolean onLongClick(View v) {
+				ClipData.Item item = new ClipData.Item((CharSequence) v
+						.getTag());
+				String[] mimeTypes = { ClipDescription.MIMETYPE_TEXT_PLAIN };
+				ClipData dragData = new ClipData(v.getTag().toString(),
+						mimeTypes, item);
+				View.DragShadowBuilder myShadow = new DragShadowBuilder(b);
+
+				// Starts the drag
+				v.startDrag(dragData, // the data to be dragged
+						myShadow, // the drag shadow builder
+						null, // no need to use local data
+						0); // flags (not currently used, set to 0)
+				return false;
+			}
+
+		});
+		b.setOnDragListener(new OnDragListener() {
+			@Override
+			public boolean onDrag(View v, DragEvent event) {
+				switch (event.getAction()) {
+				case DragEvent.ACTION_DRAG_STARTED:
+					layoutParams = (GridLayout.LayoutParams) v
+							.getLayoutParams();
+
+					// Do nothing
+					break;
+				case DragEvent.ACTION_DRAG_ENTERED:
+
+					int x_cord = (int) event.getX();
+					int y_cord = (int) event.getY();
+					break;
+				case DragEvent.ACTION_DRAG_EXITED:
+					x_cord = (int) event.getX();
+					y_cord = (int) event.getY();
+					layoutParams.leftMargin = x_cord;
+					layoutParams.topMargin = y_cord;
+					v.setLayoutParams(layoutParams);
+					break;
+				case DragEvent.ACTION_DRAG_LOCATION:
+					x_cord = (int) event.getX();
+					y_cord = (int) event.getY();
+					break;
+				case DragEvent.ACTION_DRAG_ENDED:
+					x_cord = (int)0;
+					y_cord = (int) 0;					break;
+				case DragEvent.ACTION_DROP:
+					
+					break;
+				default:
+					break;
+				}
+				return true;
+			}
+		});
 		ll.addView(b);
 		this.setContentView(sv);
 

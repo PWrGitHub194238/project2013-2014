@@ -48,5 +48,6 @@
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_touch_pad">TouchPadActivity</string>
     <string name="title_activity_your">Your</string>
+    <string name="title_activity_speaker">Speaker</string>
 
 </resources>

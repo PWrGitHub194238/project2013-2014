@@ -26,6 +26,7 @@ import com.android.carousel.CarouselView;
 import com.android.carousel.CarouselViewAdapter;
 import com.android.carousel.Singleton;
 import com.android.controllers.keyboard.KeyboardActivity;
+import com.android.controllers.keyboard.Speaker;
 import com.android.controllers.mouse.Gyromouse;
 import com.android.controllers.mouse.MouseActivity;
 import com.android.controllers.mouse.TouchPadActivity;
@@ -73,21 +74,24 @@ public class FirstMenu extends Activity implements OnItemSelectedListener,
 		ArrayList<CarouselDataItem> Docus = new ArrayList<CarouselDataItem>();
 		for (int i = 0; i < 1000; i++) {
 			CarouselDataItem docu;
-			if (i % 6 == 0)
+			if (i % 7 == 0)
 				docu = new CarouselDataItem(
 						"/mnt/sdcard/Gyroscope_operation.gif", 0, "Gyroscope");
-			else if (i % 6 == 1) {
+			else if (i % 7 == 1) {
 				docu = new CarouselDataItem("/mnt/sdcard/kierownica.jpg", 0,
 						"kierownica");
-			} else if (i % 6 == 2)
+			} else if (i % 7 == 2)
 				docu = new CarouselDataItem("/mnt/sdcard/klawiatura.jpg", 0,
 						"klawiatura");
-			else if (i % 6 == 3)
+			else if (i % 7 == 3)
 				docu = new CarouselDataItem("/mnt/sdcard/touchpad.jpg", 0,
 						"Touchpad");
-			else if (i % 6 == 4)
+			else if (i % 7 == 4)
 				docu = new CarouselDataItem("/mnt/sdcard/touchpad.jpg", 0,
 						"Your");
+			else if (i % 7 == 5)
+				docu = new CarouselDataItem("/mnt/sdcard/klawiatura.jpg", 0,
+						"Speaker");
 			else
 				docu = new CarouselDataItem("/mnt/sdcard/mysz.png", 0, "Mysz");
 			Docus.add(docu);
@@ -111,30 +115,30 @@ public class FirstMenu extends Activity implements OnItemSelectedListener,
 				@Override
 				public void onItemClick(AdapterView<?> arg0, View arg1,
 						int position, long arg3) {
-					if (position % 6 == 3) {
+					if (position % 7 == 4) {
 						// Toast.makeText(FirstMenu.this, "Position=kierownica",
 						// Toast.LENGTH_SHORT).show();
 						Intent intent = new Intent(context,
 								SteeringwheelActivity.class);
 						startActivity(intent);
-					} else if (position % 6 == 2) {
+					} else if (position % 7 == 3) {
 						// Toast.makeText(FirstMenu.this, "Position=Gyroskope",
 						// Toast.LENGTH_SHORT).show();
 						Intent intent = new Intent(context, Gyromouse.class);
 						startActivity(intent);
-					} else if (position % 6 == 4) {
+					} else if (position % 7 == 5) {
 						// Toast.makeText(FirstMenu.this, "Position=Klawiatura",
 						// Toast.LENGTH_SHORT).show();
 						Intent intent = new Intent(context,
 								KeyboardActivity.class);
 						startActivity(intent);
-					} else if (position % 6 == 1) {
+					} else if (position % 7 == 2) {
 						// Toast.makeText(FirstMenu.this, "Position=Touchpad",
 						// Toast.LENGTH_SHORT).show();
 
 						Intent intent = new Intent(context, MouseActivity.class);
 						startActivity(intent);
-					} else if (position % 6 == 5) {
+					} else if (position % 7 == 6) {
 						// Toast.makeText(FirstMenu.this, "Position=Touchpad",
 						// Toast.LENGTH_SHORT).show();
 
@@ -143,6 +147,16 @@ public class FirstMenu extends Activity implements OnItemSelectedListener,
 
 						Intent intent = new Intent(context,
 								TouchPadActivity.class);
+						startActivity(intent);
+					} else if (position % 7 == 1) {
+						// Toast.makeText(FirstMenu.this, "Position=Touchpad",
+						// Toast.LENGTH_SHORT).show();
+
+						// Toast.makeText(FirstMenu.this, "Position=Mysz",
+						// Toast.LENGTH_SHORT).show();
+
+						Intent intent = new Intent(context,
+								Speaker.class);
 						startActivity(intent);
 					} else {
 

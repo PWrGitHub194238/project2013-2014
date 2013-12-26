@@ -145,6 +145,10 @@
             android:name="com.android.multiplay.Your"
             android:label="@string/title_activity_your" >
         </activity>
+        <activity
+            android:name="com.android.controllers.keyboard.Speaker"
+            android:label="@string/title_activity_speaker" >
+        </activity>
     </application>
     <application
         android:name="com.android.carousel.Singleton"

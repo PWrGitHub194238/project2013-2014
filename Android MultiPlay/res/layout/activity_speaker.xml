@@ -8,21 +8,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Speaker" >
 
-    <TextView
-        android:id="@+id/text2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
-    <Button
+    <ImageButton
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/text2"
-        android:layout_marginLeft="73dp"
-        android:layout_marginTop="22dp"
-         android:onClick="onClick"
-        android:layout_toRightOf="@+id/text2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="66dp"
+        android:background="@drawable/mikrofon"
+        android:onClick="onClick"
         android:text="Button" />
 
 </RelativeLayout>

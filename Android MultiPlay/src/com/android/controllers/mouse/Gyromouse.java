@@ -89,6 +89,8 @@ public class Gyromouse extends Activity implements SensorEventListener,
 		button32 = (Button) super.findViewById(R.id.bm);
 		button33 = (Button) super.findViewById(R.id.balt);
 		button34 = (Button) super.findViewById(R.id.bspace);
+		button35 = (Button) super.findViewById(R.id.besc);
+
 		sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
 
 		sm.registerListener(this,
@@ -110,18 +112,16 @@ public class Gyromouse extends Activity implements SensorEventListener,
 		if (stop == 0) {
 			tv.setText(Integer.toString((int) x) + " "
 					+ Integer.toString((int) y));
-
+			int signal = Helper.encodeSignal(N.Device.MOUSE, N.DeviceDataCounter.DOUBLE, (int)x,(int)y);
 			// Sender sender = new Sender();
 			// sender.setip(ip);
 			// sender.getxy((int) y, (int) x);
 			// sender.execute("mouse");
 		}
-
 	}
 
 	public boolean onKeyLongPress(int keyCode, KeyEvent event) {
 		super.onKeyLongPress(keyCode, event);
-
 		return false;
 	}
 
@@ -132,7 +132,6 @@ public class Gyromouse extends Activity implements SensorEventListener,
 		if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
 			Toast.makeText(getApplicationContext(), "PPM", Toast.LENGTH_SHORT)
 					.show();
-
 			int signal = Helper.encodeSignal(N.Device.MOUSE,
 					N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_PPM);
 			return true;
@@ -141,7 +140,6 @@ public class Gyromouse extends Activity implements SensorEventListener,
 					.show();
 			int signal = Helper.encodeSignal(N.Device.MOUSE,
 					N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_LPM);
-
 			return true;
 		} else if (keyCode == KeyEvent.KEYCODE_CAMERA) {
 			if (stop == 0) {
@@ -161,8 +159,14 @@ public class Gyromouse extends Activity implements SensorEventListener,
 	public void onClick(View arg0) {
 		int i;
 		switch (arg0.getId()) {
+		case R.id.besc:
+			i = N.DeviceSignal.KEYBOARD_ESC;
+			Toast.makeText(getApplicationContext(), Integer.toString(i),
+					Toast.LENGTH_SHORT).show();
+			break;
 		case R.id.leftb:
 			i = N.DeviceSignal.KEYBOARD_LEFT;
+			
 			break;
 		case R.id.rightb:
 			i = N.DeviceSignal.KEYBOARD_RIGHT;
@@ -409,6 +413,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 			}
 			break;
 		case R.id.be:
+			int signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, N.DeviceSignal.KEYBOARD_KEY_TO_INT("e"));
+			int[] ret = Helper.decodeSignal(signal);
+
+			Toast.makeText(getApplicationContext(), Integer.toString(ret[2]),
+					Toast.LENGTH_SHORT).show();
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			if (shiftflag == 1 && altflag != 1) {
 				// nacisniecie "q"

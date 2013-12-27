@@ -10,7 +10,11 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
+
 import com.android.application.MultiPlayApplication;
+import com.android.application.N;
+import com.android.application.N.Helper;
 import com.android.controllers.mouse.smalkey;
 import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
@@ -92,24 +96,30 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 	}
 
 	public void onClick(View arg0) {
+		int i;
 		switch (arg0.getId()) {
+		case R.id.besc:
+			i = N.DeviceSignal.KEYBOARD_ESC;
+			Toast.makeText(getApplicationContext(), Integer.toString(i),
+					Toast.LENGTH_SHORT).show();
+			break;
 		case R.id.leftb:
-			 MultiPlayApplication.add((byte)1);
+			i = N.DeviceSignal.KEYBOARD_LEFT;
 			break;
 		case R.id.rightb:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			i = N.DeviceSignal.KEYBOARD_RIGHT;
 			break;
 		case R.id.upb:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			i = N.DeviceSignal.KEYBOARD_UP;
 			break;
 		case R.id.downb:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			i = N.DeviceSignal.KEYBOARD_DOWN;
 			break;
 		case R.id.enterb:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			 i = N.DeviceSignal.KEYBOARD_ENTER;
 			break;
 		case R.id.bshift:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			i = N.DeviceSignal.KEYBOARD_SHIFT;
 			if (altflag == 0) {
 				switch (shiftflag) {
 				case 0:
@@ -246,15 +256,15 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 					button14.setText("8");
 					button15.setText("9");
 					button16.setText("0");
-                    button17.setText("ê");
-                    button18.setText("ó");
-                    button19.setText("¹");
-                    button20.setText("œ");
-                    button21.setText("³");
-                    button22.setText("¿");
-                    button23.setText("Ÿ");
-                    button24.setText("æ");
-                    button25.setText("ñ");
+					button17.setText("ê");
+					button18.setText("ó");
+					button19.setText("¹");
+					button20.setText("œ");
+					button21.setText("³");
+					button22.setText("¿");
+					button23.setText("Ÿ");
+					button24.setText("æ");
+					button25.setText("ñ");
 					button26.setText("[");
 					button27.setText("]");
 					button28.setText(";");
@@ -298,7 +308,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 			break;
 
 		case R.id.bspace:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			i = N.DeviceSignal.KEYBOARD_BACKSPACE;
 			break;
 		case R.id.bq:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
@@ -312,10 +322,11 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
 						button31, button33);
-
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("q");
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("q");
+
 			}
 
 			break;
@@ -333,11 +344,18 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button31, button32);
 
 				shiftflag = 0;
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("w");
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("w");
+
 			}
 			break;
 		case R.id.be:
+			int signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, N.DeviceSignal.KEYBOARD_KEY_TO_INT("e"));
+			int[] ret = Helper.decodeSignal(signal);
+
+			Toast.makeText(getApplicationContext(), Integer.toString(ret[2]),
+					Toast.LENGTH_SHORT).show();
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			if (shiftflag == 1 && altflag != 1) {
 				// nacisniecie "q"
@@ -350,8 +368,9 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("e");
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("e");
 			}
 			break;
 		case R.id.br:
@@ -367,8 +386,9 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("r");
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("r");
 			}
 			break;
 		case R.id.bt:
@@ -384,8 +404,9 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("t");
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("t");
 			}
 			break;
 		case R.id.by:
@@ -400,10 +421,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
 						button31, button32);
-
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("y");
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("y");
 			}
 			break;
 		case R.id.bu:
@@ -419,8 +440,11 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("u");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("u");
+
 			}
 			break;
 		case R.id.bi:
@@ -435,10 +459,12 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
 						button31, button32);
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("i");
 
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("i");
+
 			}
 			break;
 		case R.id.bo:
@@ -453,10 +479,11 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
 						button31, button32);
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("o");
 
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("o");
 			}
 			break;
 		case R.id.bp:
@@ -472,8 +499,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("p");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("p");
 			}
 			break;
 		case R.id.ba:
@@ -489,8 +518,11 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("a");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("a");
+
 			}
 			break;
 		case R.id.bs:
@@ -506,8 +538,11 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("s");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("s");
+
 			}
 			break;
 		case R.id.bd:
@@ -523,8 +558,11 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+			 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("d");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("d");
+
 			}
 			break;
 		case R.id.bf:
@@ -540,8 +578,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("f");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("f");
 			}
 			break;
 		case R.id.bg:
@@ -557,8 +597,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("g");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("g");
 			}
 			break;
 		case R.id.bh:
@@ -574,8 +616,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("h");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("h");
 			}
 			break;
 		case R.id.bj:
@@ -591,8 +635,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("j");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("j");
 			}
 			break;
 		case R.id.bk:
@@ -608,8 +654,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("k");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("k");
 			}
 			break;
 		case R.id.bl:
@@ -625,8 +673,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("l");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("l");
 			}
 			break;
 		case R.id.bz:
@@ -642,8 +692,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("z");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("z");
 			}
 			break;
 		case R.id.bx:
@@ -659,8 +711,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("x");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("x");
 			}
 			break;
 		case R.id.bc:
@@ -676,8 +730,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("c");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("c");
 			}
 			break;
 		case R.id.bv:
@@ -693,8 +749,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("v");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("v");
 			}
 			break;
 		case R.id.bb:
@@ -710,8 +768,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("b");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("b");
 			}
 			break;
 		case R.id.bn:
@@ -727,8 +787,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
-			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("n");
+
+			}else if (shiftflag == 0 && altflag == 0) {
+				
+			}
+			else if (shiftflag == 2) {
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("n");
 			}
 			break;
 		case R.id.bm:
@@ -744,8 +809,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("m");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("m");
 			}
 			break;
 		case R.id.balt:

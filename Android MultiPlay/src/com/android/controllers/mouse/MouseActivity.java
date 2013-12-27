@@ -71,6 +71,7 @@ public class MouseActivity extends Activity {
 		//	break;
 		case MotionEvent.ACTION_MOVE:
 			txv.setText("X: " + x + "Y: " + y);
+			int signal = Helper.encodeSignal(N.Device.MOUSE, N.DeviceDataCounter.DOUBLE, Integer.parseInt(x),Integer.parseInt(y));
 			break;
 		case MotionEvent.ACTION_UP:
 

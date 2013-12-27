@@ -2,6 +2,7 @@ package com.android.controllers.keyboard;
 
 import java.util.ArrayList;
 
+import com.android.application.N;
 import com.android.multiplay.R;
 import com.android.multiplay.R.id;
 import com.android.multiplay.R.layout;
@@ -60,6 +61,7 @@ public class Speaker extends Activity {
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+		int e;
 		switch (requestCode) {
 		case RESULT_SPEECH:
 			if (resultCode == RESULT_OK && null != data) {
@@ -72,6 +74,7 @@ public class Speaker extends Activity {
 							text.get(0).subSequence(i, i + 1),
 							Toast.LENGTH_SHORT);
 					t.show();
+					 e = N.DeviceSignal.KEYBOARD_KEY_TO_INT(text.get(0).subSequence(i, i + 1).toString());
 					i++;
 				}
 			}

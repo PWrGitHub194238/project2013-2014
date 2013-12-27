@@ -10,6 +10,7 @@ import java.net.Socket;
 
 import Keyboard.Keyboard;
 import Mouse.Mouse;
+import Speaker.Speaker;
 import VJoy.VJoyTest;
 
 public class Serverwifi implements Runnable {
@@ -29,34 +30,33 @@ public class Serverwifi implements Runnable {
 	public void run() {
 		Mouse mouse = new Mouse();
 		Keyboard keyboard = new Keyboard();
+		Speaker speak = new Speaker();
 		int signals = 0;
 		System.out.println("watek");
-		// while (true) {
-		try {
-			signals = dis.readInt();
-			switch(signals){
-			
+		while (true) {
+			try {
+				signals = dis.readInt();
+				int[] ret = Wifi.N.Helper.decodeSignal(signals);
+				if (ret[0] == N.Device.MOUSE) {
+					if (ret[1] == N.DeviceDataCounter.SINGLE)
+						mouse.click(ret[2]);
+					else if (ret[1] == N.DeviceDataCounter.DOUBLE)
+						mouse.run(ret[2], ret[3]);
+				} else if (ret[0] == N.Device.KEYBOARD)
+					keyboard.click(ret[2]);
+				else if (ret[0] == N.Device.WHEEL) {
+
+				} else if (ret[0] == N.Device.SPEAKER) {
+
+				} else if (ret[0] == N.Device.EXIT) {
+					return;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				return;
 			}
-			/*
-			 * device = Integer.toString((data.read()));
-			 * System.out.println("proba"); if (device.equals("mouse")) { try {
-			 * x1 = data.readUTF(); y1 = data.readUTF(); x +=
-			 * Integer.parseInt(x1); y += Integer.parseInt(y1); mouse.run(x, y);
-			 * } catch (NumberFormatException e) { pm = x1; mouse.click(pm); } }
-			 * else if (device.equals("VJoy")) {
-			 * 
-			 * } else if (device.equals("keyboard")) { key = data.readUTF();
-			 * keyboard.click(key); } else if (device.equals("wheel")) {
-			 * 
-			 * } else if (device.equals("exit")) { break; }
-			 */
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
 
 		}
-
-		// }
 
 	}
 

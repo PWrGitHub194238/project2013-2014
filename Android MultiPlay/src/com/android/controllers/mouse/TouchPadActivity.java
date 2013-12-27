@@ -43,36 +43,45 @@ public class TouchPadActivity extends Activity {
 			if (oldoldx - oldx < (double) 0.0 && oldoldy - oldy < (double) 0.0) {
 
 				txv.setText("X=-1, Y=-1");
+				int signal = Helper.encodeSignal(N.Device.MOUSE,
+						N.DeviceDataCounter.DOUBLE, -1, -1);
 
 			} else if (oldoldx - oldx > (double) 0.0
 					&& oldoldy - oldy > (double) 0.0) {
-
+				int signal = Helper.encodeSignal(N.Device.MOUSE,
+						N.DeviceDataCounter.DOUBLE, 1, 1);
 				txv.setText("X=1, Y=1");
 			} else if (oldoldx - oldx > (double) 0.0
 					&& oldoldy - oldy == (double) 0.0) {
-
+				int signal = Helper.encodeSignal(N.Device.MOUSE,
+						N.DeviceDataCounter.DOUBLE, 1, 0);
 				txv.setText("X=1, Y=0");
 			} else if (oldoldx - oldx == (double) 0.0
 					&& oldoldy - oldy > (double) 0.0) {
-
+				int signal = Helper.encodeSignal(N.Device.MOUSE,
+						N.DeviceDataCounter.DOUBLE, 0, 1);
 				txv.setText("X=0, Y=1");
 			} else if (oldoldx - oldx < (double) 0.0
 					&& oldoldy - oldy > (double) 0.0) {
-
+				int signal = Helper.encodeSignal(N.Device.MOUSE,
+						N.DeviceDataCounter.DOUBLE, -1, 1);
 				txv.setText("X=-1, Y=1");
 			} else if (oldoldx - oldx < (double) 0.0
 					&& oldoldy - oldy == (double) 0.0) {
-
+				int signal = Helper.encodeSignal(N.Device.MOUSE,
+						N.DeviceDataCounter.DOUBLE, -1, 0);
 				txv.setText("X=-1, Y=0");
 
 			} else if (oldoldx - oldx > (double) 0.0
 					&& oldoldy - oldy < (double) 0.0) {
-
+				int signal = Helper.encodeSignal(N.Device.MOUSE,
+						N.DeviceDataCounter.DOUBLE, 1, -1);
 				txv.setText("X=1, Y=-1");
 
-			}else if (oldoldx - oldx == (double) 0.0
+			} else if (oldoldx - oldx == (double) 0.0
 					&& oldoldy - oldy < (double) 0.0) {
-
+				int signal = Helper.encodeSignal(N.Device.MOUSE,
+						N.DeviceDataCounter.DOUBLE, 0, -1);
 				txv.setText("X=0, Y=-1");
 
 			}

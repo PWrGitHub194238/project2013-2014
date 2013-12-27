@@ -10,6 +10,8 @@ import java.awt.Toolkit;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 
+import Wifi.N;
+
 public class Mouse {
 
 	public void run(int x, int y) {
@@ -33,15 +35,13 @@ public class Mouse {
 	public void click(int pm) {
 		try {
 			Robot robot = new Robot();
-			switch (pm) {
-			case (1):
+			if(pm==N.DeviceSignal.MOUSE_LPM) {
 				robot.mousePress(InputEvent.BUTTON1_MASK);
 				robot.mouseRelease(InputEvent.BUTTON1_MASK);
-				break;
-			case (2):
+			}
+			else if(pm==N.DeviceSignal.MOUSE_PPM){
 				robot.mousePress(InputEvent.BUTTON2_MASK);
 				robot.mouseRelease(InputEvent.BUTTON2_MASK);
-				break;
 			}
 		} catch (AWTException e) {
 			// TODO Auto-generated catch block

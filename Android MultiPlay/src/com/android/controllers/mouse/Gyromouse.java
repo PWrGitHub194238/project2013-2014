@@ -110,6 +110,7 @@ public class Gyromouse extends Activity implements SensorEventListener,
 		if (stop == 0) {
 			tv.setText(Integer.toString((int) x) + " "
 					+ Integer.toString((int) y));
+
 			// Sender sender = new Sender();
 			// sender.setip(ip);
 			// sender.getxy((int) y, (int) x);
@@ -158,24 +159,25 @@ public class Gyromouse extends Activity implements SensorEventListener,
 	}
 
 	public void onClick(View arg0) {
+		int i;
 		switch (arg0.getId()) {
 		case R.id.leftb:
-			// MultiPlayApplication.add((byte)11);
+			i = N.DeviceSignal.KEYBOARD_LEFT;
 			break;
 		case R.id.rightb:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			i = N.DeviceSignal.KEYBOARD_RIGHT;
 			break;
 		case R.id.upb:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			i = N.DeviceSignal.KEYBOARD_UP;
 			break;
 		case R.id.downb:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			i = N.DeviceSignal.KEYBOARD_DOWN;
 			break;
 		case R.id.enterb:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			 i = N.DeviceSignal.KEYBOARD_ENTER;
 			break;
 		case R.id.bshift:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			i = N.DeviceSignal.KEYBOARD_SHIFT;
 			if (altflag == 0) {
 				switch (shiftflag) {
 				case 0:
@@ -364,7 +366,7 @@ public class Gyromouse extends Activity implements SensorEventListener,
 			break;
 
 		case R.id.bspace:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
+			i = N.DeviceSignal.KEYBOARD_BACKSPACE;
 			break;
 		case R.id.bq:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
@@ -378,10 +380,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
 						button31, button33);
-
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("q");
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("q");
+
 			}
 
 			break;
@@ -399,8 +402,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button31, button32);
 
 				shiftflag = 0;
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("w");
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("w");
+
 			}
 			break;
 		case R.id.be:
@@ -416,8 +421,9 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("e");
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("e");
 			}
 			break;
 		case R.id.br:
@@ -433,8 +439,9 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("r");
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("r");
 			}
 			break;
 		case R.id.bt:
@@ -450,8 +457,9 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("t");
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("t");
 			}
 			break;
 		case R.id.by:
@@ -466,10 +474,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
 						button31, button32);
-
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("y");
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("y");
 			}
 			break;
 		case R.id.bu:
@@ -485,8 +493,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("u");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("u");
+
 			}
 			break;
 		case R.id.bi:
@@ -501,10 +512,12 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
 						button31, button32);
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("i");
 
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("i");
+
 			}
 			break;
 		case R.id.bo:
@@ -519,10 +532,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
 						button31, button32);
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("o");
 
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("o");
 			}
 			break;
 		case R.id.bp:
@@ -538,8 +552,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("p");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("p");
 			}
 			break;
 		case R.id.ba:
@@ -555,8 +571,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("a");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("a");
+
 			}
 			break;
 		case R.id.bs:
@@ -572,8 +591,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("s");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("s");
+
 			}
 			break;
 		case R.id.bd:
@@ -589,8 +611,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+			 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("d");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("d");
+
 			}
 			break;
 		case R.id.bf:
@@ -606,8 +631,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("f");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("f");
 			}
 			break;
 		case R.id.bg:
@@ -623,8 +650,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("g");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("g");
 			}
 			break;
 		case R.id.bh:
@@ -640,8 +669,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("h");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("h");
 			}
 			break;
 		case R.id.bj:
@@ -657,8 +688,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("j");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("j");
 			}
 			break;
 		case R.id.bk:
@@ -674,8 +707,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("k");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("k");
 			}
 			break;
 		case R.id.bl:
@@ -691,8 +726,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("l");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("l");
 			}
 			break;
 		case R.id.bz:
@@ -708,8 +745,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("z");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("z");
 			}
 			break;
 		case R.id.bx:
@@ -725,8 +764,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("x");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("x");
 			}
 			break;
 		case R.id.bc:
@@ -742,8 +783,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("c");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("c");
 			}
 			break;
 		case R.id.bv:
@@ -759,8 +802,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("v");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("v");
 			}
 			break;
 		case R.id.bb:
@@ -776,8 +821,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("b");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("b");
 			}
 			break;
 		case R.id.bn:
@@ -793,8 +840,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("n");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("n");
 			}
 			break;
 		case R.id.bm:
@@ -810,8 +859,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button26, button27, button28, button29, button30,
 						button31, button32);
 				shiftflag = 0;
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("m");
+
 			} else if (shiftflag == 2) {
-				// nacisniecie "q"
+				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("m");
 			}
 			break;
 		case R.id.balt:

@@ -1,6 +1,5 @@
 package com.android.database;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -209,10 +208,13 @@ public class DBHelper {
 	 * The method performs a query that selects IDs from table <i>tableName</i> 
 	 * and returns the minimum, not existing, value.
 	 * 
-	 * @param tableName One of table names from {@link SQL_TABLE_NAME}.
+	 * @param tableClass One of table names from {@link SQL_TABLE_NAME}.
 	 * @return Minimal ID for the selected <i>tableName</i> that not exists yet (eg for <i>INSERT</i> queries)
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
+	 * 
+	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
+	 * which is not accessible from the location where the reference is made.
+	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
+	 * which is not accessible from the location where the reference is made.
 	 */
 	public static int sql_generate_not_exitsting_minID (Class<? extends DBHelper.TableIF> tableClass) throws InstantiationException, IllegalAccessException {
 		Log.d("DB", "Database select...");
@@ -247,19 +249,26 @@ public class DBHelper {
 	 * Usage example:
 	 * 
 	 * {@code
-	 * DBHelper dbHelper = new DBHelper(getApplicationContext());
-	 * dbh.openConnection();
-	 * try {
-	 * 	Cursor cur = dbh.sql_select_by_id(General.class);
-	 * }
+		DBHelper dbHelper = new DBHelper(getApplicationContext());
+		dbHelper.openConnection();
+		Cursor cur;
+		try {
+			cur = dbHelper.sql_select_by_id(General.class);
+			Log.d("DB", DatabaseUtils.dumpCursorToString(cur));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	 * }
 	 * 
 	 * In order to view returned data you can use {@link DatabaseUtils#dumpCursorToString(Cursor)} method.
 	 * 
-	 * @param tableClass The table in the database that is represented by a class that implements {@ link DBHelper.TableIF}.
+	 * @param tableClass The table in the database that is represented by a class that implements {@link DBHelper.TableIF}.
 	 * @return {@link Cursor} to returned set of data by execution of previously generated select query in this method.
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
+	 * 
+	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
+	 * which is not accessible from the location where the reference is made.
+	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
+	 * which is not accessible from the location where the reference is made.
 	 */
 	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass) throws InstantiationException, IllegalAccessException {
 		Cursor cursor = null;
@@ -284,20 +293,28 @@ public class DBHelper {
 	 * Usage example:
 	 * 
 	 * {@code
-	 * DBHelper dbHelper = new DBHelper(getApplicationContext());
-	 * dbh.openConnection();
-	 * try {
-	 * 	Cursor cur = dbh.sql_select_by_id(General.class,1);
-	 * }
+		DBHelper dbHelper = new DBHelper(getApplicationContext());
+		dbHelper.openConnection();
+		Cursor cur;
+		try {
+			cur = dbHelper.sql_select_by_id(General.class,1);
+			Log.d("DB", DatabaseUtils.dumpCursorToString(cur));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	 * }
 	 * 
 	 * In order to view returned data you can use {@link DatabaseUtils#dumpCursorToString(Cursor)} method.
 	 * 
-	 * @param tableClass The table in the database that is represented by a class that implements {@ link DBHelper.TableIF}.
+	 * @param tableClass The table in the database that is represented by a class that implements {@link DBHelper.TableIF}.
 	 * @param KEY_UNIQUE ID value that uniquely represents one row in <i>tableClass</i> table.
+	 * 
 	 * @return {@link Cursor} to returned set of data by execution of previously generated select query in this method.
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
+	 * 
+	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
+	 * which is not accessible from the location where the reference is made.
+	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
+	 * which is not accessible from the location where the reference is made.
 	 */
 	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, int KEY_UNIQUE) throws InstantiationException, IllegalAccessException {
 		Cursor cursor = null;
@@ -326,22 +343,26 @@ public class DBHelper {
 	 * 
 	 * {@code
 	 * DBHelper dbHelper = new DBHelper(getApplicationContext());
-	 * dbh.openConnection();
+	 * dbHelper.openConnection();
 	 * try {
 	 * 	Set<String> columns = new HashSet<String>();
 	 * 	columns.add(General.DBSchema.COLUMN_1);
-	 * 	Cursor cur = dbh.sql_select_by_id(General.class,columns,1);
+	 * 	Cursor cur = dbHelper.sql_select_by_id(General.class,columns,1);
 	 * }
 	 * }
 	 * 
 	 * In order to view returned data you can use {@link DatabaseUtils#dumpCursorToString(Cursor)} method.
 	 * 
-	 * @param tableClass The table in the database that is represented by a class that implements {@ link DBHelper.TableIF}.
+	 * @param tableClass The table in the database that is represented by a class that implements {@link DBHelper.TableIF}.
 	 * @param columnNames Column names that should be selected in database query.
 	 * @param KEY_UNIQUE ID value that uniquely represents one row in <i>tableClass</i> table.
+	 * 
 	 * @return {@link Cursor} to returned set of data by execution of previously generated select query in this method.
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
+	 * 
+	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
+	 * which is not accessible from the location where the reference is made.
+	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
+	 * which is not accessible from the location where the reference is made.
 	 */
 	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, Set<String> columnNames, int KEY_UNIQUE) throws InstantiationException, IllegalAccessException {
 		Cursor cursor = null;
@@ -380,21 +401,25 @@ public class DBHelper {
 	 * 
 	 * {@code
 	 * DBHelper dbHelper = new DBHelper(getApplicationContext());
-	 * dbh.openConnection();
+	 * dbHelper.openConnection();
 	 * try {
 	 * 	Set<Integer> keys = new HashSet<Integer>();
 	 * 	keys.add(1);
-	 * 	Cursor cur = dbh.sql_select_by_id(General.class,keys);
+	 * 	Cursor cur = dbHelper.sql_select_by_id(General.class,keys);
 	 * }
 	 * }
 	 * 
 	 * In order to view returned data you can use {@link DatabaseUtils#dumpCursorToString(Cursor)} method.
 	 * 
-	 * @param tableClass The table in the database that is represented by a class that implements {@ link DBHelper.TableIF}.
+	 * @param tableClass The table in the database that is represented by a class that implements {@link DBHelper.TableIF}.
 	 * @param KEY_UNIQUEs ID values that uniquely represents rows in <i>tableClass</i> table.
+	 * 
 	 * @return {@link Cursor} to returned set of data by execution of previously generated select query in this method.
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
+	 * 
+	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
+	 * which is not accessible from the location where the reference is made.
+	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
+	 * which is not accessible from the location where the reference is made.
 	 */
 	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, Set<Integer> KEY_UNIQUEs) throws InstantiationException, IllegalAccessException {
 		Cursor cursor = null;
@@ -427,24 +452,28 @@ public class DBHelper {
 	 * 
 	 * {@code
 	 * DBHelper dbHelper = new DBHelper(getApplicationContext());
-	 * dbh.openConnection();
+	 * dbHelper.openConnection();
 	 * try {
 	 * 	Set<String> columns = new HashSet<String>();
 	 * 	columns.add(General.DBSchema.COLUMN_1);
 	 * 	Set<Integer> keys = new HashSet<Integer>();
 	 * 	keys.add(1);
-	 * 	Cursor cur = dbh.sql_select_by_id(General.class,columns,keys);
+	 * 	Cursor cur = dbHelper.sql_select_by_id(General.class,columns,keys);
 	 * }
 	 * }
 	 * 
 	 * In order to view returned data you can use {@link DatabaseUtils#dumpCursorToString(Cursor)} method.
 	 * 
-	 * @param tableClass The table in the database that is represented by a class that implements {@ link DBHelper.TableIF}.
+	 * @param tableClass The table in the database that is represented by a class that implements {@link DBHelper.TableIF}.
 	 * @param columnNames Column names that should be selected in database query.
 	 * @param KEY_UNIQUEs ID values that uniquely represents rows in <i>tableClass</i> table.
+	 * 
 	 * @return {@link Cursor} to returned set of data by execution of previously generated select query in this method.
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
+	 * 
+	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
+	 * which is not accessible from the location where the reference is made.
+	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
+	 * which is not accessible from the location where the reference is made.
 	 */
 	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, Set<String> columnNames, Set<Integer> KEY_UNIQUEs) throws InstantiationException, IllegalAccessException {
 		Cursor cursor = null;
@@ -479,17 +508,33 @@ public class DBHelper {
 	
 	/** Insert query to database.
 	 * 
-	 * In this method the ID parameter that is used in {@link #sql_insert_row(Class, HashMap)} 
-	 * is auto generated by {@link #sql_generate_minID(String)} helper class.
+	 * In this method the ID parameter that is used in {@link #sql_insert_row(Class, Map, boolean)} 
+	 * is auto generated by {@link #sql_generate_not_exitsting_minID(Class)} helper class.
 	 * 
-	 * @param tableClass The table in the database that is represented by a class that implements {@ link DBHelper.TableIF}.
-	 * @param KEY_UNIQUE ID value that uniquely represents one row in <i>tableClass</i> table.
-	 * @param newValues Set of pairs in form: (<COLUMN_NAME>,<NEW_VALUE>) (<a href="#example">Usage example</a>).
+	 * Usage example:
+	 * 
+	 * {@code
+	 * DBHelper dbHelper = new DBHelper(getApplicationContext());
+	 * dbHelper.openConnection();
+	 * try {
+	 * 	Set<String> columns = new HashSet<String>();
+	 * 	columns.add(General.DBSchema.COLUMN_1);
+	 * 	Set<Integer> keys = new HashSet<Integer>();
+	 * 	keys.add(1);
+	 * 	Cursor cur = dbHelper.sql_select_by_id(General.class,columns,keys);
+	 * }
+	 * }
+	 * 
+	 * @param tableClass The table in the database that is represented by a class that implements {@link DBHelper.TableIF}.
+	 * @param newValues Set of pairs in form: ({@literal <}COLUMN_NAME{@literal >},{@literal <}NEW_VALUE{@literal >}) (<a href="#example">Usage example</a>).
 	 * @param isToClear Flag that can only take the values of {@link #CLEAR_YES} or {@link #CLEAR_NO}. It determinates 
 	 * whenever to call {@link Map#clear()} method in order 
 	 * to avoid creating new {@link Map} object for another execution of that method.
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
+	 * 
+	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
+	 * which is not accessible from the location where the reference is made.
+	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
+	 * which is not accessible from the location where the reference is made.
 	 */
 	public void sql_insert_row (Class<? extends DBHelper.TableIF> tableClass, Map<String, String> newValues, boolean isToClear) throws InstantiationException, IllegalAccessException {
 		if (newValues == null || !newValues.isEmpty()) {
@@ -529,11 +574,17 @@ public class DBHelper {
 	
 	/** Insert query to database.
 	 * 
-	 * @param tableClass The table in the database that is represented by a class that implements {@ link DBHelper.TableIF}.
+	 * @param tableClass The table in the database that is represented by a class that implements {@link DBHelper.TableIF}.
 	 * @param KEY_UNIQUE ID value that uniquely represents one row in <i>tableClass</i> table.
-	 * @param newValues Set of pairs in form: (<COLUMN_NAME>,<NEW_VALUE>) (<a href="#example">Usage example</a>).
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
+	 * @param newValues Set of pairs in form: ({@literal <}COLUMN_NAME{@literal >},{@literal <}NEW_VALUE{@literal >}) (<a href="#example">Usage example</a>).
+	 * @param isToClear Flag that can only take the values of {@link #CLEAR_YES} or {@link #CLEAR_NO}. It determinates 
+	 * whenever to call {@link Map#clear()} method in order 
+	 * to avoid creating new {@link Map} object for another execution of that method.
+	 * 
+	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
+	 * which is not accessible from the location where the reference is made.
+	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
+	 * which is not accessible from the location where the reference is made.
 	 */
 	public void sql_insert_row (Class<? extends DBHelper.TableIF> tableClass, int KEY_UNIQUE, Map<String, String> newValues, boolean isToClear) throws InstantiationException, IllegalAccessException {
 		if (newValues == null || !newValues.isEmpty()) {
@@ -571,11 +622,14 @@ public class DBHelper {
 		}
 	}
 	
-	/**
+	/** Delete query to database.
 	 * 
-	 * @param tableClass
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
+	 * @param tableClass One of table names from {@link SQL_TABLE_NAME}.
+	 * 
+	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
+	 * which is not accessible from the location where the reference is made.
+	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
+	 * which is not accessible from the location where the reference is made.
 	 */
 	public void sql_delete_row (Class<? extends DBHelper.TableIF> tableClass) throws InstantiationException, IllegalAccessException {
 		Log.d("DB", "Database delete...");
@@ -591,12 +645,15 @@ public class DBHelper {
 		db.execSQL(query.toString());
 	}
 	
-	/**
+	/** Delete query to database.
 	 * 
-	 * @param tableClass
-	 * @param KEY_UNIQUE
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
+	 * @param tableClass One of table names from {@link SQL_TABLE_NAME}.
+	 * @param KEY_UNIQUE ID values that uniquely represents rows in <i>tableClass</i> table.
+	 * 
+	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
+	 * which is not accessible from the location where the reference is made.
+	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
+	 * which is not accessible from the location where the reference is made.
 	 */
 	public void sql_delete_row (Class<? extends DBHelper.TableIF> tableClass, int KEY_UNIQUE) throws InstantiationException, IllegalAccessException {
 		Log.d("DB", "Database delete...");
@@ -615,10 +672,13 @@ public class DBHelper {
 	
 	/**
 	 * 
-	 * @param tableClass
-	 * @param KEY_UNIQUEs
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
+	 * @param tableClass todo
+	 * @param KEY_UNIQUEs todo
+	 * 
+	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
+	 * which is not accessible from the location where the reference is made.
+	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
+	 * which is not accessible from the location where the reference is made.
 	 */
 	public void sql_delete_row (Class<? extends DBHelper.TableIF> tableClass, Set<Integer> KEY_UNIQUEs) throws InstantiationException, IllegalAccessException {
 		Log.d("DB", "Database delete...");

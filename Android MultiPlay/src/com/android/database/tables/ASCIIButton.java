@@ -14,7 +14,7 @@ import com.android.database.DBHelper;
  * 
  * This is a helper class that generates queries relevant to the table 
  * that this class represents. The example below shows how to deal with
- * any {@link Map} type arguments such as "newValues" in {@link DBHelper#sql_insert_row(Map, int)}:
+ * any {@link Map} type arguments such as "newValues" in {@link DBHelper#sql_insert_row(Class, Map, boolean)}:
  * 
  * {@code
  * Map<String,String> newValues = new HashMap<String,String>();
@@ -99,7 +99,7 @@ public class ASCIIButton implements DBHelper.TableIF {
 	/** Generates String that contains query to database for updating rows in ASCIIButton table.
 	 * 
 	 * @param id {@link DBSchema#KEY_UNIQUE_1} value that uniquely represents one row in ASCIIButton table.
-	 * @param newValues Set of pairs in form: (<COLUMN_NAME>,<NEW_VALUE>) (<a href="#example">Usage example</a>).
+	 * @param newValues Set of pairs in form: ({@literal <}COLUMN_NAME{@literal >},{@literal <}NEW_VALUE{@literal >}) (<a href="#example">Usage example</a>).
 	 * @return String that holds a new query for database that updates single row in ASCIIButton table.
 	 */
 	public static String SQL_UPDATE_ROW (int id, HashMap<String, String> newValues) {
@@ -122,7 +122,7 @@ public class ASCIIButton implements DBHelper.TableIF {
 	/** String that contains query to database for inserting rows in ASCIIButton table.
 	 * 
 	 * @param id {@link DBSchema#KEY_UNIQUE_1} value that will uniquely represents new row in ASCIIButton table.
-	 * @param newValues Set of pairs in form: (<COLUMN_NAME>,<NEW_VALUE>) (<a href="#example">Usage example</a>).
+	 * @param newValues Set of pairs in form: ({@literal <}COLUMN_NAME{@literal >},{@literal <}NEW_VALUE{@literal >}) (<a href="#example">Usage example</a>).
 	 * @return String that holds a new query for database that inserts single row in ASCIIButton table.
 	 */
 	public static String SQL_INSERT_ROW (int id, HashMap<String, String> newValues) {

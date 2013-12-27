@@ -10,7 +10,7 @@ import com.android.database.DBHelper;
  * 
  * This is a helper class that generates queries relevant to the table 
  * that this class represents. The example below shows how to deal with
- * any {@link Map} type arguments such as "newValues" in {@link DBHelper#sql_insert_row(Map, int)}:
+ * any {@link Map} type arguments such as "newValues" in {@link DBHelper#sql_insert_row(Class, Map, boolean)}:
  * 
  * {@code
  * Map<String,String> newValues = new HashMap<String,String>();

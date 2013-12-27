@@ -1,61 +1,115 @@
 package com.android.application;
 
+
 public final class N {
-	public static final class bitmasks  {
-		public static final byte bit_1 =						(byte) Integer.parseInt("00000001",2);
-		public static final byte bit_2 = 						(byte) Integer.parseInt("00000010",2);
-		public static final byte bit_3 = 						(byte) Integer.parseInt("00000100",2);
-		public static final byte bit_4 = 						(byte) Integer.parseInt("00001000",2);
-		public static final byte bit_5 = 						(byte) Integer.parseInt("00010000",2);
-		public static final byte bit_6 = 						(byte) Integer.parseInt("00100000",2);
-		public static final byte bit_7 = 						(byte) Integer.parseInt("01000000",2);
-		public static final byte bit_8 = 						(byte) Integer.parseInt("10000000",2);
-		
-		public static final byte bit_mask(byte... bitmasks) {
-			byte bitmask = (byte) Integer.parseInt("00000000",2);
-			for(byte submask : bitmasks) {
-				bitmask = (byte) (bitmask | submask);
+	
+	public static final class Shift {
+		public static final int DEVICE = 0;
+		public static final int DEV_DATA_COUNTER = DEVICE + 5;
+		public static final int DEV_SIGNAL_1 = DEV_DATA_COUNTER + 1;
+		public static final int DEV_SIGNAL_2 = DEV_SIGNAL_1 + 12;
+		public static final int DEV_OTHER = DEV_SIGNAL_2 + 12;
+	}
+	
+	protected static final class Bitmasks  {
+		public static final int BIT1 =						Integer.parseInt("1",2) << 0;
+		public static final int BIT2 = 						Integer.parseInt("1",2) << 1;
+		public static final int BIT3 = 						Integer.parseInt("1",2) << 2;
+		public static final int BIT4 = 						Integer.parseInt("1",2) << 3;
+		public static final int BIT5 = 						Integer.parseInt("1",2) << 4;
+		public static final int DEVICE = 					Integer.parseInt("11111",2);
+		public static final int DEV_DATA_COUNTER = 			Integer.parseInt("1",2) << Shift.DEV_DATA_COUNTER;
+		public static final int DEV_SIGNAL_1 = 				Integer.parseInt("111111111111",2) << Shift.DEV_SIGNAL_1;
+		public static final int DEV_SIGNAL_2 = 				Integer.parseInt("111111111111",2) << Shift.DEV_SIGNAL_2;
+		public static final int DEV_OTHER = 				Integer.parseInt("11",2) << Shift.DEV_OTHER;
+
+		public static final int bit_mask(int... bitmasks) {
+			int bitmask = Integer.parseInt("0",2);
+			for(int submask : bitmasks) {
+				bitmask = bitmask | submask;
 			}
 			return bitmask;
 		}
 	}
 	
-    public static final class signal {
-    	public static final byte need_authorization = 			(byte) Integer.parseInt("00000000",2);
-    	public static final byte need_to_connect = 				(byte) Integer.parseInt("00000001",2);
-    	
-    	public static final byte getSignal(byte signal) {
-    		byte bitmask = bitmasks.bit_mask(
-    				bitmasks.bit_1);
-    		return (byte) (signal & bitmask);
-    	}
+    public static final class Signal {
+    	public static final byte NEED_AUTHORIZATION = 		(byte) Integer.parseInt("00000000",2);
+    	public static final byte NEED_CONNECTION = 			(byte) Integer.parseInt("00000001",2);
     }
     
-    public static final class dev_signal {
-    	public static final byte mouse = 						(byte) Integer.parseInt("00000000",2);
-    	public static final byte mouse_move = 					(byte) Integer.parseInt("00001000",2);
-    	public static final byte mouse_left = 					(byte) Integer.parseInt("00010000",2);
-    	public static final byte mouse_middle = 				(byte) Integer.parseInt("00011000",2);
-    	public static final byte mouse_right = 					(byte) Integer.parseInt("00100000",2);
-    	
-    	public static final byte keyboard =						(byte) Integer.parseInt("00000001",2);
-    	
-    	public static final byte getDevice(byte signal) {
-    		byte bitmask = bitmasks.bit_mask(
-    				bitmasks.bit_1,
-    				bitmasks.bit_2,
-    				bitmasks.bit_3);
-    		return (byte) (signal & bitmask);
-    	}
-    	
-    	public static final byte getDevSignal(byte signal) {
-    		byte bitmask = bitmasks.bit_mask(
-    				bitmasks.bit_4,
-    				bitmasks.bit_5,
-    				bitmasks.bit_6,
-    				bitmasks.bit_7,
-    				bitmasks.bit_8);
-    		return (byte) (signal & bitmask);
-    	}
+    public static final class Device {
+    	public static final int MOUSE = 					Integer.parseInt("00000",2);
+    	public static final int KEYBOARD =					Integer.parseInt("00001",2);
     }
+
+    public static final class DeviceDataCounter {
+    	public static final int SINGLE = 					Integer.parseInt("0",2);
+    	public static final int DOUBLE =					Integer.parseInt("1",2);
+    }
+    
+    public static final class DeviceSignal {
+    	public static final int MOUSE_LPM = 				Integer.parseInt("000000000000",2);
+    	public static final int MOUSE_MPM =					Integer.parseInt("000000000001",2);
+    	public static final int MOUSE_PPM =					Integer.parseInt("000000000010",2);
+    }
+    
+    public static final class Helper {
+    	
+    	public static final int DEVICE = 0;
+		public static final int DEV_DATA_COUNTER = 1;
+		public static final int DEV_SIGNAL_1 = 2;
+		public static final int DEV_SIGNAL_2 = 3;
+		public static final int DEV_OTHER = 4;
+    	
+    	public static final int getSignal(int signal, int signalID) {
+    		switch (signalID) {
+    		case Helper.DEVICE:
+    			return (signal & Bitmasks.DEVICE);
+    		case Helper.DEV_DATA_COUNTER:
+    			return (signal & Bitmasks.DEV_DATA_COUNTER) >> Shift.DEV_DATA_COUNTER;
+    		case Helper.DEV_SIGNAL_1:
+    			return (signal & Bitmasks.DEV_SIGNAL_1) >> Shift.DEV_SIGNAL_1;
+    		case Helper.DEV_SIGNAL_2:
+    			return (signal & Bitmasks.DEV_SIGNAL_2) >> Shift.DEV_SIGNAL_2;
+    		case Helper.DEV_OTHER:
+    			return (signal & Bitmasks.DEV_OTHER) >> Shift.DEV_OTHER;
+			default:
+				return signal;
+    		}  		
+    	}
+
+    	public static final int encodeSignal(int device, int dev_data_counter, int dev_signal) {
+    		return device + 
+    				(dev_data_counter << Shift.DEV_DATA_COUNTER) + 
+    				(dev_signal << Shift.DEV_SIGNAL_1); 
+    	}
+    	
+    	public static final int encodeSignal(int device, int dev_data_counter, int dev_signal_1, int dev_signal_2) {
+    		return device + 
+    				(dev_data_counter << Shift.DEV_DATA_COUNTER) + 
+    				(dev_signal_1 << Shift.DEV_SIGNAL_1) + 
+    				(dev_signal_2 << Shift.DEV_SIGNAL_2);
+    	}
+    	
+    	public static final int encodeSignal(int device, int dev_data_counter, int dev_signal_1, int dev_signal_2, int other) {
+    		return device + 
+    				(dev_data_counter << Shift.DEV_DATA_COUNTER) + 
+    				(dev_signal_1 << Shift.DEV_SIGNAL_1) + 
+    				(dev_signal_2 << Shift.DEV_SIGNAL_2) +
+    				(other << Shift.DEV_OTHER);
+    	}
+    	
+    	public static final int[] decodeSignal(int signal) {
+    		int[] output = new int[5];
+    		output[0] = getSignal(signal,Helper.DEVICE);
+    		output[1] = getSignal(signal,Helper.DEV_DATA_COUNTER);
+    		output[2] = getSignal(signal,Helper.DEV_SIGNAL_1);
+    		output[3] = getSignal(signal,Helper.DEV_SIGNAL_2);
+    		output[4] = getSignal(signal,Helper.DEV_OTHER);
+    		//11 1 2 23 1
+    		return output;
+    	}
+
+    }
+    
 }

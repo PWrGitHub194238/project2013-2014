@@ -22,28 +22,25 @@ public class MultiPlayApplication extends Application {
 	private static DBHelper dbHelper = null;
 	private static Collection<BluetoothConfigurationClass> discoveredBluetoothDevices = null;
 	private static ArrayList<WirelessConfigurationClass> discoveredWirelessDevices = null;
-	private static ConnectionsConfigurationClass setMainConfiguration = null;
+	private static ConnectionsConfigurationClass mainNetworkConfiguration = null;
 	private MultiPlayDataBase multiPlayDataBase = null;
-	
-	private static BlockingQueue<Byte> socketQueue = null;
 	
 	private static SocketMainWiFiSender socketMainThread = null;
 	
 	public static void runThread() throws IOException {
 		Log.d("THREAD","Run thread...");
-		socketQueue = new LinkedBlockingQueue<Byte>();
-		socketMainThread = new SocketMainWiFiSender((WirelessConfigurationClass) setMainConfiguration);
-		socketMainThread.execute(N.signal.need_to_connect);
+		socketMainThread = new SocketMainWiFiSender((WirelessConfigurationClass) mainNetworkConfiguration);
+		socketMainThread.execute(N.Signal.NEED_CONNECTION);
 	}
 	
 	public static void execute() {
 	}
 	
-	public static void add(byte signal) {
+	public static void add(int signal) {
 		synchronized (socketMainThread) {
-			socketMainThread.queue.add(signal);
+			SocketMainWiFiSender.queue.add(signal);
 			Log.d("THREAD","Added "+signal);
-			Log.d("THREAD","Executing "+socketMainThread.queue.size()+" signals...");
+			Log.d("THREAD","Executing "+SocketMainWiFiSender.queue.size()+" signals...");
 		
 			MultiPlayApplication.getSocketMainThread().notify();
 		}
@@ -80,18 +77,18 @@ public class MultiPlayApplication extends Application {
 		return discoveredWirelessDevices;
 	}
 
-
-	public static ConnectionsConfigurationClass getSetMainConfiguration() {
-		return setMainConfiguration;
+	public static ConnectionsConfigurationClass getMainNetworkConfiguration() {
+		return mainNetworkConfiguration;
 	}
 
-	public static void setSetMainConfiguration(ConnectionsConfigurationClass setMainConfiguration) {
-		MultiPlayApplication.setMainConfiguration = setMainConfiguration;
-		Log.d("ListView","Name: "+setMainConfiguration.getName());
-		Log.d("ListView","ConStatus: "+setMainConfiguration.getConnectionStatus());
-		Log.d("ListView","IP: "+((WirelessConfigurationClass) setMainConfiguration).getIP());
-		Log.d("ListView","Port: "+((WirelessConfigurationClass) setMainConfiguration).getPort());
-		Log.d("ListView","Stored index: "+setMainConfiguration.getStoredIndex());
+	public static final void setMainNetworkConfiguration(
+			ConnectionsConfigurationClass mainNetworkConfiguration) {
+		MultiPlayApplication.mainNetworkConfiguration = mainNetworkConfiguration;
+		Log.d("ListView","Name: "+mainNetworkConfiguration.getName());
+		Log.d("ListView","ConStatus: "+mainNetworkConfiguration.getConnectionStatus());
+		Log.d("ListView","IP: "+((WirelessConfigurationClass) mainNetworkConfiguration).getIP());
+		Log.d("ListView","Port: "+((WirelessConfigurationClass) mainNetworkConfiguration).getPort());
+		Log.d("ListView","Stored index: "+mainNetworkConfiguration.getStoredIndex());
 	}
 
 	public final MultiPlayDataBase getMultiPlayDataBase() {

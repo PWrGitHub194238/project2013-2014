@@ -123,7 +123,7 @@ public class ConnectionPanel extends Fragment implements OnClickListener {
 		Log.i("Fragment", "B ON CLICK");
 	}
 	
-	/** Prepares {@link Intent} and passes it to new service triggered by {@link #startService(Intent)} method.
+	/** Prepares {@link Intent} and passes it to new service triggered by {@link Activity#startService(Intent)} method.
 	 * 
 	 * Newly created {@link Intent} has two extras: <br>
 	 * <ol>
@@ -161,15 +161,12 @@ public class ConnectionPanel extends Fragment implements OnClickListener {
 		Log.i("OK", "start");
 	}
 	
-	/** Prepares {@link Intent} and passes it to new service triggered by {@link #startService(Intent)} method.
+	/** Prepares {@link Intent} and passes it to new service triggered by {@link Activity#startService(Intent)} method.
 	 * 
 	 * Newly created {@link Intent} has two extras: <br>
 	 * <ol>
-	 * 	<li> {@link ConnectionService#INPUT_DATA_CONNECTION_SELECT} - 
-	 * 		boolean value which is false when this method was triggered by taping
-	 * 		{@link #b_wireless_network_switch} to enable or disable wireless network service
-	 * 		or false when button {@link #b_wireless_network_switch} was tapped 
-	 * 		and {@link #toggleWirelessNetwork_onClick(View)} was called.</li>
+	 * 	<li> {@link ConnectionService#INPUT_DATA_CALLED_REASON} - 
+	 * 		TODO</li>
 	 * 	<li> {@link ConnectionService#INPUT_DATA_CONNECTION_SWITH} - 
 	 * 		boolean value which is true when user switches button from OFF to ON, false otherwise.</li>
 	 * </ol>

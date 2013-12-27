@@ -21,7 +21,7 @@ public class SocketMainWiFiSender extends AsyncTask<Byte, String, String> {
 	private DataOutputStream dos = null;
 	private WirelessConfigurationClass mainConfiguration = null;
 	
-	public static LinkedBlockingQueue<Byte> queue = null;
+	public static LinkedBlockingQueue<Integer> queue = null;
 	
 	
 	
@@ -29,7 +29,7 @@ public class SocketMainWiFiSender extends AsyncTask<Byte, String, String> {
 	public SocketMainWiFiSender(WirelessConfigurationClass mainConfiguration) throws IOException {
 		super();
 		this.mainConfiguration = mainConfiguration;
-		queue = new LinkedBlockingQueue<Byte>();
+		queue = new LinkedBlockingQueue<Integer>();
 		Log.d("THREAD","sender starts...");
 	
 	}
@@ -60,7 +60,7 @@ public class SocketMainWiFiSender extends AsyncTask<Byte, String, String> {
 					InetAddress.getByName(mainConfiguration.getIP()),
 					mainConfiguration.getPort());
 			this.dos = new DataOutputStream(socket.getOutputStream());
-			dos.writeByte(N.signal.need_to_connect);
+			dos.writeByte(N.Signal.NEED_CONNECTION);
 		} catch (UnknownHostException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -74,9 +74,9 @@ public class SocketMainWiFiSender extends AsyncTask<Byte, String, String> {
 			try {
 				Log.d("THREAD","isEmpty "+queue.isEmpty());
 				while(queue.isEmpty() == false ) {
-						byte data = queue.take();
+						int data = queue.take();
 						Log.d("THREAD","doInBackground "+data);
-						dos.writeByte(data);
+						dos.writeInt(data);
 				}
 				this.wait();
 			} catch (IOException e) {

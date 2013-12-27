@@ -52,13 +52,13 @@ public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationCla
 				Log.d("THREAD","dos...");
 				dos = new DataOutputStream(socket.getOutputStream());
 				Log.d("THREAD","Read...");
-				dos.write(N.signal.need_authorization);
+				dos.writeByte(N.Signal.NEED_AUTHORIZATION);
 				byte recived = dis.readByte();
 				Log.d("THREAD","RECIVED: "+recived);
 				dis.close();
 				dos.close();
 				socket.close();
-				if ( N.signal.need_authorization == recived ) {
+				if ( N.Signal.NEED_AUTHORIZATION == recived ) {
 					networkConfiguration.setConnectionStatus(ConnectionHelper.STATUS_ON);
 				}
 			} catch (UnknownHostException e) {

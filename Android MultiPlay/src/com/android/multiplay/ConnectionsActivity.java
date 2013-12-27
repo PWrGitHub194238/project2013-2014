@@ -1,6 +1,5 @@
 package com.android.multiplay;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -47,24 +46,99 @@ import com.android.services.ConnectionHelper;
 
 public class ConnectionsActivity extends Activity implements OnItemClickListener, OnItemLongClickListener, OnClickListener, OnLongClickListener, DialogButtonClickListener {
 
-	RelativeLayout rl_connections_activity_device_list_background_layout = null;
 	
-	ProgressBar pb_connections_activity_refreshing = null;
 	
-	ListView lv_connections_activity_device_list = null;
+////////////////////Fields
+
+
+
+	/** Layout under {@link #lv_connections_activity_device_list}.
+	* 
+	* {@link RelativeLayout} which is displayed in place of the list of devices 
+	* when it is empty before refreshing by tapping {@link #b_connections_activity_refresh_connections_check} 
+	* or the list of devices is in the process of generating after tapping button 
+	* {@link #b_connections_activity_bluetooth_switcher} or #b_connections_activity_wireless_switcher.
+	* It is also displayed when, after refreshing, there is no devices to display. If so, appropriate text is displayed.
+	*/
+	private RelativeLayout rl_connections_activity_device_list_background_layout = null;
 	
-	ImageToggleButton b_connections_activity_bluetooth_switcher = null;
-			
-	ImageToggleButton b_connections_activity_wireless_switcher = null;
+	/** Progress bar that appears in the course of generating the list of devices.
+	* 
+	*  This progress bar is an element of {@link #rl_connections_activity_device_list_background_layout}.
+	*  It is displayed during searching for connections with devices and generating their list 
+	*  after tapping one of the buttons: 
+	*  <ul>
+	*  <li> {@link #b_connections_activity_bluetooth_switcher}, </li>
+	*  <li> {@link #b_connections_activity_wireless_switcher}, </li>
+	*  <li> {@link #b_connections_activity_refresh_connections_check}. </li>
+	*  </ul>
+	*/
+	private ProgressBar pb_connections_activity_refreshing = null;
 	
-	ImageButton b_connections_activity_add_new_connection = null;
+	/** List of generated connections with other devices.
+	* 
+	* Each generated element consists of fields defined in {@link ElementOfConnectionsList}. 
+	* When empty or not initialized it is not displayed at all (see {@link #rl_connections_activity_device_list_background_layout}).
+	* After generating it displays every element on {@link #listOfElements}.
+	* 
+	* @see listOfElements
+	* @see selectedConfig
+	* @see lv_connections_activity_device_list_visibly
+	*/
+	private ListView lv_connections_activity_device_list = null;
 	
-	ImageButton b_connections_activity_refresh_connections_check = null;
+	/** Button that fires searching for available bluetooth connections.
+	* 
+	* <ul>
+	* <li> When button is tapped short: 
+	* It fires execution of {@link GenerateConnectionList} that adds to list bluetooth connections which have been found. </li>
+	* <li> When button is tapped long: It replaces default type of connections to bluetooth type- 
+	* when there are default connections stored in Android memory of both types, 
+	* the priority one is a bluetooth type and after discovering such a connection it is set automatically.</li>
+	* </ul>
+	* 
+	* @see MultiPlayApplication#setMainNetworkConfiguration(ConnectionsConfigurationClass)
+	*/
+	private ImageToggleButton b_connections_activity_bluetooth_switcher = null;
 	
-	ConnectionsConfigurationClass selectedConfig = null;
+	/** Button that fires searching for available wireless connections.
+	* 
+	* <ul>
+	* <li> When button is tapped short: 
+	* It fires execution of {@link GenerateConnectionList} that adds to list wireless connections which have been found. </li>
+	* <li> When button is tapped long: It replaces default type of connections to wireless type- 
+	* when there are default connections stored in Android memory of both types, 
+	* the priority one is a wireless type and after discovering such a connection it is set automatically.</li>
+	* </ul>
+	* 
+	* @see MultiPlayApplication#setMainNetworkConfiguration(ConnectionsConfigurationClass)
+	*/
+	private ImageToggleButton b_connections_activity_wireless_switcher = null;
 	
-	Collection<ElementOfConnectionsList> listOfElements = null;
-	boolean lv_connections_activity_device_list_visibly = false;
+	/**
+	* 
+	*/
+	private ImageButton b_connections_activity_add_new_connection = null;
+	
+	/**
+	* 
+	*/
+	private ImageButton b_connections_activity_refresh_connections_check = null;
+	
+	/**
+	* 
+	*/
+	private ConnectionsConfigurationClass selectedConfig = null;
+	
+	/**
+	* 
+	*/
+	private Collection<ElementOfConnectionsList> listOfElements = null;
+	
+	/**
+	* 
+	*/
+	private boolean lv_connections_activity_device_list_visibly = false;
 	
 	WifiP2pManager mManager = null;
 	Channel mChannel = null;
@@ -388,7 +462,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 			return;
 		} else if (dialogTag.equals(OptionsActivityDialogList.TAG_CONNECT_CONFIRMATION)) {
 			Toast.makeText(this, "Make connection",Toast.LENGTH_LONG).show();
-			MultiPlayApplication.setSetMainConfiguration(selectedConfig);
+			MultiPlayApplication.setMainNetworkConfiguration(selectedConfig);
 			//TODO
 		}
 		

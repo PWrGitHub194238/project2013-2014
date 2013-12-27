@@ -5,13 +5,13 @@ import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.TextView;
 
-public class OptionsFocusChangeListener implements OnFocusChangeListener {
+public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 
 	private TextView title_of_selected_item = null;
 	private TextView describtion_of_selected_item = null;
 	private int sourseID;
 	
-	public OptionsFocusChangeListener( Activity activity, int sourseID ) {
+	public ButtonsFocusChangeListener( Activity activity, int sourseID ) {
 		this.sourseID = sourseID;
 		title_of_selected_item = (TextView) activity.findViewById(R.id.tv_title_of_selected_item);
 		describtion_of_selected_item = (TextView) activity.findViewById(R.id.tv_describtion_of_selected_item);

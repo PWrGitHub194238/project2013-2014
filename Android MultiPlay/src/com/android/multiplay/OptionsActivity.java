@@ -9,11 +9,6 @@ import android.widget.ImageButton;
 
 public class OptionsActivity extends Activity {
 
-//	private EditText IP;
-//	private Button nextButton, search;
-
-	// TODO JAVADOC
-	
 ////////////////////Fields
 
 
@@ -22,7 +17,7 @@ public class OptionsActivity extends Activity {
 * 
 * It leaves to next activity: {@link MultiplayExplorerActivity}.
 * This button is not active if no wireless or bluetooth connections were found.
-* On click it call method {@link #multiplay_explorer_OnClick(View)}.
+* On click it call method {@link #connections_OnClick(View)}.
 */
 private ImageButton b_connections = null;
 
@@ -30,14 +25,14 @@ private ImageButton b_connections = null;
 * 
 * It leaves to next activity: {@link SystemControllerActivity}.
 * This button is not active if no wireless or bluetooth connections were found.
-* On click it call method {@link #system_controller_OnClick(View)}.
+* On click it call method {@link #connections_OnClick(View)}.
 */
 private ImageButton b_controllers = null;
 
 /** Menu button.
 * 
 * It leaves to next activity: {@link HelpActivity}.
-* On click it call method {@link #help_OnClick(View)}.
+* On click it call method {@link #resetdata_OnClick(View)}.
 */
 private ImageButton b_resetdata = null;
 
@@ -119,71 +114,48 @@ private ImageButton b_goback = null;
 		super.findViewById(R.id.tv_title_of_selected_item).requestFocus();
 	}
 
-	/** Initialize method that links {@link #b_multiplay_explorer} object with correct View by id.
+	/** Initialize method that links {@link #b_connections} object with correct View by id.
 	* 
 	* Also creates a new listener for this button's events 
 	* by passing this {@link Activity} and id parameter 
-	* to {@link OptionsFocusChangeListener#MainActivityFocusChangeListener(Activity, int)} .
+	* to {@link ButtonsFocusChangeListener#ButtonsFocusChangeListener(Activity, int)} .
 	* @param id ID of view in {@link com.android.multiplay.R}
 	*/
 	private void initB_connecions( int id) {
 		this.b_connections = (ImageButton) super.findViewById(id);
 		this.b_connections.setOnFocusChangeListener(
-		new OptionsFocusChangeListener(this,id));
+		new ButtonsFocusChangeListener(this,id));
 	}
 
-	/** Initialize method that links {@link #b_system_controller} object with correct View by id.
+	/** Initialize method that links {@link #b_controllers} object with correct View by id.
 	* 
 	* Also creates a new listener for this button's events 
 	* by passing this {@link Activity} and id parameter 
-	* to {@link OptionsFocusChangeListener#MainActivityFocusChangeListener(Activity, int)} .
+	* to {@link ButtonsFocusChangeListener#ButtonsFocusChangeListener(Activity, int)} .
 	* @param id ID of view in {@link com.android.multiplay.R}
 	*/
 	private void initB_controllers( int id ) {
 		this.b_controllers = (ImageButton) super.findViewById(id);
 		this.b_controllers.setOnFocusChangeListener(
-		new OptionsFocusChangeListener(this,id));
+		new ButtonsFocusChangeListener(this,id));
 	}
 
-	/** Initialize method that links {@link #b_help} object with correct View by id.
+	/** Initialize method that links {@link #b_resetdata} object with correct View by id.
 	* 
 	* Also creates a new listener for this button's events 
 	* by passing this {@link Activity} and id parameter 
-	* to {@link OptionsFocusChangeListener#MainActivityFocusChangeListener(Activity, int)} .
+	* to {@link ButtonsFocusChangeListener#ButtonsFocusChangeListener(Activity, int)} .
 	* @param id ID of view in {@link com.android.multiplay.R}
 	*/
 	private void initB_resetdata( int id ) {
 		this.b_resetdata = (ImageButton) super.findViewById(id);
 		this.b_resetdata.setOnFocusChangeListener(
-		new OptionsFocusChangeListener(this,id));
+		new ButtonsFocusChangeListener(this,id));
 	}
 	
 	private void initB_goback( int id ) {
 		this.b_goback = (ImageButton) super.findViewById(id);
 		this.b_goback.setOnFocusChangeListener(
-		new OptionsFocusChangeListener(this,id));
+		new ButtonsFocusChangeListener(this,id));
 	}
-
-	
-//	public void onClick(View arg0) {
-//		switch (arg0.getId()) {
-//		case R.id.imageButton1:
-//			if (IP.getText().toString().equals("")) {
-//				Toast.makeText(this, "Brak IP ", Toast.LENGTH_LONG).show();
-//			} else {
-//				Intent intent = new Intent(this, FirstMenu.class);
-//				intent.putExtra("ip", IP.getText().toString());
-//				super.startActivity(intent);
-//			}
-//			break;
-//		case R.id.search:
-//			Intent intent = new Intent(this, FirstMenu.class);
-//			
-//			super.startActivity(intent);
-//			break;
-//		}
-//	}
-
-	
-
 }

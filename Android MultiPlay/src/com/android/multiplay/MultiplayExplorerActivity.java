@@ -30,7 +30,7 @@ public class MultiplayExplorerActivity extends Activity implements OnClickListen
 		setContentView(R.layout.activity_multiplay_explorer);
 
 		try {
-			if (MultiPlayApplication.getSetMainConfiguration() != null) {
+			if (MultiPlayApplication.getMainNetworkConfiguration() != null) {
 				MultiPlayApplication.runThread();
 				b_connections_activity_testmouse = (ImageButton) super.findViewById(R.id.b_connections_activity_testmouse);
 				b_connections_activity_testmove = (ImageButton) super.findViewById(R.id.b_connections_activity_testmove);
@@ -62,16 +62,16 @@ public class MultiplayExplorerActivity extends Activity implements OnClickListen
 	public void onClick(View v) {
 		switch(v.getId()) {
 		case R.id.b_connections_activity_testmouse:
-			MultiPlayApplication.add(N.dev_signal.mouse);
+			MultiPlayApplication.add(N.DeviceSignal.MOUSE_LPM);
 			break;
 		case R.id.b_connections_activity_testmove:
-			MultiPlayApplication.add(N.dev_signal.mouse_move);
+			MultiPlayApplication.add(N.DeviceSignal.MOUSE_LPM);
 			break;
 		case R.id.b_connections_activity_testleft:
-			MultiPlayApplication.add(N.dev_signal.mouse_left);
+			MultiPlayApplication.add(N.DeviceSignal.MOUSE_MPM);
 			break;
 		case R.id.b_connections_activity_testright:
-			MultiPlayApplication.add(N.dev_signal.mouse_right);
+			MultiPlayApplication.add(N.DeviceSignal.MOUSE_PPM);
 			break;
 	}
 	return;

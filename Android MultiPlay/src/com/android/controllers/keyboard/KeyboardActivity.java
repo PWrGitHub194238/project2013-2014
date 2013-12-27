@@ -70,7 +70,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 		button32 = (Button) super.findViewById(R.id.bm);
 		button33 = (Button) super.findViewById(R.id.balt);
 		button34 = (Button) super.findViewById(R.id.bspace);
-		if (MultiPlayApplication.getSetMainConfiguration() != null) {
+		if (MultiPlayApplication.getMainNetworkConfiguration() != null) {
 		} else {
 			AlertDialogs
 					.showDialog(
@@ -246,15 +246,15 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 					button14.setText("8");
 					button15.setText("9");
 					button16.setText("0");
-					button17.setText("ê");
-					button18.setText("ó");
-					button19.setText("¹");
-					button20.setText("œ");
-					button21.setText("³");
-					button22.setText("¿");
-					button23.setText("Ÿ");
-					button24.setText("æ");
-					button25.setText("ñ");
+                    button17.setText("Ãª");
+                    button18.setText("Ã³");
+                    button19.setText("Â¹");
+                    button20.setText("Å“");
+                    button21.setText("Â³");
+                    button22.setText("Â¿");
+                    button23.setText("Å¸");
+                    button24.setText("Ã¦");
+                    button25.setText("Ã±");
 					button26.setText("[");
 					button27.setText("]");
 					button28.setText(";");
@@ -766,15 +766,15 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 					button14.setText("8");
 					button15.setText("9");
 					button16.setText("0");
-					button17.setText("ê");
-					button18.setText("ó");
-					button19.setText("¹");
-					button20.setText("œ");
-					button21.setText("³");
-					button26.setText("¿");
-					button27.setText("Ÿ");
-					button28.setText("æ");
-					button29.setText("ñ");
+					button17.setText("ï¿½");
+					button18.setText("ï¿½");
+					button19.setText("ï¿½");
+					button20.setText("ï¿½");
+					button21.setText("ï¿½");
+					button26.setText("ï¿½");
+					button27.setText("ï¿½");
+					button28.setText("ï¿½");
+					button29.setText("ï¿½");
 					button26.setText("[");
 					button27.setText("]");
 					button28.setText(";");

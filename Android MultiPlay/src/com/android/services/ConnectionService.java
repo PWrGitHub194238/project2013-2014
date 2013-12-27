@@ -4,16 +4,10 @@ import android.app.IntentService;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
-import android.os.SystemClock;
-import android.text.format.DateFormat;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.android.extendedWidgets.ImageToggleButton;
-import com.android.multiplay.MainActivity;
+import com.android.multiplay.fragments.ConnectionPanel;
 import com.android.service.receivers.ConnectionServiceResponseReceiver;
 
 public class ConnectionService extends IntentService {
@@ -32,10 +26,11 @@ public class ConnectionService extends IntentService {
 	 * 		should process {{@link #initService()} method as service assumed that it is it's first call.</li>
 	 * 	<li> {@link ConnectionService#BLUETOOTH} - it says that {@link #onHandleIntent(Intent)} 
 	 * 		should process {{@link #bluetoothService()} method as service assumed 
-	 * 		that it was called by {@link MainActivity#toggleBluetooth_onClick(android.view.View)}</li>
+	 * 		that it was called by {@link ConnectionPanel#toggleBluetooth_onClick(android.view.View)}</li>
 	 * 	<li> {@link ConnectionService#WIFI} - it says that {@link #onHandleIntent(Intent)} 
-	 * 		should process {{@link #wifiService()()} method as service assumed 
-	 * 		that it was called by {@link MainActivity#toggleWirelessNetwork_onClick(android.view.View)}</li>
+	 * 		should process {{@link #wifiService()} method as service assumed 
+	 * 		that it was called by {@link ConnectionPanel#toggleWirelessNetwork_onClick(android.view.View)}</li>
+	 * </ul>
 	 * 
 	 */
 	public static final String INPUT_DATA_CALLED_REASON = CLASS + "CALLED_REASON";

@@ -49,8 +49,13 @@ public class VJoyDriver {
 	//osie dwóch galek analogowych
 	short axisX1,axisY1,axisX2,axisY2;
 	
-	public VJoyDriver()
+	//klasa z w¹tkiem reinicjalizuj¹cym sterownik co 5 minut
+	VJoyReinit reinit;
+	
+	public VJoyDriver(boolean autoInit)
 	{
+		//autoInit - jeœli true to automatycznie inicjalizujemy sterownik i uruchamiamy w¹tek reinicjalizuj¹cy
+		
 		//NA TEMAT ZMIENNYCH BO SA MA£O LOGICZNE:
 		//Wheel zawiera przyciski 1-8 ze wzorem 2^(7+i) oraz prawdopodobnie pomiêdzy nimi kombinacje dla dŸwigni POV (z regu³y to d-pad)
 		//POV zawiera przyciski 9-24
@@ -71,6 +76,19 @@ public class VJoyDriver {
 			buttonPressed[i]=false;
 		}
 		
+		reinit=new VJoyReinit(this);
+		
+		if(autoInit)
+		{
+			VJoyStart();			
+		}
+		
+	}
+	
+	public void VJoyStart()
+	{
+		VJoyInit();
+		new Thread(reinit).start();
 	}
 	
 	public void VJoyInit()
@@ -160,4 +178,5 @@ public class VJoyDriver {
 	{
 		vDLL.VJoy_Shutdown();
 	}
+
 }

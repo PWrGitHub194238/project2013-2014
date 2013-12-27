@@ -46,16 +46,16 @@ public class Main {
 					System.out.println("RUN");
 					System.out.println("Read...");
 					data = dis.readByte();
-					if (data == N.signal.need_authorization) {
+					if (data == N.Signal.NEED_AUTHORIZATION) {
 						System.out.println("Send back authorization code...");
-						dos.writeByte(N.signal.need_authorization);
+						dos.writeByte(N.Signal.NEED_AUTHORIZATION);
 						System.out.println("Over");
 						dis.close();
 						dos.close();
 						socket.close();
-					} else if (data == N.signal.need_to_connect) {
+					} else if (data == N.Signal.NEED_CONNECTION) {
 						System.out.println("Send back connect code...");
-						dos.writeByte(N.signal.need_to_connect);
+						dos.writeByte(N.Signal.NEED_CONNECTION);
 						Serverwifi wifi = new Serverwifi(socket, dis, dos);
 						wifi.run();
 					}

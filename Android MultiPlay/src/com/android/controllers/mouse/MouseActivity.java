@@ -1,5 +1,7 @@
 package com.android.controllers.mouse;
 
+import com.android.application.N;
+import com.android.application.N.Helper;
 import com.android.multiplay.R;
 import com.android.multiplay.Sender;
 import com.android.multiplay.R.id;
@@ -8,6 +10,7 @@ import com.android.multiplay.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -38,6 +41,26 @@ public class MouseActivity extends Activity {
 		return true;
 	}
 
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		super.onKeyDown(keyCode, event);
+		if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+			Toast.makeText(getApplicationContext(), "PPM", Toast.LENGTH_SHORT)
+					.show();
+
+			int signal = Helper.encodeSignal(N.Device.MOUSE,
+					N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_PPM);
+			return true;
+		} else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+			Toast.makeText(getApplicationContext(), "LPM", Toast.LENGTH_SHORT)
+					.show();
+			int signal = Helper.encodeSignal(N.Device.MOUSE,
+					N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_LPM);
+
+			return true;
+
+		}
+		return true;
+	}
 	public boolean onTouchEvent(MotionEvent event) {
 		int maskedAction = event.getActionMasked();
 		String x = Integer.toString((hotx - (int) event.getX()) * (-1));

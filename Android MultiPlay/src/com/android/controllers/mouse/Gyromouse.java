@@ -1,6 +1,8 @@
 package com.android.controllers.mouse;
 
 import com.android.application.MultiPlayApplication;
+import com.android.application.N;
+import com.android.application.N.Helper;
 
 import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.elements.DialogListCore;
@@ -52,11 +54,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 		// ip = bundle.getString("ip");
 		tv = (TextView) findViewById(R.id.text);
 		stop = 0;
-		button1 = (Button) super.findViewById(R.id.leftb); 
-		button2 = (Button) super.findViewById(R.id.rightb); 
+		button1 = (Button) super.findViewById(R.id.leftb);
+		button2 = (Button) super.findViewById(R.id.rightb);
 		button3 = (Button) super.findViewById(R.id.upb);
-		
-		button4 = (Button) super.findViewById(R.id.downb); 
+
+		button4 = (Button) super.findViewById(R.id.downb);
 		button5 = (Button) super.findViewById(R.id.enterb);
 		button6 = (Button) super.findViewById(R.id.bshift);
 		button7 = (Button) super.findViewById(R.id.bq);
@@ -95,14 +97,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 
 	}
 
-
-
 	@Override
 	public void onAccuracyChanged(Sensor arg0, int arg1) {
 		// TODO Auto-generated method stub
 
 	}
-
 
 	@Override
 	public void onSensorChanged(SensorEvent arg0) {
@@ -124,18 +123,24 @@ public class Gyromouse extends Activity implements SensorEventListener,
 
 		return false;
 	}
-	
-	//volume and camera button
+
+	// volume and camera button
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		super.onKeyDown(keyCode, event);
 		if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
 			Toast.makeText(getApplicationContext(), "PPM", Toast.LENGTH_SHORT)
 					.show();
+
+			int signal = Helper.encodeSignal(N.Device.MOUSE,
+					N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_PPM);
 			return true;
 		} else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
 			Toast.makeText(getApplicationContext(), "LPM", Toast.LENGTH_SHORT)
 					.show();
+			int signal = Helper.encodeSignal(N.Device.MOUSE,
+					N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_LPM);
+
 			return true;
 		} else if (keyCode == KeyEvent.KEYCODE_CAMERA) {
 			if (stop == 0) {
@@ -307,15 +312,15 @@ public class Gyromouse extends Activity implements SensorEventListener,
 					button14.setText("8");
 					button15.setText("9");
 					button16.setText("0");
-                    button17.setText("ê");
-                    button18.setText("ó");
-                    button19.setText("¹");
-                    button20.setText("œ");
-                    button21.setText("³");
-                    button22.setText("¿");
-                    button23.setText("Ÿ");
-                    button24.setText("æ");
-                    button25.setText("ñ");
+					button17.setText("ê");
+					button18.setText("ó");
+					button19.setText("¹");
+					button20.setText("œ");
+					button21.setText("³");
+					button22.setText("¿");
+					button23.setText("Ÿ");
+					button24.setText("æ");
+					button25.setText("ñ");
 					button26.setText("[");
 					button27.setText("]");
 					button28.setText(";");
@@ -368,11 +373,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button33);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button33);
 
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
@@ -387,11 +392,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
@@ -405,11 +410,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -422,11 +427,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -439,11 +444,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -456,11 +461,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
@@ -474,11 +479,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -491,11 +496,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
@@ -509,11 +514,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
@@ -527,11 +532,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -544,11 +549,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -561,11 +566,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -578,11 +583,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -595,11 +600,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -612,11 +617,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -629,11 +634,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -646,11 +651,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -663,11 +668,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -680,11 +685,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -697,11 +702,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -714,11 +719,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -731,11 +736,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -748,11 +753,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -765,11 +770,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -782,11 +787,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"
@@ -799,11 +804,11 @@ public class Gyromouse extends Activity implements SensorEventListener,
 				// odcisniecie shifta
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
-						button11, button12, button13, button14, button15, button16,
-						button17, button18, button19, button20, button21,
-						button22, button23, button24, button25, button26,
-						button27, button28, button29, button30, button31,
-						button32);
+						button11, button12, button13, button14, button15,
+						button16, button17, button18, button19, button20,
+						button21, button22, button23, button24, button25,
+						button26, button27, button28, button29, button30,
+						button31, button32);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				// nacisniecie "q"

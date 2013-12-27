@@ -15,15 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class TouchPadActivity extends Activity {
-	double oldx = 245.0, oldy = 175.0;
-	TextView txv;
+	private double oldx = 245.0, oldy = 175.0;
+	private TextView txv;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_touch_pad);
 		txv = (TextView) super.findViewById(R.id.txe);
-
 	}
 
 	@Override
@@ -37,15 +36,12 @@ public class TouchPadActivity extends Activity {
 		double oldoldx = event.getX(), oldoldy = event.getY();
 
 		int maskedAction = event.getActionMasked();
-		// txv.setText(Double.toString((double)(event.getX() - oldx)));
 		switch (maskedAction) {
 		case MotionEvent.ACTION_MOVE:
 			if (oldoldx - oldx < (double) 0.0 && oldoldy - oldy < (double) 0.0) {
-
 				txv.setText("X=-1, Y=-1");
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
 						N.DeviceDataCounter.DOUBLE, -1, -1);
-
 			} else if (oldoldx - oldx > (double) 0.0
 					&& oldoldy - oldy > (double) 0.0) {
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
@@ -83,18 +79,15 @@ public class TouchPadActivity extends Activity {
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
 						N.DeviceDataCounter.DOUBLE, 0, -1);
 				txv.setText("X=0, Y=-1");
-
 			}
 			break;
 		case MotionEvent.ACTION_UP:
 			txv.setText("X=0, Y=0");
 			break;
-
 		}
 		oldx = event.getX();
 		oldy = event.getY();
 		return true;
-		// RETURN SUPER.ONTOUCHEVENT(EVENT);
 	}
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -102,7 +95,6 @@ public class TouchPadActivity extends Activity {
 		if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
 			Toast.makeText(getApplicationContext(), "PPM", Toast.LENGTH_SHORT)
 					.show();
-
 			int signal = Helper.encodeSignal(N.Device.MOUSE,
 					N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_PPM);
 			return true;
@@ -111,9 +103,7 @@ public class TouchPadActivity extends Activity {
 					.show();
 			int signal = Helper.encodeSignal(N.Device.MOUSE,
 					N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_LPM);
-
 			return true;
-
 		}
 		return true;
 	}

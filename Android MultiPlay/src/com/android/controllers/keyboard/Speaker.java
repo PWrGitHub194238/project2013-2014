@@ -25,7 +25,6 @@ import android.widget.Toast;
 
 public class Speaker extends Activity {
 	private ImageButton btnSpeak;
-	//private TextView txtText;
 	protected static final int RESULT_SPEECH = 1;
 
 	@Override

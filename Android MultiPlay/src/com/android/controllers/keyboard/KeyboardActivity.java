@@ -23,9 +23,7 @@ import com.android.dialogs.elements.MultiPlayExplorerActivityDialogList;
 
 public class KeyboardActivity extends Activity implements OnClickListener,
 		DialogButtonClickListener {
-	int shiftflag = 0, altflag = 0;
-	Bundle bundle;
-	private String ip;
+	private int shiftflag = 0, altflag = 0;
 	private Button button1, button2, button3, button4, button5, button6,
 			button7, button8, button9, button10, button11, button12, button13,
 			button14, button15, button16, button17, button18, button19,
@@ -45,7 +43,6 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 		button4 = (Button) super.findViewById(R.id.downb);
 		button5 = (Button) super.findViewById(R.id.enterb);
 		button6 = (Button) super.findViewById(R.id.bshift);
-
 		button7 = (Button) super.findViewById(R.id.bq);
 		button8 = (Button) super.findViewById(R.id.bw);
 		button9 = (Button) super.findViewById(R.id.be);
@@ -90,7 +87,6 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.keyboard, menu);
 		return true;
 	}

@@ -18,10 +18,8 @@ import android.widget.TextView;
 
 public class SteeringwheelActivity extends Activity implements
 		SensorEventListener {
-	SensorManager sm;
-	TextView tv;
-	private String ip;
-	Bundle bundle;
+	private SensorManager sm;
+	private TextView tv;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +32,6 @@ public class SteeringwheelActivity extends Activity implements
 		sm.registerListener(this,
 				sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
 				SensorManager.SENSOR_DELAY_NORMAL);
-
 	}
 
 	@Override
@@ -53,8 +50,6 @@ public class SteeringwheelActivity extends Activity implements
 	@Override
 	public void onSensorChanged(SensorEvent arg0) {
 		float y = arg0.values[1];
-
 		tv.setText(Integer.toString((int) y));
-
 	}
 }

@@ -29,13 +29,9 @@ import android.widget.Toast;
 //myszka oparta na żyroskopie(beta).
 public class Gyromouse extends Activity implements SensorEventListener,
 		OnTouchListener {
-	int shiftflag = 0, altflag = 0;
-	private static final int MENU_NEW_GAME = Menu.FIRST;
-	private static final int MENU_QUIT = Menu.FIRST + 1;
+	private int shiftflag = 0, altflag = 0;
 	private SensorManager sm;
 	private TextView tv;
-	private String ip;
-	private Bundle bundle;
 	private Button button1, button2, button3, button4, button5, button6,
 			button7, button8, button9, button10, button11, button12, button13,
 			button14, button15, button16, button17, button18, button19,

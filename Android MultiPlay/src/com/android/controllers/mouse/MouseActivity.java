@@ -19,24 +19,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MouseActivity extends Activity {
-	Bundle bundle;
 	private String tx;
-	TextView txv;
-	int hotx = 245, hoty = 176;
+	private TextView txv;
+	private int hotx = 245, hoty = 176;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mouse);
-		// bundle = super.getIntent().getExtras();
-		// ip = bundle.getString("ip");
+	
 		txv = (TextView) super.findViewById(R.id.texty);
-
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.mouse, menu);
 		return true;
 	}

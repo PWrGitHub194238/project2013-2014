@@ -1,29 +1,19 @@
 package com.android.carousel;
 
-
-
 import android.content.Context;
 import android.graphics.Camera;
 import android.graphics.Matrix;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Transformation;
-import android.widget.Gallery;
-import android.widget.ImageView;
-
 import android.widget.Gallery;
 
 public class CarouselView extends Gallery  {
 	
 	private Camera mCamera = new Camera();
-
 	private int mMaxRotationAngle = 60; //60
-	
     private int mCoveflowCenter;
    
-
-	
 	public CarouselView(Context context) {
     	super(context);
     	this.setStaticTransformationsEnabled(true);
@@ -42,15 +32,10 @@ public class CarouselView extends Gallery  {
     	return mMaxRotationAngle;
     }
 
-    
-    
-
     public void setMaxRotationAngle(int maxRotationAngle) {
     	mMaxRotationAngle = maxRotationAngle;
     }
 
-
-   
      protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     	 mCoveflowCenter = (getWidth() - getPaddingLeft() - getPaddingRight()) / 2 + getPaddingLeft();
     	 super.onSizeChanged(w, h, oldw, oldh);
@@ -58,8 +43,8 @@ public class CarouselView extends Gallery  {
     
     protected boolean getChildStaticTransformation(View child, Transformation t) {
     	CarouselViewItem s = (CarouselViewItem)child;
-    	final int childCenter = s.getLeft() + s.getMaxW()/2;//getCenterOfView(s);//child);
-    	final int childWidth = s.getMaxW();//child.getWidth() ;
+    	final int childCenter = s.getLeft() + s.getMaxWeight()/2;//getCenterOfView(s);//child);
+    	final int childWidth = s.getMaxWeight();//child.getWidth() ;
     	//Log.e("db", "getChildStaticTransformation:" +childCenter + ":"+childWidth);
     	
     	int rotationAngle = 0;
@@ -77,17 +62,14 @@ public class CarouselView extends Gallery  {
         }     
         return true;
     }
-
-
-  
    
      private void transformImageBitmap(CarouselViewItem s, Transformation t, int rotationAngle) {            
     	 mCamera.save();
     	 final Matrix imageMatrix = t.getMatrix();;
     	
     	 
-    	 final int imageWidth = s.getMaxW();
-    	 final int imageHeight = s.getMaxH();
+    	 final int imageWidth = s.getMaxWeight();
+    	 final int imageHeight = s.getMaxHeight();
      	
     	 final int rotation = Math.abs(rotationAngle);
          //As the angle of the view gets less, zoom in     
@@ -100,7 +82,4 @@ public class CarouselView extends Gallery  {
     	 imageMatrix.postTranslate((imageWidth/2), (imageHeight/2));
     	 mCamera.restore();
      }
-
-  
-
 }

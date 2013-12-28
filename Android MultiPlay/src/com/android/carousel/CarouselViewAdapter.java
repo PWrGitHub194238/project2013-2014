@@ -1,6 +1,5 @@
 package com.android.carousel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -8,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -17,22 +17,21 @@ import android.graphics.Shader.TileMode;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Filter;
 
 public class CarouselViewAdapter extends BaseAdapter {
 
 	int mGalleryItemBackground;
-	private Context mContext;
+	private Context context;
 
-	private List<CarouselDataItem> mDocus, mDocusOrig;
+	private List<CarouselDataItem> mDocus;
 	int m_w, m_h;
 
-	public CarouselViewAdapter(Context c, List<CarouselDataItem> docuList,
+	public CarouselViewAdapter(Context context, List<CarouselDataItem> docuList,
 			int image_max_w, int image_max_h) {
 		m_w = image_max_w;
 		m_h = image_max_h;
 		mDocus = docuList;
-		mContext = c;
+		this.context = context;
 	}
 
 	private Bitmap createReflectedImage(Bitmap bmp) {
@@ -100,13 +99,16 @@ public class CarouselViewAdapter extends BaseAdapter {
 			position = position % mDocus.size();
 		}
 
-		Bitmap originalImage = BitmapFactory.decodeFile(mDocus.get(position)
-				.getImgPath());
+		Bitmap originalImage = BitmapFactory.decodeResource(context.getResources(),mDocus.get(position).getIconId());
 		Bitmap reflection = createReflectedImage(originalImage);
 		if (originalImage != null)
 			originalImage.recycle();
-		CarouselViewItem scaIv = new CarouselViewItem(mContext, reflection,
-				mDocus.get(position).getDocText(), m_w, m_h);
+		CarouselViewItem scaIv = new CarouselViewItem(
+				context, reflection,
+				mDocus.get(position).getTitle(),
+				Color.WHITE,
+				Constants.m_nTextSizeMedium,
+				m_w, m_h);
 
 		return scaIv;
 	}
@@ -120,36 +122,6 @@ public class CarouselViewAdapter extends BaseAdapter {
 
 	public float getScale(boolean focused, int offset) {
 		return Math.max(0, 1.0f / (float) Math.pow(2, Math.abs(offset)));
-	}
-
-	public Filter getFilter() {
-		return new Filter() {
-
-			protected FilterResults performFiltering(CharSequence constraint) {
-				final FilterResults oReturn = new FilterResults();
-				// final CarouselDataItem[] mDocus;
-				final ArrayList<CarouselDataItem> results = new ArrayList<CarouselDataItem>();
-				if (mDocusOrig == null)
-					mDocusOrig = mDocus;
-				if (constraint != null) {
-					if (mDocusOrig != null && mDocusOrig.size() > 0) {
-						for (final CarouselDataItem g : mDocusOrig) {
-							if (g.getDocText().toLowerCase()
-									.contains(constraint.toString()))
-								results.add(g);
-						}
-					}
-					oReturn.values = results;
-				}
-				return oReturn;
-			}
-
-			protected void publishResults(CharSequence constraint,
-					FilterResults results) {
-				mDocus = (ArrayList<CarouselDataItem>) results.values;
-				notifyDataSetChanged();
-			}
-		};
 	}
 
 	public void notifyDataSetChanged() {

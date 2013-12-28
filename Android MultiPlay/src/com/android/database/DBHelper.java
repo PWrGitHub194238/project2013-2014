@@ -11,6 +11,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.android.application.MultiPlayApplication;
 import com.android.database.tables.ASCIIButton;
 import com.android.database.tables.ConnectionHistory;
 import com.android.database.tables.Controllers;
@@ -63,6 +64,7 @@ public class DBHelper {
 	};
 	
 	private Context context = null;
+	MultiPlayDataBase dbHelper = null;
 	private static SQLiteDatabase db = null;
 	
 	//SQL types 
@@ -190,17 +192,25 @@ public class DBHelper {
 	}
 	
 	public void openConnection() {
-		MultiPlayDataBase dbHelper = new MultiPlayDataBase(context);
-	    try {
-	        db = dbHelper.getWritableDatabase();
-	    } catch (SQLException e) {
-	        db = dbHelper.getReadableDatabase();
-	    }
+		if ( dbHelper == null ) {
+			dbHelper = new MultiPlayDataBase(context);
+		}
+		
+		if ( db == null ) {
+		    try {
+		        db = dbHelper.getWritableDatabase();
+		    } catch (SQLException e) {
+		        db = dbHelper.getReadableDatabase();
+		    }
+		}
 	}
 	
 	public void closeConnection() {
 		Log.d("DB","CLOSING");
-	    db.close();
+		if (db != null ) {
+		    db.close();
+		    db = null;
+		}
 	}
 
 	/** Finds minimum ID that not exist in chosen table.
@@ -217,6 +227,7 @@ public class DBHelper {
 	 * which is not accessible from the location where the reference is made.
 	 */
 	public static int sql_generate_not_exitsting_minID (Class<? extends DBHelper.TableIF> tableClass) throws InstantiationException, IllegalAccessException {
+		MultiPlayApplication.getDbHelper().openConnection();
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
 		
@@ -241,6 +252,7 @@ public class DBHelper {
 			}
 		}
 		Log.d("DB", String.valueOf(searchedID));
+		MultiPlayApplication.getDbHelper().closeConnection();
 		return searchedID;
 	}
 	
@@ -271,6 +283,7 @@ public class DBHelper {
 	 * which is not accessible from the location where the reference is made.
 	 */
 	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass) throws InstantiationException, IllegalAccessException {
+		MultiPlayApplication.getDbHelper().openConnection();
 		Cursor cursor = null;
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
@@ -285,6 +298,7 @@ public class DBHelper {
 		Log.d("DB", query.toString());
 		cursor = db.rawQuery(query.toString(), null);
 		cursor.moveToFirst();
+		MultiPlayApplication.getDbHelper().closeConnection();
 		return cursor;
 	}
 	
@@ -317,6 +331,7 @@ public class DBHelper {
 	 * which is not accessible from the location where the reference is made.
 	 */
 	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, int KEY_UNIQUE) throws InstantiationException, IllegalAccessException {
+		MultiPlayApplication.getDbHelper().openConnection();
 		Cursor cursor = null;
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
@@ -334,6 +349,7 @@ public class DBHelper {
 		Log.d("DB", query.toString());
 		cursor = db.rawQuery(query.toString(), null);
 		cursor.moveToFirst();
+		MultiPlayApplication.getDbHelper().closeConnection();
 		return cursor;
 	}
 	
@@ -365,6 +381,7 @@ public class DBHelper {
 	 * which is not accessible from the location where the reference is made.
 	 */
 	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, Set<String> columnNames, int KEY_UNIQUE) throws InstantiationException, IllegalAccessException {
+		MultiPlayApplication.getDbHelper().openConnection();
 		Cursor cursor = null;
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
@@ -388,6 +405,7 @@ public class DBHelper {
 			Log.d("DB", query.toString());
 			cursor = db.rawQuery(query.toString(), null);
 			cursor.moveToFirst();
+			MultiPlayApplication.getDbHelper().closeConnection();
 			return cursor;
 			
 		} else {
@@ -422,6 +440,7 @@ public class DBHelper {
 	 * which is not accessible from the location where the reference is made.
 	 */
 	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, Set<Integer> KEY_UNIQUEs) throws InstantiationException, IllegalAccessException {
+		MultiPlayApplication.getDbHelper().openConnection();
 		Cursor cursor = null;
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
@@ -443,6 +462,7 @@ public class DBHelper {
 		Log.d("DB", query.toString());
 		cursor = db.rawQuery(query.toString(), null);
 		cursor.moveToFirst();
+		MultiPlayApplication.getDbHelper().closeConnection();
 		return cursor;
 	}
 	
@@ -476,6 +496,7 @@ public class DBHelper {
 	 * which is not accessible from the location where the reference is made.
 	 */
 	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, Set<String> columnNames, Set<Integer> KEY_UNIQUEs) throws InstantiationException, IllegalAccessException {
+		MultiPlayApplication.getDbHelper().openConnection();
 		Cursor cursor = null;
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
@@ -503,6 +524,7 @@ public class DBHelper {
 		Log.d("DB", query.toString());
 		cursor = db.rawQuery(query.toString(), null);
 		cursor.moveToFirst();
+		MultiPlayApplication.getDbHelper().closeConnection();
 		return cursor;
 	}
 	
@@ -537,6 +559,7 @@ public class DBHelper {
 	 * which is not accessible from the location where the reference is made.
 	 */
 	public void sql_insert_row (Class<? extends DBHelper.TableIF> tableClass, Map<String, String> newValues, boolean isToClear) throws InstantiationException, IllegalAccessException {
+		MultiPlayApplication.getDbHelper().openConnection();
 		if (newValues == null || !newValues.isEmpty()) {
 			Log.d("DB", "Database insert...");
 			Log.d("TYPE", tableClass.getName());
@@ -565,9 +588,11 @@ public class DBHelper {
 			if (isToClear == true) {
 				newValues.clear();
 			}
+			MultiPlayApplication.getDbHelper().closeConnection();
 			return;
 		} else {
 			Log.d("DB", "Database empty insert!");
+			MultiPlayApplication.getDbHelper().closeConnection();
 			return;
 		}
 	}
@@ -587,6 +612,7 @@ public class DBHelper {
 	 * which is not accessible from the location where the reference is made.
 	 */
 	public void sql_insert_row (Class<? extends DBHelper.TableIF> tableClass, int KEY_UNIQUE, Map<String, String> newValues, boolean isToClear) throws InstantiationException, IllegalAccessException {
+		MultiPlayApplication.getDbHelper().openConnection();
 		if (newValues == null || !newValues.isEmpty()) {
 			Log.d("DB", "Database insert...");
 			Log.d("TYPE", tableClass.getName());
@@ -615,9 +641,11 @@ public class DBHelper {
 			if (isToClear == true) {
 				newValues.clear();
 			}
+			MultiPlayApplication.getDbHelper().closeConnection();
 			return;
 		} else {
 			Log.d("DB", "Database empty insert!");
+			MultiPlayApplication.getDbHelper().closeConnection();
 			return;
 		}
 	}
@@ -632,6 +660,7 @@ public class DBHelper {
 	 * which is not accessible from the location where the reference is made.
 	 */
 	public void sql_delete_row (Class<? extends DBHelper.TableIF> tableClass) throws InstantiationException, IllegalAccessException {
+		MultiPlayApplication.getDbHelper().openConnection();
 		Log.d("DB", "Database delete...");
 		Log.d("TYPE", tableClass.getName());
 		
@@ -643,6 +672,7 @@ public class DBHelper {
 				);
 		Log.i("DB",query.toString());
 		db.execSQL(query.toString());
+		MultiPlayApplication.getDbHelper().closeConnection();
 	}
 	
 	/** Delete query to database.
@@ -656,6 +686,7 @@ public class DBHelper {
 	 * which is not accessible from the location where the reference is made.
 	 */
 	public void sql_delete_row (Class<? extends DBHelper.TableIF> tableClass, int KEY_UNIQUE) throws InstantiationException, IllegalAccessException {
+		MultiPlayApplication.getDbHelper().openConnection();
 		Log.d("DB", "Database delete...");
 		Log.d("TYPE", tableClass.getName());
 		
@@ -668,6 +699,7 @@ public class DBHelper {
 				);
 		Log.i("DB",query.toString());
 		db.execSQL(query.toString());
+		MultiPlayApplication.getDbHelper().closeConnection();
 	}
 	
 	/**
@@ -681,6 +713,7 @@ public class DBHelper {
 	 * which is not accessible from the location where the reference is made.
 	 */
 	public void sql_delete_row (Class<? extends DBHelper.TableIF> tableClass, Set<Integer> KEY_UNIQUEs) throws InstantiationException, IllegalAccessException {
+		MultiPlayApplication.getDbHelper().openConnection();
 		Log.d("DB", "Database delete...");
 		Log.d("TYPE", tableClass.getName());
 		
@@ -692,5 +725,6 @@ public class DBHelper {
 				);
 		Log.i("DB",query.toString());
 		db.execSQL(query.toString());
+		MultiPlayApplication.getDbHelper().closeConnection();
 	}
 }

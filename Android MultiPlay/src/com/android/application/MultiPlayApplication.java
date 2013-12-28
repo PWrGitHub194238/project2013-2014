@@ -3,11 +3,8 @@ package com.android.application;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 import android.app.Application;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import com.android.asychs.SocketMainWiFiSender;
@@ -53,8 +50,6 @@ public class MultiPlayApplication extends Application {
 		discoveredBluetoothDevices = new ArrayList<BluetoothConfigurationClass>();
 		discoveredWirelessDevices = new ArrayList<WirelessConfigurationClass>();
 		dbHelper = new DBHelper(this.getApplicationContext());
-		dbHelper.openConnection();
-		
 	}
 	
 	public void onDestroy() {

@@ -101,7 +101,7 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 		
 		int signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_LPM);
 		int[] ret = Helper.decodeSignal(signal);
-		Log.d("APP",String.valueOf(ret[0])+" "+String.valueOf(ret[1])+" "+String.valueOf(ret[2])+" "+String.valueOf(ret[3])+" "+String.valueOf(ret[4]));
+		//Log.d("APP",String.valueOf(ret[0])+" "+String.valueOf(ret[1])+" "+String.valueOf(ret[2])+" "+String.valueOf(ret[3])+" "+String.valueOf(ret[4]));
 	}
 
 	/** Called on activity resume.

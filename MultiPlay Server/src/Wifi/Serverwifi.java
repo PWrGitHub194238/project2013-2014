@@ -55,7 +55,6 @@ public class Serverwifi implements Runnable {
 					if (ret[1] == N.DeviceDataCounter.SINGLE)
 						mouse.click(ret[2]);
 					else if (ret[1] == N.DeviceDataCounter.DOUBLE)
-						System.out.println(signals);
 						mouse.run(ret[2], ret[3]);
 				} else if (ret[0] == N.Device.KEYBOARD)
 					keyboard.click(ret[2]);

@@ -63,7 +63,6 @@ public class MouseActivity extends Activity {
 					N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_LPM);
 			MultiPlayApplication.add(signal);
 			return true;
-
 		}
 		return true;
 	}

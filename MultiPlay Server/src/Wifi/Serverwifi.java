@@ -36,10 +36,13 @@ public class Serverwifi implements Runnable {
 		Keyboard keyboard = new Keyboard();
 		Speaker speak = new Speaker();
 		
+		if(System.getProperty("os.name").startsWith("Win"))
+		{
 		if(System.getProperty("os.arch").contains("64"))
 			vjoy=new VJoyDriver64(true);
 		else
 			vjoy=new VJoyDriver32(true);
+		}
 		
 		int signals = 0;
 		System.out.println("watek");

@@ -38,6 +38,7 @@ public class Serverwifi implements Runnable {
 		
 		if(System.getProperty("os.name").startsWith("Win"))
 		{
+			
 		if(System.getProperty("os.arch").contains("64"))
 			vjoy=new VJoyDriver64(true);
 		else

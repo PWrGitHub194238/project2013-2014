@@ -24,7 +24,7 @@ public class Mouse {
 			Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 			if (!(x1 + x > d.getWidth()))
 				robot.mouseMove(x1 + x, y1);
-			if (!(y1 + y > d.getHeight()))
+			//if (!(y1 + y > d.getHeight()))
 				robot.mouseMove(x1, y1 + y);
 		} catch (AWTException e) {
 			// TODO Auto-generated catch block
@@ -40,8 +40,8 @@ public class Mouse {
 				robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			}
 			else if(pm==N.DeviceSignal.MOUSE_PPM){
-				robot.mousePress(InputEvent.BUTTON2_MASK);
-				robot.mouseRelease(InputEvent.BUTTON2_MASK);
+				robot.mousePress(InputEvent.BUTTON3_MASK);
+				robot.mouseRelease(InputEvent.BUTTON3_MASK);
 			}
 		} catch (AWTException e) {
 			// TODO Auto-generated catch block

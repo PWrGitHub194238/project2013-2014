@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.android.application.N;
+import com.android.application.N.Helper;
 import com.android.application.WirelessConfigurationClass;
 
 
@@ -76,6 +77,10 @@ public class SocketMainWiFiSender extends AsyncTask<Byte, String, String> {
 				while(queue.isEmpty() == false ) {
 						int data = queue.take();
 						Log.d("THREAD","doInBackground "+data);
+						dos.writeInt(data);
+						Log.d("THREAD","doInBackground "+data);
+						int[] out = Helper.decodeSignal(data);
+						Log.d("THREAD","Encoded: DEV: "+out[0]+" C: "+out[1]+" X: "+out[2]+" Y: "+out[3]);
 						dos.writeInt(data);
 				}
 				this.wait();

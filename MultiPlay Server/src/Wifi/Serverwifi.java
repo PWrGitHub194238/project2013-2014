@@ -11,7 +11,9 @@ import java.net.Socket;
 import Keyboard.Keyboard;
 import Mouse.Mouse;
 import Speaker.Speaker;
-import VJoy.VJoyTest;
+import VJoy.VJoyDriver;
+import VJoy.VJoyDriver32;
+import VJoy.VJoyDriver64;
 
 public class Serverwifi implements Runnable {
 	private int x = 3, y = 3;
@@ -28,9 +30,17 @@ public class Serverwifi implements Runnable {
 
 	@Override
 	public void run() {
+		
+		VJoyDriver vjoy;
 		Mouse mouse = new Mouse();
 		Keyboard keyboard = new Keyboard();
 		Speaker speak = new Speaker();
+		
+		if(System.getProperty("os.arch").contains("64"))
+			vjoy=new VJoyDriver64(true);
+		else
+			vjoy=new VJoyDriver32(true);
+		
 		int signals = 0;
 		System.out.println("watek");
 		while (true) {

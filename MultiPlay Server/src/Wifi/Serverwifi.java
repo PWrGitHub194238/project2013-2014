@@ -48,6 +48,8 @@ public class Serverwifi implements Runnable {
 
 				} else if (ret[0] == N.Device.SPEAKER) {
 
+				} else if (ret[0] == N.Device.VJOY) {
+
 				} else if (ret[0] == N.Device.EXIT) {
 					return;
 				}

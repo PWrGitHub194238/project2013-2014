@@ -110,6 +110,8 @@ public final class N {
     	public static final int KEYBOARD = 					Integer.parseInt("00001", 2);
     	public static final int WHEEL = 					Integer.parseInt("00010", 2);
     	public static final int SPEAKER = 					Integer.parseInt("00011", 2);// ?
+    	public static final int VJOY= 					Integer.parseInt("00100", 2);// ?
+
     	public static final int EXIT =						Integer.parseInt("11111", 2);// ?
     }
 

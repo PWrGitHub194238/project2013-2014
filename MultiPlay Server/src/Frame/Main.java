@@ -53,6 +53,7 @@ public class Main {
 						dis.close();
 						dos.close();
 						socket.close();
+						serversocket.close();
 					} else if (data == N.Signal.NEED_CONNECTION) {
 						System.out.println("Send back connect code...");
 						dos.writeByte(N.Signal.NEED_CONNECTION);

@@ -34,14 +34,16 @@ public class MultiPlayApplication extends Application {
 	}
 	
 	public static void add(int signal) {
-		synchronized (socketMainThread) {
-			SocketMainWiFiSender.queue.add(signal);
-			Log.d("THREAD","Added "+signal);
-			Log.d("THREAD","Executing "+SocketMainWiFiSender.queue.size()+" signals...");
-		
-			MultiPlayApplication.getSocketMainThread().notify();
+		if (socketMainThread != null) {
+			synchronized (socketMainThread) {
+				SocketMainWiFiSender.queue.add(signal);
+				Log.d("THREAD","Added "+signal);
+				Log.d("THREAD","Executing "+SocketMainWiFiSender.queue.size()+" signals...");
+			
+				MultiPlayApplication.getSocketMainThread().notify();
+			}
+			Log.d("THREAD","Finish.");
 		}
-		Log.d("THREAD","Finish.");
 	}
 	@Override
 	public void onCreate() {

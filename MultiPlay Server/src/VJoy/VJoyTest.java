@@ -6,7 +6,7 @@ public class VJoyTest {
 	
 	public static void main(String[] args) {
 			
-		VJoyDriver driver=new VJoyDriver(true);
+		VJoyDriver driver=new VJoyDriver64(true);
 			
         Scanner s = new Scanner(System.in);
         String input;       

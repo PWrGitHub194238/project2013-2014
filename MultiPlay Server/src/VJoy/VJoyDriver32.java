@@ -7,7 +7,7 @@ import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.jna.Structure;
 
-public class VJoyDriver {
+public class VJoyDriver32 extends VJoyDriver {
 	public interface VJoy32 extends Library {
 	    VJoy32 INSTANCE = (VJoy32)Native.loadLibrary("VJoy32", VJoy32.class);
 	    boolean VJoy_Initialize(String name,String serial);
@@ -38,60 +38,11 @@ public class VJoyDriver {
 					
 	}
 	
-	
-	//deklaracja potrzebnych zmiennych
 	VJoy32.JOYSTICK_STATE.ByReference m_joyState;
 	VJoy32 vDLL;
 	
-	//tablica zawieraj¹ca wartoœci numeryczne poszczególnych przycisków, 2^(7+i)
-	short[] buttonID;
-	//tablica przechowywuj¹ca informacje o tym które przyciski s¹ aktualnie wciœniête, true/false
-	boolean[] buttonPressed;
-	
-	//osie dwóch galek analogowych
-	short axisX1,axisY1,axisX2,axisY2;
-	
-	//klasa z w¹tkiem reinicjalizuj¹cym sterownik co 5 minut
-	VJoyReinit reinit;
-	
-	public VJoyDriver(boolean autoInit)
-	{
-		//autoInit - jeœli true to automatycznie inicjalizujemy sterownik i uruchamiamy w¹tek reinicjalizuj¹cy
-		//ver - 32 albo 64, której wersji sterownika u¿yæ
-		
-		//NA TEMAT ZMIENNYCH BO SA MA£O LOGICZNE:
-		//Wheel zawiera przyciski 1-8 ze wzorem 2^(7+i) oraz prawdopodobnie pomiêdzy nimi kombinacje dla dŸwigni POV (z regu³y to d-pad)
-		//POV zawiera przyciski 9-24
-		//Dial obs³uguje Tarczê, czymkolwiek ona jest, oraz zielony POV
-		//Slider = suwak
-		//Buttons nie mam bladego pojêcia co zawiera bo nic nie robi
-		//Axis i Rotation dzia³aj¹ zgodnie z przewidywaniami, poza ZAxis - z jakiegoœ powodu nie widze jej wp³ywu na oœ Z, sprawdzi sie
-		//zakresy osi w SDK podane s¹ od -32768 do 32767 ale nie mam pojêcia czemu a¿ taka skoro i tak siê zapêtla. Dlatego
-		//przyjmujemy dok³adnoœæ -127 do 127.
-		
-		//dla standardowego pada w zupe³noœci powinno nam starczeæ 10-12 przycisków, standardowe osie X, Y, Z oraz POV 
-		buttonID=new short[33];
-		buttonPressed=new boolean[33];
-
-		for(int i=0;i<=32;i++)
-		{
-			buttonID[i]=(short)Math.pow(2,7+i);
-			buttonPressed[i]=false;
-		}
-		
-		reinit=new VJoyReinit(this);
-		
-		if(autoInit)
-		{
-			VJoyStart();			
-		}
-		
-	}
-	
-	public void VJoyStart()
-	{
-		VJoyInit();
-		new Thread(reinit).start();
+	public VJoyDriver32(boolean autoInit) {
+		super(autoInit);
 	}
 	
 	public void VJoyInit()
@@ -100,8 +51,7 @@ public class VJoyDriver {
 		System.setProperty("jna.library.path", myLibraryPath);
 		
 		System.out.printf(myLibraryPath+"\n");
-		
-		
+				
 		vDLL=VJoy32.INSTANCE;
 		
 		boolean result=vDLL.VJoy_Initialize("","");
@@ -113,24 +63,6 @@ public class VJoyDriver {
 		m_joyState= new VJoy32.JOYSTICK_STATE.ByReference();
 		
 		vDLL.VJoy_UpdateJoyState(0, m_joyState);
-	}
-	
-	public boolean buttonPress(int buttonNumber)
-	{
-		//wciskamy przycisk o podanym numerze
-		buttonPressed[buttonNumber]=true;
-		if(updateButtons())		
-		return true;
-		else return false;
-	}
-	
-	public boolean buttonRelease(int buttonNumber)
-	{
-		//puszczamy przycisk o podanym numerze
-		buttonPressed[buttonNumber]=false;
-		if(updateButtons())		
-		return true;
-		else return false;
 	}
 	
 	public boolean updateButtons()
@@ -182,5 +114,4 @@ public class VJoyDriver {
 	{
 		vDLL.VJoy_Shutdown();
 	}
-
 }

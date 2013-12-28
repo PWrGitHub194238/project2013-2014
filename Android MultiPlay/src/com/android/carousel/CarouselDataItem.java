@@ -1,22 +1,33 @@
 package com.android.carousel;
 
+import android.app.Activity;
+
 public class CarouselDataItem {
-	String m_szImgPath;
-	long m_nDocDate;
-	String m_szDocName;
+	String title = null;
+	int iconId = -1;
+	Class<? extends Activity> nextActivity = null;
 	
-	public CarouselDataItem(String path, long date, String name) {
-		m_szImgPath = path;
-		m_nDocDate = date;
-		m_szDocName = name;
+	public CarouselDataItem(String title, int iconId, Class<? extends Activity> nextActivity) {
+		super();
+		this.title = title;
+		this.iconId = iconId;
+		this.nextActivity = nextActivity;
 	}
 
-	
-	public String getImgPath() {
-		return m_szImgPath;
-	}
-	public String getDocText() {
-		return m_szDocName;
+	public final String getTitle() {
+		return title;
 	}
 
+	public final void setTitle(String title) {
+		this.title = title;
+	}
+
+	public final int getIconId() {
+		return iconId;
+	}
+
+	public final void setIconId(int iconId) {
+		this.iconId = iconId;
+	}
+	
 }

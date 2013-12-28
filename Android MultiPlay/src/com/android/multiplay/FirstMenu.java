@@ -5,20 +5,14 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.android.carousel.AppUtils;
 import com.android.carousel.CarouselDataItem;
@@ -32,13 +26,12 @@ import com.android.controllers.mouse.MouseActivity;
 import com.android.controllers.mouse.TouchPadActivity;
 import com.android.controllers.steeringwheel.SteeringwheelActivity;
 
-public class FirstMenu extends Activity implements OnItemSelectedListener,
-		TextWatcher {
+public class FirstMenu extends Activity implements OnItemSelectedListener {
 	Context context;
 	CarouselDataItem docu;
 	Singleton m_Inst = Singleton.getInstance();
 	CarouselViewAdapter m_carouselAdapter = null;
-	private final int m_nFirstItem = 1000;
+	ArrayList<CarouselDataItem> Docus;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,50 +45,34 @@ public class FirstMenu extends Activity implements OnItemSelectedListener,
 		int padding = m_Inst.Scale(10);
 		RelativeLayout panel = new RelativeLayout(this);
 
-		panel.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
-				LayoutParams.FILL_PARENT));
+		panel.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+				LayoutParams.MATCH_PARENT));
 		panel.setPadding(padding, padding, padding, padding);
-		panel.setBackgroundDrawable(new GradientDrawable(
-				GradientDrawable.Orientation.TOP_BOTTOM, new int[] {
-						Color.WHITE, Color.BLACK }));
+		panel.setBackgroundResource(R.drawable.background);
 		setContentView(panel);
 
-		// copy images from assets to sdcard
-		AppUtils.AssetFileCopy(this, "/mnt/sdcard/Gyroscope_operation.gif",
-				"Gyroscope_operation.gif", false);
-		AppUtils.AssetFileCopy(this, "/mnt/sdcard/kierownica.jpg",
-				"kierownica.jpg", false);
-		AppUtils.AssetFileCopy(this, "/mnt/sdcard/klawiatura.jpg",
-				"klawiatura.jpg", false);
-		AppUtils.AssetFileCopy(this, "/mnt/sdcard/mysz.png", "mysz.png", false);
-		AppUtils.AssetFileCopy(this, "/mnt/sdcard/touchpad.jpg",
-				"touchpad.jpg", false);
-
-		ArrayList<CarouselDataItem> Docus = new ArrayList<CarouselDataItem>();
-		for (int i = 0; i < 1000; i++) {
-			CarouselDataItem docu;
-			if (i % 7 == 0)
-				docu = new CarouselDataItem(
-						"/mnt/sdcard/Gyroscope_operation.gif", 0, "Gyroscope");
-			else if (i % 7 == 1) {
-				docu = new CarouselDataItem("/mnt/sdcard/kierownica.jpg", 0,
-						"kierownica");
-			} else if (i % 7 == 2)
-				docu = new CarouselDataItem("/mnt/sdcard/klawiatura.jpg", 0,
-						"klawiatura");
-			else if (i % 7 == 3)
-				docu = new CarouselDataItem("/mnt/sdcard/touchpad.jpg", 0,
-						"Touchpad");
-			else if (i % 7 == 4)
-				docu = new CarouselDataItem("/mnt/sdcard/touchpad.jpg", 0,
-						"Your");
-			else if (i % 7 == 5)
-				docu = new CarouselDataItem("/mnt/sdcard/klawiatura.jpg", 0,
-						"Speaker");
-			else
-				docu = new CarouselDataItem("/mnt/sdcard/mysz.png", 0, "Mysz");
-			Docus.add(docu);
-		}
+		Docus = new ArrayList<CarouselDataItem>();
+		Docus.add(new CarouselDataItem("NAMA A", 
+				R.drawable.carousel_controller_icon_steering_wheel_accel, 
+				SteeringwheelActivity.class));
+		Docus.add(new CarouselDataItem("NAMA B", 
+				R.drawable.carousel_controller_icon_steering_wheel_accel, 
+				KeyboardActivity.class));
+		Docus.add(new CarouselDataItem("NAMA C", 
+				R.drawable.carousel_controller_icon_steering_wheel_accel, 
+				MouseActivity.class));
+		Docus.add(new CarouselDataItem("NAMA D", 
+				R.drawable.carousel_controller_icon_steering_wheel_accel, 
+				SteeringwheelActivity.class));
+		Docus.add(new CarouselDataItem("NAMA E", 
+				R.drawable.carousel_controller_icon_steering_wheel_accel, 
+				SteeringwheelActivity.class));
+		Docus.add(new CarouselDataItem("NAMA F", 
+				R.drawable.carousel_controller_icon_steering_wheel_accel, 
+				SteeringwheelActivity.class));
+		Docus.add(new CarouselDataItem("Mouse", 
+				R.drawable.carousel_controller_icon_mouse, 
+				MouseActivity.class));
 
 		// create the carousel
 		CarouselView coverFlow = new CarouselView(this);
@@ -166,20 +143,10 @@ public class FirstMenu extends Activity implements OnItemSelectedListener,
 				}
 			});
 		}
-		AppUtils.AddView(panel, coverFlow, LayoutParams.FILL_PARENT,
+		AppUtils.AddView(panel, coverFlow, LayoutParams.MATCH_PARENT,
 				LayoutParams.WRAP_CONTENT,
 				new int[][] { new int[] { RelativeLayout.CENTER_IN_PARENT } },
 				-1, -1);
-	}
-
-	public void afterTextChanged(Editable arg0) {
-	}
-
-	public void beforeTextChanged(CharSequence s, int start, int count,
-			int after) {
-	}
-
-	public void onTextChanged(CharSequence s, int start, int before, int count) {
 	}
 
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,

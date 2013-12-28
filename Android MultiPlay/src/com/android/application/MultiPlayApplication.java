@@ -3,11 +3,8 @@ package com.android.application;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 import android.app.Application;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import com.android.asychs.SocketMainWiFiSender;
@@ -37,14 +34,16 @@ public class MultiPlayApplication extends Application {
 	}
 	
 	public static void add(int signal) {
-		synchronized (socketMainThread) {
-			SocketMainWiFiSender.queue.add(signal);
-			Log.d("THREAD","Added "+signal);
-			Log.d("THREAD","Executing "+SocketMainWiFiSender.queue.size()+" signals...");
-		
-			MultiPlayApplication.getSocketMainThread().notify();
+		if (socketMainThread != null) {
+			synchronized (socketMainThread) {
+				SocketMainWiFiSender.queue.add(signal);
+				Log.d("THREAD","Added "+signal);
+				Log.d("THREAD","Executing "+SocketMainWiFiSender.queue.size()+" signals...");
+			
+				MultiPlayApplication.getSocketMainThread().notify();
+			}
+			Log.d("THREAD","Finish.");
 		}
-		Log.d("THREAD","Finish.");
 	}
 	@Override
 	public void onCreate() {
@@ -53,8 +52,6 @@ public class MultiPlayApplication extends Application {
 		discoveredBluetoothDevices = new ArrayList<BluetoothConfigurationClass>();
 		discoveredWirelessDevices = new ArrayList<WirelessConfigurationClass>();
 		dbHelper = new DBHelper(this.getApplicationContext());
-		dbHelper.openConnection();
-		
 	}
 	
 	public void onDestroy() {

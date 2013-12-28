@@ -109,10 +109,7 @@ public class Gyromouse extends Activity implements SensorEventListener,
 			tv.setText(Integer.toString((int) x) + " "
 					+ Integer.toString((int) y));
 			int signal = Helper.encodeSignal(N.Device.MOUSE, N.DeviceDataCounter.DOUBLE, (int)x,(int)y);
-			// Sender sender = new Sender();
-			// sender.setip(ip);
-			// sender.getxy((int) y, (int) x);
-			// sender.execute("mouse");
+			 MultiPlayApplication.add(signal);
 		}
 	}
 
@@ -130,12 +127,14 @@ public class Gyromouse extends Activity implements SensorEventListener,
 					.show();
 			int signal = Helper.encodeSignal(N.Device.MOUSE,
 					N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_PPM);
+			 MultiPlayApplication.add(signal);
 			return true;
 		} else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
 			Toast.makeText(getApplicationContext(), "LPM", Toast.LENGTH_SHORT)
 					.show();
 			int signal = Helper.encodeSignal(N.Device.MOUSE,
 					N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_LPM);
+			 MultiPlayApplication.add(signal);
 			return true;
 		} else if (keyCode == KeyEvent.KEYCODE_CAMERA) {
 			if (stop == 0) {
@@ -159,6 +158,7 @@ public class Gyromouse extends Activity implements SensorEventListener,
 			i = N.DeviceSignal.KEYBOARD_ESC;
 			Toast.makeText(getApplicationContext(), Integer.toString(i),
 					Toast.LENGTH_SHORT).show();
+			 MultiPlayApplication.add(i);
 			break;
 		case R.id.leftb:
 			i = N.DeviceSignal.KEYBOARD_LEFT;

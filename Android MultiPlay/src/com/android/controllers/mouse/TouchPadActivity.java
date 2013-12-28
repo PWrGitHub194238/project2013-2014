@@ -1,5 +1,6 @@
 package com.android.controllers.mouse;
 
+import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.application.N.Helper;
 import com.android.multiplay.R;
@@ -42,42 +43,50 @@ public class TouchPadActivity extends Activity {
 				txv.setText("X=-1, Y=-1");
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
 						N.DeviceDataCounter.DOUBLE, -1, -1);
+				MultiPlayApplication.add(signal);
 			} else if (oldoldx - oldx > (double) 0.0
 					&& oldoldy - oldy > (double) 0.0) {
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
 						N.DeviceDataCounter.DOUBLE, 1, 1);
+				MultiPlayApplication.add(signal);
 				txv.setText("X=1, Y=1");
 			} else if (oldoldx - oldx > (double) 0.0
 					&& oldoldy - oldy == (double) 0.0) {
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
 						N.DeviceDataCounter.DOUBLE, 1, 0);
+				MultiPlayApplication.add(signal);
 				txv.setText("X=1, Y=0");
 			} else if (oldoldx - oldx == (double) 0.0
 					&& oldoldy - oldy > (double) 0.0) {
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
 						N.DeviceDataCounter.DOUBLE, 0, 1);
+				MultiPlayApplication.add(signal);
 				txv.setText("X=0, Y=1");
 			} else if (oldoldx - oldx < (double) 0.0
 					&& oldoldy - oldy > (double) 0.0) {
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
 						N.DeviceDataCounter.DOUBLE, -1, 1);
+				MultiPlayApplication.add(signal);
 				txv.setText("X=-1, Y=1");
 			} else if (oldoldx - oldx < (double) 0.0
 					&& oldoldy - oldy == (double) 0.0) {
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
 						N.DeviceDataCounter.DOUBLE, -1, 0);
+				MultiPlayApplication.add(signal);
 				txv.setText("X=-1, Y=0");
 
 			} else if (oldoldx - oldx > (double) 0.0
 					&& oldoldy - oldy < (double) 0.0) {
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
 						N.DeviceDataCounter.DOUBLE, 1, -1);
+				MultiPlayApplication.add(signal);
 				txv.setText("X=1, Y=-1");
 
 			} else if (oldoldx - oldx == (double) 0.0
 					&& oldoldy - oldy < (double) 0.0) {
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
 						N.DeviceDataCounter.DOUBLE, 0, -1);
+				MultiPlayApplication.add(signal);
 				txv.setText("X=0, Y=-1");
 			}
 			break;
@@ -97,12 +106,14 @@ public class TouchPadActivity extends Activity {
 					.show();
 			int signal = Helper.encodeSignal(N.Device.MOUSE,
 					N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_PPM);
+			MultiPlayApplication.add(signal);
 			return true;
 		} else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
 			Toast.makeText(getApplicationContext(), "LPM", Toast.LENGTH_SHORT)
 					.show();
 			int signal = Helper.encodeSignal(N.Device.MOUSE,
 					N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_LPM);
+			MultiPlayApplication.add(signal);
 			return true;
 		}
 		return true;

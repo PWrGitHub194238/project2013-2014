@@ -1,5 +1,6 @@
 package com.android.controllers.mouse;
 
+import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.application.N.Helper;
 import com.android.multiplay.R;
@@ -27,7 +28,7 @@ public class MouseActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mouse);
-	
+
 		txv = (TextView) super.findViewById(R.id.texty);
 	}
 
@@ -45,29 +46,34 @@ public class MouseActivity extends Activity {
 
 			int signal = Helper.encodeSignal(N.Device.MOUSE,
 					N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_PPM);
+			MultiPlayApplication.add(signal);
 			return true;
 		} else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
 			Toast.makeText(getApplicationContext(), "LPM", Toast.LENGTH_SHORT)
 					.show();
 			int signal = Helper.encodeSignal(N.Device.MOUSE,
 					N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_LPM);
-
+			MultiPlayApplication.add(signal);
 			return true;
 
 		}
 		return true;
 	}
+
 	public boolean onTouchEvent(MotionEvent event) {
 		int maskedAction = event.getActionMasked();
 		String x = Integer.toString((hotx - (int) event.getX()) * (-1));
 		String y = Integer.toString((hoty - (int) event.getY()) * (-1));
 		switch (maskedAction) {
-		//case MotionEvent.ACTION_DOWN:
-		//	txv.setText("X: " + x + "Y: " + y);
-		//	break;
+		// case MotionEvent.ACTION_DOWN:
+		// txv.setText("X: " + x + "Y: " + y);
+		// break;
 		case MotionEvent.ACTION_MOVE:
 			txv.setText("X: " + x + "Y: " + y);
-			int signal = Helper.encodeSignal(N.Device.MOUSE, N.DeviceDataCounter.DOUBLE, Integer.parseInt(x),Integer.parseInt(y));
+			int signal = Helper.encodeSignal(N.Device.MOUSE,
+					N.DeviceDataCounter.DOUBLE, Integer.parseInt(x),
+					Integer.parseInt(y));
+			MultiPlayApplication.add(signal);
 			break;
 		case MotionEvent.ACTION_UP:
 

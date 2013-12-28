@@ -2,6 +2,7 @@ package com.android.controllers.keyboard;
 
 import java.util.ArrayList;
 
+import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.multiplay.R;
 import com.android.multiplay.R.id;
@@ -74,7 +75,8 @@ public class Speaker extends Activity {
 							Toast.LENGTH_SHORT);
 					t.show();
 					 e = N.DeviceSignal.KEYBOARD_KEY_TO_INT(text.get(0).subSequence(i, i + 1).toString());
-					i++;
+					 MultiPlayApplication.add(e);
+					 i++;
 				}
 			}
 			break;

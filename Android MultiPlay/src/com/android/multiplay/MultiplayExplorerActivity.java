@@ -60,7 +60,7 @@ public class MultiplayExplorerActivity extends Activity implements OnClickListen
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()) {
+		/*switch(v.getId()) {
 		case R.id.b_connections_activity_testmouse:
 			MultiPlayApplication.add(N.DeviceSignal.MOUSE_LPM);
 			break;
@@ -74,7 +74,7 @@ public class MultiplayExplorerActivity extends Activity implements OnClickListen
 			MultiPlayApplication.add(N.DeviceSignal.MOUSE_PPM);
 			break;
 	}
-	return;
+	return;*/
 }
 
 	@Override

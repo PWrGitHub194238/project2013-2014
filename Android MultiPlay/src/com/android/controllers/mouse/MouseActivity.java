@@ -1,5 +1,7 @@
 package com.android.controllers.mouse;
 
+import java.io.IOException;
+
 import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.application.N.Helper;
@@ -28,8 +30,14 @@ public class MouseActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mouse);
-
-		txv = (TextView) super.findViewById(R.id.texty);
+		try {
+			MultiPlayApplication.runThread();
+			txv = (TextView) super.findViewById(R.id.texty);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override
@@ -62,8 +70,8 @@ public class MouseActivity extends Activity {
 
 	public boolean onTouchEvent(MotionEvent event) {
 		int maskedAction = event.getActionMasked();
-		String x = Integer.toString((hotx - (int) event.getX()) * (-1));
-		String y = Integer.toString((hoty - (int) event.getY()) * (-1));
+		String x = Integer.toString((int)((hotx - (int) event.getX()) * (-1))/3);
+		String y = Integer.toString((int)((hoty - (int) event.getY()) * (-1))/3);
 		switch (maskedAction) {
 		// case MotionEvent.ACTION_DOWN:
 		// txv.setText("X: " + x + "Y: " + y);

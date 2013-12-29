@@ -38,13 +38,15 @@ public class Gyromouse extends Activity implements SensorEventListener,
 			button20, button21, button22, button23, button24, button25,
 			button26, button27, button28, button29, button30, button31,
 			button32, button33, button34, button35, button36;
-
-	private int stop;
+	int e, signal;
+	private int stop=0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gyromouse);
+		
+	
 		// button = (Button) super.findViewById(R.id.stopbu);
 		// bundle = super.getIntent().getExtras();
 		// ip = bundle.getString("ip");
@@ -389,8 +391,10 @@ public class Gyromouse extends Activity implements SensorEventListener,
 
 			break;
 		case R.id.bw:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
-			if (shiftflag == 1 && altflag != 1) {
+			 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("w");
+			 signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+
+				 MultiPlayApplication.add(signal);			if (shiftflag == 1 && altflag != 1) {
 				// nacisniecie "q"
 				// odcisniecie shifta
 				shiftflag = 0;
@@ -402,7 +406,7 @@ public class Gyromouse extends Activity implements SensorEventListener,
 						button31, button32);
 
 				shiftflag = 0;
-				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("w");
+				
 			} else if (shiftflag == 2) {
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("w");
 

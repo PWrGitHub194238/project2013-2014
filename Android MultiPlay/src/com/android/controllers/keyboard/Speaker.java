@@ -1,9 +1,11 @@
 package com.android.controllers.keyboard;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.android.application.MultiPlayApplication;
 import com.android.application.N;
+import com.android.application.N.Helper;
 import com.android.multiplay.R;
 import com.android.multiplay.R.id;
 import com.android.multiplay.R.layout;
@@ -32,8 +34,15 @@ public class Speaker extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_speaker);
-	//	txtText = (TextView) findViewById(R.id.text2);
-		btnSpeak = (ImageButton) findViewById(R.id.button1);
+		try {
+			MultiPlayApplication.runThread();
+//			txtText = (TextView) findViewById(R.id.text2);
+			btnSpeak = (ImageButton) findViewById(R.id.button1);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
 
 	@Override
@@ -75,8 +84,9 @@ public class Speaker extends Activity {
 							Toast.LENGTH_SHORT);
 					t.show();
 					 e = N.DeviceSignal.KEYBOARD_KEY_TO_INT(text.get(0).subSequence(i, i + 1).toString());
-					 MultiPlayApplication.add(e);
-					 i++;
+					 int signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, e);
+					 MultiPlayApplication.add(signal);
+					 i+=1;
 				}
 			}
 			break;

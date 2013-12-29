@@ -21,6 +21,7 @@ public class Serverwifi implements Runnable {
 	private Socket socket;
 	private DataInputStream dis;
 	private DataOutputStream dos;
+	int i = 0;
 
 	public Serverwifi(Socket socket, DataInputStream dis, DataOutputStream dos) {
 		this.socket = socket;
@@ -30,21 +31,21 @@ public class Serverwifi implements Runnable {
 
 	@Override
 	public void run() {
-		
+
 		VJoyDriver vjoy;
 		Mouse mouse = new Mouse();
 		Keyboard keyboard = new Keyboard();
 		Speaker speak = new Speaker();
-		
-		//if(System.getProperty("os.name").startsWith("Win"))
-		//{
-			
-		//if(System.getProperty("os.arch").contains("64"))
-		//	vjoy=new VJoyDriver64(true);
-		//else
-	//		vjoy=new VJoyDriver32(true);
-	//	}
-		
+
+		// if(System.getProperty("os.name").startsWith("Win"))
+		// {
+
+		// if(System.getProperty("os.arch").contains("64"))
+		// vjoy=new VJoyDriver64(true);
+		// else
+		// vjoy=new VJoyDriver32(true);
+		// }
+
 		int signals = 0;
 		System.out.println("watek");
 		while (true) {
@@ -55,7 +56,11 @@ public class Serverwifi implements Runnable {
 					if (ret[1] == N.DeviceDataCounter.SINGLE)
 						mouse.click(ret[2]);
 					else if (ret[1] == N.DeviceDataCounter.DOUBLE)
-						mouse.run(ret[2], ret[3]);
+						if (i == 0) {
+							mouse.run(ret[2], ret[3]);
+							i = 1;
+						} else
+							i = 0;
 				} else if (ret[0] == N.Device.KEYBOARD)
 					keyboard.click(ret[2]);
 				else if (ret[0] == N.Device.WHEEL) {

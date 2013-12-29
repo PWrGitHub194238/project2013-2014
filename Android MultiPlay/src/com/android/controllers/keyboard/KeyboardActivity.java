@@ -1,5 +1,7 @@
 package com.android.controllers.keyboard;
 
+import java.io.IOException;
+
 import com.android.multiplay.ConnectionsActivity;
 import com.android.multiplay.R;
 import android.os.Bundle;
@@ -37,52 +39,59 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 		setContentView(R.layout.activity_keyboard);
 		// bundle = super.getIntent().getExtras();
 		// ip = bundle.getString("ip");
-		button1 = (Button) super.findViewById(R.id.leftb);
-		button2 = (Button) super.findViewById(R.id.rightb);
-		button3 = (Button) super.findViewById(R.id.upb);
-		button4 = (Button) super.findViewById(R.id.downb);
-		button5 = (Button) super.findViewById(R.id.enterb);
-		button6 = (Button) super.findViewById(R.id.bshift);
-		button7 = (Button) super.findViewById(R.id.bq);
-		button8 = (Button) super.findViewById(R.id.bw);
-		button9 = (Button) super.findViewById(R.id.be);
-		button10 = (Button) super.findViewById(R.id.br);
-		button11 = (Button) super.findViewById(R.id.bt);
-		button12 = (Button) super.findViewById(R.id.by);
-		button13 = (Button) super.findViewById(R.id.bu);
-		button14 = (Button) super.findViewById(R.id.bi);
-		button15 = (Button) super.findViewById(R.id.bo);
-		button16 = (Button) super.findViewById(R.id.bp);
-		button17 = (Button) super.findViewById(R.id.ba);
-		button18 = (Button) super.findViewById(R.id.bs);
-		button19 = (Button) super.findViewById(R.id.bd);
-		button20 = (Button) super.findViewById(R.id.bf);
-		button21 = (Button) super.findViewById(R.id.bg);
-		button22 = (Button) super.findViewById(R.id.bh);
-		button23 = (Button) super.findViewById(R.id.bj);
-		button24 = (Button) super.findViewById(R.id.bk);
-		button25 = (Button) super.findViewById(R.id.bl);
-		button26 = (Button) super.findViewById(R.id.bz);
-		button27 = (Button) super.findViewById(R.id.bx);
-		button28 = (Button) super.findViewById(R.id.bc);
-		button29 = (Button) super.findViewById(R.id.bv);
-		button30 = (Button) super.findViewById(R.id.bb);
-		button31 = (Button) super.findViewById(R.id.bn);
-		button32 = (Button) super.findViewById(R.id.bm);
-		button33 = (Button) super.findViewById(R.id.balt);
-		button34 = (Button) super.findViewById(R.id.bspace);
-		if (MultiPlayApplication.getMainNetworkConfiguration() != null) {
-		} else {
-			AlertDialogs
-					.showDialog(
-							this,
-							MultiPlayExplorerActivityDialogList.TAG_NO_CONNECTION_FOUND,
-							DialogListCore.IT_TITLE_ICON_WARNING,
-							MultiPlayExplorerActivityDialogList.ID_TITLE_NO_CONNECTION_FOUND,
-							MultiPlayExplorerActivityDialogList.ID_MESSAGE_NO_CONNECTION_FOUND,
-							DialogListCore.ID_BUTTON_OPTIONS, null,
-							DialogListCore.ID_BUTTON_CANCEL);
+		try {
+			MultiPlayApplication.runThread();
+			button1 = (Button) super.findViewById(R.id.leftb);
+			button2 = (Button) super.findViewById(R.id.rightb);
+			button3 = (Button) super.findViewById(R.id.upb);
+			button4 = (Button) super.findViewById(R.id.downb);
+			button5 = (Button) super.findViewById(R.id.enterb);
+			button6 = (Button) super.findViewById(R.id.bshift);
+			button7 = (Button) super.findViewById(R.id.bq);
+			button8 = (Button) super.findViewById(R.id.bw);
+			button9 = (Button) super.findViewById(R.id.be);
+			button10 = (Button) super.findViewById(R.id.br);
+			button11 = (Button) super.findViewById(R.id.bt);
+			button12 = (Button) super.findViewById(R.id.by);
+			button13 = (Button) super.findViewById(R.id.bu);
+			button14 = (Button) super.findViewById(R.id.bi);
+			button15 = (Button) super.findViewById(R.id.bo);
+			button16 = (Button) super.findViewById(R.id.bp);
+			button17 = (Button) super.findViewById(R.id.ba);
+			button18 = (Button) super.findViewById(R.id.bs);
+			button19 = (Button) super.findViewById(R.id.bd);
+			button20 = (Button) super.findViewById(R.id.bf);
+			button21 = (Button) super.findViewById(R.id.bg);
+			button22 = (Button) super.findViewById(R.id.bh);
+			button23 = (Button) super.findViewById(R.id.bj);
+			button24 = (Button) super.findViewById(R.id.bk);
+			button25 = (Button) super.findViewById(R.id.bl);
+			button26 = (Button) super.findViewById(R.id.bz);
+			button27 = (Button) super.findViewById(R.id.bx);
+			button28 = (Button) super.findViewById(R.id.bc);
+			button29 = (Button) super.findViewById(R.id.bv);
+			button30 = (Button) super.findViewById(R.id.bb);
+			button31 = (Button) super.findViewById(R.id.bn);
+			button32 = (Button) super.findViewById(R.id.bm);
+			button33 = (Button) super.findViewById(R.id.balt);
+			button34 = (Button) super.findViewById(R.id.bspace);
+			if (MultiPlayApplication.getMainNetworkConfiguration() != null) {
+			} else {
+				AlertDialogs
+						.showDialog(
+								this,
+								MultiPlayExplorerActivityDialogList.TAG_NO_CONNECTION_FOUND,
+								DialogListCore.IT_TITLE_ICON_WARNING,
+								MultiPlayExplorerActivityDialogList.ID_TITLE_NO_CONNECTION_FOUND,
+								MultiPlayExplorerActivityDialogList.ID_MESSAGE_NO_CONNECTION_FOUND,
+								DialogListCore.ID_BUTTON_OPTIONS, null,
+								DialogListCore.ID_BUTTON_CANCEL);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+	
 	}
 
 	@Override
@@ -93,29 +102,45 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 	public void onClick(View arg0) {
 		int i;
+		 int signal;
 		switch (arg0.getId()) {
 		case R.id.besc:
 			i = N.DeviceSignal.KEYBOARD_ESC;
 			Toast.makeText(getApplicationContext(), Integer.toString(i),
 					Toast.LENGTH_SHORT).show();
+			signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+
+			 MultiPlayApplication.add(i);
 			break;
 		case R.id.leftb:
 			i = N.DeviceSignal.KEYBOARD_LEFT;
+			 MultiPlayApplication.add(i);
+
 			break;
 		case R.id.rightb:
 			i = N.DeviceSignal.KEYBOARD_RIGHT;
+			 MultiPlayApplication.add(i);
+
 			break;
 		case R.id.upb:
 			i = N.DeviceSignal.KEYBOARD_UP;
+			 MultiPlayApplication.add(i);
+
 			break;
 		case R.id.downb:
 			i = N.DeviceSignal.KEYBOARD_DOWN;
+			 MultiPlayApplication.add(i);
+
 			break;
 		case R.id.enterb:
 			 i = N.DeviceSignal.KEYBOARD_ENTER;
+			 MultiPlayApplication.add(i);
+
 			break;
 		case R.id.bshift:
 			i = N.DeviceSignal.KEYBOARD_SHIFT;
+			 MultiPlayApplication.add(i);
+
 			if (altflag == 0) {
 				switch (shiftflag) {
 				case 0:
@@ -319,9 +344,15 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button26, button27, button28, button29, button30,
 						button31, button33);
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("q");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+
+					 MultiPlayApplication.add(i);
 				shiftflag = 0;
 			} else if (shiftflag == 2) {
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("q");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+
+					 MultiPlayApplication.add(i);
 
 			}
 
@@ -341,17 +372,22 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 				shiftflag = 0;
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("w");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+
+					 MultiPlayApplication.add(i);
 			} else if (shiftflag == 2) {
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("w");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+
+					 MultiPlayApplication.add(i);
 
 			}
 			break;
 		case R.id.be:
-			int signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, N.DeviceSignal.KEYBOARD_KEY_TO_INT("e"));
-			int[] ret = Helper.decodeSignal(signal);
+		 signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, N.DeviceSignal.KEYBOARD_KEY_TO_INT("e"));
+			
 
-			Toast.makeText(getApplicationContext(), Integer.toString(ret[2]),
-					Toast.LENGTH_SHORT).show();
+		
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
 			if (shiftflag == 1 && altflag != 1) {
 				// nacisniecie "q"
@@ -365,6 +401,9 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button31, button32);
 				shiftflag = 0;
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("e");
+				  signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+				 MultiPlayApplication.add(signal);
+
 			} else if (shiftflag == 2) {
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("e");
 			}

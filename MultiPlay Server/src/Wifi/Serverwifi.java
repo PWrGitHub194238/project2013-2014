@@ -48,7 +48,7 @@ public class Serverwifi implements Runnable {
 				else
 					vjoy = new VJoyDriver32(true);
 			}
-       
+
 			int signals = 0;
 			System.out.println("watek");
 			while (true) {
@@ -69,22 +69,19 @@ public class Serverwifi implements Runnable {
 						if (ret[1] == N.DeviceDataCounter.SINGLE)
 							keyboard.click(ret[2]);
 					} else if (ret[0] == N.Device.WHEEL) {
-						if (ret[1] == N.DeviceDataCounter.SINGLE) {
+						if (ret[1] == N.DeviceDataCounter.DOUBLE) {
 							if (ret[2] == -10)
 								ret[2] = -9;
-							System.out.println(ret[2]);
-							vjoy.updateAxes(1, (int) (ret[2] * 14.1), 0);
-						} else if (ret[1] == N.DeviceDataCounter.DOUBLE) {
-							if (ret[3] == N.DeviceSignal.KEYBOARD_UP) {
-							//vjoy.updateAxes(1, 0, (int)(9 * 14.1));
-								vjoy.buttonPress(2);
-								
+							if (ret[3] == N.DeviceSignal.KEYBOARD_UP)
+								vjoy.updateAxes(1, (int) (ret[2] * 14.1),
+										(int) -(9 * 14.1));
+							else if (ret[3] == N.DeviceSignal.KEYBOARD_SPACE)
+								vjoy.updateAxes(1, (int) (ret[2] * 14.1),
+										(int) (9 * 14.1));
+							else
+								vjoy.updateAxes(1, (int) (ret[2] * 14.1), 0);
 
-							} else if (ret[3] == N.DeviceSignal.KEYBOARD_SPACE) {
-								vjoy.updateAxes(1, 0, (int)(-9 * 14.1));								
-							}
 						}
-
 					} else if (ret[0] == N.Device.SPEAKER) {
 
 					} else if (ret[0] == N.Device.VJOY) {

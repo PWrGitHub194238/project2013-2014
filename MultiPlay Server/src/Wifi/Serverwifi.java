@@ -1,5 +1,8 @@
 package Wifi;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
@@ -21,6 +24,7 @@ public class Serverwifi implements Runnable {
 	private Socket socket;
 	private DataInputStream dis;
 	private DataOutputStream dos;
+	int i = 0;
 
 	public Serverwifi(Socket socket, DataInputStream dis, DataOutputStream dos) {
 		this.socket = socket;
@@ -30,44 +34,75 @@ public class Serverwifi implements Runnable {
 
 	@Override
 	public void run() {
-		
-		VJoyDriver vjoy;
+
+		VJoyDriver vjoy = null;
 		Mouse mouse = new Mouse();
 		Keyboard keyboard = new Keyboard();
 		Speaker speak = new Speaker();
-		
-		if(System.getProperty("os.arch").contains("64"))
-			vjoy=new VJoyDriver64(true);
-		else
-			vjoy=new VJoyDriver32(true);
-		
-		int signals = 0;
-		System.out.println("watek");
-		while (true) {
-			try {
-				signals = dis.readInt();
-				int[] ret = Wifi.N.Helper.decodeSignal(signals);
-				if (ret[0] == N.Device.MOUSE) {
-					if (ret[1] == N.DeviceDataCounter.SINGLE)
-						mouse.click(ret[2]);
-					else if (ret[1] == N.DeviceDataCounter.DOUBLE)
-						mouse.run(ret[2], ret[3]);
-				} else if (ret[0] == N.Device.KEYBOARD)
-					keyboard.click(ret[2]);
-				else if (ret[0] == N.Device.WHEEL) {
+		Robot robot;
+		try {
+			robot = new Robot();
+			if (System.getProperty("os.name").startsWith("Win")) {
+				if (System.getProperty("os.arch").contains("64"))
+					vjoy = new VJoyDriver64(true);
+				else
+					vjoy = new VJoyDriver32(true);
+			}
+       
+			int signals = 0;
+			System.out.println("watek");
+			while (true) {
+				try {
+					signals = dis.readInt();
+					int[] ret = Wifi.N.Helper.decodeSignal(signals);
 
-				} else if (ret[0] == N.Device.SPEAKER) {
+					if (ret[0] == N.Device.MOUSE) {
+						if (ret[1] == N.DeviceDataCounter.SINGLE)
+							mouse.click(ret[2]);
+						else if (ret[1] == N.DeviceDataCounter.DOUBLE)
+							if (i == 0) {
+								mouse.run(ret[2], ret[3]);
+								i = 1;
+							} else
+								i = 0;
+					} else if (ret[0] == N.Device.KEYBOARD) {
+						if (ret[1] == N.DeviceDataCounter.SINGLE)
+							keyboard.click(ret[2]);
+					} else if (ret[0] == N.Device.WHEEL) {
+						if (ret[1] == N.DeviceDataCounter.SINGLE) {
+							if (ret[2] == -10)
+								ret[2] = -9;
+							System.out.println(ret[2]);
+							vjoy.updateAxes(1, (int) (ret[2] * 14.1), 0);
+						} else if (ret[1] == N.DeviceDataCounter.DOUBLE) {
+							if (ret[3] == N.DeviceSignal.KEYBOARD_UP) {
+							//vjoy.updateAxes(1, 0, (int)(9 * 14.1));
+								vjoy.buttonPress(2);
+								
 
-				} else if (ret[0] == N.Device.VJOY) {
+							} else if (ret[3] == N.DeviceSignal.KEYBOARD_SPACE) {
+								vjoy.updateAxes(1, 0, (int)(-9 * 14.1));								
+							}
+						}
 
-				} else if (ret[0] == N.Device.EXIT) {
+					} else if (ret[0] == N.Device.SPEAKER) {
+
+					} else if (ret[0] == N.Device.VJOY) {
+
+					} else if (ret[0] == N.Device.EXIT) {
+						dos.writeInt(N.Device.EXIT);
+						return;
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
 					return;
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
-				return;
+
 			}
 
+		} catch (AWTException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 
 	}

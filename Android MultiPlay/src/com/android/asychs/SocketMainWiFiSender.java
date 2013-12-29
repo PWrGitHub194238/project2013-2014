@@ -83,6 +83,7 @@ public class SocketMainWiFiSender extends AsyncTask<Byte, String, String> {
 						int[] out = Helper.decodeSignal(data);
 						Log.d("THREAD","Encoded: DEV: "+out[0]+" C: "+out[1]+" X: "+out[2]+" Y: "+out[3]);
 						dos.writeInt(data);
+						Log.d("THREAD","doInBackground "+data);
 				}
 				if ( data != N.Exit.EXIT_NO_ERROR ) {
 					this.wait();

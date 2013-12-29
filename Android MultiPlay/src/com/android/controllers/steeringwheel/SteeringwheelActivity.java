@@ -2,6 +2,11 @@ package com.android.controllers.steeringwheel;
 
 //ewentualna kierownica jeśli sie uda zrobić sterowniki po stronie komputera
 
+import java.io.IOException;
+
+import com.android.application.MultiPlayApplication;
+import com.android.application.N;
+import com.android.application.N.Helper;
 import com.android.multiplay.R;
 import com.android.multiplay.R.layout;
 import com.android.multiplay.R.menu;
@@ -14,24 +19,39 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.view.Menu;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
+import android.view.View.OnTouchListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class SteeringwheelActivity extends Activity implements
-		SensorEventListener {
+		SensorEventListener, OnTouchListener {
 	private SensorManager sm;
 	private TextView tv;
+	private Button b1, b2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_steeringwheel);
-		// bundle = super.getIntent().getExtras();
-		// ip = bundle.getString("ip");
-		tv = (TextView) findViewById(R.id.stopv);
-		sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
-		sm.registerListener(this,
-				sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-				SensorManager.SENSOR_DELAY_NORMAL);
+		try {
+			MultiPlayApplication.runThread();
+			tv = (TextView) findViewById(R.id.stopv);
+			sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+			b1 = (Button) super.findViewById(R.id.brea);
+			b2 = (Button) super.findViewById(R.id.gaz);
+			b1.setOnTouchListener(this);
+			sm.registerListener(this,
+					sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+					SensorManager.SENSOR_DELAY_NORMAL);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
@@ -51,5 +71,38 @@ public class SteeringwheelActivity extends Activity implements
 	public void onSensorChanged(SensorEvent arg0) {
 		float y = arg0.values[1];
 		tv.setText(Integer.toString((int) y));
+		int signal = Helper.encodeSignal(N.Device.WHEEL,
+				N.DeviceDataCounter.SINGLE, (int) y);
+		MultiPlayApplication.add(signal);
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		int signal;
+
+		switch (event.getAction()) {
+		case MotionEvent.ACTION_DOWN:
+
+			switch (v.getId()) {
+			case R.id.brea:
+				signal = Helper.encodeSignal(N.Device.WHEEL,
+						N.DeviceDataCounter.DOUBLE, 0,
+						N.DeviceSignal.KEYBOARD_SPACE);
+				MultiPlayApplication.add(signal);
+				break;
+			case R.id.gaz:
+				signal = Helper.encodeSignal(N.Device.WHEEL,
+						N.DeviceDataCounter.DOUBLE, 0,
+						N.DeviceSignal.KEYBOARD_UP);
+				MultiPlayApplication.add(signal);
+				break;
+			}
+
+			break;
+		case MotionEvent.ACTION_UP:
+
+			break;
+		}
+		return false;
 	}
 }

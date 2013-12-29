@@ -15,160 +15,129 @@ public class Keyboard {
 			robot = new Robot();
 			if(key==N.DeviceSignal.KEYBOARD_LEFT){
 				robot.keyPress(KeyEvent.VK_LEFT);
-				robot.keyRelease(KeyEvent.VK_LEFT);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_RIGHT){
 				robot.keyPress(KeyEvent.VK_RIGHT);
-				robot.keyRelease(KeyEvent.VK_RIGHT);
+				
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_RIGHT){
 				robot.keyPress(KeyEvent.VK_DOWN);
-				robot.keyRelease(KeyEvent.VK_DOWN);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_UP){
 
 				robot.keyPress(KeyEvent.VK_UP);
-				robot.keyRelease(KeyEvent.VK_UP);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("q")){
 
 				robot.keyPress(KeyEvent.VK_Q);
-				robot.keyRelease(KeyEvent.VK_Q);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("w")){
 
 				robot.keyPress(KeyEvent.VK_W);
-				robot.keyRelease(KeyEvent.VK_W);
+			
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("e")){
 
 				robot.keyPress(KeyEvent.VK_E);
-				robot.keyRelease(KeyEvent.VK_E);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("r")){
-
 				robot.keyPress(KeyEvent.VK_R);
-				robot.keyRelease(KeyEvent.VK_R);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("t")){
 
 				robot.keyPress(KeyEvent.VK_T);
-				robot.keyRelease(KeyEvent.VK_T);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("y")){
 
 				robot.keyPress(KeyEvent.VK_Y);
-				robot.keyRelease(KeyEvent.VK_Y);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("u")){
 
 				robot.keyPress(KeyEvent.VK_U);
-				robot.keyRelease(KeyEvent.VK_U);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("i")){
 
 				robot.keyPress(KeyEvent.VK_I);
-				robot.keyRelease(KeyEvent.VK_I);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("o")){
 
 				robot.keyPress(KeyEvent.VK_O);
-				robot.keyRelease(KeyEvent.VK_O);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("p")){
 
 				robot.keyPress(KeyEvent.VK_P);
-				robot.keyRelease(KeyEvent.VK_P);
 			}	
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("a")){
 
 				robot.keyPress(KeyEvent.VK_A);
-				robot.keyRelease(KeyEvent.VK_A);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("s")){
 
 				robot.keyPress(KeyEvent.VK_S);
-				robot.keyRelease(KeyEvent.VK_S);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("d")){
 
 				robot.keyPress(KeyEvent.VK_D);
-				robot.keyRelease(KeyEvent.VK_D);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("f")){
 
 				robot.keyPress(KeyEvent.VK_F);
-				robot.keyRelease(KeyEvent.VK_F);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("g")){
 
 				robot.keyPress(KeyEvent.VK_G);
-				robot.keyRelease(KeyEvent.VK_G);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("h")){
 
 				robot.keyPress(KeyEvent.VK_H);
-				robot.keyRelease(KeyEvent.VK_H);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("j")){
 
 				robot.keyPress(KeyEvent.VK_J);
-				robot.keyRelease(KeyEvent.VK_J);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("k")){
 
 				robot.keyPress(KeyEvent.VK_K);
-				robot.keyRelease(KeyEvent.VK_K);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("l")){
 
 				robot.keyPress(KeyEvent.VK_L);
-				robot.keyRelease(KeyEvent.VK_L);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("z")){
 
 				robot.keyPress(KeyEvent.VK_Z);
-				robot.keyRelease(KeyEvent.VK_Z);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("x")){
 
 				robot.keyPress(KeyEvent.VK_X);
-				robot.keyRelease(KeyEvent.VK_X);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("c")){
 
 				robot.keyPress(KeyEvent.VK_C);
-				robot.keyRelease(KeyEvent.VK_C);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("v")){
 
 				robot.keyPress(KeyEvent.VK_V);
-				robot.keyRelease(KeyEvent.VK_V);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("b")){
 
 				robot.keyPress(KeyEvent.VK_B);
-				robot.keyRelease(KeyEvent.VK_B);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("n")){
 
 				robot.keyPress(KeyEvent.VK_N);
-				robot.keyRelease(KeyEvent.VK_N);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_KEY_TO_INT("m")){
 
 				robot.keyPress(KeyEvent.VK_M);
-				robot.keyRelease(KeyEvent.VK_M);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_BACKSPACE){
 
 				robot.keyPress(KeyEvent.VK_BACK_SPACE);
-				robot.keyRelease(KeyEvent.VK_BACK_SPACE);
 			}
 			else if(key==N.DeviceSignal.KEYBOARD_SPACE){
 				
 				robot.keyPress(KeyEvent.VK_SPACE);
-				robot.keyRelease(KeyEvent.VK_SPACE);
 			}
 		} catch (AWTException e) {
 			// TODO Auto-generated catch block

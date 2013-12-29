@@ -1,7 +1,6 @@
 package com.android.multiplay;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.RelativeLayout;
 
 import com.android.application.MultiPlayApplication;

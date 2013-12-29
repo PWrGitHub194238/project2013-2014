@@ -76,11 +76,12 @@ public class Serverwifi implements Runnable {
 							vjoy.updateAxes(1, (int) (ret[2] * 14.1), 0);
 						} else if (ret[1] == N.DeviceDataCounter.DOUBLE) {
 							if (ret[3] == N.DeviceSignal.KEYBOARD_UP) {
-							//Tutaj na gaz
+							//vjoy.updateAxes(1, 0, (int)(9 * 14.1));
+								vjoy.buttonPress(2);
+								
 
 							} else if (ret[3] == N.DeviceSignal.KEYBOARD_SPACE) {
-							//tutaj miejsce na hamulec
-								
+								vjoy.updateAxes(1, 0, (int)(-9 * 14.1));								
 							}
 						}
 
@@ -89,6 +90,7 @@ public class Serverwifi implements Runnable {
 					} else if (ret[0] == N.Device.VJOY) {
 
 					} else if (ret[0] == N.Device.EXIT) {
+						dos.writeInt(N.Device.EXIT);
 						return;
 					}
 				} catch (IOException e) {

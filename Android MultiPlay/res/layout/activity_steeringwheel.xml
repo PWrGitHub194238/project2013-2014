@@ -22,7 +22,7 @@
         android:layout_below="@+id/stopv"
         android:layout_marginRight="106dp"
         android:layout_marginTop="52dp"
-        android:onClick="onClick"
+      
         android:text="Button" />
 
     <Button
@@ -33,7 +33,6 @@
         android:layout_alignBottom="@+id/gaz"
         android:layout_marginLeft="32dp"
         android:layout_toRightOf="@+id/stopv"
-        android:onClick="onClick"
         android:text="Button" />
 
 </RelativeLayout>

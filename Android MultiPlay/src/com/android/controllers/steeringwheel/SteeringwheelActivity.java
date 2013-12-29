@@ -19,16 +19,20 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class SteeringwheelActivity extends Activity implements
-		SensorEventListener,OnClickListener {
+		SensorEventListener, OnTouchListener {
 	private SensorManager sm;
 	private TextView tv;
-	private Button b1,b2;
+	private Button b1, b2;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,9 +41,9 @@ public class SteeringwheelActivity extends Activity implements
 			MultiPlayApplication.runThread();
 			tv = (TextView) findViewById(R.id.stopv);
 			sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
-			b1=(Button)super.findViewById(R.id.brea);
-			b2=(Button)super.findViewById(R.id.gaz);
-			
+			b1 = (Button) super.findViewById(R.id.brea);
+			b2 = (Button) super.findViewById(R.id.gaz);
+			b1.setOnTouchListener(this);
 			sm.registerListener(this,
 					sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
 					SensorManager.SENSOR_DELAY_NORMAL);
@@ -57,7 +61,7 @@ public class SteeringwheelActivity extends Activity implements
 		return true;
 	}
 
-	@Override        
+	@Override
 	public void onAccuracyChanged(Sensor arg0, int arg1) {
 		// TODO Auto-generated method stub
 
@@ -73,20 +77,32 @@ public class SteeringwheelActivity extends Activity implements
 	}
 
 	@Override
-	public void onClick(View v) {
-		int signal; 
-		switch (v.getId()) {
-		case R.id.brea:
-			signal = Helper.encodeSignal(N.Device.WHEEL,
-					N.DeviceDataCounter.DOUBLE, 0,N.DeviceSignal.KEYBOARD_SPACE);
-			MultiPlayApplication.add(signal);
+	public boolean onTouch(View v, MotionEvent event) {
+		int signal;
+
+		switch (event.getAction()) {
+		case MotionEvent.ACTION_DOWN:
+
+			switch (v.getId()) {
+			case R.id.brea:
+				signal = Helper.encodeSignal(N.Device.WHEEL,
+						N.DeviceDataCounter.DOUBLE, 0,
+						N.DeviceSignal.KEYBOARD_SPACE);
+				MultiPlayApplication.add(signal);
+				break;
+			case R.id.gaz:
+				signal = Helper.encodeSignal(N.Device.WHEEL,
+						N.DeviceDataCounter.DOUBLE, 0,
+						N.DeviceSignal.KEYBOARD_UP);
+				MultiPlayApplication.add(signal);
+				break;
+			}
+
 			break;
-		case R.id.gaz:
-			signal = Helper.encodeSignal(N.Device.WHEEL,
-					N.DeviceDataCounter.DOUBLE, 0,N.DeviceSignal.KEYBOARD_UP);
-			MultiPlayApplication.add(signal);
+		case MotionEvent.ACTION_UP:
+
 			break;
 		}
-		
+		return false;
 	}
 }

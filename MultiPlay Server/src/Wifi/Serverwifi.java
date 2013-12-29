@@ -24,12 +24,14 @@ public class Serverwifi implements Runnable {
 	private Socket socket;
 	private DataInputStream dis;
 	private DataOutputStream dos;
+	ServerSocket serversocket;
 	int i = 0;
 
-	public Serverwifi(Socket socket, DataInputStream dis, DataOutputStream dos) {
+	public Serverwifi(Socket socket, DataInputStream dis, DataOutputStream dos,ServerSocket serversocket) {
 		this.socket = socket;
 		this.dis = dis;
 		this.dos = dos;
+		this.serversocket=serversocket;
 	}
 
 	@Override
@@ -87,7 +89,10 @@ public class Serverwifi implements Runnable {
 					} else if (ret[0] == N.Device.VJOY) {
 
 					} else if (ret[0] == N.Device.EXIT) {
-						dos.writeInt(N.Device.EXIT);
+						dis.close();
+						dos.close();
+						socket.close();
+						serversocket.close();
 						return;
 					}
 				} catch (IOException e) {

@@ -30,7 +30,13 @@ public class MouseActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mouse);
-		
+		try {
+			MultiPlayApplication.runThread();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 			txv = (TextView) super.findViewById(R.id.texty);
 		
 		

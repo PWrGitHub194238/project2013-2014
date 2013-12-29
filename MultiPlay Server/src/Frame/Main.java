@@ -57,7 +57,7 @@ public class Main {
 					} else if (data == N.Signal.NEED_CONNECTION) {
 						System.out.println("Send back connect code...");
 						dos.writeByte(N.Signal.NEED_CONNECTION);
-						Serverwifi wifi = new Serverwifi(socket, dis, dos);
+						Serverwifi wifi = new Serverwifi(socket, dis, dos,serversocket);
 						wifi.run();
 					}
 				} catch (IOException e) {

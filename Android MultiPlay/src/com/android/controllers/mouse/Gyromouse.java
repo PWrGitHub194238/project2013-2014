@@ -1,5 +1,7 @@
 package com.android.controllers.mouse;
 
+import java.io.IOException;
+
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
@@ -40,7 +42,13 @@ public class Gyromouse extends Activity implements SensorEventListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gyromouse);
 		
-	
+		try {
+			MultiPlayApplication.runThread();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		// button = (Button) super.findViewById(R.id.stopbu);
 		// bundle = super.getIntent().getExtras();
 		// ip = bundle.getString("ip");

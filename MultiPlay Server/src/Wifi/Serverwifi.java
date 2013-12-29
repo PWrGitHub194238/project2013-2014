@@ -32,19 +32,18 @@ public class Serverwifi implements Runnable {
 	@Override
 	public void run() {
 
-		VJoyDriver vjoy;
+		VJoyDriver vjoy = null;
 		Mouse mouse = new Mouse();
 		Keyboard keyboard = new Keyboard();
 		Speaker speak = new Speaker();
 
-		// if(System.getProperty("os.name").startsWith("Win"))
-		// {
-
-		// if(System.getProperty("os.arch").contains("64"))
-		// vjoy=new VJoyDriver64(true);
-		// else
-		// vjoy=new VJoyDriver32(true);
-		// }
+		if(System.getProperty("os.name").startsWith("Win"))
+		{
+		if(System.getProperty("os.arch").contains("64"))
+		vjoy=new VJoyDriver64(true);
+		else
+		vjoy=new VJoyDriver32(true);
+		}
 
 		int signals = 0;
 		System.out.println("watek");
@@ -70,6 +69,7 @@ public class Serverwifi implements Runnable {
 							//pOD ret[2] s¹ dane jakie zwraca kierownica od androida. Jest to pojedynczy integer
 							//-9 do 0 w lewo i 0 do 9 w prawo
 							
+							vjoy.updateAxes(1,(int)(ret[2]*14.1),0);
 						}
 					} else if (ret[0] == N.Device.SPEAKER) {
 

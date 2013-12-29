@@ -23,6 +23,7 @@ public class SocketMainWiFiSender extends AsyncTask<Byte, String, String> {
 	private WirelessConfigurationClass mainConfiguration = null;
 	
 	public static LinkedBlockingQueue<Integer> queue = null;
+	public static Boolean isRuning = false;
 	
 	
 	
@@ -39,12 +40,14 @@ public class SocketMainWiFiSender extends AsyncTask<Byte, String, String> {
 	protected void onPostExecute(String result) {
 		// TODO Auto-generated method stub
 		super.onPostExecute(result);
+		Log.d("THREAD","sender stoped.");
 	}
 
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
 		Log.d("THREAD","onPreExecute");
+		isRuning = true;
 
 	}
 
@@ -70,20 +73,23 @@ public class SocketMainWiFiSender extends AsyncTask<Byte, String, String> {
 			e1.printStackTrace();
 		}
 		Log.d("THREAD","Sender created.");
-		
-		while(true) {
+		int data = 0;
+		while(isRuning) {
 			try {
 				Log.d("THREAD","isEmpty "+queue.isEmpty());
 				while(queue.isEmpty() == false ) {
-						int data = queue.take();
-						Log.d("THREAD","doInBackground "+data);
-						dos.writeInt(data);
+						data = queue.take();
 						Log.d("THREAD","doInBackground "+data);
 						int[] out = Helper.decodeSignal(data);
 						Log.d("THREAD","Encoded: DEV: "+out[0]+" C: "+out[1]+" X: "+out[2]+" Y: "+out[3]);
 						dos.writeInt(data);
+						Log.d("THREAD","doInBackground "+data);
 				}
-				this.wait();
+				if ( data != N.Exit.EXIT_NO_ERROR ) {
+					this.wait();
+				} else {
+					isRuning = false;
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -92,5 +98,7 @@ public class SocketMainWiFiSender extends AsyncTask<Byte, String, String> {
 				e.printStackTrace();
 			}
 		}
+		Log.d("THREAD","sender stoped.");
+		return null;
 	}
 }

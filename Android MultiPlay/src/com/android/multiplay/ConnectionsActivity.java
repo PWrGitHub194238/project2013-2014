@@ -37,7 +37,6 @@ import com.android.dialogs.AddConnectionDialog;
 import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
 import com.android.dialogs.elements.DialogListCore;
-import com.android.dialogs.elements.OptionsActivityDialogList;
 import com.android.extendedWidgets.ImageToggleButton;
 import com.android.extendedWidgets.lists.ElementOfConnectionsList;
 import com.android.extendedWidgets.lists.ListOfConections;
@@ -194,9 +193,9 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 		Log.d("ListView","Click index: "+id);
 		selectedConfig = MultiPlayApplication.getDiscoveredWirelessDevices().get(id);
 		AlertDialogs.showDialog(this,
-				OptionsActivityDialogList.TAG_CONNECT_CONFIRMATION,
-				OptionsActivityDialogList.IT_TITLE_ICON_WIFI,
-				OptionsActivityDialogList.ID_TITLE_CONNECT_CONFIRMATION,
+				ConnectionsActivity.DialogList.TAG_CONNECT_CONFIRMATION,
+				ConnectionsActivity.DialogList.ID_TITLE_ICON_WIFI,
+				ConnectionsActivity.DialogList.ID_TITLE_CONNECT_CONFIRMATION,
 				DialogListCore.ID_MESSAGE_NO_MESSAGE,
 				DialogListCore.ID_BUTTON_CONNECT,
 				null,
@@ -255,9 +254,9 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	private void new_connection_onClick() {
 		AddConnectionDialog.showDialog(
 				  this,
-				  OptionsActivityDialogList.TAG_ADD_CONNECTION,
-				  OptionsActivityDialogList.IT_TITLE_ICON_CONNECTION_CREATOR,
-				  OptionsActivityDialogList.ID_TITLE_ADD_CONNECTION,
+				  ConnectionsActivity.DialogList.TAG_ADD_CONNECTION,
+				  ConnectionsActivity.DialogList.ID_TITLE_ICON_CONNECTION_CREATOR,
+				  ConnectionsActivity.DialogList.ID_TITLE_ADD_CONNECTION,
 				  AddConnectionDialog.getViewFromResource(this,R.layout.dialog_add_new_connection),
 				  DialogListCore.ID_BUTTON_ADD,
 				  DialogListCore.ID_BUTTON_EMPTY,
@@ -416,11 +415,31 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 
 
 
+	public final static class DialogList {
+		
+		private static final String PACKAGE = "com.android.multiplay.connectionsactivity";
+		
+		public static final String TAG_ADD_CONNECTION = PACKAGE + "ADD_CONNECTION";
+		public static final String TAG_CONNECT_CONFIRMATION = PACKAGE + "CONNECT_CONFIRMATION";
+		
+		public static final int ID_TITLE_ADD_CONNECTION =
+				R.string.dialog_ID_TITLE_ADD_CONNECTION;
+		public static final int ID_TITLE_CONNECT_CONFIRMATION =
+				R.string.dialog_ID_TITLE_CONNECT_CONFIRMATION;
+		
+		public static final int ID_TITLE_ICON_CONNECTION_CREATOR =
+				R.drawable.connections_activity_icon_creator;
+		public static final int ID_TITLE_ICON_WIFI =
+				R.drawable.connections_activity_icon_creator;
+		public static final int ID_TITLE_ICON_BT =
+				R.drawable.connections_activity_icon_creator;
+	}
+	
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog) {
 		String dialogTag = dialog.getTag();
 
-		if ( dialogTag.equals(OptionsActivityDialogList.TAG_ADD_CONNECTION)) {
+		if ( dialogTag.equals(ConnectionsActivity.DialogList.TAG_ADD_CONNECTION)) {
 			Toast.makeText(this, "OKKKKKKKKKKK",Toast.LENGTH_LONG).show();
 
 			AddConnectionDialog d = (AddConnectionDialog) dialog;
@@ -460,7 +479,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 				
 			}
 			return;
-		} else if (dialogTag.equals(OptionsActivityDialogList.TAG_CONNECT_CONFIRMATION)) {
+		} else if (dialogTag.equals(ConnectionsActivity.DialogList.TAG_CONNECT_CONFIRMATION)) {
 			Toast.makeText(this, "Make connection",Toast.LENGTH_LONG).show();
 			MultiPlayApplication.setMainNetworkConfiguration(selectedConfig);
 			//TODO

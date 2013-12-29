@@ -1,30 +1,24 @@
 package com.android.controllers.mouse;
 
-import com.android.application.MultiPlayApplication;
-import com.android.application.N;
-import com.android.application.N.Helper;
-
-import com.android.dialogs.AlertDialogs;
-import com.android.dialogs.elements.DialogListCore;
-import com.android.dialogs.elements.MultiPlayExplorerActivityDialogList;
-import com.android.multiplay.R;
+import android.app.Activity;
+import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.app.Activity;
-import android.content.Context;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.application.MultiPlayApplication;
+import com.android.application.N;
+import com.android.application.N.Helper;
+import com.android.multiplay.R;
 
 //myszka oparta na żyroskopie(beta).
 public class Gyromouse extends Activity implements SensorEventListener,

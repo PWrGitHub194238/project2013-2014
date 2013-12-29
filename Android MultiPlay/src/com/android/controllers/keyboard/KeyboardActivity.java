@@ -2,12 +2,10 @@ package com.android.controllers.keyboard;
 
 import java.io.IOException;
 
-import com.android.multiplay.ConnectionsActivity;
-import com.android.multiplay.R;
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,7 +19,9 @@ import com.android.controllers.mouse.smalkey;
 import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
 import com.android.dialogs.elements.DialogListCore;
-import com.android.dialogs.elements.MultiPlayExplorerActivityDialogList;
+import com.android.multiplay.ConnectionsActivity;
+import com.android.multiplay.MultiplayExplorerActivity;
+import com.android.multiplay.R;
 
 public class KeyboardActivity extends Activity implements OnClickListener,
 		DialogButtonClickListener {
@@ -80,10 +80,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 				AlertDialogs
 						.showDialog(
 								this,
-								MultiPlayExplorerActivityDialogList.TAG_NO_CONNECTION_FOUND,
+								MultiplayExplorerActivity.DialogList.TAG_NO_CONNECTION_FOUND,
 								DialogListCore.IT_TITLE_ICON_WARNING,
-								MultiPlayExplorerActivityDialogList.ID_TITLE_NO_CONNECTION_FOUND,
-								MultiPlayExplorerActivityDialogList.ID_MESSAGE_NO_CONNECTION_FOUND,
+								MultiplayExplorerActivity.DialogList.ID_TITLE_NO_CONNECTION_FOUND,
+								MultiplayExplorerActivity.DialogList.ID_MESSAGE_NO_CONNECTION_FOUND,
 								DialogListCore.ID_BUTTON_OPTIONS, null,
 								DialogListCore.ID_BUTTON_CANCEL);
 			}

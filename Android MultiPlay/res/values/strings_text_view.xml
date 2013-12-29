@@ -10,12 +10,14 @@
     
     	<string name="tv_activity_title_multiplay_explorer">MultiPlay Explorer</string>
     	
-    <string name="tv_option_1_title_in_main_activity">System controller</string>
+    <string name="tv_option_1_title_in_main_activity">MultiPlay\'s help</string>
     <string name="tv_option_1_title_description_in_main_activity">f the options on your right to navigate application. To enable or disable device connections tap leds below.</string>
-    
-    <string name="tv_option_2_title_in_main_activity">MultiPlay\'s help</string>
+    	
+    <string name="tv_option_2_title_in_main_activity">System controller</string>
     <string name="tv_option_2_title_description_in_main_activity">ons on your right to navigate application. To enable or disable device connections tap leds below.</string>
     
+    	<string name="tv_activity_title_system_controllers">Choose controller</string>
+        	
     <string name="tv_option_3_title_in_main_activity">Configuration</string>
 	<string name="tv_option_3_title_description_in_main_activity"> right to navigate application. To enable or disable device connections tap leds below.</string>
     

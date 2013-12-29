@@ -115,7 +115,7 @@
 	    android:focusable="true"
 	    
 	    android:text="@string/tv_default_title_in_main_activity"
-	    android:textAppearance="@style/main_activity_titles"
+	    android:textAppearance="@style/activity_titles"
 	    android:drawableLeft="@drawable/activity_title_icon_blue"
 	    android:drawablePadding="10dp" 
 	    android:background="@drawable/activity_title_glow_blue"/>

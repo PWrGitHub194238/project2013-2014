@@ -40,7 +40,14 @@ import java.math.BigInteger;
  * 	</ul>
  * </ul>
  *
+ * <pre>
+ * {@code
+ * int signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_LPM);
+ * int[] ret = Helper.decodeSignal(signal);
+ * }
+ * </pre>
  */
+
 public final class N {
 	
 	/**
@@ -102,10 +109,10 @@ public final class N {
 	 * 
 	 */
     public static final class Device {
-    	public static final int MOUSE = 					Integer.parseInt("00000", 2);
-    	public static final int KEYBOARD = 					Integer.parseInt("00001", 2);
-    	public static final int WHEEL = 					Integer.parseInt("00010", 2);
-    	public static final int SPEAKER = 					Integer.parseInt("00011", 2);// ?
+    	public static final int MOUSE = 					C.SIGNAL_MOUSE;
+    	public static final int KEYBOARD = 					C.SIGNAL_KEYBOARD;
+    	public static final int WHEEL = 					C.SIGNAL_WHEEL;
+    	public static final int SPEAKER = 					C.SIGNAL_SPEAKER;// ?
     	public static final int EXIT =						Integer.parseInt("11111", 2);// ?
     }
 
@@ -149,6 +156,10 @@ public final class N {
         	String w = new String(b.toByteArray());
         	return w;
         }
+    }
+    
+    public static final class Exit {
+    	public static final int EXIT_NO_ERROR =				Helper.encodeSignal(N.Device.EXIT, N.DeviceDataCounter.SINGLE, 0);
     }
     
 	/**

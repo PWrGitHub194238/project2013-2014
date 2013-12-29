@@ -7,6 +7,7 @@ import java.util.Collection;
 import android.app.Application;
 import android.util.Log;
 
+import com.android.application.N.Helper;
 import com.android.asychs.SocketMainWiFiSender;
 import com.android.database.DBHelper;
 import com.android.database.MultiPlayDataBase;
@@ -30,7 +31,11 @@ public class MultiPlayApplication extends Application {
 		socketMainThread.execute(N.Signal.NEED_CONNECTION);
 	}
 	
-	public static void execute() {
+	public static void closeThread() {
+		Log.d("THREAD","Stoping thread...");
+		if (socketMainThread != null ) {
+			add(N.Exit.EXIT_NO_ERROR);
+		}
 	}
 	
 	public static void add(int signal) {

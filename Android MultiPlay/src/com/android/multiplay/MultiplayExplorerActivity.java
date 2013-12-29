@@ -11,11 +11,9 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
 import com.android.application.MultiPlayApplication;
-import com.android.application.N;
 import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
 import com.android.dialogs.elements.DialogListCore;
-import com.android.dialogs.elements.MultiPlayExplorerActivityDialogList;
 
 public class MultiplayExplorerActivity extends Activity implements OnClickListener, DialogButtonClickListener {
 
@@ -44,10 +42,10 @@ public class MultiplayExplorerActivity extends Activity implements OnClickListen
 			} else {
 				
 				AlertDialogs.showDialog(this,
-						MultiPlayExplorerActivityDialogList.TAG_NO_CONNECTION_FOUND,
+						MultiplayExplorerActivity.DialogList.TAG_NO_CONNECTION_FOUND,
 						DialogListCore.IT_TITLE_ICON_WARNING,
-						MultiPlayExplorerActivityDialogList.ID_TITLE_NO_CONNECTION_FOUND,
-						MultiPlayExplorerActivityDialogList.ID_MESSAGE_NO_CONNECTION_FOUND,
+						MultiplayExplorerActivity.DialogList.ID_TITLE_NO_CONNECTION_FOUND,
+						MultiplayExplorerActivity.DialogList.ID_MESSAGE_NO_CONNECTION_FOUND,
 						DialogListCore.ID_BUTTON_OPTIONS,
 						null,
 						DialogListCore.ID_BUTTON_CANCEL);
@@ -77,6 +75,20 @@ public class MultiplayExplorerActivity extends Activity implements OnClickListen
 	return;*/
 }
 
+	
+	public final class DialogList {
+		
+		private static final String PACKAGE = "com.android.multiplay.multiplayexploreractivity";
+		
+		public static final String TAG_NO_CONNECTION_FOUND = PACKAGE + "NO_CONNECTION_FOUND";
+		
+		public static final int ID_TITLE_NO_CONNECTION_FOUND =
+				R.string.dialog_ID_TITLE_NO_CONNECTION_FOUND;
+		
+		public static final int ID_MESSAGE_NO_CONNECTION_FOUND =
+				R.string.dialog_ID_MESSAGE_NO_CONNECTION_FOUND;
+	}
+	
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog) {
 		Intent intent = new Intent(this, ConnectionsActivity.class);

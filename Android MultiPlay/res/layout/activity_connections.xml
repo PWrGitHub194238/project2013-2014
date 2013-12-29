@@ -29,7 +29,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingTop="1dp"
         android:text="@string/tv_activity_title_connections"
-        android:textAppearance="@style/main_activity_titles" />
+        android:textAppearance="@style/activity_titles" />
 
     <ImageView
         android:id="@+id/iv_activity_glow_horizontal_line"

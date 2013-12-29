@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="main_activity_titles">
+    <style name="activity_titles">
     	<item name="android:textColor">#FFFFFF</item>
   		<item name="android:textSize">20sp</item>
+    </style>
+    
+        <style name="activity_subtitles">
+    	<item name="android:textColor">#FFFFFF</item>
+  		<item name="android:textSize">16sp</item>
     </style>
     
     <style name="main_activity_titles_description">

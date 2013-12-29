@@ -54,7 +54,7 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 				R.string.tv_option_0_title_description_in_main_activity);
 	}
 	
-	private void system_controller_hasFocus() {
+	private void help_hasFocus() {
 		hasFocus(
 				R.drawable.activity_title_icon_red,
 				R.string.tv_option_1_title_in_main_activity,
@@ -62,8 +62,8 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 				R.drawable.main_activity_1_title_big_background_icon,
 				R.string.tv_option_1_title_description_in_main_activity);
 	}
-
-	private void help_hasFocus() {
+	
+	private void system_controller_hasFocus() {
 		hasFocus(
 				R.drawable.activity_title_icon_green,
 				R.string.tv_option_2_title_in_main_activity,

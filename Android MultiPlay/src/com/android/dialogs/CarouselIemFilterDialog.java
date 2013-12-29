@@ -18,17 +18,12 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.Switch;
 
 import com.android.multiplay.R;
 
-/** Displays the alert dialog box that contains {@link ScrollView}. 
- * 
- * Dialog that extends AlertDialogs
- *
- */
-public class AddConnectionDialog extends AlertDialogs implements OnCheckedChangeListener, TextWatcher {
+
+public class CarouselIemFilterDialog extends AlertDialogs implements OnCheckedChangeListener, TextWatcher {
 
 	private static final String VIEW_ID = "viewID";
 	private static View dialogInnerView = null;
@@ -74,12 +69,12 @@ public class AddConnectionDialog extends AlertDialogs implements OnCheckedChange
 	private EditText et_connections_activity_device_mac = null;
 	private CheckBox cb_save_connection = null;
 
-    public static AddConnectionDialog newInstance( Integer titleIconID, Integer titleID, View view, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
-    	AddConnectionDialog dialog = new AddConnectionDialog();
+    public static CarouselIemFilterDialog newInstance( Integer titleIconID, Integer titleID, View view, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
+    	CarouselIemFilterDialog dialog = new CarouselIemFilterDialog();
 
         Bundle args = AlertDialogs.newInstance(titleIconID, titleID, null, positiveButtonID, neutralButtonID, negativeButtonID).getArguments();
 
-        args.putInt(AddConnectionDialog.VIEW_ID, ( view != null ) ? view.getId() : 0);
+        args.putInt(CarouselIemFilterDialog.VIEW_ID, ( view != null ) ? view.getId() : 0);
 
         dialog.setArguments(args);
         return dialog;
@@ -87,7 +82,7 @@ public class AddConnectionDialog extends AlertDialogs implements OnCheckedChange
 
 	@Override
 	public void buildDialogContent(Builder builder) {
-		Integer argsID = super.getArguments().getInt(AddConnectionDialog.VIEW_ID);
+		Integer argsID = super.getArguments().getInt(CarouselIemFilterDialog.VIEW_ID);
 		if ( argsID !=  0 ) {
 			builder.setView(dialogInnerView);
 			dialogInnerViewLogic();
@@ -96,7 +91,7 @@ public class AddConnectionDialog extends AlertDialogs implements OnCheckedChange
 	}
 
 	public static void showDialog(Activity activity, String dialogIDTag, Integer titleIconID, Integer titleID, View view, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
-		AddConnectionDialog dialog = AddConnectionDialog.newInstance(titleIconID,titleID,view,positiveButtonID,neutralButtonID,negativeButtonID);
+		CarouselIemFilterDialog dialog = CarouselIemFilterDialog.newInstance(titleIconID,titleID,view,positiveButtonID,neutralButtonID,negativeButtonID);
         dialog.show(activity.getFragmentManager(), dialogIDTag);
 	}
 	
@@ -160,6 +155,7 @@ public class AddConnectionDialog extends AlertDialogs implements OnCheckedChange
 	public void onShow(DialogInterface dialog) {
 		super.onShow(dialog);
 		super.getPositiveButton().setEnabled(false);
+	//	super.getNeutralButton().setBackgroundResource(R.drawable.connections_activity_icon_bt_on);
 	}
 
 	@Override

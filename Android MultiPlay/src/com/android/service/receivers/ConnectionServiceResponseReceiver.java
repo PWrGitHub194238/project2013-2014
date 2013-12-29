@@ -4,14 +4,12 @@ import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.elements.DialogListCore;
-import com.android.dialogs.elements.MainActivityDialogList;
 import com.android.extendedWidgets.ImageToggleButton;
+import com.android.multiplay.MainActivity;
 import com.android.multiplay.R;
 import com.android.services.ConnectionService;
 
@@ -56,20 +54,20 @@ public class ConnectionServiceResponseReceiver extends BroadcastReceiver {
 	    		  if ( is_bluetooth_default_conf_available ) {
 	    			  AlertDialogs.showDialog(
 	    					  activity,
-	    					  MainActivityDialogList.TAG_BLUETOOTH_CONNECTED,
+	    					  MainActivity.DialogList.TAG_BLUETOOTH_CONNECTED,
 	    					  null,
-	    					  MainActivityDialogList.ID_TITLE_BLUETOOTH_CONNECTED,
-	    					  MainActivityDialogList.ID_MESSAGE_BLUETOOTH_CONNECTED,
+	    					  MainActivity.DialogList.ID_TITLE_BLUETOOTH_CONNECTED,
+	    					  MainActivity.DialogList.ID_MESSAGE_BLUETOOTH_CONNECTED,
 	    					  DialogListCore.ID_BUTTON_OK,
 	    					  null,
 	    					  null);
 	    		  } else {
 	    			  AlertDialogs.showDialog(
 	    					  activity,
-	    					  MainActivityDialogList.TAG_BLUETOOTH_ENABLED,
+	    					  MainActivity.DialogList.TAG_BLUETOOTH_ENABLED,
 	    					  null,
-	    					  MainActivityDialogList.ID_TITLE_BLUETOOTH_ENABLED,
-	    					  MainActivityDialogList.ID_MESSAGE_BLUETOOTH_ENABLED,
+	    					  MainActivity.DialogList.ID_TITLE_BLUETOOTH_ENABLED,
+	    					  MainActivity.DialogList.ID_MESSAGE_BLUETOOTH_ENABLED,
 	    					  DialogListCore.ID_BUTTON_OPTIONS,
 	    					  null,
 	    					  DialogListCore.ID_BUTTON_CANCEL);

@@ -29,5 +29,14 @@ public class CarouselDataItem {
 	public final void setIconId(int iconId) {
 		this.iconId = iconId;
 	}
+
+	public final Class<? extends Activity> getNextActivity() {
+		return nextActivity;
+	}
+
+	public final void setNextActivity(Class<? extends Activity> nextActivity) {
+		this.nextActivity = nextActivity;
+	}
+
 	
 }

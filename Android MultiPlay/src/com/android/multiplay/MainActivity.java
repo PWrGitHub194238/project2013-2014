@@ -11,12 +11,9 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.android.application.MultiPlayApplication;
-import com.android.application.N;
-import com.android.application.N.Helper;
 import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
 import com.android.dialogs.elements.DialogListCore;
-import com.android.dialogs.elements.MainActivityDialogList;
 import com.android.multiplay.fragments.ConnectionPanel;
 import com.android.services.ConnectionService;
 
@@ -99,9 +96,6 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 		
 		init();
 		
-		int signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_LPM);
-		int[] ret = Helper.decodeSignal(signal);
-		//Log.d("APP",String.valueOf(ret[0])+" "+String.valueOf(ret[1])+" "+String.valueOf(ret[2])+" "+String.valueOf(ret[3])+" "+String.valueOf(ret[4]));
 	}
 
 	/** Called on activity resume.
@@ -174,7 +168,7 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	 */
 	public void help_OnClick(View view) {
 		super.startActivity(
-				new Intent(this, FirstMenu.class));
+				new Intent(this, HelpActivity.class));
 	}
 	
 	/** Method starts new activity: {@link OptionsActivity}.
@@ -194,6 +188,34 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	
 	
 	
+	public final static class DialogList {
+		
+		private static final String PACKAGE = "com.android.multiplay.mainactivity";
+		
+		public static final String TAG_BLUETOOTH_CONNECTED = PACKAGE + "BLUETOOTH_CONNECTED";
+		public static final String TAG_BLUETOOTH_ENABLED = PACKAGE + "BLUETOOTH_ENABLED";
+		public static final String TAG_WIFI_CONNECTED = PACKAGE + "WIFI_CONNECTED";
+		public static final String TAG_WIFI_ENABLED = PACKAGE + "WIFI_ENABLED";
+		
+		public static final int ID_TITLE_BLUETOOTH_CONNECTED =
+				R.string.dialog_ID_TITLE_BLUETOOTH_CONNECTED;
+		public static final int ID_TITLE_BLUETOOTH_ENABLED =
+				R.string.dialog_ID_TITLE_BLUETOOTH_ENABLED;
+		public static final int ID_TITLE_WIFI_CONNECTED =
+				R.string.dialog_ID_TITLE_WIFI_CONNECTED;
+		public static final int ID_TITLE_WIFI_ENABLED =
+				R.string.dialog_ID_TITLE_WIFI_ENABLED;
+
+		public static final int ID_MESSAGE_BLUETOOTH_CONNECTED =
+				R.string.dialog_ID_MESSAGE_BLUETOOTH_CONNECTED;
+		public static final int ID_MESSAGE_BLUETOOTH_ENABLED =
+				R.string.dialog_ID_MESSAGE_BLUETOOTH_ENABLED;
+		public static final int ID_MESSAGE_WIFI_CONNECTED =
+				R.string.dialog_ID_MESSAGE_WIFI_CONNECTED;
+		public static final int ID_MESSAGE_WIFI_ENABLED =
+				R.string.dialog_ID_MESSAGE_WIFI_ENABLED;
+	}
+	
 	/** Method triggered by tapping on a {@link DialogInterface#BUTTON_POSITIVE}.
 	 * 
 	 * Method handles {@link AlertDialogs#positiveButton} tapping and executes appropriate code 
@@ -201,31 +223,31 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	 * 
 	 * It handles dialogs with tags:
 	 * <ul>
-	 * 	<li>{@link MainActivityDialogList#TAG_BLUETOOTH_CONNECTED} - if {@link Context#BLUETOOTH_SERVICE} is enabled and it is set 
+	 * 	<li>{@link MainActivity.DialogList#TAG_BLUETOOTH_CONNECTED} - if {@link Context#BLUETOOTH_SERVICE} is enabled and it is set 
 	 * as a service with the highest priority (see {@link ConnectionsActivity#b_connections_activity_bluetooth_switcher}) 
 	 * method redirects user to {@link ConnectionsActivity}. It also automatically trigger {@link ConnectionsActivity#bluetooth_switcher_onClick}
 	 * to search for bluetooth devices. Other options are handle by other methods: {@link #onDialogNeutralClick(DialogFragment)} and 
 	 * {@link #onDialogNegativeClick(DialogFragment)}.</li>
 	 * 
-	 * 	<li>{@link MainActivityDialogList#TAG_BLUETOOTH_ENABLED} - if {@link Context#BLUETOOTH_SERVICE} is enabled by tapping {@link ConnectionPanel#b_bluetooth_switch}
+	 * 	<li>{@link MainActivity.DialogList#TAG_BLUETOOTH_ENABLED} - if {@link Context#BLUETOOTH_SERVICE} is enabled by tapping {@link ConnectionPanel#b_bluetooth_switch}
 	 * user can be redirected to {@link ConnectionsActivity} in the same way as in the above case. Other options are handle by other methods: 
 	 * {@link #onDialogNeutralClick(DialogFragment)} and 
 	 * {@link #onDialogNegativeClick(DialogFragment)}.</li>
 	 * 
-	 * 	<li>{@link MainActivityDialogList#TAG_WIFI_CONNECTED} - if {@link Context#WIFI_SERVICE} and/or {@link Context#WIFI_P2P_SERVICE} is enabled and it is set 
+	 * 	<li>{@link MainActivity.DialogList#TAG_WIFI_CONNECTED} - if {@link Context#WIFI_SERVICE} and/or {@link Context#WIFI_P2P_SERVICE} is enabled and it is set 
 	 * as a service with the highest priority (see {@link ConnectionsActivity#b_connections_activity_wireless_switcher}) 
 	 * method redirects user to {@link ConnectionsActivity}. It also automatically trigger {@link ConnectionsActivity#wireless_switcher_onClick}
 	 * to search for available devices by using {@link Context#WIFI_P2P_SERVICE} or {@link ConnectionsActivity#new_connection_onClick} otherwise. 
 	 * Other options are handle by other methods: {@link #onDialogNeutralClick(DialogFragment)} and {@link #onDialogNegativeClick(DialogFragment)}.</li>
 	 * 
-	 * 	<li>{@link MainActivityDialogList#TAG_WIFI_ENABLED} - if {@link Context#WIFI_SERVICE} is enabled by tapping {@link ConnectionPanel#b_wireless_network_switch}
+	 * 	<li>{@link MainActivity.DialogList#TAG_WIFI_ENABLED} - if {@link Context#WIFI_SERVICE} is enabled by tapping {@link ConnectionPanel#b_wireless_network_switch}
 	 * user can be redirected to {@link ConnectionsActivity} in the same way as in the above case. Other options are handle by other methods: 
 	 * {@link #onDialogNeutralClick(DialogFragment)} and 
 	 * {@link #onDialogNegativeClick(DialogFragment)}.</li>
 	 * </ul>
 	 * 
 	 * @see DialogListCore
-	 * @see MainActivityDialogList
+	 * @see MainActivity.DialogList
 	 * @see AlertDialogs
 	 * @see DialogButtonClickListener
 	 * 
@@ -234,22 +256,22 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	public void onDialogPositiveClick(DialogFragment dialog) {
 		String dialogTag = dialog.getTag();
 
-		if ( dialogTag.equals(MainActivityDialogList.TAG_BLUETOOTH_CONNECTED)) {
+		if ( dialogTag.equals(MainActivity.DialogList.TAG_BLUETOOTH_CONNECTED)) {
 			//TODO
 			return;
 		}
 		
-		if ( dialogTag.equals(MainActivityDialogList.TAG_BLUETOOTH_ENABLED)) {
+		if ( dialogTag.equals(MainActivity.DialogList.TAG_BLUETOOTH_ENABLED)) {
 			//TODO
 			return;
 		}
 		
-		if ( dialogTag.equals(MainActivityDialogList.TAG_WIFI_CONNECTED)) {
+		if ( dialogTag.equals(MainActivity.DialogList.TAG_WIFI_CONNECTED)) {
 			//TODO
 			return;
 		}
 		
-		if ( dialogTag.equals(MainActivityDialogList.TAG_WIFI_ENABLED)) {
+		if ( dialogTag.equals(MainActivity.DialogList.TAG_WIFI_ENABLED)) {
 			//TODO
 			return;
 		}
@@ -262,22 +284,22 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	 * 
 	 * It handles dialogs with tags:
 	 * <ul>
-	 * 	<li>{@link MainActivityDialogList#TAG_BLUETOOTH_CONNECTED} - if {@link Context#BLUETOOTH_SERVICE} is enabled and it is set 
+	 * 	<li>{@link MainActivity.DialogList#TAG_BLUETOOTH_CONNECTED} - if {@link Context#BLUETOOTH_SERVICE} is enabled and it is set 
 	 * as a service with the highest priority (see {@link ConnectionsActivity#b_connections_activity_bluetooth_switcher}) 
 	 * and also there is default bluetooth connection stored in application memory method will check it and set as a default for entire application. 
 	 * Other options are handle by other methods: {@link #onDialogPositiveClick(DialogFragment)} and 
 	 * {@link #onDialogNegativeClick(DialogFragment)}.</li>
 	 * 
-	 * 	<li>{@link MainActivityDialogList#TAG_BLUETOOTH_ENABLED} - if {@link Context#BLUETOOTH_SERVICE} is enabled by tapping {@link ConnectionPanel#b_bluetooth_switch}
+	 * 	<li>{@link MainActivity.DialogList#TAG_BLUETOOTH_ENABLED} - if {@link Context#BLUETOOTH_SERVICE} is enabled by tapping {@link ConnectionPanel#b_bluetooth_switch}
 	 * and also there is default bluetooth connection stored in application memory method will check it and set as a default for entire application. 
 	 * Other options are handle by other methods: {@link #onDialogPositiveClick(DialogFragment)} and 
 	 * {@link #onDialogNegativeClick(DialogFragment)}.</li>
 	 * 
-	 * 	<li>{@link MainActivityDialogList#TAG_WIFI_CONNECTED} - if {@link Context#WIFI_SERVICE} and/or {@link Context#WIFI_P2P_SERVICE} is enabled and it is set 
+	 * 	<li>{@link MainActivity.DialogList#TAG_WIFI_CONNECTED} - if {@link Context#WIFI_SERVICE} and/or {@link Context#WIFI_P2P_SERVICE} is enabled and it is set 
 	 * as a service with the highest priority (see {@link ConnectionsActivity#b_connections_activity_wireless_switcher}) 
 	 * and also there is default wireless connection stored in application memory method will check it and set as a default for entire application.
 	 * Other options are handle by other methods: {@link #onDialogNeutralClick(DialogFragment)} and {@link #onDialogNegativeClick(DialogFragment)}.</li>
-	 * 	<li>{@link MainActivityDialogList#TAG_WIFI_ENABLED} - if {@link Context#WIFI_SERVICE} is enabled by tapping {@link ConnectionPanel#b_wireless_network_switch}
+	 * 	<li>{@link MainActivity.DialogList#TAG_WIFI_ENABLED} - if {@link Context#WIFI_SERVICE} is enabled by tapping {@link ConnectionPanel#b_wireless_network_switch}
 	 * and also there is default wireless connection stored in application memory method will check it and set as a default for entire application. 
 	 * Other options are handle by other methods: {@link #onDialogPositiveClick(DialogFragment)} and 
 	 * {@link #onDialogNegativeClick(DialogFragment)}.</li>
@@ -285,7 +307,7 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	 * 
 	 *
 	 * @see DialogListCore
-	 * @see MainActivityDialogList
+	 * @see MainActivity.DialogList
 	 * @see AlertDialogs
 	 * @see DialogButtonClickListener
 	 * 
@@ -294,22 +316,22 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	public void onDialogNeutralClick(DialogFragment dialog) {
 		String dialogTag = dialog.getTag();
 
-		if ( dialogTag.equals(MainActivityDialogList.TAG_BLUETOOTH_CONNECTED)) {
+		if ( dialogTag.equals(MainActivity.DialogList.TAG_BLUETOOTH_CONNECTED)) {
 			//TODO
 			return;
 		}
 		
-		if ( dialogTag.equals(MainActivityDialogList.TAG_BLUETOOTH_ENABLED)) {
+		if ( dialogTag.equals(MainActivity.DialogList.TAG_BLUETOOTH_ENABLED)) {
 			//TODO
 			return;
 		}
 		
-		if ( dialogTag.equals(MainActivityDialogList.TAG_WIFI_CONNECTED)) {
+		if ( dialogTag.equals(MainActivity.DialogList.TAG_WIFI_CONNECTED)) {
 			//TODO
 			return;
 		}
 		
-		if ( dialogTag.equals(MainActivityDialogList.TAG_WIFI_ENABLED)) {
+		if ( dialogTag.equals(MainActivity.DialogList.TAG_WIFI_ENABLED)) {
 			//TODO
 			return;
 		}
@@ -322,17 +344,17 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	 * 
 	 * It handles dialogs with tags:
 	 * <ul>
-	 * 	<li>{@link MainActivityDialogList#TAG_BLUETOOTH_CONNECTED},</li>
-	 * 	<li>{@link MainActivityDialogList#TAG_BLUETOOTH_ENABLED},</li>
-	 * 	<li>{@link MainActivityDialogList#TAG_WIFI_CONNECTED},</li>
-	 * 	<li>{@link MainActivityDialogList#TAG_WIFI_ENABLED}.</li>
+	 * 	<li>{@link MainActivity.DialogList#TAG_BLUETOOTH_CONNECTED},</li>
+	 * 	<li>{@link MainActivity.DialogList#TAG_BLUETOOTH_ENABLED},</li>
+	 * 	<li>{@link MainActivity.DialogList#TAG_WIFI_CONNECTED},</li>
+	 * 	<li>{@link MainActivity.DialogList#TAG_WIFI_ENABLED}.</li>
 	 * </ul>
 	 * 
 	 * When above dialogs are called and users leaves that dialogs without any action or by tapping {@link DialogListCore#ID_BUTTON_CANCEL}
 	 * this method are triggered and it returns no data.
 	 * 
 	 * @see DialogListCore
-	 * @see MainActivityDialogList
+	 * @see MainActivity.DialogList
 	 * @see AlertDialogs
 	 * @see DialogButtonClickListener
 	 * 
@@ -341,22 +363,22 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	public void onDialogNegativeClick(DialogFragment dialog) {
 		String dialogTag = dialog.getTag();
 
-		if ( dialogTag.equals(MainActivityDialogList.TAG_BLUETOOTH_CONNECTED)) {
+		if ( dialogTag.equals(MainActivity.DialogList.TAG_BLUETOOTH_CONNECTED)) {
 			//TODO
 			return;
 		}
 		
-		if ( dialogTag.equals(MainActivityDialogList.TAG_BLUETOOTH_ENABLED)) {
+		if ( dialogTag.equals(MainActivity.DialogList.TAG_BLUETOOTH_ENABLED)) {
 			//TODO
 			return;
 		}
 		
-		if ( dialogTag.equals(MainActivityDialogList.TAG_WIFI_CONNECTED)) {
+		if ( dialogTag.equals(MainActivity.DialogList.TAG_WIFI_CONNECTED)) {
 			//TODO
 			return;
 		}
 		
-		if ( dialogTag.equals(MainActivityDialogList.TAG_WIFI_ENABLED)) {
+		if ( dialogTag.equals(MainActivity.DialogList.TAG_WIFI_ENABLED)) {
 			//TODO
 			return;
 		}

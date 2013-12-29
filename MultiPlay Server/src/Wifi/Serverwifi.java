@@ -62,16 +62,22 @@ public class Serverwifi implements Runnable {
 						} else
 							i = 0;
 				} else if (ret[0] == N.Device.KEYBOARD)
-					keyboard.click(ret[2]);
-				else if (ret[0] == N.Device.WHEEL) {
+					if (ret[1] == N.DeviceDataCounter.SINGLE)
+						keyboard.click(ret[2]);
+					else if (ret[0] == N.Device.WHEEL) {
+						if (ret[1] == N.DeviceDataCounter.SINGLE) {
+							//TU MUSISZ DAÆ METODÊ OD RUCHU KIEORWNICY.
+							//pOD ret[2] s¹ dane jakie zwraca kierownica od androida. Jest to pojedynczy integer
+							//-9 do 0 w lewo i 0 do 9 w prawo
+							
+						}
+					} else if (ret[0] == N.Device.SPEAKER) {
 
-				} else if (ret[0] == N.Device.SPEAKER) {
+					} else if (ret[0] == N.Device.VJOY) {
 
-				} else if (ret[0] == N.Device.VJOY) {
-
-				} else if (ret[0] == N.Device.EXIT) {
-					return;
-				}
+					} else if (ret[0] == N.Device.EXIT) {
+						return;
+					}
 			} catch (IOException e) {
 				e.printStackTrace();
 				return;

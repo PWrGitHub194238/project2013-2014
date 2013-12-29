@@ -52,25 +52,25 @@ public class FirstMenu extends Activity implements OnItemSelectedListener {
 		setContentView(panel);
 
 		Docus = new ArrayList<CarouselDataItem>();
-		Docus.add(new CarouselDataItem("NAMA A", 
+		Docus.add(new CarouselDataItem("Your", 
 				R.drawable.carousel_controller_icon_steering_wheel_accel, 
 				SteeringwheelActivity.class));
-		Docus.add(new CarouselDataItem("NAMA B", 
+		Docus.add(new CarouselDataItem("Speaker", 
 				R.drawable.carousel_controller_icon_steering_wheel_accel, 
 				KeyboardActivity.class));
-		Docus.add(new CarouselDataItem("NAMA C", 
+		Docus.add(new CarouselDataItem("Mouse", 
 				R.drawable.carousel_controller_icon_steering_wheel_accel, 
 				MouseActivity.class));
-		Docus.add(new CarouselDataItem("NAMA D", 
+		Docus.add(new CarouselDataItem("Gyromouse", 
 				R.drawable.carousel_controller_icon_steering_wheel_accel, 
 				SteeringwheelActivity.class));
-		Docus.add(new CarouselDataItem("NAMA E", 
+		Docus.add(new CarouselDataItem("Wheel", 
 				R.drawable.carousel_controller_icon_steering_wheel_accel, 
 				SteeringwheelActivity.class));
-		Docus.add(new CarouselDataItem("NAMA F", 
+		Docus.add(new CarouselDataItem("Keyboard", 
 				R.drawable.carousel_controller_icon_steering_wheel_accel, 
 				SteeringwheelActivity.class));
-		Docus.add(new CarouselDataItem("Mouse", 
+		Docus.add(new CarouselDataItem("Touchpad", 
 				R.drawable.carousel_controller_icon_mouse, 
 				MouseActivity.class));
 

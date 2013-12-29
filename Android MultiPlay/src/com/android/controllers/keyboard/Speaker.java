@@ -34,15 +34,11 @@ public class Speaker extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_speaker);
-		try {
-			MultiPlayApplication.runThread();
+		
+			
 //			txtText = (TextView) findViewById(R.id.text2);
 			btnSpeak = (ImageButton) findViewById(R.id.button1);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
+		
 	}
 
 	@Override

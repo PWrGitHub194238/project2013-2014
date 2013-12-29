@@ -37,7 +37,7 @@ public class Speaker extends Activity {
 		
 			
 //			txtText = (TextView) findViewById(R.id.text2);
-			btnSpeak = (ImageButton) findViewById(R.id.button1);
+			btnSpeak = (ImageButton) findViewById(R.id.speak);
 		
 	}
 

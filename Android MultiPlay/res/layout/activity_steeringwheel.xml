@@ -14,4 +14,26 @@
         android:layout_height="wrap_content"
         android:text="0" />
 
+    <Button
+        android:id="@+id/gaz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/stopv"
+        android:layout_marginRight="106dp"
+        android:layout_marginTop="52dp"
+        android:onClick="onClick"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/brea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/gaz"
+        android:layout_alignBottom="@+id/gaz"
+        android:layout_marginLeft="32dp"
+        android:layout_toRightOf="@+id/stopv"
+        android:onClick="onClick"
+        android:text="Button" />
+
 </RelativeLayout>

@@ -953,5 +953,13 @@ public class Gyromouse extends Activity implements SensorEventListener,
 		// TODO Auto-generated method stub
 		return false;
 	}
+	protected void onPause() {
+        super.onPause();
+        stop=1;
+    }
+	protected void onResume() {
+        super.onResume();
+        stop=0;
+    }
 
 }

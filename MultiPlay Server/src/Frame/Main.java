@@ -13,6 +13,8 @@ import java.net.Socket;
 
 import Mouse.Mouse;
 import Mouse.Pos;
+import VJoy.VJoyDriver32;
+import VJoy.VJoyDriver64;
 import Wifi.Connect;
 import Wifi.N;
 import Wifi.Serverwifi;
@@ -49,6 +51,19 @@ public class Main {
 					if (data == N.Signal.NEED_AUTHORIZATION) {
 						System.out.println("Send back authorization code...");
 						dos.writeByte(N.Signal.NEED_AUTHORIZATION);
+						if (System.getProperty("os.name").startsWith("Win")) {
+
+							dos.writeInt(N.System.WINDOWS);
+						} else if (System.getProperty("os.name").contains(
+								"Linux")) {
+							dos.writeInt(N.System.LINUX);
+
+						} else if (System.getProperty("os.name")
+								.contains("BSD")) {
+							dos.writeInt(N.System.BSD);
+
+						}
+
 						System.out.println("Over");
 						dis.close();
 						dos.close();
@@ -57,7 +72,8 @@ public class Main {
 					} else if (data == N.Signal.NEED_CONNECTION) {
 						System.out.println("Send back connect code...");
 						dos.writeByte(N.Signal.NEED_CONNECTION);
-						Serverwifi wifi = new Serverwifi(socket, dis, dos,serversocket);
+						Serverwifi wifi = new Serverwifi(socket, dis, dos,
+								serversocket);
 						wifi.run();
 					}
 				} catch (IOException e) {

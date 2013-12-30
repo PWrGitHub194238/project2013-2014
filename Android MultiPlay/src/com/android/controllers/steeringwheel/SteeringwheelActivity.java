@@ -31,7 +31,7 @@ public class SteeringwheelActivity extends Activity implements
 		SensorEventListener {
 	private SensorManager sm;
 	private TextView tv;
-	int up = 0,down=0;
+	private int up = 0, down = 0, stop = 0;
 	private Button b1, b2;
 
 	@Override
@@ -97,22 +97,35 @@ public class SteeringwheelActivity extends Activity implements
 
 	@Override
 	public void onSensorChanged(SensorEvent arg0) {
-		float y = arg0.values[1];
-		tv.setText(Integer.toString((int) y));
-		if(up==0 && down==0){
-			int signal = Helper.encodeSignal(N.Device.WHEEL,
-					N.DeviceDataCounter.DOUBLE, (int) y,0);
-			MultiPlayApplication.add(signal);
+		if (stop == 0) {
+			float y = arg0.values[1];
+			tv.setText(Integer.toString((int) y));
+			if (up == 0 && down == 0) {
+				int signal = Helper.encodeSignal(N.Device.WHEEL,
+						N.DeviceDataCounter.DOUBLE, (int) y, 0);
+				MultiPlayApplication.add(signal);
+			} else if (up == 1 && down == 0) {
+				int signal = Helper.encodeSignal(N.Device.WHEEL,
+						N.DeviceDataCounter.DOUBLE, (int) y,
+						N.DeviceSignal.KEYBOARD_UP);
+				MultiPlayApplication.add(signal);
+			} else if (up == 0 && down == 1) {
+				int signal = Helper.encodeSignal(N.Device.WHEEL,
+						N.DeviceDataCounter.DOUBLE, (int) y,
+						N.DeviceSignal.KEYBOARD_SPACE);
+				MultiPlayApplication.add(signal);
+			}
 		}
-		else if (up==1 && down==0){
-			int signal = Helper.encodeSignal(N.Device.WHEEL,
-					N.DeviceDataCounter.DOUBLE, (int) y,N.DeviceSignal.KEYBOARD_UP);
-			MultiPlayApplication.add(signal);
-		}else if (up==0 && down==1){
-			int signal = Helper.encodeSignal(N.Device.WHEEL,
-					N.DeviceDataCounter.DOUBLE, (int) y,N.DeviceSignal.KEYBOARD_SPACE);
-			MultiPlayApplication.add(signal);
-		}
+	}
+
+	protected void onPause() {
+		super.onPause();
+		stop = 1;
+	}
+
+	protected void onResume() {
+		super.onResume();
+		stop = 0;
 	}
 
 }

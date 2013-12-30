@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.application.BluetoothConfigurationClass;
 import com.android.application.ConnectionsConfigurationClass;
@@ -55,6 +56,10 @@ public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationCla
 				dos.writeByte(N.Signal.NEED_AUTHORIZATION);
 				byte recived = dis.readByte();
 				Log.d("THREAD","RECIVED: "+recived);
+				int systemsignal=dis.readInt();
+				if(systemsignal==N.System.BSD){
+					
+				}
 				dis.close();
 				dos.close();
 				socket.close();

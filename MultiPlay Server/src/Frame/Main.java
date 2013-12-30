@@ -40,7 +40,5 @@ public class Main {
 		// thread get mouse positions
 		// Pos p = new Pos();
 		// p.run();
-		
 	}
-
 }

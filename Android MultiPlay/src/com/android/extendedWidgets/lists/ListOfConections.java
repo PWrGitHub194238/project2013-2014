@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.application.N;
 import com.android.multiplay.R;
  
 public class ListOfConections extends BaseAdapter {
@@ -43,6 +44,7 @@ public class ListOfConections extends BaseAdapter {
     	private TextView device_detail_prefix = null;
     	private TextView device_detail = null;
     	private ImageView device_isStored = null;
+    	private ImageView system = null;
     	
 		public void setElement(ElementOfConnectionsList elementOfConnections) {
 			device_icon.setBackgroundResource(elementOfConnections.getIcon_type_id());
@@ -53,6 +55,7 @@ public class ListOfConections extends BaseAdapter {
 			device_detail.setText(elementOfConnections.getDeviceDetail());
 			device_isStored.setBackgroundResource(
 					(elementOfConnections.isStored())?ElementOfConnectionsList.ICON_STORED_YES:ElementOfConnectionsList.ICON_STORED_NO);
+			system.setBackgroundResource(setSystem(elementOfConnections.getSystem()));
 		}
     }
  
@@ -82,5 +85,13 @@ public class ListOfConections extends BaseAdapter {
  
     return convertView;
     }
- 
+    
+    private int setSystem(byte system) {
+    	if ( system==N.System.BSD) {
+    		return ElementOfConnectionsList.ICON_BSD;
+    	} else if ( system==N.System.LINUX) {
+    		return ElementOfConnectionsList.ICON_LINUX;
+    	} else 
+    		return ElementOfConnectionsList.ICON_WINDOWS;
+    }
 }

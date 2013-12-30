@@ -7,7 +7,7 @@ public class ConnectionsConfigurationClass {
 	private int connectionStatus = -1;
 	private boolean isStored = false;
 	private int storedIndex = -1;
-	
+	private byte system = 0;
 	
 	
 	public final String getName() {
@@ -42,11 +42,27 @@ public class ConnectionsConfigurationClass {
 		this.isStored = isStored;
 	}
 	
+
 	public final int getStoredIndex() {
 		return storedIndex;
 	}
 	
 	public final void setStoredIndex(int storedIndex) {
 		this.storedIndex = storedIndex;
+	}
+	
+	/**
+	 * @return the system
+	 */
+	public final byte getSystem() {
+		return system;
+	}
+
+	/**
+	 * @param system the system to set
+	 */
+	
+	public final void setSystem(byte system) {
+		this.system = system;
 	}
 }

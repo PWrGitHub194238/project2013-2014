@@ -13,40 +13,40 @@ public final class C {
 	public static final int SIGNAL_MOUSE = 					Integer.parseInt("00000", 2);
 	private static final ControllerDefinition CONTROLLER_MOUSE = new ControllerDefinition(
 			C.SIGNAL_MOUSE, "Mouse", R.drawable.carousel_controller_icon_mouse, 
-			ControllerDefinition.STAND_ALONE, MouseActivity.class, new int[] {
+			ControllerDefinition.STAND_ALONE,MouseActivity.class, Requirements.OS_EVERY, new int[] {
 				
 			});
 	
 	private static final ControllerDefinition CONTROLLER_GYROMOUSE = new ControllerDefinition(
 			C.SIGNAL_MOUSE, "GyroMouse", R.drawable.carousel_controller_icon_gyromouse, 
-			ControllerDefinition.STAND_ALONE, Gyromouse.class, new int[] {
+			ControllerDefinition.STAND_ALONE, Gyromouse.class, Requirements.OS_EVERY, new int[] {
 				Requirements.SENSOR_GYROSCOPE
 			});
 	
 	private static final ControllerDefinition CONTROLLER_TOUCHPAD = new ControllerDefinition(
 			C.SIGNAL_MOUSE, "Touchpad", R.drawable.carousel_controller_icon_touchpad, 
-			ControllerDefinition.STAND_ALONE,  TouchPadActivity.class, new int[] {
+			ControllerDefinition.STAND_ALONE,  TouchPadActivity.class, Requirements.OS_EVERY, new int[] {
 				
 			});
 	
 	public static final int SIGNAL_KEYBOARD = 					Integer.parseInt("00001", 2);
 	private static final ControllerDefinition CONTROLLER_KEYBOARD = new ControllerDefinition(
 			C.SIGNAL_KEYBOARD, "Keyboard", R.drawable.carousel_controller_icon_keyboard,
-			ControllerDefinition.STAND_ALONE, KeyboardActivity.class, new int[] {
+			ControllerDefinition.STAND_ALONE, KeyboardActivity.class, Requirements.OS_EVERY, new int[] {
 				
 			});
 	
 	public static final int SIGNAL_WHEEL = 					Integer.parseInt("00010", 2);
 	private static final ControllerDefinition CONTROLLER_WHEEL = new ControllerDefinition(
 			C.SIGNAL_WHEEL, "Steering wheel", R.drawable.carousel_controller_icon_wheel, 
-			ControllerDefinition.STAND_ALONE, SteeringwheelActivity.class, new int[] {
+			ControllerDefinition.STAND_ALONE, SteeringwheelActivity.class, Requirements.OS_WINDOWS, new int[] {
 				Requirements.SENSOR_ACCELEROMETER
 			});
 	
 	public static final int SIGNAL_SPEAKER = 					Integer.parseInt("00011", 2);
 	private static final ControllerDefinition CONTROLLER_SPEAKER = new ControllerDefinition(
 			C.SIGNAL_SPEAKER, "Speaker", R.drawable.carousel_controller_icon_speaker, 
-			ControllerDefinition.NOT_STAND_ALONE, Speaker.class, new int[] {
+			ControllerDefinition.NOT_STAND_ALONE, Speaker.class, Requirements.OS_EVERY, new int[] {
 				
 			});
 	
@@ -66,6 +66,10 @@ public final class C {
 		public static final int SENSOR_GYROSCOPE = 2;
 		public static final int SENSOR_LINEAR_ACCELERATION = 3;
 		public static final int SENSOR_ROTATION_VECTOR = 4;
-
+		
+		public static final int OS_EVERY = 0;
+		public static final int OS_LINUX = 1;
+		public static final int OS_WINDOWS = 2;
+		public static final int OS_BSD = 3;
 	}
 }

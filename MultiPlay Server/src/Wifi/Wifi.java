@@ -42,18 +42,20 @@ public class Wifi implements Runnable {
 					data = dis.readByte();
 					if (data == N.Signal.NEED_AUTHORIZATION) {
 						System.out.println("Send back authorization code...");
-						dos.writeByte(N.Signal.NEED_AUTHORIZATION);
+						
 						if (System.getProperty("os.name").startsWith("Win")) {
 
-							dos.writeInt(N.System.WINDOWS);
+							dos.writeByte(N.Signal.encodeSignal(N.Signal.NEED_AUTHORIZATION,N.System.WINDOWS));
 						} else if (System.getProperty("os.name").contains(
 								"Linux")) {
-							dos.writeInt(N.System.LINUX);
+							dos.writeByte(N.Signal.encodeSignal(N.Signal.NEED_AUTHORIZATION,N.System.LINUX));
 
 						} else if (System.getProperty("os.name")
 								.contains("BSD")) {
-							dos.writeInt(N.System.BSD);
+							dos.writeByte(N.Signal.encodeSignal(N.Signal.NEED_AUTHORIZATION,N.System.BSD));
+
 						}
+
 						System.out.println("Over");
 						dis.close();
 						dos.close();

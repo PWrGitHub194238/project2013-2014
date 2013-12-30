@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.android.application.MultiPlayApplication;
+import com.android.application.N;
+import com.android.application.N.Helper;
 import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
 import com.android.dialogs.elements.DialogListCore;
@@ -95,7 +97,7 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 		initB_options(R.id.b_main_activity_options_icon);
 		
 		init();
-		
+	
 	}
 
 	/** Called on activity resume.

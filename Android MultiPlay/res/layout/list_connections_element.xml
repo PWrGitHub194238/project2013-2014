@@ -68,15 +68,24 @@
         android:layout_toRightOf="@id/list_connections_element_device_detail_prefix"
         android:text="@string/tv_empty"
         android:textAppearance="@style/list_connections_device_detail_value" />
-    
+
+ 	<ImageView
+        android:id="@+id/list_connections_element_os"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/connections_activity_os_windows"
+        android:contentDescription="@string/contentDescription_list_connections_element_os" />
+
     <ImageView
         android:id="@+id/list_connections_element_is_device_stored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="50dp"
+        android:layout_alignTop="@id/list_connections_element_device_name"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/list_connections_element_os"
         android:background="@drawable/connections_activity_stored_yes"
         android:contentDescription="@string/contentDescription_list_connections_element_is_device_stored" />
 

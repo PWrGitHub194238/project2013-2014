@@ -75,6 +75,7 @@ public class ListOfConections extends BaseAdapter {
         view_holder.device_detail_prefix = (TextView) convertView.findViewById(R.id.list_connections_element_device_detail_prefix);
         view_holder.device_detail = (TextView) convertView.findViewById(R.id.list_connections_element_device_detail);
         view_holder.device_isStored = (ImageView) convertView.findViewById(R.id.list_connections_element_is_device_stored);
+        view_holder.system = (ImageView) convertView.findViewById(R.id.list_connections_element_os);
 
         convertView.setTag(view_holder);
     } else {

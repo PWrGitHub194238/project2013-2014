@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -125,6 +126,22 @@ public class AddConnectionDialog extends ScrollViewSwitchDialog implements TextW
 	    cb_save_connection = (CheckBox) dialogInnerView.findViewById(
 	    		R.id.cb_save_connection);
     }
+    
+	@Override
+	public void onCheckedChanged(CompoundButton view, boolean switchState) {
+		super.onCheckedChanged(view, switchState);
+		switch (view.getId()) {
+		case R.id.cb_save_connection:
+			if ( switchState == true ) {
+				super.getReturnedData().put(
+						DEVICE_IS_STORED,AddConnectionDialog.TRUE);
+			} else {
+				super.getReturnedData().put(
+						DEVICE_IS_STORED,AddConnectionDialog.FALSE);
+			}
+			break;
+		}
+	}
 
 	@Override
 	protected void loadCurrentViewOff() {
@@ -158,8 +175,7 @@ public class AddConnectionDialog extends ScrollViewSwitchDialog implements TextW
 				isValid &= super.validation(et_connections_activity_device_mac,PATTERN_UUID,PATTERN_UUID_ERROR);
 				isValid &= super.validation(et_connections_activity_device_mac,PATTERN_MAC,PATTERN_MAC_ERROR);
 			}
-	
-			super.getReturnedData().put(DEVICE_IS_STORED, (cb_save_connection.isChecked())?TRUE:FALSE);
+
 			super.getPositiveButton().setEnabled(isValid);
 		}
 	}

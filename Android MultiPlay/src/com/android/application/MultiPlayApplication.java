@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import android.app.Application;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.util.Log;
 
-import com.android.application.N.Helper;
 import com.android.asychs.SocketMainWiFiSender;
 import com.android.database.DBHelper;
 import com.android.database.MultiPlayDataBase;
+import com.android.database.tables.NetworkWiFiSettings;
 
 public class MultiPlayApplication extends Application {
 
@@ -57,8 +59,22 @@ public class MultiPlayApplication extends Application {
 		discoveredBluetoothDevices = new ArrayList<BluetoothConfigurationClass>();
 		discoveredWirelessDevices = new ArrayList<WirelessConfigurationClass>();
 		dbHelper = new DBHelper(this.getApplicationContext());
+		try {
+			loadConnectionListFromDB();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
+	private void loadConnectionListFromDB() throws InstantiationException, IllegalAccessException {
+		Cursor cursor = dbHelper.sql_select_by_id(NetworkWiFiSettings.class);
+		Log.d("DB", DatabaseUtils.dumpCursorToString(cursor));
+	}
+
 	public void onDestroy() {
 		dbHelper.closeConnection();	
 	}

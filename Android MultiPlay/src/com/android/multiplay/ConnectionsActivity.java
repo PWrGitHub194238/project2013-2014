@@ -254,7 +254,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 
 	private void new_connection_onClick() {		
 		AddConnectionDialog.showDialog(this,
-				ConnectionsActivity.DialogList.TAG_CONNECT_CONFIRMATION,
+				ConnectionsActivity.DialogList.TAG_ADD_CONNECTION,
 				ConnectionsActivity.DialogList.ID_TITLE_ICON_WIFI,
 				ConnectionsActivity.DialogList.ID_TITLE_CONNECT_CONFIRMATION,
 				ScrollViewSwitchDialog.getViewFromResource(this,R.layout.dialog_add_new_connection),
@@ -457,6 +457,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 				
 				config.setConnectionStatus(ConnectionHelper.STATUS_NOT_IN_RANGE);
 				config.setName(d.getReturnedData().get(AddConnectionDialog.DEVICE_NAME));
+				Log.d("DB", d.getReturnedData().get(AddConnectionDialog.DEVICE_IS_STORED));
 				config.setStored(
 						(d.getReturnedData().get(AddConnectionDialog.DEVICE_IS_STORED).contentEquals("TRUE"))?true:false);
 				

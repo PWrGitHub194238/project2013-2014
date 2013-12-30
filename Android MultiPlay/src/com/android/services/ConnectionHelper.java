@@ -60,13 +60,14 @@ public class ConnectionHelper {
 			
 			
 			 Map<String,String> newValues = new HashMap<String,String>();
-			 newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_1, "configuration.getName()");
+			 newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_1, configuration.getName());
 			 newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_2, wifiConfiguration.getIP());
 			 newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_3, wifiConfiguration.getPort().toString());
 				Cursor cursor = null;
-
+				Log.d("DB",configuration.isStored() ? "Y" : "N");
 			 try {
 			 		if (configuration.isStored() == true) {
+			 			Log.d("DB","STORED");
 						MultiPlayApplication.getDbHelper().sql_insert_row(NetworkWiFiSettings.class, newValues,DBHelper.CLEAR_YES);
 						int i = DBHelper.sql_generate_not_exitsting_minID(NetworkWiFiSettings.class) - 1;
 						wifiConfiguration.setStoredIndex(i);

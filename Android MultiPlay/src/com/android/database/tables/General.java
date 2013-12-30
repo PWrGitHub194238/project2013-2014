@@ -55,15 +55,17 @@ public final class General implements DBHelper.TableIF {
 		public static final String TABLE_NAME = "General";
         public static final String COLUMN_1 = "Device_Name";
         public static final String COLUMN_2 = "WiFi_or_BT";
-        public static final String COLUMN_3 = "BLE";
-        public static final String COLUMN_4 = "BLUETOOTH";
-        public static final String COLUMN_5 = "WIFI";
-        public static final String COLUMN_6 = "WIFI_P2P";
-        public static final String COLUMN_7 = "SENSOR_ACCEL";
-        public static final String COLUMN_8 = "SENSOR_GYROSCOPE";
-        public static final String COLUMN_9 = "SENSOR_GRAVITY";
-        public static final String COLUMN_10 = "SENSOR_ROT_VECTOR";
-        public static final String COLUMN_11 = "SENSOR_LIN_ACCEL";
+        public static final String COLUMN_3 = "Default_WirelessID";
+        public static final String COLUMN_4 = "Default_BletoothID";
+        public static final String COLUMN_5 = "BLE";
+        public static final String COLUMN_6 = "BLUETOOTH";
+        public static final String COLUMN_7 = "WIFI";
+        public static final String COLUMN_8 = "WIFI_P2P";
+        public static final String COLUMN_9 = "SENSOR_ACCEL";
+        public static final String COLUMN_10 = "SENSOR_GYROSCOPE";
+        public static final String COLUMN_11 = "SENSOR_GRAVITY";
+        public static final String COLUMN_12 = "SENSOR_ROT_VECTOR";
+        public static final String COLUMN_13 = "SENSOR_LIN_ACCEL";
         public static final String KEY_UNIQUE_1 = "GeneralID";
 	}
 	
@@ -95,8 +97,8 @@ public final class General implements DBHelper.TableIF {
 		    		+ DBSchema._ID + " " + DBHelper.TYPE_PK_INT + ", "
 		    		+ DBSchema.COLUMN_1 + " " + DBHelper.TYPE_TEXT + ", "
 		    		+ DBSchema.COLUMN_2 + " " + DBHelper.TYPE_INT + ", "
-		    		+ DBSchema.COLUMN_3 + " " + DBHelper.TYPE_INT + ", "
-		    		+ DBSchema.COLUMN_4 + " " + DBHelper.TYPE_INT + ", "
+		    		+ DBSchema.COLUMN_3 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_NULL + ", "
+		    		+ DBSchema.COLUMN_4 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_NULL + ", "
 		    		+ DBSchema.COLUMN_5 + " " + DBHelper.TYPE_INT + ", "
 		    		+ DBSchema.COLUMN_6 + " " + DBHelper.TYPE_INT + ", "
 		    		+ DBSchema.COLUMN_7 + " " + DBHelper.TYPE_INT + ", "
@@ -104,7 +106,17 @@ public final class General implements DBHelper.TableIF {
 		    		+ DBSchema.COLUMN_9 + " " + DBHelper.TYPE_INT + ", "
 		    		+ DBSchema.COLUMN_10 + " " + DBHelper.TYPE_INT + ", "
 		    		+ DBSchema.COLUMN_11 + " " + DBHelper.TYPE_INT + ", "
-		    		+ DBSchema.KEY_UNIQUE_1 + " " + DBHelper.TYPE_SK_INT
+		    		+ DBSchema.COLUMN_12 + " " + DBHelper.TYPE_INT + ", "
+		    		+ DBSchema.COLUMN_13 + " " + DBHelper.TYPE_INT + ", "
+		    		+ DBSchema.KEY_UNIQUE_1 + " " + DBHelper.TYPE_SK_INT + ", "
+		    		+ DBHelper.TYPE_FK(
+		    				DBSchema.COLUMN_3,
+		    				NetworkWiFiSettings.DBSchema.TABLE_NAME,
+		    				NetworkWiFiSettings.DBSchema.KEY_UNIQUE_1) + ", "
+		    		+ DBHelper.TYPE_FK(
+		    				DBSchema.COLUMN_4,
+		    				NetworkBTSettings.DBSchema.TABLE_NAME,
+		    				NetworkBTSettings.DBSchema.KEY_UNIQUE_1)
 		    	+ " )";
 
 	/** Generates String that contains query to database for deleting General table.

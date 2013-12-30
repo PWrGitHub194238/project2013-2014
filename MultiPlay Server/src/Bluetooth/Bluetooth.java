@@ -18,6 +18,9 @@ import Wifi.N;
 import Wifi.Serverwifi;
 
 public class Bluetooth implements Runnable {
+	private LocalDevice local = null;
+	private StreamConnectionNotifier notifier = null;
+	private StreamConnection connection = null;
 
 	@Override
 	public void run() {
@@ -27,11 +30,7 @@ public class Bluetooth implements Runnable {
 
 	private void waitForConnection() {
 		// retrieve the local Bluetooth device object
-		LocalDevice local = null;
-
-		StreamConnectionNotifier notifier;
-		StreamConnection connection = null;
-
+		System.out.println("Bluetooth Thread");
 		// setup the server to listen for connection
 		try {
 			local = LocalDevice.getLocalDevice();

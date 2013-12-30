@@ -20,22 +20,23 @@ import VJoy.VJoyDriver64;
 
 public class Serverwifi implements Runnable {
 	private int x = 3, y = 3;
-	private String pm, x1, y1, key;
 	private Socket socket;
 	private DataInputStream dis;
 	private DataOutputStream dos;
-	ServerSocket serversocket;
-	int i = 0;
+	private ServerSocket serversocket;
+	private int i = 0;
 
-	public Serverwifi(Socket socket, DataInputStream dis, DataOutputStream dos,ServerSocket serversocket) {
+	public Serverwifi(Socket socket, DataInputStream dis, DataOutputStream dos,
+			ServerSocket serversocket) {
 		this.socket = socket;
 		this.dis = dis;
 		this.dos = dos;
-		this.serversocket=serversocket;
+		this.serversocket = serversocket;
 	}
 
 	@Override
 	public void run() {
+		System.out.println("WIFI Server");
 
 		VJoyDriver vjoy = null;
 		Mouse mouse = new Mouse();

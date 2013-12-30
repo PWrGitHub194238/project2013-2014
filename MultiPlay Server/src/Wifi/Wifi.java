@@ -6,18 +6,11 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import javax.bluetooth.BluetoothStateException;
-import javax.bluetooth.DiscoveryAgent;
-import javax.bluetooth.LocalDevice;
-import javax.bluetooth.UUID;
-import javax.microedition.io.Connector;
-import javax.microedition.io.StreamConnection;
-import javax.microedition.io.StreamConnectionNotifier;
 import Frame.MFrame;
 
 public class Wifi implements Runnable {
-	static DataInputStream dis = null;
-	static DataOutputStream dos = null;
+	private static DataInputStream dis = null;
+	private static DataOutputStream dos = null;
 
 	public Wifi() {
 
@@ -27,6 +20,7 @@ public class Wifi implements Runnable {
 	public void run() {
 		byte data;
 		Connect connect = new Connect();
+		System.out.println("Wifi Thread");
 
 		while (true) {
 			data = 0;
@@ -42,17 +36,22 @@ public class Wifi implements Runnable {
 					data = dis.readByte();
 					if (data == N.Signal.NEED_AUTHORIZATION) {
 						System.out.println("Send back authorization code...");
-						
+
 						if (System.getProperty("os.name").startsWith("Win")) {
 
-							dos.writeByte(N.Signal.encodeSignal(N.Signal.NEED_AUTHORIZATION,N.System.WINDOWS));
+							dos.writeByte(N.Signal.encodeSignal(
+									N.Signal.NEED_AUTHORIZATION,
+									N.System.WINDOWS));
 						} else if (System.getProperty("os.name").contains(
 								"Linux")) {
-							dos.writeByte(N.Signal.encodeSignal(N.Signal.NEED_AUTHORIZATION,N.System.LINUX));
+							dos.writeByte(N.Signal
+									.encodeSignal(N.Signal.NEED_AUTHORIZATION,
+											N.System.LINUX));
 
 						} else if (System.getProperty("os.name")
 								.contains("BSD")) {
-							dos.writeByte(N.Signal.encodeSignal(N.Signal.NEED_AUTHORIZATION,N.System.BSD));
+							dos.writeByte(N.Signal.encodeSignal(
+									N.Signal.NEED_AUTHORIZATION, N.System.BSD));
 
 						}
 

@@ -51,7 +51,8 @@ public class Serverbluetooth implements Runnable {
 			}
 
 			int signals = 0;
-			System.out.println("watek");
+			System.out.println("Bluetooth SERVER!!");
+
 			while (true) {
 				try {
 					signals = dis.readInt();
@@ -105,7 +106,6 @@ public class Serverbluetooth implements Runnable {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
 
 	}
 

@@ -22,7 +22,6 @@ import Wifi.Serverwifi;
 import Wifi.Wifi;
 
 public class Main {
-	
 
 	public static void main(String[] args) {
 		// System.getProperties() show all system info
@@ -33,10 +32,10 @@ public class Main {
 		window.setSize((int) d.getWidth(), 100);
 		window.setVisible(true);
 		window.setResizable(false);
-		  Thread wifiThread = new Thread(new Wifi());
-		  wifiThread.start();
-		  Thread bluetoothThread = new Thread(new Bluetooth());
-		  bluetoothThread.start();
+		Thread wifiThread = new Thread(new Wifi());
+		wifiThread.start();
+		Thread bluetoothThread = new Thread(new Bluetooth());
+		bluetoothThread.start();
 		// thread get mouse positions
 		// Pos p = new Pos();
 		// p.run();

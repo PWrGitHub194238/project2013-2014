@@ -31,6 +31,7 @@
     <string name="contentDescription_b_system_controllers_search">TODO</string>
     <string name="contentDescription_b_system_controllers_cancel">TODO</string>
     <string name="contentDescription_iv_system_controllers_miniature_icon">TODO</string>
+    <string name="contentDescription_list_connections_element_os">TODO</string>
     <string name="hint_device_name">Device name</string>
     <string name="hint_device_ip">127.0.0.10</string>
     <string name="hint_device_port">8000</string>

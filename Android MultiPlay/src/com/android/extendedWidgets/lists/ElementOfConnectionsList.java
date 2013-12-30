@@ -18,13 +18,18 @@ public class ElementOfConnectionsList {
 	public static final int ICON_STORED_YES = R.drawable.connections_activity_stored_yes;
 	public static final int ICON_STORED_NO = R.drawable.connections_activity_stored_no;
 	
+	public static final int ICON_BSD = R.drawable.connections_activity_os_bsd;
+	public static final int ICON_LINUX = R.drawable.connections_activity_os_linux;
+	public static final int ICON_WINDOWS = R.drawable.connections_activity_os_windows;
+	
 	public ElementOfConnectionsList(String deviceName, String deviceDetail,
-			int deviceDetailStatus, boolean isStored, boolean BTorWiFi) {
+			int deviceDetailStatus, boolean isStored, byte system, boolean BTorWiFi) {
 		this.icon_type_id = ICON[0];
 		this.deviceName = deviceName;
 		this.deviceDetailStatus = deviceDetailStatus;
 		this.deviceDetail = deviceDetail;
 		this.isStored = isStored;
+		this.system = system;
 		if (BTorWiFi == ConnectionHelper.CONNECTION_TYPE_BT) {
 			deviceDetailPrefix = "MAC: ";
 			connectionTypeIcon = ICON_BT;
@@ -42,6 +47,7 @@ public class ElementOfConnectionsList {
 	private String deviceDetailPrefix = null;
 	private String deviceDetail = null;
 	private boolean isStored = false;
+	private byte system = 0;
 
 
 
@@ -86,5 +92,11 @@ public class ElementOfConnectionsList {
 	}
 	public final void setStored(boolean isStored) {
 		this.isStored = isStored;
+	}
+	public final byte getSystem() {
+		return system;
+	}
+	public final void setSystem(byte system) {
+		this.system = system;
 	}
 }

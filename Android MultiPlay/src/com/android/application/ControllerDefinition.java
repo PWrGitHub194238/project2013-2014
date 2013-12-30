@@ -12,16 +12,18 @@ public class ControllerDefinition {
 	private int iconID = 0;
 	private boolean isStandAlone = false;
 	private Class<? extends Activity> nextActivity = null;
+	private int systemRequirement = C.Requirements.OS_EVERY;
 	private int[] requirements = null;
 	
 	public ControllerDefinition(int signal, String name, int iconID, boolean isStandAlone,
-			Class<? extends Activity> nextActivity, int[] requirements) {
+			Class<? extends Activity> nextActivity, int systemRequirement, int[] requirements) {
 		super();
 		this.signal = signal;
 		this.name = name;
 		this.iconID = iconID;
 		this.isStandAlone = isStandAlone;
 		this.nextActivity = nextActivity;
+		this.systemRequirement = systemRequirement;
 		this.requirements = requirements;
 	}
 
@@ -43,6 +45,13 @@ public class ControllerDefinition {
 
 	public final Class<? extends Activity> getNextActivity() {
 		return nextActivity;
+	}
+
+	/**
+	 * @return the systemRequirement
+	 */
+	public final int getSystemRequirement() {
+		return systemRequirement;
 	}
 
 	public final int[] getRequirements() {

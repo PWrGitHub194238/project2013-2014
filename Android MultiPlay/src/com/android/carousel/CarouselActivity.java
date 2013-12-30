@@ -9,7 +9,6 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -25,6 +24,10 @@ import android.widget.TextView;
 import com.android.application.C;
 import com.android.application.ControllerDefinition;
 import com.android.dialogs.DialogButtonClickListener;
+import com.android.dialogs.ScrollViewDialog;
+import com.android.dialogs.ScrollViewSwitchDialog;
+import com.android.dialogs.elements.DialogListCore;
+import com.android.multiplay.ConnectionsActivity;
 import com.android.multiplay.R;
 
 public class CarouselActivity extends Activity implements OnItemSelectedListener, OnItemClickListener, OnClickListener, DialogButtonClickListener {
@@ -204,7 +207,31 @@ public class CarouselActivity extends Activity implements OnItemSelectedListener
 	
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.b_system_controllers_search:
+			ScrollViewDialog.showDialog(this,
+					ConnectionsActivity.DialogList.TAG_CONNECT_CONFIRMATION,
+					ConnectionsActivity.DialogList.ID_TITLE_ICON_WIFI,
+					ConnectionsActivity.DialogList.ID_TITLE_CONNECT_CONFIRMATION,
+					ScrollViewDialog.getViewFromResource(this,R.layout.dialog_check_requirements),
+					DialogListCore.ID_BUTTON_CONNECT,
+					null,
+					DialogListCore.ID_BUTTON_CANCEL);
+			break;
+		case R.id.b_system_controllers_cancel:
+			ScrollViewSwitchDialog.showDialog(this,
+					ConnectionsActivity.DialogList.TAG_CONNECT_CONFIRMATION,
+					ConnectionsActivity.DialogList.ID_TITLE_ICON_WIFI,
+					ConnectionsActivity.DialogList.ID_TITLE_CONNECT_CONFIRMATION,
+					ScrollViewSwitchDialog.getViewFromResource(this,R.layout.dialog_add_new_connection),
+					R.id.s_connections_activity_connection_type_switch,
+					R.id.rl_connections_activity_wifi_configurator_layout,
+					R.id.rl_connections_activity_bt_configurator_layout,
+					DialogListCore.ID_BUTTON_CONNECT,
+					null,
+					DialogListCore.ID_BUTTON_CANCEL);
+			break;
+		}
 		
 	}
 

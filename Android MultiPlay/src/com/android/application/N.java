@@ -57,15 +57,6 @@ import java.math.BigInteger;
 
 public final class N {
 
-	/**
-	 *
-	 */
-	public static final class System {
-		public static final int LINUX = Integer.parseInt("00", 2);
-		public static final int WINDOWS = Integer.parseInt("01", 2);
-		public static final int BSD = Integer.parseInt("10", 2);
-	}
-
 	public static final class Shift {
 		/** */
 		public static final int DEVICE = 0;
@@ -79,6 +70,9 @@ public final class N {
 		public static final int DEV_SIGNAL_2_SIGN = DEV_SIGNAL_1 + 12;
 		/** */
 		public static final int DEV_SIGNAL_2 = DEV_SIGNAL_2_SIGN + 1;
+		
+		/** */
+		public static final int SYSTEM = 1;
 	}
 
 	/**
@@ -113,13 +107,40 @@ public final class N {
 	}
 
 	/**
-	 * 
+	 *
+	 */
+	public static final class System {
+		public static final byte LINUX = 		(byte) Integer.parseInt("00000000", 2);
+		public static final byte WINDOWS = 		(byte) Integer.parseInt("00000001", 2);
+		public static final byte BSD = 			(byte) Integer.parseInt("00000010", 2);
+	}
+	
+	/**
+	 * 		byte signal = N.Signal.encodeSignal(N.Signal.NEED_CONNECTION, N.System.WINDOWS);
+		Log.d("APP",String.valueOf(
+				signal));
+		Log.d("APP",String.valueOf(
+				N.Signal.decodeSignal(signal)));
+		Log.d("APP",String.valueOf(
+				N.Signal.decodeSystem(signal)));
 	 */
 	public static final class Signal {
 		public static final byte NEED_AUTHORIZATION = (byte) Integer.parseInt(
 				"00000000", 2);
 		public static final byte NEED_CONNECTION = (byte) Integer.parseInt(
 				"00000001", 2);
+		
+		public static final byte encodeSignal(byte signal, byte system) {
+			return (byte) (signal + (system << Shift.SYSTEM));
+		}
+		
+		public static final byte decodeSignal(byte signal) {
+			return (byte) (signal & Bitmasks.bit_mask(Bitmasks.BIT1));
+		}
+		
+		public static final byte decodeSystem(byte signal) {
+			return (byte) ((signal & Bitmasks.bit_mask(Bitmasks.BIT2,Bitmasks.BIT3)) >> Shift.SYSTEM);
+		}
 	}
 
 	/**

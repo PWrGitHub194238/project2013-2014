@@ -36,6 +36,7 @@ import com.android.asychs.GenerateConnectionList;
 import com.android.dialogs.AddConnectionDialog;
 import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
+import com.android.dialogs.ScrollViewSwitchDialog;
 import com.android.dialogs.elements.DialogListCore;
 import com.android.extendedWidgets.ImageToggleButton;
 import com.android.extendedWidgets.lists.ElementOfConnectionsList;
@@ -251,17 +252,18 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	return;
 }
 
-	private void new_connection_onClick() {
-		AddConnectionDialog.showDialog(
-				  this,
-				  ConnectionsActivity.DialogList.TAG_ADD_CONNECTION,
-				  ConnectionsActivity.DialogList.ID_TITLE_ICON_CONNECTION_CREATOR,
-				  ConnectionsActivity.DialogList.ID_TITLE_ADD_CONNECTION,
-				  AddConnectionDialog.getViewFromResource(this,R.layout.dialog_add_new_connection),
-				  DialogListCore.ID_BUTTON_ADD,
-				  DialogListCore.ID_BUTTON_EMPTY,
-				  DialogListCore.ID_BUTTON_CANCEL);
-		
+	private void new_connection_onClick() {		
+		AddConnectionDialog.showDialog(this,
+				ConnectionsActivity.DialogList.TAG_CONNECT_CONFIRMATION,
+				ConnectionsActivity.DialogList.ID_TITLE_ICON_WIFI,
+				ConnectionsActivity.DialogList.ID_TITLE_CONNECT_CONFIRMATION,
+				ScrollViewSwitchDialog.getViewFromResource(this,R.layout.dialog_add_new_connection),
+				R.id.s_connections_activity_connection_type_switch,
+				R.id.rl_connections_activity_wifi_configurator_layout,
+				R.id.rl_connections_activity_bt_configurator_layout,
+				DialogListCore.ID_BUTTON_CONNECT,
+				null,
+				DialogListCore.ID_BUTTON_CANCEL);
 	}
 
 
@@ -445,7 +447,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 			AddConnectionDialog d = (AddConnectionDialog) dialog;
 			Log.d("Connections","Name-> "+d.getReturnedData().get(AddConnectionDialog.DEVICE_NAME));
 
-			if (d.isS_connections_activity_connection_type_switch_state() == ConnectionHelper.CONNECTION_TYPE_WIFI ) {
+			if (d.isViewSwitcherState() == ConnectionHelper.CONNECTION_TYPE_WIFI ) {
 				
 				Log.d("Connections","IP-> "+d.getReturnedData().get(AddConnectionDialog.DEVICE_IP));
 				Log.d("Connections","Port-> "+d.getReturnedData().get(AddConnectionDialog.DEVICE_PORT));
@@ -530,6 +532,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 					configuration.getName(), configuration.getIP(),
 					configuration.getConnectionStatus(),
 					isConfigurationStored,
+					configuration.getSystem(),
 					ConnectionHelper.CONNECTION_TYPE_WIFI));
 		}
 	}
@@ -550,6 +553,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 					configuration.getName(), configuration.getAdress(),
 					configuration.getConnectionStatus(),
 					isConfigurationStored,
+					configuration.getSystem(),
 					ConnectionHelper.CONNECTION_TYPE_BT));
 		}
 	}

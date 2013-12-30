@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ProgressBar;
 
+import com.android.application.N;
 import com.android.extendedWidgets.lists.ElementOfConnectionsList;
 import com.android.services.ConnectionHelper;
 
@@ -53,6 +54,7 @@ public class GenerateConnectionList extends AsyncTask<String, String, String> {
 		        listOfElements.add(new ElementOfConnectionsList(
 		        		"AAA"+device.getName(), device.getAddress(), ConnectionHelper.STATUS_NOT_IN_RANGE,
 						ElementOfConnectionsList.STORED_NO,
+						N.System.WINDOWS,
 						ConnectionHelper.CONNECTION_TYPE_BT));
 		    }
 		}

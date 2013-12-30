@@ -45,12 +45,18 @@ import java.math.BigInteger;
  * </ul>
  * </ul>
  * 
+ * <pre>
+ * {
+ * 	&#064;code
+ * 	int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+ * 			N.DeviceDataCounter.SINGLE, N.DeviceSignal.MOUSE_LPM);
+ * 	int[] ret = Helper.decodeSignal(signal);
+ * }
+ * </pre>
  */
+
 public final class N {
 
-	/**
-	 *
-	 */
 	public static final class Shift {
 		/** */
 		public static final int DEVICE = 0;
@@ -64,6 +70,9 @@ public final class N {
 		public static final int DEV_SIGNAL_2_SIGN = DEV_SIGNAL_1 + 12;
 		/** */
 		public static final int DEV_SIGNAL_2 = DEV_SIGNAL_2_SIGN + 1;
+		
+		/** */
+		public static final int SYSTEM = 1;
 	}
 
 	/**
@@ -98,13 +107,40 @@ public final class N {
 	}
 
 	/**
-	 * 
+	 *
+	 */
+	public static final class System {
+		public static final byte LINUX = 		(byte) Integer.parseInt("00000000", 2);
+		public static final byte WINDOWS = 		(byte) Integer.parseInt("00000001", 2);
+		public static final byte BSD = 			(byte) Integer.parseInt("00000010", 2);
+	}
+	
+	/**
+	 * 		byte signal = N.Signal.encodeSignal(N.Signal.NEED_CONNECTION, N.System.WINDOWS);
+		Log.d("APP",String.valueOf(
+				signal));
+		Log.d("APP",String.valueOf(
+				N.Signal.decodeSignal(signal)));
+		Log.d("APP",String.valueOf(
+				N.Signal.decodeSystem(signal)));
 	 */
 	public static final class Signal {
 		public static final byte NEED_AUTHORIZATION = (byte) Integer.parseInt(
 				"00000000", 2);
 		public static final byte NEED_CONNECTION = (byte) Integer.parseInt(
 				"00000001", 2);
+		
+		public static final byte encodeSignal(byte signal, byte system) {
+			return (byte) (signal + (system << Shift.SYSTEM));
+		}
+		
+		public static final byte decodeSignal(byte signal) {
+			return (byte) (signal & Bitmasks.bit_mask(Bitmasks.BIT1));
+		}
+		
+		public static final byte decodeSystem(byte signal) {
+			return (byte) ((signal & Bitmasks.bit_mask(Bitmasks.BIT2,Bitmasks.BIT3)) >> Shift.SYSTEM);
+		}
 	}
 
 	/**
@@ -116,7 +152,7 @@ public final class N {
 		public static final int WHEEL = Integer.parseInt("00010", 2);
 		public static final int SPEAKER = Integer.parseInt("00011", 2);// ?
 		public static final int VJOY = Integer.parseInt("00100", 2);// ?
-
+		
 		public static final int EXIT = Integer.parseInt("11111", 2);// ?
 	}
 
@@ -126,12 +162,6 @@ public final class N {
 	public static final class DeviceDataCounter {
 		public static final int SINGLE = Integer.parseInt("0", 2);
 		public static final int DOUBLE = Integer.parseInt("1", 2);
-	}
-
-	public static final class System {
-		public static final int LINUX = Integer.parseInt("00", 2);
-		public static final int WINDOWS = Integer.parseInt("01", 2);
-		public static final int BSD = Integer.parseInt("10", 2);
 	}
 
 	/**
@@ -176,6 +206,11 @@ public final class N {
 			String w = new String(b.toByteArray());
 			return w;
 		}
+	}
+
+	public static final class Exit {
+		public static final int EXIT_NO_ERROR = Helper.encodeSignal(
+				N.Device.EXIT, N.DeviceDataCounter.SINGLE, 0);
 	}
 
 	/**

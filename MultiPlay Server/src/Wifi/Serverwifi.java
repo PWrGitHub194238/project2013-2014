@@ -56,7 +56,7 @@ public class Serverwifi implements Runnable {
 			while (true) {
 				try {
 					signals = dis.readInt();
-					int[] ret = Wifi.N.Helper.decodeSignal(signals);
+					int[] ret = N.Helper.decodeSignal(signals);
 
 					if (ret[0] == N.Device.MOUSE) {
 						if (ret[1] == N.DeviceDataCounter.SINGLE)

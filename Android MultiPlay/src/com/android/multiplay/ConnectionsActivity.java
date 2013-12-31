@@ -457,9 +457,8 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 				
 				config.setConnectionStatus(ConnectionHelper.STATUS_NOT_IN_RANGE);
 				config.setName(d.getReturnedData().get(AddConnectionDialog.DEVICE_NAME));
-				Log.d("DB", d.getReturnedData().get(AddConnectionDialog.DEVICE_IS_STORED));
 				config.setStored(
-						(d.getReturnedData().get(AddConnectionDialog.DEVICE_IS_STORED).contentEquals("TRUE"))?true:false);
+						(d.getReturnedData().get(AddConnectionDialog.DEVICE_IS_STORED).toString()=="true")?true:false);
 				
 				ConnectionHelper.insertNewConnectionToList(ConnectionHelper.CONNECTION_TYPE_WIFI, config);
 			} else {

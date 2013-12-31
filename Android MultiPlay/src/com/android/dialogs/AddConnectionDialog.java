@@ -125,6 +125,9 @@ public class AddConnectionDialog extends ScrollViewSwitchDialog implements TextW
 	    
 	    cb_save_connection = (CheckBox) dialogInnerView.findViewById(
 	    		R.id.cb_save_connection);
+	    cb_save_connection.setOnCheckedChangeListener(this);
+	    super.getReturnedData().put(
+				AddConnectionDialog.DEVICE_IS_STORED,AddConnectionDialog.FALSE);
     }
     
 	@Override
@@ -133,11 +136,14 @@ public class AddConnectionDialog extends ScrollViewSwitchDialog implements TextW
 		switch (view.getId()) {
 		case R.id.cb_save_connection:
 			if ( switchState == true ) {
+				Log.d("APP","switch");
 				super.getReturnedData().put(
-						DEVICE_IS_STORED,AddConnectionDialog.TRUE);
+						AddConnectionDialog.DEVICE_IS_STORED,AddConnectionDialog.TRUE);
 			} else {
+				Log.d("APP","switch");
+
 				super.getReturnedData().put(
-						DEVICE_IS_STORED,AddConnectionDialog.FALSE);
+						AddConnectionDialog.DEVICE_IS_STORED,AddConnectionDialog.FALSE);
 			}
 			break;
 		}

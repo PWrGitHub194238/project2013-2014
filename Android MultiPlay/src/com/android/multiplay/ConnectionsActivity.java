@@ -3,6 +3,7 @@ package com.android.multiplay;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.UUID;
 
 import android.app.Activity;
@@ -317,6 +318,10 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	}
 	
 	private void refresh_connections_onClick(View v) {
+		refresh();
+	}
+	
+	public void refresh() {
 		if (lv_connections_activity_device_list_visibly == false) {
 			int index = 0;
 			int childrenCounter = rl_connections_activity_device_list_background_layout.getChildCount();
@@ -334,7 +339,6 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 			
 		}
 	}
-	
 	
 	private void toogleBluetoothSwither() {
 		b_connections_activity_bluetooth_switcher.toggleButton();
@@ -365,6 +369,12 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	    mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
 	    mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
 	    mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+	    
+	    refreshList(true,false);
+	    
+	    if( MultiPlayApplication.getDiscoveredWirelessDevices().isEmpty() == false ) {
+	    	refresh();
+	    }
 	}
 	
 	private void initRl_connections_activity_device_list_background_layout(int id) {
@@ -442,36 +452,47 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 		String dialogTag = dialog.getTag();
 
 		if ( dialogTag.equals(ConnectionsActivity.DialogList.TAG_ADD_CONNECTION)) {
-			Toast.makeText(this, "OKKKKKKKKKKK",Toast.LENGTH_LONG).show();
+			
+			 Map<String,String> returnedData = ((AddConnectionDialog) dialog).getReturnedData();
+			
+			Log.d("Connections","Name-> "+returnedData.get(AddConnectionDialog.DEVICE_NAME));
 
-			AddConnectionDialog d = (AddConnectionDialog) dialog;
-			Log.d("Connections","Name-> "+d.getReturnedData().get(AddConnectionDialog.DEVICE_NAME));
-
-			if (d.isViewSwitcherState() == ConnectionHelper.CONNECTION_TYPE_WIFI ) {
+			if (((AddConnectionDialog) dialog).isViewSwitcherState() == ConnectionHelper.CONNECTION_TYPE_WIFI ) {
 				
-				Log.d("Connections","IP-> "+d.getReturnedData().get(AddConnectionDialog.DEVICE_IP));
-				Log.d("Connections","Port-> "+d.getReturnedData().get(AddConnectionDialog.DEVICE_PORT));
+				Log.d("Connections","IP-> "+returnedData.get(AddConnectionDialog.DEVICE_IP));
+				Log.d("Connections","Port-> "+returnedData.get(AddConnectionDialog.DEVICE_PORT));
+				
 				ConnectionsConfigurationClass config = new WirelessConfigurationClass(
-						d.getReturnedData().get(AddConnectionDialog.DEVICE_IP),
-						Integer.valueOf(d.getReturnedData().get(AddConnectionDialog.DEVICE_PORT)));
+						returnedData.get(AddConnectionDialog.DEVICE_IP),
+						Integer.valueOf(returnedData.get(AddConnectionDialog.DEVICE_PORT)));
 				
-				config.setConnectionStatus(ConnectionHelper.STATUS_NOT_IN_RANGE);
-				config.setName(d.getReturnedData().get(AddConnectionDialog.DEVICE_NAME));
-				config.setStored(
-						(d.getReturnedData().get(AddConnectionDialog.DEVICE_IS_STORED).toString()=="true")?true:false);
+				config.setConnectionStatus(
+						ConnectionHelper.STATUS_NOT_IN_RANGE);
 				
-				ConnectionHelper.insertNewConnectionToList(ConnectionHelper.CONNECTION_TYPE_WIFI, config);
+				config.setName(
+						returnedData.get(AddConnectionDialog.DEVICE_NAME));
+				
+				Log.d("DB",returnedData.get(AddConnectionDialog.DEVICE_IS_STORED).toString());
+				
+				if (returnedData.get(AddConnectionDialog.DEVICE_IS_STORED).toString()=="true") {
+					config.setStored(true);
+				} else {
+					config.setStored(false);
+				}
+				
+				ConnectionHelper.insertNewConnectionToList(
+						ConnectionHelper.CONNECTION_TYPE_WIFI, config);
 			} else {
 				
-				Log.d("Connections","UUID-> "+d.getReturnedData().get(AddConnectionDialog.DEVICE_UUID));
-				Log.d("Connections","MAC-> "+d.getReturnedData().get(AddConnectionDialog.DEVICE_MAC));
+				Log.d("Connections","UUID-> "+returnedData.get(AddConnectionDialog.DEVICE_UUID));
+				Log.d("Connections","MAC-> "+returnedData.get(AddConnectionDialog.DEVICE_MAC));
 				ConnectionsConfigurationClass config = new BluetoothConfigurationClass(
-						UUID.fromString(d.getReturnedData().get(AddConnectionDialog.DEVICE_UUID)),
-						d.getReturnedData().get(AddConnectionDialog.DEVICE_MAC));
+						UUID.fromString(returnedData.get(AddConnectionDialog.DEVICE_UUID)),
+						returnedData.get(AddConnectionDialog.DEVICE_MAC));
 				
-				config.setName(d.getReturnedData().get(AddConnectionDialog.DEVICE_NAME));
+				config.setName(returnedData.get(AddConnectionDialog.DEVICE_NAME));
 				config.setStored(
-						(d.getReturnedData().get(AddConnectionDialog.DEVICE_IS_STORED).contentEquals("TRUE"))?true:false);
+						(returnedData.get(AddConnectionDialog.DEVICE_IS_STORED).contentEquals("TRUE"))?true:false);
 				if (AddConnectionDialog.DEVICE_IS_STORED.contentEquals("TRUE")) {
 					config.setStoredIndex(1);
 				}

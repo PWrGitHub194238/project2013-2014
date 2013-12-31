@@ -1,5 +1,7 @@
 package com.android.database;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -12,6 +14,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.android.application.MultiPlayApplication;
+import com.android.application.WirelessConfigurationClass;
 import com.android.database.tables.ASCIIButton;
 import com.android.database.tables.ConnectionHistory;
 import com.android.database.tables.Controllers;
@@ -21,6 +24,7 @@ import com.android.database.tables.MovementButton;
 import com.android.database.tables.NetworkBTSettings;
 import com.android.database.tables.NetworkWiFiSettings;
 import com.android.database.tables.SteeringWheel;
+import com.android.services.ConnectionHelper;
 
 
 public class DBHelper {
@@ -186,6 +190,9 @@ public class DBHelper {
 	public static final boolean CLEAR_YES = true;
 	public static final boolean CLEAR_NO = false;
 	
+	public static final boolean REOPEN_YES = true;
+	public static final boolean REOPEN_NO = false;
+
 	
 	public DBHelper(Context context) {
 		this.context = context;
@@ -219,6 +226,11 @@ public class DBHelper {
 	 * and returns the minimum, not existing, value.
 	 * 
 	 * @param tableClass One of table names from {@link SQL_TABLE_NAME}.
+	 * @param reopenConnection determinates if new connection to database should be opened. 
+	 * Keep in mind that by setting value as <i>true</i>, after executing a query, connection will be closed 
+	 * and it needs to be reopen before executing another query (by passing the same argument as <i>true</i>).
+	 * Otherwise no additional actions for opening/closing database connection will be taken.
+	 * 
 	 * @return Minimal ID for the selected <i>tableName</i> that not exists yet (eg for <i>INSERT</i> queries)
 	 * 
 	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
@@ -226,8 +238,11 @@ public class DBHelper {
 	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
 	 * which is not accessible from the location where the reference is made.
 	 */
-	public static int sql_generate_not_exitsting_minID (Class<? extends DBHelper.TableIF> tableClass) throws InstantiationException, IllegalAccessException {
-		MultiPlayApplication.getDbHelper().openConnection();
+	public static int sql_generate_not_exitsting_minID (Class<? extends DBHelper.TableIF> tableClass, boolean reopenConnection) throws InstantiationException, IllegalAccessException {
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().openConnection();
+		}
+		
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
 		
@@ -252,7 +267,12 @@ public class DBHelper {
 			}
 		}
 		Log.d("DB", String.valueOf(searchedID));
-		MultiPlayApplication.getDbHelper().closeConnection();
+		if (reopenConnection == true ) {
+			
+			if (reopenConnection == true ) {
+				MultiPlayApplication.getDbHelper().closeConnection();
+			}
+		}
 		return searchedID;
 	}
 	
@@ -275,6 +295,11 @@ public class DBHelper {
 	 * In order to view returned data you can use {@link DatabaseUtils#dumpCursorToString(Cursor)} method.
 	 * 
 	 * @param tableClass The table in the database that is represented by a class that implements {@link DBHelper.TableIF}.
+	 * @param reopenConnection determinates if new connection to database should be opened. 
+	 * Keep in mind that by setting value as <i>true</i>, after executing a query, connection will be closed 
+	 * and it needs to be reopen before executing another query (by passing the same argument as <i>true</i>).
+	 * Otherwise no additional actions for opening/closing database connection will be taken.
+	 * 
 	 * @return {@link Cursor} to returned set of data by execution of previously generated select query in this method.
 	 * 
 	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
@@ -282,8 +307,11 @@ public class DBHelper {
 	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
 	 * which is not accessible from the location where the reference is made.
 	 */
-	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass) throws InstantiationException, IllegalAccessException {
-		MultiPlayApplication.getDbHelper().openConnection();
+	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, boolean reopenConnection) throws InstantiationException, IllegalAccessException {
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().openConnection();
+		}
+		
 		Cursor cursor = null;
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
@@ -298,7 +326,10 @@ public class DBHelper {
 		Log.d("DB", query.toString());
 		cursor = db.rawQuery(query.toString(), null);
 		cursor.moveToFirst();
-		MultiPlayApplication.getDbHelper().closeConnection();
+		
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().closeConnection();
+		}
 		return cursor;
 	}
 	
@@ -322,6 +353,10 @@ public class DBHelper {
 	 * 
 	 * @param tableClass The table in the database that is represented by a class that implements {@link DBHelper.TableIF}.
 	 * @param KEY_UNIQUE ID value that uniquely represents one row in <i>tableClass</i> table.
+	 * @param reopenConnection determinates if new connection to database should be opened. 
+	 * Keep in mind that by setting value as <i>true</i>, after executing a query, connection will be closed 
+	 * and it needs to be reopen before executing another query (by passing the same argument as <i>true</i>).
+	 * Otherwise no additional actions for opening/closing database connection will be taken.
 	 * 
 	 * @return {@link Cursor} to returned set of data by execution of previously generated select query in this method.
 	 * 
@@ -330,8 +365,11 @@ public class DBHelper {
 	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
 	 * which is not accessible from the location where the reference is made.
 	 */
-	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, int KEY_UNIQUE) throws InstantiationException, IllegalAccessException {
-		MultiPlayApplication.getDbHelper().openConnection();
+	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, int KEY_UNIQUE, boolean reopenConnection) throws InstantiationException, IllegalAccessException {
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().openConnection();
+		}
+		
 		Cursor cursor = null;
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
@@ -349,7 +387,10 @@ public class DBHelper {
 		Log.d("DB", query.toString());
 		cursor = db.rawQuery(query.toString(), null);
 		cursor.moveToFirst();
-		MultiPlayApplication.getDbHelper().closeConnection();
+		
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().closeConnection();
+		}
 		return cursor;
 	}
 	
@@ -372,6 +413,10 @@ public class DBHelper {
 	 * @param tableClass The table in the database that is represented by a class that implements {@link DBHelper.TableIF}.
 	 * @param columnNames Column names that should be selected in database query.
 	 * @param KEY_UNIQUE ID value that uniquely represents one row in <i>tableClass</i> table.
+	 * @param reopenConnection determinates if new connection to database should be opened. 
+	 * Keep in mind that by setting value as <i>true</i>, after executing a query, connection will be closed 
+	 * and it needs to be reopen before executing another query (by passing the same argument as <i>true</i>).
+	 * Otherwise no additional actions for opening/closing database connection will be taken.
 	 * 
 	 * @return {@link Cursor} to returned set of data by execution of previously generated select query in this method.
 	 * 
@@ -380,8 +425,11 @@ public class DBHelper {
 	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
 	 * which is not accessible from the location where the reference is made.
 	 */
-	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, Set<String> columnNames, int KEY_UNIQUE) throws InstantiationException, IllegalAccessException {
-		MultiPlayApplication.getDbHelper().openConnection();
+	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, Set<String> columnNames, int KEY_UNIQUE, boolean reopenConnection) throws InstantiationException, IllegalAccessException {
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().openConnection();
+		}
+		
 		Cursor cursor = null;
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
@@ -405,11 +453,14 @@ public class DBHelper {
 			Log.d("DB", query.toString());
 			cursor = db.rawQuery(query.toString(), null);
 			cursor.moveToFirst();
-			MultiPlayApplication.getDbHelper().closeConnection();
+			
+			if (reopenConnection == true ) {
+				MultiPlayApplication.getDbHelper().closeConnection();
+			}
 			return cursor;
 			
 		} else {
-			return sql_select_by_id(tableClass,KEY_UNIQUE);
+			return sql_select_by_id(tableClass,KEY_UNIQUE,REOPEN_NO);
 		}	
 	}
 	
@@ -431,6 +482,10 @@ public class DBHelper {
 	 * 
 	 * @param tableClass The table in the database that is represented by a class that implements {@link DBHelper.TableIF}.
 	 * @param KEY_UNIQUEs ID values that uniquely represents rows in <i>tableClass</i> table.
+	 * @param reopenConnection determinates if new connection to database should be opened. 
+	 * Keep in mind that by setting value as <i>true</i>, after executing a query, connection will be closed 
+	 * and it needs to be reopen before executing another query (by passing the same argument as <i>true</i>).
+	 * Otherwise no additional actions for opening/closing database connection will be taken.
 	 * 
 	 * @return {@link Cursor} to returned set of data by execution of previously generated select query in this method.
 	 * 
@@ -439,8 +494,11 @@ public class DBHelper {
 	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
 	 * which is not accessible from the location where the reference is made.
 	 */
-	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, Set<Integer> KEY_UNIQUEs) throws InstantiationException, IllegalAccessException {
-		MultiPlayApplication.getDbHelper().openConnection();
+	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, Set<Integer> KEY_UNIQUEs, boolean reopenConnection) throws InstantiationException, IllegalAccessException {
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().openConnection();
+		}
+		
 		Cursor cursor = null;
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
@@ -462,7 +520,10 @@ public class DBHelper {
 		Log.d("DB", query.toString());
 		cursor = db.rawQuery(query.toString(), null);
 		cursor.moveToFirst();
-		MultiPlayApplication.getDbHelper().closeConnection();
+		
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().closeConnection();
+		}
 		return cursor;
 	}
 	
@@ -487,6 +548,10 @@ public class DBHelper {
 	 * @param tableClass The table in the database that is represented by a class that implements {@link DBHelper.TableIF}.
 	 * @param columnNames Column names that should be selected in database query.
 	 * @param KEY_UNIQUEs ID values that uniquely represents rows in <i>tableClass</i> table.
+	 * @param reopenConnection determinates if new connection to database should be opened. 
+	 * Keep in mind that by setting value as <i>true</i>, after executing a query, connection will be closed 
+	 * and it needs to be reopen before executing another query (by passing the same argument as <i>true</i>).
+	 * Otherwise no additional actions for opening/closing database connection will be taken.
 	 * 
 	 * @return {@link Cursor} to returned set of data by execution of previously generated select query in this method.
 	 * 
@@ -495,8 +560,11 @@ public class DBHelper {
 	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
 	 * which is not accessible from the location where the reference is made.
 	 */
-	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, Set<String> columnNames, Set<Integer> KEY_UNIQUEs) throws InstantiationException, IllegalAccessException {
-		MultiPlayApplication.getDbHelper().openConnection();
+	public Cursor sql_select_by_id(Class<? extends DBHelper.TableIF> tableClass, Set<String> columnNames, Set<Integer> KEY_UNIQUEs, boolean reopenConnection) throws InstantiationException, IllegalAccessException {
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().openConnection();
+		}
+		
 		Cursor cursor = null;
 		Log.d("DB", "Database select...");
 		Log.d("TYPE", tableClass.getName());
@@ -524,7 +592,10 @@ public class DBHelper {
 		Log.d("DB", query.toString());
 		cursor = db.rawQuery(query.toString(), null);
 		cursor.moveToFirst();
-		MultiPlayApplication.getDbHelper().closeConnection();
+		
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().closeConnection();
+		}
 		return cursor;
 	}
 	
@@ -552,14 +623,21 @@ public class DBHelper {
 	 * @param isToClear Flag that can only take the values of {@link #CLEAR_YES} or {@link #CLEAR_NO}. It determinates 
 	 * whenever to call {@link Map#clear()} method in order 
 	 * to avoid creating new {@link Map} object for another execution of that method.
+	 * @param reopenConnection determinates if new connection to database should be opened. 
+	 * Keep in mind that by setting value as <i>true</i>, after executing a query, connection will be closed 
+	 * and it needs to be reopen before executing another query (by passing the same argument as <i>true</i>).
+	 * Otherwise no additional actions for opening/closing database connection will be taken.
 	 * 
 	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
 	 * which is not accessible from the location where the reference is made.
 	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
 	 * which is not accessible from the location where the reference is made.
 	 */
-	public void sql_insert_row (Class<? extends DBHelper.TableIF> tableClass, Map<String, String> newValues, boolean isToClear) throws InstantiationException, IllegalAccessException {
-		MultiPlayApplication.getDbHelper().openConnection();
+	public void sql_insert_row (Class<? extends DBHelper.TableIF> tableClass, Map<String, String> newValues, boolean isToClear, boolean reopenConnection) throws InstantiationException, IllegalAccessException {
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().openConnection();
+		}
+		
 		if (newValues == null || !newValues.isEmpty()) {
 			Log.d("DB", "Database insert...");
 			Log.d("TYPE", tableClass.getName());
@@ -574,7 +652,7 @@ public class DBHelper {
 					QueryBuilder.iterateOverValues(
 							newValues.keySet().iterator()));
 			
-			query.append(" ) VALUES ( " + sql_generate_not_exitsting_minID(tableClass) + ", ");
+			query.append(" ) VALUES ( " + sql_generate_not_exitsting_minID(tableClass,REOPEN_NO) + ", ");
 			
 			query.append(
 					QueryBuilder.iterateOverValues(
@@ -588,11 +666,17 @@ public class DBHelper {
 			if (isToClear == true) {
 				newValues.clear();
 			}
-			MultiPlayApplication.getDbHelper().closeConnection();
+			
+			if (reopenConnection == true ) {
+				MultiPlayApplication.getDbHelper().closeConnection();
+			}
 			return;
 		} else {
 			Log.d("DB", "Database empty insert!");
-			MultiPlayApplication.getDbHelper().closeConnection();
+			
+			if (reopenConnection == true ) {
+				MultiPlayApplication.getDbHelper().closeConnection();
+			}
 			return;
 		}
 	}
@@ -605,14 +689,21 @@ public class DBHelper {
 	 * @param isToClear Flag that can only take the values of {@link #CLEAR_YES} or {@link #CLEAR_NO}. It determinates 
 	 * whenever to call {@link Map#clear()} method in order 
 	 * to avoid creating new {@link Map} object for another execution of that method.
+	 * @param reopenConnection determinates if new connection to database should be opened. 
+	 * Keep in mind that by setting value as <i>true</i>, after executing a query, connection will be closed 
+	 * and it needs to be reopen before executing another query (by passing the same argument as <i>true</i>).
+	 * Otherwise no additional actions for opening/closing database connection will be taken.
 	 * 
 	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
 	 * which is not accessible from the location where the reference is made.
 	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
 	 * which is not accessible from the location where the reference is made.
 	 */
-	public void sql_insert_row (Class<? extends DBHelper.TableIF> tableClass, int KEY_UNIQUE, Map<String, String> newValues, boolean isToClear) throws InstantiationException, IllegalAccessException {
-		MultiPlayApplication.getDbHelper().openConnection();
+	public void sql_insert_row (Class<? extends DBHelper.TableIF> tableClass, int KEY_UNIQUE, Map<String, String> newValues, boolean isToClear, boolean reopenConnection) throws InstantiationException, IllegalAccessException {
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().openConnection();
+		}
+		
 		if (newValues == null || !newValues.isEmpty()) {
 			Log.d("DB", "Database insert...");
 			Log.d("TYPE", tableClass.getName());
@@ -641,11 +732,17 @@ public class DBHelper {
 			if (isToClear == true) {
 				newValues.clear();
 			}
-			MultiPlayApplication.getDbHelper().closeConnection();
+			
+			if (reopenConnection == true ) {
+				MultiPlayApplication.getDbHelper().closeConnection();
+			}
 			return;
 		} else {
 			Log.d("DB", "Database empty insert!");
-			MultiPlayApplication.getDbHelper().closeConnection();
+			
+			if (reopenConnection == true ) {
+				MultiPlayApplication.getDbHelper().closeConnection();
+			}
 			return;
 		}
 	}
@@ -653,14 +750,21 @@ public class DBHelper {
 	/** Delete query to database.
 	 * 
 	 * @param tableClass One of table names from {@link SQL_TABLE_NAME}.
+	 * @param reopenConnection determinates if new connection to database should be opened. 
+	 * Keep in mind that by setting value as <i>true</i>, after executing a query, connection will be closed 
+	 * and it needs to be reopen before executing another query (by passing the same argument as <i>true</i>).
+	 * Otherwise no additional actions for opening/closing database connection will be taken.
 	 * 
 	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
 	 * which is not accessible from the location where the reference is made.
 	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
 	 * which is not accessible from the location where the reference is made.
 	 */
-	public void sql_delete_row (Class<? extends DBHelper.TableIF> tableClass) throws InstantiationException, IllegalAccessException {
-		MultiPlayApplication.getDbHelper().openConnection();
+	public void sql_delete_row (Class<? extends DBHelper.TableIF> tableClass, boolean reopenConnection) throws InstantiationException, IllegalAccessException {
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().openConnection();
+		}
+		
 		Log.d("DB", "Database delete...");
 		Log.d("TYPE", tableClass.getName());
 		
@@ -672,21 +776,31 @@ public class DBHelper {
 				);
 		Log.i("DB",query.toString());
 		db.execSQL(query.toString());
-		MultiPlayApplication.getDbHelper().closeConnection();
+		
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().closeConnection();
+		}
 	}
 	
 	/** Delete query to database.
 	 * 
 	 * @param tableClass One of table names from {@link SQL_TABLE_NAME}.
 	 * @param KEY_UNIQUE ID values that uniquely represents rows in <i>tableClass</i> table.
+	 * @param reopenConnection determinates if new connection to database should be opened. 
+	 * Keep in mind that by setting value as <i>true</i>, after executing a query, connection will be closed 
+	 * and it needs to be reopen before executing another query (by passing the same argument as <i>true</i>).
+	 * Otherwise no additional actions for opening/closing database connection will be taken.
 	 * 
 	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
 	 * which is not accessible from the location where the reference is made.
 	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
 	 * which is not accessible from the location where the reference is made.
 	 */
-	public void sql_delete_row (Class<? extends DBHelper.TableIF> tableClass, int KEY_UNIQUE) throws InstantiationException, IllegalAccessException {
-		MultiPlayApplication.getDbHelper().openConnection();
+	public void sql_delete_row (Class<? extends DBHelper.TableIF> tableClass, int KEY_UNIQUE, boolean reopenConnection) throws InstantiationException, IllegalAccessException {
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().openConnection();
+		}
+		
 		Log.d("DB", "Database delete...");
 		Log.d("TYPE", tableClass.getName());
 		
@@ -699,21 +813,31 @@ public class DBHelper {
 				);
 		Log.i("DB",query.toString());
 		db.execSQL(query.toString());
-		MultiPlayApplication.getDbHelper().closeConnection();
+		
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().closeConnection();
+		}
 	}
 	
 	/**
 	 * 
 	 * @param tableClass todo
 	 * @param KEY_UNIQUEs todo
+	 * @param reopenConnection determinates if new connection to database should be opened. 
+	 * Keep in mind that by setting value as <i>true</i>, after executing a query, connection will be closed 
+	 * and it needs to be reopen before executing another query (by passing the same argument as <i>true</i>).
+	 * Otherwise no additional actions for opening/closing database connection will be taken.
 	 * 
 	 * @throws IllegalAccessException Thrown when a program attempts to access a tableClass 
 	 * which is not accessible from the location where the reference is made.
 	 * @throws InstantiationException Thrown when a program attempts to access a tableClass' constructor
 	 * which is not accessible from the location where the reference is made.
 	 */
-	public void sql_delete_row (Class<? extends DBHelper.TableIF> tableClass, Set<Integer> KEY_UNIQUEs) throws InstantiationException, IllegalAccessException {
-		MultiPlayApplication.getDbHelper().openConnection();
+	public void sql_delete_row (Class<? extends DBHelper.TableIF> tableClass, Set<Integer> KEY_UNIQUEs, boolean reopenConnection) throws InstantiationException, IllegalAccessException {
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().openConnection();
+		}
+		
 		Log.d("DB", "Database delete...");
 		Log.d("TYPE", tableClass.getName());
 		
@@ -725,6 +849,46 @@ public class DBHelper {
 				);
 		Log.i("DB",query.toString());
 		db.execSQL(query.toString());
-		MultiPlayApplication.getDbHelper().closeConnection();
+		
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().closeConnection();
+		}
+	}
+	
+	
+	
+	public static Collection<? extends WirelessConfigurationClass> parseNetworkWiFiSettings( Cursor cursor ) {
+		Set<WirelessConfigurationClass> parsedConfigurations = new HashSet<WirelessConfigurationClass>();
+		WirelessConfigurationClass readedConfiguration = null;
+		if (cursor.moveToFirst() == true) {
+			Log.d("DB", "OK1");
+			while (cursor.isAfterLast() == false ) {
+				Log.d("DB", "OK2");
+				readedConfiguration = new WirelessConfigurationClass(
+						cursor.getString(cursor.getColumnIndex(NetworkWiFiSettings.DBSchema.COLUMN_2)), 
+						cursor.getInt(cursor.getColumnIndex(NetworkWiFiSettings.DBSchema.COLUMN_3)));
+				
+				readedConfiguration.setName(
+						cursor.getString(cursor.getColumnIndex(NetworkWiFiSettings.DBSchema.COLUMN_1)));
+				
+				readedConfiguration.setConnectionStatus(ConnectionHelper.STATUS_WARNING);
+				readedConfiguration.setStored(true);
+				readedConfiguration.setStoredIndex(cursor.getPosition());
+	
+				Log.d("DB", DatabaseUtils.dumpCurrentRowToString(cursor));
+				
+				Log.d("DB", "conStatus > "+ String.valueOf(readedConfiguration.getConnectionStatus()));
+				Log.d("DB", "Index > "+ String.valueOf(readedConfiguration.getStoredIndex()));
+				Log.d("DB", "IP > "+ String.valueOf(readedConfiguration.getIP()));
+				Log.d("DB", "MAC > "+ String.valueOf(readedConfiguration.getMACAdress()));
+				Log.d("DB", "Name > "+ String.valueOf(readedConfiguration.getName()));
+				Log.d("DB", "Port > "+ String.valueOf(readedConfiguration.getPort()));
+				Log.d("DB", "System > "+ String.valueOf(readedConfiguration.getSystem()));
+	
+				parsedConfigurations.add(readedConfiguration);
+				cursor.moveToNext();
+			}
+		}
+		return parsedConfigurations;
 	}
 }

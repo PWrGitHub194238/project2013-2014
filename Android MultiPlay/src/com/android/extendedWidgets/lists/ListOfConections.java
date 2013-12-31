@@ -92,7 +92,10 @@ public class ListOfConections extends BaseAdapter {
     		return ElementOfConnectionsList.ICON_BSD;
     	} else if ( system==N.System.LINUX) {
     		return ElementOfConnectionsList.ICON_LINUX;
-    	} else 
+    	} else if ( system==N.System.WINDOWS) {
     		return ElementOfConnectionsList.ICON_WINDOWS;
+    	} else {
+    		return ElementOfConnectionsList.ICON_UNKNOW;
+    	}
     }
 }

@@ -63,18 +63,17 @@ public class ConnectionHelper {
 			 newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_1, configuration.getName());
 			 newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_2, wifiConfiguration.getIP());
 			 newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_3, wifiConfiguration.getPort().toString());
-				Cursor cursor = null;
-				Log.d("DB",configuration.isStored() ? "Y" : "N");
+			
 			 try {
 			 		if (configuration.isStored() == true) {
-			 			Log.d("DB","STORED");
-						MultiPlayApplication.getDbHelper().sql_insert_row(NetworkWiFiSettings.class, newValues,DBHelper.CLEAR_YES);
-						int i = DBHelper.sql_generate_not_exitsting_minID(NetworkWiFiSettings.class) - 1;
+			 			
+						MultiPlayApplication.getDbHelper().sql_insert_row(NetworkWiFiSettings.class, newValues,DBHelper.CLEAR_YES,DBHelper.REOPEN_YES);
+						int i = DBHelper.sql_generate_not_exitsting_minID(NetworkWiFiSettings.class,DBHelper.REOPEN_YES) - 1;
 						wifiConfiguration.setStoredIndex(i);
 					}
 					wifiConfiguration.setConnectionStatus(STATUS_NOT_IN_RANGE);
-					
-					cursor = MultiPlayApplication.getDbHelper().sql_select_by_id(NetworkWiFiSettings.class);
+					Cursor cursor = null;
+					cursor = MultiPlayApplication.getDbHelper().sql_select_by_id(NetworkWiFiSettings.class,DBHelper.REOPEN_YES);
 					
 					Log.d("DB",DatabaseUtils.dumpCursorToString(cursor));
 					Log.d("APP","Checking connection...");

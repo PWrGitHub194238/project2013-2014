@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 
+
 public class FunctionalityCheck {
 
 	static Context context;

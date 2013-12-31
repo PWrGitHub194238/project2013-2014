@@ -110,9 +110,10 @@ public final class N {
 	 *
 	 */
 	public static final class System {
-		public static final byte LINUX = 		(byte) Integer.parseInt("00000000", 2);
-		public static final byte WINDOWS = 		(byte) Integer.parseInt("00000001", 2);
-		public static final byte BSD = 			(byte) Integer.parseInt("00000010", 2);
+		public static final byte UNKNOW = 		(byte) Integer.parseInt("00000000", 2);
+		public static final byte LINUX = 		(byte) Integer.parseInt("00000001", 2);
+		public static final byte WINDOWS = 		(byte) Integer.parseInt("00000010", 2);
+		public static final byte BSD = 			(byte) Integer.parseInt("00000011", 2);
 	}
 	
 	/**

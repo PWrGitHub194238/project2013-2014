@@ -6,9 +6,9 @@ import java.util.Collection;
 
 import android.app.Application;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.util.Log;
 
+import com.android.asychs.CheckConnectionStatus;
 import com.android.asychs.SocketMainWiFiSender;
 import com.android.database.DBHelper;
 import com.android.database.MultiPlayDataBase;
@@ -71,8 +71,24 @@ public class MultiPlayApplication extends Application {
 	}
 	
 	private void loadConnectionListFromDB() throws InstantiationException, IllegalAccessException {
-		Cursor cursor = dbHelper.sql_select_by_id(NetworkWiFiSettings.class);
-		Log.d("DB", DatabaseUtils.dumpCursorToString(cursor));
+		Cursor cursor = dbHelper.sql_select_by_id(NetworkWiFiSettings.class,true);
+		discoveredWirelessDevices.addAll(
+				DBHelper.parseNetworkWiFiSettings(cursor));
+		
+		ConnectionsConfigurationClass[] connectionsArrayToExecute = new ConnectionsConfigurationClass[0];
+		discoveredBluetoothDevices.toArray(connectionsArrayToExecute);
+		
+		checkConnections(connectionsArrayToExecute);
+		
+		connectionsArrayToExecute = new ConnectionsConfigurationClass[0];
+		discoveredWirelessDevices.toArray(connectionsArrayToExecute);
+		checkConnections(connectionsArrayToExecute);
+		
+	}
+
+
+	private void checkConnections(ConnectionsConfigurationClass[] connectionsArrayToExecute) {
+		new CheckConnectionStatus().execute(connectionsArrayToExecute);
 	}
 
 	public void onDestroy() {

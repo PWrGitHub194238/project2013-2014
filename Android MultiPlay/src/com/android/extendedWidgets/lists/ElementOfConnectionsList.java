@@ -21,6 +21,7 @@ public class ElementOfConnectionsList {
 	public static final int ICON_BSD = R.drawable.connections_activity_os_bsd;
 	public static final int ICON_LINUX = R.drawable.connections_activity_os_linux;
 	public static final int ICON_WINDOWS = R.drawable.connections_activity_os_windows;
+	public static final int ICON_UNKNOW = R.drawable.connections_activity_os_unknow;
 	
 	public ElementOfConnectionsList(String deviceName, String deviceDetail,
 			int deviceDetailStatus, boolean isStored, byte system, boolean BTorWiFi) {

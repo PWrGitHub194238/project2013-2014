@@ -39,7 +39,7 @@ public class MouseActivity extends Activity {
 
 			txv = (TextView) super.findViewById(R.id.texty);
 		
-		
+	
 	}
 
 	@Override
@@ -71,8 +71,8 @@ public class MouseActivity extends Activity {
 
 	public boolean onTouchEvent(MotionEvent event) {
 		int maskedAction = event.getActionMasked();
-		String x = Integer.toString((int)(((hotx - (int) event.getX()) * (-1))/6));
-		String y = Integer.toString((int)(((hoty - (int) event.getY()) * (-1))/6));
+		String x = Integer.toString((int)(((hotx - (int) event.getX()) * (-1))/8));
+		String y = Integer.toString((int)(((hoty - (int) event.getY()) * (-1))/8));
 		switch (maskedAction) {
 		// case MotionEvent.ACTION_DOWN:
 		// txv.setText("X: " + x + "Y: " + y);

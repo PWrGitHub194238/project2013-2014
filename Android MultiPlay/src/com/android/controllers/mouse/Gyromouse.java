@@ -112,7 +112,7 @@ public class Gyromouse extends Activity implements SensorEventListener,
 		if (stop == 0) {
 			tv.setText(Integer.toString((int) x) + " "
 					+ Integer.toString((int) y));
-			int signal = Helper.encodeSignal(N.Device.MOUSE, N.DeviceDataCounter.DOUBLE, (int)y,(int)x);
+			int signal = Helper.encodeSignal(N.Device.MOUSE, N.DeviceDataCounter.DOUBLE, (int)y*2,(int)x*2);
 			 MultiPlayApplication.add(signal);
 		}
 	}

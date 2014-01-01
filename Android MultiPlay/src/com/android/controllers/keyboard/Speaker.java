@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.application.N.Helper;
-import com.android.controllers.mouse.KeyEvent;
+
 import com.android.multiplay.R;
 import com.android.multiplay.R.id;
 import com.android.multiplay.R.layout;
@@ -71,9 +71,11 @@ public class Speaker extends Activity {
 	}
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		int e;
 		if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
 			Toast.makeText(getApplicationContext(), "Punctuation",
 					Toast.LENGTH_SHORT).show();
+			
 			if (Punctuation == 0 && Commands == 0) {
 				Punctuation = 1;
 				Commands = 0;
@@ -88,11 +90,11 @@ public class Speaker extends Activity {
 					startActivityForResult(intent, RESULT_SPEECH);
 					// txtText.setText("");
 				} catch (ActivityNotFoundException a) {
-					Toast t = Toast.makeText(getApplicationContext(),
+					Toast t = Toast.makeText(getApplicationContext(),"Punctuation",
 							Toast.LENGTH_SHORT);
 					t.show();
 				}
-				Punctuation = 0;
+				
 			} 
 			return true;
 		} else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
@@ -113,7 +115,7 @@ public class Speaker extends Activity {
 					startActivityForResult(intent, RESULT_SPEECH);
 					// txtText.setText("");
 				} catch (ActivityNotFoundException a) {
-					Toast t = Toast.makeText(getApplicationContext(),
+					Toast t = Toast.makeText(getApplicationContext(),"Commands",
 							Toast.LENGTH_SHORT);
 					t.show();
 				}
@@ -159,9 +161,7 @@ public class Speaker extends Activity {
 							startActivityForResult(intent, RESULT_SPEECH);
 							// txtText.setText("");
 						} catch (ActivityNotFoundException a) {
-							Toast t = Toast.makeText(getApplicationContext(),
-									Toast.LENGTH_SHORT);
-							t.show();
+						
 						}
 					}
 				}else if(Punctuation == 1){
@@ -181,6 +181,7 @@ public class Speaker extends Activity {
 								N.DeviceDataCounter.SINGLE, e);
 						MultiPlayApplication.add(signal);
 					}
+					Punctuation = 0;
 				}
 			}
 			break;

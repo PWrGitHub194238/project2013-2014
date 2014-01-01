@@ -110,11 +110,12 @@ public final class N {
 	 *
 	 */
 	public static final class System {
-		public static final byte LINUX = (byte) Integer.parseInt("00000000", 2);
-		public static final byte WINDOWS = (byte) Integer.parseInt("00000001",
-				2);
-		public static final byte BSD = (byte) Integer.parseInt("00000010", 2);
+		public static final byte UNKNOW = 		(byte) Integer.parseInt("00000000", 2);
+		public static final byte LINUX = 		(byte) Integer.parseInt("00000001", 2);
+		public static final byte WINDOWS = 		(byte) Integer.parseInt("00000010", 2);
+		public static final byte BSD = 			(byte) Integer.parseInt("00000011", 2);
 	}
+	
 
 	/**
 	 * byte signal = N.Signal.encodeSignal(N.Signal.NEED_CONNECTION,
@@ -205,6 +206,18 @@ public final class N {
 			String w = new String(b.toByteArray());
 			return w;
 		}
+		public static final int SPEAKER_RUN= Integer.parseInt("000000000000",
+				2);
+		public static final int SPEAKER_PUNCTUATION= Integer.parseInt("000000000001",
+				2);
+		public static final int SPEAKER_COMMANDS= Integer.parseInt("000000000010",
+				2);
+		public static final int SPEAKER_SEMICOLON= Integer.parseInt("000000000011",
+				2);
+		public static final int SPEAKER_COMMA= Integer.parseInt("000000000100",
+				2);
+		public static final int SPEAKER_POINT= Integer.parseInt("000000000101",
+				2);
 	}
 
 	public static final class Exit {

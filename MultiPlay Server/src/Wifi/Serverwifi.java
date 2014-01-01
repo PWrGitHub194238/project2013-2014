@@ -83,9 +83,28 @@ public class Serverwifi implements Runnable {
 										(int) (9 * 14.1));
 							else
 								vjoy.updateAxes(1, (int) (ret[2] * 14.1), 0);
-
 						}
 					} else if (ret[0] == N.Device.SPEAKER) {
+						if (ret[1] == N.DeviceDataCounter.SINGLE) {
+							if (ret[2] == N.DeviceSignal.SPEAKER_PUNCTUATION) {
+								signals = dis.readInt();
+								if(ret[2] == N.DeviceSignal.SPEAKER_SEMICOLON){
+									robot = new Robot();
+									robot.keyPress(KeyEvent.VK_SEMICOLON);
+								}if(ret[2] == N.DeviceSignal.SPEAKER_COMMA){
+									robot = new Robot();
+									robot.keyPress(KeyEvent.VK_COMMA);
+								}
+								if(ret[2] == N.DeviceSignal.SPEAKER_POINT){
+									robot = new Robot();
+									robot.keyPress(KeyEvent.VK_PERIOD);
+								}
+
+								
+							}else if (ret[2] == N.DeviceSignal.SPEAKER_COMMANDS){
+								
+							}
+						}
 
 					} else if (ret[0] == N.Device.VJOY) {
 

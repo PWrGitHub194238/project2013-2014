@@ -142,6 +142,7 @@ public final class N {
 		public static final byte decodeSystem(byte signal) {
 			return (byte) ((signal & Bitmasks.bit_mask(Bitmasks.BIT2,Bitmasks.BIT3)) >> Shift.SYSTEM);
 		}
+		
 	}
 
 	/**
@@ -153,6 +154,7 @@ public final class N {
 		public static final int WHEEL = C.SIGNAL_WHEEL;
 		public static final int SPEAKER = C.SIGNAL_SPEAKER;// ?
 		public static final int EXIT = Integer.parseInt("11111", 2);// ?
+		
 	}
 
 	/**
@@ -205,6 +207,19 @@ public final class N {
 			String w = new String(b.toByteArray());
 			return w;
 		}
+		public static final int SPEAKER_RUN= Integer.parseInt("000000000000",
+				2);
+		
+		public static final int SPEAKER_PUNCTUATION= Integer.parseInt("000000000001",
+				2);
+		public static final int SPEAKER_COMMANDS= Integer.parseInt("000000000010",
+				2);
+		public static final int SPEAKER_SEMICOLON= Integer.parseInt("000000000011",
+				2);
+		public static final int SPEAKER_COMMA= Integer.parseInt("000000000100",
+				2);
+		public static final int SPEAKER_POINT= Integer.parseInt("000000000101",
+				2);
 	}
 
 	public static final class Exit {

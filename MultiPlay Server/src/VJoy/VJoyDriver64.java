@@ -3,6 +3,8 @@ package VJoy;
 import java.util.Arrays;
 import java.util.List;
 
+import Frame.AlertFrame;
+
 import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.jna.Structure;
@@ -57,8 +59,10 @@ public class VJoyDriver64 extends VJoyDriver {
 		boolean result=vDLL.VJoy_Initialize("","");
 		if(result==true)		
 		System.out.printf("Inicjalizacja zakonczona powodzeniem");
-		else
+		else{
 		System.out.printf("Inicjalizacja nieudana");
+		AlertFrame window = new AlertFrame("Not found Driver");
+		}
 		
 		m_joyState= new VJoy64.JOYSTICK_STATE.ByReference();
 		

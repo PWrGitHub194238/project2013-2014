@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import CodeKey.N;
 import Frame.MFrame;
 
 public class Wifi implements Runnable {

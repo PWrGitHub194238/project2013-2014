@@ -193,7 +193,45 @@ public final class N {
 				"000000000110", 2);
 		public static final int KEYBOARD_BACKSPACE = Integer.parseInt(
 				"000000000111", 2);
-
+		
+		
+		public static final int KEYBOARD_EU = Integer.parseInt(
+				"000100000000", 2);
+		public static final int KEYBOARD_O_KRESKA = Integer.parseInt(
+				"000100000001", 2);
+		public static final int KEYBOARD_OU = Integer.parseInt(
+				"000100000010", 2);
+		public static final int KEYBOARD_SI = Integer.parseInt(
+				"000100000011", 2);
+		public static final int KEYBOARD_LY = Integer.parseInt(
+				"000100000100", 2);
+		public static final int KEYBOARD_ZY = Integer.parseInt(
+				"000100000101", 2);
+		public static final int KEYBOARD_ZI = Integer.parseInt(
+				"000100000110", 2);
+		public static final int KEYBOARD_CI = Integer.parseInt(
+				"000100000111", 2);
+		public static final int KEYBOARD_NI = Integer.parseInt(
+				"000100001000", 2);
+		
+		public static final int KEYBOARD_BEU = Integer.parseInt("000100001001",
+				2);
+		public static final int KEYBOARD_BO_KRESKA = Integer.parseInt(
+				"000100001010", 2);
+		public static final int KEYBOARD_BOU = Integer.parseInt("000100001011",
+				2);
+		public static final int KEYBOARD_BSI = Integer.parseInt("000100001100",
+				2);
+		public static final int KEYBOARD_BLY = Integer.parseInt("000100001101",
+				2);
+		public static final int KEYBOARD_BZY = Integer.parseInt("000100001110",
+				2);
+		public static final int KEYBOARD_BZI = Integer.parseInt("000100001111",
+				2);
+		public static final int KEYBOARD_BCI = Integer.parseInt("000100010000",
+				2);
+		public static final int KEYBOARD_BNI = Integer.parseInt("000100010001",
+				2);
 		public static int KEYBOARD_KEY_TO_INT(String key) {
 			int integer;
 			BigInteger bi = new BigInteger(key.getBytes());

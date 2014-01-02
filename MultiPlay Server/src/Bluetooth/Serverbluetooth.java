@@ -9,20 +9,20 @@ import java.io.IOException;
 import javax.microedition.io.StreamConnection;
 import javax.microedition.io.StreamConnectionNotifier;
 
+import CodeKey.N;
 import Keyboard.Keyboard;
 import Mouse.Mouse;
 import Speaker.Speaker;
 import VJoy.VJoyDriver;
 import VJoy.VJoyDriver32;
 import VJoy.VJoyDriver64;
-import Wifi.N;
 
 public class Serverbluetooth implements Runnable {
-	StreamConnection connection = null;
-	StreamConnectionNotifier notifier = null;
-	DataOutputStream dos = null;
-	DataInputStream dis = null;
-	int i = 0;
+	private StreamConnection connection = null;
+	private StreamConnectionNotifier notifier = null;
+	private DataOutputStream dos = null;
+	private DataInputStream dis = null;
+	private int i = 0;
 	private int x = 3, y = 3;
 	private String pm, x1, y1, key;
 
@@ -49,10 +49,8 @@ public class Serverbluetooth implements Runnable {
 				else
 					vjoy = new VJoyDriver32(true);
 			}
-
 			int signals = 0;
 			System.out.println("Bluetooth SERVER!!");
-
 			while (true) {
 				try {
 					signals = dis.readInt();
@@ -68,6 +66,7 @@ public class Serverbluetooth implements Runnable {
 							} else
 								i = 0;
 					} else if (ret[0] == N.Device.KEYBOARD) {
+
 						if (ret[1] == N.DeviceDataCounter.SINGLE)
 							keyboard.click(ret[2]);
 					} else if (ret[0] == N.Device.WHEEL) {
@@ -82,9 +81,17 @@ public class Serverbluetooth implements Runnable {
 										(int) (9 * 14.1));
 							else
 								vjoy.updateAxes(1, (int) (ret[2] * 14.1), 0);
-
 						}
 					} else if (ret[0] == N.Device.SPEAKER) {
+						if (ret[1] == N.DeviceDataCounter.SINGLE) {
+							if (ret[2] == N.DeviceSignal.SPEAKER_PUNCTUATION) {
+								signals = dis.readInt();
+								ret = N.Helper.decodeSignal(signals);
+								keyboard.click(ret[2]);
+
+							} else if (ret[2] == N.DeviceSignal.SPEAKER_COMMANDS) {
+							}
+						}
 
 					} else if (ret[0] == N.Device.VJOY) {
 
@@ -101,7 +108,6 @@ public class Serverbluetooth implements Runnable {
 				}
 
 			}
-
 		} catch (AWTException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

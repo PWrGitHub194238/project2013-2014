@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import CodeKey.N;
 import Keyboard.Keyboard;
 import Mouse.Mouse;
 import Speaker.Speaker;
@@ -69,6 +70,7 @@ public class Serverwifi implements Runnable {
 							} else
 								i = 0;
 					} else if (ret[0] == N.Device.KEYBOARD) {
+						
 						if (ret[1] == N.DeviceDataCounter.SINGLE)
 							keyboard.click(ret[2]);
 					} else if (ret[0] == N.Device.WHEEL) {
@@ -86,23 +88,15 @@ public class Serverwifi implements Runnable {
 						}
 					} else if (ret[0] == N.Device.SPEAKER) {
 						if (ret[1] == N.DeviceDataCounter.SINGLE) {
-							if (ret[2] == N.DeviceSignal.SPEAKER_PUNCTUATION) {
-								signals = dis.readInt();
-								if(ret[2] == N.DeviceSignal.SPEAKER_SEMICOLON){
-									robot = new Robot();
-									robot.keyPress(KeyEvent.VK_SEMICOLON);
-								}if(ret[2] == N.DeviceSignal.SPEAKER_COMMA){
-									robot = new Robot();
-									robot.keyPress(KeyEvent.VK_COMMA);
-								}
-								if(ret[2] == N.DeviceSignal.SPEAKER_POINT){
-									robot = new Robot();
-									robot.keyPress(KeyEvent.VK_PERIOD);
-								}
 
-								
-							}else if (ret[2] == N.DeviceSignal.SPEAKER_COMMANDS){
-								
+							if (ret[2] == N.DeviceSignal.SPEAKER_PUNCTUATION) {
+
+								signals = dis.readInt();
+								ret = N.Helper.decodeSignal(signals);
+								keyboard.click(ret[2]);
+
+							} else if (ret[2] == N.DeviceSignal.SPEAKER_COMMANDS) {
+
 							}
 						}
 

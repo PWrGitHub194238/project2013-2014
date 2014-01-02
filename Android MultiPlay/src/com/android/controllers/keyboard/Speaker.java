@@ -31,7 +31,7 @@ import android.view.KeyEvent;
 public class Speaker extends Activity {
 	private ImageButton btnSpeak;
 	protected static final int RESULT_SPEECH = 1;
-	int Punctuation = 0, Commands = 0;
+	private int Punctuation = 0, Commands = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +75,7 @@ public class Speaker extends Activity {
 		if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
 			Toast.makeText(getApplicationContext(), "Punctuation",
 					Toast.LENGTH_SHORT).show();
-			
+
 			if (Punctuation == 0 && Commands == 0) {
 				Punctuation = 1;
 				Commands = 0;
@@ -83,46 +83,43 @@ public class Speaker extends Activity {
 				int signal = Helper.encodeSignal(N.Device.SPEAKER,
 						N.DeviceDataCounter.SINGLE, e);
 				MultiPlayApplication.add(signal);
-				//-----------------------------------record commands--------------------------
-				Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+				// -----------------------------------record
+				// commands--------------------------
+				Intent intent = new Intent(
+						RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 				intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "pl-PL");
 				try {
 					startActivityForResult(intent, RESULT_SPEECH);
 					// txtText.setText("");
 				} catch (ActivityNotFoundException a) {
-					Toast t = Toast.makeText(getApplicationContext(),"Punctuation",
-							Toast.LENGTH_SHORT);
+					Toast t = Toast.makeText(getApplicationContext(),
+							"Punctuation", Toast.LENGTH_SHORT);
 					t.show();
 				}
-				
-			} 
+
+			}
 			return true;
-		} else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
-			Toast.makeText(getApplicationContext(), "Commands",
-					Toast.LENGTH_SHORT).show();
-			if (Commands == 0 && Punctuation == 0) {
-				Commands = 1;
-				Punctuation = 0;
-				e = N.DeviceSignal.SPEAKER_COMMANDS;
-				int signal = Helper.encodeSignal(N.Device.SPEAKER,
-						N.DeviceDataCounter.SINGLE, e);
-				MultiPlayApplication.add(signal);
-				
-				//-----------------------------------record commands--------------------------
-				Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-				intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "pl-PL");
-				try {
-					startActivityForResult(intent, RESULT_SPEECH);
-					// txtText.setText("");
-				} catch (ActivityNotFoundException a) {
-					Toast t = Toast.makeText(getApplicationContext(),"Commands",
-							Toast.LENGTH_SHORT);
-					t.show();
-				}
-				
-				
-			} 
-			return true;
+			/*
+			 * } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+			 * Toast.makeText(getApplicationContext(), "Commands",
+			 * Toast.LENGTH_SHORT).show(); if (Commands == 0 && Punctuation ==
+			 * 0) { Commands = 1; Punctuation = 0; e =
+			 * N.DeviceSignal.SPEAKER_COMMANDS; int signal =
+			 * Helper.encodeSignal(N.Device.SPEAKER, N.DeviceDataCounter.SINGLE,
+			 * e); MultiPlayApplication.add(signal);
+			 * 
+			 * //-----------------------------------record
+			 * commands-------------------------- Intent intent = new
+			 * Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+			 * intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "pl-PL");
+			 * try { startActivityForResult(intent, RESULT_SPEECH); //
+			 * txtText.setText(""); } catch (ActivityNotFoundException a) {
+			 * Toast t = Toast.makeText(getApplicationContext(),"Commands",
+			 * Toast.LENGTH_SHORT); t.show(); }
+			 * 
+			 * 
+			 * } return true;
+			 */
 		}
 		return true;
 
@@ -144,42 +141,196 @@ public class Speaker extends Activity {
 								.get(0).subSequence(i, i + 1),
 								Toast.LENGTH_SHORT);
 						t.show();
-						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT(text.get(0)
-								.subSequence(i, i + 1).toString());
+						if (text.get(0).subSequence(i, i + 1).toString()
+								.equals("ê")) {
+							e = N.DeviceSignal.KEYBOARD_EU;
+							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+									N.DeviceDataCounter.SINGLE, e);
+							MultiPlayApplication.add(signal);
+						} else if (text.get(0).subSequence(i, i + 1).toString()
+								.equals("ó")) {
+							e = N.DeviceSignal.KEYBOARD_O_KRESKA;
+							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+									N.DeviceDataCounter.SINGLE, e);
+							MultiPlayApplication.add(signal);
+						} else if (text.get(0).subSequence(i, i + 1).toString()
+								.equals("¹")) {
+							e = N.DeviceSignal.KEYBOARD_OU;
+							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+									N.DeviceDataCounter.SINGLE, e);
+							MultiPlayApplication.add(signal);
+						} else if (text.get(0).subSequence(i, i + 1).toString()
+								.equals("œ")) {
+							e = N.DeviceSignal.KEYBOARD_SI;
+							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+									N.DeviceDataCounter.SINGLE, e);
+							MultiPlayApplication.add(signal);
+						} else if (text.get(0).subSequence(i, i + 1).toString()
+								.equals("³")) {
+							e = N.DeviceSignal.KEYBOARD_LY;
+							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+									N.DeviceDataCounter.SINGLE, e);
+							MultiPlayApplication.add(signal);
+						} else if (text.get(0).subSequence(i, i + 1).toString()
+								.equals("¿")) {
+							e = N.DeviceSignal.KEYBOARD_ZY;
+							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+									N.DeviceDataCounter.SINGLE, e);
+							MultiPlayApplication.add(signal);
+						} else if (text.get(0).subSequence(i, i + 1).toString()
+								.equals("Ÿ")) {
+							e = N.DeviceSignal.KEYBOARD_ZI;
+							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+									N.DeviceDataCounter.SINGLE, e);
+							MultiPlayApplication.add(signal);
+						} else if (text.get(0).subSequence(i, i + 1).toString()
+								.equals("æ")) {
+							e = N.DeviceSignal.KEYBOARD_CI;
+							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+									N.DeviceDataCounter.SINGLE, e);
+							MultiPlayApplication.add(signal);
+						} else if (text.get(0).subSequence(i, i + 1).toString()
+								.equals("ñ")) {
+							e = N.DeviceSignal.KEYBOARD_NI;
+							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+									N.DeviceDataCounter.SINGLE, e);
+							MultiPlayApplication.add(signal);
+						} else {
+							e = N.DeviceSignal.KEYBOARD_KEY_TO_INT(text.get(0)
+									.subSequence(i, i + 1).toString());
+							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+									N.DeviceDataCounter.SINGLE, e);
+							MultiPlayApplication.add(signal);
+						}
+						i += 1;
+					}
+				}/*
+				 * else if(Commands == 1){ if(text.get(0).equals("uruchom")){
+				 * Commands = 0; //-----------------------------------record
+				 * application-------------------------- Intent intent = new
+				 * Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+				 * intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+				 * "pl-PL"); try { startActivityForResult(intent,
+				 * RESULT_SPEECH); // txtText.setText(""); } catch
+				 * (ActivityNotFoundException a) {
+				 * 
+				 * } } }
+				 */else if (Punctuation == 1) {
+					if (text.get(0).equals("œrednik")) {
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT(";");
 						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.SINGLE, e);
 						MultiPlayApplication.add(signal);
-						i += 1;
-					}
-				}else if(Commands == 1){
-					if(text.get(0).equals("uruchom")){
-						Commands = 0;
-						//-----------------------------------record application--------------------------
-						Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-						intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "pl-PL");
-						try {
-							startActivityForResult(intent, RESULT_SPEECH);
-							// txtText.setText("");
-						} catch (ActivityNotFoundException a) {
-						
-						}
-					}
-				}else if(Punctuation == 1){
-					if(text.get(0).equals("œrednik")){
-						e = N.DeviceSignal.SPEAKER_SEMICOLON;
-						int signal = Helper.encodeSignal(N.Device.SPEAKER,
+						Toast t = Toast.makeText(getApplicationContext(),
+								text.get(0), Toast.LENGTH_SHORT);
+						t.show();
+					} else if (text.get(0).equals("przecinek")) {
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT(",");
+						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.SINGLE, e);
 						MultiPlayApplication.add(signal);
-					}else if(text.get(0).equals("przecinek")){
-						e = N.DeviceSignal.SPEAKER_COMMA;
-						int signal = Helper.encodeSignal(N.Device.SPEAKER,
+						Toast t = Toast.makeText(getApplicationContext(),
+								text.get(0), Toast.LENGTH_SHORT);
+						t.show();
+					} else if (text.get(0).equals("kropka")) {
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT(".");
+						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.SINGLE, e);
 						MultiPlayApplication.add(signal);
-					}else if(text.get(0).equals("kropka")){
-						e = N.DeviceSignal.SPEAKER_POINT;
-						int signal = Helper.encodeSignal(N.Device.SPEAKER,
+						Toast t = Toast.makeText(getApplicationContext(),
+								text.get(0), Toast.LENGTH_SHORT);
+						t.show();
+					} else if (text.get(0).equals("wykrzyknik")) {
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT("!");
+						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.SINGLE, e);
 						MultiPlayApplication.add(signal);
+						Toast t = Toast.makeText(getApplicationContext(),
+								text.get(0), Toast.LENGTH_SHORT);
+						t.show();
+					} else if (text.get(0).equals("znak zapytania")) {
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT("?");
+						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+								N.DeviceDataCounter.SINGLE, e);
+						MultiPlayApplication.add(signal);
+						Toast t = Toast.makeText(getApplicationContext(),
+								text.get(0), Toast.LENGTH_SHORT);
+						t.show();
+					} else if (text.get(0).equals("dwukropek")) {
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT(":");
+						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+								N.DeviceDataCounter.SINGLE, e);
+						MultiPlayApplication.add(signal);
+						Toast t = Toast.makeText(getApplicationContext(),
+								text.get(0), Toast.LENGTH_SHORT);
+						t.show();
+					} else if (text.get(0).equals("cudzys³ów")) {
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT("\"");
+						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+								N.DeviceDataCounter.SINGLE, e);
+						MultiPlayApplication.add(signal);
+						Toast t = Toast.makeText(getApplicationContext(),
+								text.get(0), Toast.LENGTH_SHORT);
+						t.show();
+					} else if (text.get(0).equals("nawias")) {
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT("(");
+						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+								N.DeviceDataCounter.SINGLE, e);
+						MultiPlayApplication.add(signal);
+						Toast t = Toast.makeText(getApplicationContext(),
+								text.get(0), Toast.LENGTH_SHORT);
+						t.show();
+					} else if (text.get(0).equals("zamknij nawias")) {
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT(")");
+						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+								N.DeviceDataCounter.SINGLE, e);
+						MultiPlayApplication.add(signal);
+						Toast t = Toast.makeText(getApplicationContext(),
+								text.get(0), Toast.LENGTH_SHORT);
+						t.show();
+					} else if (text.get(0).equals("równe")
+							|| text.get(0).equals("równa siê")) {
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT("=");
+						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+								N.DeviceDataCounter.SINGLE, e);
+						MultiPlayApplication.add(signal);
+						Toast t = Toast.makeText(getApplicationContext(),
+								text.get(0), Toast.LENGTH_SHORT);
+						t.show();
+					} else if (text.get(0).equals("plus")) {
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT("=");
+						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+								N.DeviceDataCounter.SINGLE, e);
+						MultiPlayApplication.add(signal);
+						Toast t = Toast.makeText(getApplicationContext(),
+								text.get(0), Toast.LENGTH_SHORT);
+						t.show();
+					} else if (text.get(0).equals("ma³pa")
+							|| text.get(0).equals("at")) {
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT("@");
+						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+								N.DeviceDataCounter.SINGLE, e);
+						MultiPlayApplication.add(signal);
+						Toast t = Toast.makeText(getApplicationContext(),
+								text.get(0), Toast.LENGTH_SHORT);
+						t.show();
+					} else if (text.get(0).equals("ampersant")) {
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT("@");
+						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+								N.DeviceDataCounter.SINGLE, e);
+						MultiPlayApplication.add(signal);
+						Toast t = Toast.makeText(getApplicationContext(),
+								text.get(0), Toast.LENGTH_SHORT);
+						t.show();
+					} else if (text.get(0).equals("minus")
+							|| text.get(0).equals("myœlnik")) {
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT("@");
+						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+								N.DeviceDataCounter.SINGLE, e);
+						MultiPlayApplication.add(signal);
+						Toast t = Toast.makeText(getApplicationContext(),
+								text.get(0), Toast.LENGTH_SHORT);
+						t.show();
 					}
 					Punctuation = 0;
 				}

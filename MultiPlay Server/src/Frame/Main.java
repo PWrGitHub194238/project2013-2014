@@ -12,6 +12,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import Bluetooth.Bluetooth;
+import CodeKey.N;
 import Mouse.Mouse;
 import Mouse.Pos;
 import VJoy.VJoyDriver;
@@ -19,7 +20,6 @@ import VJoy.VJoyDriver32;
 import VJoy.VJoyDriver64;
 import VJoy.VJoyDriver32.VJoy32;
 import Wifi.Connect;
-import Wifi.N;
 import Wifi.Serverwifi;
 import Wifi.Wifi;
 

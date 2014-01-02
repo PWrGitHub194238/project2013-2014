@@ -39,8 +39,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 		setContentView(R.layout.activity_keyboard);
 		// bundle = super.getIntent().getExtras();
 		// ip = bundle.getString("ip");
-		try {
-			MultiPlayApplication.runThread();
+		
 			button1 = (Button) super.findViewById(R.id.leftb);
 			button2 = (Button) super.findViewById(R.id.rightb);
 			button3 = (Button) super.findViewById(R.id.upb);
@@ -74,7 +73,8 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 			button31 = (Button) super.findViewById(R.id.bn);
 			button32 = (Button) super.findViewById(R.id.bm);
 			button33 = (Button) super.findViewById(R.id.balt);
-			button34 = (Button) super.findViewById(R.id.bspace);
+			button34 = (Button) super.findViewById(R.id.bbackspace);
+			
 			if (MultiPlayApplication.getMainNetworkConfiguration() != null) {
 			} else {
 				AlertDialogs
@@ -87,6 +87,8 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 								DialogListCore.ID_BUTTON_OPTIONS, null,
 								DialogListCore.ID_BUTTON_CANCEL);
 			}
+			try {
+				MultiPlayApplication.runThread();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -106,42 +108,38 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 		switch (arg0.getId()) {
 		case R.id.besc:
 			i = N.DeviceSignal.KEYBOARD_ESC;
-			Toast.makeText(getApplicationContext(), Integer.toString(i),
-					Toast.LENGTH_SHORT).show();
 			signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
-
-			 MultiPlayApplication.add(i);
+			 MultiPlayApplication.add(signal);
 			break;
 		case R.id.leftb:
 			i = N.DeviceSignal.KEYBOARD_LEFT;
-			 MultiPlayApplication.add(i);
-
+			signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+			 MultiPlayApplication.add(signal);
 			break;
 		case R.id.rightb:
 			i = N.DeviceSignal.KEYBOARD_RIGHT;
-			 MultiPlayApplication.add(i);
-
+			signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+			 MultiPlayApplication.add(signal);
 			break;
 		case R.id.upb:
 			i = N.DeviceSignal.KEYBOARD_UP;
-			 MultiPlayApplication.add(i);
-
+			signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+			 MultiPlayApplication.add(signal);
 			break;
 		case R.id.downb:
 			i = N.DeviceSignal.KEYBOARD_DOWN;
-			 MultiPlayApplication.add(i);
-
+			signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+			 MultiPlayApplication.add(signal);
 			break;
 		case R.id.enterb:
-			 i = N.DeviceSignal.KEYBOARD_ENTER;
-			 MultiPlayApplication.add(i);
-
+			i = N.DeviceSignal.KEYBOARD_ENTER;
+			signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+			 MultiPlayApplication.add(signal);
 			break;
 		case R.id.bshift:
-			i = N.DeviceSignal.KEYBOARD_SHIFT;
-			 MultiPlayApplication.add(i);
-
 			if (altflag == 0) {
+				
+				
 				switch (shiftflag) {
 				case 0:
 					shiftflag = 1;
@@ -201,98 +199,6 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 					button30.setText("B");
 					button31.setText("N");
 					button32.setText("M");
-					break;
-				case 2:
-					// wyslij ze zostal odcisniety shift
-					shiftflag = 0;
-					button7.setText("q");
-					button8.setText("w");
-					button9.setText("e");
-					button10.setText("r");
-					button11.setText("t");
-					button12.setText("y");
-					button13.setText("u");
-					button14.setText("i");
-					button15.setText("o");
-					button16.setText("p");
-					button17.setText("a");
-					button18.setText("s");
-					button19.setText("d");
-					button20.setText("f");
-					button21.setText("g");
-					button22.setText("h");
-					button23.setText("j");
-					button24.setText("k");
-					button25.setText("l");
-					button26.setText("z");
-					button27.setText("x");
-					button28.setText("c");
-					button29.setText("v");
-					button30.setText("b");
-					button31.setText("n");
-					button32.setText("m");
-					break;
-				}
-			} else if (altflag == 1) {
-				switch (shiftflag) {
-				case 0:
-					shiftflag = 1;
-					// wyslij ze zostal nacisniety shift
-					button7.setText("!");
-					button8.setText("@");
-					button9.setText("#");
-					button10.setText("$");
-					button11.setText("%");
-					button12.setText("^");
-					button13.setText("&");
-					button14.setText("*");
-					button15.setText("(");
-					button16.setText(")");
-					button17.setText("_");
-					button18.setText("+");
-					button19.setText("{");
-					button20.setText("}");
-					button21.setText("|");
-					button22.setText("\\");
-					button23.setText(":");
-					button24.setText("\"");
-					button25.setText("<");
-					button26.setText(">");
-					button27.setText("?");
-					button28.setText("/");
-					button29.setText("=");
-					button30.setText("-");
-					button31.setText("~");
-					button32.setText("`");
-					break;
-				case 1:
-					shiftflag = 2;
-					button7.setText("1");
-					button8.setText("2");
-					button9.setText("3");
-					button10.setText("4");
-					button11.setText("5");
-					button12.setText("6");
-					button13.setText("7");
-					button14.setText("8");
-					button15.setText("9");
-					button16.setText("0");
-					button17.setText("√™");
-					button18.setText("√≥");
-					button19.setText("¬π");
-					button20.setText("≈ì");
-					button21.setText("¬≥");
-					button22.setText("¬ø");
-					button23.setText("≈∏");
-					button24.setText("√¶");
-					button25.setText("√±");
-					button26.setText("[");
-					button27.setText("]");
-					button28.setText(";");
-					button29.setText("'");
-					button30.setText(",");
-					button31.setText(".");
-					button32.setText("?");
 					break;
 				case 2:
 					// wyslij ze zostal odcisniety shift
@@ -326,6 +232,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 					break;
 				}
 			}
+			
 			break;
 
 		case R.id.bspace:
@@ -333,9 +240,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 			break;
 		case R.id.bq:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
-			if (shiftflag == 1 && altflag != 1) {
-				// nacisniecie "q"
-				// odcisniecie shifta
+			if (shiftflag == 1 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Q");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
 						button11, button12, button13, button14, button15,
@@ -343,261 +251,428 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
 						button31, button33);
-				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("q");
-					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
-
-					 MultiPlayApplication.add(i);
 				shiftflag = 0;
-			} else if (shiftflag == 2) {
+			} else if (shiftflag == 2 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Q");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			} else if (shiftflag == 0 && altflag==0 ) {
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("q");
 					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
-
-					 MultiPlayApplication.add(i);
-
+					 MultiPlayApplication.add(signal);
+			
+			} else if (shiftflag == 0 && altflag==1 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("!");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			}
+			else if (shiftflag == 0 && altflag==2 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("1");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 			}
 
 			break;
 		case R.id.bw:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
-			if (shiftflag == 1 && altflag != 1) {
-				// nacisniecie "q"
-				// odcisniecie shifta
+			if (shiftflag == 1 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("W");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
 						button11, button12, button13, button14, button15,
 						button16, button17, button18, button19, button20,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
-						button31, button32);
-
+						button31, button33);
 				shiftflag = 0;
+			} else if (shiftflag == 2 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("W");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			} else if (shiftflag == 0 && altflag==0 ) {
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("w");
 					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
-
-					 MultiPlayApplication.add(i);
-			} else if (shiftflag == 2) {
-				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("w");
+					 MultiPlayApplication.add(signal);
+			
+			} else if (shiftflag == 0 && altflag==1 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("@");
 					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
-
-					 MultiPlayApplication.add(i);
-
+					 MultiPlayApplication.add(signal);
+			}
+			else if (shiftflag == 0 && altflag==2 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("2");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 			}
 			break;
 		case R.id.be:
-		 signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, N.DeviceSignal.KEYBOARD_KEY_TO_INT("e"));
-			
-
-		
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
-			if (shiftflag == 1 && altflag != 1) {
-				// nacisniecie "q"
-				// odcisniecie shifta
+			if (shiftflag == 1 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("E");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
 						button11, button12, button13, button14, button15,
 						button16, button17, button18, button19, button20,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
-						button31, button32);
+						button31, button33);
 				shiftflag = 0;
+			} else if (shiftflag == 2 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("E");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			} else if (shiftflag == 0 && altflag==0 ) {
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("e");
-				  signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
-				 MultiPlayApplication.add(signal);
-
-			} else if (shiftflag == 2) {
-				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("e");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			
+			} else if (shiftflag == 0 && altflag==1 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("#");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			}
+			else if (shiftflag == 0 && altflag==2 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("3");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 			}
 			break;
 		case R.id.br:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
-			if (shiftflag == 1 && altflag != 1) {
-				// nacisniecie "q"
-				// odcisniecie shifta
+			if (shiftflag == 1 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("R");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 				shiftflag = 0;
+				 
 				smalkey key = new smalkey(button7, button8, button9, button10,
 						button11, button12, button13, button14, button15,
 						button16, button17, button18, button19, button20,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
-						button31, button32);
+						button31, button33);
 				shiftflag = 0;
+			} else if (shiftflag == 2 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("R");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+					 Toast t = Toast.makeText(getApplicationContext(), button10.getText(),
+								Toast.LENGTH_SHORT);
+						t.show();
+			} else if (shiftflag == 0 && altflag==0 ) {
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("r");
-			} else if (shiftflag == 2) {
-				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("r");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+					 
+			} else if (shiftflag == 0 && altflag==1 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("$");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			}
+			else if (shiftflag == 0 && altflag==2 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("4");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 			}
 			break;
 		case R.id.bt:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
-			if (shiftflag == 1 && altflag != 1) {
-				// nacisniecie "q"
-				// odcisniecie shifta
+			if (shiftflag == 1 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("T");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
 						button11, button12, button13, button14, button15,
 						button16, button17, button18, button19, button20,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
-						button31, button32);
+						button31, button33);
 				shiftflag = 0;
+			} else if (shiftflag == 2 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("T");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			} else if (shiftflag == 0 && altflag==0 ) {
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("t");
-			} else if (shiftflag == 2) {
-				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("t");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			
+			} else if (shiftflag == 0 && altflag==1 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("%");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			}
+			else if (shiftflag == 0 && altflag==2 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("5");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 			}
 			break;
 		case R.id.by:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
-			if (shiftflag == 1 && altflag != 1) {
-				// nacisniecie "q"
-				// odcisniecie shifta
+			if (shiftflag == 1 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Y");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
 						button11, button12, button13, button14, button15,
 						button16, button17, button18, button19, button20,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
-						button31, button32);
-				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("y");
+						button31, button33);
 				shiftflag = 0;
-			} else if (shiftflag == 2) {
+			} else if (shiftflag == 2 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Y");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			} else if (shiftflag == 0 && altflag==0 ) {
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("y");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			
+			} else if (shiftflag == 0 && altflag==1 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("^");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			}
+			else if (shiftflag == 0 && altflag==2 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("6");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 			}
 			break;
 		case R.id.bu:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
-			if (shiftflag == 1 && altflag != 1) {
-				// nacisniecie "q"
-				// odcisniecie shifta
+			if (shiftflag == 1 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("U");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
 						button11, button12, button13, button14, button15,
 						button16, button17, button18, button19, button20,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
-						button31, button32);
+						button31, button33);
 				shiftflag = 0;
-				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("u");
-
-			} else if (shiftflag == 2) {
-				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("u");
-
+			} else if (shiftflag == 2 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("U");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			} else if (shiftflag == 0 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("q");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			
+			} else if (shiftflag == 0 && altflag==1 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("&");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			}
+			else if (shiftflag == 0 && altflag==2 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("7");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 			}
 			break;
 		case R.id.bi:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
-			if (shiftflag == 1 && altflag != 1) {
-				// nacisniecie "q"
-				// odcisniecie shifta
+			if (shiftflag == 1 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("I");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
 						button11, button12, button13, button14, button15,
 						button16, button17, button18, button19, button20,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
-						button31, button32);
-				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("i");
-
+						button31, button33);
 				shiftflag = 0;
-			} else if (shiftflag == 2) {
+			} else if (shiftflag == 2 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("I");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			} else if (shiftflag == 0 && altflag==0 ) {
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("i");
-
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			
+			} else if (shiftflag == 0 && altflag==1 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("*");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			}
+			else if (shiftflag == 0 && altflag==2 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("8");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 			}
 			break;
 		case R.id.bo:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
-			if (shiftflag == 1 && altflag != 1) {
-				// nacisniecie "q"
-				// odcisniecie shifta
+			if (shiftflag == 1 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("O");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
 						button11, button12, button13, button14, button15,
 						button16, button17, button18, button19, button20,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
-						button31, button32);
-				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("o");
-
+						button31, button33);
 				shiftflag = 0;
-			} else if (shiftflag == 2) {
+			} else if (shiftflag == 2 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("O");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			} else if (shiftflag == 0 && altflag==0 ) {
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("o");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			
+			} else if (shiftflag == 0 && altflag==1 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("(");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			}
+			else if (shiftflag == 0 && altflag==2 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("9");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 			}
 			break;
 		case R.id.bp:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
-			if (shiftflag == 1 && altflag != 1) {
-				// nacisniecie "q"
-				// odcisniecie shifta
+			if (shiftflag == 1 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("P");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
 						button11, button12, button13, button14, button15,
 						button16, button17, button18, button19, button20,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
-						button31, button32);
+						button31, button33);
 				shiftflag = 0;
-				i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("p");
-
-			} else if (shiftflag == 2) {
+			} else if (shiftflag == 2 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("P");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			} else if (shiftflag == 0 && altflag==0 ) {
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("p");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			
+			} else if (shiftflag == 0 && altflag==1 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT(")");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			}
+			else if (shiftflag == 0 && altflag==2 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("9");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 			}
 			break;
 		case R.id.ba:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
-			if (shiftflag == 1 && altflag != 1) {
-				// nacisniecie "q"
-				// odcisniecie shifta
+			if (shiftflag == 1 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("A");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
 						button11, button12, button13, button14, button15,
 						button16, button17, button18, button19, button20,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
-						button31, button32);
+						button31, button33);
 				shiftflag = 0;
+			} else if (shiftflag == 2 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("A");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			} else if (shiftflag == 0 && altflag==0 ) {
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("a");
-
-			} else if (shiftflag == 2) {
-				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("a");
-
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			
+			} else if (shiftflag == 0 && altflag==1 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("_");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			}
+			else if (shiftflag == 0 && altflag==2 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Í");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 			}
 			break;
 		case R.id.bs:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
-			if (shiftflag == 1 && altflag != 1) {
-				// nacisniecie "q"
-				// odcisniecie shifta
+			if (shiftflag == 1 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("S");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
 						button11, button12, button13, button14, button15,
 						button16, button17, button18, button19, button20,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
-						button31, button32);
+						button31, button33);
 				shiftflag = 0;
+			} else if (shiftflag == 2 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("S");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			} else if (shiftflag == 0 && altflag==0 ) {
 				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("s");
-
-			} else if (shiftflag == 2) {
-				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("s");
-
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			
+			} else if (shiftflag == 0 && altflag==1 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("-");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			}
+			else if (shiftflag == 0 && altflag==2 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Û");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 			}
 			break;
 		case R.id.bd:
-			// MultiPlayApplication.add(N.dev_signal.keyboard);
-			if (shiftflag == 1 && altflag != 1) {
-				// nacisniecie "q"
-				// odcisniecie shifta
+			if (shiftflag == 1 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("D");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 				shiftflag = 0;
 				smalkey key = new smalkey(button7, button8, button9, button10,
 						button11, button12, button13, button14, button15,
 						button16, button17, button18, button19, button20,
 						button21, button22, button23, button24, button25,
 						button26, button27, button28, button29, button30,
-						button31, button32);
+						button31, button33);
 				shiftflag = 0;
-			 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("d");
-
-			} else if (shiftflag == 2) {
-				 i=N.DeviceSignal.KEYBOARD_KEY_TO_INT("d");
-
+			} else if (shiftflag == 2 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("D");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			} else if (shiftflag == 0 && altflag==0 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("d");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			
+			} else if (shiftflag == 0 && altflag==1 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("+");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
+			}
+			else if (shiftflag == 0 && altflag==2 ) {
+				 i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("π");
+					signal = Helper.encodeSignal(N.Device.KEYBOARD, N.DeviceDataCounter.SINGLE, i);
+					 MultiPlayApplication.add(signal);
 			}
 			break;
 		case R.id.bf:
@@ -852,11 +927,69 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 			break;
 		case R.id.balt:
 			// MultiPlayApplication.add(N.dev_signal.keyboard);
-			if (shiftflag == 1 || shiftflag == 2) {
-			} else {
+			if (shiftflag == 0) {
+			
 				switch (altflag) {
+				case 0:
+					button7.setText("'");
+					button8.setText("hom");
+					button9.setText("end");
+					button10.setText("f1");
+					button11.setText("f2");
+					button12.setText("f3");
+					button13.setText("f4");
+					button14.setText("f5");
+					button15.setText("f6");
+					button16.setText("f7");
+					button17.setText("f8");
+					button18.setText("f9");
+					button19.setText("f10");
+					button20.setText("f11");
+					button21.setText("f12");
+					button26.setText("prt");
+					button27.setText("win");
+					button28.setText("fn");
+					button29.setText("pgu");
+					button26.setText("pgd");
+					button27.setText("ins");
+					button28.setText(".");
+					button29.setText(",");
+					button30.setText("?");
+					button31.setText("!");
+					button32.setText(";");
+					altflag = 1;
+					break;
 				case 1:
-					altflag = 0;
+					button7.setText("!");
+					button8.setText("@");
+					button9.setText("#");
+					button10.setText("$");
+					button11.setText("%");
+					button12.setText("^");
+					button13.setText("&");
+					button14.setText("*");
+					button15.setText("(");
+					button16.setText(")");
+					button17.setText("_");
+					button18.setText("-");
+					button19.setText("+");
+					button20.setText("=");
+					button21.setText("{");
+					button26.setText("}");
+					button27.setText(":");
+					button28.setText("\"");
+					button29.setText(":");
+					button26.setText("\"");
+					button27.setText("<");
+					button28.setText(">");
+					button29.setText("?");
+					button30.setText("|");
+					button31.setText("~");
+					button32.setText("`");
+					altflag = 2;
+					break;
+				case 2:
+					
 					// wyslij ze zostal nacisniety shift
 					button7.setText("1");
 					button8.setText("2");
@@ -868,26 +1001,25 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 					button14.setText("8");
 					button15.setText("9");
 					button16.setText("0");
-					button17.setText("ÔøΩ");
-					button18.setText("ÔøΩ");
-					button19.setText("ÔøΩ");
-					button20.setText("ÔøΩ");
-					button21.setText("ÔøΩ");
-					button26.setText("ÔøΩ");
-					button27.setText("ÔøΩ");
-					button28.setText("ÔøΩ");
-					button29.setText("ÔøΩ");
+					button17.setText("Í");
+					button18.setText("Û");
+					button19.setText("π");
+					button20.setText("ú");
+					button21.setText("≥");
+					button26.setText("ø");
+					button27.setText("ü");
+					button28.setText("Ê");
+					button29.setText("Ò");
 					button26.setText("[");
 					button27.setText("]");
 					button28.setText(";");
-					button29.setText("'");
+					button29.setText(".");
 					button30.setText(",");
-					button31.setText(".");
-					button32.setText("?");
-					shiftflag = 0;
+					button31.setText("/");
+					button32.setText("del");
+					altflag = 3;
 					break;
-				case 0:
-					altflag = 1;
+				case 3:
 					button7.setText("q");
 					button8.setText("w");
 					button9.setText("e");
@@ -914,7 +1046,68 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 					button30.setText("b");
 					button31.setText("n");
 					button32.setText("m");
-					shiftflag = 0;
+					altflag = 0;
+					break;
+				}
+			}else{
+				switch(altflag){
+				case 0:
+					button7.setText("Q");
+					button8.setText("W");
+					button9.setText(" ");
+					button10.setText("R");
+					button11.setText("T");
+					button12.setText("Y");
+					button13.setText("U");
+					button14.setText("I");
+					button15.setText("O");
+					button16.setText("P");
+					button17.setText("A");
+					button18.setText("å");
+					button19.setText("D");
+					button20.setText("F");
+					button21.setText("G");
+					button26.setText("H");
+					button27.setText("J");
+					button28.setText("K");
+					button29.setText("£");
+					button26.setText("Ø");
+					button27.setText("è");
+					button28.setText("∆");
+					button29.setText("V");
+					button30.setText("B");
+					button31.setText("N");
+					button32.setText("M");
+					altflag = 1;
+					break;
+				case 1:
+					button7.setText("q");
+					button8.setText("w");
+					button9.setText("e");
+					button10.setText("r");
+					button11.setText("t");
+					button12.setText("y");
+					button13.setText("u");
+					button14.setText("i");
+					button15.setText("o");
+					button16.setText("p");
+					button17.setText("a");
+					button18.setText("s");
+					button19.setText("d");
+					button20.setText("f");
+					button21.setText("g");
+					button22.setText("h");
+					button23.setText("j");
+					button24.setText("k");
+					button25.setText("l");
+					button26.setText("z");
+					button27.setText("x");
+					button28.setText("c");
+					button29.setText("v");
+					button30.setText("b");
+					button31.setText("n");
+					button32.setText("m");
+					altflag = 0;
 					break;
 				}
 			}

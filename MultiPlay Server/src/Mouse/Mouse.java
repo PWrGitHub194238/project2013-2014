@@ -10,7 +10,7 @@ import java.awt.Toolkit;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 
-import Wifi.N;
+import CodeKey.N;
 
 public class Mouse {
 

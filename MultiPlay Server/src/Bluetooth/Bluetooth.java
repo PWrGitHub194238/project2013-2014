@@ -14,7 +14,7 @@ import javax.microedition.io.Connector;
 import javax.microedition.io.StreamConnection;
 import javax.microedition.io.StreamConnectionNotifier;
 
-import Wifi.N;
+import CodeKey.N;
 import Wifi.Serverwifi;
 
 public class Bluetooth implements Runnable {

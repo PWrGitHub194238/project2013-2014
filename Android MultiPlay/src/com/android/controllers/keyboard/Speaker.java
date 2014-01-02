@@ -87,7 +87,7 @@ public class Speaker extends Activity {
 				// commands--------------------------
 				Intent intent = new Intent(
 						RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-				intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "pl-PL");
+				intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
 				try {
 					startActivityForResult(intent, RESULT_SPEECH);
 					// txtText.setText("");
@@ -141,67 +141,13 @@ public class Speaker extends Activity {
 								.get(0).subSequence(i, i + 1),
 								Toast.LENGTH_SHORT);
 						t.show();
-						if (text.get(0).subSequence(i, i + 1).toString()
-								.equals("ê")) {
-							e = N.DeviceSignal.KEYBOARD_EU;
-							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
-									N.DeviceDataCounter.SINGLE, e);
-							MultiPlayApplication.add(signal);
-						} else if (text.get(0).subSequence(i, i + 1).toString()
-								.equals("ó")) {
-							e = N.DeviceSignal.KEYBOARD_O_KRESKA;
-							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
-									N.DeviceDataCounter.SINGLE, e);
-							MultiPlayApplication.add(signal);
-						} else if (text.get(0).subSequence(i, i + 1).toString()
-								.equals("¹")) {
-							e = N.DeviceSignal.KEYBOARD_OU;
-							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
-									N.DeviceDataCounter.SINGLE, e);
-							MultiPlayApplication.add(signal);
-						} else if (text.get(0).subSequence(i, i + 1).toString()
-								.equals("œ")) {
-							e = N.DeviceSignal.KEYBOARD_SI;
-							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
-									N.DeviceDataCounter.SINGLE, e);
-							MultiPlayApplication.add(signal);
-						} else if (text.get(0).subSequence(i, i + 1).toString()
-								.equals("³")) {
-							e = N.DeviceSignal.KEYBOARD_LY;
-							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
-									N.DeviceDataCounter.SINGLE, e);
-							MultiPlayApplication.add(signal);
-						} else if (text.get(0).subSequence(i, i + 1).toString()
-								.equals("¿")) {
-							e = N.DeviceSignal.KEYBOARD_ZY;
-							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
-									N.DeviceDataCounter.SINGLE, e);
-							MultiPlayApplication.add(signal);
-						} else if (text.get(0).subSequence(i, i + 1).toString()
-								.equals("Ÿ")) {
-							e = N.DeviceSignal.KEYBOARD_ZI;
-							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
-									N.DeviceDataCounter.SINGLE, e);
-							MultiPlayApplication.add(signal);
-						} else if (text.get(0).subSequence(i, i + 1).toString()
-								.equals("æ")) {
-							e = N.DeviceSignal.KEYBOARD_CI;
-							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
-									N.DeviceDataCounter.SINGLE, e);
-							MultiPlayApplication.add(signal);
-						} else if (text.get(0).subSequence(i, i + 1).toString()
-								.equals("ñ")) {
-							e = N.DeviceSignal.KEYBOARD_NI;
-							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
-									N.DeviceDataCounter.SINGLE, e);
-							MultiPlayApplication.add(signal);
-						} else {
+						
 							e = N.DeviceSignal.KEYBOARD_KEY_TO_INT(text.get(0)
 									.subSequence(i, i + 1).toString());
 							int signal = Helper.encodeSignal(N.Device.KEYBOARD,
 									N.DeviceDataCounter.SINGLE, e);
 							MultiPlayApplication.add(signal);
-						}
+						
 						i += 1;
 					}
 				}/*
@@ -298,7 +244,7 @@ public class Speaker extends Activity {
 								text.get(0), Toast.LENGTH_SHORT);
 						t.show();
 					} else if (text.get(0).equals("plus")) {
-						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT("=");
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT("+");
 						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.SINGLE, e);
 						MultiPlayApplication.add(signal);
@@ -315,16 +261,25 @@ public class Speaker extends Activity {
 								text.get(0), Toast.LENGTH_SHORT);
 						t.show();
 					} else if (text.get(0).equals("ampersant")) {
-						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT("@");
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT("&");
 						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.SINGLE, e);
 						MultiPlayApplication.add(signal);
 						Toast t = Toast.makeText(getApplicationContext(),
 								text.get(0), Toast.LENGTH_SHORT);
 						t.show();
-					} else if (text.get(0).equals("minus")
-							|| text.get(0).equals("myœlnik")) {
-						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT("@");
+					} else if (text.get(0).equals("procent")
+							) {
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT("%");
+						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+								N.DeviceDataCounter.SINGLE, e);
+						MultiPlayApplication.add(signal);
+						Toast t = Toast.makeText(getApplicationContext(),
+								text.get(0), Toast.LENGTH_SHORT);
+						t.show();
+					}else if (text.get(0).equals("dolar")
+							) {
+						e = N.DeviceSignal.KEYBOARD_KEY_TO_INT("$");
 						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.SINGLE, e);
 						MultiPlayApplication.add(signal);

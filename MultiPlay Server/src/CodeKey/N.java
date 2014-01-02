@@ -70,7 +70,7 @@ public final class N {
 		public static final int DEV_SIGNAL_2_SIGN = DEV_SIGNAL_1 + 12;
 		/** */
 		public static final int DEV_SIGNAL_2 = DEV_SIGNAL_2_SIGN + 1;
-
+		
 		/** */
 		public static final int SYSTEM = 1;
 	}
@@ -110,38 +110,39 @@ public final class N {
 	 *
 	 */
 	public static final class System {
-		public static final byte UNKNOW = (byte) Integer
-				.parseInt("00000000", 2);
-		public static final byte LINUX = (byte) Integer.parseInt("00000001", 2);
-		public static final byte WINDOWS = (byte) Integer.parseInt("00000010",
-				2);
-		public static final byte BSD = (byte) Integer.parseInt("00000011", 2);
+		public static final byte UNKNOW = 		(byte) Integer.parseInt("00000000", 2);
+		public static final byte LINUX = 		(byte) Integer.parseInt("00000001", 2);
+		public static final byte WINDOWS = 		(byte) Integer.parseInt("00000010", 2);
+		public static final byte BSD = 			(byte) Integer.parseInt("00000011", 2);
 	}
-
+	
 	/**
-	 * byte signal = N.Signal.encodeSignal(N.Signal.NEED_CONNECTION,
-	 * N.System.WINDOWS); Log.d("APP",String.valueOf( signal));
-	 * Log.d("APP",String.valueOf( N.Signal.decodeSignal(signal)));
-	 * Log.d("APP",String.valueOf( N.Signal.decodeSystem(signal)));
+	 * 		byte signal = N.Signal.encodeSignal(N.Signal.NEED_CONNECTION, N.System.WINDOWS);
+		Log.d("APP",String.valueOf(
+				signal));
+		Log.d("APP",String.valueOf(
+				N.Signal.decodeSignal(signal)));
+		Log.d("APP",String.valueOf(
+				N.Signal.decodeSystem(signal)));
 	 */
 	public static final class Signal {
 		public static final byte NEED_AUTHORIZATION = (byte) Integer.parseInt(
 				"00000000", 2);
 		public static final byte NEED_CONNECTION = (byte) Integer.parseInt(
 				"00000001", 2);
-
+		
 		public static final byte encodeSignal(byte signal, byte system) {
 			return (byte) (signal + (system << Shift.SYSTEM));
 		}
-
+		
 		public static final byte decodeSignal(byte signal) {
 			return (byte) (signal & Bitmasks.bit_mask(Bitmasks.BIT1));
 		}
-
+		
 		public static final byte decodeSystem(byte signal) {
-			return (byte) ((signal & Bitmasks.bit_mask(Bitmasks.BIT2,
-					Bitmasks.BIT3)) >> Shift.SYSTEM);
+			return (byte) ((signal & Bitmasks.bit_mask(Bitmasks.BIT2,Bitmasks.BIT3)) >> Shift.SYSTEM);
 		}
+		
 	}
 
 	/**
@@ -193,43 +194,14 @@ public final class N {
 				"000000000110", 2);
 		public static final int KEYBOARD_BACKSPACE = Integer.parseInt(
 				"000000000111", 2);
-		public static final int KEYBOARD_EU = Integer.parseInt("000100000000",
-				2);
-		public static final int KEYBOARD_O_KRESKA = Integer.parseInt(
-				"000100000001", 2);
-		public static final int KEYBOARD_OU = Integer.parseInt("000100000010",
-				2);
-		public static final int KEYBOARD_SI = Integer.parseInt("000100000011",
-				2);
-		public static final int KEYBOARD_LY = Integer.parseInt("000100000100",
-				2);
-		public static final int KEYBOARD_ZY = Integer.parseInt("000100000101",
-				2);
-		public static final int KEYBOARD_ZI = Integer.parseInt("000100000110",
-				2);
-		public static final int KEYBOARD_CI = Integer.parseInt("000100000111",
-				2);
-		public static final int KEYBOARD_NI = Integer.parseInt("000100001000",
-				2);
-		public static final int KEYBOARD_BEU = Integer.parseInt("000100001001",
-				2);
-		public static final int KEYBOARD_BO_KRESKA = Integer.parseInt(
-				"000100001010", 2);
-		public static final int KEYBOARD_BOU = Integer.parseInt("000100001011",
-				2);
-		public static final int KEYBOARD_BSI = Integer.parseInt("000100001100",
-				2);
-		public static final int KEYBOARD_BLY = Integer.parseInt("000100001101",
-				2);
-		public static final int KEYBOARD_BZY = Integer.parseInt("000100001110",
-				2);
-		public static final int KEYBOARD_BZI = Integer.parseInt("000100001111",
-				2);
-		public static final int KEYBOARD_BCI = Integer.parseInt("000100010000",
-				2);
-		public static final int KEYBOARD_BNI = Integer.parseInt("000100010001",
-				2);
-
+		public static final int KEYBOARD_HOME = Integer.parseInt(
+				"000000001000", 2);
+		public static final int KEYBOARD_END = Integer.parseInt(
+				"000000001001", 2);
+		public static final int KEYBOARD_DELETE = Integer.parseInt(
+				"000000001010", 2);
+		
+		
 		public static int KEYBOARD_KEY_TO_INT(String key) {
 			int integer;
 			BigInteger bi = new BigInteger(key.getBytes());
@@ -243,20 +215,19 @@ public final class N {
 			String w = new String(b.toByteArray());
 			return w;
 		}
-
-		public static final int SPEAKER_RUN = Integer.parseInt("000000000000",
+		public static final int SPEAKER_RUN= Integer.parseInt("000000000000",
 				2);
-		public static final int SPEAKER_PUNCTUATION = Integer.parseInt(
-				"000000000001", 2);
-		public static final int SPEAKER_COMMANDS = Integer.parseInt(
-				"000000000010", 2);
-		public static final int SPEAKER_SEMICOLON = Integer.parseInt(
-				"000000000011", 2);
-		public static final int SPEAKER_COMMA = Integer.parseInt(
-				"000000000100", 2);
-		public static final int SPEAKER_POINT = Integer.parseInt(
-				"000000000101", 2);
-
+		
+		public static final int SPEAKER_PUNCTUATION= Integer.parseInt("000000000001",
+				2);
+		public static final int SPEAKER_COMMANDS= Integer.parseInt("000000000010",
+				2);
+		public static final int SPEAKER_SEMICOLON= Integer.parseInt("000000000011",
+				2);
+		public static final int SPEAKER_COMMA= Integer.parseInt("000000000100",
+				2);
+		public static final int SPEAKER_POINT= Integer.parseInt("000000000101",
+				2);
 	}
 
 	public static final class Exit {
@@ -340,7 +311,7 @@ public final class N {
 			return output;
 		}
 
-		/**
+		/*((!!!@++++++??__((<!!!!!!@@@@@@###&&&<<<<<<>>>>
 		 * 
 		 */
 		public static final int[] decodeSignalFull(int signal) {

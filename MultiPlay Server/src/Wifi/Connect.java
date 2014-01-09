@@ -41,8 +41,7 @@ public class Connect {
 
 	public int getport() {
 		Random r = new Random();
-		int port = r.nextInt() % 100000, flag = 0;
-
+		int port, flag;
 		do {
 			port = r.nextInt() % 100000;
 			flag = 0;
@@ -51,8 +50,8 @@ public class Connect {
 					flag = 1;
 				}
 			}
-		} while (port < 10000 && flag == 1);
+		} while (port < 10000 || flag == 1);
 		arrlist.add(port);
-		return arrlist.get(arrlist.size()-1);
+		return arrlist.get(arrlist.size() - 1);
 	}
 }

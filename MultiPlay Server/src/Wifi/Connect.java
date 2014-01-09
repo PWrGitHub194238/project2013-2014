@@ -3,11 +3,15 @@ package Wifi;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Random;
 
 public class Connect {
-	private int port = 1234;
+	private int portdefault = 1234;
+	private int port;
 	private String IP = null;
+	private ArrayList<Integer> arrlist = new ArrayList<Integer>();
 
 	public String getIP() {
 		String ip = null;
@@ -31,7 +35,24 @@ public class Connect {
 		}
 	}
 
+	public int getportdefault() {
+		return portdefault;
+	}
+
 	public int getport() {
-		return port;
+		Random r = new Random();
+		int port = r.nextInt() % 100000, flag = 0;
+
+		do {
+			port = r.nextInt() % 100000;
+			flag = 0;
+			for (int i = 0; i < arrlist.size(); i++) {
+				if (port == arrlist.get(i)) {
+					flag = 1;
+				}
+			}
+		} while (port < 10000 && flag == 1);
+		arrlist.add(port);
+		return arrlist.get(arrlist.size()-1);
 	}
 }

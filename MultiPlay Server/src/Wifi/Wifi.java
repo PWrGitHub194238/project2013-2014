@@ -27,7 +27,7 @@ public class Wifi implements Runnable {
 			data = 0;
 			ServerSocket serversocket;
 			try {
-				serversocket = new ServerSocket(connect.getport());
+				serversocket = new ServerSocket(connect.getportdefault());
 				try {
 					Socket socket = serversocket.accept();
 					dis = new DataInputStream(socket.getInputStream());
@@ -35,7 +35,12 @@ public class Wifi implements Runnable {
 					System.out.println("RUN");
 					System.out.println("Read...");
 					data = dis.readByte();
-					if (data == N.Signal.NEED_AUTHORIZATION) {
+					if (data == N.Signal.NEED_AUTHORIZATION) {// czeka na
+																// autoryzacjê
+																// polaczenia
+																// przy
+																// defaultowym
+																// porcie
 						System.out.println("Send back authorization code...");
 
 						if (System.getProperty("os.name").startsWith("Win")) {
@@ -52,20 +57,39 @@ public class Wifi implements Runnable {
 						} else if (System.getProperty("os.name")
 								.contains("BSD")) {
 							dos.writeByte(N.Signal.encodeSignal(
-									N.Signal.NEED_AUTHORIZATION, N.System.BSD));
+									N.Signal.NEED_AUTHORIZATION, N.System.BSD)); // odsyla
+																					// kod
+																					// autoryzacji
+																					// z
+																					// ifo
+																					// o
+																					// systemie
 
 						}
-
-						System.out.println("Over");
+						int port = connect.getport(); // losuje jakiœ
+														// piêciocyfrowy port,
+														// nie powtarzalny
+						dos.writeInt(port); // wysy³a ten port
 						dis.close();
-						dos.close();
+						dos.close(); // zamyka stary socket
 						socket.close();
 						serversocket.close();
-					} else if (data == N.Signal.NEED_CONNECTION) {
-						System.out.println("Send back connect code...");
-						dos.writeByte(N.Signal.NEED_CONNECTION);
-						Serverwifi wifi = new Serverwifi(socket, dis, dos,
-								serversocket);
+						System.out.println("Over");
+
+						// (data == N.Signal.NEED_CONNECTION) {
+						// System.out.println("Send back connect code...");
+						// dos.writeByte(N.Signal.NEED_CONNECTION);
+						Serverwifi wifi = new Serverwifi(port); // uruchamia
+																// w¹tek dla
+																// danego
+																// jednego
+																// po³aczenia i
+																// wraca do
+																// oczekiwania
+																// na po³aczenie
+																// nowe przy
+																// defaultowym
+																// portcie
 						wifi.run();
 					}
 				} catch (IOException e) {

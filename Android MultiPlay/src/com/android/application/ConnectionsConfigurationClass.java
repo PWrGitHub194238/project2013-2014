@@ -8,7 +8,7 @@ public class ConnectionsConfigurationClass {
 	private boolean isStored = false;
 	private int storedIndex = -1;
 	private byte system = 0;
-	
+	private int port=1234;
 	
 	public final String getName() {
 		return name;
@@ -16,6 +16,9 @@ public class ConnectionsConfigurationClass {
 
 	public final void setName(String name) {
 		this.name = name;
+	}
+	public final void setPort(int port) {
+		this.port = port;
 	}
 
 	public final String getMACAdress() {

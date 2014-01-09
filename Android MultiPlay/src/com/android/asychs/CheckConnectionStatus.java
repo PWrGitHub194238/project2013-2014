@@ -58,10 +58,11 @@ public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationCla
 					dos.writeByte(N.Signal.NEED_AUTHORIZATION);
 					byte recived = dis.readByte();
 					Log.d("THREAD","RECIVED: "+recived);
-					
+					int port = dis.readInt();
 					dis.close();
 					dos.close();
 					socket.close();
+					((WirelessConfigurationClass) networkConfiguration).setPort(port);
 					if ( N.Signal.NEED_AUTHORIZATION == N.Signal.decodeSignal(recived) ) {
 						networkConfiguration.setConnectionStatus(ConnectionHelper.STATUS_ON);
 						networkConfiguration.setSystem(N.Signal.decodeSystem(recived));

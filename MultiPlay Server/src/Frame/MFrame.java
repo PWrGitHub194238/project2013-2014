@@ -63,9 +63,9 @@ public class MFrame extends JFrame {
 		JPanel kon = new JPanel();
 		mainPanel.add(kon);
 		JLabel con = new JLabel("Your IP: " + connect.getIP() + "    "
-				+ "Port: " + connect.getport());
+				+ "Port: " + connect.getportdefault());
 		JLabel sys = new JLabel(
-				"                                                                                                                                                                                                                                                                                                            System: "
+				"                    System: "
 						+ ManagementFactory.getOperatingSystemMXBean()
 								.getName()
 						+ "\n"

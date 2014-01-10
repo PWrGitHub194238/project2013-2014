@@ -35,12 +35,7 @@ public class Wifi implements Runnable {
 					System.out.println("RUN");
 					System.out.println("Read...");
 					data = dis.readByte();
-					if (data == N.Signal.NEED_AUTHORIZATION) {// czeka na
-																// autoryzacjê
-																// polaczenia
-																// przy
-																// defaultowym
-																// porcie
+					if (data == N.Signal.NEED_AUTHORIZATION) {
 						System.out.println("Send back authorization code...");
 
 						if (System.getProperty("os.name").startsWith("Win")) {
@@ -57,39 +52,22 @@ public class Wifi implements Runnable {
 						} else if (System.getProperty("os.name")
 								.contains("BSD")) {
 							dos.writeByte(N.Signal.encodeSignal(
-									N.Signal.NEED_AUTHORIZATION, N.System.BSD)); // odsyla
-																					// kod
-																					// autoryzacji
-																					// z
-																					// ifo
-																					// o
-																					// systemie
-
+									N.Signal.NEED_AUTHORIZATION, N.System.BSD));
 						}
-						int port = connect.getport(); // losuje jakiœ
-														// piêciocyfrowy port,
-														// nie powtarzalny
-						dos.writeInt(port); // wysy³a ten port
 						dis.close();
-						dos.close(); // zamyka stary socket
+						dos.close();
 						socket.close();
 						serversocket.close();
 						System.out.println("Over");
-
-						// (data == N.Signal.NEED_CONNECTION) {
-						// System.out.println("Send back connect code...");
-						// dos.writeByte(N.Signal.NEED_CONNECTION);
-						Serverwifi wifi = new Serverwifi(port); // uruchamia
-																// w¹tek dla
-																// danego
-																// jednego
-																// po³aczenia i
-																// wraca do
-																// oczekiwania
-																// na po³aczenie
-																// nowe przy
-																// defaultowym
-																// portcie
+					} else if (data == N.Signal.NEED_CONNECTION) {
+						int port = connect.getport();
+						dos.writeInt(port);
+						dis.close();
+						dos.close();
+						socket.close();
+						serversocket.close();
+						System.out.println("Over");
+						Serverwifi wifi = new Serverwifi(port);
 						wifi.run();
 					}
 				} catch (IOException e) {

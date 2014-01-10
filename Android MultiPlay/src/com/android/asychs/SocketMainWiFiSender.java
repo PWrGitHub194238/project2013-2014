@@ -1,5 +1,6 @@
 package com.android.asychs;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -20,6 +21,7 @@ public class SocketMainWiFiSender extends AsyncTask<Byte, String, String> {
 
 	private Socket socket = null;
 	private DataOutputStream dos = null;
+	private DataInputStream dis = null;
 	private WirelessConfigurationClass mainConfiguration = null;
 	
 	public static LinkedBlockingQueue<Integer> queue = null;
@@ -65,6 +67,17 @@ public class SocketMainWiFiSender extends AsyncTask<Byte, String, String> {
 					mainConfiguration.getPort());
 			this.dos = new DataOutputStream(socket.getOutputStream());
 			dos.writeByte(N.Signal.NEED_CONNECTION);
+			this.dis = new DataInputStream(socket.getInputStream());
+			int port = dis.readInt();
+			mainConfiguration.setPort(port);
+			dis.close();
+			dos.close();
+			socket.close();
+			this.socket = new Socket(
+					InetAddress.getByName(mainConfiguration.getIP()),
+					mainConfiguration.getPort());
+			this.dos = new DataOutputStream(socket.getOutputStream());
+			
 		} catch (UnknownHostException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

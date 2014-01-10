@@ -27,6 +27,7 @@ public class Gyromouse extends Activity implements SensorEventListener,
 		OnTouchListener {
 	private int shiftflag = 0, altflag = 0;
 	private SensorManager sm;
+	private int multi=1;		//mno¿nik do ustawieñ szybkoœci ruchu
 	private TextView tv;
 	private Button button1, button2, button3, button4, button5, button6,
 			button7, button8, button9, button10, button11, button12, button13,
@@ -112,7 +113,7 @@ public class Gyromouse extends Activity implements SensorEventListener,
 		if (stop == 0) {
 			tv.setText(Integer.toString((int) x) + " "
 					+ Integer.toString((int) y));
-			int signal = Helper.encodeSignal(N.Device.MOUSE, N.DeviceDataCounter.DOUBLE, (int)y*2,(int)x*2);
+			int signal = Helper.encodeSignal(N.Device.MOUSE, N.DeviceDataCounter.DOUBLE, (int)y*multi,(int)x*multi);
 			 MultiPlayApplication.add(signal);
 		}
 	}

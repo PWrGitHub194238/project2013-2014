@@ -126,6 +126,8 @@ public final class N {
 				N.Signal.decodeSystem(signal)));
 	 */
 	public static final class Signal {
+		public static final byte DIMENSION = (byte) Integer.parseInt(
+				"00000010", 2);
 		public static final byte NEED_AUTHORIZATION = (byte) Integer.parseInt(
 				"00000000", 2);
 		public static final byte NEED_CONNECTION = (byte) Integer.parseInt(

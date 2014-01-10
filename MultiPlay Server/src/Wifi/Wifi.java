@@ -1,5 +1,7 @@
 package Wifi;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -54,6 +56,12 @@ public class Wifi implements Runnable {
 							dos.writeByte(N.Signal.encodeSignal(
 									N.Signal.NEED_AUTHORIZATION, N.System.BSD));
 						}
+						Toolkit zestaw = Toolkit.getDefaultToolkit();
+						Dimension wymiary = zestaw.getScreenSize();
+						int wysokosc = wymiary.height;
+						int szerokosc = wymiary.width;
+						dos.writeByte(N.Helper.encodeSignal(
+							N.Signal.DIMENSION,N.DeviceDataCounter.DOUBLE,wysokosc,szerokosc));
 						dis.close();
 						dos.close();
 						socket.close();

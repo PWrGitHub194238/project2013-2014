@@ -130,6 +130,8 @@ public final class N {
 				"00000000", 2);
 		public static final byte NEED_CONNECTION = (byte) Integer.parseInt(
 				"00000001", 2);
+		public static final byte DIMENSION = (byte) Integer.parseInt(
+				"00000010", 2);
 		
 		public static final byte encodeSignal(byte signal, byte system) {
 			return (byte) (signal + (system << Shift.SYSTEM));

@@ -25,6 +25,7 @@ public class MouseActivity extends Activity {
 	private String tx;
 	private TextView txv;
 	private int hotx = 245, hoty = 176;
+	private int multi=1;		//mno¿nik do ustawieñ szybkoœci ruchu
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +72,8 @@ public class MouseActivity extends Activity {
 
 	public boolean onTouchEvent(MotionEvent event) {
 		int maskedAction = event.getActionMasked();
-		String x = Integer.toString((int)(((hotx - (int) event.getX()) * (-1))/8));
-		String y = Integer.toString((int)(((hoty - (int) event.getY()) * (-1))/8));
+		String x = Integer.toString((int)(((hotx - (int) event.getX()) * (-1))/multi*8));
+		String y = Integer.toString((int)(((hoty - (int) event.getY()) * (-1))/multi*8));
 		switch (maskedAction) {
 		// case MotionEvent.ACTION_DOWN:
 		// txv.setText("X: " + x + "Y: " + y);

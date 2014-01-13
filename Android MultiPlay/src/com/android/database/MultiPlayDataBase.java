@@ -28,7 +28,12 @@ public class MultiPlayDataBase extends SQLiteOpenHelper {
     	 Log.d(DEBUG_TAG, "Database updating...");
         // This database is only a cache for online data, so its upgrade policy is
         // to simply to discard the data and start over
-        db.execSQL(DBHelper.SQL_DROP_DATABASE);
+    	Log.d(DEBUG_TAG, "Database deleting...");
+    	for (DBHelper.SQL_DROP_DATABASE value : DBHelper.SQL_DROP_DATABASE.values()) {
+	    	Log.d(DEBUG_TAG,value.query);
+	        db.execSQL(value.query);
+    	}
+        Log.d(DEBUG_TAG, "All data is lost.");
         onCreate(db);
     }
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {

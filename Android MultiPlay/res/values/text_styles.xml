@@ -35,4 +35,10 @@
         <item name="android:textColor">#FFFFFF</item>
   		<item name="android:textSize">12sp</item>
     </style>
+    
+   <style name="list_requirement_name">
+        <item name="android:textColor">#FFFFFF</item>
+  		<item name="android:textSize">26sp</item>
+    </style>
+    
 </resources>

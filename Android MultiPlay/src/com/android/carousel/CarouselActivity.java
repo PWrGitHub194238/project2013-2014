@@ -213,7 +213,7 @@ public class CarouselActivity extends Activity implements OnItemSelectedListener
 					ConnectionsActivity.DialogList.TAG_CONNECT_CONFIRMATION,
 					ConnectionsActivity.DialogList.ID_TITLE_ICON_WIFI,
 					ConnectionsActivity.DialogList.ID_TITLE_CONNECT_CONFIRMATION,
-					ScrollViewDialog.getViewFromResource(this,R.layout.dialog_check_requirements),
+					ScrollViewDialog.getViewFromResource(this,R.layout.dialog_check_requirements_1),
 					DialogListCore.ID_BUTTON_CONNECT,
 					null,
 					DialogListCore.ID_BUTTON_CANCEL);

@@ -58,7 +58,7 @@ public class Connect {
 		Random r = new Random();
 		int port, flag;
 		do {
-			port = r.nextInt() % 100000;
+			port = r.nextInt() % 55000 + 8000;
 			flag = 0;
 			for (int i = 0; i < arrlist.size(); i++) {
 				if (port == arrlist.get(i)) {

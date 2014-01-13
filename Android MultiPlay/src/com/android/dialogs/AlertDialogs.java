@@ -299,12 +299,12 @@ public class AlertDialogs extends DialogFragment implements OnShowListener {
      * 
      * @param activity activity where dialog will be displayed
      * @param dialogIDTag a unique value to distinguish dialog boxes where more than one is displayed in one activity
-     * @param titleIconID see {@link #newInstance(Integer, Integer, Integer, Integer, Integer, Integer) parameters
-     * @param titleID see {@link #newInstance(Integer, Integer, Integer, Integer, Integer, Integer) parameters
-     * @param messageID see {@link #newInstance(Integer, Integer, Integer, Integer, Integer, Integer) parameters
-     * @param positiveButtonID see {@link #newInstance(Integer, Integer, Integer, Integer, Integer, Integer) parameters
-     * @param neutralButtonID see {@link #newInstance(Integer, Integer, Integer, Integer, Integer, Integer) parameters
-     * @param negativeButtonID see {@link #newInstance(Integer, Integer, Integer, Integer, Integer, Integer) parameters
+     * @param titleIconID see {@link #newInstance(Integer, Integer, Integer, Integer, Integer, Integer)} parameters
+     * @param titleID see {@link #newInstance(Integer, Integer, Integer, Integer, Integer, Integer)} parameters
+     * @param messageID see {@link #newInstance(Integer, Integer, Integer, Integer, Integer, Integer)} parameters
+     * @param positiveButtonID see {@link #newInstance(Integer, Integer, Integer, Integer, Integer, Integer)} parameters
+     * @param neutralButtonID see {@link #newInstance(Integer, Integer, Integer, Integer, Integer, Integer)} parameters
+     * @param negativeButtonID see {@link #newInstance(Integer, Integer, Integer, Integer, Integer, Integer)} parameters
      */
 	public static void showDialog(Activity activity, String dialogIDTag, Integer titleIconID, Integer titleID, Integer messageID, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
 		DialogFragment dialog = AlertDialogs.newInstance(titleIconID,titleID,messageID,positiveButtonID,neutralButtonID,negativeButtonID);

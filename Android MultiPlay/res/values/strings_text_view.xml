@@ -36,6 +36,10 @@
 			<string name="cb_save_connection">Save connection</string>
 			<string name="tv_connections_activity_device_uuid">UUID:</string>
 			<string name="tv_connections_activity_device_mac">MAC address:</string>
+			<string name="tv_list_connections_element_resolution_x">xxxx</string>
+			<string name="tv_list_connections_element_resolution_x_y"> X </string>
+			<string name="tv_list_connections_element_resolution_y">yyyy</string>
+						
 			
 		<string name="tv_option_1_title_in_options_activity">Controllers</string>
 		<string name="tv_option_1_title_description_in_options_activity"> Manage your controllers by editing their preferences or adding new ones.</string>

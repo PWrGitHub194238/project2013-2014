@@ -69,16 +69,6 @@
         android:text="@string/tv_empty"
         android:textAppearance="@style/list_connections_device_detail_value" />
 
- 	<ImageView
-        android:id="@+id/list_connections_element_os"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/connections_activity_os_windows"
-        android:contentDescription="@string/contentDescription_list_connections_element_os" />
-
     <ImageView
         android:id="@+id/list_connections_element_is_device_stored"
         android:layout_width="wrap_content"
@@ -88,5 +78,56 @@
         android:layout_toLeftOf="@id/list_connections_element_os"
         android:background="@drawable/connections_activity_stored_yes"
         android:contentDescription="@string/contentDescription_list_connections_element_is_device_stored" />
+
+    <ImageView
+        android:id="@+id/list_connections_element_os"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/list_connections_element_is_device_stored"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/connections_activity_os_windows"
+        android:contentDescription="@string/contentDescription_list_connections_element_os" />
+
+    <ImageView
+        android:id="@+id/list_connections_element_resolution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/list_connections_element_connection_type"
+        android:layout_below="@id/list_connections_element_device_server_status"
+        android:background="@drawable/connections_activity_icon_screen_resolution"
+        android:contentDescription="@string/contentDescription_list_connections_element_resolution" />
+
+    <TextView
+        android:id="@+id/list_connections_element_resolution_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/list_connections_element_resolution"
+        android:layout_toRightOf="@id/list_connections_element_resolution"
+        android:layout_marginLeft="10dp"
+        android:text="@string/tv_list_connections_element_resolution_x"
+        android:textAppearance="@style/list_connections_device_details" />
+
+    <TextView
+        android:id="@+id/list_connections_element_resolution_x_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/list_connections_element_resolution_x"
+        android:layout_alignBottom="@id/list_connections_element_resolution_x"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/list_connections_element_resolution_x"
+        android:text="@string/tv_list_connections_element_resolution_x_y"
+        android:textAppearance="@style/list_connections_device_details" />
+
+    <TextView
+        android:id="@+id/list_connections_element_resolution_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/list_connections_element_resolution_x_y"
+        android:layout_alignBottom="@id/list_connections_element_resolution_x_y"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/list_connections_element_resolution_x_y"
+        android:text="@string/tv_list_connections_element_resolution_y"
+        android:textAppearance="@style/list_connections_device_details" />
 
 </RelativeLayout>

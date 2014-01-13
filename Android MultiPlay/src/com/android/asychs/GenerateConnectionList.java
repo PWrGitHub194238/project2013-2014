@@ -55,6 +55,8 @@ public class GenerateConnectionList extends AsyncTask<String, String, String> {
 		        		"AAA"+device.getName(), device.getAddress(), ConnectionHelper.STATUS_NOT_IN_RANGE,
 						ElementOfConnectionsList.STORED_NO,
 						N.System.WINDOWS,
+						-1,
+						-1,
 						ConnectionHelper.CONNECTION_TYPE_BT));
 		    }
 		}

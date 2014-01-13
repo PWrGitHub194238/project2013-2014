@@ -45,6 +45,9 @@ public class ListOfConections extends BaseAdapter {
     	private TextView device_detail = null;
     	private ImageView device_isStored = null;
     	private ImageView system = null;
+    	private TextView resolution_x = null;
+    	private TextView resolution_y = null;
+
     	
 		public void setElement(ElementOfConnectionsList elementOfConnections) {
 			device_icon.setBackgroundResource(elementOfConnections.getIcon_type_id());
@@ -56,6 +59,8 @@ public class ListOfConections extends BaseAdapter {
 			device_isStored.setBackgroundResource(
 					(elementOfConnections.isStored())?ElementOfConnectionsList.ICON_STORED_YES:ElementOfConnectionsList.ICON_STORED_NO);
 			system.setBackgroundResource(setSystem(elementOfConnections.getSystem()));
+			resolution_x.setText(String.valueOf(elementOfConnections.getResolution_x()));
+			resolution_y.setText(String.valueOf(elementOfConnections.getResolution_y()));
 		}
     }
  
@@ -76,6 +81,8 @@ public class ListOfConections extends BaseAdapter {
         view_holder.device_detail = (TextView) convertView.findViewById(R.id.list_connections_element_device_detail);
         view_holder.device_isStored = (ImageView) convertView.findViewById(R.id.list_connections_element_is_device_stored);
         view_holder.system = (ImageView) convertView.findViewById(R.id.list_connections_element_os);
+        view_holder.resolution_x = (TextView) convertView.findViewById(R.id.list_connections_element_resolution_x);
+        view_holder.resolution_y = (TextView) convertView.findViewById(R.id.list_connections_element_resolution_y);
 
         convertView.setTag(view_holder);
     } else {

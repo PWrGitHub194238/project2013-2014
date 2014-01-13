@@ -1,10 +1,13 @@
 package com.android.database;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.UUID;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -13,6 +16,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.android.application.BluetoothConfigurationClass;
+import com.android.application.FunctionalityCheck;
 import com.android.application.MultiPlayApplication;
 import com.android.application.WirelessConfigurationClass;
 import com.android.database.tables.ASCIIButton;
@@ -24,6 +29,7 @@ import com.android.database.tables.MovementButton;
 import com.android.database.tables.NetworkBTSettings;
 import com.android.database.tables.NetworkWiFiSettings;
 import com.android.database.tables.SteeringWheel;
+import com.android.extendedWidgets.ExtendedProgressBar;
 import com.android.services.ConnectionHelper;
 
 
@@ -58,6 +64,22 @@ public class DBHelper {
 			}
 			return query.toString();
 		}
+			
+			public static String iterateOverPairs(Iterator<? extends Entry<String,String>> iterator) {
+				StringBuilder query = new StringBuilder();
+				Entry<String,String> pair = null;
+				while (iterator.hasNext()) {
+					pair = iterator.next();
+					query.append(
+							"`" + pair.getKey().toString() + "` = '" + pair.getValue().toString() + "'"
+							);
+					if ( iterator.hasNext() ) {
+						query.append(", ");
+					}
+				}
+				return query.toString();
+		}
+			
 		public static String STATEMENT_IN(Iterator<? extends Object> iterator) {
 			StringBuilder query = new StringBuilder("IN (");
 			query.append(
@@ -79,6 +101,8 @@ public class DBHelper {
 	public static final String TYPE_BLOB = "BLOB";
 	
 	public static final String DEFAULT_NULL = "DEFAULT NULL";
+	public static final String DEFAULT_FALSE = "DEFAULT 0";
+	public static final String DEFAULT_TRUE = "DEFAULT 1";
 	
 	/** Date format. The number of seconds since 1970-01-01 00:00:00 UTC.
 	 * 
@@ -175,16 +199,24 @@ public class DBHelper {
 		}
 	};
 
-	public static final String SQL_DROP_DATABASE = 
-			ASCIIButton.SQL_DROP_TABLE + "; "
-			+ ConnectionHistory.SQL_DROP_TABLE + "; "
-			+ Controllers_detail.SQL_DROP_TABLE + "; "
-			+ Controllers.SQL_DROP_TABLE + "; "
-			+ General.SQL_DROP_TABLE + "; "
-			+ MovementButton.SQL_DROP_TABLE + "; "
-			+ NetworkBTSettings.SQL_DROP_TABLE + "; "
-			+ NetworkWiFiSettings.SQL_DROP_TABLE + "; "
-			+ SteeringWheel.SQL_DROP_TABLE + "; ";
+	//SQL Drop table
+	public static enum SQL_DROP_DATABASE {
+		TABLE_ASCIIButton(ASCIIButton.SQL_DROP_TABLE),
+		TABLE_ConnectionHistory(ConnectionHistory.SQL_DROP_TABLE),
+		TABLE_Controllers_detail(Controllers_detail.SQL_DROP_TABLE),
+		TABLE_Controllers(Controllers.SQL_DROP_TABLE),
+		TABLE_General(General.SQL_DROP_TABLE),
+		TABLE_MovementButton(MovementButton.SQL_DROP_TABLE),
+		TABLE_NetworkBTSettings(NetworkBTSettings.SQL_DROP_TABLE),
+		TABLE_NetworkWiFiSettings(NetworkWiFiSettings.SQL_DROP_TABLE),
+		TABLE_SteeringWheel(SteeringWheel.SQL_DROP_TABLE);
+		
+		String query = null;
+		
+		private SQL_DROP_DATABASE(String query) {
+			this.query = query;
+		}
+	};
 	
 	
 	public static final boolean CLEAR_YES = true;
@@ -638,45 +670,50 @@ public class DBHelper {
 			MultiPlayApplication.getDbHelper().openConnection();
 		}
 		
-		if (newValues == null || !newValues.isEmpty()) {
-			Log.d("DB", "Database insert...");
-			Log.d("TYPE", tableClass.getName());
-			
-			DBHelper.TableIF table = tableClass.newInstance();
-			String TABLE_NAME = table.getTableName();
-			String KEY_UNIQUE_1 = table.getKeyUnique1();
-			
-			StringBuilder query = new StringBuilder("INSERT INTO " + TABLE_NAME + " ( " + KEY_UNIQUE_1 + ", ");
-			
-			query.append(
-					QueryBuilder.iterateOverValues(
-							newValues.keySet().iterator()));
-			
-			query.append(" ) VALUES ( " + sql_generate_not_exitsting_minID(tableClass,REOPEN_NO) + ", ");
-			
-			query.append(
-					QueryBuilder.iterateOverValues(
-							newValues.values().iterator()));
-			
-			query.append(" ) ");
-			Log.i("DB",query.toString());
-			db.execSQL(query.toString());
-
-			Log.i("DB","OK");
-			if (isToClear == true) {
-				newValues.clear();
+		if (newValues != null) {
+			if (!newValues.isEmpty()) {
+				Log.d("DB", "Database insert...");
+				Log.d("TYPE", tableClass.getName());
+				
+				DBHelper.TableIF table = tableClass.newInstance();
+				String TABLE_NAME = table.getTableName();
+				String KEY_UNIQUE_1 = table.getKeyUnique1();
+				
+				StringBuilder query = new StringBuilder("INSERT INTO " + TABLE_NAME + " ( " + KEY_UNIQUE_1 + ", ");
+				
+				query.append(
+						QueryBuilder.iterateOverValues(
+								newValues.keySet().iterator()));
+				
+				query.append(" ) VALUES ( " + sql_generate_not_exitsting_minID(tableClass,REOPEN_NO) + ", ");
+				
+				query.append(
+						QueryBuilder.iterateOverValues(
+								newValues.values().iterator()));
+				
+				query.append(" ) ");
+				Log.i("DB",query.toString());
+				db.execSQL(query.toString());
+	
+				Log.i("DB","OK");
+				if (isToClear == true) {
+					newValues.clear();
+				}
+				
+				if (reopenConnection == true ) {
+					MultiPlayApplication.getDbHelper().closeConnection();
+				}
+				return;
+			} else {
+				Log.d("DB", "Database empty insert!");
+				
+				if (reopenConnection == true ) {
+					MultiPlayApplication.getDbHelper().closeConnection();
+				}
+				return;
 			}
-			
-			if (reopenConnection == true ) {
-				MultiPlayApplication.getDbHelper().closeConnection();
-			}
-			return;
 		} else {
-			Log.d("DB", "Database empty insert!");
-			
-			if (reopenConnection == true ) {
-				MultiPlayApplication.getDbHelper().closeConnection();
-			}
+			Log.d("DB", "Database null insert!");
 			return;
 		}
 	}
@@ -704,48 +741,108 @@ public class DBHelper {
 			MultiPlayApplication.getDbHelper().openConnection();
 		}
 		
-		if (newValues == null || !newValues.isEmpty()) {
-			Log.d("DB", "Database insert...");
-			Log.d("TYPE", tableClass.getName());
-			
-			DBHelper.TableIF table = tableClass.newInstance();
-			String TABLE_NAME = table.getTableName();
-			String KEY_UNIQUE_1 = table.getKeyUnique1();
-			
-			StringBuilder query = new StringBuilder("INSERT INTO " + TABLE_NAME + " ( " + KEY_UNIQUE_1 + ", ");
-			
-			query.append(
-					QueryBuilder.iterateOverValues(
-							newValues.keySet().iterator()));
-			
-			query.append(" ) VALUES ( " + KEY_UNIQUE + ", ");
-			
-			query.append(
-					QueryBuilder.iterateOverValues(
-							newValues.values().iterator()));
-			
-			query.append(" ) ");
-			Log.i("DB",query.toString());
-			db.execSQL(query.toString());
-
-			Log.i("DB","OK");
-			if (isToClear == true) {
-				newValues.clear();
+		if (newValues != null) {
+			if (!newValues.isEmpty()) {
+				Log.d("DB", "Database insert...");
+				Log.d("TYPE", tableClass.getName());
+				
+				DBHelper.TableIF table = tableClass.newInstance();
+				String TABLE_NAME = table.getTableName();
+				String KEY_UNIQUE_1 = table.getKeyUnique1();
+				
+				StringBuilder query = new StringBuilder("INSERT INTO " + TABLE_NAME + " ( " + KEY_UNIQUE_1 + ", ");
+				
+				query.append(
+						QueryBuilder.iterateOverValues(
+								newValues.keySet().iterator()));
+				
+				query.append(" ) VALUES ( " + KEY_UNIQUE + ", ");
+				
+				query.append(
+						QueryBuilder.iterateOverValues(
+								newValues.values().iterator()));
+				
+				query.append(" ) ");
+				Log.i("DB",query.toString());
+				db.execSQL(query.toString());
+	
+				Log.i("DB","OK");
+				if (isToClear == true) {
+					newValues.clear();
+				}
+				
+				if (reopenConnection == true ) {
+					MultiPlayApplication.getDbHelper().closeConnection();
+				}
+				return;
+			} else {
+				Log.d("DB", "Database empty insert!");
+				
+				if (reopenConnection == true ) {
+					MultiPlayApplication.getDbHelper().closeConnection();
+				}
+				return;
 			}
-			
-			if (reopenConnection == true ) {
-				MultiPlayApplication.getDbHelper().closeConnection();
-			}
-			return;
 		} else {
-			Log.d("DB", "Database empty insert!");
-			
-			if (reopenConnection == true ) {
-				MultiPlayApplication.getDbHelper().closeConnection();
-			}
+			Log.d("DB", "Database null insert!");
 			return;
 		}
 	}
+	
+	
+	
+	
+	
+	public void sql_update_row (Class<? extends DBHelper.TableIF> tableClass, int KEY_UNIQUE, Map<String, String> newValues, boolean isToClear, boolean reopenConnection) throws InstantiationException, IllegalAccessException {
+		if (reopenConnection == true ) {
+			MultiPlayApplication.getDbHelper().openConnection();
+		}
+		
+		if (newValues != null) {
+			if (!newValues.isEmpty()) {
+				Log.d("DB", "Database insert...");
+				Log.d("TYPE", tableClass.getName());
+				
+				DBHelper.TableIF table = tableClass.newInstance();
+				String TABLE_NAME = table.getTableName();
+				String KEY_UNIQUE_1 = table.getKeyUnique1();
+				
+				StringBuilder query = new StringBuilder("UPDATE " + TABLE_NAME + " SET ");
+
+				query.append(
+						QueryBuilder.iterateOverPairs(
+								newValues.entrySet().iterator()));
+				
+				query.append(" WHERE `" + KEY_UNIQUE_1 + "` = " + KEY_UNIQUE);
+				
+				Log.i("DB",query.toString());
+				db.execSQL(query.toString());
+	
+				Log.i("DB","OK");
+				if (isToClear == true) {
+					newValues.clear();
+				}
+				
+				if (reopenConnection == true ) {
+					MultiPlayApplication.getDbHelper().closeConnection();
+				}
+				return;
+			} else {
+				Log.d("DB", "Database empty insert!");
+				
+				if (reopenConnection == true ) {
+					MultiPlayApplication.getDbHelper().closeConnection();
+				}
+				return;
+			}
+		} else {
+			Log.d("DB", "Database null update!");
+			return;
+		}
+	}
+
+	
+	
 	
 	/** Delete query to database.
 	 * 
@@ -856,14 +953,16 @@ public class DBHelper {
 	}
 	
 	
-	
+	/** Returns configuration objects from select query.
+	 * 
+	 * @param cursor
+	 * @return
+	 */
 	public static Collection<? extends WirelessConfigurationClass> parseNetworkWiFiSettings( Cursor cursor ) {
 		Set<WirelessConfigurationClass> parsedConfigurations = new HashSet<WirelessConfigurationClass>();
 		WirelessConfigurationClass readedConfiguration = null;
 		if (cursor.moveToFirst() == true) {
-			Log.d("DB", "OK1");
 			while (cursor.isAfterLast() == false ) {
-				Log.d("DB", "OK2");
 				readedConfiguration = new WirelessConfigurationClass(
 						cursor.getString(cursor.getColumnIndex(NetworkWiFiSettings.DBSchema.COLUMN_2)), 
 						cursor.getInt(cursor.getColumnIndex(NetworkWiFiSettings.DBSchema.COLUMN_3)));
@@ -876,19 +975,150 @@ public class DBHelper {
 				readedConfiguration.setStoredIndex(cursor.getPosition());
 	
 				Log.d("DB", DatabaseUtils.dumpCurrentRowToString(cursor));
-				
-				Log.d("DB", "conStatus > "+ String.valueOf(readedConfiguration.getConnectionStatus()));
-				Log.d("DB", "Index > "+ String.valueOf(readedConfiguration.getStoredIndex()));
-				Log.d("DB", "IP > "+ String.valueOf(readedConfiguration.getIP()));
-				Log.d("DB", "MAC > "+ String.valueOf(readedConfiguration.getMACAdress()));
-				Log.d("DB", "Name > "+ String.valueOf(readedConfiguration.getName()));
-				Log.d("DB", "Port > "+ String.valueOf(readedConfiguration.getPort()));
-				Log.d("DB", "System > "+ String.valueOf(readedConfiguration.getSystem()));
 	
 				parsedConfigurations.add(readedConfiguration);
 				cursor.moveToNext();
 			}
 		}
 		return parsedConfigurations;
+	}
+
+	/** Returns configuration objects from select query.
+	 * 
+	 * @param cursor
+	 * @return
+	 */
+	public static Collection<? extends BluetoothConfigurationClass> parseNetworkBTSettings( Cursor cursor ) {
+			Set<BluetoothConfigurationClass> parsedConfigurations = new HashSet<BluetoothConfigurationClass>();
+			BluetoothConfigurationClass readedConfiguration = null;
+			if (cursor.moveToFirst() == true) {
+				while (cursor.isAfterLast() == false ) {
+					readedConfiguration = new BluetoothConfigurationClass(
+							UUID.fromString(cursor.getString(cursor.getColumnIndex(NetworkBTSettings.DBSchema.COLUMN_2))), 
+							cursor.getString(cursor.getColumnIndex(NetworkBTSettings.DBSchema.COLUMN_3)));
+					
+					readedConfiguration.setName(
+							cursor.getString(cursor.getColumnIndex(NetworkBTSettings.DBSchema.COLUMN_1)));
+					
+					readedConfiguration.setConnectionStatus(ConnectionHelper.STATUS_WARNING);
+					readedConfiguration.setStored(true);
+					readedConfiguration.setStoredIndex(cursor.getPosition());
+		
+					Log.d("DB", DatabaseUtils.dumpCurrentRowToString(cursor));
+		
+					parsedConfigurations.add(readedConfiguration);
+					cursor.moveToNext();
+				}
+			}
+			return parsedConfigurations;
+	}
+	
+
+	public void updateMultiPlayRequirements(Context context, ExtendedProgressBar progressBar) throws InstantiationException, IllegalAccessException {
+		FunctionalityCheck functionalityCheck = new FunctionalityCheck(context);
+		Log.d("APP","FUNC");
+		Map<String,String> requirementsMap = new HashMap<String,String>();
+		requirementsMap.put(General.DBSchema.COLUMN_5, 
+				(functionalityCheck.checkBluetooth()==true) ? "1" : "0");
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+		sql_insert_row(General.class, requirementsMap, true, true);
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+
+		requirementsMap.put(General.DBSchema.COLUMN_6, 
+				(functionalityCheck.checkBluetoothLE()==true) ? "1" : "0");
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+		sql_update_row(General.class, 1, requirementsMap, true, true);
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+
+		requirementsMap.put(General.DBSchema.COLUMN_7, 
+				(functionalityCheck.checkWifi()==true) ? "1" : "0");
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+		sql_update_row(General.class, 1, requirementsMap, true, true);
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+
+		requirementsMap.put(General.DBSchema.COLUMN_8, 
+				(functionalityCheck.checkWifiDirect()==true) ? "1" : "0");
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+		sql_update_row(General.class, 1, requirementsMap, true, true);
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+
+		requirementsMap.put(General.DBSchema.COLUMN_9, 
+				(functionalityCheck.checkAccelerometer()==true) ? "1" : "0");
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+		sql_update_row(General.class, 1, requirementsMap, true, true);
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+
+		requirementsMap.put(General.DBSchema.COLUMN_10, 
+				(functionalityCheck.checkGyroscope()==true) ? "1" : "0");
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+		sql_update_row(General.class, 1, requirementsMap, true, true);
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+
+		requirementsMap.put(General.DBSchema.COLUMN_11, 
+				(functionalityCheck.checkGravity()==true) ? "1" : "0");
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+		sql_update_row(General.class, 1, requirementsMap, true, true);
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+
+		requirementsMap.put(General.DBSchema.COLUMN_12, 
+				(functionalityCheck.checkVector()==true) ? "1" : "0");
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+		sql_update_row(General.class, 1, requirementsMap, true, true);
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+
+		requirementsMap.put(General.DBSchema.COLUMN_13, 
+				(functionalityCheck.checkAcceleration()==true) ? "1" : "0");
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+		sql_update_row(General.class, 1, requirementsMap, true, true);
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+	}
+	
+	public static Map<String,String> parseMultiPlayRequirements( Cursor cursor ) {
+		if (cursor.moveToFirst() == true) {
+			while (cursor.isAfterLast() == false ) {
+
+				Log.d("DB", DatabaseUtils.dumpCurrentRowToString(cursor));
+				cursor.moveToNext();
+			}
+		}
+		return null;
+}
+	
+	public void recreateDataBase () {
+		MultiPlayApplication.getDbHelper().openConnection();
+
+		Log.d("DB", "Database deleting...");
+    	for (DBHelper.SQL_DROP_DATABASE value : DBHelper.SQL_DROP_DATABASE.values()) {
+	    	Log.d("DB",value.query);
+	        db.execSQL(value.query);
+    	}
+        Log.d("DB", "All data is lost.");
+		
+    	Log.d("DB", "Database creating...");
+    	for (DBHelper.SQL_CREATE_DATABASE value : DBHelper.SQL_CREATE_DATABASE.values()) {
+	    	Log.d("DB",value.query);
+	        db.execSQL(value.query);
+    	}
+        Log.d("DB", "All data is lost.");
+        
+		MultiPlayApplication.getDbHelper().closeConnection();
 	}
 }

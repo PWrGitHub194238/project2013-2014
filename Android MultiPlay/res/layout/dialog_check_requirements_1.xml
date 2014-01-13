@@ -1,0 +1,64 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_check_requirements"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin" >
+
+        <TextView
+            android:id="@+id/tv_dialog_welcome_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/dialog_ID_MESSAGE_WELCOME_1" />
+
+        <TextView
+            android:id="@+id/tv_dialog_welcome_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/tv_dialog_welcome_1"
+            android:layout_marginTop="20dp"
+            android:text="@string/dialog_ID_MESSAGE_WELCOME_2" />
+
+        <EditText
+            android:id="@+id/et_dialog_welcome_device_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_dialog_welcome_2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+           	android:hint="@string/hint_device_name"
+            android:imeOptions="flagNoExtractUi" />
+
+        <TextView
+            android:id="@+id/tv_dialog_welcome_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_dialog_welcome_2"
+            android:layout_below="@id/et_dialog_welcome_device_name"
+            android:layout_marginTop="20dp"
+            android:text="@string/dialog_ID_MESSAGE_WELCOME_3" />
+                
+        <com.android.extendedWidgets.ExtendedProgressBar
+            android:id="@+id/pb_dialog_welcome_requirements"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_dialog_welcome_3"
+            android:layout_centerHorizontal="true"
+            android:max="18"
+            android:layout_marginTop="20dp" />
+    </RelativeLayout>
+</ScrollView>

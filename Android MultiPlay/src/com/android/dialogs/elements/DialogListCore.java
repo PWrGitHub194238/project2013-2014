@@ -8,11 +8,15 @@ public final class DialogListCore {
 			R.string.dialog_ID_TITLE_NO_TITLE;
 	
 	public static final int IT_TITLE_ICON_SUCCES =
-			R.drawable.connections_activity_icon_creator;
+			R.drawable.activity_icon_succes;
 	public static final int IT_TITLE_ICON_WARNING =
-			R.drawable.connections_activity_icon_creator;
+			R.drawable.activity_icon_warning;
 	public static final int IT_TITLE_ICON_ERROR =
-			R.drawable.connections_activity_icon_creator;
+			R.drawable.activity_icon_error;
+	public static final int IT_TITLE_ICON_INFO =
+			R.drawable.activity_icon_information;
+	public static final Integer ID_TITLE_ICON_APPLICATION = 
+			R.drawable.activity_icon_multiplay;
 	
 	public static final int ID_MESSAGE_NO_MESSAGE =
 			R.string.dialog_ID_MESSAGE_NO_MESSAGE;
@@ -29,5 +33,8 @@ public final class DialogListCore {
 			R.string.dialog_ID_BUTTON_CONNECT;
 	public static final int ID_BUTTON_OPTIONS =
 			R.string.dialog_ID_BUTTON_OPTIONS;
+	public static final Integer ID_BUTTON_NEXT = 
+			R.string.dialog_ID_BUTTON_NEXT;
+
 	
 }

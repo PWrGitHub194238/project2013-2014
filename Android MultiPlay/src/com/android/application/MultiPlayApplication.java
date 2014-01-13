@@ -12,6 +12,7 @@ import com.android.asychs.CheckConnectionStatus;
 import com.android.asychs.SocketMainWiFiSender;
 import com.android.database.DBHelper;
 import com.android.database.MultiPlayDataBase;
+import com.android.database.tables.NetworkBTSettings;
 import com.android.database.tables.NetworkWiFiSettings;
 
 public class MultiPlayApplication extends Application {
@@ -20,8 +21,23 @@ public class MultiPlayApplication extends Application {
 	public final static boolean WIRELESS = false;
 	
 	private static DBHelper dbHelper = null;
-	private static Collection<BluetoothConfigurationClass> discoveredBluetoothDevices = null;
+	
+	/** Flag responsible for giving adequate priority to the available ways 
+	 * to connect with other devices. With the flag set to:
+	 * <ul>
+	 * 	<li>true - with both bluetooth and wireless service available the first one will be set
+	 * as default (@see {@link #BLUETOOTH}),</li>
+	 * 	<li>false - with both bluetooth and wireless service available the second one will be set
+	 * as default (@see {@link #WIRELESS}),</li>
+	 * </ul>
+	 * 
+	 */
+	private static boolean networkPriority = WIRELESS;
+	
+	private static ArrayList<BluetoothConfigurationClass> discoveredBluetoothDevices = null;
+	private static boolean bluetoothEnable = false;
 	private static ArrayList<WirelessConfigurationClass> discoveredWirelessDevices = null;
+	private static boolean wirelessEnable = false;
 	private static ConnectionsConfigurationClass mainNetworkConfiguration = null;
 	private MultiPlayDataBase multiPlayDataBase = null;
 	
@@ -71,24 +87,34 @@ public class MultiPlayApplication extends Application {
 	}
 	
 	private void loadConnectionListFromDB() throws InstantiationException, IllegalAccessException {
-		Cursor cursor = dbHelper.sql_select_by_id(NetworkWiFiSettings.class,true);
-		discoveredWirelessDevices.addAll(
-				DBHelper.parseNetworkWiFiSettings(cursor));
-		
-		ConnectionsConfigurationClass[] connectionsArrayToExecute = new ConnectionsConfigurationClass[0];
-		discoveredBluetoothDevices.toArray(connectionsArrayToExecute);
-		
-		checkConnections(connectionsArrayToExecute);
-		
-		connectionsArrayToExecute = new ConnectionsConfigurationClass[0];
-		discoveredWirelessDevices.toArray(connectionsArrayToExecute);
-		checkConnections(connectionsArrayToExecute);
-		
+		loadWirelessConnectionListFromDB();
+		loadBluetoothConnectionListFromDB();
 	}
 
-
-	private void checkConnections(ConnectionsConfigurationClass[] connectionsArrayToExecute) {
-		new CheckConnectionStatus().execute(connectionsArrayToExecute);
+	private void loadWirelessConnectionListFromDB () throws InstantiationException, IllegalAccessException {
+		Cursor cursor = dbHelper.sql_select_by_id(NetworkWiFiSettings.class,true);
+		int deviceIndex = 0;
+		int deviceCount = 0;
+		discoveredWirelessDevices.addAll(
+				DBHelper.parseNetworkWiFiSettings(cursor));
+		deviceCount = discoveredWirelessDevices.size();
+		
+		for ( deviceIndex = 0; deviceIndex < deviceCount; deviceIndex += 1 ) {
+			new CheckConnectionStatus().execute(discoveredWirelessDevices.get(deviceIndex));
+		}
+	}
+	
+	private void loadBluetoothConnectionListFromDB () throws InstantiationException, IllegalAccessException {
+		Cursor cursor = dbHelper.sql_select_by_id(NetworkBTSettings.class,true);
+		int deviceIndex = 0;
+		int deviceCount = 0;
+		discoveredBluetoothDevices.addAll(
+				DBHelper.parseNetworkBTSettings(cursor));
+		deviceCount = discoveredBluetoothDevices.size();
+		
+		for ( deviceIndex = 0; deviceIndex < deviceCount; deviceIndex += 1 ) {
+			new CheckConnectionStatus().execute(discoveredBluetoothDevices.get(deviceIndex));
+		}
 	}
 
 	public void onDestroy() {
@@ -140,4 +166,48 @@ public class MultiPlayApplication extends Application {
 	public final void setSocketMainThread(SocketMainWiFiSender socketMainThread) {
 		this.socketMainThread = socketMainThread;
 	}
+
+	/**
+	 * @return the networkPriority
+	 */
+	public static final boolean isNetworkPriority() {
+		return networkPriority;
+	}
+
+	/**
+	 * @param networkPriority the networkPriority to set
+	 */
+	public static final void setNetworkPriority(boolean networkPriority) {
+		MultiPlayApplication.networkPriority = networkPriority;
+	}
+
+	/**
+	 * @return the bluetoothEnable
+	 */
+	public static final boolean isBluetoothEnable() {
+		return bluetoothEnable;
+	}
+
+	/**
+	 * @param bluetoothEnable the bluetoothEnable to set
+	 */
+	public static final void setBluetoothEnable(boolean bluetoothEnable) {
+		MultiPlayApplication.bluetoothEnable = bluetoothEnable;
+	}
+
+	/**
+	 * @return the wirelessEnable
+	 */
+	public static final boolean isWirelessEnable() {
+		return wirelessEnable;
+	}
+
+	/**
+	 * @param wirelessEnable the wirelessEnable to set
+	 */
+	public static final void setWirelessEnable(boolean wirelessEnable) {
+		MultiPlayApplication.wirelessEnable = wirelessEnable;
+	}
+	
+	
 }

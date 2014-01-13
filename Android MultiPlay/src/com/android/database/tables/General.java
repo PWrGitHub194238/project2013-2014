@@ -57,8 +57,8 @@ public final class General implements DBHelper.TableIF {
         public static final String COLUMN_2 = "WiFi_or_BT";
         public static final String COLUMN_3 = "Default_WirelessID";
         public static final String COLUMN_4 = "Default_BletoothID";
-        public static final String COLUMN_5 = "BLE";
-        public static final String COLUMN_6 = "BLUETOOTH";
+        public static final String COLUMN_5 = "BLUETOOTH";
+        public static final String COLUMN_6 = "BLE";
         public static final String COLUMN_7 = "WIFI";
         public static final String COLUMN_8 = "WIFI_P2P";
         public static final String COLUMN_9 = "SENSOR_ACCEL";
@@ -66,6 +66,7 @@ public final class General implements DBHelper.TableIF {
         public static final String COLUMN_11 = "SENSOR_GRAVITY";
         public static final String COLUMN_12 = "SENSOR_ROT_VECTOR";
         public static final String COLUMN_13 = "SENSOR_LIN_ACCEL";
+        public static final String COLUMN_14 = "SHOW_HELP";
         public static final String KEY_UNIQUE_1 = "GeneralID";
 	}
 	
@@ -95,19 +96,20 @@ public final class General implements DBHelper.TableIF {
 	public static final String SQL_CREATE_TABLE =
 		    "CREATE TABLE IF NOT EXISTS " + DBSchema.TABLE_NAME + " ("
 		    		+ DBSchema._ID + " " + DBHelper.TYPE_PK_INT + ", "
-		    		+ DBSchema.COLUMN_1 + " " + DBHelper.TYPE_TEXT + ", "
-		    		+ DBSchema.COLUMN_2 + " " + DBHelper.TYPE_INT + ", "
+		    		+ DBSchema.COLUMN_1 + " " + DBHelper.TYPE_TEXT + " " + DBHelper.DEFAULT_NULL + ", "
+		    		+ DBSchema.COLUMN_2 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_NULL + ", "
 		    		+ DBSchema.COLUMN_3 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_NULL + ", "
 		    		+ DBSchema.COLUMN_4 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_NULL + ", "
-		    		+ DBSchema.COLUMN_5 + " " + DBHelper.TYPE_INT + ", "
-		    		+ DBSchema.COLUMN_6 + " " + DBHelper.TYPE_INT + ", "
-		    		+ DBSchema.COLUMN_7 + " " + DBHelper.TYPE_INT + ", "
-		    		+ DBSchema.COLUMN_8 + " " + DBHelper.TYPE_INT + ", "
-		    		+ DBSchema.COLUMN_9 + " " + DBHelper.TYPE_INT + ", "
-		    		+ DBSchema.COLUMN_10 + " " + DBHelper.TYPE_INT + ", "
-		    		+ DBSchema.COLUMN_11 + " " + DBHelper.TYPE_INT + ", "
-		    		+ DBSchema.COLUMN_12 + " " + DBHelper.TYPE_INT + ", "
-		    		+ DBSchema.COLUMN_13 + " " + DBHelper.TYPE_INT + ", "
+		    		+ DBSchema.COLUMN_5 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_FALSE + ", "
+		    		+ DBSchema.COLUMN_6 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_FALSE + ", "
+		    		+ DBSchema.COLUMN_7 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_FALSE + ", "
+		    		+ DBSchema.COLUMN_8 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_FALSE + ", "
+		    		+ DBSchema.COLUMN_9 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_FALSE + ", "
+		    		+ DBSchema.COLUMN_10 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_FALSE + ", "
+		    		+ DBSchema.COLUMN_11 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_FALSE + ", "
+		    		+ DBSchema.COLUMN_12 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_FALSE + ", "
+		    		+ DBSchema.COLUMN_13 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_FALSE + ", "
+		    		+ DBSchema.COLUMN_14 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_TRUE + ", "
 		    		+ DBSchema.KEY_UNIQUE_1 + " " + DBHelper.TYPE_SK_INT + ", "
 		    		+ DBHelper.TYPE_FK(
 		    				DBSchema.COLUMN_3,

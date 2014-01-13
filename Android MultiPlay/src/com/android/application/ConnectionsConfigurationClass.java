@@ -8,17 +8,15 @@ public class ConnectionsConfigurationClass {
 	private boolean isStored = false;
 	private int storedIndex = -1;
 	private byte system = 0;
-	private int port=1234;
-	
+	private int systemDimmensionX = 0;
+	private int systemDimmensionY = 0;
+
 	public final String getName() {
 		return name;
 	}
 
 	public final void setName(String name) {
 		this.name = name;
-	}
-	public final void setPort(int port) {
-		this.port = port;
 	}
 
 	public final String getMACAdress() {
@@ -68,4 +66,34 @@ public class ConnectionsConfigurationClass {
 	public final void setSystem(byte system) {
 		this.system = system;
 	}
+
+	/**
+	 * @return the systemDimmensionX
+	 */
+	public final int getSystemDimmensionX() {
+		return systemDimmensionX;
+	}
+
+	/**
+	 * @param systemDimmensionX the systemDimmensionX to set
+	 */
+	public final void setSystemDimmensionX(int systemDimmensionX) {
+		this.systemDimmensionX = systemDimmensionX;
+	}
+
+	/**
+	 * @return the systemDimmensionY
+	 */
+	public final int getSystemDimmensionY() {
+		return systemDimmensionY;
+	}
+
+	/**
+	 * @param systemDimmensionY the systemDimmensionY to set
+	 */
+	public final void setSystemDimmensionY(int systemDimmensionY) {
+		this.systemDimmensionY = systemDimmensionY;
+	}
+	
+	
 }

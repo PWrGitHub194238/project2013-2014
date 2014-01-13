@@ -65,21 +65,20 @@ public class ConnectionHelper {
 			 newValues.put(NetworkWiFiSettings.DBSchema.COLUMN_3, wifiConfiguration.getPort().toString());
 			
 			 try {
-			 		if (configuration.isStored() == true) {
-			 			
-						MultiPlayApplication.getDbHelper().sql_insert_row(NetworkWiFiSettings.class, newValues,DBHelper.CLEAR_YES,DBHelper.REOPEN_YES);
-						int i = DBHelper.sql_generate_not_exitsting_minID(NetworkWiFiSettings.class,DBHelper.REOPEN_YES) - 1;
-						wifiConfiguration.setStoredIndex(i);
-					}
-					wifiConfiguration.setConnectionStatus(STATUS_NOT_IN_RANGE);
-					Cursor cursor = null;
-					cursor = MultiPlayApplication.getDbHelper().sql_select_by_id(NetworkWiFiSettings.class,DBHelper.REOPEN_YES);
-					
-					Log.d("DB",DatabaseUtils.dumpCursorToString(cursor));
-					Log.d("APP","Checking connection...");
-					new CheckConnectionStatus().execute(wifiConfiguration);
-					MultiPlayApplication.getDiscoveredWirelessDevices().add(wifiConfiguration);
-					Log.d("APP",MultiPlayApplication.getDiscoveredWirelessDevices().iterator().next().toString());
+				 
+				 if (configuration.isStored() == true) {
+					 MultiPlayApplication.getDbHelper().sql_insert_row(
+							 NetworkWiFiSettings.class, newValues,DBHelper.CLEAR_YES,DBHelper.REOPEN_YES);
+					 wifiConfiguration.setStoredIndex(
+							 DBHelper.sql_generate_not_exitsting_minID(NetworkWiFiSettings.class,DBHelper.REOPEN_YES) - 1);
+				 }
+				 
+				 wifiConfiguration.setConnectionStatus(STATUS_NOT_IN_RANGE);
+				 
+				 Log.d("APP","Checking connection...");
+				 new CheckConnectionStatus().execute(wifiConfiguration);
+				 MultiPlayApplication.getDiscoveredWirelessDevices().add(wifiConfiguration);
+				 Log.d("APP",MultiPlayApplication.getDiscoveredWirelessDevices().iterator().next().toString());
 					
 			 	} catch (InstantiationException e) {
 					// TODO Auto-generated catch block
@@ -88,25 +87,6 @@ public class ConnectionHelper {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-//			try {
-//			((MultiPlayApplication) getApplication()).getDbHelper().sql_delete_row(General.class);
-//			 Map<String,String> newValues = new HashMap<String,String>();
-//			 newValues.put(General.DBSchema.COLUMN_1, "Name A");
-//			 newValues.put(General.DBSchema.COLUMN_2, DBHelper.FALSE);
-//			((MultiPlayApplication) getApplication()).getDbHelper().sql_insert_row(General.class, newValues,DBHelper.CLEAR_YES);
-//			newValues.put(General.DBSchema.COLUMN_1, "Name B");
-//			 newValues.put(General.DBSchema.COLUMN_2, DBHelper.FALSE);
-//			((MultiPlayApplication) getApplication()).getDbHelper().sql_insert_row(General.class, newValues,DBHelper.CLEAR_YES);
-//			newValues.put(General.DBSchema.COLUMN_1, "Name B");
-//			 newValues.put(General.DBSchema.COLUMN_2, DBHelper.FALSE);
-//			((MultiPlayApplication) getApplication()).getDbHelper().sql_insert_row(General.class, newValues,DBHelper.CLEAR_YES);
-//		} catch (InstantiationException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IllegalAccessException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 			
 		} else {
 			BluetoothConfigurationClass btConfiguration = (BluetoothConfigurationClass) configuration;

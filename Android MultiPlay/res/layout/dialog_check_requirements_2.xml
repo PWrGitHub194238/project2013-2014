@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+        
+        <RelativeLayout
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" >
+		
+		    <ImageView
+		        android:id="@+id/list_connections_element_device_icon"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentTop="true"
+		        android:background="@drawable/dialog_tick"
+		        android:contentDescription="@string/contentDescription_list_connections_element_device_icon" />
+		    
+		    <TextView
+		        android:id="@+id/list_connections_element_device_name"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentTop="true"
+		        android:layout_toRightOf="@id/list_connections_element_device_icon"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginTop="8dp"
+		        android:text="@string/tv_empty"
+		        android:textAppearance="@style/list_requirement_name" />
+		    
+		    <TextView
+		        android:id="@+id/list_connections_element_device_detail"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/tv_empty"
+		        android:textAppearance="@style/list_connections_device_detail_value" />
+		
+		 	<ImageView
+		        android:id="@+id/list_connections_element_os"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentRight="true"
+		        android:layout_centerVertical="true"
+		        android:layout_marginRight="20dp"
+		        android:background="@drawable/activity_icon_min_help_tip"
+		        android:contentDescription="@string/contentDescription_list_connections_element_os" />
+		
+		</RelativeLayout>
+    </RelativeLayout>
+    
+
+</ScrollView>

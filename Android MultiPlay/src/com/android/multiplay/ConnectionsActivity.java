@@ -33,7 +33,9 @@ import com.android.application.BluetoothConfigurationClass;
 import com.android.application.ConnectionsConfigurationClass;
 import com.android.application.MultiPlayApplication;
 import com.android.application.WirelessConfigurationClass;
+import com.android.asychs.CheckConnectionStatus;
 import com.android.asychs.GenerateConnectionList;
+import com.android.database.DBHelper;
 import com.android.dialogs.AddConnectionDialog;
 import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
@@ -58,7 +60,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	* {@link RelativeLayout} which is displayed in place of the list of devices 
 	* when it is empty before refreshing by tapping {@link #b_connections_activity_refresh_connections_check} 
 	* or the list of devices is in the process of generating after tapping button 
-	* {@link #b_connections_activity_bluetooth_switcher} or #b_connections_activity_wireless_switcher.
+	* {@link #b_connections_activity_bluetooth_switcher} or {@link #b_connections_activity_wireless_switcher}.
 	* It is also displayed when, after refreshing, there is no devices to display. If so, appropriate text is displayed.
 	*/
 	private RelativeLayout rl_connections_activity_device_list_background_layout = null;
@@ -116,14 +118,19 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	*/
 	private ImageToggleButton b_connections_activity_wireless_switcher = null;
 	
-	/**
-	* 
-	*/
+	/** Button that fires {@link AddConnectionDialog}.
+	 * 
+	 * @see #new_connection_onClick()
+	 * 
+	 */
 	private ImageButton b_connections_activity_add_new_connection = null;
 	
-	/**
-	* 
-	*/
+	/** Button refreshes the list of found connections.
+	 * 
+	 * It executes {@link CheckConnectionStatus} for each element on {@link #listOfElements}
+	 * and refreshes the list of available connections along with their statuses. 
+	 * 
+	 */
 	private ImageButton b_connections_activity_refresh_connections_check = null;
 	
 	/**
@@ -140,6 +147,8 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	* 
 	*/
 	private boolean lv_connections_activity_device_list_visibly = false;
+	
+	private boolean networkAvaliable = true;
 	
 	WifiP2pManager mManager = null;
 	Channel mChannel = null;
@@ -253,6 +262,11 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	return;
 }
 
+	/** OcClick method displays {@link AddConnectionDialog} in order to add a new connection.
+	 * 
+	 * @see #b_connections_activity_add_new_connection
+	 * 
+	 */
 	private void new_connection_onClick() {		
 		AddConnectionDialog.showDialog(this,
 				ConnectionsActivity.DialogList.TAG_ADD_CONNECTION,
@@ -360,6 +374,13 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	 * 
 	 */
 	private void init() {
+		
+		if (MultiPlayApplication.isWirelessEnable() == false ) {
+			networkAvaliable = networkAvaliable || false;
+		}
+		
+		
+		
 		mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
 	    mChannel = mManager.initialize(this, getMainLooper(), null);
 	    mReceiver = new WiFiDirectBroadcastReceiver(mManager, mChannel, this);
@@ -369,12 +390,6 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	    mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
 	    mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
 	    mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
-	    
-	    refreshList(true,false);
-	    
-	    if( MultiPlayApplication.getDiscoveredWirelessDevices().isEmpty() == false ) {
-	    	refresh();
-	    }
 	}
 	
 	private void initRl_connections_activity_device_list_background_layout(int id) {
@@ -447,14 +462,17 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 				R.drawable.connections_activity_icon_creator;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog) {
 		String dialogTag = dialog.getTag();
-
+		ConnectionsConfigurationClass config = null;
+		
 		if ( dialogTag.equals(ConnectionsActivity.DialogList.TAG_ADD_CONNECTION)) {
-			
 			 Map<String,String> returnedData = ((AddConnectionDialog) dialog).getReturnedData();
-			
+			 
 			Log.d("Connections","Name-> "+returnedData.get(AddConnectionDialog.DEVICE_NAME));
 
 			if (((AddConnectionDialog) dialog).isViewSwitcherState() == ConnectionHelper.CONNECTION_TYPE_WIFI ) {
@@ -462,7 +480,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 				Log.d("Connections","IP-> "+returnedData.get(AddConnectionDialog.DEVICE_IP));
 				Log.d("Connections","Port-> "+returnedData.get(AddConnectionDialog.DEVICE_PORT));
 				
-				ConnectionsConfigurationClass config = new WirelessConfigurationClass(
+				config = new WirelessConfigurationClass(
 						returnedData.get(AddConnectionDialog.DEVICE_IP),
 						Integer.valueOf(returnedData.get(AddConnectionDialog.DEVICE_PORT)));
 				
@@ -472,9 +490,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 				config.setName(
 						returnedData.get(AddConnectionDialog.DEVICE_NAME));
 				
-				Log.d("DB",returnedData.get(AddConnectionDialog.DEVICE_IS_STORED).toString());
-				
-				if (returnedData.get(AddConnectionDialog.DEVICE_IS_STORED).toString()=="true") {
+				if (returnedData.get(AddConnectionDialog.DEVICE_IS_STORED).toString()==DBHelper.TRUE) {
 					config.setStored(true);
 				} else {
 					config.setStored(false);
@@ -482,11 +498,12 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 				
 				ConnectionHelper.insertNewConnectionToList(
 						ConnectionHelper.CONNECTION_TYPE_WIFI, config);
+				
 			} else {
 				
 				Log.d("Connections","UUID-> "+returnedData.get(AddConnectionDialog.DEVICE_UUID));
 				Log.d("Connections","MAC-> "+returnedData.get(AddConnectionDialog.DEVICE_MAC));
-				ConnectionsConfigurationClass config = new BluetoothConfigurationClass(
+				config = new BluetoothConfigurationClass(
 						UUID.fromString(returnedData.get(AddConnectionDialog.DEVICE_UUID)),
 						returnedData.get(AddConnectionDialog.DEVICE_MAC));
 				
@@ -554,6 +571,8 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 					configuration.getConnectionStatus(),
 					isConfigurationStored,
 					configuration.getSystem(),
+					configuration.getSystemDimmensionX(),
+					configuration.getSystemDimmensionY(),
 					ConnectionHelper.CONNECTION_TYPE_WIFI));
 		}
 	}
@@ -575,6 +594,8 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 					configuration.getConnectionStatus(),
 					isConfigurationStored,
 					configuration.getSystem(),
+					configuration.getSystemDimmensionX(),
+					configuration.getSystemDimmensionY(),
 					ConnectionHelper.CONNECTION_TYPE_BT));
 		}
 	}

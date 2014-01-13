@@ -60,7 +60,7 @@ public class Wifi implements Runnable {
 						Dimension wymiary = zestaw.getScreenSize();
 						int wysokosc = wymiary.height;
 						int szerokosc = wymiary.width;
-						dos.writeByte(N.Helper.encodeSignal(
+						dos.writeInt(N.Helper.encodeSignal(
 							N.Signal.DIMENSION,N.DeviceDataCounter.DOUBLE,wysokosc,szerokosc));
 						dis.close();
 						dos.close();

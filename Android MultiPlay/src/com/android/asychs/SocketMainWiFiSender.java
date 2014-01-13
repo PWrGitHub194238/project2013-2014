@@ -66,16 +66,16 @@ public class SocketMainWiFiSender extends AsyncTask<Byte, String, String> {
 					InetAddress.getByName(mainConfiguration.getIP()),
 					mainConfiguration.getPort());
 			this.dos = new DataOutputStream(socket.getOutputStream());
-			dos.writeByte(N.Signal.NEED_CONNECTION);
+			dos.writeByte(Params[0]);
 			this.dis = new DataInputStream(socket.getInputStream());
 			int port = dis.readInt();
-			mainConfiguration.setPort(port);
+			Log.d("THREAD","Port: "+port);
 			dis.close();
 			dos.close();
 			socket.close();
 			this.socket = new Socket(
 					InetAddress.getByName(mainConfiguration.getIP()),
-					mainConfiguration.getPort());
+					port);
 			this.dos = new DataOutputStream(socket.getOutputStream());
 			
 		} catch (UnknownHostException e1) {
@@ -87,16 +87,19 @@ public class SocketMainWiFiSender extends AsyncTask<Byte, String, String> {
 		}
 		Log.d("THREAD","Sender created.");
 		int data = 0;
+		int i = 0;
 		while(isRuning) {
 			try {
-				Log.d("THREAD","isEmpty "+queue.isEmpty());
+			//	Log.d("THREAD","isEmpty "+queue.isEmpty());
 				while(queue.isEmpty() == false ) {
 						data = queue.take();
-						Log.d("THREAD","doInBackground "+data);
+						//Log.d("THREAD","doInBackground "+data);
 						int[] out = Helper.decodeSignal(data);
-						Log.d("THREAD","Encoded: DEV: "+out[0]+" C: "+out[1]+" X: "+out[2]+" Y: "+out[3]);
+					//	Log.d("THREAD"," > Encoded: DEV: "+out[0]+" C: "+out[1]+" X: "+out[2]+" Y: "+out[3]);
 						dos.writeInt(data);
-						Log.d("THREAD","doInBackground "+data);
+					//	i += 1;
+					//	Log.d("THREAD","doInBackground "+data);
+						//Log.d("THREAD",String.valueOf(i));
 				}
 				if ( data != N.Exit.EXIT_NO_ERROR ) {
 					this.wait();

@@ -5,7 +5,7 @@ import java.util.UUID;
 public class BluetoothConfigurationClass  extends ConnectionsConfigurationClass {
 	
 	private UUID uuid = null;
-	private  String adress = null;
+	private String adress = null;
 	
 	public BluetoothConfigurationClass(UUID uuid, String adress) {
 		super();

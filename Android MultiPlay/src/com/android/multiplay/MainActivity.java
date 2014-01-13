@@ -7,11 +7,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 
 import com.android.application.MultiPlayApplication;
+import com.android.database.tables.General;
 import com.android.dialogs.AlertDialogs;
+import com.android.dialogs.CheckRequirementsDialog;
 import com.android.dialogs.DialogButtonClickListener;
 import com.android.dialogs.elements.DialogListCore;
 import com.android.multiplay.fragments.ConnectionPanel;
@@ -94,6 +97,24 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 		initB_help(R.id.b_main_activity_help_icon);
 		initB_options(R.id.b_main_activity_options_icon);
 		
+		try {
+			if (!MultiPlayApplication.getDbHelper().sql_select_by_id(General.class, true).moveToFirst()) {
+				CheckRequirementsDialog.showDialog(this,
+						MainActivity.DialogList.TAG_WELCOME,
+						DialogListCore.ID_TITLE_ICON_APPLICATION,
+						MainActivity.DialogList.ID_TITLE_WELCOME,
+						CheckRequirementsDialog.getViewFromResource(this,R.layout.dialog_check_requirements_1),
+						DialogListCore.ID_BUTTON_NEXT,
+						null,
+						null);
+			}
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		init();
 	
 	}
@@ -189,14 +210,17 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	
 	
 	public final static class DialogList {
-		
+
 		private static final String PACKAGE = "com.android.multiplay.mainactivity";
 		
+		public static final String TAG_WELCOME = PACKAGE + "WELCOME";
 		public static final String TAG_BLUETOOTH_CONNECTED = PACKAGE + "BLUETOOTH_CONNECTED";
 		public static final String TAG_BLUETOOTH_ENABLED = PACKAGE + "BLUETOOTH_ENABLED";
 		public static final String TAG_WIFI_CONNECTED = PACKAGE + "WIFI_CONNECTED";
 		public static final String TAG_WIFI_ENABLED = PACKAGE + "WIFI_ENABLED";
 		
+		public static final int ID_TITLE_WELCOME =
+				R.string.dialog_ID_TITLE_WELCOME;
 		public static final int ID_TITLE_BLUETOOTH_CONNECTED =
 				R.string.dialog_ID_TITLE_BLUETOOTH_CONNECTED;
 		public static final int ID_TITLE_BLUETOOTH_ENABLED =
@@ -205,7 +229,7 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 				R.string.dialog_ID_TITLE_WIFI_CONNECTED;
 		public static final int ID_TITLE_WIFI_ENABLED =
 				R.string.dialog_ID_TITLE_WIFI_ENABLED;
-
+		
 		public static final int ID_MESSAGE_BLUETOOTH_CONNECTED =
 				R.string.dialog_ID_MESSAGE_BLUETOOTH_CONNECTED;
 		public static final int ID_MESSAGE_BLUETOOTH_ENABLED =

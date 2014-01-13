@@ -126,12 +126,12 @@ public final class N {
 				N.Signal.decodeSystem(signal)));
 	 */
 	public static final class Signal {
+		public static final byte DIMENSION = (byte) Integer.parseInt(
+				"00000010", 2);
 		public static final byte NEED_AUTHORIZATION = (byte) Integer.parseInt(
 				"00000000", 2);
 		public static final byte NEED_CONNECTION = (byte) Integer.parseInt(
 				"00000001", 2);
-		public static final byte DIMENSION = (byte) Integer.parseInt(
-				"00000010", 2);
 		
 		public static final byte encodeSignal(byte signal, byte system) {
 			return (byte) (signal + (system << Shift.SYSTEM));
@@ -155,8 +155,9 @@ public final class N {
 		public static final int KEYBOARD = C.SIGNAL_KEYBOARD;
 		public static final int WHEEL = C.SIGNAL_WHEEL;
 		public static final int SPEAKER = C.SIGNAL_SPEAKER;// ?
+		public static final int VJOY = Integer.parseInt("00100", 2);// ?
+
 		public static final int EXIT = Integer.parseInt("11111", 2);// ?
-		
 	}
 
 	/**
@@ -312,7 +313,7 @@ public final class N {
 			return output;
 		}
 
-		/**
+		/*((!!!@++++++??__((<!!!!!!@@@@@@###&&&<<<<<<>>>>
 		 * 
 		 */
 		public static final int[] decodeSignalFull(int signal) {

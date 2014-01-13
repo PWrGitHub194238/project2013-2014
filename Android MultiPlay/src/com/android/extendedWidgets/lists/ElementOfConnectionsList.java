@@ -23,14 +23,16 @@ public class ElementOfConnectionsList {
 	public static final int ICON_WINDOWS = R.drawable.connections_activity_os_windows;
 	public static final int ICON_UNKNOW = R.drawable.connections_activity_os_unknow;
 	
-	public ElementOfConnectionsList(String deviceName, String deviceDetail,
-			int deviceDetailStatus, boolean isStored, byte system, boolean BTorWiFi) {
+	public ElementOfConnectionsList(String deviceName, String deviceDetail, int deviceDetailStatus, 
+			boolean isStored, byte system, int resolution_x, int resolution_y, boolean BTorWiFi) {
 		this.icon_type_id = ICON[0];
 		this.deviceName = deviceName;
 		this.deviceDetailStatus = deviceDetailStatus;
 		this.deviceDetail = deviceDetail;
 		this.isStored = isStored;
 		this.system = system;
+		this.resolution_x = resolution_x;
+		this.resolution_y = resolution_y;
 		if (BTorWiFi == ConnectionHelper.CONNECTION_TYPE_BT) {
 			deviceDetailPrefix = "MAC: ";
 			connectionTypeIcon = ICON_BT;
@@ -49,7 +51,8 @@ public class ElementOfConnectionsList {
 	private String deviceDetail = null;
 	private boolean isStored = false;
 	private byte system = 0;
-
+	private int resolution_x = 0;
+	private int resolution_y = 0;
 
 
 	public final int getIcon_type_id() {
@@ -100,4 +103,30 @@ public class ElementOfConnectionsList {
 	public final void setSystem(byte system) {
 		this.system = system;
 	}
+	/**
+	 * @return the resolution_x
+	 */
+	public final int getResolution_x() {
+		return resolution_x;
+	}
+	/**
+	 * @param resolution_x the resolution_x to set
+	 */
+	public final void setResolution_x(int resolution_x) {
+		this.resolution_x = resolution_x;
+	}
+	/**
+	 * @return the resolution_y
+	 */
+	public final int getResolution_y() {
+		return resolution_y;
+	}
+	/**
+	 * @param resolution_y the resolution_y to set
+	 */
+	public final void setResolution_y(int resolution_y) {
+		this.resolution_y = resolution_y;
+	}
+	
+	
 }

@@ -15,24 +15,39 @@
         android:text="0" />
 
     <Button
+        android:id="@+id/brea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:text="Bre\nak"
+        android:textSize="20pt" />
+
+    <Button
         android:id="@+id/gaz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/stopv"
-        android:layout_marginRight="106dp"
-        android:layout_marginTop="52dp"
-      
-        android:text="Button" />
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dp"
+        android:text="Ac\ncel"
+        android:textSize="20pt" />
 
-    <Button
-        android:id="@+id/brea"
+    <SeekBar
+        android:id="@+id/seekBar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/gaz"
+        android:layout_toRightOf="@+id/brea" />
+
+    <RadioButton
+        android:id="@+id/checkBox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/gaz"
-        android:layout_alignBottom="@+id/gaz"
-        android:layout_marginLeft="32dp"
-        android:layout_toRightOf="@+id/stopv"
-        android:text="Button" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:onClick="onRadioButtonClicked"
+        android:text="Not send 0" />
 
 </RelativeLayout>

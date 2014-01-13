@@ -2,13 +2,20 @@ package com.android.multiplay;
 
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class OptionsActivity extends Activity {
+import com.android.application.MultiPlayApplication;
+import com.android.database.MultiPlayDataBase;
+import com.android.dialogs.AlertDialogs;
+import com.android.dialogs.DialogButtonClickListener;
+import com.android.dialogs.elements.DialogListCore;
+
+public class OptionsActivity extends Activity implements DialogButtonClickListener {
 
 ////////////////////Fields
 
@@ -96,6 +103,14 @@ private ImageButton b_goback = null;
 	}
 	
 	public void resetdata_OnClick( View view ) {
+		AlertDialogs.showDialog(this,
+				OptionsActivity.DialogList.TAG_RESET_DB,
+				DialogListCore.IT_TITLE_ICON_WARNING,
+				OptionsActivity.DialogList.ID_TITLE_RESET_DB,
+				OptionsActivity.DialogList.ID_MESSAGE_RESET_DB,
+				DialogListCore.ID_BUTTON_OK,
+				null,
+				DialogListCore.ID_BUTTON_CANCEL);
 	}
 	
 	public void go_back_OnClick( View view ) {
@@ -158,5 +173,48 @@ private ImageButton b_goback = null;
 		this.b_goback = (ImageButton) super.findViewById(id);
 		this.b_goback.setOnFocusChangeListener(
 		new ButtonsFocusChangeListener(this,id));
+	}
+
+	
+	
+////////////////////DialogButtonClickListener's methods for dialog interaction
+	
+	
+	
+	public final static class DialogList {
+	
+		private static final String PACKAGE = "com.android.multiplay.optionsactivity";
+		
+		public static final String TAG_RESET_DB = PACKAGE + "RESET_DB";
+		
+		public static final int ID_TITLE_RESET_DB =
+		R.string.dialog_ID_TITLE_RESET_DB;
+		
+		
+		public static final int ID_MESSAGE_RESET_DB =
+		R.string.dialog_ID_MESSAGE_RESET_DB;
+	
+	}
+	
+	@Override
+	public void onDialogPositiveClick(DialogFragment dialog) {
+		String dialogTag = dialog.getTag();
+
+		if ( dialogTag.equals(OptionsActivity.DialogList.TAG_RESET_DB)) {
+			MultiPlayApplication.getDbHelper().recreateDataBase();
+			return;
+		}
+	}
+
+	@Override
+	public void onDialogNeutralClick(DialogFragment dialog) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onDialogNegativeClick(DialogFragment dialog) {
+		// TODO Auto-generated method stub
+		
 	}
 }

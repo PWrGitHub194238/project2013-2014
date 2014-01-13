@@ -56,6 +56,7 @@ public class Serverwifi implements Runnable {
 			ServerSocket serversocket; 
 			try {
 				serversocket = new ServerSocket(port);
+				//System.err.println(port);
 				Socket socket;
 				try {
 					socket = serversocket.accept();
@@ -65,13 +66,17 @@ public class Serverwifi implements Runnable {
 					this.dis = dis;
 					this.dos = dos;
 					this.serversocket = serversocket;
-					data = dis.readByte();
+					//data = dis.readByte();
 
+					int i = 0;
 					while (true) {
+						
 						try {
 							signals = dis.readInt();
+						//	i += 1;
+						//	System.err.println(signals);
 							int[] ret = N.Helper.decodeSignal(signals);
-
+						//	System.out.println("D: "+ret[0] + "S: " + ret[1] +" "+ret[2]+ " "+ N.Device.WHEEL);
 							if (ret[0] == N.Device.MOUSE) {
 								if (ret[1] == N.DeviceDataCounter.SINGLE)
 									mouse.click(ret[2]);
@@ -86,20 +91,24 @@ public class Serverwifi implements Runnable {
 								if (ret[1] == N.DeviceDataCounter.SINGLE)
 									keyboard.click(ret[2]);
 							} else if (ret[0] == N.Device.WHEEL) { 
+							//	System.out.println(ret[2]);
 								if (ret[1] == N.DeviceDataCounter.DOUBLE) {
-									if (ret[2] == -10)
-										ret[2] = -9;
+//									if (ret[2] == -10)
+//										ret[2] = -9;
 									if (ret[3] == N.DeviceSignal.KEYBOARD_UP)
-										vjoy.updateAxes(1,
-												(int) (ret[2] * 14.1),
-												(int) -(9 * 14.1));
+//										vjoy.updateAxes(1,
+//												(int) (ret[2] * 14.1),
+//												(int) -(9 * 14.1));
+										vjoy.updateAxes(1,ret[2],-126);
 									else if (ret[3] == N.DeviceSignal.KEYBOARD_SPACE)
-										vjoy.updateAxes(1,
-												(int) (ret[2] * 14.1),
-												(int) (9 * 14.1));
+//										vjoy.updateAxes(1,
+//												(int) (ret[2] * 14.1),
+//												(int) (9 * 14.1));
+										vjoy.updateAxes(1,ret[2],126);
 									else
-										vjoy.updateAxes(1,
-												(int) (ret[2] * 14.1), 0);
+//										vjoy.updateAxes(1,
+//												(int) (ret[2] * 14.1), 0);
+										vjoy.updateAxes(1,ret[2],0);
 								}
 							} else if (ret[0] == N.Device.SPEAKER) {
 								if (ret[1] == N.DeviceDataCounter.SINGLE) {

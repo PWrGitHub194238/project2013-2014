@@ -427,19 +427,14 @@ public class Keyboard {
 			} else if (key == N.DeviceSignal.KEYBOARD_HOME) {
 				robot.keyPress(KeyEvent.VK_HOME);
 				robot.keyRelease(KeyEvent.VK_HOME);
-
-			} else if (key == N.DeviceSignal.KEYBOARD_SPACE) {
-				robot.keyPress(KeyEvent.VK_SPACE);
-				robot.keyRelease(KeyEvent.VK_SPACE);
-
-			} else if (key == N.DeviceSignal.KEYBOARD_END) {
+				
+			}  else if (key == N.DeviceSignal.KEYBOARD_END) {
 				robot.keyPress(KeyEvent.VK_END);
 				robot.keyRelease(KeyEvent.VK_END);
-
 			}
 		} catch (AWTException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-}
+}    

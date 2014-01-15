@@ -8,14 +8,19 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Random;
 
+import javax.bluetooth.UUID;
+
 import VJoy.VJoyDriver32;
 import VJoy.VJoyDriver64;
 
 public class Connect {
 	private int portdefault = 1234;
 	private int port;
+	private UUID uuiddefault = new UUID("04c6093b00001000800000805f9b34fb", false);
+
 	private String IP = null;
 	private ArrayList<Integer> arrlist = new ArrayList<Integer>();
+	private ArrayList<UUID> uuidlist = new ArrayList<UUID>();
 
 	public String getIP() {
 		String ip = null;
@@ -53,7 +58,9 @@ public class Connect {
 	public int getportdefault() {
 		return portdefault;
 	}
-
+	public UUID getuuiddefault() {
+		return uuiddefault;
+	}
 	public int getport() {
 		Random r = new Random();
 		int port, flag;
@@ -69,4 +76,20 @@ public class Connect {
 		arrlist.add(port);
 		return arrlist.get(arrlist.size() - 1);
 	}
+	/*public int getuuid() {
+		Random r = new Random();
+		long uuid;
+		int flag;
+		do {
+			uuid = r.nextInt() % 1000000000;
+			flag = 0;
+			for (int i = 0; i < uuidlist.size(); i++) {
+				if (uuid == uuidlist.get(i)) {
+					flag = 1;
+				}
+			}
+		} while (uuid < 1000000000 || flag == 1);
+		arrlist.add(port);
+		return arrlist.get(arrlist.size() - 1);
+	}*/
 }

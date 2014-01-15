@@ -38,7 +38,7 @@
     
    <style name="list_requirement_name">
         <item name="android:textColor">#FFFFFF</item>
-  		<item name="android:textSize">26sp</item>
+  		<item name="android:textSize">18sp</item>
     </style>
     
 </resources>

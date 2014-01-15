@@ -34,6 +34,25 @@
     <string name="contentDescription_list_connections_element_os">TODO</string>
     <string name="contentDescripion_ib_dialog_welcome_next_to_requirements_list">TODO</string>
     <string name="contentDescription_list_connections_element_resolution">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_bluetooth_true_false">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_bluetooth_low_energy_true_false">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_wifi_true_false">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_wifi_direct_true_false">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_accelerometer_true_false">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_gyroscope_true_false">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_gravity_true_false">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_rotation_vector_true_false">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_linear_acceleration_true_false">TODO</string>
+    
+    <string name="contentDescription_iv_dialog_welcome_requirements_bluetooth_help">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_bluetooth_low_energy_help">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_wifi_help">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_wifi_direct_help">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_accelerometer_help">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_gyroscope_help">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_gravity_help">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_rotation_vector_help">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_linear_acceleration_help">TODO</string>
     <string name="hint_device_name">Device name</string>
     <string name="hint_device_ip">127.0.0.10</string>
     <string name="hint_device_port">8000</string>
@@ -56,5 +75,12 @@
     <string name="title_activity_touch_pad">TouchPadActivity</string>
     <string name="title_activity_your">Your</string>
     <string name="title_activity_speaker">Speaker</string>
-
+    <string name="title_activity_mouse_option">MouseOptionActivity</string>
+    <string name="title_activity_gyromouse_option">GyromouseOptionActivity</string>
+    <string name="title_activity_touchpad_option">TouchpadOptionActivity</string>
+    <string name="title_activity_steeringwheel_option">SteeringwheelOptionActivity</string>
+    <string name="title_activity_keyboard_option">KeyboardOptionActivity</string>
+    <string name="title_activity_speaker_option">SpeakerOptionActivity</string>
+    
+    
 </resources>

@@ -35,6 +35,8 @@ public final class DialogListCore {
 			R.string.dialog_ID_BUTTON_OPTIONS;
 	public static final Integer ID_BUTTON_NEXT = 
 			R.string.dialog_ID_BUTTON_NEXT;
+	public static final Integer ID_BUTTON_FINISH = 
+			R.string.dialog_ID_BUTTON_FINISH;
 
 	
 }

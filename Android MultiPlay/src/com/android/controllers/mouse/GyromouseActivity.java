@@ -23,7 +23,7 @@ import com.android.application.N.Helper;
 import com.android.multiplay.R;
 
 //myszka oparta na żyroskopie(beta).
-public class Gyromouse extends Activity implements SensorEventListener,
+public class GyromouseActivity extends Activity implements SensorEventListener,
 		OnTouchListener {
 	private int shiftflag = 0, altflag = 0;
 	private SensorManager sm;
@@ -44,7 +44,7 @@ public class Gyromouse extends Activity implements SensorEventListener,
 		setContentView(R.layout.activity_gyromouse);
 		
 		try {
-			MultiPlayApplication.runThread();
+			MultiPlayApplication.runThread(MultiPlayApplication.isConnectedTo());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -29,7 +29,7 @@ public class MultiplayExplorerActivity extends Activity implements OnClickListen
 
 		try {
 			if (MultiPlayApplication.getMainNetworkConfiguration() != null) {
-				MultiPlayApplication.runThread();
+				MultiPlayApplication.runThread(MultiPlayApplication.isConnectedTo());
 				b_connections_activity_testmouse = (ImageButton) super.findViewById(R.id.b_connections_activity_testmouse);
 				b_connections_activity_testmove = (ImageButton) super.findViewById(R.id.b_connections_activity_testmove);
 				b_connections_activity_testleft = (ImageButton) super.findViewById(R.id.b_connections_activity_testleft);

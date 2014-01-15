@@ -28,7 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.view.KeyEvent;
 
-public class Speaker extends Activity {
+public class SpeakerActivity extends Activity {
 	private ImageButton btnSpeak;
 	protected static final int RESULT_SPEECH = 1;
 	private int Punctuation = 0, Commands = 0;
@@ -38,7 +38,7 @@ public class Speaker extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_speaker);
 		try {
-			MultiPlayApplication.runThread();
+			MultiPlayApplication.runThread(MultiPlayApplication.isConnectedTo());
 			// txtText = (TextView) findViewById(R.id.text2);
 			btnSpeak = (ImageButton) findViewById(R.id.speak);
 		} catch (IOException e) {

@@ -88,7 +88,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 							DialogListCore.ID_BUTTON_CANCEL);
 		}
 		try {
-			MultiPlayApplication.runThread();
+			MultiPlayApplication.runThread(MultiPlayApplication.isConnectedTo());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

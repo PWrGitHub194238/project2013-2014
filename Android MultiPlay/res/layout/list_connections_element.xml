@@ -75,12 +75,12 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/list_connections_element_device_name"
         android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@id/list_connections_element_os"
+        android:layout_toLeftOf="@+id/list_connections_element_os"
         android:background="@drawable/connections_activity_stored_yes"
         android:contentDescription="@string/contentDescription_list_connections_element_is_device_stored" />
 
     <ImageView
-        android:id="@+id/list_connections_element_os"
+        android:id="@id/list_connections_element_os"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

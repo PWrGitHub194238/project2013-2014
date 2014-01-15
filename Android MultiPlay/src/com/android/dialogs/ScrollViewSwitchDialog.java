@@ -83,6 +83,7 @@ public class ScrollViewSwitchDialog extends ScrollViewDialog implements OnChecke
 	public void onCheckedChanged(CompoundButton view, boolean switchState) {
 		if (view == viewSwitcher) {
 			loadCurrentView(switchState);
+			viewSwitcher.setSelected(switchState);
 		}
 	}
 	

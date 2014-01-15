@@ -166,14 +166,15 @@ public class CarouselActivity extends Activity implements OnItemSelectedListener
 		}
 	}
 	
-	public final void generateCarouselItemList() {
+	public void generateCarouselItemList() {
 		carouselItemList = new ArrayList<CarouselDataItem>();
 		for ( ControllerDefinition controller : C.CONTROLLER_LIST ) {
 				carouselItemList.add(
 						new CarouselDataItem(
 								controller.getName(), 
 								controller.getIconID(),
-								controller.getNextActivity()));
+								controller.getControllerActivity(),
+								controller.getOptionsActivity()));
 		}
 	}
 
@@ -185,7 +186,7 @@ public class CarouselActivity extends Activity implements OnItemSelectedListener
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		startActivity(
 				new Intent(
-						context, carouselViewAdapter.getItem(position).getNextActivity()));
+						context, carouselViewAdapter.getItem(position).getControllerActivity()));
 	}
 
 	@Override

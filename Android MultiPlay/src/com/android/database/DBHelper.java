@@ -1014,7 +1014,7 @@ public class DBHelper {
 	}
 	
 
-	public void updateMultiPlayRequirements(Context context, ExtendedProgressBar progressBar) throws InstantiationException, IllegalAccessException {
+	public Map<String,String> updateMultiPlayRequirements(Context context, ExtendedProgressBar progressBar) throws InstantiationException, IllegalAccessException {
 		FunctionalityCheck functionalityCheck = new FunctionalityCheck(context);
 		Log.d("APP","FUNC");
 		Map<String,String> requirementsMap = new HashMap<String,String>();
@@ -1089,13 +1089,14 @@ public class DBHelper {
 		sql_update_row(General.class, 1, requirementsMap, true, true);
 		progressBar.setProgress(
 				progressBar.getProgress()+1);
+		return requirementsMap;
 	}
 	
 	public static Map<String,String> parseMultiPlayRequirements( Cursor cursor ) {
 		if (cursor.moveToFirst() == true) {
 			while (cursor.isAfterLast() == false ) {
 
-				Log.d("DB", DatabaseUtils.dumpCurrentRowToString(cursor));
+				Log.d("DB", "REQ: "+DatabaseUtils.dumpCurrentRowToString(cursor));
 				cursor.moveToNext();
 			}
 		}

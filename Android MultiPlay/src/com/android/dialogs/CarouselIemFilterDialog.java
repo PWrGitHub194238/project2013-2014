@@ -32,8 +32,7 @@ public class CarouselIemFilterDialog extends AlertDialogs implements OnCheckedCh
 	
 	public static final String DEVICE_NAME = "device_name";
 	public static final String DEVICE_IS_STORED = "device_is_stored";
-	public static final String TRUE = "true";
-	public static final String FALSE = "false";
+
 	public static final String DEVICE_IP = "device_ip";
 	public static final String DEVICE_PORT = "device_port";
 	public static final String DEVICE_UUID = "device_uuid";
@@ -118,19 +117,13 @@ public class CarouselIemFilterDialog extends AlertDialogs implements OnCheckedCh
 	    			R.id.iv_connections_activity_icon_wifi);
 	    	iv_connections_activity_icon_bt = (ImageView) dialogInnerView.findViewById(
 	    			R.id.iv_connections_activity_icon_bt);
-	    	
-	    	et_connections_activity_device_name = (EditText) dialogInnerView.findViewById(
-	    			R.id.et_connections_activity_device_name);
-	    	et_connections_activity_device_name.setTag(DEVICE_NAME);
-	    	et_connections_activity_device_name.addTextChangedListener(this);
+
 	    	
 	    	et_connections_activity_device_ip = (EditText) dialogInnerView.findViewById(
 	    			R.id.et_connections_activity_device_ip);
 	    	et_connections_activity_device_ip.setTag(DEVICE_IP);
 	    	et_connections_activity_device_ip.addTextChangedListener(this);
-	    	
-	    	et_connections_activity_device_uuid = (EditText) dialogInnerView.findViewById(
-	    			R.id.et_connections_activity_device_uuid);
+
 	    	et_connections_activity_device_uuid.setTag(DEVICE_UUID);
 	    	et_connections_activity_device_uuid.addTextChangedListener(this);
 	    	
@@ -143,9 +136,6 @@ public class CarouselIemFilterDialog extends AlertDialogs implements OnCheckedCh
 	    			R.id.et_connections_activity_device_port);
 	    	et_connections_activity_device_port.setTag(DEVICE_PORT);
 	    	et_connections_activity_device_port.addTextChangedListener(this);
-	    	
-	    	cb_save_connection = (CheckBox) dialogInnerView.findViewById(
-	    			R.id.cb_save_connection);
 	    	
 	    	returnedData = new HashMap<String,String>();
     	}
@@ -215,7 +205,8 @@ public class CarouselIemFilterDialog extends AlertDialogs implements OnCheckedCh
 				isValid &= validation(et_connections_activity_device_mac,PATTERN_MAC,PATTERN_MAC_ERROR);
 			}
 	
-			returnedData.put(DEVICE_IS_STORED, (cb_save_connection.isChecked())?TRUE:FALSE);
+			returnedData.put(DEVICE_IS_STORED, (cb_save_connection.isChecked())?
+					Boolean.toString(true):Boolean.toString(false));
 			super.getPositiveButton().setEnabled(isValid);
 		}
 	}

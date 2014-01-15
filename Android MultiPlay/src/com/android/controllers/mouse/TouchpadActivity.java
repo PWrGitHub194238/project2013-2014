@@ -17,7 +17,7 @@ import android.view.MotionEvent;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TouchPadActivity extends Activity {
+public class TouchpadActivity extends Activity {
 	private double oldx = 245.0, oldy = 175.0;
 	private TextView txv;
 	private int multi=1;		//mno¿nik do ustawieñ szybkoœci ruchu
@@ -28,7 +28,7 @@ public class TouchPadActivity extends Activity {
 		setContentView(R.layout.activity_touch_pad);
 		txv = (TextView) super.findViewById(R.id.txe);
 		try {
-			MultiPlayApplication.runThread();
+			MultiPlayApplication.runThread(MultiPlayApplication.isConnectedTo());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

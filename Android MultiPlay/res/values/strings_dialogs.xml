@@ -8,7 +8,11 @@
     <string name="dialog_ID_TITLE_WIFI_ENABLED">WiFi enabled</string>
     <string name="dialog_ID_TITLE_CONNECT_CONFIRMATION">Confirmation</string>
     <string name="dialog_ID_TITLE_NO_CONNECTION_FOUND">Connection not found</string>
-    <string name="dialog_ID_TITLE_WELCOME">Welcome in MultiPlay!</string>
+    
+    <string name="dialog_ID_TITLE_WELCOME_1">Welcome in MultiPlay!</string>
+   	<string name="dialog_ID_TITLE_WELCOME_2">Welcome in MultiPlay!</string>
+  	<string name="dialog_ID_TITLE_WELCOME_3">Welcome in MultiPlay!</string>
+  
     <string name="dialog_ID_TITLE_RESET_DB">Confirmation</string>
     
     <string name="dialog_ID_MESSAGE_NO_MESSAGE">(no message)</string>
@@ -18,8 +22,13 @@
 	<string name="dialog_ID_MESSAGE_WIFI_ENABLED">WiFi conecions available.\n Go to options to choose one.</string>
 	<string name="dialog_ID_MESSAGE_NO_CONNECTION_FOUND">No active network connection was found.\n Go to Options to create one.</string>
 	<string name="dialog_ID_MESSAGE_WELCOME_1">I appreciate that you\'ve decided to try me out!</string>
-	<string name="dialog_ID_MESSAGE_WELCOME_2">In order to know what I\'m able to do within your mobile device I have to run several tests which can take a while, so be patient.\n\nIn a mean time please let me know your name:</string>
-	<string name="dialog_ID_MESSAGE_WELCOME_3">Since you successfully complete your very first task you can go to the next step, but first you need to wait for my tests end. Only then this button above will be unlocked.</string>
+	<string name="dialog_ID_MESSAGE_WELCOME_2">\tIn order to know what I\'m able to do within your mobile device I have to run several tests which can take a while, so be patient.\n\n\nIn a mean time please let me know your name:</string>
+	<string name="dialog_ID_MESSAGE_WELCOME_3">\tSince you successfully complete your very first task you can go to the next step, but first you need to wait for my tests end. Only then this button above will be unlocked.</string>
+	<string name="dialog_ID_MESSAGE_WELCOME_4">\tRight below I presented you which of features your device supported or not. Please don\'t panic if you see some red crosses- for example most of my features has several versions and each one require some different sensor.\n\n\tBy tapping a blue icon, you can read some more detailed description of each position.</string>
+	<string name="dialog_ID_MESSAGE_WELCOME_5">\tKeep in mind that you will not able even to see unsupported features - sorry but I have to be sure that you won\'t make something that makes me crash:).</string>
+	<string name="dialog_ID_MESSAGE_WELCOME_6">\tHey, it is a last step of configuration!\n\n\tAs you probably well aware you can use either Wifi or Bluetooth in order to connect to some other devices. I need to know which method would you prefer if I discover that both are enabled.\n\n\tJust set the switch below in the right place.</string>
+	<string name="dialog_ID_MESSAGE_WELCOME_7">\tBy tapping "Add" you can immediately get to configuration of wireless connection or just leave this dialog by clicking "Finish". You can always change this options later.</string>
+	
 	<string name="dialog_ID_MESSAGE_RESET_DB">Are you sure to reset entire application data?</string>
 	
 	<string name="dialog_ID_BUTTON_CANCEL">Cancel</string>
@@ -29,6 +38,7 @@
 	<string name="dialog_ID_BUTTON_CONNECT">Connect</string>
 	<string name="dialog_ID_BUTTON_NEXT">Next</string>
 	<string name="dialog_ID_BUTTON_EMPTY">&#160;</string>
+	<string name="dialog_ID_BUTTON_FINISH">Finish</string>
 	
 	<string name="dialog_ID_TITLE_ADD_CONNECTION">Add connection</string>
 </resources>

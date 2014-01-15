@@ -28,7 +28,6 @@ public class ExtendedProgressBar extends ProgressBar {
 	public void setProgress(int progress) {
 		super.setProgress(progress);
 		if ( onProgressChangedListener != null ) {
-			Log.d("APP","OK");
 			onProgressChangedListener.makeAction(progress);
 		}
 	}

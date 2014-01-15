@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
+    <string name="tv_dialog_welcome_requirements_bluetooth">Bluetooth</string>
+    <string name="tv_dialog_welcome_requirements_bluetooth_enabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_bluetooth_disabled">TODO</string>
+ 
+	<string name="tv_dialog_welcome_requirements_bluetooth_low_energy">Bluetooth Low Energy</string>
+    <string name="tv_dialog_welcome_requirements_bluetooth_low_energy_enabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_bluetooth_low_energy_disabled">TODO</string>
+    
+	<string name="tv_dialog_welcome_requirements_wifi">Wi-Fi</string>
+    <string name="tv_dialog_welcome_requirements_wifi_enabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_wifi_disabled">TODO</string>
+    
+	<string name="tv_dialog_welcome_requirements_wifi_direct">Wi-Fi Direct</string>
+    <string name="tv_dialog_welcome_requirements_wifi_direct_enabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_wifi_direct_disabled">TODO</string>
+    
+	<string name="tv_dialog_welcome_requirements_accelerometer">Accelerometer sensor</string>
+    <string name="tv_dialog_welcome_requirements_accelerometer_enabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_accelerometer_disabled">TODO</string>
+
+	<string name="tv_dialog_welcome_requirements_gyroscope">Gyroscope sensor</string>
+    <string name="tv_dialog_welcome_requirements_gyroscope_enabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_gyroscope_disabled">TODO</string>
+    
+	<string name="tv_dialog_welcome_requirements_gravity">Gravity sensor</string>
+    <string name="tv_dialog_welcome_requirements_gravity_enabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_gravity_disabled">TODO</string>
+    
+	<string name="tv_dialog_welcome_requirements_rotation_vector">Rotation vector</string>
+    <string name="tv_dialog_welcome_requirements_rotation_vector_enabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_rotation_vector_disabled">TODO</string>
+    
+	<string name="tv_dialog_welcome_requirements_linear_acceleration">Linear acceleration</string>
+    <string name="tv_dialog_welcome_requirements_linear_acceleration_enabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_linear_acceleration_disabled">TODO</string>
+    
     <string name="tv_empty">--</string>
     
     <string name="tv_default_title_in_main_activity">MultiPlay</string>
@@ -33,12 +70,14 @@
 			<string name="tv_connections_activity_device_name">Device:</string>
 			<string name="tv_connections_activity_device_ip">IP:</string>
 			<string name="tv_connections_activity_device_port">Port:</string>
-			<string name="cb_save_connection">Save connection</string>
 			<string name="tv_connections_activity_device_uuid">UUID:</string>
 			<string name="tv_connections_activity_device_mac">MAC address:</string>
 			<string name="tv_list_connections_element_resolution_x">xxxx</string>
 			<string name="tv_list_connections_element_resolution_x_y"> X </string>
 			<string name="tv_list_connections_element_resolution_y">yyyy</string>
+			
+			<string name="cb_save_connection">Save connection</string>
+			<string name="cb_set_as_default">Set as default</string>
 						
 			
 		<string name="tv_option_1_title_in_options_activity">Controllers</string>

@@ -489,8 +489,8 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 				
 				config.setName(
 						returnedData.get(AddConnectionDialog.DEVICE_NAME));
-				
-				if (returnedData.get(AddConnectionDialog.DEVICE_IS_STORED).toString()==DBHelper.TRUE) {
+				Log.d("APP","STORED0 ? "+returnedData.get(AddConnectionDialog.DEVICE_IS_STORED).toString());
+				if (returnedData.get(AddConnectionDialog.DEVICE_IS_STORED)==Boolean.toString(true)) {
 					config.setStored(true);
 				} else {
 					config.setStored(false);
@@ -499,26 +499,34 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 				ConnectionHelper.insertNewConnectionToList(
 						ConnectionHelper.CONNECTION_TYPE_WIFI, config);
 				
-			} else {
+			} else if (((AddConnectionDialog) dialog).isViewSwitcherState() == ConnectionHelper.CONNECTION_TYPE_BT ) {
 				
-				Log.d("Connections","UUID-> "+returnedData.get(AddConnectionDialog.DEVICE_UUID));
+				Log.d("Connections","UUID-> "+BluetoothConfigurationClass.generateUUIDfromMAC(
+						BluetoothConfigurationClass.Profiles.SSP,
+						returnedData.get(AddConnectionDialog.DEVICE_MAC)));
 				Log.d("Connections","MAC-> "+returnedData.get(AddConnectionDialog.DEVICE_MAC));
 				config = new BluetoothConfigurationClass(
-						UUID.fromString(returnedData.get(AddConnectionDialog.DEVICE_UUID)),
+						BluetoothConfigurationClass.generateUUIDfromMAC(
+								BluetoothConfigurationClass.Profiles.SSP,
+								returnedData.get(AddConnectionDialog.DEVICE_MAC)),
 						returnedData.get(AddConnectionDialog.DEVICE_MAC));
 				
-				config.setName(returnedData.get(AddConnectionDialog.DEVICE_NAME));
-				config.setStored(
-						(returnedData.get(AddConnectionDialog.DEVICE_IS_STORED).contentEquals("TRUE"))?true:false);
-				if (AddConnectionDialog.DEVICE_IS_STORED.contentEquals("TRUE")) {
-					config.setStoredIndex(1);
+				config.setConnectionStatus(
+						ConnectionHelper.STATUS_NOT_IN_RANGE);
+				
+				config.setName(
+						returnedData.get(AddConnectionDialog.DEVICE_NAME));
+				
+				if (returnedData.get(AddConnectionDialog.DEVICE_IS_STORED).toString()==Boolean.toString(true)) {
+					config.setStored(true);
+				} else {
+					config.setStored(false);
 				}
 				
-				ConnectionHelper.insertNewConnectionToList(ConnectionHelper.CONNECTION_TYPE_BT, config);
-				
-				
+				ConnectionHelper.insertNewConnectionToList(
+						ConnectionHelper.CONNECTION_TYPE_BT, config);
 			}
-			return;
+			
 		} else if (dialogTag.equals(ConnectionsActivity.DialogList.TAG_CONNECT_CONFIRMATION)) {
 			Toast.makeText(this, "Make connection",Toast.LENGTH_LONG).show();
 			MultiPlayApplication.setMainNetworkConfiguration(selectedConfig);
@@ -548,6 +556,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 		if ( isWirelessOn == true ) {
 			Log.d("Connections","Refresh list");
 			refreshWirelessList();
+			refreshBluetoothList();
 		}
 		if ( isBluetoothOn == true ) {
 

@@ -222,7 +222,9 @@ public class ScrollViewDialog extends AlertDialogs {
 		Log.d("Dialogs",tag+" validatation");
 		
 		if (regexp.matcher(text).matches() == true) {
-			returnedData.put(tag, text);
+			if (text.isEmpty() == false ) {
+				returnedData.put(tag, text);
+			}
 			Log.d("Dialogs","validatation: OK ("+text+")");
 			return true;
 		} else {

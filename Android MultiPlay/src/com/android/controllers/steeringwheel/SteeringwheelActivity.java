@@ -49,7 +49,7 @@ public class SteeringwheelActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_steeringwheel);
 		try {
-			MultiPlayApplication.runThread();
+			MultiPlayApplication.runThread(MultiPlayApplication.isConnectedTo());
 			tv = (TextView) findViewById(R.id.stopv);
 			sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
 			b1 = (Button) super.findViewById(R.id.brea);
@@ -116,9 +116,9 @@ public class SteeringwheelActivity extends Activity implements
 		if (stop == 0) {
 			y = arg0.values[1];
 			if (y < -9*scale) {
-				angle = -128;
+				angle = -126;
 			} else if( y > 9*scale) {
-				angle = 128;
+				angle = 126;
 			} else {
 				angle = (int) Math.floor(10*y*CONST/scale);
 			}

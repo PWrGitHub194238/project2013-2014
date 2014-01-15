@@ -27,4 +27,12 @@ public class BluetoothConfigurationClass  extends ConnectionsConfigurationClass 
 	}
 	
 	 
+	public static final class Profiles {
+		public static final String SSP = "00001101-0000-1000-8000";
+	}
+
+	public static UUID generateUUIDfromMAC(String btType, String uuid) {
+		return UUID.fromString(btType+"-"
+	+uuid.replace(":", ""));
+	}
 }

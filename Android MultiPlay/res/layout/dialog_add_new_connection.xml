@@ -65,16 +65,16 @@
             android:layout_centerHorizontal="true" >
             
             <TextView
-                android:id="@+id/tv_connections_activity_device_name"
+                android:id="@+id/tv_connections_activity_device_name_wifi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:textAppearance="@style/input_small"
                 android:text="@string/tv_connections_activity_device_name"
-                android:layout_alignBaseline="@+id/et_connections_activity_device_name" />
+                android:layout_alignBaseline="@+id/et_connections_activity_device_name_wifi" />
             
             <EditText
-                android:id="@id/et_connections_activity_device_name"
+                android:id="@id/et_connections_activity_device_name_wifi"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -99,7 +99,7 @@
                 android:id="@id/et_connections_activity_device_ip"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/et_connections_activity_device_name"
+                android:layout_below="@id/et_connections_activity_device_name_wifi"
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="100dp"
                	android:inputType="text"
@@ -115,7 +115,6 @@
                 android:layout_alignParentLeft="true"
                 android:textAppearance="@style/input_small"
                 android:text="@string/tv_connections_activity_device_port"
-                android:inputType="number" 
                 android:layout_alignBaseline="@+id/et_connections_activity_device_port" />
             
             <EditText
@@ -132,13 +131,21 @@
                 android:imeOptions="flagNoExtractUi" />
 
             <CheckBox
-                android:id="@+id/cb_save_connection"
+                android:id="@+id/cb_save_connection_wifi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignRight="@id/et_connections_activity_device_name"
+                android:layout_alignRight="@id/et_connections_activity_device_name_wifi"
                 android:layout_below="@id/et_connections_activity_device_port"
                 android:layout_marginTop="32dp"
                 android:text="@string/cb_save_connection" />
+            
+            <CheckBox
+                android:id="@+id/cb_set_as_default_wifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/cb_save_connection_wifi"
+                android:layout_below="@id/cb_save_connection_wifi"
+                android:text="@string/cb_set_as_default" />
 
         </RelativeLayout>
         
@@ -156,16 +163,16 @@
        		    android:layout_centerHorizontal="true" >
 
 			<TextView
-                android:id="@id/tv_connections_activity_device_name"
+                android:id="@+id/tv_connections_activity_device_name_bt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:textAppearance="@style/input_small"
                 android:text="@string/tv_connections_activity_device_name"
-                android:layout_alignBaseline="@+id/et_connections_activity_device_name" />
+                android:layout_alignBaseline="@+id/et_connections_activity_device_name_bt" />
             
             <EditText
-                android:id="@id/et_connections_activity_device_name"
+                android:id="@id/et_connections_activity_device_name_bt"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -175,28 +182,6 @@
                 android:ems="10"
                 android:textAppearance="@style/input_small"
                 android:hint="@string/hint_device_name"
-                android:imeOptions="flagNoExtractUi" />
-            
-            <TextView
-                android:id="@+id/tv_connections_activity_device_uuid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:textAppearance="@style/input_small"
-                android:text="@string/tv_connections_activity_device_uuid"
-                android:layout_alignBaseline="@+id/et_connections_activity_device_uuid" />
-            
-            <EditText
-                android:id="@id/et_connections_activity_device_uuid"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/et_connections_activity_device_name"
-                android:layout_alignParentRight="true"
-                android:layout_marginStart="100dp"
-               	android:inputType="text"
-                android:ems="10"
-                android:textAppearance="@style/input_small"
-                android:hint="@string/hint_device_uuid"
                 android:imeOptions="flagNoExtractUi" />
             
             <TextView
@@ -212,7 +197,7 @@
                 android:id="@id/et_connections_activity_device_mac"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/et_connections_activity_device_uuid"
+                android:layout_below="@id/et_connections_activity_device_name_bt"
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="100dp"
                	android:inputType="text"
@@ -222,13 +207,21 @@
                 android:imeOptions="flagNoExtractUi" />
 
             <CheckBox
-                android:id="@id/cb_save_connection"
+                android:id="@+id/cb_save_connection_bt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignRight="@id/et_connections_activity_device_name"
+                android:layout_alignRight="@id/et_connections_activity_device_name_bt"
                 android:layout_below="@id/et_connections_activity_device_mac"
                 android:layout_marginTop="32dp"
                 android:text="@string/cb_save_connection" />
+
+            <CheckBox
+                android:id="@+id/cb_set_as_default_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/cb_save_connection_bt"
+                android:layout_below="@id/cb_save_connection_bt"
+                android:text="@string/cb_set_as_default" />
             
             </RelativeLayout>
 

@@ -108,7 +108,7 @@
             android:theme="@style/MultiPlayTheme" >
         </activity>
         <activity
-            android:name="com.android.controllers.mouse.Gyromouse"
+            android:name="com.android.controllers.mouse.GyromouseActivity"
             android:label="@string/title_activity_gyromouse"
             android:screenOrientation="landscape"
             android:theme="@style/MultiPlayTheme" >
@@ -138,7 +138,7 @@
             android:label="@string/title_activity_test" >
         </activity>
         <activity
-            android:name="com.android.controllers.mouse.TouchPadActivity"
+            android:name="com.android.controllers.mouse.TouchpadActivity"
             android:label="@string/title_activity_touch_pad" >
         </activity>
         <activity
@@ -146,8 +146,32 @@
             android:label="@string/title_activity_your" >
         </activity>
         <activity
-            android:name="com.android.controllers.keyboard.Speaker"
+            android:name="com.android.controllers.keyboard.SpeakerActivity"
             android:label="@string/title_activity_speaker" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.mouse.MouseOptionActivity"
+            android:label="@string/title_activity_mouse_option" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.mouse.GyromouseOptionActivity"
+            android:label="@string/title_activity_gyromouse_option" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.mouse.TouchpadOptionActivity"
+            android:label="@string/title_activity_touchpad_option" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.steeringwheel.SteeringwheelOptionActivity"
+            android:label="@string/title_activity_steeringwheel_option" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.keyboard.KeyboardOptionActivity"
+            android:label="@string/title_activity_keyboard_option" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.keyboard.SpeakerOptionActivity"
+            android:label="@string/title_activity_speaker_option" >
         </activity>
     </application>
     <application

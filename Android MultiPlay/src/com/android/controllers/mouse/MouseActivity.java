@@ -32,7 +32,7 @@ public class MouseActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mouse);
 		try {
-			MultiPlayApplication.runThread();
+			MultiPlayApplication.runThread(MultiPlayApplication.isConnectedTo());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

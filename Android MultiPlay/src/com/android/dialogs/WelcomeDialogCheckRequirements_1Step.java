@@ -8,8 +8,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.View.OnTouchListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ScrollView;
@@ -26,7 +24,7 @@ import com.android.multiplay.R;
  * Dialog that extends AlertDialogs
  *
  */
-public class CheckRequirementsDialog extends ScrollViewDialog implements OnProgressChangedListener, EditText.OnEditorActionListener {
+public class WelcomeDialogCheckRequirements_1Step extends ScrollViewDialog implements OnProgressChangedListener, EditText.OnEditorActionListener {
 	
 	public static final String DEVICE_NAME = General.DBSchema.COLUMN_1;
 	
@@ -40,8 +38,8 @@ public class CheckRequirementsDialog extends ScrollViewDialog implements OnProgr
 	TextView tv_dialog_welcome_3 = null;
 	ExtendedProgressBar pb_dialog_welcome_requirements = null;
 	
-    protected static CheckRequirementsDialog newInstance( Integer titleIconID, Integer titleID, ScrollView view, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
-    	CheckRequirementsDialog dialog = new CheckRequirementsDialog();
+    protected static WelcomeDialogCheckRequirements_1Step newInstance( Integer titleIconID, Integer titleID, ScrollView view, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
+    	WelcomeDialogCheckRequirements_1Step dialog = new WelcomeDialogCheckRequirements_1Step();
         Bundle args = ScrollViewDialog.newInstance(titleIconID, titleID, view, positiveButtonID, neutralButtonID, negativeButtonID).getArguments();
         
         dialog.setArguments(args);
@@ -60,11 +58,11 @@ public class CheckRequirementsDialog extends ScrollViewDialog implements OnProgr
 	@Override
 	public void onShow(DialogInterface dialog) {
 		super.onShow(dialog);
-		super.getPositiveButton().setEnabled(false);
+		//super.getPositiveButton().setEnabled(false);
 	}
 
 	public static void showDialog(Activity activity, String dialogIDTag, Integer titleIconID, Integer titleID, ScrollView view, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
-		CheckRequirementsDialog dialog = CheckRequirementsDialog.newInstance(
+		WelcomeDialogCheckRequirements_1Step dialog = WelcomeDialogCheckRequirements_1Step.newInstance(
 				titleIconID,titleID,view,positiveButtonID,neutralButtonID,negativeButtonID);
         dialog.show(activity.getFragmentManager(), dialogIDTag);
 	}
@@ -87,7 +85,7 @@ public class CheckRequirementsDialog extends ScrollViewDialog implements OnProgr
 	@Override
 	public void makeAction(int progress) {
 		if (progress == pb_dialog_welcome_requirements.getMax()) {
-			super.getPositiveButton().setEnabled(true);
+			//super.getPositiveButton().setEnabled(true);
 		}
 		
 	}
@@ -101,18 +99,17 @@ public class CheckRequirementsDialog extends ScrollViewDialog implements OnProgr
 				if (super.validation(et_dialog_welcome_device_name, PATTERN_DEVICE_NAME, PATTERN_DEVICE_NAME_ERROR) == true) {
 					tv_dialog_welcome_3.setVisibility(TextView.VISIBLE);
 					Log.d("APP",super.getReturnedData().get(DEVICE_NAME));
-					
-					new Thread(){
-						public void run(){
+
 					try {
 						MultiPlayApplication.getDbHelper().updateMultiPlayRequirements(getActivity(), pb_dialog_welcome_requirements);
+						super.getPositiveButton().setEnabled(true);
 					} catch (java.lang.InstantiationException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (IllegalAccessException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}}}.run();
+					}
 
 				}
 			}

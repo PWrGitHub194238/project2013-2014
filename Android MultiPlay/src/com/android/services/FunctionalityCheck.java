@@ -2,6 +2,8 @@ package com.android.services;
 
 import java.util.HashMap;
 
+import com.android.database.tables.General;
+
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
@@ -26,15 +28,15 @@ public class FunctionalityCheck {
 		
 		HashMap<String, Boolean> returnedData=new HashMap<String,Boolean>();
 		
-		returnedData.put("TYPE_ACCELEROMETER",Boolean.valueOf(checkAccelerometer()));
-		returnedData.put("TYPE_GYROSCOPE",Boolean.valueOf(checkGyroscope()));
-		returnedData.put("TYPE_GRAVITY",Boolean.valueOf(checkGravity()));
-		returnedData.put("TYPE_ROTATION_VECTOR",Boolean.valueOf(checkVector()));
-		returnedData.put("TYPE_LINEAR_ACCELERATION",Boolean.valueOf(checkAcceleration()));
-		returnedData.put("FEATURE_BLUETOOTH",Boolean.valueOf(checkBluetooth()));
-		returnedData.put("FEATURE_BLUETOOTH_LE",Boolean.valueOf(checkBluetoothLE()));
-		returnedData.put("FEATURE_WIFI",Boolean.valueOf(checkWifi()));
-		returnedData.put("FEATURE_WIFI_DIRECT",Boolean.valueOf(checkWifiDirect()));
+		returnedData.put(General.DBSchema.COLUMN_5,Boolean.valueOf(checkBluetooth()));
+		returnedData.put(General.DBSchema.COLUMN_6,Boolean.valueOf(checkBluetoothLE()));
+		returnedData.put(General.DBSchema.COLUMN_7,Boolean.valueOf(checkWifi()));
+		returnedData.put(General.DBSchema.COLUMN_8,Boolean.valueOf(checkWifiDirect()));
+		returnedData.put(General.DBSchema.COLUMN_9,Boolean.valueOf(checkAccelerometer()));
+		returnedData.put(General.DBSchema.COLUMN_10,Boolean.valueOf(checkGyroscope()));
+		returnedData.put(General.DBSchema.COLUMN_11,Boolean.valueOf(checkGravity()));
+		returnedData.put(General.DBSchema.COLUMN_12,Boolean.valueOf(checkVector()));
+		returnedData.put(General.DBSchema.COLUMN_13,Boolean.valueOf(checkAcceleration()));
 		
 		return returnedData;
 	}

@@ -17,6 +17,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
@@ -172,6 +173,38 @@
         <activity
             android:name="com.android.controllers.keyboard.SpeakerOptionActivity"
             android:label="@string/title_activity_speaker_option" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.gamepad.Gamepad"
+            android:label="@string/title_activity_gamepad" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.steeringwheel.SteeringwheelHelp"
+            android:label="@string/title_activity_steeringwheel_help" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.mouse.GyromouseHelp"
+            android:label="@string/title_activity_gyromouse_help" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.mouse.MouseHelp"
+            android:label="@string/title_activity_mouse_help" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.mouse.TouchPadHelp"
+            android:label="@string/title_activity_touch_pad_help" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.keyboard.KeyboardHelp"
+            android:label="@string/title_activity_keyboard_help" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.keyboard.SpeakerHelp"
+            android:label="@string/title_activity_speaker_help" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.gamepad.GamepadHelp"
+            android:label="@string/title_activity_gamepad_help" >
         </activity>
     </application>
     <application

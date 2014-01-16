@@ -43,7 +43,6 @@
     <string name="contentDescription_iv_dialog_welcome_requirements_gravity_true_false">TODO</string>
     <string name="contentDescription_iv_dialog_welcome_requirements_rotation_vector_true_false">TODO</string>
     <string name="contentDescription_iv_dialog_welcome_requirements_linear_acceleration_true_false">TODO</string>
-    
     <string name="contentDescription_iv_dialog_welcome_requirements_bluetooth_help">TODO</string>
     <string name="contentDescription_iv_dialog_welcome_requirements_bluetooth_low_energy_help">TODO</string>
     <string name="contentDescription_iv_dialog_welcome_requirements_wifi_help">TODO</string>
@@ -81,6 +80,13 @@
     <string name="title_activity_steeringwheel_option">SteeringwheelOptionActivity</string>
     <string name="title_activity_keyboard_option">KeyboardOptionActivity</string>
     <string name="title_activity_speaker_option">SpeakerOptionActivity</string>
-    
-    
+    <string name="title_activity_gamepad">Gamepad</string>
+    <string name="title_activity_steeringwheel_help">SteeringwheelHelp</string>
+    <string name="title_activity_gyromouse_help">GyromouseHelp</string>
+    <string name="title_activity_mouse_help">MouseHelp</string>
+    <string name="title_activity_touch_pad_help">TouchPadHelp</string>
+    <string name="title_activity_keyboard_help">KeyboardHelp</string>
+    <string name="title_activity_speaker_help">SpeakerHelp</string>
+    <string name="title_activity_gamepad_help">GamepadHelp</string>
+
 </resources>

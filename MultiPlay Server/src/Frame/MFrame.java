@@ -19,6 +19,8 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Enumeration;
 
+import javax.bluetooth.BluetoothStateException;
+import javax.bluetooth.LocalDevice;
 import javax.swing.ButtonGroup;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -62,21 +64,44 @@ public class MFrame extends JFrame {
 		// Connect info
 		JPanel kon = new JPanel();
 		mainPanel.add(kon);
-		JLabel con = new JLabel("Your IP: " + connect.getIP() + "    "
+		JLabel wificon = new JLabel("Your IP: " + connect.getIP() + "    "
 				+ "Port: " + connect.getportdefault());
-		JLabel sys = new JLabel(
-				"                    System: "
-						+ ManagementFactory.getOperatingSystemMXBean()
-								.getName()
-						+ "\n"
-						+ "   User: "
-						+ System.getProperty("user.name")
-						+ "\n"
-						+ "   Arch: "
-						+ ManagementFactory.getOperatingSystemMXBean()
-								.getArch());
-		kon.add(con);
-		kon.add(sys);
+		try {
+			String m=LocalDevice.getLocalDevice().getBluetoothAddress();
+			int i=0;
+			String mac="";
+			while(i<m.length()){
+				mac+= m.charAt(i);
+				if(i%2!=0){
+					mac+=':';
+				}
+				i++;
+			}
+			char tmp[]=mac.toCharArray();	
+			tmp[tmp.length-1]=' ';
+			mac=String.valueOf(tmp);
+
+			JLabel bluecon = new JLabel("Your MAC: " + mac);
+			JLabel sys = new JLabel(
+					"                    System: "
+							+ ManagementFactory.getOperatingSystemMXBean()
+									.getName()
+							+ "\n"
+							+ "   User: "
+							+ System.getProperty("user.name")
+							+ "\n"
+							+ "   Arch: "
+							+ ManagementFactory.getOperatingSystemMXBean()
+									.getArch());
+			kon.add(wificon);
+			kon.add(bluecon);
+
+			kon.add(sys);
+		} catch (BluetoothStateException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
 
 		// ----------------------------Help Frame----------------------
 		helps.addActionListener(new ActionListener() {

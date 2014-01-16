@@ -53,10 +53,10 @@ public class Serverwifi implements Runnable {
 			int signals = 0;
 			byte data;
 			System.out.println("watek");
-			ServerSocket serversocket; 
+			ServerSocket serversocket;
 			try {
 				serversocket = new ServerSocket(port);
-				//System.err.println(port);
+				// System.err.println(port);
 				Socket socket;
 				try {
 					socket = serversocket.accept();
@@ -66,17 +66,18 @@ public class Serverwifi implements Runnable {
 					this.dis = dis;
 					this.dos = dos;
 					this.serversocket = serversocket;
-					//data = dis.readByte();
+					// data = dis.readByte();
 
 					int i = 0;
 					while (true) {
-						
+
 						try {
 							signals = dis.readInt();
-						//	i += 1;
-						//	System.err.println(signals);
+							// i += 1;
+							// System.err.println(signals);
 							int[] ret = N.Helper.decodeSignal(signals);
-						//	System.out.println("D: "+ret[0] + "S: " + ret[1] +" "+ret[2]+ " "+ N.Device.WHEEL);
+							// System.out.println("D: "+ret[0] + "S: " + ret[1]
+							// +" "+ret[2]+ " "+ N.Device.WHEEL);
 							if (ret[0] == N.Device.MOUSE) {
 								if (ret[1] == N.DeviceDataCounter.SINGLE)
 									mouse.click(ret[2]);
@@ -90,25 +91,25 @@ public class Serverwifi implements Runnable {
 
 								if (ret[1] == N.DeviceDataCounter.SINGLE)
 									keyboard.click(ret[2]);
-							} else if (ret[0] == N.Device.WHEEL) { 
-							//	System.out.println(ret[2]);
+							} else if (ret[0] == N.Device.WHEEL) {
+								// System.out.println(ret[2]);
 								if (ret[1] == N.DeviceDataCounter.DOUBLE) {
-//									if (ret[2] == -10)
-//										ret[2] = -9;
+									// if (ret[2] == -10)
+									// ret[2] = -9;
 									if (ret[3] == N.DeviceSignal.KEYBOARD_UP)
-//										vjoy.updateAxes(1,
-//												(int) (ret[2] * 14.1),
-//												(int) -(9 * 14.1));
-										vjoy.updateAxes(1,ret[2],-126);
+										// vjoy.updateAxes(1,
+										// (int) (ret[2] * 14.1),
+										// (int) -(9 * 14.1));
+										vjoy.updateAxes(1, ret[2], -126);
 									else if (ret[3] == N.DeviceSignal.KEYBOARD_SPACE)
-//										vjoy.updateAxes(1,
-//												(int) (ret[2] * 14.1),
-//												(int) (9 * 14.1));
-										vjoy.updateAxes(1,ret[2],126);
+										// vjoy.updateAxes(1,
+										// (int) (ret[2] * 14.1),
+										// (int) (9 * 14.1));
+										vjoy.updateAxes(1, ret[2], 126);
 									else
-//										vjoy.updateAxes(1,
-//												(int) (ret[2] * 14.1), 0);
-										vjoy.updateAxes(1,ret[2],0);
+										// vjoy.updateAxes(1,
+										// (int) (ret[2] * 14.1), 0);
+										vjoy.updateAxes(1, ret[2], 0);
 								}
 							} else if (ret[0] == N.Device.SPEAKER) {
 								if (ret[1] == N.DeviceDataCounter.SINGLE) {
@@ -123,12 +124,61 @@ public class Serverwifi implements Runnable {
 
 									}
 								}
-							} else if (ret[0] == N.Device.VJOY) {
+							} else if (ret[0] == N.Device.VJOYJOYSTICKLEFT) {
+								// ret[2]-x
+								// ret[3]-y
+								// przetwarzanie sygna³u dla lewej ga³ki
+							} else if (ret[0] == N.Device.VJOYJOYSTICKRIGHT) {
+								// ret[2]-x
+								// ret[3]-y
+								// przetwarzanie sygna³u dla prawej ga³ki
+							} else if (ret[0] == N.Device.VJOYBUTTONS) {
+								if (ret[3] == N.DeviceSignal.PRESS) {
+									if (ret[2] == N.DeviceSignal.VJOY_CIRCLE_PRESS) {
+										// wciœniecie kó³ka chyba przycisk 14
+									} else if (ret[2] == N.DeviceSignal.VJOY_SHARP_PRESS) {
+										// wciœniecie krzy¿yka chyba przycisk 15
+									} else if (ret[2] == N.DeviceSignal.VJOY_SQUARE_PRESS) {
+										// wciœniecie kwadratu chyba przycisk 16
+									} else if (ret[2] == N.DeviceSignal.VJOY_TRIANGLE_PRESS) {
+										// wciœniecie trójkata chyba przycisk 13
+									}else if (ret[2] == N.DeviceSignal.KEYBOARD_DOWN) {
+										// wciœniecie Dó³ chyba przycisk 7
+									}else if (ret[2] == N.DeviceSignal.KEYBOARD_LEFT) {
+										// wciœniecie Dó³ chyba przycisk 8
+									}else if (ret[2] == N.DeviceSignal.KEYBOARD_RIGHT) {
+										// wciœniecie Dó³ chyba przycisk 6
+									}else if (ret[2] == N.DeviceSignal.KEYBOARD_UP) {
+										// wciœniecie Dó³ chyba przycisk 5
+									}else if (ret[2] == N.DeviceSignal.VJOY_START_PRESS) {
+										// wciœniecie start chyba przycisk 4
+									}
+								} else if (ret[3] == N.DeviceSignal.RELEASE) {
+									if (ret[2] == N.DeviceSignal.VJOY_CIRCLE_PRESS) {
+										// zwolnienie kó³ka chyba przycisk 14
+									} else if (ret[2] == N.DeviceSignal.VJOY_SHARP_PRESS) {
+										// zwolnienie krzy¿yka chyba przycisk 15
+									} else if (ret[2] == N.DeviceSignal.VJOY_SQUARE_PRESS) {
+										// zwolnienie kwadratu chyba przycisk 16
+									} else if (ret[2] == N.DeviceSignal.VJOY_TRIANGLE_PRESS) {
+										// zwolnienie trójkata chyba przycisk 13
+									}else if (ret[2] == N.DeviceSignal.KEYBOARD_DOWN) {
+										// zwolnienie Dó³ chyba przycisk 7
+									}else if (ret[2] == N.DeviceSignal.KEYBOARD_LEFT) {
+										// zwolnienie lewo chyba przycisk 8
+									}else if (ret[2] == N.DeviceSignal.KEYBOARD_RIGHT) {
+										// zwolnienie prawo chyba przycisk 6
+									}else if (ret[2] == N.DeviceSignal.KEYBOARD_UP) {
+										// zwolnienie gora chyba przycisk 5
+									}else if (ret[2] == N.DeviceSignal.VJOY_START_PRESS) {
+										// zwolnienie start chyba przycisk 4
+									}
+								}
 							} else if (ret[0] == N.Device.EXIT) {
 								dis.close();
 								dos.close();
 								socket.close();
-								serversocket.close(); 
+								serversocket.close();
 								break;
 							}
 						} catch (IOException e) {
@@ -152,5 +202,4 @@ public class Serverwifi implements Runnable {
 		}
 
 	}
-
 }

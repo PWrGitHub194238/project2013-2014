@@ -41,7 +41,7 @@ public class Bluetooth implements Runnable {
 			try {
 				local = LocalDevice.getLocalDevice();
 				local.setDiscoverable(DiscoveryAgent.GIAC);
-
+				System.out.println(LocalDevice.getLocalDevice().getBluetoothAddress());
 				UUID uuid = new UUID("04c6093b00001000800000805f9b34fb", false);
 				System.out.println(uuid.toString());
 

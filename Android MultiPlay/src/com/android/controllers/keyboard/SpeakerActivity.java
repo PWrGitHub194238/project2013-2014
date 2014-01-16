@@ -16,8 +16,10 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.speech.RecognizerIntent;
 import android.view.Menu;
@@ -32,6 +34,7 @@ public class SpeakerActivity extends Activity {
 	private ImageButton btnSpeak;
 	protected static final int RESULT_SPEECH = 1;
 	private int Punctuation = 0, Commands = 0;
+	 private PowerManager.WakeLock wl;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,8 @@ public class SpeakerActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "DoNjfdhotDimScreen");
 	}
 
 	@Override
@@ -293,4 +298,14 @@ public class SpeakerActivity extends Activity {
 			break;
 		}
 	}
+	protected void onPause() {
+        super.onPause();
+        wl.release();
+
+    }
+	protected void onResume() {
+        super.onResume();
+        wl.acquire();
+
+    }
 }

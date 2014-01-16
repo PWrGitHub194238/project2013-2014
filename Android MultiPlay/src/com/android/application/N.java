@@ -155,8 +155,9 @@ public final class N {
 		public static final int KEYBOARD = C.SIGNAL_KEYBOARD;
 		public static final int WHEEL = C.SIGNAL_WHEEL;
 		public static final int SPEAKER = C.SIGNAL_SPEAKER;// ?
-		public static final int VJOY = Integer.parseInt("00100", 2);// ?
-
+		public static final int VJOYJOYSTICKLEFT = Integer.parseInt("00100", 2);
+		public static final int VJOYJOYSTICKRIGHT = Integer.parseInt("00101", 2);
+		public static final int VJOYBUTTONS = Integer.parseInt("00110", 2);
 		public static final int EXIT = Integer.parseInt("11111", 2);// ?
 	}
 
@@ -172,6 +173,7 @@ public final class N {
 	 * 
 	 */
 	public static final class DeviceSignal {
+		
 		public static final int MOUSE_LPM = Integer.parseInt("000000000000", 2);
 		public static final int MOUSE_MPM = Integer.parseInt("000000000001", 2);
 		public static final int MOUSE_PPM = Integer.parseInt("000000000010", 2);
@@ -202,6 +204,21 @@ public final class N {
 				"000000001001", 2);
 		public static final int KEYBOARD_DELETE = Integer.parseInt(
 				"000000001010", 2);
+		public static final int VJOY_SQUARE_PRESS = Integer.parseInt(
+				"000000001011", 2);
+		public static final int VJOY_CIRCLE_PRESS = Integer.parseInt(
+				"000000001100", 2);
+		public static final int VJOY_SHARP_PRESS = Integer.parseInt(
+				"000000001101", 2);
+		public static final int VJOY_TRIANGLE_PRESS = Integer.parseInt(
+				"000000001111", 2);
+		public static final int VJOY_START_PRESS = Integer.parseInt(
+				"000000010010", 2);
+		public static final int RELEASE =  Integer.parseInt(
+				"000000010000", 2);
+		public static final int PRESS =  Integer.parseInt(
+				"000000010001", 2);
+		//max 000000010010
 		
 		
 		public static int KEYBOARD_KEY_TO_INT(String key) {

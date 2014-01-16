@@ -12,7 +12,9 @@ import com.android.multiplay.R.layout;
 import com.android.multiplay.R.menu;
 
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.app.Activity;
+import android.content.Context;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -26,6 +28,7 @@ public class MouseActivity extends Activity {
 	private TextView txv;
 	private int hotx = 245, hoty = 176;
 	private int multi=1;		//mno¿nik do ustawieñ szybkoœci ruchu
+	 private PowerManager.WakeLock wl;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,8 @@ public class MouseActivity extends Activity {
 		}
 
 			txv = (TextView) super.findViewById(R.id.texty);
-		
+			PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+	        wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "DoNjfdhotDimScreen");
 	
 	}
 
@@ -95,18 +99,15 @@ public class MouseActivity extends Activity {
 		// RETURN SUPER.ONTOUCHEVENT(EVENT);
 	}
 
-	public void onClick(View arg0) {
-		/*
-		 * switch (arg0.getId()) { case R.id.left: Sender sender = new Sender();
-		 * sender.setip(ip); sender.getxy(-10, 0); sender.execute("mouse");
-		 * break; case R.id.right: Sender sender2 = new Sender();
-		 * sender2.setip(ip); sender2.getxy(0, -10); sender2.execute("mouse");
-		 * break; case R.id.up: Sender sender3 = new Sender();
-		 * sender3.setip(ip); sender3.getxy(10, 0); sender3.execute("mouse");
-		 * break; case R.id.down: Sender sender4 = new Sender();
-		 * sender4.setip(ip); sender4.getxy(0, 10); sender4.execute("mouse");
-		 * break; }
-		 */
-	}
+	protected void onPause() {
+        super.onPause();
+        wl.release();
+
+    }
+	protected void onResume() {
+        super.onResume();
+        wl.acquire();
+
+    }
 
 }

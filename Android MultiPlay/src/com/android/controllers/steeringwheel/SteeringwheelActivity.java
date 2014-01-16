@@ -11,6 +11,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,13 +31,14 @@ public class SteeringwheelActivity extends Activity implements
 		SensorEventListener, OnSeekBarChangeListener {
 	
 	private static final float CONST = 128f/90;
-	float old = 0;
-	int signal = 0;
-	int angle = 0;
-	float y = 0;
-	
-	SeekBar seekBar1;
-	float scale = 0.5f;
+	private float old = 0;
+	private int signal = 0;
+	private int angle = 0;
+	private	float y = 0;
+	 private PowerManager.WakeLock wl;
+
+	 private SeekBar seekBar1;
+	private float scale = 0.5f;
 	boolean notSend0 = true;
 	
 	private SensorManager sm;
@@ -54,7 +56,8 @@ public class SteeringwheelActivity extends Activity implements
 			sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
 			b1 = (Button) super.findViewById(R.id.brea);
 			b2 = (Button) super.findViewById(R.id.gaz);
-			
+			PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+            wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "DoNjfdhotDimScreen");
 			seekBar1 = (SeekBar) super.findViewById(R.id.seekBar1);
 			seekBar1.setProgress(75);
 			seekBar1.setMax(100);
@@ -144,11 +147,15 @@ public class SteeringwheelActivity extends Activity implements
 
 	protected void onPause() {
 		super.onPause();
+        wl.release();
+
 		stop = 1;
 	}
 
 	protected void onResume() {
 		super.onResume();
+        wl.acquire();
+
 		stop = 0;
 	}
 

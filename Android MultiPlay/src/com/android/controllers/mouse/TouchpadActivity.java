@@ -10,7 +10,9 @@ import com.android.multiplay.R.layout;
 import com.android.multiplay.R.menu;
 
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.app.Activity;
+import android.content.Context;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -21,6 +23,7 @@ public class TouchpadActivity extends Activity {
 	private double oldx = 245.0, oldy = 175.0;
 	private TextView txv;
 	private int multi=1;		//mno¿nik do ustawieñ szybkoœci ruchu
+	 private PowerManager.WakeLock wl;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,8 @@ public class TouchpadActivity extends Activity {
 			e.printStackTrace();
 		}
 
-	
+		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "DoNjfdhotDimScreen");
 	}
 
 	@Override
@@ -129,4 +133,14 @@ public class TouchpadActivity extends Activity {
 		}
 		return true;
 	}
+	protected void onPause() {
+        super.onPause();
+        wl.release();
+
+    }
+	protected void onResume() {
+        super.onResume();
+        wl.acquire();
+
+    }
 }

@@ -1,0 +1,119 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".Gamepad" >
+
+    <ImageButton
+        android:id="@+id/arrup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/arrdown"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/arrow" />
+
+    <ImageButton
+        android:id="@+id/arrright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/arrdown"
+        android:layout_toRightOf="@+id/arrdown"
+        android:src="@drawable/arrow" />
+
+    <ImageButton
+        android:id="@+id/arrleft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/arrup"
+        android:layout_marginLeft="28dp"
+        android:src="@drawable/arrow" />
+
+    <ImageButton
+        android:id="@+id/sharp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/arrdown"
+        android:layout_marginRight="78dp"
+        android:src="@drawable/activity_title_icon_blue" />
+
+    <ImageButton
+        android:id="@+id/square"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/sharp"
+        android:layout_toLeftOf="@+id/sharp"
+        android:src="@drawable/activity_title_icon_pink" />
+
+    <ImageButton
+        android:id="@+id/tringle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/square"
+        android:layout_toRightOf="@+id/square"
+        android:src="@drawable/activity_title_icon_green" />
+
+    <ImageButton
+        android:id="@+id/circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/sharp"
+        android:layout_toRightOf="@+id/tringle"
+        android:src="@drawable/activity_title_icon_red" />
+
+    <ImageButton
+        android:id="@+id/arrdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/arrleft"
+        android:layout_toRightOf="@+id/arrleft"
+        android:src="@drawable/arrow" />
+
+    <ImageView
+        android:id="@+id/leftjoy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/arrright"
+        android:layout_below="@+id/arrright"
+        android:layout_marginLeft="17dp"
+        android:src="@drawable/main_activity_1_title_big_background_icon" />
+
+    <ImageButton
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rightjoy"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/rightjoy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/square"
+        android:layout_toRightOf="@+id/leftjoy"
+        android:src="@drawable/main_activity_2_title_big_background_icon" />
+
+    <TextView
+        android:id="@+id/lefttext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="lefttxt" />
+
+    <TextView
+        android:id="@+id/righttxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lefttext"
+        android:layout_alignLeft="@+id/circle"
+        android:text="TextView" />
+
+</RelativeLayout>

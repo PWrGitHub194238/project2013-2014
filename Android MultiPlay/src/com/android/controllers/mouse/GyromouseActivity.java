@@ -9,6 +9,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -37,19 +38,17 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 			button32, button33, button34, button35, button36;
 	int e, signal;
 	private int stop=0;
+	 private PowerManager.WakeLock wl;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gyromouse);
 		
-		try {
-			MultiPlayApplication.runThread(MultiPlayApplication.isConnectedTo());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		
+		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "DoNjfdhotDimScreen");
 		// button = (Button) super.findViewById(R.id.stopbu);
 		// bundle = super.getIntent().getExtras();
 		// ip = bundle.getString("ip");
@@ -58,7 +57,6 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 		button1 = (Button) super.findViewById(R.id.leftb);
 		button2 = (Button) super.findViewById(R.id.rightb);
 		button3 = (Button) super.findViewById(R.id.upb);
-
 		button4 = (Button) super.findViewById(R.id.downb);
 		button5 = (Button) super.findViewById(R.id.enterb);
 		button6 = (Button) super.findViewById(R.id.bshift);
@@ -91,13 +89,10 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 		button33 = (Button) super.findViewById(R.id.balt);
 		button34 = (Button) super.findViewById(R.id.bspace);
 		button35 = (Button) super.findViewById(R.id.besc);
-
 		sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
-
 		sm.registerListener(this,
 				sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
 				SensorManager.SENSOR_DELAY_NORMAL);
-
 	}
 
 	@Override
@@ -1376,10 +1371,14 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 	}
 	protected void onPause() {
         super.onPause();
+        wl.release();
+
         stop=1;
     }
 	protected void onResume() {
         super.onResume();
+        wl.acquire();
+
         stop=0;
     }
 

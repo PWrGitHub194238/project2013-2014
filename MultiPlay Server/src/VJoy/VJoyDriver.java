@@ -169,8 +169,8 @@ public class VJoyDriver {
 		}
 		else
 		{
-			m_joyState.XRotation=(short)cordX;
-			m_joyState.YRotation=(short)cordY;
+			m_joyState.ZAxis=(short)cordX;
+			m_joyState.ZRotation=(short)cordY;
 		}
 			
 		if(vDLL.VJoy_UpdateJoyState(0,m_joyState))

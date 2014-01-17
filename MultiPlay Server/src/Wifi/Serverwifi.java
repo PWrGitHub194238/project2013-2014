@@ -128,20 +128,27 @@ public class Serverwifi implements Runnable {
 								// ret[2]-x
 								// ret[3]-y
 								// przetwarzanie sygna³u dla lewej ga³ki
+								vjoy.updateAxes(1,ret[2],ret[3]);
+								
 							} else if (ret[0] == N.Device.VJOYJOYSTICKRIGHT) {
 								// ret[2]-x
 								// ret[3]-y
 								// przetwarzanie sygna³u dla prawej ga³ki
+								vjoy.updateAxes(2,ret[2],ret[3]);
 							} else if (ret[0] == N.Device.VJOYBUTTONS) {
 								if (ret[3] == N.DeviceSignal.PRESS) {
 									if (ret[2] == N.DeviceSignal.VJOY_CIRCLE_PRESS) {
 										// wciœniecie kó³ka chyba przycisk 14
+										vjoy.buttonPress(2);
 									} else if (ret[2] == N.DeviceSignal.VJOY_SHARP_PRESS) {
 										// wciœniecie krzy¿yka chyba przycisk 15
+										vjoy.buttonPress(3);
 									} else if (ret[2] == N.DeviceSignal.VJOY_SQUARE_PRESS) {
 										// wciœniecie kwadratu chyba przycisk 16
+										vjoy.buttonPress(4);
 									} else if (ret[2] == N.DeviceSignal.VJOY_TRIANGLE_PRESS) {
 										// wciœniecie trójkata chyba przycisk 13
+										vjoy.buttonPress(1);
 									}else if (ret[2] == N.DeviceSignal.KEYBOARD_DOWN) {
 										// wciœniecie Dó³ chyba przycisk 7
 									}else if (ret[2] == N.DeviceSignal.KEYBOARD_LEFT) {
@@ -152,16 +159,21 @@ public class Serverwifi implements Runnable {
 										// wciœniecie Dó³ chyba przycisk 5
 									}else if (ret[2] == N.DeviceSignal.VJOY_START_PRESS) {
 										// wciœniecie start chyba przycisk 4
+										vjoy.buttonPress(10);
 									}
 								} else if (ret[3] == N.DeviceSignal.RELEASE) {
 									if (ret[2] == N.DeviceSignal.VJOY_CIRCLE_PRESS) {
 										// zwolnienie kó³ka chyba przycisk 14
+										vjoy.buttonRelease(2);
 									} else if (ret[2] == N.DeviceSignal.VJOY_SHARP_PRESS) {
 										// zwolnienie krzy¿yka chyba przycisk 15
+										vjoy.buttonRelease(3);
 									} else if (ret[2] == N.DeviceSignal.VJOY_SQUARE_PRESS) {
 										// zwolnienie kwadratu chyba przycisk 16
+										vjoy.buttonRelease(4);
 									} else if (ret[2] == N.DeviceSignal.VJOY_TRIANGLE_PRESS) {
 										// zwolnienie trójkata chyba przycisk 13
+										vjoy.buttonRelease(1);
 									}else if (ret[2] == N.DeviceSignal.KEYBOARD_DOWN) {
 										// zwolnienie Dó³ chyba przycisk 7
 									}else if (ret[2] == N.DeviceSignal.KEYBOARD_LEFT) {
@@ -172,6 +184,7 @@ public class Serverwifi implements Runnable {
 										// zwolnienie gora chyba przycisk 5
 									}else if (ret[2] == N.DeviceSignal.VJOY_START_PRESS) {
 										// zwolnienie start chyba przycisk 4
+										vjoy.buttonRelease(10);
 									}
 								}
 							} else if (ret[0] == N.Device.EXIT) {

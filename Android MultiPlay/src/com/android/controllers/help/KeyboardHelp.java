@@ -1,4 +1,4 @@
-package com.android.controllers.mouse;
+package com.android.controllers.help;
 
 import com.android.multiplay.R;
 import com.android.multiplay.R.layout;
@@ -8,18 +8,18 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class GyromouseHelp extends Activity {
+public class KeyboardHelp extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_gyromouse_help);
+		setContentView(R.layout.activity_keyboard_help);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.gyromouse_help, menu);
+		getMenuInflater().inflate(R.menu.keyboard_help, menu);
 		return true;
 	}
 

@@ -27,7 +27,7 @@ public class Gamepad extends Activity {
 	private TextView lefttxt, righttxt;
 	private double lefty_center;
 	private double leftx_center, rightx_center, righty_center;
-	 private PowerManager.WakeLock wl;
+	private PowerManager.WakeLock wl;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,6 @@ public class Gamepad extends Activity {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
-
 					int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 							N.DeviceDataCounter.DOUBLE,
 							N.DeviceSignal.VJOY_START_PRESS,
@@ -76,7 +75,6 @@ public class Gamepad extends Activity {
 			}
 		});
 		left.setOnTouchListener(new View.OnTouchListener() {
-
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {

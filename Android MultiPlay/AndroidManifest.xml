@@ -179,31 +179,31 @@
             android:label="@string/title_activity_gamepad" >
         </activity>
         <activity
-            android:name="com.android.controllers.steeringwheel.SteeringwheelHelp"
+            android:name="com.android.controllers.help.SteeringwheelHelp"
             android:label="@string/title_activity_steeringwheel_help" >
         </activity>
         <activity
-            android:name="com.android.controllers.mouse.GyromouseHelp"
+            android:name="com.android.controllers.help.GyromouseHelp"
             android:label="@string/title_activity_gyromouse_help" >
         </activity>
         <activity
-            android:name="com.android.controllers.mouse.MouseHelp"
+            android:name="com.android.controllers.help.MouseHelp"
             android:label="@string/title_activity_mouse_help" >
         </activity>
         <activity
-            android:name="com.android.controllers.mouse.TouchPadHelp"
+           android:name="com.android.controllers.help.TouchPadHelp"
             android:label="@string/title_activity_touch_pad_help" >
         </activity>
         <activity
-            android:name="com.android.controllers.keyboard.KeyboardHelp"
+     android:name="com.android.controllers.help.KeyboardHelp"
             android:label="@string/title_activity_keyboard_help" >
         </activity>
-        <activity
-            android:name="com.android.controllers.keyboard.SpeakerHelp"
+       <activity
+     android:name="com.android.controllers.help.SpeakerHelp"
             android:label="@string/title_activity_speaker_help" >
         </activity>
         <activity
-            android:name="com.android.controllers.gamepad.GamepadHelp"
+            android:name="com.android.controllers.help.GamepadHelp"
             android:label="@string/title_activity_gamepad_help" >
         </activity>
     </application>

@@ -201,7 +201,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="100dp"
                	android:inputType="text"
-               	android:textAllCaps="true"
                 android:ems="10"
                 android:textAppearance="@style/input_small"
                 android:hint="@string/hint_device_mac"

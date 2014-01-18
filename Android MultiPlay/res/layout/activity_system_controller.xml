@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/iv_carousel_activity_glow_horizontal_line"
-        android:background="@drawable/carousel_activity_subtitle_glow_green"
+        android:background="@drawable/carousel_activity_subtitle_glow"
         android:paddingLeft="40dp"
         android:paddingTop="10dp"
         android:text="@string/tv_activity_title_multiplay_explorer"
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@id/tv_activity_subtitle_system_controllers"
-        android:background="@drawable/carousel_button_search_green"
+        android:background="@drawable/carousel_button_search"
         android:contentDescription="@string/contentDescription_b_system_controllers_search" />
 
     <ImageView
@@ -80,7 +80,7 @@
         android:layout_alignTop="@id/b_system_controllers_search"
         android:layout_toRightOf="@id/b_system_controllers_search"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/carousel_button_cancel_green"
+        android:background="@drawable/carousel_button_cancel"
         android:contentDescription="@string/contentDescription_b_system_controllers_cancel" />
 
 </RelativeLayout>

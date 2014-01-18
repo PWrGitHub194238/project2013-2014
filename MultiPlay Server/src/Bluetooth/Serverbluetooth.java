@@ -131,55 +131,64 @@ public class Serverbluetooth implements Runnable {
 							} else if (ret[0] == N.Device.VJOYJOYSTICKLEFT) {
 								// ret[2]-x
 								// ret[3]-y
-								// przetwarzanie sygna³u dla lewej ga³ki
+								vjoy.updateAxes(1,ret[2],ret[3]);
 							} else if (ret[0] == N.Device.VJOYJOYSTICKRIGHT) {
 								// ret[2]-x
 								// ret[3]-y
-								// przetwarzanie sygna³u dla prawej ga³ki
+								vjoy.updateAxes(2,ret[2],ret[3]);
 							} else if (ret[0] == N.Device.VJOYBUTTONS) {
 								if (ret[3] == N.DeviceSignal.PRESS) {
 									if (ret[2] == N.DeviceSignal.VJOY_CIRCLE_PRESS) {
 										// wciœniecie kó³ka chyba przycisk 14
+										vjoy.buttonPress(2);
 									} else if (ret[2] == N.DeviceSignal.VJOY_SHARP_PRESS) {
 										// wciœniecie krzy¿yka chyba przycisk 15
+										vjoy.buttonPress(3);
 									} else if (ret[2] == N.DeviceSignal.VJOY_SQUARE_PRESS) {
 										// wciœniecie kwadratu chyba przycisk 16
+										vjoy.buttonPress(4);
 									} else if (ret[2] == N.DeviceSignal.VJOY_TRIANGLE_PRESS) {
 										// wciœniecie trójkata chyba przycisk 13
-									} else if (ret[2] == N.DeviceSignal.KEYBOARD_DOWN) {
-										// wciœniecie Dó³ chyba przycisk 7
-									} else if (ret[2] == N.DeviceSignal.KEYBOARD_LEFT) {
-										// wciœniecie Dó³ chyba przycisk 8
-									} else if (ret[2] == N.DeviceSignal.KEYBOARD_RIGHT) {
-										// wciœniecie Dó³ chyba przycisk 6
-									} else if (ret[2] == N.DeviceSignal.KEYBOARD_UP) {
-										// wciœniecie Dó³ chyba przycisk 5
-									} else if (ret[2] == N.DeviceSignal.VJOY_START_PRESS) {
-										// wciœniecie gora chyba przycisk 4
+										vjoy.buttonPress(1);
+									}else if (ret[2] == N.DeviceSignal.KEYBOARD_DOWN) {
+										vjoy.buttonPress(13);
+									}else if (ret[2] == N.DeviceSignal.KEYBOARD_LEFT) {
+										vjoy.buttonPress(14);
+									}else if (ret[2] == N.DeviceSignal.KEYBOARD_RIGHT) {
+										vjoy.buttonPress(15);
+									}else if (ret[2] == N.DeviceSignal.KEYBOARD_UP) {
+										vjoy.buttonPress(12);
+									}else if (ret[2] == N.DeviceSignal.VJOY_START_PRESS) {
+										// wciœniecie start chyba przycisk 4
+										vjoy.buttonPress(9);
 									}
-									
 								} else if (ret[3] == N.DeviceSignal.RELEASE) {
 									if (ret[2] == N.DeviceSignal.VJOY_CIRCLE_PRESS) {
 										// zwolnienie kó³ka chyba przycisk 14
+										vjoy.buttonRelease(2);
 									} else if (ret[2] == N.DeviceSignal.VJOY_SHARP_PRESS) {
 										// zwolnienie krzy¿yka chyba przycisk 15
+										vjoy.buttonRelease(3);
 									} else if (ret[2] == N.DeviceSignal.VJOY_SQUARE_PRESS) {
 										// zwolnienie kwadratu chyba przycisk 16
+										vjoy.buttonRelease(4);
 									} else if (ret[2] == N.DeviceSignal.VJOY_TRIANGLE_PRESS) {
 										// zwolnienie trójkata chyba przycisk 13
-									} else if (ret[2] == N.DeviceSignal.KEYBOARD_DOWN) {
-										// zwolnienie Dó³ chyba przycisk 7
-									} else if (ret[2] == N.DeviceSignal.KEYBOARD_LEFT) {
-										// zwolnienie lewo chyba przycisk 8
-									} else if (ret[2] == N.DeviceSignal.KEYBOARD_RIGHT) {
-										// zwolnienie prawo chyba przycisk 6
-									} else if (ret[2] == N.DeviceSignal.KEYBOARD_UP) {
-										// zwolnienie gora chyba przycisk 5
-									} else if (ret[2] == N.DeviceSignal.VJOY_START_PRESS) {
-										// zwolnienie gora chyba przycisk 4
+										vjoy.buttonRelease(1);
+									}else if (ret[2] == N.DeviceSignal.KEYBOARD_DOWN) {
+										vjoy.buttonRelease(13);
+									}else if (ret[2] == N.DeviceSignal.KEYBOARD_LEFT) {
+										vjoy.buttonRelease(14);
+									}else if (ret[2] == N.DeviceSignal.KEYBOARD_RIGHT) {
+										vjoy.buttonRelease(15);
+									}else if (ret[2] == N.DeviceSignal.KEYBOARD_UP) {
+										vjoy.buttonRelease(12);
+									}else if (ret[2] == N.DeviceSignal.VJOY_START_PRESS) {
+										// zwolnienie start chyba przycisk 4
+										vjoy.buttonRelease(9);
 									}
 								}
-							} else if (ret[0] == N.Device.EXIT) {
+							}  else if (ret[0] == N.Device.EXIT) {
 								dis.close();
 								dos.close();
 								connection.close();

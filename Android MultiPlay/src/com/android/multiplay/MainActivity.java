@@ -11,7 +11,8 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.android.application.MultiPlayApplication;
-import com.android.controllers.help.GamepadHelp;
+import com.android.controllers.help.gamepad.GamepadHelp;
+import com.android.controllers.help.touchpad.TouchPadHelp;
 import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
 import com.android.dialogs.WelcomeDialogCheckRequirements_1Step;

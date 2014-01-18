@@ -1,9 +1,9 @@
-package com.android.controllers.help;
+package com.android.animations;
 
 import android.support.v4.view.ViewPager.PageTransformer;
 import android.view.View;
 
-public class ZoomOutGamepad implements PageTransformer {
+public class TransformZoomOut implements PageTransformer {
 	private static float MIN_SCALE = 0.85f;
 	private static float MIN_ALPHA = 0.5f;
 

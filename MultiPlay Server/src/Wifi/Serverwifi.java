@@ -27,9 +27,11 @@ public class Serverwifi implements Runnable {
 	private ServerSocket serversocket;
 	private int port;
 	private int i = 0;
+	private Connect connect=null;
 
-	public Serverwifi(int port) {
+	public Serverwifi(int port, Connect connect) {
 		this.port = port;
+		this.connect=connect;
 	}
 
 	@Override
@@ -150,16 +152,16 @@ public class Serverwifi implements Runnable {
 										// wciœniecie trójkata chyba przycisk 13
 										vjoy.buttonPress(1);
 									}else if (ret[2] == N.DeviceSignal.KEYBOARD_DOWN) {
-										// wciœniecie Dó³ chyba przycisk 7
+										vjoy.buttonPress(13);
 									}else if (ret[2] == N.DeviceSignal.KEYBOARD_LEFT) {
-										// wciœniecie Dó³ chyba przycisk 8
+										vjoy.buttonPress(14);
 									}else if (ret[2] == N.DeviceSignal.KEYBOARD_RIGHT) {
-										// wciœniecie Dó³ chyba przycisk 6
+										vjoy.buttonPress(15);
 									}else if (ret[2] == N.DeviceSignal.KEYBOARD_UP) {
-										// wciœniecie Dó³ chyba przycisk 5
+										vjoy.buttonPress(12);
 									}else if (ret[2] == N.DeviceSignal.VJOY_START_PRESS) {
 										// wciœniecie start chyba przycisk 4
-										vjoy.buttonPress(10);
+										vjoy.buttonPress(9);
 									}
 								} else if (ret[3] == N.DeviceSignal.RELEASE) {
 									if (ret[2] == N.DeviceSignal.VJOY_CIRCLE_PRESS) {
@@ -175,16 +177,16 @@ public class Serverwifi implements Runnable {
 										// zwolnienie trójkata chyba przycisk 13
 										vjoy.buttonRelease(1);
 									}else if (ret[2] == N.DeviceSignal.KEYBOARD_DOWN) {
-										// zwolnienie Dó³ chyba przycisk 7
+										vjoy.buttonRelease(13);
 									}else if (ret[2] == N.DeviceSignal.KEYBOARD_LEFT) {
-										// zwolnienie lewo chyba przycisk 8
+										vjoy.buttonRelease(14);
 									}else if (ret[2] == N.DeviceSignal.KEYBOARD_RIGHT) {
-										// zwolnienie prawo chyba przycisk 6
+										vjoy.buttonRelease(15);
 									}else if (ret[2] == N.DeviceSignal.KEYBOARD_UP) {
-										// zwolnienie gora chyba przycisk 5
+										vjoy.buttonRelease(12);
 									}else if (ret[2] == N.DeviceSignal.VJOY_START_PRESS) {
 										// zwolnienie start chyba przycisk 4
-										vjoy.buttonRelease(10);
+										vjoy.buttonRelease(9);
 									}
 								}
 							} else if (ret[0] == N.Device.EXIT) {
@@ -192,6 +194,7 @@ public class Serverwifi implements Runnable {
 								dos.close();
 								socket.close();
 								serversocket.close();
+								connect.delport(port);
 								break;
 							}
 						} catch (IOException e) {

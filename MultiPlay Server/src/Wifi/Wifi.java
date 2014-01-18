@@ -75,7 +75,7 @@ public class Wifi implements Runnable {
 						socket.close();
 						serversocket.close();
 						System.out.println("Over");
-						Serverwifi wifi = new Serverwifi(port);
+						Serverwifi wifi = new Serverwifi(port, connect);
 						wifi.run();
 					}
 				} catch (IOException e) {

@@ -43,6 +43,7 @@
     <string name="contentDescription_iv_dialog_welcome_requirements_gravity_true_false">TODO</string>
     <string name="contentDescription_iv_dialog_welcome_requirements_rotation_vector_true_false">TODO</string>
     <string name="contentDescription_iv_dialog_welcome_requirements_linear_acceleration_true_false">TODO</string>
+    
     <string name="contentDescription_iv_dialog_welcome_requirements_bluetooth_help">TODO</string>
     <string name="contentDescription_iv_dialog_welcome_requirements_bluetooth_low_energy_help">TODO</string>
     <string name="contentDescription_iv_dialog_welcome_requirements_wifi_help">TODO</string>
@@ -52,6 +53,9 @@
     <string name="contentDescription_iv_dialog_welcome_requirements_gravity_help">TODO</string>
     <string name="contentDescription_iv_dialog_welcome_requirements_rotation_vector_help">TODO</string>
     <string name="contentDescription_iv_dialog_welcome_requirements_linear_acceleration_help">TODO</string>
+    <string name="contentDescription_b_options_controller_search">TODO</string>
+    <string name="contentDescription_iv_options_controller_miniature_icon">TODO</string>
+    <string name="contentDescription_b_options_controller_cancel">TODO</string>
     <string name="hint_device_name">Device name</string>
     <string name="hint_device_ip">127.0.0.10</string>
     <string name="hint_device_port">8000</string>
@@ -62,6 +66,7 @@
     <string name="title_activity_system_controller">SystemControllerActivity</string>
     <string name="title_activity_help">HelpActivity</string>
     <string name="title_activity_options">OptionsActivity</string>
+    <string name="title_activity_options_controller">OptionsControllerActivity</string>
     <string name="title_activity_first_menu">TOBEDELETED</string>
     <string name="title_activity_keyboard">KeyboardActivity</string>
     <string name="title_activity_mouse">MouseActivity</string>
@@ -80,13 +85,6 @@
     <string name="title_activity_steeringwheel_option">SteeringwheelOptionActivity</string>
     <string name="title_activity_keyboard_option">KeyboardOptionActivity</string>
     <string name="title_activity_speaker_option">SpeakerOptionActivity</string>
-    <string name="title_activity_gamepad">Gamepad</string>
-    <string name="title_activity_steeringwheel_help">SteeringwheelHelp</string>
-    <string name="title_activity_gyromouse_help">GyromouseHelp</string>
-    <string name="title_activity_mouse_help">MouseHelp</string>
-    <string name="title_activity_touch_pad_help">TouchPadHelp</string>
-    <string name="title_activity_keyboard_help">KeyboardHelp</string>
-    <string name="title_activity_speaker_help">SpeakerHelp</string>
-    <string name="title_activity_gamepad_help">GamepadHelp</string>
-
+    
+    
 </resources>

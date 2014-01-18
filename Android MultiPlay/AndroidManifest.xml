@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
+    
     <uses-feature
         android:name="android.hardware.bluetooth_le"
         android:required="false" />
@@ -69,6 +69,16 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.multiplay.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.android.multiplay.OptionsControllerActivity"
+            android:label="@string/title_activity_options_controller"
+            android:parentActivityName="com.android.multiplay.OptionsActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.OptionsActivity" />
         </activity>
         <activity
             android:name="com.android.multiplay.HelpActivity"
@@ -179,31 +189,31 @@
             android:label="@string/title_activity_gamepad" >
         </activity>
         <activity
-            android:name="com.android.controllers.help.SteeringwheelHelp"
+            android:name="com.android.controllers.help.steeringwheel.SteeringwheelHelp"
             android:label="@string/title_activity_steeringwheel_help" >
         </activity>
         <activity
-            android:name="com.android.controllers.help.GyromouseHelp"
+            android:name="com.android.controllers.help.gyromouse.GyromouseHelp"
             android:label="@string/title_activity_gyromouse_help" >
         </activity>
         <activity
-            android:name="com.android.controllers.help.MouseHelp"
+            android:name="com.android.controllers.help.mouse.MouseHelp"
             android:label="@string/title_activity_mouse_help" >
         </activity>
         <activity
-           android:name="com.android.controllers.help.TouchPadHelp"
+           android:name="com.android.controllers.help.touchpad.TouchPadHelp"
             android:label="@string/title_activity_touch_pad_help" >
         </activity>
         <activity
-     android:name="com.android.controllers.help.KeyboardHelp"
+     android:name="com.android.controllers.help.keyboard.KeyboardHelp"
             android:label="@string/title_activity_keyboard_help" >
         </activity>
        <activity
-     android:name="com.android.controllers.help.SpeakerHelp"
+     android:name="com.android.controllers.help.speaker.SpeakerHelp"
             android:label="@string/title_activity_speaker_help" >
         </activity>
         <activity
-            android:name="com.android.controllers.help.GamepadHelp"
+            android:name="com.android.controllers.help.gamepad.GamepadHelp"
             android:label="@string/title_activity_gamepad_help" >
         </activity>
     </application>

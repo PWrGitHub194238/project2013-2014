@@ -3,59 +3,29 @@ package com.android.services;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.content.Context;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.android.application.BluetoothConfigurationClass;
 import com.android.application.ConnectionsConfigurationClass;
 import com.android.application.MultiPlayApplication;
 import com.android.application.WirelessConfigurationClass;
-import com.android.asychs.CheckConnectionStatus;
-import com.android.asychs.SocketMainWiFiSender;
+import com.android.asyncs.CheckConnectionStatus;
 import com.android.database.DBHelper;
 import com.android.database.tables.NetworkBTSettings;
 import com.android.database.tables.NetworkWiFiSettings;
 import com.android.multiplay.R;
 
 public class ConnectionHelper {
-
-	public static final boolean CONNECTION_TYPE_WIFI = false;
-	public static final boolean CONNECTION_TYPE_BT = true;
 	
 	public static final int STATUS_ON = R.drawable.activity_button_on;
 	public static final int STATUS_WARNING = R.drawable.activity_button_warning;
 	public static final int STATUS_NOT_IN_RANGE = R.drawable.activity_button_not_in_range;
 	
-	public static boolean isWirelessNetworkConnected(Context context) {
-		ConnectivityManager connectivityManager = (ConnectivityManager)
-		        context.getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo networkInfo = null;
-	    if (connectivityManager != null) {
-	        networkInfo =
-	            connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-	    }
-	    return networkInfo == null ? false : networkInfo.isConnected();
-	}
-	
-	public static boolean isBluetoothConnected(Context context) {
-	    ConnectivityManager connectivityManager = (ConnectivityManager)
-	        context.getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo networkInfo = null;
-	    if (connectivityManager != null) {
-	        networkInfo =
-	            connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_BLUETOOTH);
-	    }
-	    return networkInfo == null ? false : networkInfo.isConnected();
-	}
 	
 	public static int insertNewConnectionToList(boolean connectionType, ConnectionsConfigurationClass configuration) {
 		Map<String,String> newValues = null;
 				
-		if (connectionType == CONNECTION_TYPE_WIFI) {
+		if (connectionType == MultiPlayApplication.CONNECTION_TYPE_WIFI) {
 			WirelessConfigurationClass wifiConfiguration = (WirelessConfigurationClass) configuration;
 			Log.d("Connections","> Name: " + configuration.getName());
 			Log.d("Connections","> IP: " + wifiConfiguration.getIP());
@@ -81,7 +51,16 @@ public class ConnectionHelper {
 				}
 				 
 				Log.d("APP","Checking connection...");
-				new CheckConnectionStatus().execute(wifiConfiguration);
+
+				Log.d("THREAD","EXEC 85");
+				if ( wifiConfiguration != null) {
+					new CheckConnectionStatus().execute(wifiConfiguration);
+
+				} else {
+					Log.d("THREAD","EXEC 85 NULL");
+
+				}
+				
 				MultiPlayApplication.getDiscoveredWirelessDevices().add(wifiConfiguration);
 				Log.d("APP","Aded: "+MultiPlayApplication.getDiscoveredWirelessDevices().iterator().next().toString());
 			
@@ -118,7 +97,15 @@ public class ConnectionHelper {
 				}
 				 
 				Log.d("APP","Checking connection...");
-				new CheckConnectionStatus().execute(btConfiguration);
+
+				Log.d("THREAD","EXEC 124");
+				if (btConfiguration != null ) {
+					new CheckConnectionStatus().execute(btConfiguration);
+				} else {
+					Log.d("THREAD","EXEC 124 NULL");
+
+				}
+				
 				MultiPlayApplication.getDiscoveredBluetoothDevices().add(btConfiguration);
 				Log.d("APP","Aded: "+MultiPlayApplication.getDiscoveredBluetoothDevices().iterator().next().toString());
 			

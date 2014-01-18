@@ -9,6 +9,8 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnShowListener;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.android.dialogs.elements.DialogListCore;
@@ -33,8 +35,7 @@ import com.android.multiplay.R;
  * refusal to grant permissions (see {@link AlertDialogs#NEGATIVE_BUTTON_ID}). </li>
  * </ul>
  * 
- * In the absence of any component of the above, the dialog will be created 
- * with default values ​​(applies to the text) or without them (e.g. buttons, icons).
+ * In the absence of any component of the above, the dialog will not be created.
  * 
  * {@link Activity}, which contains a dialog must implement {@link ButtonsFocusChangeListener} 
  * in order to receive signals from either {@link #positiveButton}, {@link #neutralButton} or {@link #negativeButton}.
@@ -133,7 +134,8 @@ public class AlertDialogs extends DialogFragment implements OnShowListener {
 	 * @param negativeButtonID ID resource from {@link DialogListCore} that is uniquely represents a button's label text value
 	 * @return new alert dialog
 	 */
-    protected static AlertDialogs newInstance( Integer titleIconID, Integer titleID, Integer messageID, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
+    protected static AlertDialogs newInstance( Integer titleIconID, Integer titleID, Integer messageID, 
+    		Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID) {
     	AlertDialogs dialog = new AlertDialogs();
     	
         Bundle args = new Bundle();
@@ -183,8 +185,6 @@ public class AlertDialogs extends DialogFragment implements OnShowListener {
         argsID = super.getArguments().getInt(AlertDialogs.TITLE_ID);
         if ( argsID !=  0 ) {
         	dialogBuilder.setTitle(argsID);
-        } else {
-        	dialogBuilder.setTitle(DialogListCore.ID_TITLE_NO_TITLE);
         }
         
         buildDialogContent(dialogBuilder);
@@ -266,10 +266,17 @@ public class AlertDialogs extends DialogFragment implements OnShowListener {
     	Integer argsID = super.getArguments().getInt(AlertDialogs.MESSAGE_ID);
         if ( argsID !=  0 ) {
         	builder.setMessage(argsID);
-        } else {
-        	builder.setMessage(DialogListCore.ID_MESSAGE_NO_MESSAGE);
         }
 	}
+    
+    protected static void buildDialogResizeWindow( int window_height, int window_width) {
+		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+		Window window = builder.getWindow();
+		lp.copyFrom(window.getAttributes());
+		lp.width = window_width;
+		lp.height = window_height;
+		window.setAttributes(lp);
+    }
 
     /** Displays alert dialog in given {@link Activity}.
      * 
@@ -306,11 +313,20 @@ public class AlertDialogs extends DialogFragment implements OnShowListener {
      * @param neutralButtonID see {@link #newInstance(Integer, Integer, Integer, Integer, Integer, Integer)} parameters
      * @param negativeButtonID see {@link #newInstance(Integer, Integer, Integer, Integer, Integer, Integer)} parameters
      */
-	public static void showDialog(Activity activity, String dialogIDTag, Integer titleIconID, Integer titleID, Integer messageID, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
+	public static void showDialog(Activity activity, String dialogIDTag, Integer titleIconID, Integer titleID, Integer messageID, 
+			Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
 		DialogFragment dialog = AlertDialogs.newInstance(titleIconID,titleID,messageID,positiveButtonID,neutralButtonID,negativeButtonID);
         dialog.show(activity.getFragmentManager(), dialogIDTag);
 	}
 
+	protected void setWindowFullHorizontal() {
+		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+	    lp.copyFrom(builder.getWindow().getAttributes());
+	    lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+	    builder.show();
+	    builder.getWindow().setAttributes(lp);
+	}
+	
 	/** Assigns a reference to each of the dialog buttons.
 	 * 
 	 * It is performed when the dialog box appears. Assigns button's references to variables
@@ -323,6 +339,7 @@ public class AlertDialogs extends DialogFragment implements OnShowListener {
 		positiveButton = ((AlertDialog)dialog).getButton(AlertDialog.BUTTON_POSITIVE);
 		neutralButton = ((AlertDialog)dialog).getButton(AlertDialog.BUTTON_NEUTRAL);
 		negativeButton = ((AlertDialog)dialog).getButton(AlertDialog.BUTTON_NEGATIVE);
+
 		Log.d("Dialogs","Buttons init");
 	}
 	

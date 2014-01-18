@@ -1,30 +1,28 @@
-package com.android.asychs;
+package com.android.asyncs;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.UUID;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.android.application.BluetoothConfigurationClass;
 import com.android.application.N;
 import com.android.application.N.Helper;
+import com.android.application.WirelessConfigurationClass;
 
 
 
-public class SocketMainBluetoothSender extends AsyncTask<Byte, String, String> {
+public class SocketMainWiFiSender extends AsyncTask<Byte, String, String> {
 
-	private BluetoothSocket bluetoothSocket = null;
+	private Socket socket = null;
 	private DataOutputStream dos = null;
 	private DataInputStream dis = null;
-	private BluetoothConfigurationClass mainConfiguration = null;
+	private WirelessConfigurationClass mainConfiguration = null;
 	
 	public static LinkedBlockingQueue<Integer> queue = null;
 	public static Boolean isRuning = false;
@@ -32,9 +30,9 @@ public class SocketMainBluetoothSender extends AsyncTask<Byte, String, String> {
 	
 	
 	
-	public SocketMainBluetoothSender(BluetoothConfigurationClass mainNetworkConfiguration) throws IOException {
+	public SocketMainWiFiSender(WirelessConfigurationClass mainConfiguration) throws IOException {
 		super();
-		this.mainConfiguration = mainNetworkConfiguration;
+		this.mainConfiguration = mainConfiguration;
 		queue = new LinkedBlockingQueue<Integer>();
 		Log.d("THREAD","sender starts...");
 	
@@ -63,26 +61,22 @@ public class SocketMainBluetoothSender extends AsyncTask<Byte, String, String> {
 
 	@Override
 	protected synchronized String doInBackground(Byte... Params) {
-		BluetoothDevice bluetoothDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(
-				mainConfiguration.getAdress());
-		UUID uuid = mainConfiguration.getUuid();
 		try {
-			Log.d("THREAD",bluetoothDevice.getName() + "\n" + bluetoothDevice.getAddress());
-
-			Log.d("THREAD",uuid.toString());
-		    bluetoothSocket = bluetoothDevice.createRfcommSocketToServiceRecord(uuid);
-			this.dos = new DataOutputStream(bluetoothSocket.getOutputStream());
+			this.socket = new Socket(
+					InetAddress.getByName(mainConfiguration.getIP()),
+					mainConfiguration.getPort());
+			this.dos = new DataOutputStream(socket.getOutputStream());
 			dos.writeByte(Params[0]);
-			this.dis = new DataInputStream(bluetoothSocket.getInputStream());
-			//int port = dis.readInt();
-			//Log.d("THREAD","Port: "+port);
-//			dis.close();
-//			dos.close();
-//			bluetoothSocket.close();
-//			this.bluetoothSocket = new Socket(
-//					InetAddress.getByName(mainConfiguration.getIP()),
-//					port);
-//			this.dos = new DataOutputStream(socket.getOutputStream());
+			this.dis = new DataInputStream(socket.getInputStream());
+			int port = dis.readInt();
+			Log.d("THREAD","Port: "+port);
+			dis.close();
+			dos.close();
+			socket.close();
+			this.socket = new Socket(
+					InetAddress.getByName(mainConfiguration.getIP()),
+					port);
+			this.dos = new DataOutputStream(socket.getOutputStream());
 			
 		} catch (UnknownHostException e1) {
 			// TODO Auto-generated catch block
@@ -96,12 +90,12 @@ public class SocketMainBluetoothSender extends AsyncTask<Byte, String, String> {
 		int i = 0;
 		while(isRuning) {
 			try {
-				Log.d("THREAD","isEmpty "+queue.isEmpty());
+			//	Log.d("THREAD","isEmpty "+queue.isEmpty());
 				while(queue.isEmpty() == false ) {
 						data = queue.take();
-						Log.d("THREAD","doInBackground "+data);
+						//Log.d("THREAD","doInBackground "+data);
 						int[] out = Helper.decodeSignal(data);
-						Log.d("THREAD"," > Encoded: DEV: "+out[0]+" C: "+out[1]+" X: "+out[2]+" Y: "+out[3]);
+					//	Log.d("THREAD"," > Encoded: DEV: "+out[0]+" C: "+out[1]+" X: "+out[2]+" Y: "+out[3]);
 						dos.writeInt(data);
 					//	i += 1;
 					//	Log.d("THREAD","doInBackground "+data);

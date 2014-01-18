@@ -188,9 +188,9 @@ public class ConnectionPanel extends Fragment implements OnClickListener {
 	    connectionServiceResponseReceiver = new ConnectionServiceResponseReceiver(activity);
 	    activity.registerReceiver(connectionServiceResponseReceiver, intentFilter);
 	   //TODO 
-	    Intent outputIntent = new Intent(activity, ConnectionService.class);
-		outputIntent.addCategory(Intent.CATEGORY_DEFAULT);
-		outputIntent.putExtra(ConnectionService.INPUT_DATA_CALLED_REASON, ConnectionService.INIT);
+//	    Intent outputIntent = new Intent(activity, ConnectionService.class);
+//		outputIntent.addCategory(Intent.CATEGORY_DEFAULT);
+//		outputIntent.putExtra(ConnectionService.INPUT_DATA_CALLED_REASON, ConnectionService.INIT);
 		Log.i("Fragment", "START SERVICE");
 	//	activity.startService(outputIntent);
 	}

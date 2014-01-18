@@ -1,7 +1,10 @@
 package com.android.extendedWidgets.lists;
 
+import com.android.application.BluetoothConfigurationClass;
+import com.android.application.ConnectionsConfigurationClass;
+import com.android.application.MultiPlayApplication;
+import com.android.application.WirelessConfigurationClass;
 import com.android.multiplay.R;
-import com.android.services.ConnectionHelper;
 
 public class ElementOfConnectionsList {
 	
@@ -23,26 +26,30 @@ public class ElementOfConnectionsList {
 	public static final int ICON_WINDOWS = R.drawable.connections_activity_os_windows;
 	public static final int ICON_UNKNOW = R.drawable.connections_activity_os_unknow;
 	
-	public ElementOfConnectionsList(String deviceName, String deviceDetail, int deviceDetailStatus, 
-			boolean isStored, byte system, int resolution_x, int resolution_y, boolean BTorWiFi) {
+	public ElementOfConnectionsList(int index, ConnectionsConfigurationClass connectionConfiguration ) {
+		this.index = index;
 		this.icon_type_id = ICON[0];
-		this.deviceName = deviceName;
-		this.deviceDetailStatus = deviceDetailStatus;
-		this.deviceDetail = deviceDetail;
-		this.isStored = isStored;
-		this.system = system;
-		this.resolution_x = resolution_x;
-		this.resolution_y = resolution_y;
-		if (BTorWiFi == ConnectionHelper.CONNECTION_TYPE_BT) {
-			deviceDetailPrefix = "MAC: ";
-			connectionTypeIcon = ICON_BT;
-		} else {
+		this.deviceName = connectionConfiguration.getName();
+		this.deviceDetailStatus = connectionConfiguration.getConnectionStatus();
+		this.isStored = connectionConfiguration.isStored();
+		this.system = connectionConfiguration.getSystem();
+		this.resolution_x = connectionConfiguration.getSystemDimmensionX();
+		this.resolution_y = connectionConfiguration.getSystemDimmensionY();
+		
+		if (connectionConfiguration instanceof WirelessConfigurationClass) {
+			this.deviceDetail = ((WirelessConfigurationClass) connectionConfiguration).getIP();
 			deviceDetailPrefix = "IP: ";
 			connectionTypeIcon = ICON_WIFI;
+			BTorWiFi = MultiPlayApplication.CONNECTION_TYPE_WIFI;
+		} else if (connectionConfiguration instanceof BluetoothConfigurationClass) {
+			this.deviceDetail = ((BluetoothConfigurationClass) connectionConfiguration).getAdress();
+			deviceDetailPrefix = "IP: ";
+			connectionTypeIcon = ICON_WIFI;
+			BTorWiFi = MultiPlayApplication.CONNECTION_TYPE_BT;
 		}
 	}
 	
-	
+	private int index = 0;
 	private int icon_type_id = -1;
 	private int connectionTypeIcon = -1;
 	private String deviceName = null;
@@ -53,53 +60,113 @@ public class ElementOfConnectionsList {
 	private byte system = 0;
 	private int resolution_x = 0;
 	private int resolution_y = 0;
+	private boolean BTorWiFi = false;
 
-
+	/**
+	 * @return the index
+	 */
+	public final int getIndex() {
+		return index;
+	}
+	/**
+	 * @param index the index to set
+	 */
+	public final void setIndex(int index) {
+		this.index = index;
+	}
+	/**
+	 * @return the icon_type_id
+	 */
 	public final int getIcon_type_id() {
 		return icon_type_id;
 	}
+	/**
+	 * @param icon_type_id the icon_type_id to set
+	 */
 	public final void setIcon_type_id(int icon_type_id) {
 		this.icon_type_id = icon_type_id;
 	}
+	/**
+	 * @return the connectionTypeIcon
+	 */
 	public final int getConnectionTypeIcon() {
 		return connectionTypeIcon;
 	}
+	/**
+	 * @param connectionTypeIcon the connectionTypeIcon to set
+	 */
 	public final void setConnectionTypeIcon(int connectionTypeIcon) {
 		this.connectionTypeIcon = connectionTypeIcon;
 	}
+	/**
+	 * @return the deviceName
+	 */
 	public final String getDeviceName() {
 		return deviceName;
 	}
+	/**
+	 * @param deviceName the deviceName to set
+	 */
 	public final void setDeviceName(String deviceName) {
 		this.deviceName = deviceName;
 	}
+	/**
+	 * @return the deviceDetailStatus
+	 */
 	public final int getDeviceDetailStatus() {
 		return deviceDetailStatus;
 	}
+	/**
+	 * @param deviceDetailStatus the deviceDetailStatus to set
+	 */
 	public final void setDeviceDetailStatus(int deviceDetailStatus) {
 		this.deviceDetailStatus = deviceDetailStatus;
 	}
+	/**
+	 * @return the deviceDetailPrefix
+	 */
 	public final String getDeviceDetailPrefix() {
 		return deviceDetailPrefix;
 	}
+	/**
+	 * @param deviceDetailPrefix the deviceDetailPrefix to set
+	 */
 	public final void setDeviceDetailPrefix(String deviceDetailPrefix) {
 		this.deviceDetailPrefix = deviceDetailPrefix;
 	}
+	/**
+	 * @return the deviceDetail
+	 */
 	public final String getDeviceDetail() {
 		return deviceDetail;
 	}
+	/**
+	 * @param deviceDetail the deviceDetail to set
+	 */
 	public final void setDeviceDetail(String deviceDetail) {
 		this.deviceDetail = deviceDetail;
 	}
+	/**
+	 * @return the isStored
+	 */
 	public final boolean isStored() {
 		return isStored;
 	}
+	/**
+	 * @param isStored the isStored to set
+	 */
 	public final void setStored(boolean isStored) {
 		this.isStored = isStored;
 	}
+	/**
+	 * @return the system
+	 */
 	public final byte getSystem() {
 		return system;
 	}
+	/**
+	 * @param system the system to set
+	 */
 	public final void setSystem(byte system) {
 		this.system = system;
 	}
@@ -126,6 +193,18 @@ public class ElementOfConnectionsList {
 	 */
 	public final void setResolution_y(int resolution_y) {
 		this.resolution_y = resolution_y;
+	}
+	/**
+	 * @return the bTorWiFi
+	 */
+	public final boolean isBTorWiFi() {
+		return BTorWiFi;
+	}
+	/**
+	 * @param bTorWiFi the bTorWiFi to set
+	 */
+	public final void setBTorWiFi(boolean bTorWiFi) {
+		BTorWiFi = bTorWiFi;
 	}
 	
 	

@@ -35,6 +35,7 @@ public class WelcomeDialogCheckRequirements_2Step extends ScrollViewDialog {
 	@Override
 	public void onShow(DialogInterface dialog) {
 		super.onShow(dialog);
+		super.setWindowFullHorizontal();
 	}
 
 	public static void showDialog(Activity activity, String dialogIDTag, Integer titleIconID, Integer titleID, ScrollView view, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {

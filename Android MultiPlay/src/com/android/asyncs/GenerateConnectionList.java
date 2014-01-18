@@ -1,4 +1,4 @@
-package com.android.asychs;
+package com.android.asyncs;
 
 import java.util.Collection;
 import java.util.Set;
@@ -51,13 +51,13 @@ public class GenerateConnectionList extends AsyncTask<String, String, String> {
 		    // Loop through paired devices
 		    for (BluetoothDevice device : pairedDevices) {
 		        // Add the name and address to an array adapter to show in a ListView
-		        listOfElements.add(new ElementOfConnectionsList(
-		        		"AAA"+device.getName(), device.getAddress(), ConnectionHelper.STATUS_NOT_IN_RANGE,
-						ElementOfConnectionsList.STORED_NO,
-						N.System.WINDOWS,
-						-1,
-						-1,
-						ConnectionHelper.CONNECTION_TYPE_BT));
+//		        listOfElements.add(new ElementOfConnectionsList(0,
+//		        		"AAA"+device.getName(), device.getAddress(), ConnectionHelper.STATUS_NOT_IN_RANGE,
+//						ElementOfConnectionsList.STORED_NO,
+//						N.System.WINDOWS,
+//						-1,
+//						-1,
+//						ConnectionHelper.CONNECTION_TYPE_BT));
 		    }
 		}
 		Log.d("connections","BT IS OK 3");

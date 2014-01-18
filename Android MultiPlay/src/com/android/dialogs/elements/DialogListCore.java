@@ -4,9 +4,6 @@ import com.android.multiplay.R;
 
 public final class DialogListCore {
 	
-	public static final int ID_TITLE_NO_TITLE =
-			R.string.dialog_ID_TITLE_NO_TITLE;
-	
 	public static final int IT_TITLE_ICON_SUCCES =
 			R.drawable.activity_icon_succes;
 	public static final int IT_TITLE_ICON_WARNING =
@@ -17,9 +14,6 @@ public final class DialogListCore {
 			R.drawable.activity_icon_information;
 	public static final Integer ID_TITLE_ICON_APPLICATION = 
 			R.drawable.activity_icon_multiplay;
-	
-	public static final int ID_MESSAGE_NO_MESSAGE =
-			R.string.dialog_ID_MESSAGE_NO_MESSAGE;
 	
 	public static final int ID_BUTTON_OK =
 			R.string.dialog_ID_BUTTON_OK;
@@ -37,6 +31,7 @@ public final class DialogListCore {
 			R.string.dialog_ID_BUTTON_NEXT;
 	public static final Integer ID_BUTTON_FINISH = 
 			R.string.dialog_ID_BUTTON_FINISH;
-
+	public static final Integer ID_BUTTON_RECHECK = 
+			R.string.dialog_ID_BUTTON_RECHECK;
 	
 }

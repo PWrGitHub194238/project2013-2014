@@ -11,7 +11,8 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.android.application.MultiPlayApplication;
-import com.android.controllers.help.GamepadHelp;
+import com.android.controllers.help.gamepad.GamepadHelp;
+import com.android.controllers.help.touchpad.TouchPadHelp;
 import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
 import com.android.dialogs.WelcomeDialogCheckRequirements_1Step;
@@ -182,7 +183,7 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	 */
 	public void help_OnClick(View view) {
 		super.startActivity(
-				new Intent(this, GamepadHelp.class));
+				new Intent(this, TouchPadHelp.class));
 	}
 	
 	/** Method starts new activity: {@link OptionsActivity}.
@@ -318,9 +319,9 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 					DialogListCore.ID_TITLE_ICON_APPLICATION,
 					MainActivity.DialogList.ID_TITLE_WELCOME_3,
 					WelcomeDialogCheckRequirements_1Step.getViewFromResource(this,R.layout.dialog_check_requirements_3),
-					DialogListCore.ID_BUTTON_ADD,
+					DialogListCore.ID_BUTTON_FINISH,
 					null,
-					DialogListCore.ID_BUTTON_FINISH);
+					DialogListCore.ID_BUTTON_ADD);
 			return;
 		}
 		

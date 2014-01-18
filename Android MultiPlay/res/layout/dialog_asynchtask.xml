@@ -1,0 +1,26 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_asynchtask"
+   	android:background="@android:color/transparent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+	<ProgressBar
+	    android:id="@+id/pb_dialog_asynchtask_working"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+	<TextView
+	    android:id="@+id/tv_dialog_asynchtask_working"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/pb_dialog_asynchtask_working"
+	    android:layout_centerHorizontal="true"
+	    android:layout_marginTop="30dp"
+	    android:text="@string/dialog_ID_MESSAGE_WORKING"
+	    android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+</RelativeLayout>

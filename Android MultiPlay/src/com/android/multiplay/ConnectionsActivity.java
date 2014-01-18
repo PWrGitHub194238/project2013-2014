@@ -2,9 +2,7 @@ package com.android.multiplay;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.UUID;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -33,21 +31,25 @@ import com.android.application.BluetoothConfigurationClass;
 import com.android.application.ConnectionsConfigurationClass;
 import com.android.application.MultiPlayApplication;
 import com.android.application.WirelessConfigurationClass;
-import com.android.asychs.CheckConnectionStatus;
-import com.android.asychs.GenerateConnectionList;
-import com.android.database.DBHelper;
+import com.android.asyncs.CheckConnectionStatus;
+import com.android.asyncs.GenerateConnectionList;
+import com.android.asyncs.OnAsyncTaskFinished;
 import com.android.dialogs.AddConnectionDialog;
 import com.android.dialogs.AlertDialogs;
+import com.android.dialogs.AsyncTaskDialog;
 import com.android.dialogs.DialogButtonClickListener;
+import com.android.dialogs.PreferencesDialog;
 import com.android.dialogs.ScrollViewSwitchDialog;
 import com.android.dialogs.elements.DialogListCore;
 import com.android.extendedWidgets.ImageToggleButton;
 import com.android.extendedWidgets.lists.ElementOfConnectionsList;
 import com.android.extendedWidgets.lists.ListOfConections;
+import com.android.extendedWidgets.lists.PreferencesDialogItem;
+import com.android.extendedWidgets.lists.PreferencesDialogList;
 import com.android.service.receivers.WiFiDirectBroadcastReceiver;
 import com.android.services.ConnectionHelper;
 
-public class ConnectionsActivity extends Activity implements OnItemClickListener, OnItemLongClickListener, OnClickListener, OnLongClickListener, DialogButtonClickListener {
+public class ConnectionsActivity extends Activity implements OnItemClickListener, OnItemLongClickListener, OnClickListener, OnLongClickListener, DialogButtonClickListener, OnAsyncTaskFinished {
 
 	
 	
@@ -143,12 +145,17 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	*/
 	private Collection<ElementOfConnectionsList> listOfElements = null;
 	
+	private ListOfConections listOfElementsAdpater = null;
+	
 	/**
 	* 
 	*/
 	private boolean lv_connections_activity_device_list_visibly = false;
 	
 	private boolean networkAvaliable = true;
+
+	
+	
 	
 	WifiP2pManager mManager = null;
 	Channel mChannel = null;
@@ -200,17 +207,40 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int id, long arg3) {
-		Log.d("ListView","Click index: "+id);
-		selectedConfig = MultiPlayApplication.getDiscoveredWirelessDevices().get(id);
-		AlertDialogs.showDialog(this,
-				ConnectionsActivity.DialogList.TAG_CONNECT_CONFIRMATION,
-				ConnectionsActivity.DialogList.ID_TITLE_ICON_WIFI,
-				ConnectionsActivity.DialogList.ID_TITLE_CONNECT_CONFIRMATION,
-				DialogListCore.ID_MESSAGE_NO_MESSAGE,
-				DialogListCore.ID_BUTTON_CONNECT,
-				null,
-				DialogListCore.ID_BUTTON_CANCEL);
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		Log.d("ListView","Click index: "+position);
+		
+		ElementOfConnectionsList selectedItem = (ElementOfConnectionsList) parent.getItemAtPosition(position);
+		Log.d("ListView","Click btorwifi: "+selectedItem.isBTorWiFi());
+
+		if (selectedItem.isBTorWiFi() == true) {
+			
+			Log.d("ListView","Click bt name: "+selectedItem.getDeviceName());
+			Log.d("ListView","Click bt name: "+MultiPlayApplication.getDiscoveredBluetoothDevices().get(selectedItem.getIndex()).getName());
+
+			selectedConfig = MultiPlayApplication.getDiscoveredBluetoothDevices().get(selectedItem.getIndex());
+			
+			Log.d("ListView","Click wifi state: "+selectedConfig.getConnectionStatus());
+			
+			Log.d("THREAD","EXEC 223");
+			runLogAsyncThread(
+					OnAsyncTaskFinished.TAG.ConnectionActivity_onItemClick_BT,
+					OnAsyncTaskFinished.TAG.ConnectionActivity_onItemClick_BT);
+			
+		} else {
+			Log.d("ListView","Click wifi name: "+selectedItem.getDeviceName());
+			Log.d("ListView","Click wifi  name: "+MultiPlayApplication.getDiscoveredWirelessDevices().get(selectedItem.getIndex()).getName());
+
+			selectedConfig = MultiPlayApplication.getDiscoveredWirelessDevices().get(selectedItem.getIndex());
+			
+			Log.d("ListView","Click wifi state: "+selectedConfig.getConnectionStatus());
+
+			
+			Log.d("THREAD","EXEC 237 <---");
+			runLogAsyncThread(
+					OnAsyncTaskFinished.TAG.ConnectionActivity_onItemClick_WIFI,
+					OnAsyncTaskFinished.TAG.ConnectionActivity_onItemClick_WIFI);
+		}
 	}
 
 	@Override
@@ -220,7 +250,27 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 				if (mBluetoothAdapter == null) {
 				    // Device does not support Bluetooth
 				} else {
-
+					Collection<PreferencesDialogItem> listElements = new ArrayList<PreferencesDialogItem>();
+					listElements.add(
+							new PreferencesDialogItem(
+									PreferencesDialogItem.ID.ListOfConnections_edit,
+									PreferencesDialogItem.ICON.icon_1,
+									PreferencesDialogItem.NAME.dialog_optionID_EDIT_CONNECTION));
+					listElements.add(
+							new PreferencesDialogItem(
+									PreferencesDialogItem.ID.ListOfConnections_forget,
+									PreferencesDialogItem.ICON.icon_1,
+									PreferencesDialogItem.NAME.dialog_optionID_EDIT_CONNECTION));
+					listElements.add(
+							new PreferencesDialogItem(
+									PreferencesDialogItem.ID.returnTAG,
+									PreferencesDialogItem.ICON.icon_1,
+									PreferencesDialogItem.NAME.dialog_optionID_RETURN));
+					
+					PreferencesDialogList listAdapter = new PreferencesDialogList(getApplicationContext(), listElements );
+					PreferencesDialog.showDialog(this, 
+							ConnectionsActivity.DialogList.TAG_CONNECTION_OPTIONS, 
+							listAdapter );
 				}
 				break;
 			case R.id.b_connections_activity_wireless_switcher:
@@ -270,7 +320,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	private void new_connection_onClick() {		
 		AddConnectionDialog.showDialog(this,
 				ConnectionsActivity.DialogList.TAG_ADD_CONNECTION,
-				ConnectionsActivity.DialogList.ID_TITLE_ICON_WIFI,
+				ConnectionsActivity.DialogList.ID_TITLE_ICON_CONNECTION_CREATOR,
 				ConnectionsActivity.DialogList.ID_TITLE_CONNECT_CONFIRMATION,
 				ScrollViewSwitchDialog.getViewFromResource(this,R.layout.dialog_add_new_connection),
 				R.id.s_connections_activity_connection_type_switch,
@@ -344,10 +394,8 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 			}
 			pb_connections_activity_refreshing.setVisibility(ProgressBar.VISIBLE);
 			
-			refreshList(true, false);
+			refreshConnectionList();
 			 
-			ListOfConections adapter_listy = new ListOfConections(this, listOfElements);
-			lv_connections_activity_device_list.setAdapter(adapter_listy);
 			rl_connections_activity_device_list_background_layout.setVisibility(RelativeLayout.INVISIBLE);
 			lv_connections_activity_device_list.setVisibility(ListView.VISIBLE);
 			
@@ -390,11 +438,14 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	    mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
 	    mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
 	    mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+	    
+	    refreshConnectionList();
 	}
 	
 	private void initRl_connections_activity_device_list_background_layout(int id) {
 		this.rl_connections_activity_device_list_background_layout = (RelativeLayout) super.findViewById(id);
 		this.pb_connections_activity_refreshing = (ProgressBar) rl_connections_activity_device_list_background_layout.findViewById(R.id.pb_connections_activity_refreshing);
+		this.pb_connections_activity_refreshing.setVisibility(ProgressBar.INVISIBLE);
 	}
 	
 	private void initLv_connections_activity_device_list(int id) {
@@ -439,173 +490,309 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 		this.b_connections_activity_refresh_connections_check.setOnClickListener(this);
 		this.b_connections_activity_refresh_connections_check.setOnLongClickListener(this);
 	}
+	
+	
+	
+////////////////////Methods for operations on configurations list.
 
 
 
-	public final static class DialogList {
+	public void refreshConnectionList() {
+		listOfElements.clear();
+		if (true ) {
+			Log.d("Connections","Refresh wifi list");
+			refreshWirelessList();
+
+		}
+		if ( true ) {
+			Log.d("Connections","Refresh BT list");
+			refreshBluetoothList();
+		}
 		
+		listOfElementsAdpater = new ListOfConections(this, listOfElements);
+		lv_connections_activity_device_list.setAdapter(listOfElementsAdpater);
+	}
+	
+	public void refreshWirelessList() {
+		ArrayList<WirelessConfigurationClass> wirelessConfigArray = MultiPlayApplication.getDiscoveredWirelessDevices();
+		int wirelessConfigArraySize = wirelessConfigArray.size();
+		WirelessConfigurationClass configuration = null;
+		int index = 0;
+		
+		for ( index = 0; index < wirelessConfigArraySize; index += 1) {
+			configuration = wirelessConfigArray.get(index);
+			if (configuration.getStoredIndex() != -1) {
+				configuration.setStored(
+						ElementOfConnectionsList.STORED_YES);
+			} else {
+				configuration.setStored(
+						ElementOfConnectionsList.STORED_NO);
+			}
+
+			listOfElements.add(new ElementOfConnectionsList(index,configuration));
+		}
+	}
+	
+	public void refreshBluetoothList() {
+		ArrayList<BluetoothConfigurationClass> bluetoothConfigArray = MultiPlayApplication.getDiscoveredBluetoothDevices();
+		int bluetoothConfigArraySize = bluetoothConfigArray.size();
+		BluetoothConfigurationClass configuration = null;
+		int index = 0;
+		
+		for ( index = 0; index < bluetoothConfigArraySize; index += 1) {
+			configuration = bluetoothConfigArray.get(index);
+			if (configuration.getStoredIndex() != -1) {
+				configuration.setStored(
+						ElementOfConnectionsList.STORED_YES);
+			} else {
+				configuration.setStored(
+						ElementOfConnectionsList.STORED_NO);
+			}
+			
+			listOfElements.add(new ElementOfConnectionsList(index,configuration));
+		}
+	}
+	
+	
+	
+////////////////////DialogButtonClickListener's methods for dialog interaction
+
+	
+	
+	public final static class DialogList {
+
 		private static final String PACKAGE = "com.android.multiplay.connectionsactivity";
 		
 		public static final String TAG_ADD_CONNECTION = PACKAGE + "ADD_CONNECTION";
 		public static final String TAG_CONNECT_CONFIRMATION = PACKAGE + "CONNECT_CONFIRMATION";
+		public static final String TAG_CONNECTION_OPTIONS = PACKAGE + "CONNECTION_OPTIONS";
+		public static final String TAG_CONNECT_DENY_BT = PACKAGE + "CONNECT_DENY_BT";
+		public static final String TAG_CONNECT_DENY_WIFI = PACKAGE + "CONNECT_DENY_WIFI";
 		
 		public static final int ID_TITLE_ADD_CONNECTION =
 				R.string.dialog_ID_TITLE_ADD_CONNECTION;
 		public static final int ID_TITLE_CONNECT_CONFIRMATION =
 				R.string.dialog_ID_TITLE_CONNECT_CONFIRMATION;
+		public static final Integer ID_TITLE_CONNECT_DENY = 
+				R.string.dialog_ID_TITLE_CONNECT_DENY;
 		
 		public static final int ID_TITLE_ICON_CONNECTION_CREATOR =
 				R.drawable.connections_activity_icon_creator;
-		public static final int ID_TITLE_ICON_WIFI =
-				R.drawable.connections_activity_icon_creator;
-		public static final int ID_TITLE_ICON_BT =
-				R.drawable.connections_activity_icon_creator;
+		public static final int ID_TITLE_ICON_WIFI_SUCCESS =
+				R.drawable.connections_activity_icon_wifi_success;
+		public static final int ID_TITLE_ICON_BT_SUCCESS =
+				R.drawable.connections_activity_icon_bt_success;
+		public static final int ID_TITLE_ICON_WIFI_WARNING =
+				R.drawable.connections_activity_icon_wifi_warning;
+		public static final int ID_TITLE_ICON_BT_WARNING =
+				R.drawable.connections_activity_icon_bt_warning;
+		
+		public static final Integer ID_MESSAGE_CONNECT_CONFIRMATION = 
+				R.string.dialog_ID_MESSAGE_CONNECT_CONFIRMATIONN;
+		public static final Integer ID_MESSAGE_CONNECT_DENY =
+				R.string.dialog_ID_MESSAGE_CONNECT_DENY;
 	}
 	
-	/**
-	 * 
-	 */
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog) {
 		String dialogTag = dialog.getTag();
-		ConnectionsConfigurationClass config = null;
-		
+	
 		if ( dialogTag.equals(ConnectionsActivity.DialogList.TAG_ADD_CONNECTION)) {
-			 Map<String,String> returnedData = ((AddConnectionDialog) dialog).getReturnedData();
-			 
-			Log.d("Connections","Name-> "+returnedData.get(AddConnectionDialog.DEVICE_NAME));
 
-			if (((AddConnectionDialog) dialog).isViewSwitcherState() == ConnectionHelper.CONNECTION_TYPE_WIFI ) {
-				
-				Log.d("Connections","IP-> "+returnedData.get(AddConnectionDialog.DEVICE_IP));
-				Log.d("Connections","Port-> "+returnedData.get(AddConnectionDialog.DEVICE_PORT));
-				
-				config = new WirelessConfigurationClass(
-						returnedData.get(AddConnectionDialog.DEVICE_IP),
-						Integer.valueOf(returnedData.get(AddConnectionDialog.DEVICE_PORT)));
-				
-				config.setConnectionStatus(
-						ConnectionHelper.STATUS_NOT_IN_RANGE);
-				
-				config.setName(
-						returnedData.get(AddConnectionDialog.DEVICE_NAME));
-				Log.d("APP","STORED0 ? "+returnedData.get(AddConnectionDialog.DEVICE_IS_STORED).toString());
-				if (returnedData.get(AddConnectionDialog.DEVICE_IS_STORED)==Boolean.toString(true)) {
-					config.setStored(true);
-				} else {
-					config.setStored(false);
-				}
-				
-				ConnectionHelper.insertNewConnectionToList(
-						ConnectionHelper.CONNECTION_TYPE_WIFI, config);
-				
-			} else if (((AddConnectionDialog) dialog).isViewSwitcherState() == ConnectionHelper.CONNECTION_TYPE_BT ) {
-				
-				Log.d("Connections","UUID-> "+BluetoothConfigurationClass.generateUUIDfromMAC(
-						BluetoothConfigurationClass.Profiles.SSP,
-						returnedData.get(AddConnectionDialog.DEVICE_MAC)));
-				Log.d("Connections","MAC-> "+returnedData.get(AddConnectionDialog.DEVICE_MAC));
-				config = new BluetoothConfigurationClass(
-						BluetoothConfigurationClass.generateUUIDfromMAC(
-								BluetoothConfigurationClass.Profiles.SSP,
-								returnedData.get(AddConnectionDialog.DEVICE_MAC)),
-						returnedData.get(AddConnectionDialog.DEVICE_MAC));
-				
-				config.setConnectionStatus(
-						ConnectionHelper.STATUS_NOT_IN_RANGE);
-				
-				config.setName(
-						returnedData.get(AddConnectionDialog.DEVICE_NAME));
-				
-				if (returnedData.get(AddConnectionDialog.DEVICE_IS_STORED).toString()==Boolean.toString(true)) {
-					config.setStored(true);
-				} else {
-					config.setStored(false);
-				}
-				
-				ConnectionHelper.insertNewConnectionToList(
-						ConnectionHelper.CONNECTION_TYPE_BT, config);
-			}
-			
+			insertConnectionToMultiPlay(
+					((AddConnectionDialog) dialog).getReturnedData(),
+					((AddConnectionDialog) dialog).isViewSwitcherState());
+
 		} else if (dialogTag.equals(ConnectionsActivity.DialogList.TAG_CONNECT_CONFIRMATION)) {
 			Toast.makeText(this, "Make connection",Toast.LENGTH_LONG).show();
 			MultiPlayApplication.setMainNetworkConfiguration(selectedConfig);
-			//TODO
-		}
+
+		} else if (dialogTag.equals(ConnectionsActivity.DialogList.TAG_CONNECT_DENY_BT)) {
 		
+			Log.d("THREAD","EXEC 595");
+			runLogAsyncThread(
+					OnAsyncTaskFinished.TAG.ConnectionActivity_onItemClick_BT,
+					OnAsyncTaskFinished.TAG.ConnectionActivity_onItemClick_BT);
+			
+		} else if (dialogTag.equals(ConnectionsActivity.DialogList.TAG_CONNECT_DENY_WIFI)) {
+			
+			Log.d("THREAD","EXEC 613");
+			runLogAsyncThread(
+					OnAsyncTaskFinished.TAG.ConnectionActivity_onItemClick_WIFI,
+					OnAsyncTaskFinished.TAG.ConnectionActivity_onItemClick_WIFI);
+		}
+
+		refreshConnectionList();
 	}
 
 
+	private void insertConnectionToMultiPlay(Map<String, String> returnedData, boolean isBTorWIFI) {
+		
+		if ( isBTorWIFI == MultiPlayApplication.CONNECTION_TYPE_WIFI ) {
+			
+			Log.d("Connections","Name-> "+returnedData.get(AddConnectionDialog.DEVICE_NAME));
+			Log.d("Connections","IP-> "+returnedData.get(AddConnectionDialog.DEVICE_IP));
+			Log.d("Connections","Port-> "+returnedData.get(AddConnectionDialog.DEVICE_PORT));
+			
+			insertWirelessConnectionToMultiPlay(
+					returnedData.get(AddConnectionDialog.DEVICE_IP),
+					returnedData.get(AddConnectionDialog.DEVICE_PORT),
+					returnedData.get(AddConnectionDialog.DEVICE_NAME),
+					returnedData.get(AddConnectionDialog.DEVICE_IS_STORED));	
+			
+		} else if ( isBTorWIFI == MultiPlayApplication.CONNECTION_TYPE_BT ) {
+			
+			Log.d("Connections","UUID-> "+BluetoothConfigurationClass.generateUUIDfromMAC(
+					BluetoothConfigurationClass.Profiles.inne,
+					returnedData.get(AddConnectionDialog.DEVICE_MAC)));
+			Log.d("Connections","MAC-> "+returnedData.get(AddConnectionDialog.DEVICE_MAC));
+			
+			insertBluetoothConnectionToMultiPlay(
+					returnedData.get(AddConnectionDialog.DEVICE_MAC),
+					returnedData.get(AddConnectionDialog.DEVICE_NAME),
+					returnedData.get(AddConnectionDialog.DEVICE_IS_STORED));
 
+		}
+		
+		refreshConnectionList();
+	}
+
+	private void insertWirelessConnectionToMultiPlay(String deviceIP,
+			String devicePort, String deviceName, String isStored) {
+		
+		WirelessConfigurationClass config = new WirelessConfigurationClass(
+				deviceIP,Integer.valueOf(devicePort));
+		
+		config.setConnectionStatus(
+				ConnectionHelper.STATUS_NOT_IN_RANGE);
+		
+		config.setName(deviceName);
+		
+		config.setStored(
+				isStored == Boolean.toString(true));
+
+		ConnectionHelper.insertNewConnectionToList(
+				MultiPlayApplication.CONNECTION_TYPE_WIFI, config);
+	}
+
+	private void insertBluetoothConnectionToMultiPlay(String deviceMAC,
+			String deviceName, String isStored) {
+		
+		BluetoothConfigurationClass config = new BluetoothConfigurationClass(
+				BluetoothConfigurationClass.generateUUIDfromMAC(
+						BluetoothConfigurationClass.Profiles.SSP,deviceMAC),
+				deviceMAC);
+		
+		config.setConnectionStatus(
+				ConnectionHelper.STATUS_NOT_IN_RANGE);
+		
+		config.setName(deviceName);
+		
+		config.setStored(
+				isStored == Boolean.toString(true));
+		
+		ConnectionHelper.insertNewConnectionToList(
+				MultiPlayApplication.CONNECTION_TYPE_BT, config);
+	}
+
+	
 	@Override
 	public void onDialogNeutralClick(DialogFragment dialog) {
-		// TODO Auto-generated method stub
+	// TODO Auto-generated method stub
+	
+		refreshConnectionList();
 		
 	}
-
-
-
+	
+	
+	
 	@Override
 	public void onDialogNegativeClick(DialogFragment dialog) {
-		// TODO Auto-generated method stub
+	// TODO Auto-generated method stub
 		
-	}
-	
-	public void refreshList(boolean isWirelessOn, boolean isBluetoothOn) {
-		listOfElements.clear();
-		if ( isWirelessOn == true ) {
-			Log.d("Connections","Refresh list");
-			refreshWirelessList();
-			refreshBluetoothList();
-		}
-		if ( isBluetoothOn == true ) {
+		refreshConnectionList();
 
-		}
+}
+	
+
+	
+////////////////////Methods for AsynchTask.
+	
+	
+
+	private void runLogAsyncThread() {
+		AsyncTaskDialog asyncTaskDialog = new AsyncTaskDialog(this);
+		asyncTaskDialog.show();
+		new CheckConnectionStatus(this,asyncTaskDialog).execute(selectedConfig);
 	}
 	
-	public void refreshWirelessList() {
-		Iterator<WirelessConfigurationClass> wirelessConfigInterator = MultiPlayApplication.getDiscoveredWirelessDevices().iterator();
-		WirelessConfigurationClass configuration = null;
-		boolean isConfigurationStored = false;
-		while (wirelessConfigInterator.hasNext()) {
-			configuration = wirelessConfigInterator.next();
-			if (configuration.getStoredIndex() != -1) {
-				isConfigurationStored = ElementOfConnectionsList.STORED_YES;
-			} else {
-				isConfigurationStored = ElementOfConnectionsList.STORED_NO;
-			}
-			isConfigurationStored = 
-			listOfElements.add(new ElementOfConnectionsList(
-					configuration.getName(), configuration.getIP(),
-					configuration.getConnectionStatus(),
-					isConfigurationStored,
-					configuration.getSystem(),
-					configuration.getSystemDimmensionX(),
-					configuration.getSystemDimmensionY(),
-					ConnectionHelper.CONNECTION_TYPE_WIFI));
-		}
+	private void runLogAsyncThread(int asyncCallReason) {
+		AsyncTaskDialog asyncTaskDialog = new AsyncTaskDialog(this);
+		asyncTaskDialog.show();
+		new CheckConnectionStatus(this,asyncTaskDialog,asyncCallReason).execute(selectedConfig);
 	}
 	
-	public void refreshBluetoothList() {
-		Iterator<BluetoothConfigurationClass> bluetoothConfigInterator = MultiPlayApplication.getDiscoveredBluetoothDevices().iterator();
-		BluetoothConfigurationClass configuration = null;
-		boolean isConfigurationStored = false;
-		while (bluetoothConfigInterator.hasNext()) {
-			configuration = bluetoothConfigInterator.next();
-			if (configuration.getStoredIndex() != -1) {
-				isConfigurationStored = ElementOfConnectionsList.STORED_YES;
+	private void runLogAsyncThread(int asyncCallReason, int asyncCallOnError) {
+		AsyncTaskDialog asyncTaskDialog = new AsyncTaskDialog(this);
+		asyncTaskDialog.show();
+		new CheckConnectionStatus(this,asyncTaskDialog,asyncCallReason,asyncCallOnError).execute(selectedConfig);
+	}
+
+	@Override
+	public void onBackgroundFinished(int activityTAG) {
+		switch (activityTAG) {
+		case OnAsyncTaskFinished.TAG.ConnectionActivity_onItemClick_BT:
+			afterRecheckElementOnclick(MultiPlayApplication.CONNECTION_TYPE_BT);
+			break;
+			
+		case OnAsyncTaskFinished.TAG.ConnectionActivity_onItemClick_WIFI:
+			afterRecheckElementOnclick(MultiPlayApplication.CONNECTION_TYPE_WIFI);
+			break;
+			
+		case OnAsyncTaskFinished.TAG.ConnectionActivity_onDialogPositiveClick:
+			refreshConnectionList();
+		}
+	}
+
+	private void afterRecheckElementOnclick(boolean isBTorWIFI) {
+		int dialogTitleIconID = 0;
+		String dialogTagID = null;
+		
+		Log.d("ListView","Click afterstate: "+selectedConfig.getConnectionStatus());
+		
+		switch (selectedConfig.getConnectionStatus()) {
+		case ConnectionHelper.STATUS_ON:
+			if ( isBTorWIFI == MultiPlayApplication.CONNECTION_TYPE_WIFI ) {
+				dialogTitleIconID = ConnectionsActivity.DialogList.ID_TITLE_ICON_WIFI_SUCCESS;
 			} else {
-				isConfigurationStored = ElementOfConnectionsList.STORED_NO;
+				dialogTitleIconID = ConnectionsActivity.DialogList.ID_TITLE_ICON_BT_SUCCESS;
 			}
-			isConfigurationStored = 
-			listOfElements.add(new ElementOfConnectionsList(
-					configuration.getName(), configuration.getAdress(),
-					configuration.getConnectionStatus(),
-					isConfigurationStored,
-					configuration.getSystem(),
-					configuration.getSystemDimmensionX(),
-					configuration.getSystemDimmensionY(),
-					ConnectionHelper.CONNECTION_TYPE_BT));
+			AlertDialogs.showDialog(this,
+					ConnectionsActivity.DialogList.TAG_CONNECT_CONFIRMATION,
+					dialogTitleIconID,
+					ConnectionsActivity.DialogList.ID_TITLE_CONNECT_CONFIRMATION,
+					ConnectionsActivity.DialogList.ID_MESSAGE_CONNECT_CONFIRMATION,
+					DialogListCore.ID_BUTTON_CONNECT,
+					null,
+					DialogListCore.ID_BUTTON_CANCEL);
+			break;
+		case ConnectionHelper.STATUS_NOT_IN_RANGE:
+			if ( isBTorWIFI == MultiPlayApplication.CONNECTION_TYPE_WIFI ) {
+				dialogTitleIconID = ConnectionsActivity.DialogList.ID_TITLE_ICON_WIFI_WARNING;
+				dialogTagID = ConnectionsActivity.DialogList.TAG_CONNECT_DENY_WIFI;
+			} else {
+				dialogTitleIconID = ConnectionsActivity.DialogList.ID_TITLE_ICON_BT_WARNING;
+				dialogTagID = ConnectionsActivity.DialogList.TAG_CONNECT_DENY_BT;
+			}
+			AlertDialogs.showDialog(this,
+					dialogTagID,
+					dialogTitleIconID,
+					ConnectionsActivity.DialogList.ID_TITLE_CONNECT_DENY,
+					ConnectionsActivity.DialogList.ID_MESSAGE_CONNECT_DENY,
+					DialogListCore.ID_BUTTON_RECHECK,
+					null,
+					DialogListCore.ID_BUTTON_CANCEL);
+			break;
 		}
 	}
 }

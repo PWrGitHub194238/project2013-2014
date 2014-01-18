@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 
 public class FunctionalityCheck {
@@ -111,5 +113,27 @@ public class FunctionalityCheck {
 			return false;
 		else
 			return true;
+	}
+	
+	public static boolean isWirelessNetworkConnected(Context context) {
+		ConnectivityManager connectivityManager = (ConnectivityManager)
+		        context.getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo networkInfo = null;
+	    if (connectivityManager != null) {
+	        networkInfo =
+	            connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+	    }
+	    return networkInfo == null ? false : networkInfo.isConnected();
+	}
+	
+	public static boolean isBluetoothConnected(Context context) {
+	    ConnectivityManager connectivityManager = (ConnectivityManager)
+	        context.getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo networkInfo = null;
+	    if (connectivityManager != null) {
+	        networkInfo =
+	            connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_BLUETOOTH);
+	    }
+	    return networkInfo == null ? false : networkInfo.isConnected();
 	}
 }

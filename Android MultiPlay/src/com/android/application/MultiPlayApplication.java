@@ -2,16 +2,15 @@ package com.android.application;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Map;
 
 import android.app.Application;
 import android.database.Cursor;
 import android.util.Log;
 
-import com.android.asychs.CheckConnectionStatus;
-import com.android.asychs.SocketMainBluetoothSender;
-import com.android.asychs.SocketMainWiFiSender;
+import com.android.asyncs.CheckConnectionStatus;
+import com.android.asyncs.SocketMainBluetoothSender;
+import com.android.asyncs.SocketMainWiFiSender;
 import com.android.database.DBHelper;
 import com.android.database.MultiPlayDataBase;
 import com.android.database.tables.General;
@@ -20,8 +19,8 @@ import com.android.database.tables.NetworkWiFiSettings;
 
 public class MultiPlayApplication extends Application {
 
-	public final static boolean BLUETOOTH = true;
-	public final static boolean WIRELESS = false;
+	public final static boolean CONNECTION_TYPE_BT = true;
+	public final static boolean CONNECTION_TYPE_WIFI = false;
 	
 	private static DBHelper dbHelper = null;
 	
@@ -31,14 +30,14 @@ public class MultiPlayApplication extends Application {
 	 * to connect with other devices. With the flag set to:
 	 * <ul>
 	 * 	<li>true - with both bluetooth and wireless service available the first one will be set
-	 * as default (@see {@link #BLUETOOTH}),</li>
+	 * as default (@see {@link #CONNECTION_TYPE_BT}),</li>
 	 * 	<li>false - with both bluetooth and wireless service available the second one will be set
-	 * as default (@see {@link #WIRELESS}),</li>
+	 * as default (@see {@link #CONNECTION_TYPE_WIFI}),</li>
 	 * </ul>
 	 * 
 	 */
-	private static boolean networkPriority = WIRELESS;
-	private static boolean connectedTo = WIRELESS;
+	private static boolean networkPriority = CONNECTION_TYPE_WIFI;
+	private static boolean connectedTo = CONNECTION_TYPE_WIFI;
 	
 	private static ArrayList<BluetoothConfigurationClass> discoveredBluetoothDevices = null;
 	private static boolean bluetoothEnable = false;
@@ -53,8 +52,8 @@ public class MultiPlayApplication extends Application {
 	private static SocketMainBluetoothSender socketMainBluetoothThread = null;
 
 
-	public static void runThread(boolean WiFiorBT ) throws IOException {
-		if ( WiFiorBT = WIRELESS ) {
+	public static void runThread() throws IOException {
+		if ( connectedTo == CONNECTION_TYPE_WIFI ) {
 			Log.d("THREAD","Run wifi thread...");
 			socketMainWifiThread = new SocketMainWiFiSender((WirelessConfigurationClass) mainNetworkConfiguration);
 			socketMainWifiThread.execute(N.Signal.NEED_CONNECTION);
@@ -63,7 +62,6 @@ public class MultiPlayApplication extends Application {
 			socketMainBluetoothThread = new SocketMainBluetoothSender((BluetoothConfigurationClass) mainNetworkConfiguration);
 			socketMainBluetoothThread.execute(N.Signal.NEED_CONNECTION);
 		}
-		connectedTo = WiFiorBT;
 	}
 
 	public static void closeThread() {
@@ -128,7 +126,16 @@ public class MultiPlayApplication extends Application {
 		deviceCount = discoveredWirelessDevices.size();
 		
 		for ( deviceIndex = 0; deviceIndex < deviceCount; deviceIndex += 1 ) {
-			new CheckConnectionStatus().execute(discoveredWirelessDevices.get(deviceIndex));
+			
+			Log.d("THREAD","EXEC 131");
+			WirelessConfigurationClass a = discoveredWirelessDevices.get(deviceIndex);
+			if (a != null ) {
+				new CheckConnectionStatus().execute(a);
+			} else {
+				Log.d("THREAD","EXEC 131 NULL");
+
+			}
+			
 		}
 	}
 	
@@ -141,7 +148,16 @@ public class MultiPlayApplication extends Application {
 		deviceCount = discoveredBluetoothDevices.size();
 		
 		for ( deviceIndex = 0; deviceIndex < deviceCount; deviceIndex += 1 ) {
-			new CheckConnectionStatus().execute(discoveredBluetoothDevices.get(deviceIndex));
+			BluetoothConfigurationClass a = discoveredBluetoothDevices.get(deviceIndex);
+			
+			Log.d("THREAD","EXEC 154");
+			if (a != null) {
+				new CheckConnectionStatus().execute(a);
+			} else {
+				Log.d("THREAD","EXEC 154 NULL");
+
+			}
+			
 		}
 	}
 	
@@ -177,7 +193,7 @@ public class MultiPlayApplication extends Application {
 		this.dbHelper = dbHelper;
 	}
 
-	public static final Collection<BluetoothConfigurationClass> getDiscoveredBluetoothDevices() {
+	public static final ArrayList<BluetoothConfigurationClass> getDiscoveredBluetoothDevices() {
 		return discoveredBluetoothDevices;
 	}
 
@@ -188,7 +204,7 @@ public class MultiPlayApplication extends Application {
 	public static ConnectionsConfigurationClass getMainNetworkConfiguration() {
 		return mainNetworkConfiguration;
 	}
-////////////////////////////////////////////
+
 	public static final void setMainNetworkConfiguration(
 			ConnectionsConfigurationClass mainNetworkConfiguration) {
 		
@@ -199,12 +215,14 @@ public class MultiPlayApplication extends Application {
 			Log.d("ListView","IP: "+((WirelessConfigurationClass) mainNetworkConfiguration).getIP());
 			Log.d("ListView","Port: "+((WirelessConfigurationClass) mainNetworkConfiguration).getPort());
 			Log.d("ListView","Stored index: "+mainNetworkConfiguration.getStoredIndex());
+			connectedTo = CONNECTION_TYPE_WIFI;
 		} else {
 			Log.d("ListView","Name: "+mainNetworkConfiguration.getName());
 			Log.d("ListView","ConStatus: "+mainNetworkConfiguration.getConnectionStatus());
 			Log.d("ListView","UUID: "+((BluetoothConfigurationClass) mainNetworkConfiguration).getUuid().toString());
 			Log.d("ListView","MAC: "+((BluetoothConfigurationClass) mainNetworkConfiguration).getAdress());
 			Log.d("ListView","Stored index: "+mainNetworkConfiguration.getStoredIndex());
+			connectedTo = CONNECTION_TYPE_BT;
 		}
 	}
 
@@ -222,6 +240,13 @@ public class MultiPlayApplication extends Application {
 	 */
 	public static final boolean isConnectedTo() {
 		return connectedTo;
+	}
+
+	/**
+	 * @param connectedTo the connectedTo to set
+	 */
+	public static final void setConnectedTo(boolean connectedTo) {
+		MultiPlayApplication.connectedTo = connectedTo;
 	}
 
 	/**

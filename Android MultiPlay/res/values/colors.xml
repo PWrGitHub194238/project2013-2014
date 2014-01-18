@@ -3,4 +3,9 @@
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
     
+    <color name="transparent90">#90000000</color>
+   	<color name="transparent70">#70000000</color>
+   	<color name="transparent50">#50000000</color>
+    <color name="transparent30">#30000000</color>
+   	
 </resources>

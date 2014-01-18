@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="dialog_ID_TITLE_NO_TITLE">(no title)</string>
     <string name="dialog_ID_TITLE_BLUETOOTH_CONNECTED">Connected via BT</string>
     <string name="dialog_ID_TITLE_BLUETOOTH_ENABLED">Bluetooth enabled</string>
     <string name="dialog_ID_TITLE_WIFI_CONNECTED">Connected via WiFi</string>
     <string name="dialog_ID_TITLE_WIFI_ENABLED">WiFi enabled</string>
     <string name="dialog_ID_TITLE_CONNECT_CONFIRMATION">Confirmation</string>
+    <string name="dialog_ID_TITLE_CONNECT_DENY">Not in range</string>
     <string name="dialog_ID_TITLE_NO_CONNECTION_FOUND">Connection not found</string>
     
     <string name="dialog_ID_TITLE_WELCOME_1">Welcome in MultiPlay!</string>
@@ -15,7 +15,6 @@
   
     <string name="dialog_ID_TITLE_RESET_DB">Confirmation</string>
     
-    <string name="dialog_ID_MESSAGE_NO_MESSAGE">(no message)</string>
 	<string name="dialog_ID_MESSAGE_BLUETOOTH_CONNECTED">Connected to default device.</string>
 	<string name="dialog_ID_MESSAGE_BLUETOOTH_ENABLED">Bluetooth conecions available.\n Go to options to choose one.</string>
 	<string name="dialog_ID_MESSAGE_WIFI_CONNECTED">Connected to default device.</string>
@@ -28,8 +27,10 @@
 	<string name="dialog_ID_MESSAGE_WELCOME_5">\tKeep in mind that you will not able even to see unsupported features - sorry but I have to be sure that you won\'t make something that makes me crash:).</string>
 	<string name="dialog_ID_MESSAGE_WELCOME_6">\tHey, it is a last step of configuration!\n\n\tAs you probably well aware you can use either Wifi or Bluetooth in order to connect to some other devices. I need to know which method would you prefer if I discover that both are enabled.\n\n\tJust set the switch below in the right place.</string>
 	<string name="dialog_ID_MESSAGE_WELCOME_7">\tBy tapping "Add" you can immediately get to configuration of wireless connection or just leave this dialog by clicking "Finish". You can always change this options later.</string>
-	
+	<string name="dialog_ID_MESSAGE_CONNECT_CONFIRMATIONN">Are you sure you want to choose this connection ?</string>
+	<string name="dialog_ID_MESSAGE_CONNECT_DENY">I cannot establish the connection. \nTry recheck it or choose other configuration.</string>
 	<string name="dialog_ID_MESSAGE_RESET_DB">Are you sure to reset entire application data?</string>
+	<string name="dialog_ID_MESSAGE_WORKING">Working &#8230;</string>
 	
 	<string name="dialog_ID_BUTTON_CANCEL">Cancel</string>
 	<string name="dialog_ID_BUTTON_OPTIONS">Options</string>
@@ -39,6 +40,19 @@
 	<string name="dialog_ID_BUTTON_NEXT">Next</string>
 	<string name="dialog_ID_BUTTON_EMPTY">&#160;</string>
 	<string name="dialog_ID_BUTTON_FINISH">Finish</string>
+	<string name="dialog_ID_BUTTON_RECHECK">Recheck</string>
 	
 	<string name="dialog_ID_TITLE_ADD_CONNECTION">Add connection</string>
+	
+	<string name="dialog_optionID_EMPTY">Empty</string>
+	<string name="dialog_optionID_EDIT_CONNECTION">Edit connection</string>
+	<string name="dialog_optionID_FORGET_IT">Forget it</string>
+	<string name="dialog_optionID_SET_BT_PRIORITY">Main priority</string>
+	<string name="dialog_optionID_ENABLE_BT">Empty</string>
+	<string name="dialog_optionID_DISABLE_BT">Empty</string>
+	<string name="dialog_optionID_SET_WIFI_PRIORITY">Empty</string>
+	<string name="dialog_optionID_ENABLE_WIFI">Empty</string>
+	<string name="dialog_optionID_DISABLE_WIFI">Empty</string>
+	<string name="dialog_optionID_RETURN">Return</string>
+						
 </resources>

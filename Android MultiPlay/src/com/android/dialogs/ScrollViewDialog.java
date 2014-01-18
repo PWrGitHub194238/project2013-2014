@@ -108,7 +108,7 @@ public class ScrollViewDialog extends AlertDialogs {
 			builder.setView(dialogInnerView);
 		}
 	}
-
+	
     /** Displays alert dialog in given {@link Activity}.
      * 
      * Usage example:
@@ -154,7 +154,7 @@ public class ScrollViewDialog extends AlertDialogs {
 		ScrollViewDialog dialog = ScrollViewDialog.newInstance(titleIconID,titleID,view,positiveButtonID,neutralButtonID,negativeButtonID);
         dialog.show(activity.getFragmentManager(), dialogIDTag);
 	}
-	
+
 	/** Returns {@link ScrollView} view from layout that will be displayed in the dialog.
 	 * 
 	 * @param activity need for context
@@ -189,7 +189,7 @@ public class ScrollViewDialog extends AlertDialogs {
     public void dialogInnerViewLogic() {
     	returnedData = new HashMap<String,String>();
     }
-
+    
 	/** Getter for {@link #returnedData}
 	 * 
 	 * @return {@link #returnedData}

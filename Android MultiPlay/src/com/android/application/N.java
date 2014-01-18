@@ -330,9 +330,6 @@ public final class N {
 			return output;
 		}
 
-		/*((!!!@++++++??__((<!!!!!!@@@@@@###&&&<<<<<<>>>>
-		 * 
-		 */
 		public static final int[] decodeSignalFull(int signal) {
 			int[] output = new int[6];
 			output[0] = getSignal(signal, Helper.DEVICE);
@@ -348,6 +345,30 @@ public final class N {
 				output[3] = getSignal(signal, Helper.DEV_SIGNAL_2);
 			} else {
 				output[3] = -1 * getSignal(signal, Helper.DEV_SIGNAL_2);
+			}
+			return output;
+		}
+		
+		public static final int[] decodeSignalDataOnly(int signal) {
+			int[] output = new int[2];
+			if ( getSignal(signal, Helper.DEV_DATA_COUNTER) == N.DeviceDataCounter.SINGLE ) {
+				if (getSignal(signal, Helper.DEV_SIGNAL_1_SIGN) == 0) {
+					output[0] = getSignal(signal, Helper.DEV_SIGNAL_1);
+				} else {
+					output[0] = -1 * getSignal(signal, Helper.DEV_SIGNAL_1);
+				}
+				if (getSignal(signal, Helper.DEV_SIGNAL_2_SIGN) == 0) {
+					output[1] = getSignal(signal, Helper.DEV_SIGNAL_2);
+				} else {
+					output[1] = -1 * getSignal(signal, Helper.DEV_SIGNAL_2);
+				}
+			} else {
+				if (getSignal(signal, Helper.DEV_SIGNAL_1_SIGN) == 0) {
+					output[0] = getSignal(signal, Helper.DEV_SIGNAL_1);
+				} else {
+					output[0] = -1 * getSignal(signal, Helper.DEV_SIGNAL_1);
+				}
+				output[1] = 0;
 			}
 			return output;
 		}

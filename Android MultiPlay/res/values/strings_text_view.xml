@@ -83,6 +83,8 @@
 		<string name="tv_option_1_title_in_options_activity">Controllers</string>
 		<string name="tv_option_1_title_description_in_options_activity"> Manage your controllers by editing their preferences or adding new ones.</string>
     
+			<string name="tv_activity_title_options_controller">Select controller</string>
+			
 		<string name="tv_option_2_title_in_options_activity">Reset data</string>
 		<string name="tv_option_2_title_description_in_options_activity"> Hard reset all data sored by application and load default configuration.</string>
     

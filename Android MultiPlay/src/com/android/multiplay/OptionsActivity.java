@@ -94,7 +94,8 @@ private ImageButton b_goback = null;
 	
 	
 	public void controllers_OnClick( View view ) {
-		
+		Intent intent = new Intent(this, OptionsControllerActivity.class);
+		super.startActivity(intent);
 	}
 	
 	public void connections_OnClick( View view ) {

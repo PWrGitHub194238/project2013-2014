@@ -27,84 +27,85 @@ public class Bluetooth implements Runnable {
 
 	@Override
 	public void run() {
-		waitForConnection();
+		try {
+			waitForConnection();
+		} catch (BluetoothStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	private void waitForConnection() {
+	private void waitForConnection() throws BluetoothStateException {
 
 		byte data;
 		Connect connect = new Connect();
 		System.out.println("Bluetooth Thread");
 
+		local = LocalDevice.getLocalDevice();
+		local.setDiscoverable(DiscoveryAgent.GIAC);
+		System.out.println(LocalDevice.getLocalDevice().getBluetoothAddress());
+		UUID uuid = new UUID(BluetoothConfigurationClass.Profiles.SSP.replace("-", "") +
+				LocalDevice.getLocalDevice().getBluetoothAddress(), false);
+		
 		while (true) {
 			data = 0;
+			System.out.println(uuid.toString());
+
+			String url = "btspp://localhost:" + uuid.toString()
+					+ ";name=RemoteBluetooth";
 			try {
-				local = LocalDevice.getLocalDevice();
-				local.setDiscoverable(DiscoveryAgent.GIAC);
-				System.out.println(LocalDevice.getLocalDevice().getBluetoothAddress());
-				UUID uuid = new UUID("04c6093b00001000800000805f9b34fb", false);
-				System.out.println(uuid.toString());
+				notifier = (StreamConnectionNotifier) Connector.open(url);
+				System.out.println("waiting for connection...");
+				connection = notifier.acceptAndOpen();
+				DataInputStream dis = new DataInputStream(
+						connection.openDataInputStream());
+				DataOutputStream dos = new DataOutputStream(
+						connection.openDataOutputStream());
+				data = dis.readByte();
+				System.out.println("RUN");
+				System.out.println("Read...");
+				if (data == N.Signal.NEED_AUTHORIZATION) {
+					System.out.println("Send back authorization code...");
+					if (System.getProperty("os.name").startsWith("Win")) {
+						dos.writeByte(N.Signal.encodeSignal(
+								N.Signal.NEED_AUTHORIZATION,
+								N.System.WINDOWS));
+					} else if (System.getProperty("os.name").contains(
+							"Linux")) {
+						dos.writeByte(N.Signal
+								.encodeSignal(N.Signal.NEED_AUTHORIZATION,
+										N.System.LINUX));
 
-				String url = "btspp://localhost:" + uuid.toString()
-						+ ";name=RemoteBluetooth";
-				try {
-					notifier = (StreamConnectionNotifier) Connector.open(url);
-					System.out.println("waiting for connection...");
-					connection = notifier.acceptAndOpen();
-					DataInputStream dis = new DataInputStream(
-							connection.openDataInputStream());
-					DataOutputStream dos = new DataOutputStream(
-							connection.openDataOutputStream());
-					data = dis.readByte();
-					System.out.println("RUN");
-					System.out.println("Read...");
-					if (data == N.Signal.NEED_AUTHORIZATION) {
-						System.out.println("Send back authorization code...");
-						if (System.getProperty("os.name").startsWith("Win")) {
-							dos.writeByte(N.Signal.encodeSignal(
-									N.Signal.NEED_AUTHORIZATION,
-									N.System.WINDOWS));
-						} else if (System.getProperty("os.name").contains(
-								"Linux")) {
-							dos.writeByte(N.Signal
-									.encodeSignal(N.Signal.NEED_AUTHORIZATION,
-											N.System.LINUX));
-
-						} else if (System.getProperty("os.name")
-								.contains("BSD")) {
-							dos.writeByte(N.Signal.encodeSignal(
-									N.Signal.NEED_AUTHORIZATION, N.System.BSD));
-						}
-						Toolkit zestaw = Toolkit.getDefaultToolkit();
-						Dimension wymiary = zestaw.getScreenSize();
-						int wysokosc = wymiary.height;
-						int szerokosc = wymiary.width;
-						dos.writeInt(N.Helper
-								.encodeSignal(N.Signal.DIMENSION,
-										N.DeviceDataCounter.DOUBLE, wysokosc,
-										szerokosc));
-						dis.close();
-						dos.close();
-						connection.close();
-						notifier.close();
-						System.out.println("Over");
-					} else if (data == N.Signal.NEED_CONNECTION) {
-						int port = connect.getport();
-						dos.writeInt(port);
-						dis.close();
-						dos.close();
-						connection.close();
-						notifier.close();
-						System.out.println("Over");
-						Serverbluetooth wifi = new Serverbluetooth(uuid, url);
-						wifi.run();
+					} else if (System.getProperty("os.name")
+							.contains("BSD")) {
+						dos.writeByte(N.Signal.encodeSignal(
+								N.Signal.NEED_AUTHORIZATION, N.System.BSD));
 					}
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Toolkit zestaw = Toolkit.getDefaultToolkit();
+					Dimension wymiary = zestaw.getScreenSize();
+					int wysokosc = wymiary.height;
+					int szerokosc = wymiary.width;
+					dos.writeInt(N.Helper
+							.encodeSignal(N.Signal.DIMENSION,
+									N.DeviceDataCounter.DOUBLE, wysokosc,
+									szerokosc));
+					dis.close();
+					dos.close();
+					connection.close();
+					notifier.close();
+					System.out.println("Over");
+				} else if (data == N.Signal.NEED_CONNECTION) {
+					int port = connect.getport();
+					dos.writeInt(port);
+					dis.close();
+					dos.close();
+					connection.close();
+					notifier.close();
+					System.out.println("Over");
+					Serverbluetooth bt = new Serverbluetooth(uuid, url);
+					bt.run();
 				}
-
-			} catch (BluetoothStateException e) {
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

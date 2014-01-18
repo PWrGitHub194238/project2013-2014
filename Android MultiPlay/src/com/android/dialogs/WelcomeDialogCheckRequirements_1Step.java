@@ -58,7 +58,8 @@ public class WelcomeDialogCheckRequirements_1Step extends ScrollViewDialog imple
 	@Override
 	public void onShow(DialogInterface dialog) {
 		super.onShow(dialog);
-		//super.getPositiveButton().setEnabled(false);
+		super.getPositiveButton().setEnabled(false);
+		super.setWindowFullHorizontal();
 	}
 
 	public static void showDialog(Activity activity, String dialogIDTag, Integer titleIconID, Integer titleID, ScrollView view, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
@@ -85,7 +86,7 @@ public class WelcomeDialogCheckRequirements_1Step extends ScrollViewDialog imple
 	@Override
 	public void makeAction(int progress) {
 		if (progress == pb_dialog_welcome_requirements.getMax()) {
-			//super.getPositiveButton().setEnabled(true);
+			super.getPositiveButton().setEnabled(true);
 		}
 		
 	}
@@ -116,5 +117,6 @@ public class WelcomeDialogCheckRequirements_1Step extends ScrollViewDialog imple
 		}
 		return false;
 	}
+	
 	
 }

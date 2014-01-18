@@ -45,6 +45,7 @@ public class CarouselActivity extends Activity implements OnItemSelectedListener
 	
 	protected static final class Color {
 		public static final String GREEN = "green";
+		public static final String RED = "red";
 	}
 	
 	private RelativeLayout mainLayout = null;
@@ -62,15 +63,15 @@ public class CarouselActivity extends Activity implements OnItemSelectedListener
 		super.onCreate(savedInstanceState);
 	}
 	
-	public void initCarouselView(int contentViewtID, int mainRealtiveLayoutID) {
-		initCarouselView(contentViewtID, mainRealtiveLayoutID, carouselSizeScale, carouselRotationSensitive,layoutColor);
+	public void initCarouselView(int contentViewtID,  int miniature_iconID, int subtitleID, int search_buttonID, int cancel_buttonID, int mainRealtiveLayoutID) {
+		initCarouselView(contentViewtID, mainRealtiveLayoutID, miniature_iconID, subtitleID, search_buttonID, cancel_buttonID, carouselSizeScale, carouselRotationSensitive,layoutColor);
 	}
 	
-	public void initCarouselView(int contentViewtID, int mainRealtiveLayoutID, String layoutColor) {
-		initCarouselView(contentViewtID, mainRealtiveLayoutID, carouselSizeScale, carouselRotationSensitive,layoutColor);
+	public void initCarouselView(int contentViewtID,  int miniature_iconID, int subtitleID, int search_buttonID, int cancel_buttonID, int mainRealtiveLayoutID, String layoutColor) {
+		initCarouselView(contentViewtID, mainRealtiveLayoutID, miniature_iconID, subtitleID, search_buttonID, cancel_buttonID, carouselSizeScale, carouselRotationSensitive,layoutColor);
 	}
 	
-	public void initCarouselView(int contentViewtID, int mainRealtiveLayoutID, float carouselSizeScale, float carouselRotationSensitive, String layoutColor ) {
+	public void initCarouselView(int contentViewtID, int mainRealtiveLayoutID,  int miniature_iconID, int subtitleID, int search_buttonID, int cancel_buttonID, float carouselSizeScale, float carouselRotationSensitive, String layoutColor ) {
 		setContentView(contentViewtID);
 		context  = super.getApplicationContext();
 
@@ -94,32 +95,28 @@ public class CarouselActivity extends Activity implements OnItemSelectedListener
 		generateCarouselItemList();
 		
 		// create the interface : full screen container
-		initMainRelativeLayout(mainRealtiveLayoutID);
+		initMainRelativeLayout(mainRealtiveLayoutID,miniature_iconID, subtitleID, search_buttonID, cancel_buttonID);
 		createRelativeLayout(m_Inst.Scale(10),mainLayoutBaeckgroundColor,mainLayoutParams);
 
 		createCarouselView();
 	}
 	
-	public void initCarouselView(int contentViewtID, int mainRealtiveLayoutID, RelativeLayout.LayoutParams mainLayoutParams, 
-			int mainLayoutBaeckgroundColor, float carouselSizeScale, float carouselRotationSensitive, String layoutColor ) {
+	public void initCarouselView(int contentViewtID, int mainRealtiveLayoutID, int miniature_iconID, int subtitleID, int search_buttonID, int cancel_buttonID, 
+			RelativeLayout.LayoutParams mainLayoutParams, int mainLayoutBaeckgroundColor, float carouselSizeScale, float carouselRotationSensitive, String layoutColor ) {
 
 		this.mainLayoutParams = mainLayoutParams;
 		this.mainLayoutBaeckgroundColor = mainLayoutBaeckgroundColor;
 
-		initCarouselView(contentViewtID, mainRealtiveLayoutID, carouselSizeScale, carouselRotationSensitive,layoutColor);
+		initCarouselView(contentViewtID, mainRealtiveLayoutID, miniature_iconID, subtitleID, search_buttonID, cancel_buttonID, carouselSizeScale, carouselRotationSensitive,layoutColor);
 	}
 	
-	private void initMainRelativeLayout(int id) {
+	private void initMainRelativeLayout(int id, int miniature_iconID, int subtitleID, int search_buttonID, int cancel_buttonID ) {
 		mainLayout = (RelativeLayout) super.findViewById(id);
-		iv_system_controllers_miniature_icon = (ImageView) mainLayout.findViewById(
-				R.id.iv_system_controllers_miniature_icon);
-		tv_activity_subtitle_system_controllers = (TextView) mainLayout.findViewById(
-				R.id.tv_activity_subtitle_system_controllers);
-		b_system_controllers_search = (ImageButton) mainLayout.findViewById(
-				R.id.b_system_controllers_search);
+		iv_system_controllers_miniature_icon = (ImageView) mainLayout.findViewById(miniature_iconID);
+		tv_activity_subtitle_system_controllers = (TextView) mainLayout.findViewById(subtitleID);
+		b_system_controllers_search = (ImageButton) mainLayout.findViewById(search_buttonID);
 		b_system_controllers_search.setOnClickListener(this);
-		b_system_controllers_cancel = (ImageButton) mainLayout.findViewById(
-				R.id.b_system_controllers_cancel);
+		b_system_controllers_cancel = (ImageButton) mainLayout.findViewById(cancel_buttonID);
 		b_system_controllers_cancel.setOnClickListener(this);
 	}
 	private void createRelativeLayout (int padding, int mainLayoutBaeckgroundColor, RelativeLayout.LayoutParams mainLayoutParams) {
@@ -186,8 +183,13 @@ public class CarouselActivity extends Activity implements OnItemSelectedListener
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		startActivity(
 				new Intent(
-						context, carouselViewAdapter.getItem(position).getControllerActivity()));
+						context, toActivity(carouselViewAdapter.getItem(position))));
 	}
+	
+	protected Class<? extends Activity> toActivity(CarouselDataItem item) {
+		return null;
+	}
+
 
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -212,7 +214,7 @@ public class CarouselActivity extends Activity implements OnItemSelectedListener
 		case R.id.b_system_controllers_search:
 			ScrollViewDialog.showDialog(this,
 					ConnectionsActivity.DialogList.TAG_CONNECT_CONFIRMATION,
-					ConnectionsActivity.DialogList.ID_TITLE_ICON_WIFI,
+					ConnectionsActivity.DialogList.ID_TITLE_ICON_CONNECTION_CREATOR,
 					ConnectionsActivity.DialogList.ID_TITLE_CONNECT_CONFIRMATION,
 					ScrollViewDialog.getViewFromResource(this,R.layout.dialog_check_requirements_1),
 					DialogListCore.ID_BUTTON_CONNECT,
@@ -222,7 +224,7 @@ public class CarouselActivity extends Activity implements OnItemSelectedListener
 		case R.id.b_system_controllers_cancel:
 			ScrollViewSwitchDialog.showDialog(this,
 					ConnectionsActivity.DialogList.TAG_CONNECT_CONFIRMATION,
-					ConnectionsActivity.DialogList.ID_TITLE_ICON_WIFI,
+					ConnectionsActivity.DialogList.ID_TITLE_ICON_CONNECTION_CREATOR,
 					ConnectionsActivity.DialogList.ID_TITLE_CONNECT_CONFIRMATION,
 					ScrollViewSwitchDialog.getViewFromResource(this,R.layout.dialog_add_new_connection),
 					R.id.s_connections_activity_connection_type_switch,

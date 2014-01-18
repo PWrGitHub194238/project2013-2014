@@ -4,10 +4,8 @@ import java.io.IOException;
 
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,8 +26,6 @@ import com.android.multiplay.R;
 public class KeyboardActivity extends Activity implements OnClickListener,
 		DialogButtonClickListener {
 	private int shiftflag = 0, altflag = 0;
-	 private PowerManager.WakeLock wl;
-
 	private Button button1, button2, button3, button4, button5, button6,
 			button7, button8, button9, button10, button11, button12, button13,
 			button14, button15, button16, button17, button18, button19,
@@ -43,8 +39,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 		setContentView(R.layout.activity_keyboard);
 		// bundle = super.getIntent().getExtras();
 		// ip = bundle.getString("ip");
-		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "DoNjfdhotDimScreen");
+
 		button1 = (Button) super.findViewById(R.id.leftb);
 		button2 = (Button) super.findViewById(R.id.rightb);
 		button3 = (Button) super.findViewById(R.id.upb);
@@ -93,7 +88,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 							DialogListCore.ID_BUTTON_CANCEL);
 		}
 		try {
-			MultiPlayApplication.runThread(MultiPlayApplication.isConnectedTo());
+			MultiPlayApplication.runThread();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1332,14 +1327,4 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 	public void onDialogNegativeClick(DialogFragment dialog) {
 		this.finish();
 	}
-	protected void onPause() {
-        super.onPause();
-        wl.release();
-
-    }
-	protected void onResume() {
-        super.onResume();
-        wl.acquire();
-
-    }
 }

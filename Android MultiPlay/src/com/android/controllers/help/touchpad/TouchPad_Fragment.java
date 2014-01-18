@@ -1,9 +1,5 @@
-package com.android.controllers.help;
+package com.android.controllers.help.touchpad;
 
-import com.android.multiplay.R;
-
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Gamepad_Fragment extends Fragment {
+import com.android.multiplay.R;
+
+public class TouchPad_Fragment extends Fragment {
 	private int mCurrentPage;
 
 	@Override
@@ -27,9 +25,10 @@ public class Gamepad_Fragment extends Fragment {
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.gamepad_help_view, container, false);
-		ImageView tv = (ImageView) v.findViewById(R.id.image);
-		TextView tx = (TextView) v.findViewById(R.id.th);
+		View v = inflater
+				.inflate(R.layout.touchpad_help_view, container, false);
+		ImageView tv = (ImageView) v.findViewById(R.id.image1);
+		TextView tx = (TextView) v.findViewById(R.id.th1);
 
 		if (mCurrentPage == 1) {
 			tv.setImageResource(R.drawable.activity_title_glow_green);
@@ -41,6 +40,7 @@ public class Gamepad_Fragment extends Fragment {
 
 		}
 		return v;
+
 	}
 
 }

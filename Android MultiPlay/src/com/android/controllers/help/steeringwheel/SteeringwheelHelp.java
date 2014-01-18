@@ -1,5 +1,10 @@
-package com.android.controllers.help;
+package com.android.controllers.help.steeringwheel;
 
+import java.util.Random;
+
+import com.android.animations.DepthPageTransformer;
+import com.android.animations.TransformZoomOut;
+import com.android.controllers.help.speaker.Speaker_help_pager;
 import com.android.multiplay.R;
 import com.android.multiplay.R.layout;
 import com.android.multiplay.R.menu;
@@ -11,9 +16,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
-import android.widget.TextView;
 
-public class GamepadHelp extends FragmentActivity {
+public class SteeringwheelHelp extends FragmentActivity{
+
 	private static final int NUM_PAGES = 3;
 	private ViewPager mPager;
 	private PagerAdapter mPagerAdapter;
@@ -21,15 +26,20 @@ public class GamepadHelp extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_gamepad_help);
-		 ViewPager pager = (ViewPager) findViewById(R.id.pager);
-		 pager.setPageTransformer(true, new ZoomOutGamepad());
-
+		setContentView(R.layout.activity_steeringwheel_help);
+		 ViewPager pager = (ViewPager) findViewById(R.id.pagersteeringwheel);
+		 Random r = new Random();
+			int numberrandom = r.nextInt() % 100;
+			if (numberrandom % 2 == 0) {
+				pager.setPageTransformer(true, new TransformZoomOut());
+			}else{
+				pager.setPageTransformer(true, new DepthPageTransformer());
+			}
 	        /** Getting fragment manager */
 	        FragmentManager fm = getSupportFragmentManager();
 	 
 	        /** Instantiating FragmentPagerAdapter */
-		Gamepad_help_pager pagerAdapter = new Gamepad_help_pager(fm);
+	       Steeringwheel_help_pager pagerAdapter = new Steeringwheel_help_pager(fm);
 
 	        /** Setting the pagerAdapter to the pager object */
 	        pager.setAdapter(pagerAdapter);
@@ -40,7 +50,7 @@ public class GamepadHelp extends FragmentActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.gamepad_help, menu);
+		getMenuInflater().inflate(R.menu.steeringwheel_help, menu);
 		return true;
 	}
 

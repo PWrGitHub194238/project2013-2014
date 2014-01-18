@@ -16,7 +16,8 @@ import VJoy.VJoyDriver64;
 public class Connect {
 	private int portdefault = 1234;
 	private int port;
-	private UUID uuiddefault = new UUID("04c6093b00001000800000805f9b34fb", false);
+	private UUID uuiddefault = new UUID("04c6093b00001000800000805f9b34fb",
+			false);
 
 	private String IP = null;
 	private ArrayList<Integer> arrlist = new ArrayList<Integer>();
@@ -26,13 +27,12 @@ public class Connect {
 		String ip = null;
 		if (System.getProperty("os.name").startsWith("Win")) {
 			try {
-				ip= InetAddress.getLocalHost().toString();
+				ip = InetAddress.getLocalHost().toString();
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		else{
+		} else {
 			try {
 				Enumeration<NetworkInterface> interfaces = NetworkInterface
 						.getNetworkInterfaces();
@@ -40,14 +40,14 @@ public class Connect {
 					NetworkInterface iface = interfaces.nextElement();
 					if (iface.isLoopback() || !iface.isUp())
 						continue;
-					Enumeration<InetAddress> addresses = iface.getInetAddresses();
+					Enumeration<InetAddress> addresses = iface
+							.getInetAddresses();
 					while (addresses.hasMoreElements()) {
 						InetAddress addr = addresses.nextElement();
 						ip = addr.getHostAddress();
 					}
 				}
-				
-				
+
 			} catch (SocketException e) {
 				throw new RuntimeException(e);
 			}
@@ -58,9 +58,11 @@ public class Connect {
 	public int getportdefault() {
 		return portdefault;
 	}
+
 	public UUID getuuiddefault() {
 		return uuiddefault;
 	}
+
 	public int getport() {
 		Random r = new Random();
 		int port, flag;
@@ -76,20 +78,9 @@ public class Connect {
 		arrlist.add(port);
 		return arrlist.get(arrlist.size() - 1);
 	}
-	/*public int getuuid() {
-		Random r = new Random();
-		long uuid;
-		int flag;
-		do {
-			uuid = r.nextInt() % 1000000000;
-			flag = 0;
-			for (int i = 0; i < uuidlist.size(); i++) {
-				if (uuid == uuidlist.get(i)) {
-					flag = 1;
-				}
-			}
-		} while (uuid < 1000000000 || flag == 1);
-		arrlist.add(port);
-		return arrlist.get(arrlist.size() - 1);
-	}*/
+
+	public void delport(int port) {
+		int i = arrlist.indexOf(port);
+		arrlist.remove(i);
+	}
 }

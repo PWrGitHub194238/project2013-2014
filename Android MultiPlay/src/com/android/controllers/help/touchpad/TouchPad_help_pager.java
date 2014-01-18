@@ -1,20 +1,20 @@
-package com.android.controllers.help;
+package com.android.controllers.help.touchpad;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-public class Gamepad_help_pager extends FragmentPagerAdapter {
+public class TouchPad_help_pager extends FragmentPagerAdapter {
 	private final int PAGE_COUNT = 3;
 
-	public Gamepad_help_pager(FragmentManager fm) {
+	public TouchPad_help_pager(FragmentManager fm) {
 		super(fm);
 	}
 
 	@Override
 	public Fragment getItem(int arg0) {
-		Gamepad_Fragment myFragment = new Gamepad_Fragment();
+		TouchPad_Fragment myFragment = new TouchPad_Fragment();
 		Bundle data = new Bundle();
 		data.putInt("current_page", arg0 + 1);
 		myFragment.setArguments(data);
@@ -31,3 +31,5 @@ public class Gamepad_help_pager extends FragmentPagerAdapter {
 		return "Step:" + (position + 1);
 	}
 }
+
+

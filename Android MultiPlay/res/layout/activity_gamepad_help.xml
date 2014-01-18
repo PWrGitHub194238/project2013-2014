@@ -6,10 +6,12 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+        android:background="@drawable/background"
+    
     tools:context=".GamepadHelp" >
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
+        android:id="@+id/pagergamepad"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 

@@ -511,4 +511,5 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 		this.b_options.setOnFocusChangeListener(
 				new ButtonsFocusChangeListener(this,id));
 	}
+	
 }

@@ -1,4 +1,4 @@
-package Wifi;
+package Connect;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -10,18 +10,12 @@ import java.util.Random;
 
 import javax.bluetooth.UUID;
 
-import VJoy.VJoyDriver32;
-import VJoy.VJoyDriver64;
-
-public class Connect {
+public class ConnectWifi {
 	private int portdefault = 1234;
 	private int port;
-	private UUID uuiddefault = new UUID("04c6093b00001000800000805f9b34fb",
-			false);
-
+	
 	private String IP = null;
 	private ArrayList<Integer> arrlist = new ArrayList<Integer>();
-	private ArrayList<UUID> uuidlist = new ArrayList<UUID>();
 
 	public String getIP() {
 		String ip = null;
@@ -59,9 +53,7 @@ public class Connect {
 		return portdefault;
 	}
 
-	public UUID getuuiddefault() {
-		return uuiddefault;
-	}
+
 
 	public int getport() {
 		Random r = new Random();

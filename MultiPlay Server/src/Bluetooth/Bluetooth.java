@@ -17,7 +17,8 @@ import javax.microedition.io.StreamConnection;
 import javax.microedition.io.StreamConnectionNotifier;
 
 import CodeKey.N;
-import Wifi.Connect;
+import Connect.BluetoothConfigurationClass;
+import Connect.ConnectWifi;
 import Wifi.Serverwifi;
 
 public class Bluetooth implements Runnable {
@@ -38,7 +39,7 @@ public class Bluetooth implements Runnable {
 	private void waitForConnection() throws BluetoothStateException {
 
 		byte data;
-		Connect connect = new Connect();
+		ConnectWifi connect = new ConnectWifi();
 		System.out.println("Bluetooth Thread");
 
 		local = LocalDevice.getLocalDevice();

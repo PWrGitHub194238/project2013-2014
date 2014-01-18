@@ -9,6 +9,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import CodeKey.N;
+import Connect.ConnectWifi;
 import Frame.MFrame;
 
 public class Wifi implements Runnable {
@@ -22,7 +23,7 @@ public class Wifi implements Runnable {
 	@Override
 	public void run() {
 		byte data;
-		Connect connect = new Connect();
+		ConnectWifi connect = new ConnectWifi();
 		System.out.println("Wifi Thread");
 
 		while (true) {

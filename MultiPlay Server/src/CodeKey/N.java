@@ -158,6 +158,8 @@ public final class N {
 		public static final int VJOYJOYSTICKLEFT = Integer.parseInt("00100", 2);
 		public static final int VJOYJOYSTICKRIGHT = Integer.parseInt("00101", 2);
 		public static final int VJOYBUTTONS = Integer.parseInt("00110", 2);
+		public static final int WHEELBUTTONS = Integer.parseInt("00111", 2);
+
 		public static final int EXIT = Integer.parseInt("11111", 2);// ?
 	}
 

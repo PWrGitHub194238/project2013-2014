@@ -28,21 +28,21 @@ import com.android.multiplay.R;
 
 public class SteeringwheelActivity extends Activity implements
 		SensorEventListener, OnSeekBarChangeListener {
-	
-	private static final float CONST = 128f/90;
+
+	private static final float CONST = 128f / 90;
 	float old = 0;
 	int signal = 0;
 	int angle = 0;
 	float y = 0;
-	
+
 	SeekBar seekBar1;
 	float scale = 0.5f;
 	boolean notSend0 = true;
-	
+
 	private SensorManager sm;
 	private TextView tv;
 	private int up = 0, down = 0, stop = 0;
-	private Button b1, b2;
+	private Button b1, b2,nitro;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,23 +54,43 @@ public class SteeringwheelActivity extends Activity implements
 			sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
 			b1 = (Button) super.findViewById(R.id.brea);
 			b2 = (Button) super.findViewById(R.id.gaz);
-			
+			nitro = (Button) super.findViewById(R.id.nitro);
+
 			seekBar1 = (SeekBar) super.findViewById(R.id.seekBar1);
 			seekBar1.setProgress(75);
 			seekBar1.setMax(100);
 			seekBar1.setOnSeekBarChangeListener(this);
-			
+			nitro.setOnTouchListener(new OnTouchListener() {
+
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					int signal;
+					if (event.getAction() == MotionEvent.ACTION_DOWN) {
+						signal = Helper.encodeSignal(N.Device.WHEELBUTTONS,
+								N.DeviceDataCounter.DOUBLE, N.DeviceSignal.VJOY_CIRCLE_PRESS,N.DeviceSignal.PRESS);
+						MultiPlayApplication.add(signal);
+					}
+					if (event.getAction() == MotionEvent.ACTION_UP) {
+						signal = Helper.encodeSignal(N.Device.WHEELBUTTONS,
+								N.DeviceDataCounter.DOUBLE, N.DeviceSignal.VJOY_CIRCLE_PRESS,N.DeviceSignal.RELEASE);
+						MultiPlayApplication.add(signal);					}
+					return true;
+				}
+			});
 			b1.setOnTouchListener(new OnTouchListener() {
 
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					int signal;
 					if (event.getAction() == MotionEvent.ACTION_DOWN) {
-						up = 1;
+						signal = Helper.encodeSignal(N.Device.WHEELBUTTONS,
+								N.DeviceDataCounter.DOUBLE, N.DeviceSignal.KEYBOARD_UP,N.DeviceSignal.PRESS);
+						MultiPlayApplication.add(signal);
 					}
 					if (event.getAction() == MotionEvent.ACTION_UP) {
-						up = 0;
-					}
+						signal = Helper.encodeSignal(N.Device.WHEELBUTTONS,
+								N.DeviceDataCounter.DOUBLE, N.DeviceSignal.KEYBOARD_UP,N.DeviceSignal.RELEASE);
+						MultiPlayApplication.add(signal);					}
 					return true;
 				}
 			});
@@ -80,11 +100,14 @@ public class SteeringwheelActivity extends Activity implements
 				public boolean onTouch(View v, MotionEvent event) {
 					int signal;
 					if (event.getAction() == MotionEvent.ACTION_DOWN) {
-						down = 1;
+						signal = Helper.encodeSignal(N.Device.WHEELBUTTONS,
+								N.DeviceDataCounter.DOUBLE, N.DeviceSignal.KEYBOARD_DOWN,N.DeviceSignal.PRESS);
+						MultiPlayApplication.add(signal);
 					}
 					if (event.getAction() == MotionEvent.ACTION_UP) {
-						down = 0;
-					}
+						signal = Helper.encodeSignal(N.Device.WHEELBUTTONS,
+								N.DeviceDataCounter.DOUBLE, N.DeviceSignal.KEYBOARD_DOWN,N.DeviceSignal.RELEASE);
+						MultiPlayApplication.add(signal);					}
 					return true;
 				}
 			});
@@ -115,27 +138,19 @@ public class SteeringwheelActivity extends Activity implements
 	public void onSensorChanged(SensorEvent arg0) {
 		if (stop == 0) {
 			y = arg0.values[1];
-			if (y < -9*scale) {
+			if (y < -9 * scale) {
 				angle = -126;
-			} else if( y > 9*scale) {
+			} else if (y > 9 * scale) {
 				angle = 126;
 			} else {
-				angle = (int) Math.floor(10*y*CONST/scale);
+				angle = (int) Math.floor(10 * y * CONST / scale);
 			}
-			tv.setText(String.valueOf(arg0.values[1])+" \t\t "+String.valueOf(10+"*"+y+"*"+CONST+"="+angle)+" \t\t "+String.valueOf(Math.abs(old-angle)));
-			if (notSend0 || Math.abs(old-angle) > 0) {
-				if (up == 0 && down == 0) {
-					signal = N.Helper.encodeSignal(N.Device.WHEEL,
-							N.DeviceDataCounter.DOUBLE, angle, 0);
-				} else if (up == 1 && down == 0) {
-					signal = Helper.encodeSignal(N.Device.WHEEL,
-							N.DeviceDataCounter.DOUBLE, angle,
-							N.DeviceSignal.KEYBOARD_UP);
-				} else if (up == 0 && down == 1) {
-					signal = Helper.encodeSignal(N.Device.WHEEL,
-							N.DeviceDataCounter.DOUBLE, angle,
-							N.DeviceSignal.KEYBOARD_SPACE);
-				}
+			tv.setText(String.valueOf(arg0.values[1]) + " \t\t "
+					+ String.valueOf(10 + "*" + y + "*" + CONST + "=" + angle)
+					+ " \t\t " + String.valueOf(Math.abs(old - angle)));
+			if (notSend0 || Math.abs(old - angle) > 0) {
+				signal = Helper.encodeSignal(N.Device.WHEEL,
+						N.DeviceDataCounter.SINGLE, angle);
 				MultiPlayApplication.add(signal);
 				old = angle;
 			}
@@ -155,25 +170,25 @@ public class SteeringwheelActivity extends Activity implements
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
-		scale = progress/100f;
-		
+		scale = progress / 100f;
+
 	}
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void onRadioButtonClicked(View view) {
-	    // Is the button now checked?
+		// Is the button now checked?
 		((RadioButton) view).toggle();
-	    notSend0 = ((RadioButton) view).isChecked();
+		notSend0 = ((RadioButton) view).isChecked();
 	}
 }

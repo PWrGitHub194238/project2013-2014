@@ -50,4 +50,12 @@
         android:onClick="onRadioButtonClicked"
         android:text="Not send 0" />
 
+    <Button
+        android:id="@+id/nitro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="NITRO!!!" />
+
 </RelativeLayout>

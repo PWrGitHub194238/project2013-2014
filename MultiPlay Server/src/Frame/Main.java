@@ -13,13 +13,13 @@ import java.net.Socket;
 
 import Bluetooth.Bluetooth;
 import CodeKey.N;
+import Connect.ConnectWifi;
 import Mouse.Mouse;
 import Mouse.Pos;
 import VJoy.VJoyDriver;
 import VJoy.VJoyDriver32;
 import VJoy.VJoyDriver64;
 import VJoy.VJoyDriver32.VJoy32;
-import Wifi.Connect;
 import Wifi.Serverwifi;
 import Wifi.Wifi;
 
@@ -28,7 +28,7 @@ public class Main {
 	public static void main(String[] args) {
 		// System.getProperties() show all system info
 		// System.out.println("System: " + System.getProperties());
-		Connect connect = new Connect();
+		ConnectWifi connect = new ConnectWifi();
 		MFrame window = new MFrame(connect);
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		window.setSize((int) d.getWidth(), 100);

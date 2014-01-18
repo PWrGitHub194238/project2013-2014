@@ -30,12 +30,12 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 
-import Wifi.Connect;
+import Connect.ConnectWifi;
 
 //Menu Frame
 public class MFrame extends JFrame {
 
-	public MFrame(Connect connect) {
+	public MFrame(ConnectWifi connect) {
 		super();
 
 		// -------------------------MenuBar---------------------

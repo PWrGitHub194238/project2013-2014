@@ -1,4 +1,4 @@
-package Bluetooth;
+package Connect;
 
 import java.util.UUID;
 

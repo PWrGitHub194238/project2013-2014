@@ -40,7 +40,7 @@ public class TouchPadHelp extends FragmentActivity{
 	        FragmentManager fm = getSupportFragmentManager();
 	 
 	        /** Instantiating FragmentPagerAdapter */
-	        Speaker_help_pager pagerAdapter = new Speaker_help_pager(fm);
+	        TouchPad_help_pager pagerAdapter = new TouchPad_help_pager(fm);
 
 	        /** Setting the pagerAdapter to the pager object */
 	        pager.setAdapter(pagerAdapter);

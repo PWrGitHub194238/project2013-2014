@@ -183,7 +183,7 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	 */
 	public void help_OnClick(View view) {
 		super.startActivity(
-				new Intent(this, GamepadHelp.class));
+				new Intent(this, TouchPadHelp.class));
 	}
 	
 	/** Method starts new activity: {@link OptionsActivity}.

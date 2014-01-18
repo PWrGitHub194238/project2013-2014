@@ -39,7 +39,7 @@ public class KeyboardHelp  extends FragmentActivity{
 	        FragmentManager fm = getSupportFragmentManager();
 	 
 	        /** Instantiating FragmentPagerAdapter */
-		Gamepad_help_pager pagerAdapter = new Gamepad_help_pager(fm);
+	        Keyboard_help_pager pagerAdapter = new Keyboard_help_pager(fm);
 
 	        /** Setting the pagerAdapter to the pager object */
 	        pager.setAdapter(pagerAdapter);

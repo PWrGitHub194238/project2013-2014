@@ -1,5 +1,7 @@
 package com.android.application;
 
+import com.android.controllers.gamepad.Gamepad;
+import com.android.controllers.gamepad.GamepadOptionActivity;
 import com.android.controllers.keyboard.KeyboardActivity;
 import com.android.controllers.keyboard.KeyboardOptionActivity;
 import com.android.controllers.keyboard.SpeakerActivity;
@@ -61,14 +63,21 @@ public final class C {
 			Requirements.OS_EVERY, new int[] {
 				
 			});
-	
+	public static final int SIGNAL_GAMEPAD = 					Integer.parseInt("00100", 2);
+	private static final ControllerDefinition CONTROLLER_GAMEPAD = new ControllerDefinition(
+			C.SIGNAL_GAMEPAD, "Gamepad", R.drawable.carousel_controller_icon_wheel, 
+			ControllerDefinition.NOT_STAND_ALONE, Gamepad.class, GamepadOptionActivity.class,
+			Requirements.OS_WINDOWS, new int[] {
+				
+			});
 	public static final ControllerDefinition[] CONTROLLER_LIST = {
 		CONTROLLER_MOUSE,
 		CONTROLLER_GYROMOUSE,
 		CONTROLLER_TOUCHPAD,
 		CONTROLLER_KEYBOARD,
 		CONTROLLER_WHEEL,
-		CONTROLLER_SPEAKER
+		CONTROLLER_SPEAKER,
+		CONTROLLER_GAMEPAD
 	};
 	
 	

@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,7 +39,8 @@ public class Gamepad extends Activity {
 		try {
 			MultiPlayApplication.runThread();
 			PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-	        wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "DoNjfdhotDimScreen");
+			wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK,
+					"DoNjfdhotDimScreen");
 			bup = (ImageButton) super.findViewById(R.id.arrup);
 			bdown = (ImageButton) super.findViewById(R.id.arrdown);
 			bleft = (ImageButton) super.findViewById(R.id.arrleft);
@@ -55,11 +57,13 @@ public class Gamepad extends Activity {
 			leftx_center = (double) img_coordinates[0] + left.getWidth() / 2.0;
 			lefty_center = (double) img_coordinates[1] + left.getHeight() / 2.0;
 			right.getLocationOnScreen(img_coordinates);
-			rightx_center = (double) img_coordinates[0] + right.getWidth() / 2.0;
-			righty_center = (double) img_coordinates[1] + right.getHeight() / 2.0;
+			rightx_center = (double) img_coordinates[0] + right.getWidth()
+					/ 2.0;
+			righty_center = (double) img_coordinates[1] + right.getHeight()
+					/ 2.0;
 			lefttxt = (TextView) super.findViewById(R.id.lefttext);
 			righttxt = (TextView) super.findViewById(R.id.righttxt);
-			bstart.setOnTouchListener(new View.OnTouchListener() {
+			bstart.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
@@ -78,7 +82,7 @@ public class Gamepad extends Activity {
 					return true;
 				}
 			});
-			left.setOnTouchListener(new View.OnTouchListener() {
+			left.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
@@ -89,24 +93,26 @@ public class Gamepad extends Activity {
 								.toString((int) (((lefty_center - (int) event
 										.getY()) * (-1)) / 3));
 						lefttxt.setText(x + " " + y);
-						int signal = Helper.encodeSignal(N.Device.VJOYJOYSTICKLEFT,
-								N.DeviceDataCounter.DOUBLE, Integer.parseInt(x),
-								Integer.parseInt(y));
+						int signal = Helper.encodeSignal(
+								N.Device.VJOYJOYSTICKLEFT,
+								N.DeviceDataCounter.DOUBLE,
+								Integer.parseInt(x), Integer.parseInt(y));
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
 						String x = Integer.toString(0);
 						String y = Integer.toString(0);
 						lefttxt.setText(x + " " + y);
-						int signal = Helper.encodeSignal(N.Device.VJOYJOYSTICKLEFT,
-								N.DeviceDataCounter.DOUBLE, Integer.parseInt(x),
-								Integer.parseInt(y));
+						int signal = Helper.encodeSignal(
+								N.Device.VJOYJOYSTICKLEFT,
+								N.DeviceDataCounter.DOUBLE,
+								Integer.parseInt(x), Integer.parseInt(y));
 						MultiPlayApplication.add(signal);
 					}
 					return true;
 				}
 			});
 			right = (ImageView) super.findViewById(R.id.rightjoy);
-			right.setOnTouchListener(new View.OnTouchListener() {
+			right.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
@@ -119,8 +125,8 @@ public class Gamepad extends Activity {
 						righttxt.setText(x + " " + y);
 						int signal = Helper.encodeSignal(
 								N.Device.VJOYJOYSTICKRIGHT,
-								N.DeviceDataCounter.DOUBLE, Integer.parseInt(x),
-								Integer.parseInt(y));
+								N.DeviceDataCounter.DOUBLE,
+								Integer.parseInt(x), Integer.parseInt(y));
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
 						String x = Integer.toString(0);
@@ -128,59 +134,64 @@ public class Gamepad extends Activity {
 						righttxt.setText(x + " " + y);
 						int signal = Helper.encodeSignal(
 								N.Device.VJOYJOYSTICKRIGHT,
-								N.DeviceDataCounter.DOUBLE, Integer.parseInt(x),
-								Integer.parseInt(y));
+								N.DeviceDataCounter.DOUBLE,
+								Integer.parseInt(x), Integer.parseInt(y));
 						MultiPlayApplication.add(signal);
 					}
 					return true;
 				}
 			});
-			bup.setOnTouchListener(new View.OnTouchListener() {
+			bup.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 
 						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
-								N.DeviceSignal.KEYBOARD_UP, N.DeviceSignal.PRESS);
+								N.DeviceSignal.KEYBOARD_UP,
+								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
 
 						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
-								N.DeviceSignal.KEYBOARD_UP, N.DeviceSignal.RELEASE);
+								N.DeviceSignal.KEYBOARD_UP,
+								N.DeviceSignal.RELEASE);
 						MultiPlayApplication.add(signal);
 					}
 					return true;
 				}
 			});
-			bdown.setOnTouchListener(new View.OnTouchListener() {
+			bdown.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 
 						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
-								N.DeviceSignal.KEYBOARD_DOWN, N.DeviceSignal.PRESS);
+								N.DeviceSignal.KEYBOARD_DOWN,
+								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 
 						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
-								N.DeviceSignal.KEYBOARD_UP, N.DeviceSignal.RELEASE);
+								N.DeviceSignal.KEYBOARD_DOWN,
+								N.DeviceSignal.RELEASE);
 						MultiPlayApplication.add(signal);
 					}
 					return true;
 				}
 			});
-			bleft.setOnTouchListener(new View.OnTouchListener() {
+			bleft.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 
 						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
-								N.DeviceSignal.KEYBOARD_LEFT, N.DeviceSignal.PRESS);
+								N.DeviceSignal.KEYBOARD_LEFT,
+								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 
@@ -193,16 +204,15 @@ public class Gamepad extends Activity {
 					return true;
 				}
 			});
-			bright.setOnTouchListener(new View.OnTouchListener() {
+			bright.setOnTouchListener(new OnTouchListener(){
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 
-						int signal = Helper
-								.encodeSignal(N.Device.VJOYBUTTONS,
-										N.DeviceDataCounter.DOUBLE,
-										N.DeviceSignal.KEYBOARD_RIGHT,
-										N.DeviceSignal.PRESS);
+						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+								N.DeviceDataCounter.DOUBLE,
+								N.DeviceSignal.KEYBOARD_RIGHT,
+								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 
@@ -215,7 +225,7 @@ public class Gamepad extends Activity {
 					return true;
 				}
 			});
-			bcircle.setOnTouchListener(new View.OnTouchListener() {
+			bcircle.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
@@ -236,8 +246,7 @@ public class Gamepad extends Activity {
 					return true;
 				}
 			});
-			bsquere.setOnTouchListener(new View.OnTouchListener() {
-				@Override
+			bsquere.setOnTouchListener(new OnTouchListener() {
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 
@@ -258,7 +267,7 @@ public class Gamepad extends Activity {
 				}
 			});
 
-			bsharp.setOnTouchListener(new View.OnTouchListener() {
+			bsharp.setOnTouchListener(new OnTouchListener(){
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
@@ -279,7 +288,7 @@ public class Gamepad extends Activity {
 					return true;
 				}
 			});
-			btrinagle.setOnTouchListener(new View.OnTouchListener() {
+			btrinagle.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
@@ -305,7 +314,6 @@ public class Gamepad extends Activity {
 			e.printStackTrace();
 		}
 
-		
 	}
 
 	@Override
@@ -314,15 +322,17 @@ public class Gamepad extends Activity {
 		getMenuInflater().inflate(R.menu.gamepad, menu);
 		return true;
 	}
+
 	protected void onPause() {
-        super.onPause();
-        wl.release();
+		super.onPause();
+		wl.release();
 
-    }
+	}
+
 	protected void onResume() {
-        super.onResume();
-        wl.acquire();
+		super.onResume();
+		wl.acquire();
 
-    }
+	}
 
 }

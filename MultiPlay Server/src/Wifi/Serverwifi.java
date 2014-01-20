@@ -81,11 +81,7 @@ public class Serverwifi implements Runnable {
 								if (ret[1] == N.DeviceDataCounter.SINGLE)
 									mouse.click(ret[2]);
 								else if (ret[1] == N.DeviceDataCounter.DOUBLE)
-									if (i == 0) {
 										mouse.run(ret[2], ret[3]);
-										i = 1;
-									} else
-										i = 0;
 							} else if (ret[0] == N.Device.KEYBOARD) {
 								if (ret[1] == N.DeviceDataCounter.DOUBLE)
 									if (ret[3] == N.DeviceSignal.PRESS) {
@@ -98,7 +94,6 @@ public class Serverwifi implements Runnable {
 									vjoy.updateAxes(1, ret[2], 0);
 								}
 							} else if (ret[0] == N.Device.WHEELBUTTONS) {
-								// System.out.println(ret[2]);
 								if (ret[1] == N.DeviceDataCounter.DOUBLE) {
 									if (ret[3] == N.DeviceSignal.PRESS) {
 										if (ret[2] == N.DeviceSignal.KEYBOARD_UP)

@@ -33,12 +33,13 @@ public class MouseActivity extends Activity {
 		setContentView(R.layout.activity_mouse);
 		try {
 			MultiPlayApplication.runThread();
+			txv = (TextView) super.findViewById(R.id.texty);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-			txv = (TextView) super.findViewById(R.id.texty);
+			
 		
 	
 	}
@@ -72,8 +73,8 @@ public class MouseActivity extends Activity {
 
 	public boolean onTouchEvent(MotionEvent event) {
 		int maskedAction = event.getActionMasked();
-		String x = Integer.toString((int)(((hotx - (int) event.getX()) * (-1))/multi*8));
-		String y = Integer.toString((int)(((hoty - (int) event.getY()) * (-1))/multi*8));
+		String x = Integer.toString((int)(((hotx - (int) event.getX()) * (-1))/multi*10));
+		String y = Integer.toString((int)(((hoty - (int) event.getY()) * (-1))/multi*10));
 		switch (maskedAction) {
 		// case MotionEvent.ACTION_DOWN:
 		// txv.setText("X: " + x + "Y: " + y);

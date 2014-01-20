@@ -20,7 +20,7 @@ import android.widget.Toast;
 public class TouchpadActivity extends Activity {
 	private double oldx = 245.0, oldy = 175.0;
 	private TextView txv;
-	private int multi=1;		//mno¿nik do ustawieñ szybkoœci ruchu
+	private int multi=3;		//mno¿nik do ustawieñ szybkoœci ruchu
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,50 +53,50 @@ public class TouchpadActivity extends Activity {
 			if (oldoldx - oldx < (double) 0.0 && oldoldy - oldy < (double) 0.0) {
 				txv.setText("X=-1, Y=-1");
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
-						N.DeviceDataCounter.DOUBLE, -5*multi, -5*multi);
+						N.DeviceDataCounter.DOUBLE, -multi, -multi);
 				MultiPlayApplication.add(signal);
 			} else if (oldoldx - oldx > (double) 0.0
 					&& oldoldy - oldy > (double) 0.0) {
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
-						N.DeviceDataCounter.DOUBLE, 5*multi, 5*multi);
+						N.DeviceDataCounter.DOUBLE, multi, multi);
 				MultiPlayApplication.add(signal);
 				txv.setText("X=1, Y=1");
 			} else if (oldoldx - oldx > (double) 0.0
 					&& oldoldy - oldy == (double) 0.0) {
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
-						N.DeviceDataCounter.DOUBLE, 5*multi, 0);
+						N.DeviceDataCounter.DOUBLE, multi, 0);
 				MultiPlayApplication.add(signal);
 				txv.setText("X=1, Y=0");
 			} else if (oldoldx - oldx == (double) 0.0
 					&& oldoldy - oldy > (double) 0.0) {
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
-						N.DeviceDataCounter.DOUBLE, 0, 5*multi);
+						N.DeviceDataCounter.DOUBLE, 0, multi);
 				MultiPlayApplication.add(signal);
 				txv.setText("X=0, Y=1");
 			} else if (oldoldx - oldx < (double) 0.0
 					&& oldoldy - oldy > (double) 0.0) {
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
-						N.DeviceDataCounter.DOUBLE, -5*multi, 5*multi);
+						N.DeviceDataCounter.DOUBLE, -multi, multi);
 				MultiPlayApplication.add(signal);
 				txv.setText("X=-1, Y=1");
 			} else if (oldoldx - oldx < (double) 0.0
 					&& oldoldy - oldy == (double) 0.0) {
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
-						N.DeviceDataCounter.DOUBLE, -5*multi, 0);
+						N.DeviceDataCounter.DOUBLE, -multi, 0);
 				MultiPlayApplication.add(signal);
 				txv.setText("X=-1, Y=0");
 
 			} else if (oldoldx - oldx > (double) 0.0
 					&& oldoldy - oldy < (double) 0.0) {
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
-						N.DeviceDataCounter.DOUBLE, 5*multi, -5*multi);
+						N.DeviceDataCounter.DOUBLE, multi, -multi);
 				MultiPlayApplication.add(signal);
 				txv.setText("X=1, Y=-1");
 
 			} else if (oldoldx - oldx == (double) 0.0
 					&& oldoldy - oldy < (double) 0.0) {
 				int signal = Helper.encodeSignal(N.Device.MOUSE,
-						N.DeviceDataCounter.DOUBLE, 0, -5*multi);
+						N.DeviceDataCounter.DOUBLE, 0, -multi);
 				MultiPlayApplication.add(signal);
 				txv.setText("X=0, Y=-1");
 			}

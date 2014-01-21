@@ -36,8 +36,7 @@ public class VJoyDriver {
 	        }
 		}
 					
-	}
-	
+	}	
 	
 	//deklaracja potrzebnych zmiennych
 	VJoy32.JOYSTICK_STATE.ByReference m_joyState;
@@ -151,6 +150,15 @@ public class VJoyDriver {
 				valuePOV+=(short)Math.pow(2,i-9);
 		}
 		
+		for(int i=25;i<=28;i++)
+		{
+			if(buttonPressed[i])
+			{
+				valueWheel+=16*(i-25);
+				break;
+			}
+		}
+		
 		m_joyState.Wheel=valueWheel;
 		m_joyState.POV=valuePOV;
 		
@@ -181,6 +189,16 @@ public class VJoyDriver {
 	public void close()
 	{
 		vDLL.VJoy_Shutdown();
+	}
+	
+	public boolean testButtons(short i)
+	{
+
+			m_joyState.Wheel=i;
+		
+		if(vDLL.VJoy_UpdateJoyState(0,m_joyState))
+		return true;
+		else return false;
 	}
 
 }

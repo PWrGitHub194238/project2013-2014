@@ -8,6 +8,7 @@ import java.awt.MenuItem;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
+import java.awt.dnd.DropTarget;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -37,9 +38,13 @@ public class MFrame extends JFrame {
 
 	public MFrame(ConnectWifi connect) {
 		super();
+		//-----------------------------Drag and Drop-------------
+		DragnDropListener myDragDropListener = new DragnDropListener();
+		new DropTarget(this, myDragDropListener);
 
 		// -------------------------MenuBar---------------------
 		this.setTitle("MultiPlay");
+
 		MenuBar mb = new MenuBar();
 		Menu file = new Menu("File");
 		Menu help = new Menu("Help");
@@ -67,32 +72,26 @@ public class MFrame extends JFrame {
 		JLabel wificon = new JLabel("Your IP: " + connect.getIP() + "    "
 				+ "Port: " + connect.getportdefault());
 		try {
-			String m=LocalDevice.getLocalDevice().getBluetoothAddress();
-			int i=0;
-			String mac="";
-			while(i<m.length()){
-				mac+= m.charAt(i);
-				if(i%2!=0){
-					mac+=':';
+			String m = LocalDevice.getLocalDevice().getBluetoothAddress();
+			int i = 0;
+			String mac = "";
+			while (i < m.length()) {
+				mac += m.charAt(i);
+				if (i % 2 != 0) {
+					mac += ':';
 				}
 				i++;
 			}
-			char tmp[]=mac.toCharArray();	
-			tmp[tmp.length-1]=' ';
-			mac=String.valueOf(tmp);
+			char tmp[] = mac.toCharArray();
+			tmp[tmp.length - 1] = ' ';
+			mac = String.valueOf(tmp);
 
 			JLabel bluecon = new JLabel("Your MAC: " + mac);
-			JLabel sys = new JLabel(
-					"                    System: "
-							+ ManagementFactory.getOperatingSystemMXBean()
-									.getName()
-							+ "\n"
-							+ "   User: "
-							+ System.getProperty("user.name")
-							+ "\n"
-							+ "   Arch: "
-							+ ManagementFactory.getOperatingSystemMXBean()
-									.getArch());
+			JLabel sys = new JLabel("                    System: "
+					+ ManagementFactory.getOperatingSystemMXBean().getName()
+					+ "\n" + "   User: " + System.getProperty("user.name")
+					+ "\n" + "   Arch: "
+					+ ManagementFactory.getOperatingSystemMXBean().getArch());
 			kon.add(wificon);
 			kon.add(bluecon);
 
@@ -101,7 +100,6 @@ public class MFrame extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	
 
 		// ----------------------------Help Frame----------------------
 		helps.addActionListener(new ActionListener() {

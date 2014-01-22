@@ -10,6 +10,11 @@ import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 import Bluetooth.Bluetooth;
 import CodeKey.N;
@@ -26,12 +31,16 @@ import Wifi.Wifi;
 public class Main {
 
 	public static void main(String[] args) {
+		JList list = new JList();
+		DefaultListModel model = new DefaultListModel();
+		List<String> listy = new ArrayList<String>();
 		// System.getProperties() show all system info
 		// System.out.println("System: " + System.getProperties());
 		ConnectWifi connect = new ConnectWifi();
-		MFrame window = new MFrame(connect);
+		MFrame window = new MFrame(connect, model, list, listy);
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-		window.setSize((int) d.getWidth(), 100);
+		window.setSize((int) d.getWidth(),
+				(int) (d.getHeight() - d.getHeight() * 10 / 100));
 		window.setVisible(true);
 		window.setResizable(false);
 		Thread wifiThread = new Thread(new Wifi());

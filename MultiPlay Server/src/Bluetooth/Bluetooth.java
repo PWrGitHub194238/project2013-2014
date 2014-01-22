@@ -45,9 +45,10 @@ public class Bluetooth implements Runnable {
 		local = LocalDevice.getLocalDevice();
 		local.setDiscoverable(DiscoveryAgent.GIAC);
 		System.out.println(LocalDevice.getLocalDevice().getBluetoothAddress());
-		UUID uuid = new UUID(BluetoothConfigurationClass.Profiles.SSP.replace("-", "") +
-				LocalDevice.getLocalDevice().getBluetoothAddress(), false);
-		
+		UUID uuid = new UUID(BluetoothConfigurationClass.Profiles.SSP.replace(
+				"-", "") + LocalDevice.getLocalDevice().getBluetoothAddress(),
+				false);
+
 		while (true) {
 			data = 0;
 			System.out.println(uuid.toString());
@@ -69,16 +70,12 @@ public class Bluetooth implements Runnable {
 					System.out.println("Send back authorization code...");
 					if (System.getProperty("os.name").startsWith("Win")) {
 						dos.writeByte(N.Signal.encodeSignal(
-								N.Signal.NEED_AUTHORIZATION,
-								N.System.WINDOWS));
-					} else if (System.getProperty("os.name").contains(
-							"Linux")) {
-						dos.writeByte(N.Signal
-								.encodeSignal(N.Signal.NEED_AUTHORIZATION,
-										N.System.LINUX));
+								N.Signal.NEED_AUTHORIZATION, N.System.WINDOWS));
+					} else if (System.getProperty("os.name").contains("Linux")) {
+						dos.writeByte(N.Signal.encodeSignal(
+								N.Signal.NEED_AUTHORIZATION, N.System.LINUX));
 
-					} else if (System.getProperty("os.name")
-							.contains("BSD")) {
+					} else if (System.getProperty("os.name").contains("BSD")) {
 						dos.writeByte(N.Signal.encodeSignal(
 								N.Signal.NEED_AUTHORIZATION, N.System.BSD));
 					}
@@ -86,10 +83,8 @@ public class Bluetooth implements Runnable {
 					Dimension wymiary = zestaw.getScreenSize();
 					int wysokosc = wymiary.height;
 					int szerokosc = wymiary.width;
-					dos.writeInt(N.Helper
-							.encodeSignal(N.Signal.DIMENSION,
-									N.DeviceDataCounter.DOUBLE, wysokosc,
-									szerokosc));
+					dos.writeInt(N.Helper.encodeSignal(N.Signal.DIMENSION,
+							N.DeviceDataCounter.DOUBLE, wysokosc, szerokosc));
 					dis.close();
 					dos.close();
 					connection.close();
@@ -106,22 +101,22 @@ public class Bluetooth implements Runnable {
 					Serverbluetooth bt = new Serverbluetooth(uuid, url);
 					bt.run();
 				} else if (data == N.Signal.NEED_APPLICATIONS) {
-					
-				}else if (data == N.Signal.RUN_APPLICATION) {
-					//Windows
-					if (System.getProperty("os.name").startsWith("Win")) {
-						//String name= dis.readUTF();
-						//--------miejsce na odczyt z xml danych 
 
-				//	ProcessBuilder pb = new ProcessBuilder("cmd", "/c",file);
-					
-					}
-					else if (System.getProperty("os.name").contains(
-							"Linux")){
-						//String name= dis.readUTF();
-						// miejsce na odczyt z xml danych  
-					//	String[] cmd = new String[] {"/bin/bash", "-c", fileName};
-					//	Runtime.getRuntime().exec(cmd);
+				} else if (data == N.Signal.RUN_APPLICATION) {
+					// Windows
+					if (System.getProperty("os.name").startsWith("Win")) {
+						// String name= dis.readUTF();
+						// --------miejsce na odczyt z xml danych
+
+						// ProcessBuilder pb = new ProcessBuilder("cmd",
+						// "/c",file);
+
+					} else if (System.getProperty("os.name").contains("Linux")) {
+						// String name= dis.readUTF();
+						// miejsce na odczyt z xml danych
+						// String[] cmd = new String[] {"/bin/bash", "-c",
+						// fileName};
+						// Runtime.getRuntime().exec(cmd);
 					}
 				}
 			} catch (IOException e) {

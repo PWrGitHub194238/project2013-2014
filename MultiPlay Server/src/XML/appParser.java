@@ -13,7 +13,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -34,16 +33,11 @@ public class appParser {
 			
 			doc.appendChild(root);
 			
-			Attr attr;
 			Element app,temp;
 			for(int i=0;i<lista.size();i++)
 			{
 				app=doc.createElement("app");
-				
-				attr = doc.createAttribute("id");
-				attr.setValue(Integer.toString(lista.get(i).id));
-				app.setAttributeNode(attr);
-								
+												
 				temp=doc.createElement("name");
 				temp.appendChild(doc.createTextNode(lista.get(i).name));
 				app.appendChild(temp);
@@ -92,7 +86,7 @@ public class appParser {
 				 node = nodes.item(i);
 				 if(node.getNodeType() == Node.ELEMENT_NODE) {
 					 elem = (Element) node;
-					 lista.add(new elementApp(Integer.parseInt(elem.getAttribute("id")),elem.getElementsByTagName("name").item(0).getTextContent(),elem.getElementsByTagName("path").item(0).getTextContent()));
+					 lista.add(new elementApp(elem.getElementsByTagName("name").item(0).getTextContent(),elem.getElementsByTagName("path").item(0).getTextContent()));
 				 }
 			 }		
 			 }catch (SAXException e) {
@@ -111,79 +105,50 @@ public class appParser {
 	{
 		ArrayList<elementApp> lista=loadXML();
 
-		for(int i=0;i<lista.size();i++)
-		{
-			if(lista.get(i).id>i)
-			{
-				lista.add(i,new elementApp(i,name,path));
+				lista.add(new elementApp(name,path));
 				saveXML(lista);
-				return i;
-			}
-		}
-		
-		lista.add(new elementApp(lista.size(),name,path));		
-		saveXML(lista);		
-		return lista.size()-1;
+				return lista.size()-1;
 	}
 	
 	public static int deleteApp(int ID)
 	{
 		ArrayList<elementApp> lista=loadXML();
 		
-		for(int i=0;i<lista.size();i++)
-		{
-			if(lista.get(i).id==ID)
-			{
-				lista.remove(i);
+				lista.remove(ID);
 				saveXML(lista);
-				return 1;
-			}
-		}
-		
-		return 0;
+				return lista.size();
 	}
 	
 	public static String getPath(int ID)
 	{
 		ArrayList<elementApp> lista=loadXML();
 		
-		for(int i=0;i<lista.size();i++)
-		{
-			if(lista.get(i).id==ID)
-			{
-				return lista.get(i).path;
-			}
-		}
-		
-		return null;
+		return lista.get(ID).path;
 	}
 	
 	public static String getName(int ID)
 	{
 		ArrayList<elementApp> lista=loadXML();
 		
-		for(int i=0;i<lista.size();i++)
-		{
-			if(lista.get(i).id==ID)
-			{
-				return lista.get(i).name;
-			}
-		}
+		return lista.get(ID).name;
+	}
+	
+	public static int getSize()
+	{
+		ArrayList<elementApp> lista=loadXML();
 		
-		return null;
+		return lista.size();
 	}
 	
 }
 
 class elementApp
 {
-	int id;
 	String name;
 	String path;
 	
-	elementApp(int id,String name,String path)
+	elementApp(String name,String path)
 	{
-		this.id=id;
 		this.name=name;
 		this.path=path;
 	}

@@ -118,7 +118,7 @@ public class appParser {
 		
 		saveXML(lista);
 		
-		return lista.size();
+		return lista.size()-1;
 	}
 	
 	public static String getPath(int ID)
@@ -130,6 +130,21 @@ public class appParser {
 			if(lista.get(i).id==ID)
 			{
 				return lista.get(i).path;
+			}
+		}
+		
+		return null;
+	}
+	
+	public static String getName(int ID)
+	{
+		ArrayList<elementApp> lista=loadXML();
+		
+		for(int i=0;i<lista.size();i++)
+		{
+			if(lista.get(i).id==ID)
+			{
+				return lista.get(i).name;
 			}
 		}
 		

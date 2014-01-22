@@ -38,7 +38,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_keyboard);
-	
+
 		try {
 			MultiPlayApplication.runThread();
 			button1 = (Button) super.findViewById(R.id.leftb);
@@ -75,14 +75,15 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 			button32 = (Button) super.findViewById(R.id.bm);
 			button33 = (Button) super.findViewById(R.id.balt);
 			button34 = (Button) super.findViewById(R.id.bbackspace);
-			button35=(Button) super.findViewById(R.id.bspace);
+			button35 = (Button) super.findViewById(R.id.bspace);
 			button34.setOnTouchListener(new View.OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
-								N.DeviceSignal.KEYBOARD_BACKSPACE, N.DeviceSignal.PRESS);
+								N.DeviceSignal.KEYBOARD_BACKSPACE,
+								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
 						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -94,7 +95,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 					return true;
 				}
 			});
-			
+
 			button35.setOnTouchListener(new View.OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
@@ -114,14 +115,15 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 					return true;
 				}
 			});
-		
+
 			button1.setOnTouchListener(new View.OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
-								N.DeviceSignal.KEYBOARD_LEFT, N.DeviceSignal.PRESS);
+								N.DeviceSignal.KEYBOARD_LEFT,
+								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
 						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -137,11 +139,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
-						int signal = Helper
-								.encodeSignal(N.Device.KEYBOARD,
-										N.DeviceDataCounter.DOUBLE,
-										N.DeviceSignal.KEYBOARD_RIGHT,
-										N.DeviceSignal.PRESS);
+						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+								N.DeviceDataCounter.DOUBLE,
+								N.DeviceSignal.KEYBOARD_RIGHT,
+								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
 						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -159,12 +160,14 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
-								N.DeviceSignal.KEYBOARD_UP, N.DeviceSignal.PRESS);
+								N.DeviceSignal.KEYBOARD_UP,
+								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
 						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
-								N.DeviceSignal.KEYBOARD_UP, N.DeviceSignal.RELEASE);
+								N.DeviceSignal.KEYBOARD_UP,
+								N.DeviceSignal.RELEASE);
 						MultiPlayApplication.add(signal);
 					}
 					return true;
@@ -176,7 +179,8 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
-								N.DeviceSignal.KEYBOARD_DOWN, N.DeviceSignal.PRESS);
+								N.DeviceSignal.KEYBOARD_DOWN,
+								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
 						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -192,11 +196,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
-						int signal = Helper
-								.encodeSignal(N.Device.KEYBOARD,
-										N.DeviceDataCounter.DOUBLE,
-										N.DeviceSignal.KEYBOARD_ENTER,
-										N.DeviceSignal.PRESS);
+						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+								N.DeviceDataCounter.DOUBLE,
+								N.DeviceSignal.KEYBOARD_ENTER,
+								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
 						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -221,15 +224,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Q");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -263,7 +258,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
 									N.DeviceDataCounter.DOUBLE, i,
 									N.DeviceSignal.RELEASE);
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
 
@@ -311,15 +312,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("W");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -356,7 +349,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("W");
@@ -401,15 +400,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("E");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -443,7 +434,15 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
 									N.DeviceDataCounter.DOUBLE, i,
 									N.DeviceSignal.RELEASE);
-
+							shiftflag = 0;
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
+							shiftflag = 0;
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
 
@@ -491,15 +490,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("R");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -533,7 +524,15 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
 									N.DeviceDataCounter.DOUBLE, i,
 									N.DeviceSignal.RELEASE);
-
+							shiftflag = 0;
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
+							shiftflag = 0;
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
 
@@ -581,15 +580,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("T");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -623,7 +614,15 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
 									N.DeviceDataCounter.DOUBLE, i,
 									N.DeviceSignal.RELEASE);
-
+							shiftflag = 0;
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
+							shiftflag = 0;
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
 
@@ -671,15 +670,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Y");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -716,7 +707,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Y");
@@ -761,15 +758,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("U");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -803,7 +792,15 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
 									N.DeviceDataCounter.DOUBLE, i,
 									N.DeviceSignal.RELEASE);
-
+							shiftflag = 0;
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
+							shiftflag = 0;
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
 
@@ -851,15 +848,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("I");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -896,7 +885,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("I");
@@ -941,15 +936,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("O");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -986,7 +973,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("O");
@@ -1031,15 +1024,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("P");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1076,7 +1061,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("P");
@@ -1121,15 +1112,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("A");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1166,7 +1149,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("A");
@@ -1211,15 +1200,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("S");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1256,7 +1237,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("S");
@@ -1301,15 +1288,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("D");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1346,7 +1325,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("D");
@@ -1391,15 +1376,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+						
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("F");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1436,7 +1413,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("F");
@@ -1481,15 +1464,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("G");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1526,7 +1501,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("G");
@@ -1571,15 +1552,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+						
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("H");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1616,7 +1589,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("H");
@@ -1661,15 +1640,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("J");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1706,7 +1677,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("J");
@@ -1752,15 +1729,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("K");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1797,7 +1766,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("K");
@@ -1842,15 +1817,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("L");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1887,7 +1854,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("L");
@@ -1932,15 +1905,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Z");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1977,7 +1942,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Z");
@@ -2022,15 +1993,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("X");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -2067,7 +2030,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("X");
@@ -2112,15 +2081,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("C");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -2157,7 +2118,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("C");
@@ -2202,15 +2169,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("V");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -2247,7 +2206,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("V");
@@ -2292,15 +2257,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("B");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -2337,7 +2294,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("B");
@@ -2382,15 +2345,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("N");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -2427,7 +2382,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("n");
@@ -2472,15 +2433,7 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
-							shiftflag = 0;
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("M");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -2517,7 +2470,13 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("M");
@@ -2554,8 +2513,6 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-
 
 	}
 

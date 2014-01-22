@@ -75,16 +75,20 @@ public class DragnDropListener implements DropTargetListener {
 					// Loop them through
 					for (File file : files) {
 						// Print out the file path
-						System.out.println("File path is '" + file.getPath()
+						String path = file.getPath();
+						String filename = file.getName();
+						int indeks =filename.lastIndexOf('.');
+						String name = filename.substring(0, indeks);
+						System.out.println("File  is '" + name 
 								+ "'.");
-						ProcessBuilder pb = new ProcessBuilder("cmd", "/c",
-								file.getPath());
-						try {
-							Process p = pb.start();
-						} catch (IOException e) {
+						//ProcessBuilder pb = new ProcessBuilder("cmd", "/c",
+							//	file.getPath());
+						//try {
+					//		Process p = pb.start();
+					//	} catch (IOException e) {
 							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+					//		e.printStackTrace();
+					//	}
 					}
 				}
 			} catch (Exception e) {
@@ -110,13 +114,13 @@ public class DragnDropListener implements DropTargetListener {
 		read.close();
 		dropTargetEvent.dropComplete(true);
 		System.out.println("File Dragged:" + fileName);
-		ProcessBuilder pb = new ProcessBuilder("cmd", "/c", fileName);
-		try {
-			Process p = pb.start();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		int indeks =fileName.lastIndexOf('.');
+		String name = fileName.substring(0, indeks);
+		System.out.println("File  is '" + name 
+				+ "'.");
+	//	String[] cmd = new String[] {"/bin/bash", "-c", fileName};
+		//Runtime.getRuntime().exec(cmd);
+		
 	}
 
 	@Override

@@ -105,6 +105,24 @@ public class Bluetooth implements Runnable {
 					System.out.println("Over");
 					Serverbluetooth bt = new Serverbluetooth(uuid, url);
 					bt.run();
+				} else if (data == N.Signal.NEED_APPLICATIONS) {
+					
+				}else if (data == N.Signal.RUN_APPLICATION) {
+					//Windows
+					if (System.getProperty("os.name").startsWith("Win")) {
+						//String name= dis.readUTF();
+						//--------miejsce na odczyt z xml danych 
+
+				//	ProcessBuilder pb = new ProcessBuilder("cmd", "/c",file);
+					
+					}
+					else if (System.getProperty("os.name").contains(
+							"Linux")){
+						//String name= dis.readUTF();
+						// miejsce na odczyt z xml danych  
+					//	String[] cmd = new String[] {"/bin/bash", "-c", fileName};
+					//	Runtime.getRuntime().exec(cmd);
+					}
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

@@ -89,13 +89,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
-						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+						signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.KEYBOARD_BACKSPACE,
 								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
-						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+						signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.KEYBOARD_BACKSPACE,
 								N.DeviceSignal.RELEASE);
@@ -104,17 +104,18 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 					return true;
 				}
 			});
+
 			button35.setOnTouchListener(new View.OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
-						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+						 signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.KEYBOARD_SPACE,
 								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
-						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+						 signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.KEYBOARD_SPACE,
 								N.DeviceSignal.RELEASE);
@@ -128,12 +129,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
-						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+						 signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
-								N.DeviceSignal.KEYBOARD_LEFT, N.DeviceSignal.PRESS);
+								N.DeviceSignal.KEYBOARD_LEFT,
+								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
-						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+						 signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.KEYBOARD_LEFT,
 								N.DeviceSignal.RELEASE);
@@ -146,14 +148,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
-						int signal = Helper
-								.encodeSignal(N.Device.KEYBOARD,
-										N.DeviceDataCounter.DOUBLE,
-										N.DeviceSignal.KEYBOARD_RIGHT,
-										N.DeviceSignal.PRESS);
+						 signal = Helper.encodeSignal(N.Device.KEYBOARD,
+								N.DeviceDataCounter.DOUBLE,
+								N.DeviceSignal.KEYBOARD_RIGHT,
+								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
-						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+						 signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.KEYBOARD_RIGHT,
 								N.DeviceSignal.RELEASE);
@@ -166,14 +167,16 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
-						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+						 signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
-								N.DeviceSignal.KEYBOARD_UP, N.DeviceSignal.PRESS);
+								N.DeviceSignal.KEYBOARD_UP,
+								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
-						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+						 signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
-								N.DeviceSignal.KEYBOARD_UP, N.DeviceSignal.RELEASE);
+								N.DeviceSignal.KEYBOARD_UP,
+								N.DeviceSignal.RELEASE);
 						MultiPlayApplication.add(signal);
 					}
 					return true;
@@ -183,12 +186,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
-						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+						 signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
-								N.DeviceSignal.KEYBOARD_DOWN, N.DeviceSignal.PRESS);
+								N.DeviceSignal.KEYBOARD_DOWN,
+								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
-						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+						 signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.KEYBOARD_DOWN,
 								N.DeviceSignal.RELEASE);
@@ -201,14 +205,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
-						int signal = Helper
-								.encodeSignal(N.Device.KEYBOARD,
-										N.DeviceDataCounter.DOUBLE,
-										N.DeviceSignal.KEYBOARD_ENTER,
-										N.DeviceSignal.PRESS);
+						 signal = Helper.encodeSignal(N.Device.KEYBOARD,
+								N.DeviceDataCounter.DOUBLE,
+								N.DeviceSignal.KEYBOARD_ENTER,
+								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
 					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
-						int signal = Helper.encodeSignal(N.Device.KEYBOARD,
+						 signal = Helper.encodeSignal(N.Device.KEYBOARD,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.KEYBOARD_ENTER,
 								N.DeviceSignal.RELEASE);
@@ -230,7 +233,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Q");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -264,16 +267,16 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
 									N.DeviceDataCounter.DOUBLE, i,
 									N.DeviceSignal.RELEASE);
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Q");
@@ -318,7 +321,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("W");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -355,13 +358,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("W");
@@ -406,7 +409,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("E");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -440,16 +443,18 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
 									N.DeviceDataCounter.DOUBLE, i,
 									N.DeviceSignal.RELEASE);
-
+							shiftflag = 0;
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
+							shiftflag = 0;
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("E");
@@ -494,7 +499,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("R");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -528,16 +533,18 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
 									N.DeviceDataCounter.DOUBLE, i,
 									N.DeviceSignal.RELEASE);
-
+							shiftflag = 0;
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
+							shiftflag = 0;
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("R");
@@ -582,7 +589,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-		
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("T");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -616,16 +623,18 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
 									N.DeviceDataCounter.DOUBLE, i,
 									N.DeviceSignal.RELEASE);
-
+							shiftflag = 0;
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
+							shiftflag = 0;
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("T");
@@ -670,7 +679,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-			
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Y");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -707,13 +716,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Y");
@@ -758,7 +767,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-				
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("U");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -792,16 +801,18 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
 									N.DeviceDataCounter.DOUBLE, i,
 									N.DeviceSignal.RELEASE);
-
+							shiftflag = 0;
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
+							shiftflag = 0;
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("U");
@@ -846,7 +857,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("I");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -883,13 +894,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("I");
@@ -934,7 +945,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-			
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("O");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -971,13 +982,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("O");
@@ -1022,7 +1033,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-			
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("P");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1059,13 +1070,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("P");
@@ -1110,7 +1121,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-			
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("A");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1147,13 +1158,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("A");
@@ -1198,8 +1209,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-							shiftflag = 0;
-				
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("S");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1236,13 +1246,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("S");
@@ -1287,7 +1297,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-			
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("D");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1324,13 +1334,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("D");
@@ -1375,7 +1385,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-					
+						
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("F");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1412,13 +1422,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("F");
@@ -1463,7 +1473,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-					
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("G");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1500,13 +1510,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("G");
@@ -1588,13 +1598,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("H");
@@ -1639,7 +1649,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-					
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("J");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1676,13 +1686,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("J");
@@ -1728,7 +1738,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-			
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("K");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1765,13 +1775,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("K");
@@ -1816,7 +1826,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-					
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("L");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1853,13 +1863,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("L");
@@ -1904,7 +1914,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-						
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Z");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -1941,13 +1951,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("Z");
@@ -1992,7 +2002,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-			
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("X");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -2029,13 +2039,13 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("X");
@@ -2080,7 +2090,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-						
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("C");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -2114,16 +2124,16 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
 									N.DeviceDataCounter.DOUBLE, i,
 									N.DeviceSignal.RELEASE);
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("C");
@@ -2168,7 +2178,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-						
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("V");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -2202,16 +2212,16 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
 									N.DeviceDataCounter.DOUBLE, i,
 									N.DeviceSignal.RELEASE);
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("V");
@@ -2256,7 +2266,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-					
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("B");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -2292,13 +2302,14 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.RELEASE);
 
 							MultiPlayApplication.add(signal);
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+							shiftflag = 0;
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("B");
@@ -2377,16 +2388,16 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
 									N.DeviceDataCounter.DOUBLE, i,
 									N.DeviceSignal.RELEASE);
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("n");
@@ -2431,7 +2442,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 									N.DeviceSignal.PRESS);
 
 							MultiPlayApplication.add(signal);
-				
+							
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("M");
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
@@ -2465,16 +2476,16 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 							signal = Helper.encodeSignal(N.Device.KEYBOARD,
 									N.DeviceDataCounter.DOUBLE, i,
 									N.DeviceSignal.RELEASE);
-							smalkey key = new smalkey(button7, button8, button9,
-									button10, button11, button12, button13,
-									button14, button15, button16, button17,
-									button18, button19, button20, button21,
-									button22, button23, button24, button25,
-									button26, button27, button28, button29,
-									button30, button31, button33);
+
 							MultiPlayApplication.add(signal);
 							shiftflag = 0;
-
+							smalkey key = new smalkey(button7, button8,
+									button9, button10, button11, button12,
+									button13, button14, button15, button16,
+									button17, button18, button19, button20,
+									button21, button22, button23, button24,
+									button25, button26, button27, button28,
+									button29, button30, button31, button33);
 							shiftflag = 0;
 						} else if (shiftflag == 2 && altflag == 0) {
 							i = N.DeviceSignal.KEYBOARD_KEY_TO_INT("M");
@@ -2507,12 +2518,10 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 				}
 			});
 
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	
+		}	
 
 	}
 
@@ -2529,7 +2538,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 		if (stop == 0) {
 			tv.setText(Integer.toString((int) x) + " "
 					+ Integer.toString((int) y));
-			int signal = Helper.encodeSignal(N.Device.MOUSE,
+			 signal = Helper.encodeSignal(N.Device.MOUSE,
 					N.DeviceDataCounter.DOUBLE, (int) y * multi, (int) x
 							* multi);
 			MultiPlayApplication.add(signal);

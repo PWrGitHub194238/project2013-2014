@@ -134,6 +134,8 @@ public final class N {
 				"00000001", 2);
 		public static final byte NEED_APPLICATIONS = (byte) Integer.parseInt(
 				"00000011", 2);
+		public static final byte RUN_APPLICATION = (byte) Integer.parseInt(
+				"00000100", 2);
 		public static final byte encodeSignal(byte signal, byte system) {
 			return (byte) (signal + (system << Shift.SYSTEM));
 		}

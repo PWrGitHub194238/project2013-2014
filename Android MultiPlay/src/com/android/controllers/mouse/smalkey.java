@@ -36,7 +36,7 @@ public class smalkey {
 		button23.setText("v");
 		button24.setText("b");
 		button25.setText("n");
-		button26.setText("m");
+	
 	}
 
 }

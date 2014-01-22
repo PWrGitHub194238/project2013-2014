@@ -30,7 +30,6 @@ public class Gamepad extends Activity {
 	private TextView lefttxt, righttxt;
 	private double lefty_center;
 	private double leftx_center, rightx_center, righty_center;
-	private PowerManager.WakeLock wl;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +37,7 @@ public class Gamepad extends Activity {
 		setContentView(R.layout.activity_gamepad);
 		try {
 			MultiPlayApplication.runThread();
-			PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-			wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK,
-					"DoNjfdhotDimScreen");
+			
 			bup = (ImageButton) super.findViewById(R.id.arrup);
 			bdown = (ImageButton) super.findViewById(R.id.arrdown);
 			bleft = (ImageButton) super.findViewById(R.id.arrleft);
@@ -66,14 +63,16 @@ public class Gamepad extends Activity {
 			bstart.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
-					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+					int signal;
+
+					if (event.getAction() == MotionEvent.ACTION_DOWN) {
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.VJOY_START_PRESS,
 								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
-					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+					} else if (event.getAction() == MotionEvent.ACTION_UP) {
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.VJOY_START_PRESS,
 								N.DeviceSignal.RELEASE);
@@ -85,24 +84,26 @@ public class Gamepad extends Activity {
 			left.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
-					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					int signal;
+
+					if (event.getAction() == MotionEvent.ACTION_DOWN) {
 						String x = Integer
 								.toString((int) (((leftx_center - (int) event
-										.getX()) * (-1)) / 3));
+										.getX()) * (-1)) ));
 						String y = Integer
 								.toString((int) (((lefty_center - (int) event
-										.getY()) * (-1)) / 3));
-						lefttxt.setText(x + " " + y);
-						int signal = Helper.encodeSignal(
+										.getY()) * (-1)) ));
+						
+						 signal = Helper.encodeSignal(
 								N.Device.VJOYJOYSTICKLEFT,
 								N.DeviceDataCounter.DOUBLE,
 								Integer.parseInt(x), Integer.parseInt(y));
 						MultiPlayApplication.add(signal);
-					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
+					} else if (event.getAction() == MotionEvent.ACTION_UP) {
 						String x = Integer.toString(0);
 						String y = Integer.toString(0);
-						lefttxt.setText(x + " " + y);
-						int signal = Helper.encodeSignal(
+					
+						 signal = Helper.encodeSignal(
 								N.Device.VJOYJOYSTICKLEFT,
 								N.DeviceDataCounter.DOUBLE,
 								Integer.parseInt(x), Integer.parseInt(y));
@@ -115,24 +116,26 @@ public class Gamepad extends Activity {
 			right.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
-					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					int signal;
+
+					if (event.getAction() == MotionEvent.ACTION_DOWN) {
 						String x = Integer
 								.toString((int) (((rightx_center - (int) event
-										.getX()) * (-1)) / 3));
+										.getX()) * (-1)) ));
 						String y = Integer
 								.toString((int) (((righty_center - (int) event
-										.getY()) * (-1)) / 3));
-						righttxt.setText(x + " " + y);
-						int signal = Helper.encodeSignal(
+										.getY()) * (-1)) ));
+					
+						 signal = Helper.encodeSignal(
 								N.Device.VJOYJOYSTICKRIGHT,
 								N.DeviceDataCounter.DOUBLE,
 								Integer.parseInt(x), Integer.parseInt(y));
 						MultiPlayApplication.add(signal);
-					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
+					} else if (event.getAction() == MotionEvent.ACTION_UP) {
 						String x = Integer.toString(0);
 						String y = Integer.toString(0);
 						righttxt.setText(x + " " + y);
-						int signal = Helper.encodeSignal(
+						 signal = Helper.encodeSignal(
 								N.Device.VJOYJOYSTICKRIGHT,
 								N.DeviceDataCounter.DOUBLE,
 								Integer.parseInt(x), Integer.parseInt(y));
@@ -144,16 +147,18 @@ public class Gamepad extends Activity {
 			bup.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
-					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					int signal;
 
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+					if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.KEYBOARD_UP,
 								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
-					} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
+					} else if (event.getAction() == MotionEvent.ACTION_UP) {
 
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.KEYBOARD_UP,
 								N.DeviceSignal.RELEASE);
@@ -165,16 +170,18 @@ public class Gamepad extends Activity {
 			bdown.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
-					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					int signal;
 
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+					if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.KEYBOARD_DOWN,
 								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
-					} else if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					} else if (event.getAction() == MotionEvent.ACTION_UP) {
 
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.KEYBOARD_DOWN,
 								N.DeviceSignal.RELEASE);
@@ -186,16 +193,18 @@ public class Gamepad extends Activity {
 			bleft.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
-					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					int signal;
 
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+					if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.KEYBOARD_LEFT,
 								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
-					} else if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					} else if (event.getAction() == MotionEvent.ACTION_UP) {
 
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.KEYBOARD_LEFT,
 								N.DeviceSignal.RELEASE);
@@ -207,16 +216,18 @@ public class Gamepad extends Activity {
 			bright.setOnTouchListener(new OnTouchListener(){
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
-					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					int signal;
 
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+					if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.KEYBOARD_RIGHT,
 								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
-					} else if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					} else if (event.getAction() == MotionEvent.ACTION_UP) {
 
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.KEYBOARD_RIGHT,
 								N.DeviceSignal.RELEASE);
@@ -228,16 +239,18 @@ public class Gamepad extends Activity {
 			bcircle.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
-					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					int signal;
 
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+					if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.VJOY_CIRCLE_PRESS,
 								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
-					} else if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					} else if (event.getAction() == MotionEvent.ACTION_UP) {
 
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.VJOY_CIRCLE_PRESS,
 								N.DeviceSignal.RELEASE);
@@ -247,17 +260,20 @@ public class Gamepad extends Activity {
 				}
 			});
 			bsquere.setOnTouchListener(new OnTouchListener() {
+				
 				public boolean onTouch(View v, MotionEvent event) {
-					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					int signal;
 
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+					if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.VJOY_SQUARE_PRESS,
 								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
-					} else if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					} else if (event.getAction() == MotionEvent.ACTION_UP) {
 
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.VJOY_SQUARE_PRESS,
 								N.DeviceSignal.RELEASE);
@@ -270,16 +286,18 @@ public class Gamepad extends Activity {
 			bsharp.setOnTouchListener(new OnTouchListener(){
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
-					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					int signal;
 
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+					if (event.getAction() ==MotionEvent.ACTION_DOWN) {
+
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.VJOY_SHARP_PRESS,
 								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
-					} else if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					} else if (event.getAction() ==MotionEvent.ACTION_UP) {
 
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.VJOY_SHARP_PRESS,
 								N.DeviceSignal.RELEASE);
@@ -291,16 +309,18 @@ public class Gamepad extends Activity {
 			btrinagle.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
-					if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					int signal;
 
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+					if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.VJOY_TRIANGLE_PRESS,
 								N.DeviceSignal.PRESS);
 						MultiPlayApplication.add(signal);
-					} else if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					} else if (event.getAction() == MotionEvent.ACTION_UP) {
 
-						int signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
+						 signal = Helper.encodeSignal(N.Device.VJOYBUTTONS,
 								N.DeviceDataCounter.DOUBLE,
 								N.DeviceSignal.VJOY_TRIANGLE_PRESS,
 								N.DeviceSignal.RELEASE);
@@ -323,16 +343,6 @@ public class Gamepad extends Activity {
 		return true;
 	}
 
-	protected void onPause() {
-		super.onPause();
-		wl.release();
-
-	}
-
-	protected void onResume() {
-		super.onResume();
-		wl.acquire();
-
-	}
+	
 
 }

@@ -81,7 +81,7 @@ public class Serverwifi implements Runnable {
 								if (ret[1] == N.DeviceDataCounter.SINGLE)
 									mouse.click(ret[2]);
 								else if (ret[1] == N.DeviceDataCounter.DOUBLE)
-										mouse.run(ret[2], ret[3]);
+									mouse.run(ret[2], ret[3]);
 							} else if (ret[0] == N.Device.KEYBOARD) {
 								if (ret[1] == N.DeviceDataCounter.DOUBLE)
 									if (ret[3] == N.DeviceSignal.PRESS) {
@@ -119,52 +119,58 @@ public class Serverwifi implements Runnable {
 								// ret[2]-x
 								// ret[3]-y
 								// przetwarzanie sygna³u dla lewej ga³ki
-								vjoy.updateAxes(1, ret[2], ret[3]);
+								if (ret[1] == N.DeviceDataCounter.DOUBLE) {
+									vjoy.updateAxes(1, ret[2], ret[3]);
+								}
 							} else if (ret[0] == N.Device.VJOYJOYSTICKRIGHT) {
 								// ret[2]-x
 								// ret[3]-y
 								// przetwarzanie sygna³u dla prawej ga³ki
-								vjoy.updateAxes(2, ret[2], ret[3]);
+								if (ret[1] == N.DeviceDataCounter.DOUBLE) {
+									vjoy.updateAxes(2, ret[2], ret[3]);
+								}
 							} else if (ret[0] == N.Device.VJOYBUTTONS) {
-								if (ret[3] == N.DeviceSignal.PRESS) {
-									if (ret[2] == N.DeviceSignal.VJOY_CIRCLE_PRESS) {
-										vjoy.buttonPress(2);
-									} else if (ret[2] == N.DeviceSignal.VJOY_SHARP_PRESS) {
-										vjoy.buttonPress(3);
-									} else if (ret[2] == N.DeviceSignal.VJOY_SQUARE_PRESS) {
-										vjoy.buttonPress(4);
-									} else if (ret[2] == N.DeviceSignal.VJOY_TRIANGLE_PRESS) {
-										vjoy.buttonPress(1);
-									} else if (ret[2] == N.DeviceSignal.KEYBOARD_DOWN) {
-										vjoy.buttonPress(13);
-									} else if (ret[2] == N.DeviceSignal.KEYBOARD_LEFT) {
-										vjoy.buttonPress(14);
-									} else if (ret[2] == N.DeviceSignal.KEYBOARD_RIGHT) {
-										vjoy.buttonPress(15);
-									} else if (ret[2] == N.DeviceSignal.KEYBOARD_UP) {
-										vjoy.buttonPress(12);
-									} else if (ret[2] == N.DeviceSignal.VJOY_START_PRESS) {
-										vjoy.buttonPress(9);
-									}
-								} else if (ret[3] == N.DeviceSignal.RELEASE) {
-									if (ret[2] == N.DeviceSignal.VJOY_CIRCLE_PRESS) {
-										vjoy.buttonRelease(2);
-									} else if (ret[2] == N.DeviceSignal.VJOY_SHARP_PRESS) {
-										vjoy.buttonRelease(3);
-									} else if (ret[2] == N.DeviceSignal.VJOY_SQUARE_PRESS) {
-										vjoy.buttonRelease(4);
-									} else if (ret[2] == N.DeviceSignal.VJOY_TRIANGLE_PRESS) {
-										vjoy.buttonRelease(1);
-									} else if (ret[2] == N.DeviceSignal.KEYBOARD_DOWN) {
-										vjoy.buttonRelease(13);
-									} else if (ret[2] == N.DeviceSignal.KEYBOARD_LEFT) {
-										vjoy.buttonRelease(14);
-									} else if (ret[2] == N.DeviceSignal.KEYBOARD_RIGHT) {
-										vjoy.buttonRelease(15);
-									} else if (ret[2] == N.DeviceSignal.KEYBOARD_UP) {
-										vjoy.buttonRelease(12);
-									} else if (ret[2] == N.DeviceSignal.VJOY_START_PRESS) {
-										vjoy.buttonRelease(9);
+								if (ret[1] == N.DeviceDataCounter.DOUBLE) {
+									if (ret[3] == N.DeviceSignal.PRESS) {
+										if (ret[2] == N.DeviceSignal.VJOY_CIRCLE_PRESS) {
+											vjoy.buttonPress(2);
+										} else if (ret[2] == N.DeviceSignal.VJOY_SHARP_PRESS) {
+											vjoy.buttonPress(3);
+										} else if (ret[2] == N.DeviceSignal.VJOY_SQUARE_PRESS) {
+											vjoy.buttonPress(4);
+										} else if (ret[2] == N.DeviceSignal.VJOY_TRIANGLE_PRESS) {
+											vjoy.buttonPress(1);
+										} else if (ret[2] == N.DeviceSignal.KEYBOARD_DOWN) {
+											vjoy.buttonPress(13);
+										} else if (ret[2] == N.DeviceSignal.KEYBOARD_LEFT) {
+											vjoy.buttonPress(14);
+										} else if (ret[2] == N.DeviceSignal.KEYBOARD_RIGHT) {
+											vjoy.buttonPress(15);
+										} else if (ret[2] == N.DeviceSignal.KEYBOARD_UP) {
+											vjoy.buttonPress(12);
+										} else if (ret[2] == N.DeviceSignal.VJOY_START_PRESS) {
+											vjoy.buttonPress(9);
+										}
+									} else if (ret[3] == N.DeviceSignal.RELEASE) {
+										if (ret[2] == N.DeviceSignal.VJOY_CIRCLE_PRESS) {
+											vjoy.buttonRelease(2);
+										} else if (ret[2] == N.DeviceSignal.VJOY_SHARP_PRESS) {
+											vjoy.buttonRelease(3);
+										} else if (ret[2] == N.DeviceSignal.VJOY_SQUARE_PRESS) {
+											vjoy.buttonRelease(4);
+										} else if (ret[2] == N.DeviceSignal.VJOY_TRIANGLE_PRESS) {
+											vjoy.buttonRelease(1);
+										} else if (ret[2] == N.DeviceSignal.KEYBOARD_DOWN) {
+											vjoy.buttonRelease(13);
+										} else if (ret[2] == N.DeviceSignal.KEYBOARD_LEFT) {
+											vjoy.buttonRelease(14);
+										} else if (ret[2] == N.DeviceSignal.KEYBOARD_RIGHT) {
+											vjoy.buttonRelease(15);
+										} else if (ret[2] == N.DeviceSignal.KEYBOARD_UP) {
+											vjoy.buttonRelease(12);
+										} else if (ret[2] == N.DeviceSignal.VJOY_START_PRESS) {
+											vjoy.buttonRelease(9);
+										}
 									}
 								}
 							} else if (ret[0] == N.Device.EXIT) {

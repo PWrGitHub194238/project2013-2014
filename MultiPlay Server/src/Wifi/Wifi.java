@@ -78,6 +78,8 @@ public class Wifi implements Runnable {
 						System.out.println("Over");
 						Serverwifi wifi = new Serverwifi(port, connect);
 						wifi.run();
+					} else if (data == N.Signal.NEED_APPLICATIONS) {
+						
 					}
 				} catch (IOException e) {
 					e.printStackTrace();

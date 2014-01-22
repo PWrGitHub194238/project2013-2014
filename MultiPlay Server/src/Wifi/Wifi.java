@@ -7,6 +7,11 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 import CodeKey.N;
 import Connect.ConnectWifi;
@@ -15,7 +20,7 @@ import Frame.MFrame;
 public class Wifi implements Runnable {
 	private static DataInputStream dis = null;
 	private static DataOutputStream dos = null;
-
+	
 	public Wifi() {
 
 	}
@@ -61,8 +66,10 @@ public class Wifi implements Runnable {
 						Dimension wymiary = zestaw.getScreenSize();
 						int wysokosc = wymiary.height;
 						int szerokosc = wymiary.width;
-						dos.writeInt(N.Helper.encodeSignal(
-							N.Signal.DIMENSION,N.DeviceDataCounter.DOUBLE,wysokosc,szerokosc));
+						dos.writeInt(N.Helper
+								.encodeSignal(N.Signal.DIMENSION,
+										N.DeviceDataCounter.DOUBLE, wysokosc,
+										szerokosc));
 						dis.close();
 						dos.close();
 						socket.close();
@@ -79,22 +86,22 @@ public class Wifi implements Runnable {
 						Serverwifi wifi = new Serverwifi(port, connect);
 						wifi.run();
 					} else if (data == N.Signal.NEED_APPLICATIONS) {
-						
-					}else if (data == N.Signal.RUN_APPLICATION) {
-						//Windows
-						if (System.getProperty("os.name").startsWith("Win")) {
-							//String name= dis.readUTF();
-							//--------miejsce na odczyt z xml danych 
 
-					//	ProcessBuilder pb = new ProcessBuilder("cmd", "/c",file);
-						
-						}
-						else if (System.getProperty("os.name").contains(
-								"Linux")){
-							//String name= dis.readUTF();
-							// miejsce na odczyt z xml danych  
-						//	String[] cmd = new String[] {"/bin/bash", "-c", fileName};
-						//	Runtime.getRuntime().exec(cmd);
+					} else if (data == N.Signal.RUN_APPLICATION) {
+						// Windows
+						if (System.getProperty("os.name").startsWith("Win")) {
+							// String name= dis.readUTF();
+							// --------miejsce na odczyt z xml danych
+
+							// ProcessBuilder pb = new ProcessBuilder("cmd",
+							// "/c",file);
+						} else if (System.getProperty("os.name").contains(
+								"Linux")) {
+							// String name= dis.readUTF();
+							// miejsce na odczyt z xml danych
+							// String[] cmd = new String[] {"/bin/bash", "-c",
+							// fileName};
+							// Runtime.getRuntime().exec(cmd);
 						}
 					}
 				} catch (IOException e) {

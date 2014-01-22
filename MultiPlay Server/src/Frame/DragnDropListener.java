@@ -12,11 +12,26 @@ import java.awt.dnd.DropTargetListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+
+import XML.appParser;
 
 public class DragnDropListener implements DropTargetListener {
 	private DataFlavor Linux = null;
 	private DataFlavor Windows = null;
+	private MFrame frame;
+	List<String> listy ;
+	JList list;
+
+	public DragnDropListener(MFrame frame, JList list, List<String> listy) {
+		this.frame = frame;
+		this.list = list;
+		this.listy=listy;
+	}
 
 	public void drop(DropTargetDropEvent dropEvent) {
 		try {
@@ -42,6 +57,7 @@ public class DragnDropListener implements DropTargetListener {
 		} catch (ClassNotFoundException e) {
 			System.err.println(e.getMessage());
 		}
+
 	}
 
 	private void handleDrop(DropTargetDropEvent dropEvent,
@@ -77,18 +93,31 @@ public class DragnDropListener implements DropTargetListener {
 						// Print out the file path
 						String path = file.getPath();
 						String filename = file.getName();
-						int indeks =filename.lastIndexOf('.');
+						int indeks = filename.lastIndexOf('.');
 						String name = filename.substring(0, indeks);
-						System.out.println("File  is '" + name 
-								+ "'.");
-						//ProcessBuilder pb = new ProcessBuilder("cmd", "/c",
-							//	file.getPath());
-						//try {
-					//		Process p = pb.start();
-					//	} catch (IOException e) {
-							// TODO Auto-generated catch block
-					//		e.printStackTrace();
-					//	}
+						System.out.println("File  is '" + name + "'.");
+						int e = -1;
+						appParser xml =new appParser();
+						xml.addApp(name, file.getPath());
+						e = listy.indexOf(name);
+						if (e == -1) {
+							listy.add(name);
+							String[] l = new String[listy.size()];
+							int i = 0;
+							while (i < listy.size()) {
+								l[i] = listy.get(i);
+								i++;
+							}
+							list.setListData(l);
+						}
+						// ProcessBuilder pb = new ProcessBuilder("cmd", "/c",
+						// file.getPath());
+						// try {
+						// Process p = pb.start();
+						// } catch (IOException e) {
+						// TODO Auto-generated catch block
+						// e.printStackTrace();
+						// }
 					}
 				}
 			} catch (Exception e) {
@@ -114,13 +143,19 @@ public class DragnDropListener implements DropTargetListener {
 		read.close();
 		dropTargetEvent.dropComplete(true);
 		System.out.println("File Dragged:" + fileName);
-		int indeks =fileName.lastIndexOf('.');
+		int indeks = fileName.lastIndexOf('.');
 		String name = fileName.substring(0, indeks);
-		System.out.println("File  is '" + name 
-				+ "'.");
-	//	String[] cmd = new String[] {"/bin/bash", "-c", fileName};
-		//Runtime.getRuntime().exec(cmd);
-		
+		System.out.println("File  is '" + name + "'.");
+		// String[] cmd = new String[] {"/bin/bash", "-c", fileName};
+		// Runtime.getRuntime().exec(cmd);
+		listy.add(name);
+		String[] l = new String[listy.size()];
+		int i = 0;
+		while (i < listy.size()) {
+			l[i] = listy.get(i);
+			i++;
+		}
+		list.setListData(l);
 	}
 
 	@Override

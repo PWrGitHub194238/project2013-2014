@@ -1,6 +1,7 @@
 package Frame;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Menu;
 import java.awt.MenuBar;
@@ -8,6 +9,7 @@ import java.awt.MenuItem;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
+import java.awt.Toolkit;
 import java.awt.dnd.DropTarget;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,14 +20,19 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.bluetooth.BluetoothStateException;
 import javax.bluetooth.LocalDevice;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -35,11 +42,48 @@ import Connect.ConnectWifi;
 
 //Menu Frame
 public class MFrame extends JFrame {
+	private JList list;
+	private DefaultListModel model;
+	List<String> listy;
 
-	public MFrame(ConnectWifi connect) {
+	public MFrame(ConnectWifi connect, final DefaultListModel model,
+			final JList list, final List<String> listy) {
 		super();
-		//-----------------------------Drag and Drop-------------
-		DragnDropListener myDragDropListener = new DragnDropListener();
+		this.list = list;
+		this.model = model;
+		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+		// ------------------------------Elements on MFRAME--------------
+
+		list.setBounds(0, 100, (int) (d.getWidth() - d.getWidth() * 20 / 100),
+				(int) d.getHeight() - 200);
+		add(list);
+		JButton bdelete = new JButton("Delete");
+		this.add(bdelete);
+		bdelete.setBounds((int) (d.getWidth() - d.getWidth() * 20 / 100) + 3,
+				100, (int) (d.getWidth()
+						- (d.getWidth() - d.getWidth() * 20 / 100) + 3) - 3,
+				(int) d.getHeight() - 200);
+		bdelete.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int index = list.getSelectedIndex();
+				listy.remove(index);
+				String[] l = new String[listy.size()];
+				int i = 0;
+				while (i < listy.size()) {
+					l[i] = listy.get(i);
+					i++;
+				}
+				list.setListData(l);
+
+			}
+
+		});
+
+		// -----------------------------Drag and Drop-------------
+		DragnDropListener myDragDropListener = new DragnDropListener(this,
+				list, listy);
 		new DropTarget(this, myDragDropListener);
 
 		// -------------------------MenuBar---------------------

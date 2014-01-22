@@ -41,7 +41,7 @@ public class appParser {
 				app=doc.createElement("app");
 				
 				attr = doc.createAttribute("id");
-				attr.setValue(Integer.toString(i));
+				attr.setValue(Integer.toString(lista.get(i).id));
 				app.setAttributeNode(attr);
 								
 				temp=doc.createElement("name");
@@ -113,12 +113,37 @@ public class appParser {
 	public static int addApp(String name,String path)
 	{
 		ArrayList<elementApp> lista=loadXML();
+
+		for(int i=0;i<lista.size();i++)
+		{
+			if(lista.get(i).id>i)
+			{
+				lista.add(i,new elementApp(i,name,path));
+				saveXML(lista);
+				return i;
+			}
+		}
 		
-		lista.add(new elementApp(lista.size()+1,name,path));
-		
-		saveXML(lista);
-		
+		lista.add(new elementApp(lista.size(),name,path));		
+		saveXML(lista);		
 		return lista.size()-1;
+	}
+	
+	public static int deleteApp(int ID)
+	{
+		ArrayList<elementApp> lista=loadXML();
+		
+		for(int i=0;i<lista.size();i++)
+		{
+			if(lista.get(i).id==ID)
+			{
+				lista.remove(i);
+				saveXML(lista);
+				return 1;
+			}
+		}
+		
+		return 0;
 	}
 	
 	public static String getPath(int ID)

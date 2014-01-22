@@ -24,11 +24,6 @@ public class appParser {
 
 	public static void saveXML(ArrayList<elementApp> lista)
 	{
-//		ArrayList<elementApp> lista=new ArrayList<elementApp>();
-//		lista.add(new elementApp(0,"nazwa","testowa sciezka"));
-//		lista.add(new elementApp(1,"nazwa2","testowa sciezka3"));
-		
-		//zapisywanie do xml
 		try {
 			
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -112,8 +107,35 @@ public class appParser {
 				e.printStackTrace();
 			}
 		
+		return lista;
+	}
+	
+	public static int addApp(String name,String path)
+	{
+		ArrayList<elementApp> lista=loadXML();
+		
+		lista.add(new elementApp(lista.size()+1,name,path));
+		
+		saveXML(lista);
+		
+		return lista.size();
+	}
+	
+	public static String getPath(int ID)
+	{
+		ArrayList<elementApp> lista=loadXML();
+		
+		for(int i=0;i<lista.size();i++)
+		{
+			if(lista.get(i).id==ID)
+			{
+				return lista.get(i).path;
+			}
+		}
+		
 		return null;
 	}
+	
 }
 
 class elementApp

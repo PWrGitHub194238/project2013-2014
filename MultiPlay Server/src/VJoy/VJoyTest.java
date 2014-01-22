@@ -12,7 +12,20 @@ public class VJoyTest {
         String input;       
      
         int i=0;
-        
+
+//        for(i=256;i<=300000;i++)
+//        {        	
+//    		driver.testButtons((short)i);
+//    		System.out.println(i);
+//    		
+//        	try {
+//				Thread.sleep(100);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//        }
+               
         for(i=-127;i<=127;i++)
         {        	
     		driver.updateAxes(1,i,i*3);
@@ -30,7 +43,7 @@ public class VJoyTest {
 		driver.updateAxes(2,0,0);
         
         System.out.printf("\nTest osi zakoñczony.");
-       
+    	driver.buttonPress(28);
         for(i=1;i<=24;i++)
         {
         	driver.buttonPress(i);
@@ -41,7 +54,7 @@ public class VJoyTest {
 				e.printStackTrace();
 			}
         }
-        
+    	driver.buttonPress(26);
         for(i=1;i<=24;i++)
         {
         	driver.buttonRelease(i);

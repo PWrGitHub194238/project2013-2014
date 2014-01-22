@@ -87,6 +87,15 @@ public class VJoyDriver64 extends VJoyDriver {
 				valuePOV+=(short)Math.pow(2,i-9);
 		}
 		
+		for(int i=25;i<=28;i++)
+		{
+			if(buttonPressed[i])
+			{
+				valueWheel+=16*(i-25);
+				break;
+			}
+		}
+		
 		m_joyState.Wheel=valueWheel;
 		m_joyState.POV=valuePOV;
 		

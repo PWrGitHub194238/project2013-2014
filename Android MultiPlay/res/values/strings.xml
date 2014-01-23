@@ -93,5 +93,6 @@
     <string name="title_activity_speaker_help">SpeakerHelp</string>
     <string name="title_activity_gamepad_help">GamepadHelp</string>
     <string name="title_activity_gamepad_option">GamepadOptionActivity</string>
+    <string name="title_activity_touch_circle">TouchCircle</string>
 
 </resources>

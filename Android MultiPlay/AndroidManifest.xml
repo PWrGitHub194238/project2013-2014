@@ -220,6 +220,12 @@
             android:name="com.android.controllers.gamepad.GamepadOptionActivity"
             android:label="@string/title_activity_gamepad_option" >
         </activity>
+        <activity
+            android:name="com.android.controllers.custom.CustomControllerActivity"
+            android:label="@string/title_activity_touch_circle"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+        </activity>
     </application>
     <application
         android:name="com.android.carousel.Singleton"

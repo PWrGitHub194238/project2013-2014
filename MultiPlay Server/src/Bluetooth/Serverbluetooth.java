@@ -175,6 +175,15 @@ public class Serverbluetooth implements Runnable {
 										}
 									}
 								}
+							} else if (ret[0] == N.Device.CUSTOM_TOUTHCIRCLE_BUTTON) {
+								if (ret[1] == N.DeviceDataCounter.DOUBLE) {
+									if (ret[3] == N.DeviceSignal.PRESS) {
+										vjoy.buttonPress(ret[2]);
+									} else if (ret[3] == N.DeviceSignal.RELEASE) {
+										vjoy.buttonRelease(ret[2]);
+									}
+								}
+
 							} else if (ret[0] == N.Device.EXIT) {
 								dis.close();
 								dos.close();

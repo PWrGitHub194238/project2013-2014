@@ -2,12 +2,9 @@ package Wifi;
 
 import java.awt.AWTException;
 import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -173,6 +170,15 @@ public class Serverwifi implements Runnable {
 										}
 									}
 								}
+							} else if (ret[0] == N.Device.CUSTOM_TOUTHCIRCLE_BUTTON) {
+								if (ret[1] == N.DeviceDataCounter.DOUBLE) {
+									if (ret[3] == N.DeviceSignal.PRESS) {
+										vjoy.buttonPress(ret[2]);
+									} else if (ret[3] == N.DeviceSignal.RELEASE) {
+										vjoy.buttonRelease(ret[2]);
+									}
+								}
+
 							} else if (ret[0] == N.Device.EXIT) {
 								dis.close();
 								dos.close();

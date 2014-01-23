@@ -29,7 +29,7 @@ import com.android.multiplay.R;
 public class SteeringwheelActivity extends Activity implements
 		SensorEventListener, OnSeekBarChangeListener {
 
-	private static final float CONST = 128f / 90;
+	private static final float CONST = 126f / 90;
 	float old = 0;
 	int signal = 0;
 	int angle = 0;

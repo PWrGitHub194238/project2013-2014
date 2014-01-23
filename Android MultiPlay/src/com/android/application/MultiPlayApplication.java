@@ -54,13 +54,21 @@ public class MultiPlayApplication extends Application {
 
 	public static void runThread() throws IOException {
 		if ( connectedTo == CONNECTION_TYPE_WIFI ) {
-			Log.d("THREAD","Run wifi thread...");
-			socketMainWifiThread = new SocketMainWiFiSender((WirelessConfigurationClass) mainNetworkConfiguration);
-			socketMainWifiThread.execute(N.Signal.NEED_CONNECTION);
+			if ( socketMainWifiThread != null ) {
+				Log.d("THREAD","Wifi thread already opened or not closed!");
+			} else {
+				Log.d("THREAD","Run wifi thread...");
+				socketMainWifiThread = new SocketMainWiFiSender((WirelessConfigurationClass) mainNetworkConfiguration);
+				socketMainWifiThread.execute(N.Signal.NEED_CONNECTION);
+			}
 		} else {
-			Log.d("THREAD","Run BT thread...");
-			socketMainBluetoothThread = new SocketMainBluetoothSender((BluetoothConfigurationClass) mainNetworkConfiguration);
-			socketMainBluetoothThread.execute(N.Signal.NEED_CONNECTION);
+			if ( socketMainBluetoothThread != null ) {
+				Log.d("THREAD","BT thread already opened or not closed!");
+			} else {
+				Log.d("THREAD","Run BT thread...");
+				socketMainBluetoothThread = new SocketMainBluetoothSender((BluetoothConfigurationClass) mainNetworkConfiguration);
+				socketMainBluetoothThread.execute(N.Signal.NEED_CONNECTION);
+			}
 		}
 	}
 
@@ -68,6 +76,8 @@ public class MultiPlayApplication extends Application {
 		Log.d("THREAD","Stoping thread...");
 		if (socketMainWifiThread != null  || socketMainBluetoothThread != null ) {
 			add(N.Exit.EXIT_NO_ERROR);
+			socketMainWifiThread = null;
+			socketMainBluetoothThread = null;
 		}
 	}
 

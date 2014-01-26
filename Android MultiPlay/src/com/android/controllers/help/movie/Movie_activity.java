@@ -24,16 +24,13 @@ public class Movie_activity extends FragmentActivity {
 	private static final int NUM_PAGES = 3;
 	private ViewPager mPager;
 	private PagerAdapter mPagerAdapter;
-	private MediaController contr;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_movie_activity);
-		contr = new MediaController(this);
-		VideoView video = (VideoView) findViewById(R.id.video);
-		contr.setAnchorView(video);
-		video.setMediaController(contr);
+		
 		ViewPager pager = (ViewPager) findViewById(R.id.pagermovie);
 		pager.setPageTransformer(true, new TransformZoomOut());
 		Random r = new Random();

@@ -42,14 +42,11 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gyromouse);
-
 		try {
-			sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
-
-			sm.registerListener(this,
-					sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-					SensorManager.SENSOR_DELAY_NORMAL);
+			
 			MultiPlayApplication.runThread();
+			tv= (TextView) findViewById(R.id.text);
+			sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
 			button1 = (Button) super.findViewById(R.id.leftb);
 			button2 = (Button) super.findViewById(R.id.rightb);
 			button3 = (Button) super.findViewById(R.id.upb);
@@ -2782,6 +2779,9 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 			}
 			break;
 		}
+		sm.registerListener(this,
+				sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+				SensorManager.SENSOR_DELAY_NORMAL);
 	}
 
 	@Override

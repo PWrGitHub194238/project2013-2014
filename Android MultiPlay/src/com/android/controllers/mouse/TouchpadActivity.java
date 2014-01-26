@@ -17,7 +17,7 @@ import com.android.multiplay.R;
 public class TouchpadActivity extends Activity {
 	private double oldx = 245.0, oldy = 175.0;
 	private TextView txv;
-	private int multi=3;		//mno¿nik do ustawieñ szybkoœci ruchu
+	private int multi=5;		//mno¿nik do ustawieñ szybkoœci ruchu
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

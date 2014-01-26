@@ -23,6 +23,9 @@
         android:name="android.hardware.bluetooth_le"
         android:required="false" />
     <uses-feature android:name="android.hardware.sensor.gyroscope" />
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
 
     <application
         android:name="com.android.application.MultiPlayApplication"
@@ -220,8 +223,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.multiplay.SystemControllerActivity" />
         </activity>
-        
-        
         <activity
             android:name="com.android.controllers.mouse.MouseOptionActivity"
             android:label="@string/title_activity_mouse_option"
@@ -264,7 +265,7 @@
         </activity>
         <activity
             android:name="com.android.controllers.keyboard.KeyboardOptionActivity"
-            android:label="@string/title_activity_keyboard_option" 
+            android:label="@string/title_activity_keyboard_option"
             android:parentActivityName="com.android.multiplay.OptionsControllerActivity"
             android:screenOrientation="landscape"
             android:theme="@style/MultiPlayTheme" >
@@ -292,8 +293,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.multiplay.OptionsControllerActivity" />
         </activity>
-        
-        
         <activity
             android:name="com.android.controllers.help.steeringwheel.SteeringwheelHelp"
             android:label="@string/title_activity_steeringwheel_help"
@@ -364,12 +363,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.multiplay.OptionsControllerHelpActivity" />
         </activity>
-
         <activity
             android:name="com.android.multiplay.Your"
             android:label="@string/title_activity_your" >
         </activity>
-        
         <activity
             android:name="com.android.controllers.help.movie.Movie_activity"
             android:label="@string/title_activity_movie_activity"

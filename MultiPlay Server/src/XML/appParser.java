@@ -104,17 +104,16 @@ public class appParser {
 	public static int addApp(String name,String path)
 	{
 		ArrayList<elementApp> lista=loadXML();
-
 				lista.add(new elementApp(name,path));
 				saveXML(lista);
 				return lista.size()-1;
 	}
 	
-	public static int deleteApp(int ID)
+	public static int deleteApp(String name)
 	{
-		ArrayList<elementApp> lista=loadXML();
+		ArrayList<elementApp> lista =loadXML();
 		
-				lista.remove(ID);
+			lista.remove(name);
 				saveXML(lista);
 				return lista.size();
 	}
@@ -122,24 +121,20 @@ public class appParser {
 	public static String getPath(int ID)
 	{
 		ArrayList<elementApp> lista=loadXML();
-		
 		return lista.get(ID).path;
 	}
 	
 	public static String getName(int ID)
 	{
 		ArrayList<elementApp> lista=loadXML();
-		
 		return lista.get(ID).name;
 	}
 	
 	public static int getSize()
 	{
 		ArrayList<elementApp> lista=loadXML();
-		
 		return lista.size();
 	}
-	
 }
 
 class elementApp

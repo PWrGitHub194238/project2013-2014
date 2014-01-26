@@ -24,13 +24,13 @@ public class DragnDropListener implements DropTargetListener {
 	private DataFlavor Linux = null;
 	private DataFlavor Windows = null;
 	private MFrame frame;
-	List<String> listy ;
+	List<String> listy;
 	JList list;
 
 	public DragnDropListener(MFrame frame, JList list, List<String> listy) {
 		this.frame = frame;
 		this.list = list;
-		this.listy=listy;
+		this.listy = listy;
 	}
 
 	public void drop(DropTargetDropEvent dropEvent) {
@@ -97,10 +97,11 @@ public class DragnDropListener implements DropTargetListener {
 						String name = filename.substring(0, indeks);
 						System.out.println("File  is '" + name + "'.");
 						int e = -1;
-						appParser xml =new appParser();
-						xml.addApp(name, file.getPath());
+
 						e = listy.indexOf(name);
 						if (e == -1) {
+							appParser xml = new appParser();
+							xml.addApp(name, file.getPath());
 							listy.add(name);
 							String[] l = new String[listy.size()];
 							int i = 0;
@@ -151,11 +152,20 @@ public class DragnDropListener implements DropTargetListener {
 		listy.add(name);
 		String[] l = new String[listy.size()];
 		int i = 0;
-		while (i < listy.size()) {
-			l[i] = listy.get(i);
-			i++;
+		int e = -1;
+		e = listy.indexOf(name);
+		if (e == -1) {
+			appParser xml = new appParser();
+			xml.addApp(name, "-");
+			listy.add(name);
+			String[] m = new String[listy.size()];
+			int z = 0;
+			while (z < listy.size()) {
+				m[z] = listy.get(z);
+				z++;
+			}
+			list.setListData(m);
 		}
-		list.setListData(l);
 	}
 
 	@Override

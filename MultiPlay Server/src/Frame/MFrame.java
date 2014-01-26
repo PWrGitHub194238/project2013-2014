@@ -38,6 +38,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 
+import XML.appParser;
+
 import Connect.ConnectWifi;
 
 //Menu Frame
@@ -45,12 +47,24 @@ public class MFrame extends JFrame {
 	private JList list;
 	private DefaultListModel model;
 	List<String> listy;
+	appParser xml;
 
 	public MFrame(ConnectWifi connect, final DefaultListModel model,
 			final JList list, final List<String> listy) {
 		super();
 		this.list = list;
 		this.model = model;
+		xml = new appParser();
+		
+		int y = xml.getSize();
+		int u = 0;
+		String[] l = new String[y];
+		while (u < y) {
+			l[u] = xml.getName(u);
+			listy.add(u, xml.getName(u));
+			u++;
+		}
+		list.setListData(l);
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		// ------------------------------Elements on MFRAME--------------
 
@@ -68,6 +82,9 @@ public class MFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				int index = list.getSelectedIndex();
+				String n= (String) list.getSelectedValue();
+				System.out.println(n);
+				System.out.println( xml.deleteApp((String)n));
 				listy.remove(index);
 				String[] l = new String[listy.size()];
 				int i = 0;
@@ -76,9 +93,7 @@ public class MFrame extends JFrame {
 					i++;
 				}
 				list.setListData(l);
-
 			}
-
 		});
 
 		// -----------------------------Drag and Drop-------------

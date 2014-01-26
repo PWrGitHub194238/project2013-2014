@@ -226,6 +226,10 @@
             android:screenOrientation="landscape"
             android:theme="@style/MultiPlayTheme" >
         </activity>
+        <activity
+            android:name="com.android.controllers.help.movie.Movie_activity"
+            android:label="@string/title_activity_movie_activity" >
+        </activity>
     </application>
     <application
         android:name="com.android.carousel.Singleton"

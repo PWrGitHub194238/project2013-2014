@@ -94,5 +94,6 @@
     <string name="title_activity_gamepad_help">GamepadHelp</string>
     <string name="title_activity_gamepad_option">GamepadOptionActivity</string>
     <string name="title_activity_touch_circle">TouchCircle</string>
+    <string name="title_activity_movie_activity">Movie_activity</string>
 
 </resources>

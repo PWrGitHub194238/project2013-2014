@@ -95,7 +95,9 @@ public class Wifi implements Runnable {
 
 							// ProcessBuilder pb = new ProcessBuilder("cmd",
 							// "/c",file);
-						} else if (System.getProperty("os.name").contains(
+						}
+						//Linux and BSD
+						else if (System.getProperty("os.name").contains(
 								"Linux")) {
 							// String name= dis.readUTF();
 							// miejsce na odczyt z xml danych

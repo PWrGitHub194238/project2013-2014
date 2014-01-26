@@ -55,7 +55,7 @@ public class MFrame extends JFrame {
 		this.list = list;
 		this.model = model;
 		xml = new appParser();
-		
+
 		int y = xml.getSize();
 		int u = 0;
 		String[] l = new String[y];
@@ -78,13 +78,10 @@ public class MFrame extends JFrame {
 						- (d.getWidth() - d.getWidth() * 20 / 100) + 3) - 3,
 				(int) d.getHeight() - 200);
 		bdelete.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				int index = list.getSelectedIndex();
-				String n= (String) list.getSelectedValue();
-				System.out.println(n);
-				System.out.println( xml.deleteApp((String)n));
+				xml.deleteApp(index);
 				listy.remove(index);
 				String[] l = new String[listy.size()];
 				int i = 0;

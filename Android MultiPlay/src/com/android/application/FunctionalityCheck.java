@@ -2,12 +2,13 @@ package com.android.application;
 
 import java.util.HashMap;
 
-import com.android.database.tables.General;
-
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.util.Log;
+
+import com.android.database.tables.General;
 
 
 public class FunctionalityCheck {
@@ -15,98 +16,149 @@ public class FunctionalityCheck {
 	static PackageManager packageManager = null;
 	static SensorManager sensorManager = null;
 	
+	public final static int[] BTTestetDevices = {
+		android.os.Build.VERSION_CODES.KITKAT
+	};
+	
 	public FunctionalityCheck(Context context)
 	{		
 		packageManager = context.getPackageManager();
 		sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 	}
 	
-	public HashMap<String, Boolean> deviceCheck()
+	public HashMap<String, Integer> deviceCheck()
 	{
-		HashMap<String, Boolean> returnedData=new HashMap<String,Boolean>();
+		HashMap<String, Integer> returnedData=new HashMap<String,Integer>();
 		
-		returnedData.put(General.DBSchema.COLUMN_5,Boolean.valueOf(checkBluetooth()));
-		returnedData.put(General.DBSchema.COLUMN_6,Boolean.valueOf(checkBluetoothLE()));
-		returnedData.put(General.DBSchema.COLUMN_7,Boolean.valueOf(checkWifi()));
-		returnedData.put(General.DBSchema.COLUMN_8,Boolean.valueOf(checkWifiDirect()));
-		returnedData.put(General.DBSchema.COLUMN_9,Boolean.valueOf(checkAccelerometer()));
-		returnedData.put(General.DBSchema.COLUMN_10,Boolean.valueOf(checkGyroscope()));
-		returnedData.put(General.DBSchema.COLUMN_11,Boolean.valueOf(checkGravity()));
-		returnedData.put(General.DBSchema.COLUMN_12,Boolean.valueOf(checkVector()));
-		returnedData.put(General.DBSchema.COLUMN_13,Boolean.valueOf(checkAcceleration()));
+		returnedData.put(General.DBSchema.COLUMN_5,checkBluetooth());
+		returnedData.put(General.DBSchema.COLUMN_6,checkBluetoothLE());
+		returnedData.put(General.DBSchema.COLUMN_7,checkWifi());
+		returnedData.put(General.DBSchema.COLUMN_8,checkWifiDirect());
+		returnedData.put(General.DBSchema.COLUMN_9,checkAccelerometer());
+		returnedData.put(General.DBSchema.COLUMN_10,checkGyroscope());
+		returnedData.put(General.DBSchema.COLUMN_11,checkGravity());
+		returnedData.put(General.DBSchema.COLUMN_12,checkVector());
+		returnedData.put(General.DBSchema.COLUMN_13,checkAcceleration());
+		returnedData.put(General.DBSchema.COLUMN_14,checkMicrophone());
+		returnedData.put(General.DBSchema.COLUMN_15,checkMultitouch());
+
 		
 		return returnedData;
 	}
-	
-	public boolean checkAccelerometer()
-	{
-		if(sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)==null)
-			return false;
-		else
-			return true;
+
+	public int checkBluetooth() {
+		if(!packageManager.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH)) {
+			Log.d("REQ","X FEATURE_BLUETOOTH");
+			return 0;
+		} else if (!isTestedSDK(android.os.Build.VERSION.SDK_INT)) {
+			return 1;
+		} else {
+			return 2;
+		}
 	}
 	
-	public boolean checkGyroscope()
-	{
-		if(sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)==null)
-			return false;
-		else
-			return true;
+	public int checkBluetoothLE() {
+		if(!packageManager.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
+			Log.d("REQ","X FEATURE_BLUETOOTH_LE");
+			return 0;
+		} else {
+			return 2;
+		}
 	}
 	
-	public boolean checkGravity()
-	{
-		if(sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY)==null)
-			return false;
-		else
-			return true;
+	public int checkWifi() {
+		if(!packageManager.hasSystemFeature(PackageManager.FEATURE_WIFI)) {
+			Log.d("REQ","X FEATURE_WIFI");
+			return 0;
+		} else {
+			return 2;
+		}
 	}
 	
-	public boolean checkVector()
-	{
-		if(sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)==null)
-			return false;
-		else
-			return true;
+	public int checkWifiDirect() {
+		if(!packageManager.hasSystemFeature(PackageManager.FEATURE_WIFI_DIRECT)) {
+			Log.d("REQ","X FEATURE_WIFI_DIRECT");
+			return 0;
+		} else {
+			return 2;
+		}
 	}
 	
-	public boolean checkAcceleration()
-	{
-		if(sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION)==null)
-			return false;
-		else
-			return true;
+	public int checkAccelerometer() {
+		if(sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) == null) {
+			Log.d("REQ","X TYPE_ACCELEROMETER");
+			return 0;
+		} else {
+			return 2;
+		}
 	}
 	
-	public boolean checkBluetooth()
-	{
-		if(!packageManager.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH))
-			return false;
-		else
-			return true;
+	public int checkGyroscope() {
+		if(sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) == null) {
+			Log.d("REQ","X TYPE_GYROSCOPE");
+			return 0;
+		} else {
+			return 2;
+		}
+	}
+	
+	public int checkGravity() {
+		if(sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY) == null) {
+			Log.d("REQ","X TYPE_GRAVITY");
+			return 0;
+		} else {
+			return 2;
+		}
+	}
+	
+	public int checkVector() {
+		if(sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR) == null) {
+			Log.d("REQ","X TYPE_ROTATION_VECTOR");
+			return 0;
+		} else {
+			return 2;
+		}
+	}
+	
+	public int checkAcceleration() {
+		if(sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION) == null) {
+			Log.d("REQ","X TYPE_LINEAR_ACCELERATION");
+			return 0;
+		} else {
+			return 2;
+		}
+	}
+	
+	private boolean isTestedSDK(int sdkInt) {
+		int versionsCount = BTTestetDevices.length;
+		int i;
+		for (i = 0; i < versionsCount; i += 1) {
+			if (sdkInt == BTTestetDevices[i]) {
+				return true;
+			}
+		}
+		return false;
 	}
 
-	public boolean checkBluetoothLE()
-	{
-		if(!packageManager.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE))
-			return false;
-		else
-			return true;
+	public int checkMicrophone() {
+		if(!packageManager.hasSystemFeature(PackageManager.FEATURE_MICROPHONE)) {
+			Log.d("REQ","X FEATURE_MICROPHONE");
+			return 0;
+		} else {
+			return 2;
+		}
 	}
-	
-	public boolean checkWifi()
-	{
-		if(!packageManager.hasSystemFeature(PackageManager.FEATURE_WIFI))
-			return false;
-		else
-			return true;
-	}
-	
-	public boolean checkWifiDirect()
-	{
-		if(!packageManager.hasSystemFeature(PackageManager.FEATURE_WIFI_DIRECT))
-			return false;
-		else
-			return true;
+
+	public int checkMultitouch() {
+		if(packageManager.hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH)) {
+			if(packageManager.hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH_DISTINCT) || packageManager.hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH_JAZZHAND)) {
+				return 2;
+			} else {
+				return 1;
+			}
+		} else {
+			Log.d("REQ","X FEATURE_TOUCHSCREEN_MULTITOUCH");
+			return 0;
+		}
 	}
 }

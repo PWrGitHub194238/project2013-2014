@@ -11,8 +11,6 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.android.application.MultiPlayApplication;
-import com.android.controllers.help.gamepad.GamepadHelp;
-import com.android.controllers.help.touchpad.TouchPadHelp;
 import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
 import com.android.dialogs.WelcomeDialogCheckRequirements_1Step;
@@ -183,7 +181,7 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	 */
 	public void help_OnClick(View view) {
 		super.startActivity(
-				new Intent(this, TouchPadHelp.class));
+				new Intent(this, HelpActivity.class));
 	}
 	
 	/** Method starts new activity: {@link OptionsActivity}.

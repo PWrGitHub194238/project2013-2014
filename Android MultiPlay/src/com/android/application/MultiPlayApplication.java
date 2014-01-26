@@ -25,6 +25,7 @@ public class MultiPlayApplication extends Application {
 	private static DBHelper dbHelper = null;
 	
 	private static Map<String,String> multiPlayRequirements = null;
+	public static boolean allowWarnings = true;
 	
 	/** Flag responsible for giving adequate priority to the available ways 
 	 * to connect with other devices. With the flag set to:
@@ -172,10 +173,8 @@ public class MultiPlayApplication extends Application {
 	}
 	
 	private void getMultiPlayRequirementsFromDB() throws InstantiationException, IllegalAccessException {
-		if(isFirstStart() == true) {
 			Cursor cursor = dbHelper.sql_select_by_id(General.class, DBHelper.REOPEN_YES);
-			multiPlayRequirements = DBHelper.parseMultiPlayRequirements(cursor);
-		}
+			setMultiPlayRequirements(DBHelper.parseMultiPlayRequirements(cursor));
 	}
 
 	public final static boolean isFirstStart() {
@@ -325,6 +324,20 @@ public class MultiPlayApplication extends Application {
 	 */
 	public static final void setWirelessEnable(boolean wirelessEnable) {
 		MultiPlayApplication.wirelessEnable = wirelessEnable;
+	}
+
+	/**
+	 * @return the multiPlayRequirements
+	 */
+	public static Map<String,String> getMultiPlayRequirements() {
+		return multiPlayRequirements;
+	}
+
+	/**
+	 * @param multiPlayRequirements the multiPlayRequirements to set
+	 */
+	public static void setMultiPlayRequirements(Map<String,String> multiPlayRequirements) {
+		MultiPlayApplication.multiPlayRequirements = multiPlayRequirements;
 	}
 	
 	

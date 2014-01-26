@@ -91,6 +91,36 @@
                 android:value="com.android.multiplay.MainActivity" />
         </activity>
         <activity
+            android:name="com.android.multiplay.MultiplayExplorerHelpActivity"
+            android:label="@string/title_activity_multiplay_explorer_help"
+            android:parentActivityName="com.android.multiplay.HelpActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.HelpActivity" />
+        </activity>
+        <activity
+            android:name="com.android.multiplay.SystemControllerHelpActivity"
+            android:label="@string/title_activity_system_controller_help"
+            android:parentActivityName="com.android.multiplay.HelpActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.HelpActivity" />
+        </activity>
+        <activity
+            android:name="com.android.multiplay.OptionsHelpActivity"
+            android:label="@string/title_activity_options_help"
+            android:parentActivityName="com.android.multiplay.HelpActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.HelpActivity" />
+        </activity>
+        <activity
             android:name="com.android.multiplay.OptionsActivity"
             android:label="@string/title_activity_options"
             android:parentActivityName="com.android.multiplay.MainActivity"
@@ -101,38 +131,44 @@
                 android:value="com.android.multiplay.MainActivity" />
         </activity>
         <activity
-            android:name="com.android.multiplay.FirstMenu"
-            android:label="@string/title_activity_first_menu"
-            android:screenOrientation="landscape"
-            android:theme="@style/MultiPlayTheme" >
-        </activity>
-        <activity
             android:name="com.android.controllers.keyboard.KeyboardActivity"
             android:label="@string/title_activity_keyboard"
+            android:parentActivityName="com.android.multiplay.SystemControllerActivity"
             android:screenOrientation="landscape"
             android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.SystemControllerActivity" />
         </activity>
         <activity
             android:name="com.android.controllers.mouse.MouseActivity"
             android:label="@string/title_activity_mouse"
+            android:parentActivityName="com.android.multiplay.SystemControllerActivity"
             android:screenOrientation="landscape"
             android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.SystemControllerActivity" />
         </activity>
         <activity
             android:name="com.android.controllers.mouse.GyromouseActivity"
             android:label="@string/title_activity_gyromouse"
+            android:parentActivityName="com.android.multiplay.SystemControllerActivity"
             android:screenOrientation="landscape"
             android:theme="@style/MultiPlayTheme" >
-        </activity>
-        <activity
-            android:name="com.android.controllers.keyboard.Collection"
-            android:label="@string/title_activity_collection" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.SystemControllerActivity" />
         </activity>
         <activity
             android:name="com.android.controllers.steeringwheel.SteeringwheelActivity"
             android:label="@string/title_activity_steeringwheel"
+            android:parentActivityName="com.android.multiplay.SystemControllerActivity"
             android:screenOrientation="landscape"
             android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.SystemControllerActivity" />
         </activity>
         <activity
             android:name="com.android.multiplay.ConnectionsActivity"
@@ -145,90 +181,200 @@
                 android:value="com.android.multiplay.OptionsActivity" />
         </activity>
         <activity
-            android:name="com.android.multiplay.TestActivity"
-            android:label="@string/title_activity_test" >
-        </activity>
-        <activity
             android:name="com.android.controllers.mouse.TouchpadActivity"
-            android:label="@string/title_activity_touch_pad" >
-        </activity>
-        <activity
-            android:name="com.android.multiplay.Your"
-            android:label="@string/title_activity_your" >
+            android:label="@string/title_activity_touch_pad"
+            android:parentActivityName="com.android.multiplay.SystemControllerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.SystemControllerActivity" />
         </activity>
         <activity
             android:name="com.android.controllers.keyboard.SpeakerActivity"
-            android:label="@string/title_activity_speaker" >
+            android:label="@string/title_activity_speaker"
+            android:parentActivityName="com.android.multiplay.SystemControllerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.SystemControllerActivity" />
         </activity>
         <activity
-            android:name="com.android.controllers.mouse.MouseOptionActivity"
-            android:label="@string/title_activity_mouse_option" >
-        </activity>
-        <activity
-            android:name="com.android.controllers.mouse.GyromouseOptionActivity"
-            android:label="@string/title_activity_gyromouse_option" >
-        </activity>
-        <activity
-            android:name="com.android.controllers.mouse.TouchpadOptionActivity"
-            android:label="@string/title_activity_touchpad_option" >
-        </activity>
-        <activity
-            android:name="com.android.controllers.steeringwheel.SteeringwheelOptionActivity"
-            android:label="@string/title_activity_steeringwheel_option" >
-        </activity>
-        <activity
-            android:name="com.android.controllers.keyboard.KeyboardOptionActivity"
-            android:label="@string/title_activity_keyboard_option" >
-        </activity>
-        <activity
-            android:name="com.android.controllers.keyboard.SpeakerOptionActivity"
-            android:label="@string/title_activity_speaker_option" >
-        </activity>
-        <activity
-            android:name="com.android.controllers.gamepad.Gamepad"
-            android:label="@string/title_activity_gamepad" >
-        </activity>
-        <activity
-            android:name="com.android.controllers.help.steeringwheel.SteeringwheelHelp"
-            android:label="@string/title_activity_steeringwheel_help" >
-        </activity>
-        <activity
-            android:name="com.android.controllers.help.gyromouse.GyromouseHelp"
-            android:label="@string/title_activity_gyromouse_help" >
-        </activity>
-        <activity
-            android:name="com.android.controllers.help.mouse.MouseHelp"
-            android:label="@string/title_activity_mouse_help" >
-        </activity>
-        <activity
-            android:name="com.android.controllers.help.touchpad.TouchPadHelp"
-            android:label="@string/title_activity_touch_pad_help" >
-        </activity>
-        <activity
-            android:name="com.android.controllers.help.keyboard.KeyboardHelp"
-            android:label="@string/title_activity_keyboard_help" >
-        </activity>
-        <activity
-            android:name="com.android.controllers.help.speaker.SpeakerHelp"
-            android:label="@string/title_activity_speaker_help" >
-        </activity>
-        <activity
-            android:name="com.android.controllers.help.gamepad.GamepadHelp"
-            android:label="@string/title_activity_gamepad_help" >
-        </activity>
-        <activity
-            android:name="com.android.controllers.gamepad.GamepadOptionActivity"
-            android:label="@string/title_activity_gamepad_option" >
+            android:name="com.android.controllers.gamepad.GamepadActivity"
+            android:label="@string/title_activity_gamepad"
+            android:parentActivityName="com.android.multiplay.SystemControllerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.SystemControllerActivity" />
         </activity>
         <activity
             android:name="com.android.controllers.custom.CustomControllerActivity"
             android:label="@string/title_activity_touch_circle"
+            android:parentActivityName="com.android.multiplay.SystemControllerActivity"
             android:screenOrientation="landscape"
             android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.SystemControllerActivity" />
+        </activity>
+        
+        
+        <activity
+            android:name="com.android.controllers.mouse.MouseOptionActivity"
+            android:label="@string/title_activity_mouse_option"
+            android:parentActivityName="com.android.multiplay.OptionsControllerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.OptionsControllerActivity" />
         </activity>
         <activity
+            android:name="com.android.controllers.mouse.GyromouseOptionActivity"
+            android:label="@string/title_activity_gyromouse_option"
+            android:parentActivityName="com.android.multiplay.OptionsControllerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.OptionsControllerActivity" />
+        </activity>
+        <activity
+            android:name="com.android.controllers.mouse.TouchpadOptionActivity"
+            android:label="@string/title_activity_touchpad_option"
+            android:parentActivityName="com.android.multiplay.OptionsControllerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.OptionsControllerActivity" />
+        </activity>
+        <activity
+            android:name="com.android.controllers.steeringwheel.SteeringwheelOptionActivity"
+            android:label="@string/title_activity_steeringwheel_option"
+            android:parentActivityName="com.android.multiplay.OptionsControllerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.OptionsControllerActivity" />
+        </activity>
+        <activity
+            android:name="com.android.controllers.keyboard.KeyboardOptionActivity"
+            android:label="@string/title_activity_keyboard_option" 
+            android:parentActivityName="com.android.multiplay.OptionsControllerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.OptionsControllerActivity" />
+        </activity>
+        <activity
+            android:name="com.android.controllers.keyboard.SpeakerOptionActivity"
+            android:label="@string/title_activity_speaker_option"
+            android:parentActivityName="com.android.multiplay.OptionsControllerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.OptionsControllerActivity" />
+        </activity>
+        <activity
+            android:name="com.android.controllers.gamepad.GamepadOptionActivity"
+            android:label="@string/title_activity_gamepad_option"
+            android:parentActivityName="com.android.multiplay.OptionsControllerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.OptionsControllerActivity" />
+        </activity>
+        
+        
+        <activity
+            android:name="com.android.controllers.help.steeringwheel.SteeringwheelHelp"
+            android:label="@string/title_activity_steeringwheel_help"
+            android:parentActivityName="com.android.multiplay.OptionsControllerHelpActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.OptionsControllerHelpActivity" />
+        </activity>
+        <activity
+            android:name="com.android.controllers.help.gyromouse.GyromouseHelp"
+            android:label="@string/title_activity_gyromouse_help"
+            android:parentActivityName="com.android.multiplay.OptionsControllerHelpActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.OptionsControllerHelpActivity" />
+        </activity>
+        <activity
+            android:name="com.android.controllers.help.mouse.MouseHelp"
+            android:label="@string/title_activity_mouse_help"
+            android:parentActivityName="com.android.multiplay.OptionsControllerHelpActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.OptionsControllerHelpActivity" />
+        </activity>
+        <activity
+            android:name="com.android.controllers.help.touchpad.TouchPadHelp"
+            android:label="@string/title_activity_touch_pad_help"
+            android:parentActivityName="com.android.multiplay.OptionsControllerHelpActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.OptionsControllerHelpActivity" />
+        </activity>
+        <activity
+            android:name="com.android.controllers.help.keyboard.KeyboardHelp"
+            android:label="@string/title_activity_keyboard_help"
+            android:parentActivityName="com.android.multiplay.OptionsControllerHelpActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.OptionsControllerHelpActivity" />
+        </activity>
+        <activity
+            android:name="com.android.controllers.help.speaker.SpeakerHelp"
+            android:label="@string/title_activity_speaker_help"
+            android:parentActivityName="com.android.multiplay.OptionsControllerHelpActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.OptionsControllerHelpActivity" />
+        </activity>
+        <activity
+            android:name="com.android.controllers.help.gamepad.GamepadHelp"
+            android:label="@string/title_activity_gamepad_help"
+            android:parentActivityName="com.android.multiplay.OptionsControllerHelpActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.multiplay.OptionsControllerHelpActivity" />
+        </activity>
+
+        <activity
+            android:name="com.android.multiplay.Your"
+            android:label="@string/title_activity_your" >
+        </activity>
+        
+        <activity
             android:name="com.android.controllers.help.movie.Movie_activity"
-            android:label="@string/title_activity_movie_activity" >
+            android:label="@string/title_activity_movie_activity"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
         </activity>
     </application>
     <application

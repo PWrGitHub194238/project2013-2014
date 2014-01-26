@@ -14,6 +14,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.application.MultiPlayApplication;
+import com.android.database.DBHelper;
 import com.android.database.tables.General;
 import com.android.extendedWidgets.ExtendedProgressBar;
 import com.android.extendedWidgets.OnProgressChangedListener;
@@ -102,8 +103,12 @@ public class WelcomeDialogCheckRequirements_1Step extends ScrollViewDialog imple
 					Log.d("APP",super.getReturnedData().get(DEVICE_NAME));
 
 					try {
-						MultiPlayApplication.getDbHelper().updateMultiPlayRequirements(getActivity(), pb_dialog_welcome_requirements);
-						super.getPositiveButton().setEnabled(true);
+						MultiPlayApplication.getDbHelper().updateMultiPlayRequirements(
+								getActivity(), pb_dialog_welcome_requirements);
+						
+						MultiPlayApplication.setMultiPlayRequirements(DBHelper.parseMultiPlayRequirements(
+								MultiPlayApplication.getDbHelper().sql_select_by_id(
+										General.class, DBHelper.REOPEN_YES)));
 					} catch (java.lang.InstantiationException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

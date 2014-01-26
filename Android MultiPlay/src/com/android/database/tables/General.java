@@ -66,7 +66,10 @@ public final class General implements DBHelper.TableIF {
         public static final String COLUMN_11 = "SENSOR_GRAVITY";
         public static final String COLUMN_12 = "SENSOR_ROT_VECTOR";
         public static final String COLUMN_13 = "SENSOR_LIN_ACCEL";
-        public static final String COLUMN_14 = "SHOW_HELP";
+        public static final String COLUMN_14 = "MICROPHONE";
+        public static final String COLUMN_15 = "MULTITOUCH";
+        public static final String COLUMN_16 = "SHOW_HELP";
+
         public static final String KEY_UNIQUE_1 = "GeneralID";
 	}
 	
@@ -109,7 +112,9 @@ public final class General implements DBHelper.TableIF {
 		    		+ DBSchema.COLUMN_11 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_FALSE + ", "
 		    		+ DBSchema.COLUMN_12 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_FALSE + ", "
 		    		+ DBSchema.COLUMN_13 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_FALSE + ", "
-		    		+ DBSchema.COLUMN_14 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_TRUE + ", "
+		    		+ DBSchema.COLUMN_14 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_FALSE + ", "
+		    		+ DBSchema.COLUMN_15 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_FALSE + ", "
+		    		+ DBSchema.COLUMN_16 + " " + DBHelper.TYPE_INT + " " + DBHelper.DEFAULT_TRUE + ", "
 		    		+ DBSchema.KEY_UNIQUE_1 + " " + DBHelper.TYPE_SK_INT + ", "
 		    		+ DBHelper.TYPE_FK(
 		    				DBSchema.COLUMN_3,

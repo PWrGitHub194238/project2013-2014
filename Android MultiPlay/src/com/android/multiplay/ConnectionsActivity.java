@@ -722,20 +722,26 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 
 	private void runLogAsyncThread() {
 		AsyncTaskDialog asyncTaskDialog = new AsyncTaskDialog(this);
-		asyncTaskDialog.show();
-		new CheckConnectionStatus(this,asyncTaskDialog).execute(selectedConfig);
+		synchronized (asyncTaskDialog ) {
+			asyncTaskDialog.show();
+			new CheckConnectionStatus(this,asyncTaskDialog).execute(selectedConfig);
+		}
 	}
 	
 	private void runLogAsyncThread(int asyncCallReason) {
 		AsyncTaskDialog asyncTaskDialog = new AsyncTaskDialog(this);
-		asyncTaskDialog.show();
-		new CheckConnectionStatus(this,asyncTaskDialog,asyncCallReason).execute(selectedConfig);
+		synchronized (asyncTaskDialog ) {
+			asyncTaskDialog.show();
+			new CheckConnectionStatus(this,asyncTaskDialog,asyncCallReason).execute(selectedConfig);
+		}
 	}
 	
 	private void runLogAsyncThread(int asyncCallReason, int asyncCallOnError) {
 		AsyncTaskDialog asyncTaskDialog = new AsyncTaskDialog(this);
-		asyncTaskDialog.show();
-		new CheckConnectionStatus(this,asyncTaskDialog,asyncCallReason,asyncCallOnError).execute(selectedConfig);
+		synchronized (asyncTaskDialog ) {
+			asyncTaskDialog.show();
+			new CheckConnectionStatus(this,asyncTaskDialog,asyncCallReason,asyncCallOnError).execute(selectedConfig);
+		}
 	}
 
 	@Override

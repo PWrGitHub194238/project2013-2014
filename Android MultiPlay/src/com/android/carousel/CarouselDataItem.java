@@ -3,18 +3,22 @@ package com.android.carousel;
 import android.app.Activity;
 
 public class CarouselDataItem {
-	String title = null;
-	int iconId = -1;
-	Class<? extends Activity> controllerActivity = null;
-	Class<? extends Activity> optionsActivity = null;
+	private String title = null;
+	private int iconId = -1;
+	private Class<? extends Activity> controllerActivity = null;
+	private Class<? extends Activity> optionsActivity = null;
+	private Class<? extends Activity> helperActivity = null;
 	
 	public CarouselDataItem(String title, int iconId, 
-			Class<? extends Activity> controllerActivity, Class<? extends Activity> optionsActivity) {
+			Class<? extends Activity> controllerActivity, 
+			Class<? extends Activity> optionsActivity,
+			Class<? extends Activity> helperActivity) {
 		super();
 		this.title = title;
 		this.iconId = iconId;
 		this.controllerActivity = controllerActivity;
 		this.optionsActivity = optionsActivity;
+		this.helperActivity = helperActivity;
 	}
 
 	/**
@@ -59,6 +63,12 @@ public class CarouselDataItem {
 		return optionsActivity;
 	}
 
+	/**
+	 * @return the helperActivity
+	 */
+	public final Class<? extends Activity> getHelperActivity() {
+		return helperActivity;
+	}
 
 	
 }

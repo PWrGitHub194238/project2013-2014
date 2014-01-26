@@ -3,30 +3,20 @@ package com.android.controllers.keyboard;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.android.application.MultiPlayApplication;
-import com.android.application.N;
-import com.android.application.N.Helper;
-
-import com.android.multiplay.R;
-import com.android.multiplay.R.id;
-import com.android.multiplay.R.layout;
-import com.android.multiplay.R.menu;
-
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.view.Menu;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
+import com.android.application.MultiPlayApplication;
+import com.android.application.N;
+import com.android.application.N.Helper;
+import com.android.multiplay.R;
 
 public class SpeakerActivity extends Activity {
 	private ImageButton btnSpeak;
@@ -47,12 +37,6 @@ public class SpeakerActivity extends Activity {
 		}
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.speaker, menu);
-		return true;
-	}
 
 	public void onClick(View arg0) {
 		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);

@@ -1014,12 +1014,12 @@ public class DBHelper {
 	}
 	
 
-	public Map<String,String> updateMultiPlayRequirements(Context context, ExtendedProgressBar progressBar) throws InstantiationException, IllegalAccessException {
+	public void updateMultiPlayRequirements(Context context, ExtendedProgressBar progressBar) throws InstantiationException, IllegalAccessException {
 		FunctionalityCheck functionalityCheck = new FunctionalityCheck(context);
 		Log.d("APP","FUNC");
 		Map<String,String> requirementsMap = new HashMap<String,String>();
 		requirementsMap.put(General.DBSchema.COLUMN_5, 
-				(functionalityCheck.checkBluetooth()==true) ? "1" : "0");
+				String.valueOf(functionalityCheck.checkBluetooth()));
 		progressBar.setProgress(
 				progressBar.getProgress()+1);
 		sql_insert_row(General.class, requirementsMap, true, true);
@@ -1027,7 +1027,7 @@ public class DBHelper {
 				progressBar.getProgress()+1);
 
 		requirementsMap.put(General.DBSchema.COLUMN_6, 
-				(functionalityCheck.checkBluetoothLE()==true) ? "1" : "0");
+				String.valueOf(functionalityCheck.checkBluetoothLE()));
 		progressBar.setProgress(
 				progressBar.getProgress()+1);
 		sql_update_row(General.class, 1, requirementsMap, true, true);
@@ -1035,7 +1035,7 @@ public class DBHelper {
 				progressBar.getProgress()+1);
 
 		requirementsMap.put(General.DBSchema.COLUMN_7, 
-				(functionalityCheck.checkWifi()==true) ? "1" : "0");
+				String.valueOf(functionalityCheck.checkWifi()));
 		progressBar.setProgress(
 				progressBar.getProgress()+1);
 		sql_update_row(General.class, 1, requirementsMap, true, true);
@@ -1043,7 +1043,7 @@ public class DBHelper {
 				progressBar.getProgress()+1);
 
 		requirementsMap.put(General.DBSchema.COLUMN_8, 
-				(functionalityCheck.checkWifiDirect()==true) ? "1" : "0");
+				String.valueOf(functionalityCheck.checkWifiDirect()));
 		progressBar.setProgress(
 				progressBar.getProgress()+1);
 		sql_update_row(General.class, 1, requirementsMap, true, true);
@@ -1051,7 +1051,7 @@ public class DBHelper {
 				progressBar.getProgress()+1);
 
 		requirementsMap.put(General.DBSchema.COLUMN_9, 
-				(functionalityCheck.checkAccelerometer()==true) ? "1" : "0");
+				String.valueOf(functionalityCheck.checkAccelerometer()));
 		progressBar.setProgress(
 				progressBar.getProgress()+1);
 		sql_update_row(General.class, 1, requirementsMap, true, true);
@@ -1059,7 +1059,7 @@ public class DBHelper {
 				progressBar.getProgress()+1);
 
 		requirementsMap.put(General.DBSchema.COLUMN_10, 
-				(functionalityCheck.checkGyroscope()==true) ? "1" : "0");
+				String.valueOf(functionalityCheck.checkGyroscope()));
 		progressBar.setProgress(
 				progressBar.getProgress()+1);
 		sql_update_row(General.class, 1, requirementsMap, true, true);
@@ -1067,7 +1067,7 @@ public class DBHelper {
 				progressBar.getProgress()+1);
 
 		requirementsMap.put(General.DBSchema.COLUMN_11, 
-				(functionalityCheck.checkGravity()==true) ? "1" : "0");
+				String.valueOf(functionalityCheck.checkGravity()));
 		progressBar.setProgress(
 				progressBar.getProgress()+1);
 		sql_update_row(General.class, 1, requirementsMap, true, true);
@@ -1075,7 +1075,7 @@ public class DBHelper {
 				progressBar.getProgress()+1);
 
 		requirementsMap.put(General.DBSchema.COLUMN_12, 
-				(functionalityCheck.checkVector()==true) ? "1" : "0");
+				String.valueOf(functionalityCheck.checkVector()));
 		progressBar.setProgress(
 				progressBar.getProgress()+1);
 		sql_update_row(General.class, 1, requirementsMap, true, true);
@@ -1083,24 +1083,64 @@ public class DBHelper {
 				progressBar.getProgress()+1);
 
 		requirementsMap.put(General.DBSchema.COLUMN_13, 
-				(functionalityCheck.checkAcceleration()==true) ? "1" : "0");
+				String.valueOf(functionalityCheck.checkAcceleration()));
 		progressBar.setProgress(
 				progressBar.getProgress()+1);
 		sql_update_row(General.class, 1, requirementsMap, true, true);
 		progressBar.setProgress(
 				progressBar.getProgress()+1);
-		return requirementsMap;
+		
+		requirementsMap.put(General.DBSchema.COLUMN_14, 
+				String.valueOf(functionalityCheck.checkMicrophone()));
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+		sql_update_row(General.class, 1, requirementsMap, true, true);
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+		
+		requirementsMap.put(General.DBSchema.COLUMN_15, 
+				String.valueOf(functionalityCheck.checkMultitouch()));
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+		sql_update_row(General.class, 1, requirementsMap, true, true);
+		progressBar.setProgress(
+				progressBar.getProgress()+1);
+		Log.d("APP","FUNC OK");
 	}
 	
 	public static Map<String,String> parseMultiPlayRequirements( Cursor cursor ) {
+		Map<String,String> requirementsMap = new HashMap<String,String>();
 		if (cursor.moveToFirst() == true) {
 			while (cursor.isAfterLast() == false ) {
 
 				Log.d("DB", "REQ: "+DatabaseUtils.dumpCurrentRowToString(cursor));
+				
+				requirementsMap.put(General.DBSchema.COLUMN_5,
+						String.valueOf(cursor.getInt(cursor.getColumnIndex(General.DBSchema.COLUMN_5))));
+				requirementsMap.put(General.DBSchema.COLUMN_6,
+						String.valueOf(cursor.getInt(cursor.getColumnIndex(General.DBSchema.COLUMN_6))));
+				requirementsMap.put(General.DBSchema.COLUMN_7,
+						String.valueOf(cursor.getInt(cursor.getColumnIndex(General.DBSchema.COLUMN_7))));
+				requirementsMap.put(General.DBSchema.COLUMN_8,
+						String.valueOf(cursor.getInt(cursor.getColumnIndex(General.DBSchema.COLUMN_8))));
+				requirementsMap.put(General.DBSchema.COLUMN_9,
+						String.valueOf(cursor.getInt(cursor.getColumnIndex(General.DBSchema.COLUMN_9))));
+				requirementsMap.put(General.DBSchema.COLUMN_10,
+						String.valueOf(cursor.getInt(cursor.getColumnIndex(General.DBSchema.COLUMN_10))));
+				requirementsMap.put(General.DBSchema.COLUMN_11,
+						String.valueOf(cursor.getInt(cursor.getColumnIndex(General.DBSchema.COLUMN_11))));
+				requirementsMap.put(General.DBSchema.COLUMN_12,
+						String.valueOf(cursor.getInt(cursor.getColumnIndex(General.DBSchema.COLUMN_12))));
+				requirementsMap.put(General.DBSchema.COLUMN_13,
+						String.valueOf(cursor.getInt(cursor.getColumnIndex(General.DBSchema.COLUMN_13))));
+				requirementsMap.put(General.DBSchema.COLUMN_14,
+						String.valueOf(cursor.getInt(cursor.getColumnIndex(General.DBSchema.COLUMN_14))));
+				requirementsMap.put(General.DBSchema.COLUMN_15,
+						String.valueOf(cursor.getInt(cursor.getColumnIndex(General.DBSchema.COLUMN_15))));
 				cursor.moveToNext();
 			}
 		}
-		return null;
+		return requirementsMap;
 }
 	
 	public void recreateDataBase () {

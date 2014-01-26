@@ -55,6 +55,16 @@
     <string name="contentDescription_b_options_controller_search">TODO</string>
     <string name="contentDescription_iv_options_controller_miniature_icon">TODO</string>
     <string name="contentDescription_b_options_controller_cancel">TODO</string>
+    <string name="contentDescription_help_activity_explorer_icon">TODO</string>
+    <string name="contentDescription_help_activity_options_icon">TODO</string>
+    <string name="contentDescription_help_activity_controllers_icon">TODO</string>
+    <string name="contentDescription_b_system_controllers_help_search">TODO</string>
+    <string name="contentDescription_iv_system_controllers_help_miniature_icon">TODO</string>
+    <string name="contentDescription_b_system_controllers_help_cancel">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_microphone_true_false">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_microphone_help">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_multitouch_true_false">TODO</string>
+    <string name="contentDescription_iv_dialog_welcome_requirements_multitouch_help">TODO</string>
     <string name="hint_device_name">Device name</string>
     <string name="hint_device_ip">127.0.0.10</string>
     <string name="hint_device_port">8000</string>
@@ -66,15 +76,12 @@
     <string name="title_activity_options_controller">OptionsControllerActivity</string>
     <string name="title_activity_help">HelpActivity</string>
     <string name="title_activity_options">OptionsActivity</string>
-    <string name="title_activity_first_menu">TOBEDELETED</string>
     <string name="title_activity_keyboard">KeyboardActivity</string>
     <string name="title_activity_mouse">MouseActivity</string>
     <string name="title_activity_gyromouse">Gyromouse</string>
-    <string name="title_activity_collection">Collection</string>
     <string name="title_activity_steeringwheel">SteeringwheelActivity</string>
     <string name="title_activity_joystick">Joystick</string>
     <string name="title_activity_connections">ConnectionsActivity</string>
-    <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_touch_pad">TouchPadActivity</string>
     <string name="title_activity_your">Your</string>
     <string name="title_activity_speaker">Speaker</string>
@@ -94,6 +101,9 @@
     <string name="title_activity_gamepad_help">GamepadHelp</string>
     <string name="title_activity_gamepad_option">GamepadOptionActivity</string>
     <string name="title_activity_touch_circle">TouchCircle</string>
+	<string name="title_activity_multiplay_explorer_help">MultiplayExplorerHelpActivity</string>
+    <string name="title_activity_system_controller_help">SystemControllerHelpActivity</string>
+    <string name="title_activity_options_help">OptionsHelpActivity</string>
     <string name="title_activity_movie_activity">Movie_activity</string>
 
 </resources>

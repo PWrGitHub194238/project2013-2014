@@ -7,7 +7,7 @@
 	    <item name="android:windowActionBar">false</item>
 	</style>
 
-	<style name="AsynchTaskProcessingDialog">
+	<style name="FullScreenDialog">
 		<item name ="android:windowBackground">@color/transparent90</item>
 		<item name="android:colorForeground">#fff</item>
 	    <item name="android:windowNoTitle">true</item>

@@ -2,20 +2,15 @@ package com.android.controllers.help.touchpad;
 
 import java.util.Random;
 
-import com.android.animations.DepthPageTransformer;
-import com.android.animations.TransformZoomOut;
-import com.android.controllers.help.speaker.Speaker_help_pager;
-import com.android.multiplay.R;
-import com.android.multiplay.R.layout;
-import com.android.multiplay.R.menu;
-
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
+
+import com.android.animations.DepthPageTransformer;
+import com.android.animations.TransformZoomOut;
+import com.android.multiplay.R;
 
 public class TouchPadHelp extends FragmentActivity{
 
@@ -48,12 +43,7 @@ public class TouchPadHelp extends FragmentActivity{
 	 
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.touch_pad_help, menu);
-		return true;
-	}
+
 	protected void onResume() {
         super.onResume();
 		 Random r = new Random();

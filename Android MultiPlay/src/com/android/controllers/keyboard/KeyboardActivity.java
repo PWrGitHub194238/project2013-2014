@@ -6,22 +6,17 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.application.N.Helper;
 import com.android.controllers.mouse.smalkey;
-import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
-import com.android.dialogs.elements.DialogListCore;
 import com.android.multiplay.ConnectionsActivity;
-import com.android.multiplay.MultiplayExplorerActivity;
 import com.android.multiplay.R;
 
 public class KeyboardActivity extends Activity implements OnClickListener,
@@ -2516,11 +2511,6 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.keyboard, menu);
-		return true;
-	}
 
 	public void onClick(View arg0) {
 		int i;

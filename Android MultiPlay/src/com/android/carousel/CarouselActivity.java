@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.android.application.C;
 import com.android.application.ControllerDefinition;
+import com.android.application.MultiPlayApplication;
 import com.android.dialogs.DialogButtonClickListener;
 import com.android.dialogs.ScrollViewDialog;
 import com.android.dialogs.ScrollViewSwitchDialog;
@@ -46,6 +47,7 @@ public class CarouselActivity extends Activity implements OnItemSelectedListener
 	protected static final class Color {
 		public static final String GREEN = "green";
 		public static final String RED = "red";
+		public static final String BLUE = "blue";
 	}
 	
 	private RelativeLayout mainLayout = null;
@@ -163,18 +165,76 @@ public class CarouselActivity extends Activity implements OnItemSelectedListener
 		}
 	}
 	
-	public void generateCarouselItemList() {
+	protected void generateCarouselItemList() {
 		carouselItemList = new ArrayList<CarouselDataItem>();
 		for ( ControllerDefinition controller : C.CONTROLLER_LIST ) {
+			if(chechRequirements(controller) == true ) {
 				carouselItemList.add(
 						new CarouselDataItem(
 								controller.getName(), 
 								controller.getIconID(),
 								controller.getControllerActivity(),
-								controller.getOptionsActivity()));
+								controller.getOptionsActivity(),
+								controller.getHelperActivity()));
+			}
+		}
+		
+		for ( ControllerDefinition controller : C.CUSTOM_CONTROLLER_LIST ) {
+			if(chechRequirements(controller) == true ) {
+				carouselItemList.add(
+						new CarouselDataItem(
+								controller.getName(), 
+								controller.getIconID(),
+								controller.getControllerActivity(),
+								controller.getOptionsActivity(),
+								controller.getHelperActivity()));
+			}
 		}
 	}
 
+	
+	protected boolean chechRequirements(ControllerDefinition controller) {
+		boolean isValid = true;
+		isValid &= checkOtherRequirements(controller.getRequirements(),MultiPlayApplication.allowWarnings);
+		isValid &= checkSystemRequirement(controller.getSystemRequirement());
+		isValid &= checkStandAlone(controller.isStandAlone());
+		return isValid;
+	}
+
+	protected boolean checkOtherRequirements(String[] requirements, boolean allowWarnings) {
+		int i;
+		int requirementsCount = requirements.length;
+		String requiredField = null;
+		for (i = 0; i < requirementsCount; i += 1) {
+			requiredField = MultiPlayApplication.getMultiPlayRequirements().get(requirements[i]);
+			if ( requiredField.equals("2") == false) {
+				if (allowWarnings == false ) {
+					return false;
+				} else if ( requiredField.equals("1") == false) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	protected boolean checkSystemRequirement(int systemRequirement) {
+		if (systemRequirement != C.Requirements.OS_EVERY) {
+			if ( MultiPlayApplication.getMainNetworkConfiguration() != null) {
+				if (MultiPlayApplication.getMainNetworkConfiguration().getSystem() != systemRequirement) {
+					return false;
+				}
+			} else {
+				return true;
+			}
+		}
+		return true;
+	}
+
+	protected boolean checkStandAlone(boolean standAlone) {
+		return standAlone;
+	}
+	
 	public final void setCarouselItemList(ArrayList<CarouselDataItem> carouselItemList) {
 		this.carouselItemList = carouselItemList;
 	}

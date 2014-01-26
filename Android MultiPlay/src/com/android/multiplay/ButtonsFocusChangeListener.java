@@ -41,6 +41,14 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 			case R.id.b_options_activity_resetdata_icon:
 				resetdata_hasFocus();
 				break;
+			case R.id.b_help_activity_explorer_icon:
+				explorer_help_hasFocus();
+				break;
+			case R.id.b_help_activity_controllers_icon:
+				controllers_help_hasFocus();
+				break;
+			case R.id.b_help_activity_options_icon:
+				options_help_hasFocus();
 			}
 		}
 	}
@@ -106,6 +114,33 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 				R.drawable.activity_title_glow_green,
 				R.drawable.main_activity_2_title_big_background_icon,
 				R.string.tv_option_2_title_description_in_options_activity);
+	}
+	
+	private void explorer_help_hasFocus() {
+		hasFocus(
+				R.drawable.activity_title_icon_green,
+				R.string.tv_option_0_title_in_help_activity,
+				R.drawable.activity_title_glow_green,
+				R.drawable.main_activity_2_title_big_background_icon,
+				R.string.tv_option_0_title_description_in_help_activity);
+	}
+	
+	private void controllers_help_hasFocus() {
+		hasFocus(
+				R.drawable.activity_title_icon_blue,
+				R.string.tv_option_1_title_in_help_activity,
+				R.drawable.activity_title_glow_blue,
+				R.drawable.main_activity_0_title_big_background_icon,
+				R.string.tv_option_1_title_description_in_help_activity);
+	}
+	
+	private void options_help_hasFocus() {
+		hasFocus(
+				R.drawable.activity_title_icon_red,
+				R.string.tv_option_2_title_in_help_activity,
+				R.drawable.activity_title_glow_red,
+				R.drawable.main_activity_2_title_big_background_icon,
+				R.string.tv_option_2_title_description_in_help_activity);	
 	}
 	
 	private void hasFocus(int titleIconID, int titleTextID, int titleBackgroundID, int descBackgroundID, int descTextID ) {

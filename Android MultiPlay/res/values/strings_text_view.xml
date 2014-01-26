@@ -2,41 +2,60 @@
 <resources>
     
     <string name="tv_dialog_welcome_requirements_bluetooth">Bluetooth</string>
-    <string name="tv_dialog_welcome_requirements_bluetooth_enabled">TODO</string>
-    <string name="tv_dialog_welcome_requirements_bluetooth_disabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_bluetooth_enabled">Enabled</string>
+    <string name="tv_dialog_welcome_requirements_bluetooth_warning">Not tested on your device</string>
+    <string name="tv_dialog_welcome_requirements_bluetooth_disabled">Not found</string>
  
 	<string name="tv_dialog_welcome_requirements_bluetooth_low_energy">Bluetooth Low Energy</string>
-    <string name="tv_dialog_welcome_requirements_bluetooth_low_energy_enabled">TODO</string>
-    <string name="tv_dialog_welcome_requirements_bluetooth_low_energy_disabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_bluetooth_low_energy_enabled">Enabled</string>
+    <string name="tv_dialog_welcome_requirements_bluetooth_low_energy_warning">Not tested on your device</string>
+    <string name="tv_dialog_welcome_requirements_bluetooth_low_energy_disabled">Not found</string>
     
 	<string name="tv_dialog_welcome_requirements_wifi">Wi-Fi</string>
-    <string name="tv_dialog_welcome_requirements_wifi_enabled">TODO</string>
-    <string name="tv_dialog_welcome_requirements_wifi_disabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_wifi_enabled">Enabled</string>
+    <string name="tv_dialog_welcome_requirements_wifi_warning">Not tested on your device</string>
+    <string name="tv_dialog_welcome_requirements_wifi_disabled">Not found</string>
     
 	<string name="tv_dialog_welcome_requirements_wifi_direct">Wi-Fi Direct</string>
-    <string name="tv_dialog_welcome_requirements_wifi_direct_enabled">TODO</string>
-    <string name="tv_dialog_welcome_requirements_wifi_direct_disabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_wifi_direct_enabled">Enabled</string>
+    <string name="tv_dialog_welcome_requirements_wifi_direct_warning">Not tested on your device</string>
+    <string name="tv_dialog_welcome_requirements_wifi_direct_disabled">Not found</string>
     
 	<string name="tv_dialog_welcome_requirements_accelerometer">Accelerometer sensor</string>
-    <string name="tv_dialog_welcome_requirements_accelerometer_enabled">TODO</string>
-    <string name="tv_dialog_welcome_requirements_accelerometer_disabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_accelerometer_enabled">Enabled</string>
+    <string name="tv_dialog_welcome_requirements_accelerometer_warning">Not tested on your device</string>
+    <string name="tv_dialog_welcome_requirements_accelerometer_disabled">Not found</string>
 
 	<string name="tv_dialog_welcome_requirements_gyroscope">Gyroscope sensor</string>
-    <string name="tv_dialog_welcome_requirements_gyroscope_enabled">TODO</string>
-    <string name="tv_dialog_welcome_requirements_gyroscope_disabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_gyroscope_enabled">Enabled</string>
+    <string name="tv_dialog_welcome_requirements_gyroscope_warning">Not tested on your device</string>
+    <string name="tv_dialog_welcome_requirements_gyroscope_disabled">Not found</string>
     
 	<string name="tv_dialog_welcome_requirements_gravity">Gravity sensor</string>
-    <string name="tv_dialog_welcome_requirements_gravity_enabled">TODO</string>
-    <string name="tv_dialog_welcome_requirements_gravity_disabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_gravity_enabled">Enabled</string>
+    <string name="tv_dialog_welcome_requirements_gravity_warning">Not tested on your device</string>
+    <string name="tv_dialog_welcome_requirements_gravity_disabled">Not found</string>
     
 	<string name="tv_dialog_welcome_requirements_rotation_vector">Rotation vector</string>
-    <string name="tv_dialog_welcome_requirements_rotation_vector_enabled">TODO</string>
-    <string name="tv_dialog_welcome_requirements_rotation_vector_disabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_rotation_vector_enabled">Enabled</string>
+    <string name="tv_dialog_welcome_requirements_rotation_vector_warning">Not tested on your device</string>
+    <string name="tv_dialog_welcome_requirements_rotation_vector_disabled">Not found</string>
     
 	<string name="tv_dialog_welcome_requirements_linear_acceleration">Linear acceleration</string>
-    <string name="tv_dialog_welcome_requirements_linear_acceleration_enabled">TODO</string>
-    <string name="tv_dialog_welcome_requirements_linear_acceleration_disabled">TODO</string>
+    <string name="tv_dialog_welcome_requirements_linear_acceleration_enabled">Enabled</string>
+    <string name="tv_dialog_welcome_requirements_linear_acceleration_warning">Not tested on your device</string>
+    <string name="tv_dialog_welcome_requirements_linear_acceleration_disabled">Not found</string>
     
+    <string name="tv_dialog_welcome_requirements_microphone">Microphone</string>
+    <string name="tv_dialog_welcome_requirements_microphone_enabled">Enabled</string>
+    <string name="tv_dialog_welcome_requirements_microphone_warning">Not tested on your device</string>
+    <string name="tv_dialog_welcome_requirements_microphone_disabled">Not found</string>
+    
+    <string name="tv_dialog_welcome_requirements_multitouch">Multitouch</string>
+    <string name="tv_dialog_welcome_requirements_multitouch_enabled">Enabled</string>
+    <string name="tv_dialog_welcome_requirements_multitouch_warning">Not tested on your device</string>
+    <string name="tv_dialog_welcome_requirements_multitouch_disabled">Not found</string>
+     
     <string name="tv_empty">--</string>
     
     <string name="tv_default_title_in_main_activity">MultiPlay</string>
@@ -50,6 +69,21 @@
     <string name="tv_option_1_title_in_main_activity">MultiPlay\'s help</string>
     <string name="tv_option_1_title_description_in_main_activity">f the options on your right to navigate application. To enable or disable device connections tap leds below.</string>
     	
+    	<string name="tv_default_title_in_help_activity">Application help</string>
+   		<string name="tv_default_title_description_in_help_activity">Read about every aspect of MultiPlayer Android application, get knowledge how to use your app in various ways, starting from it\'s configuration up to custom controllers.</string>
+   		
+   		<string name="tv_option_0_title_in_help_activity">Help: Explorer</string>
+   		<string name="tv_option_0_title_description_in_help_activity">todo</string>
+   		
+   		<string name="tv_option_1_title_in_help_activity">Help: Controllers</string>
+   		<string name="tv_option_1_title_description_in_help_activity">todo</string>
+   		
+   			<string name="tv_activity_title_system_controllers_help">Help: Controllers</string>
+   		
+   		<string name="tv_option_2_title_in_help_activity">Help: Options</string>
+   		<string name="tv_option_2_title_description_in_help_activity">todo</string>
+   		
+   		
     <string name="tv_option_2_title_in_main_activity">System controller</string>
     <string name="tv_option_2_title_description_in_main_activity">ons on your right to navigate application. To enable or disable device connections tap leds below.</string>
     

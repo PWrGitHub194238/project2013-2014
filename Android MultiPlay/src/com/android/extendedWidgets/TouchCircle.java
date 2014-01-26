@@ -3,10 +3,6 @@ package com.android.extendedWidgets;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.android.application.MultiPlayApplication;
-import com.android.application.N;
-import com.android.application.N.Helper;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -18,6 +14,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.android.application.MultiPlayApplication;
+import com.android.application.N;
+import com.android.dialogs.AsyncTaskDialogInterface;
+import com.android.dialogs.FullScreenDialog;
+import com.android.multiplay.R;
 
 public class TouchCircle extends View implements OnLongClickListener, OnTouchListener {
 	 
@@ -56,6 +60,10 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 	int historicalPointerCounter = 1;
 	
 	ArrayList<TouchCircleButton> touchCircleButtons = null;
+	
+	
+	
+	Button button1 = null;
 
 
 	// CONSTRUCTOR
@@ -64,6 +72,9 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 		setFocusable(true);
 
 			try {
+				TouchCircleConfigDialog dialog =  new TouchCircleConfigDialog(getContext());
+				dialog.show();
+				Log.d("APP","OK");
 				MultiPlayApplication.runThread();
 				initSizes(left,top,radius,screenSize);
 				
@@ -258,4 +269,37 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 		return false;
 	}
 
+	
+	private class TouchCircleConfigDialog extends FullScreenDialog implements AsyncTaskDialogInterface, OnClickListener {
+		
+		private TextView tv_dialog_asynchtask_working = null;
+
+		public TouchCircleConfigDialog(Context context) {
+			super(context,R.layout.dialog_touch_circle_config);
+		}
+
+		@Override
+		protected void dialogInnerViewLogic() {
+			super.dialogInnerViewLogic();
+			tv_dialog_asynchtask_working = (TextView) super.getLayout().findViewById(R.id.tv_dialog_asynchtask_working);
+			button1 =  (Button) super.getLayout().findViewById(R.id.button1);
+			button1.setOnClickListener(this);
+		}
+		
+		@Override
+		public void updateDialogLogStatus(String log) {
+			if (tv_dialog_asynchtask_working == null) {
+				dialogInnerViewLogic();
+			}
+			tv_dialog_asynchtask_working.setText(log);
+		
+		}
+
+		@Override
+		public void onClick(View v) {
+			
+			this.dismiss();
+			
+		}
+	}
 }

@@ -2,26 +2,19 @@ package com.android.controllers.gamepad;
 
 import java.io.IOException;
 
-import com.android.application.MultiPlayApplication;
-import com.android.application.N;
-import com.android.application.N.Helper;
-import com.android.multiplay.R;
-import com.android.multiplay.R.layout;
-import com.android.multiplay.R.menu;
-
-import android.os.Bundle;
-import android.os.PowerManager;
 import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.android.application.MultiPlayApplication;
+import com.android.application.N;
+import com.android.application.N.Helper;
+import com.android.multiplay.R;
 
 public class Gamepad extends Activity {
 	private ImageButton bup, bdown, bleft, bright, bcircle, bsharp, btrinagle,
@@ -335,14 +328,6 @@ public class Gamepad extends Activity {
 		}
 
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.gamepad, menu);
-		return true;
-	}
-
 	
 
 }

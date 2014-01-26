@@ -8,9 +8,9 @@ public class CustomControllerDefinition extends ControllerDefinition {
 	
 	public CustomControllerDefinition(int signal, String name, int iconID, boolean isStandAlone,
 			Class<? extends Activity> controllerActivity, Class<? extends Activity> optionsActivity, 
-			int systemRequirement, int[] requirements, int controllerDataBaseID) {
+			Class<? extends Activity> helperActivity, int systemRequirement, String[] requirements, int controllerDataBaseID) {
 		
-		super(signal, name, iconID, isStandAlone, controllerActivity, optionsActivity, systemRequirement, requirements);
+		super(signal, name, iconID, isStandAlone, controllerActivity, optionsActivity, helperActivity, systemRequirement, requirements);
 		this.controllerDataBaseID = controllerDataBaseID;
 	}
 

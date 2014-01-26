@@ -2,24 +2,18 @@ package com.android.controllers.mouse;
 
 import java.io.IOException;
 
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.application.N.Helper;
 import com.android.multiplay.R;
-import com.android.multiplay.Sender;
-import com.android.multiplay.R.id;
-import com.android.multiplay.R.layout;
-import com.android.multiplay.R.menu;
-
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class MouseActivity extends Activity {
 	private String tx;
@@ -44,11 +38,6 @@ public class MouseActivity extends Activity {
 	
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.mouse, menu);
-		return true;
-	}
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		super.onKeyDown(keyCode, event);

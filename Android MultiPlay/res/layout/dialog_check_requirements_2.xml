@@ -60,8 +60,8 @@
 			    android:text="@string/tv_dialog_welcome_requirements_bluetooth_enabled"
 			    android:textAppearance="@style/list_connections_device_detail_value" />
 
-			<ImageView
-			    android:id="@+id/iv_dialog_welcome_requirements_bluetooth_help"
+			<ImageButton
+			    android:id="@+id/ib_dialog_welcome_requirements_bluetooth_help"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_alignParentRight="true"
@@ -108,8 +108,8 @@
 			    android:text="@string/tv_dialog_welcome_requirements_bluetooth_low_energy_enabled"
 			    android:textAppearance="@style/list_connections_device_detail_value" />
 
-			<ImageView
-			    android:id="@+id/iv_dialog_welcome_requirements_bluetooth_low_energy_help"
+			<ImageButton
+			    android:id="@+id/ib_dialog_welcome_requirements_bluetooth_low_energy_help"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_alignParentRight="true"
@@ -156,8 +156,8 @@
 			    android:text="@string/tv_dialog_welcome_requirements_wifi_enabled"
 			    android:textAppearance="@style/list_connections_device_detail_value" />
 
-			<ImageView
-			    android:id="@+id/iv_dialog_welcome_requirements_wifi_help"
+			<ImageButton
+			    android:id="@+id/ib_dialog_welcome_requirements_wifi_help"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_alignParentRight="true"
@@ -204,8 +204,8 @@
 			    android:text="@string/tv_dialog_welcome_requirements_wifi_direct_enabled"
 			    android:textAppearance="@style/list_connections_device_detail_value" />
 
-			<ImageView
-			    android:id="@+id/iv_dialog_welcome_requirements_wifi_direct_help"
+			<ImageButton
+			    android:id="@+id/ib_dialog_welcome_requirements_wifi_direct_help"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_alignParentRight="true"
@@ -252,8 +252,8 @@
 			    android:text="@string/tv_dialog_welcome_requirements_accelerometer_enabled"
 			    android:textAppearance="@style/list_connections_device_detail_value" />
 
-			<ImageView
-			    android:id="@+id/iv_dialog_welcome_requirements_accelerometer_help"
+			<ImageButton
+			    android:id="@+id/ib_dialog_welcome_requirements_accelerometer_help"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_alignParentRight="true"
@@ -300,8 +300,8 @@
 			    android:text="@string/tv_dialog_welcome_requirements_gyroscope_enabled"
 			    android:textAppearance="@style/list_connections_device_detail_value" />
 
-			<ImageView
-			    android:id="@+id/iv_dialog_welcome_requirements_gyroscope_help"
+			<ImageButton
+			    android:id="@+id/ib_dialog_welcome_requirements_gyroscope_help"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_alignParentRight="true"
@@ -348,8 +348,8 @@
 			    android:text="@string/tv_dialog_welcome_requirements_gravity_enabled"
 			    android:textAppearance="@style/list_connections_device_detail_value" />
 
-			<ImageView
-			    android:id="@+id/iv_dialog_welcome_requirements_gravity_help"
+			<ImageButton
+			    android:id="@+id/ib_dialog_welcome_requirements_gravity_help"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_alignParentRight="true"
@@ -396,8 +396,8 @@
 			    android:text="@string/tv_dialog_welcome_requirements_rotation_vector_enabled"
 			    android:textAppearance="@style/list_connections_device_detail_value" />
 
-			<ImageView
-			    android:id="@+id/iv_dialog_welcome_requirements_rotation_vector_help"
+			<ImageButton
+			    android:id="@+id/ib_dialog_welcome_requirements_rotation_vector_help"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_alignParentRight="true"
@@ -444,8 +444,8 @@
 			    android:text="@string/tv_dialog_welcome_requirements_linear_acceleration_enabled"
 			    android:textAppearance="@style/list_connections_device_detail_value" />
 
-			<ImageView
-			    android:id="@+id/iv_dialog_welcome_requirements_linear_acceleration_help"
+			<ImageButton
+			    android:id="@+id/ib_dialog_welcome_requirements_linear_acceleration_help"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_alignParentRight="true"
@@ -455,11 +455,107 @@
 		       
 		</RelativeLayout>  	
 		
+		<RelativeLayout
+		    android:id="@+id/rl_dialog_welcome_requirements_microphone"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_below="@id/rl_dialog_welcome_requirements_linear_acceleration" >
+		    
+		    <ImageView
+		        android:id="@+id/iv_dialog_welcome_requirements_microphone_true_false"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentTop="true"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginBottom="10dp"		        
+		        
+		        android:background="@drawable/dialog_tick"
+		        android:contentDescription="@string/contentDescription_iv_dialog_welcome_requirements_microphone_true_false" />
+
+			<TextView
+			    android:id="@+id/tv_dialog_welcome_requirements_microphone"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_alignParentTop="true"
+			    android:layout_toRightOf="@id/iv_dialog_welcome_requirements_microphone_true_false"
+			    android:layout_marginLeft="10dp"
+			    android:text="@string/tv_dialog_welcome_requirements_microphone"
+			    android:textAppearance="@style/list_requirement_name" />
+
+			<TextView
+			    android:id="@+id/tv_dialog_welcome_requirements_microphone_detail"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_alignLeft="@id/tv_dialog_welcome_requirements_microphone"
+			    android:layout_below="@id/tv_dialog_welcome_requirements_microphone"
+			    android:text="@string/tv_dialog_welcome_requirements_microphone_enabled"
+			    android:textAppearance="@style/list_connections_device_detail_value" />
+
+			<ImageButton
+			    android:id="@+id/ib_dialog_welcome_requirements_microphone_help"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_alignParentRight="true"
+			    android:layout_alignParentTop="true"
+			    android:background="@drawable/activity_icon_min_help_tip"
+			    android:contentDescription="@string/contentDescription_iv_dialog_welcome_requirements_microphone_help" />
+		       
+		</RelativeLayout> 
+		
+		<RelativeLayout
+		    android:id="@+id/rl_dialog_welcome_requirements_multitouch"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_below="@id/rl_dialog_welcome_requirements_microphone" >
+		    
+		    <ImageView
+		        android:id="@+id/iv_dialog_welcome_requirements_multitouch_true_false"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentTop="true"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginBottom="10dp"		        
+		        
+		        android:background="@drawable/dialog_tick"
+		        android:contentDescription="@string/contentDescription_iv_dialog_welcome_requirements_multitouch_true_false" />
+
+			<TextView
+			    android:id="@+id/tv_dialog_welcome_requirements_multitouch"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_alignParentTop="true"
+			    android:layout_toRightOf="@id/iv_dialog_welcome_requirements_multitouch_true_false"
+			    android:layout_marginLeft="10dp"
+			    android:text="@string/tv_dialog_welcome_requirements_multitouch"
+			    android:textAppearance="@style/list_requirement_name" />
+
+			<TextView
+			    android:id="@+id/tv_dialog_welcome_requirements_multitouch_detail"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_alignLeft="@id/tv_dialog_welcome_requirements_multitouch"
+			    android:layout_below="@id/tv_dialog_welcome_requirements_multitouch"
+			    android:text="@string/tv_dialog_welcome_requirements_multitouch_enabled"
+			    android:textAppearance="@style/list_connections_device_detail_value" />
+
+			<ImageButton
+			    android:id="@+id/ib_dialog_welcome_requirements_multitouch_help"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_alignParentRight="true"
+			    android:layout_alignParentTop="true"
+			    android:background="@drawable/activity_icon_min_help_tip"
+			    android:contentDescription="@string/contentDescription_iv_dialog_welcome_requirements_multitouch_help" />
+		       
+		</RelativeLayout> 
+		
 		<TextView
             android:id="@+id/tv_dialog_welcome_requirements_2"
             android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/rl_dialog_welcome_requirements_linear_acceleration"
+			android:layout_below="@id/rl_dialog_welcome_requirements_multitouch"
 			android:layout_alignParentLeft="true"
 			android:layout_marginTop="20dp"
 			android:text="@string/dialog_ID_MESSAGE_WELCOME_5" />	

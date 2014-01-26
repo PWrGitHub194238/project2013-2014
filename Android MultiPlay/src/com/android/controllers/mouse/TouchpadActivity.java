@@ -2,20 +2,17 @@ package com.android.controllers.mouse;
 
 import java.io.IOException;
 
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.application.N.Helper;
 import com.android.multiplay.R;
-import com.android.multiplay.R.layout;
-import com.android.multiplay.R.menu;
-
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MotionEvent;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class TouchpadActivity extends Activity {
 	private double oldx = 245.0, oldy = 175.0;
@@ -35,13 +32,6 @@ public class TouchpadActivity extends Activity {
 		}
 
 	
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.touch_pad, menu);
-		return true;
 	}
 
 	public boolean onTouchEvent(MotionEvent event) {

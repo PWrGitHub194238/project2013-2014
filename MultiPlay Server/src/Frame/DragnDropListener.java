@@ -19,20 +19,31 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
 import XML.appParser;
-
+/*
+ * @author Piotr Baczkiewicz
+ * @see DragnDropListener
+ */
 public class DragnDropListener implements DropTargetListener {
 	private DataFlavor Linux = null;
 	private DataFlavor Windows = null;
 	private MFrame frame;
 	List<String> listy;
 	JList list;
-
+	/*
+	 * @see DragnDropListener constructor to class
+	 * @param frame main frame
+	 * @param list a list of applications that we see	
+	 * @param listy list with application
+	 */
 	public DragnDropListener(MFrame frame, JList list, List<String> listy) {
 		this.frame = frame;
 		this.list = list;
 		this.listy = listy;
 	}
-
+	/*
+	 * @see drop
+	 * @see java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
+	 */
 	public void drop(DropTargetDropEvent dropEvent) {
 		try {
 			Transferable droppedItem = dropEvent.getTransferable();
@@ -59,7 +70,12 @@ public class DragnDropListener implements DropTargetListener {
 		}
 
 	}
-
+	/*
+	 * @see handleDrop
+	 * @see dropEvent
+	 * @see droppedItem
+	 * @see flavor
+	 */
 	private void handleDrop(DropTargetDropEvent dropEvent,
 			Transferable droppedItem, DataFlavor flavor)
 			throws UnsupportedFlavorException, IOException {
@@ -72,7 +88,12 @@ public class DragnDropListener implements DropTargetListener {
 			dropEvent.rejectDrop();
 		}
 	}
-
+/*
+ * @see acceptWindowsDrop
+ * @see dropTargetEvent
+ * @see droppedItem
+ * @see flavor
+ */
 	private void acceptWindowsDrop(DropTargetDropEvent dropTargetEvent,
 			Transferable droppedItem, DataFlavor flavor)
 			throws UnsupportedFlavorException, IOException {
@@ -129,7 +150,12 @@ public class DragnDropListener implements DropTargetListener {
 		// Inform that the drop is complete
 		dropTargetEvent.dropComplete(true);
 	}
-
+	/*
+	 * @see acceptLinuxDrop
+	 * @see dropTargetEvent
+	 * @see tr
+	 * @see flavor
+	 */
 	private void acceptLinuxDrop(DropTargetDropEvent dropTargetEvent,
 			Transferable tr, DataFlavor flavor)
 			throws UnsupportedFlavorException, IOException {
@@ -167,19 +193,29 @@ public class DragnDropListener implements DropTargetListener {
 			list.setListData(m);
 		}
 	}
-
+	/*
+	 * 
+	 * @see java.awt.dnd.DropTargetListener#dragEnter(java.awt.dnd.DropTargetDragEvent)
+	 */
 	@Override
 	public void dragEnter(DropTargetDragEvent event) {
 	}
-
+	/*
+	 * @see java.awt.dnd.DropTargetListener#dragExit(java.awt.dnd.DropTargetEvent)
+	 */
 	@Override
 	public void dragExit(DropTargetEvent event) {
 	}
-
+	/*
+	 * @see java.awt.dnd.DropTargetListener#dragOver(java.awt.dnd.DropTargetDragEvent)
+	 */
 	@Override
 	public void dragOver(DropTargetDragEvent event) {
 	}
+	/*
 
+	 * @see java.awt.dnd.DropTargetListener#dropActionChanged(java.awt.dnd.DropTargetDragEvent)
+	 */
 	@Override
 	public void dropActionChanged(DropTargetDragEvent event) {
 	}

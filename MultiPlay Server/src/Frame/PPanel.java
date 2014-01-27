@@ -2,8 +2,16 @@ package Frame;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+/*
+ * @author Piotr Baczkiewicz
+ * @see PPanel
+ */
 public class PPanel extends JPanel {
+	/*
+	 * @param dev
+	 * @param system
+	 * @see PPanel
+	 */
 	public PPanel(String dev, String system) {
 		super();
 		JLabel txt = new JLabel();

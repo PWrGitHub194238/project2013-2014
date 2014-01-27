@@ -10,13 +10,24 @@ import java.util.Random;
 
 import javax.bluetooth.UUID;
 
+/*
+ * @author Piotr Baczkiewicz
+ * @see ConnectWifi
+ */
 public class ConnectWifi {
 	private int portdefault = 1234;
 	private int port;
-	
+
 	private String IP = null;
 	private ArrayList<Integer> arrlist = new ArrayList<Integer>();
 
+	/*
+	 * @see getIP
+	 * 
+	 * @return ip return ip to Wifi connection
+	 * 
+	 * @see getIP
+	 */
 	public String getIP() {
 		String ip = null;
 		if (System.getProperty("os.name").startsWith("Win")) {
@@ -49,12 +60,20 @@ public class ConnectWifi {
 		return ip;
 	}
 
+	/*
+	 * @see getportdefault get a defaultport 1234 to wifi connection
+	 * 
+	 * @return portdefault
+	 */
 	public int getportdefault() {
 		return portdefault;
 	}
 
-
-
+	/*
+	 * @see getport get a random unique random port to wifi connection
+	 * 
+	 * @return arrlist.get(arrlist.size() - 1) unique port
+	 */
 	public int getport() {
 		Random r = new Random();
 		int port, flag;

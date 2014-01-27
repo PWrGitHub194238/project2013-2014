@@ -45,7 +45,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 		try {
 			
 			MultiPlayApplication.runThread();
-			tv= (TextView) findViewById(R.id.text);
+			tv= (TextView) findViewById(R.id.textgyro);
 			sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
 			button1 = (Button) super.findViewById(R.id.leftb);
 			button2 = (Button) super.findViewById(R.id.rightb);

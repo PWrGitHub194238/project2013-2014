@@ -21,7 +21,9 @@ import Speaker.Speaker;
 import VJoy.VJoyDriver;
 import VJoy.VJoyDriver32;
 import VJoy.VJoyDriver64;
-
+/*
+ * @author Piotr Baczkiewicz
+ */
 public class Serverbluetooth implements Runnable {
 	private StreamConnection connection = null;
 	private StreamConnectionNotifier notifier = null;
@@ -32,12 +34,18 @@ public class Serverbluetooth implements Runnable {
 	private int i = 0;
 	private int x = 3, y = 3;
 	private String pm, x1, y1, key;
-
+/*
+ * @param uuid uuid to bluetooth connection
+ * @param url url to bluetooth connection
+ */
 	public Serverbluetooth(UUID uuid, String url) {
 		this.uuid = uuid;
 		this.url = url;
 	}
-
+/*
+ * 
+ * @see java.lang.Runnable#run()
+ */
 	@Override
 	public void run() {
 		System.out.println("BT Server");
@@ -118,16 +126,12 @@ public class Serverbluetooth implements Runnable {
 									keyboard.clickandrelease(ret[2]);
 								}
 							} else if (ret[0] == N.Device.VJOYJOYSTICKLEFT) {
-								// ret[2]-x
-								// ret[3]-y
-								// przetwarzanie sygna³u dla lewej ga³ki
+							
 								if (ret[1] == N.DeviceDataCounter.DOUBLE) {
 									vjoy.updateAxes(1, ret[2], ret[3]);
 								}
 							} else if (ret[0] == N.Device.VJOYJOYSTICKRIGHT) {
-								// ret[2]-x
-								// ret[3]-y
-								// przetwarzanie sygna³u dla prawej ga³ki
+					
 								if (ret[1] == N.DeviceDataCounter.DOUBLE) {
 									vjoy.updateAxes(2, ret[2], ret[3]);
 								}

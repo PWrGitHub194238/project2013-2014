@@ -94,8 +94,9 @@ public final class N {
 		public static final int DEV_SIGNAL_2 = Integer.parseInt("111111111111",
 				2) << Shift.DEV_SIGNAL_2;
 
-		/**
-		 *
+		/*
+		 * @param bitmask
+		 * @return bitmask 
 		 */
 		public static final int bit_mask(int... bitmasks) {
 			int bitmask = Integer.parseInt("0", 2);

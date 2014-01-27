@@ -11,9 +11,16 @@ import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 
 import CodeKey.N;
-
+/*
+ * @author Piotr Baczkiewicz
+ * @see Mouse
+ */
 public class Mouse {
-
+	/*
+	 * @param x add x to position mouse
+	 * @param y add y to position mouse
+	 * @see run change position mouse
+	 */
 	public void run(int x, int y) {
 		try {
 			Robot robot = new Robot();
@@ -33,7 +40,10 @@ public class Mouse {
 			e.printStackTrace();
 		}
 	}
-
+/*
+ * @see click
+ * @param pm
+ */
 	public void click(int pm) {
 		try {
 			Robot robot = new Robot();

@@ -29,7 +29,10 @@ import Wifi.Serverwifi;
 import Wifi.Wifi;
 
 public class Main {
-
+	/*@author Piotr Baczkiewicz
+	 * @param arg - array from command line
+	 * @return no return value
+	 */
 	public static void main(String[] args) {
 		JList list = new JList();
 		DefaultListModel model = new DefaultListModel();

@@ -2,8 +2,15 @@ package Frame;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
+/*
+ * @author Piotr Baczkiewicz
+ * @see AlertFrame
+ */
 public class AlertFrame extends JFrame {
+	/*
+	 * @param name 
+	 * @see AlertFrame 
+	 */
 	public AlertFrame(String name){
 		super(name);
 		this.setSize(500, 100);
@@ -12,7 +19,6 @@ public class AlertFrame extends JFrame {
 		this.add(authors);
 		this.setLocation(500, 300);
 		this.setVisible(true);
-	
 	}
 
 }

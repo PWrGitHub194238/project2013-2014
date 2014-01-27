@@ -41,14 +41,22 @@ import javax.swing.JTabbedPane;
 import XML.appParser;
 
 import Connect.ConnectWifi;
-
+/*
+ * @author Piotr Baczkiewicz
+ */
 //Menu Frame
 public class MFrame extends JFrame {
 	private JList list;
 	private DefaultListModel model;
 	List<String> listy;
 	appParser xml;
-
+/*
+ * @see MFrame Constructor
+ * @param connect
+ * @param model 
+ * @param list
+ * @param listy
+ */
 	public MFrame(ConnectWifi connect, final DefaultListModel model,
 			final JList list, final List<String> listy) {
 		super();

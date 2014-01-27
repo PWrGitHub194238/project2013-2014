@@ -46,9 +46,9 @@ public class Main {
 				(int) (d.getHeight() - d.getHeight() * 10 / 100));
 		window.setVisible(true);
 		window.setResizable(false);
-		Thread wifiThread = new Thread(new Wifi());
+		Thread wifiThread = new Thread(new Wifi(listy));
 		wifiThread.start();
-		Thread bluetoothThread = new Thread(new Bluetooth());
+		Thread bluetoothThread = new Thread(new Bluetooth(listy));
 		bluetoothThread.start();
 		// thread get mouse positions
 		// Pos p = new Pos();

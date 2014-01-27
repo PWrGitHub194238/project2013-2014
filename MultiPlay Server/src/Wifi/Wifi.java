@@ -13,6 +13,8 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
+import XML.appParser;
+
 import CodeKey.N;
 import Connect.ConnectWifi;
 import Frame.MFrame;
@@ -20,9 +22,12 @@ import Frame.MFrame;
 public class Wifi implements Runnable {
 	private static DataInputStream dis = null;
 	private static DataOutputStream dos = null;
-	
-	public Wifi() {
+	private List<String> listy;
+	private int i = 0;
+	appParser xml;
 
+	public Wifi(List<String> listy) {
+		this.listy = listy;
 	}
 
 	@Override
@@ -86,25 +91,53 @@ public class Wifi implements Runnable {
 						Serverwifi wifi = new Serverwifi(port, connect);
 						wifi.run();
 					} else if (data == N.Signal.NEED_APPLICATIONS) {
-
+						int size = listy.size();
+						i = 0;
+						dos.writeInt(size);
+						while (i < size) {
+							dos.writeUTF(String.valueOf(i) + "." + listy.get(i));
+							i++;
+						}
+						dis.close();
+						dos.close();
+						socket.close();
+						serversocket.close();
 					} else if (data == N.Signal.RUN_APPLICATION) {
 						// Windows
 						if (System.getProperty("os.name").startsWith("Win")) {
-							// String name= dis.readUTF();
+							String id = dis.readUTF();
 							// --------miejsce na odczyt z xml danych
+							String[] name = id.split(".", 1);
+							int index = Integer.parseInt(name[0]);
+							String nazwa = name[1];
 
-							// ProcessBuilder pb = new ProcessBuilder("cmd",
-							// "/c",file);
-						}
-						//Linux and BSD
-						else if (System.getProperty("os.name").contains(
+							xml = new appParser();
+							if (xml.getName(index) == nazwa) {
+								nazwa = nazwa.toLowerCase();
+								ProcessBuilder pb = new ProcessBuilder("cmd",
+										"/c", nazwa);
+							}
+
+						} else if (System.getProperty("os.name").contains(
 								"Linux")) {
-							// String name= dis.readUTF();
-							// miejsce na odczyt z xml danych
-							// String[] cmd = new String[] {"/bin/bash", "-c",
-							// fileName};
-							// Runtime.getRuntime().exec(cmd);
+							String id = dis.readUTF();
+							// --------miejsce na odczyt z xml danych
+							String[] name = id.split(".", 1);
+							int index = Integer.parseInt(name[0]);
+							String nazwa = name[1];
+
+							xml = new appParser();
+							if (xml.getName(index) == nazwa) {
+								nazwa = nazwa.toLowerCase();
+								String[] cmd = new String[] { "/bin/bash",
+										"-c", nazwa };
+								Runtime.getRuntime().exec(cmd);
+							}
 						}
+						dis.close();
+						dos.close();
+						socket.close();
+						serversocket.close();
 					}
 				} catch (IOException e) {
 					e.printStackTrace();

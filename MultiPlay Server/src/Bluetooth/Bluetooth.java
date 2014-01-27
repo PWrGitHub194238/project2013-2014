@@ -7,6 +7,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 import javax.bluetooth.BluetoothStateException;
 import javax.bluetooth.DiscoveryAgent;
@@ -20,14 +21,23 @@ import CodeKey.N;
 import Connect.BluetoothConfigurationClass;
 import Connect.ConnectWifi;
 import Wifi.Serverwifi;
+import XML.appParser;
+
 /*
  * @author Piotr Baczkiewicz
  */
 public class Bluetooth implements Runnable {
-	
+	appParser xml;
 	private LocalDevice local = null;
 	private StreamConnectionNotifier notifier = null;
 	private StreamConnection connection = null;
+	private List<String> listy;
+	private int i = 0;
+
+	public Bluetooth(List<String> listy) {
+		this.listy = listy;
+	}
+
 	/*
 	 * 
 	 * @see java.lang.Runnable#run()
@@ -41,6 +51,7 @@ public class Bluetooth implements Runnable {
 			e.printStackTrace();
 		}
 	}
+
 	/*
 	 * exception BluetoothStateException
 	 */
@@ -108,23 +119,52 @@ public class Bluetooth implements Runnable {
 					Serverbluetooth bt = new Serverbluetooth(uuid, url);
 					bt.run();
 				} else if (data == N.Signal.NEED_APPLICATIONS) {
-
+					int size = listy.size();
+					i = 0;
+					dos.writeInt(size);
+					while (i < size) {
+						dos.writeUTF(String.valueOf(i) + "." + listy.get(i));
+						i++;
+					}
+					dis.close();
+					dos.close();
+					connection.close();
+					notifier.close();
 				} else if (data == N.Signal.RUN_APPLICATION) {
 					// Windows
 					if (System.getProperty("os.name").startsWith("Win")) {
-						// String name= dis.readUTF();
+						String id = dis.readUTF();
 						// --------miejsce na odczyt z xml danych
+						String[] name = id.split(".", 1);
+						int index = Integer.parseInt(name[0]);
+						String nazwa = name[1];
 
-						// ProcessBuilder pb = new ProcessBuilder("cmd",
-						// "/c",file);
+						xml = new appParser();
+						if (xml.getName(index) == nazwa) {
+							nazwa = nazwa.toLowerCase();
+							ProcessBuilder pb = new ProcessBuilder("cmd", "/c",
+									nazwa);
+						}
 
 					} else if (System.getProperty("os.name").contains("Linux")) {
-						// String name= dis.readUTF();
-						// miejsce na odczyt z xml danych
-						// String[] cmd = new String[] {"/bin/bash", "-c",
-						// fileName};
-						// Runtime.getRuntime().exec(cmd);
+						String id = dis.readUTF();
+						// --------miejsce na odczyt z xml danych
+						String[] name = id.split(".", 1);
+						int index = Integer.parseInt(name[0]);
+						String nazwa = name[1];
+
+						xml = new appParser();
+						if (xml.getName(index) == nazwa) {
+							nazwa = nazwa.toLowerCase();
+							String[] cmd = new String[] { "/bin/bash", "-c",
+									nazwa };
+							Runtime.getRuntime().exec(cmd);
+						}
 					}
+					dis.close();
+					dos.close();
+					connection.close();
+					notifier.close();
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -133,7 +173,5 @@ public class Bluetooth implements Runnable {
 
 		}
 
-	
 	}
-
 }

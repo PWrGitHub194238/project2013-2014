@@ -79,6 +79,8 @@
    		<string name="tv_option_1_title_description_in_help_activity">todo</string>
    		
    			<string name="tv_activity_title_system_controllers_help">Help: Controllers</string>
+   			
+   			<string name="tv_list_video_prefix_duration">Duration: </string>
    		
    		<string name="tv_option_2_title_in_help_activity">Help: Options</string>
    		<string name="tv_option_2_title_description_in_help_activity">todo</string>

@@ -6,7 +6,7 @@ import com.android.application.MultiPlayApplication;
 import com.android.application.WirelessConfigurationClass;
 import com.android.multiplay.R;
 
-public class ElementOfConnectionsList {
+public class ConnectionsListItem {
 	
 	public static int[] ICON = {
 		R.drawable.connections_activity_icon_1
@@ -26,7 +26,7 @@ public class ElementOfConnectionsList {
 	public static final int ICON_WINDOWS = R.drawable.connections_activity_os_windows;
 	public static final int ICON_UNKNOW = R.drawable.connections_activity_os_unknow;
 	
-	public ElementOfConnectionsList(int index, ConnectionsConfigurationClass connectionConfiguration ) {
+	public ConnectionsListItem(int index, ConnectionsConfigurationClass connectionConfiguration ) {
 		this.index = index;
 		this.icon_type_id = ICON[0];
 		this.deviceName = connectionConfiguration.getName();

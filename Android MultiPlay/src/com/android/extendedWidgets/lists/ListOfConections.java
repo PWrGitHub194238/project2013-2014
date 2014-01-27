@@ -16,10 +16,10 @@ import com.android.multiplay.R;
 public class ListOfConections extends BaseAdapter {
  
     private Context ctx;
-    private ElementOfConnectionsList[] data = null;
+    private ConnectionsListItem[] data = null;
  
-    public ListOfConections(Context ctx, Collection<ElementOfConnectionsList> listElements) {
-    	data = new ElementOfConnectionsList[listElements.size()];
+    public ListOfConections(Context ctx, Collection<ConnectionsListItem> listElements) {
+    	data = new ConnectionsListItem[listElements.size()];
     	listElements.toArray(data);
 	    this.ctx = ctx;
     }
@@ -28,7 +28,7 @@ public class ListOfConections extends BaseAdapter {
     	return data.length;
     }
  
-    public ElementOfConnectionsList getItem(int position) {
+    public ConnectionsListItem getItem(int position) {
     	return data[position];
     }
  
@@ -49,7 +49,7 @@ public class ListOfConections extends BaseAdapter {
     	private TextView resolution_y = null;
 
     	
-		public void setElement(ElementOfConnectionsList elementOfConnections) {
+		public void setElement(ConnectionsListItem elementOfConnections) {
 			device_icon.setBackgroundResource(elementOfConnections.getIcon_type_id());
 			connectionType.setBackgroundResource(elementOfConnections.getConnectionTypeIcon());
 			device_name.setText(elementOfConnections.getDeviceName());
@@ -57,7 +57,7 @@ public class ListOfConections extends BaseAdapter {
 			device_detail_prefix.setText(elementOfConnections.getDeviceDetailPrefix());
 			device_detail.setText(elementOfConnections.getDeviceDetail());
 			device_isStored.setBackgroundResource(
-					(elementOfConnections.isStored())?ElementOfConnectionsList.ICON_STORED_YES:ElementOfConnectionsList.ICON_STORED_NO);
+					(elementOfConnections.isStored())?ConnectionsListItem.ICON_STORED_YES:ConnectionsListItem.ICON_STORED_NO);
 			system.setBackgroundResource(setSystem(elementOfConnections.getSystem()));
 			resolution_x.setText(String.valueOf(elementOfConnections.getResolution_x()));
 			resolution_y.setText(String.valueOf(elementOfConnections.getResolution_y()));
@@ -96,13 +96,13 @@ public class ListOfConections extends BaseAdapter {
     
     private int setSystem(byte system) {
     	if ( system==N.System.BSD) {
-    		return ElementOfConnectionsList.ICON_BSD;
+    		return ConnectionsListItem.ICON_BSD;
     	} else if ( system==N.System.LINUX) {
-    		return ElementOfConnectionsList.ICON_LINUX;
+    		return ConnectionsListItem.ICON_LINUX;
     	} else if ( system==N.System.WINDOWS) {
-    		return ElementOfConnectionsList.ICON_WINDOWS;
+    		return ConnectionsListItem.ICON_WINDOWS;
     	} else {
-    		return ElementOfConnectionsList.ICON_UNKNOW;
+    		return ConnectionsListItem.ICON_UNKNOW;
     	}
     }
 }

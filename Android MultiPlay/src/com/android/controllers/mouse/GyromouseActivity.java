@@ -47,6 +47,9 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 			MultiPlayApplication.runThread();
 			tv= (TextView) findViewById(R.id.text);
 			sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+			sm.registerListener(this,
+					sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+					SensorManager.SENSOR_DELAY_FASTEST);
 			button1 = (Button) super.findViewById(R.id.leftb);
 			button2 = (Button) super.findViewById(R.id.rightb);
 			button3 = (Button) super.findViewById(R.id.upb);
@@ -2530,15 +2533,9 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 
 	@Override
 	public void onSensorChanged(SensorEvent arg0) {
-		float x = arg0.values[0];
-		float y = arg0.values[1];
 		if (stop == 0) {
-			tv.setText(Integer.toString((int) x) + " "
-					+ Integer.toString((int) y));
-			 signal = Helper.encodeSignal(N.Device.MOUSE,
-					N.DeviceDataCounter.DOUBLE, (int) y * multi, (int) x
-							* multi);
-			MultiPlayApplication.add(signal);
+			MultiPlayApplication.add(Helper.encodeSignal(N.Device.MOUSE,N.DeviceDataCounter.DOUBLE,
+					(int) (arg0.values[1] * multi), (int) (arg0.values[0] * multi)));
 		}
 	}
 
@@ -2779,9 +2776,7 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 			}
 			break;
 		}
-		sm.registerListener(this,
-				sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-				SensorManager.SENSOR_DELAY_NORMAL);
+		
 	}
 
 	@Override

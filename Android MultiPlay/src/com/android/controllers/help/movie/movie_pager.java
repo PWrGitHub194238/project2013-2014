@@ -17,7 +17,7 @@ public class movie_pager
 
                 @Override
                 public Fragment getItem(int arg0) {
-                        Speaker_Fragment myFragment = new Speaker_Fragment();
+                        Movie_Fragment myFragment = new Movie_Fragment();
                         Bundle data = new Bundle();
                         data.putInt("current_page", arg0 + 1);
                         myFragment.setArguments(data);

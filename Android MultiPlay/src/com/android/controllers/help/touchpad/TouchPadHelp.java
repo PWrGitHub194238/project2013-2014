@@ -14,15 +14,14 @@ import com.android.multiplay.R;
 
 public class TouchPadHelp extends FragmentActivity{
 
-	private static final int NUM_PAGES = 3;
 	private ViewPager mPager;
 	private PagerAdapter mPagerAdapter;
 	private ViewPager pager;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_touch_pad_help);
-		 ViewPager pager = (ViewPager) findViewById(R.id.pagertouchpad);
+		setContentView(R.layout.activity_touchpad_help);
+		 ViewPager pager = (ViewPager) findViewById(R.id.vp_help_touchpad);
 		 Random r = new Random();
 		 this.pager=pager;
 			int numberrandom = r.nextInt() % 100;

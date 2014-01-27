@@ -4,9 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 public class TouchPad_help_pager extends FragmentPagerAdapter {
-	private final int PAGE_COUNT = 3;
+	private final int PAGE_COUNT = 5;
 
 	public TouchPad_help_pager(FragmentManager fm) {
 		super(fm);
@@ -16,6 +17,7 @@ public class TouchPad_help_pager extends FragmentPagerAdapter {
 	public Fragment getItem(int arg0) {
 		TouchPad_Fragment myFragment = new TouchPad_Fragment();
 		Bundle data = new Bundle();
+		Log.d("APP","GET: "+String.valueOf(arg0));
 		data.putInt("current_page", arg0 + 1);
 		myFragment.setArguments(data);
 		return myFragment;

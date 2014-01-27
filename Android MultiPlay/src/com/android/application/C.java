@@ -39,7 +39,7 @@ public final class C {
 			C.SIGNAL_MOUSE, "GyroMouse", R.drawable.carousel_controller_icon_gyromouse, 
 			ControllerDefinition.STAND_ALONE, GyromouseActivity.class, GyromouseOptionActivity.class, GyromouseHelp.class,
 			Requirements.OS_EVERY, new String[] {
-				Requirements.SENSOR_GYROSCOPE
+				Requirements.SENSOR_ACCEL
 			});
 	
 	private static final ControllerDefinition CONTROLLER_TOUCHPAD = new ControllerDefinition(
@@ -62,7 +62,7 @@ public final class C {
 			C.SIGNAL_WHEEL, "Steering wheel", R.drawable.carousel_controller_icon_wheel, 
 			ControllerDefinition.STAND_ALONE, SteeringwheelActivity.class, SteeringwheelOptionActivity.class, SteeringwheelHelp.class,
 			Requirements.OS_WINDOWS, new String[] {
-				Requirements.SENSOR_ACCELEROMETER
+				Requirements.SENSOR_ACCEL
 			});
 	
 	public static final int SIGNAL_SPEAKER = 					Integer.parseInt("00011", 2);
@@ -105,10 +105,8 @@ public final class C {
 	
 	
 	public static final class Requirements {
-		
-		public static final String SENSOR_ACCELEROMETER = General.DBSchema.COLUMN_14;
 
-        public static final String BLUETOOTH = General.DBSchema.COLUMN_5;
+		public static final String BLUETOOTH = General.DBSchema.COLUMN_5;
         public static final String BLE = General.DBSchema.COLUMN_6;
         public static final String WIFI = General.DBSchema.COLUMN_7;
         public static final String WIFI_P2P = General.DBSchema.COLUMN_8;

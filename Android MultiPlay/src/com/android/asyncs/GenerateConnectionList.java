@@ -10,15 +10,15 @@ import android.util.Log;
 import android.widget.ProgressBar;
 
 import com.android.application.N;
-import com.android.extendedWidgets.lists.ElementOfConnectionsList;
+import com.android.extendedWidgets.lists.ConnectionsListItem;
 import com.android.services.ConnectionHelper;
 
 public class GenerateConnectionList extends AsyncTask<String, String, String> {
 		 
-	private Collection<ElementOfConnectionsList> listOfElements = null;
+	private Collection<ConnectionsListItem> listOfElements = null;
 	private ProgressBar progressBar = null;
 			
-	public GenerateConnectionList(Collection<ElementOfConnectionsList> listOfElements, ProgressBar progressBar) {
+	public GenerateConnectionList(Collection<ConnectionsListItem> listOfElements) {
 		super();
 		this.listOfElements = listOfElements;
 		this.progressBar = progressBar;

@@ -22,7 +22,7 @@ public class TouchpadActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_touch_pad);
+		setContentView(R.layout.activity_touchpad);
 		txv = (TextView) super.findViewById(R.id.txe);
 		try {
 			MultiPlayApplication.runThread();

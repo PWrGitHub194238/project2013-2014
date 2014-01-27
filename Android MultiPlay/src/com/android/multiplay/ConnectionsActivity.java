@@ -42,7 +42,7 @@ import com.android.dialogs.PreferencesDialog;
 import com.android.dialogs.ScrollViewSwitchDialog;
 import com.android.dialogs.elements.DialogListCore;
 import com.android.extendedWidgets.ImageToggleButton;
-import com.android.extendedWidgets.lists.ElementOfConnectionsList;
+import com.android.extendedWidgets.lists.ConnectionsListItem;
 import com.android.extendedWidgets.lists.ListOfConections;
 import com.android.extendedWidgets.lists.PreferencesDialogItem;
 import com.android.extendedWidgets.lists.PreferencesDialogList;
@@ -67,22 +67,9 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	*/
 	private RelativeLayout rl_connections_activity_device_list_background_layout = null;
 	
-	/** Progress bar that appears in the course of generating the list of devices.
-	* 
-	*  This progress bar is an element of {@link #rl_connections_activity_device_list_background_layout}.
-	*  It is displayed during searching for connections with devices and generating their list 
-	*  after tapping one of the buttons: 
-	*  <ul>
-	*  <li> {@link #b_connections_activity_bluetooth_switcher}, </li>
-	*  <li> {@link #b_connections_activity_wireless_switcher}, </li>
-	*  <li> {@link #b_connections_activity_refresh_connections_check}. </li>
-	*  </ul>
-	*/
-	private ProgressBar pb_connections_activity_refreshing = null;
-	
 	/** List of generated connections with other devices.
 	* 
-	* Each generated element consists of fields defined in {@link ElementOfConnectionsList}. 
+	* Each generated element consists of fields defined in {@link ConnectionsListItem}. 
 	* When empty or not initialized it is not displayed at all (see {@link #rl_connections_activity_device_list_background_layout}).
 	* After generating it displays every element on {@link #listOfElements}.
 	* 
@@ -143,7 +130,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	/**
 	* 
 	*/
-	private Collection<ElementOfConnectionsList> listOfElements = null;
+	private Collection<ConnectionsListItem> listOfElements = null;
 	
 	private ListOfConections listOfElementsAdpater = null;
 	
@@ -210,7 +197,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Log.d("ListView","Click index: "+position);
 		
-		ElementOfConnectionsList selectedItem = (ElementOfConnectionsList) parent.getItemAtPosition(position);
+		ConnectionsListItem selectedItem = (ConnectionsListItem) parent.getItemAtPosition(position);
 		Log.d("ListView","Click btorwifi: "+selectedItem.isBTorWiFi());
 
 		if (selectedItem.isBTorWiFi() == true) {
@@ -350,7 +337,9 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 		if (requestCode == REQUEST_ENABLE_BT) {
 			if (resultCode ==  RESULT_OK) {
 				Log.d("connections","BT IS OK");
-				new GenerateConnectionList(listOfElements,pb_connections_activity_refreshing).execute();
+				runLogAsyncThread(
+						OnAsyncTaskFinished.TAG.ConnectionActivity_BT_search,
+						OnAsyncTaskFinished.TAG.ConnectionActivity_BT_search_failed);
 			} else {
 				
 			}
@@ -392,7 +381,6 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 			for ( index = 0; index < childrenCounter; index += 1 ) {
 				rl_connections_activity_device_list_background_layout.getChildAt(index).setVisibility(RelativeLayout.INVISIBLE);
 			}
-			pb_connections_activity_refreshing.setVisibility(ProgressBar.VISIBLE);
 			
 			refreshConnectionList();
 			 
@@ -444,8 +432,6 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	
 	private void initRl_connections_activity_device_list_background_layout(int id) {
 		this.rl_connections_activity_device_list_background_layout = (RelativeLayout) super.findViewById(id);
-		this.pb_connections_activity_refreshing = (ProgressBar) rl_connections_activity_device_list_background_layout.findViewById(R.id.pb_connections_activity_refreshing);
-		this.pb_connections_activity_refreshing.setVisibility(ProgressBar.INVISIBLE);
 	}
 	
 	private void initLv_connections_activity_device_list(int id) {
@@ -455,7 +441,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 				ListView.INVISIBLE);
 		this.lv_connections_activity_device_list.setOnItemClickListener(this);
 		this.lv_connections_activity_device_list.setOnItemLongClickListener(this);
-		this.listOfElements = new ArrayList<ElementOfConnectionsList>();
+		this.listOfElements = new ArrayList<ConnectionsListItem>();
 		Log.d("ListView","OK");
 	}
 
@@ -523,13 +509,13 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 			configuration = wirelessConfigArray.get(index);
 			if (configuration.getStoredIndex() != -1) {
 				configuration.setStored(
-						ElementOfConnectionsList.STORED_YES);
+						ConnectionsListItem.STORED_YES);
 			} else {
 				configuration.setStored(
-						ElementOfConnectionsList.STORED_NO);
+						ConnectionsListItem.STORED_NO);
 			}
 
-			listOfElements.add(new ElementOfConnectionsList(index,configuration));
+			listOfElements.add(new ConnectionsListItem(index,configuration));
 		}
 	}
 	
@@ -543,13 +529,13 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 			configuration = bluetoothConfigArray.get(index);
 			if (configuration.getStoredIndex() != -1) {
 				configuration.setStored(
-						ElementOfConnectionsList.STORED_YES);
+						ConnectionsListItem.STORED_YES);
 			} else {
 				configuration.setStored(
-						ElementOfConnectionsList.STORED_NO);
+						ConnectionsListItem.STORED_NO);
 			}
 			
-			listOfElements.add(new ElementOfConnectionsList(index,configuration));
+			listOfElements.add(new ConnectionsListItem(index,configuration));
 		}
 	}
 	
@@ -740,7 +726,26 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 		AsyncTaskDialog asyncTaskDialog = new AsyncTaskDialog(this);
 		synchronized (asyncTaskDialog ) {
 			asyncTaskDialog.show();
-			new CheckConnectionStatus(this,asyncTaskDialog,asyncCallReason,asyncCallOnError).execute(selectedConfig);
+			switch (asyncCallReason) {
+				case OnAsyncTaskFinished.TAG.ConnectionActivity_onItemClick_BT:
+					new CheckConnectionStatus(this,
+							asyncTaskDialog,asyncCallReason,
+							asyncCallOnError).execute(selectedConfig);
+					break;
+				case OnAsyncTaskFinished.TAG.ConnectionActivity_onItemClick_WIFI:
+					new CheckConnectionStatus(this,
+							asyncTaskDialog,asyncCallReason,
+							asyncCallOnError).execute(selectedConfig);
+					break;
+				case OnAsyncTaskFinished.TAG.ConnectionActivity_onDialogPositiveClick:
+					new CheckConnectionStatus(this,
+							asyncTaskDialog,asyncCallReason,
+							asyncCallOnError).execute(selectedConfig);
+					break;
+				case OnAsyncTaskFinished.TAG.ConnectionActivity_BT_search:
+					new GenerateConnectionList(listOfElements).execute();
+					break;
+			}
 		}
 	}
 

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/list_video_item_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/list_video_item_icon_1"
+        android:contentDescription="@string/contentDescription_list_video_item_icon" />
+    
+    <TextView
+        android:id="@+id/list_video_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/list_video_item_icon"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/tv_empty"
+        android:textAppearance="@style/list_connections_device_name" />
+    
+    <TextView
+        android:id="@+id/list_video_item_duration_prefix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/list_video_item_icon"
+        android:layout_below="@id/list_video_item_title"
+        android:layout_marginLeft="10dp"
+        android:text="@string/tv_list_video_prefix_duration"
+        android:textAppearance="@style/list_connections_device_details" />
+    
+    <TextView
+        android:id="@+id/list_video_item_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/list_video_item_duration_prefix"
+        android:layout_alignBaseline="@id/list_video_item_duration_prefix"
+        android:layout_marginLeft="10dp"
+        android:text="@string/tv_empty"
+        android:textAppearance="@style/list_connections_device_details" />
+
+    <com.android.extendedWidgets.ImageToggleButton
+        android:id="@+id/list_video_item_toggle_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/list_video_item_icon"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/list_video_item_toggle_description"
+        android:contentDescription="@string/contentDescription_list_video_item_toggle_description" />
+
+    <TextView
+        android:id="@+id/list_video_item_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/list_video_item_icon"
+        android:layout_below="@id/list_video_item_icon"
+        android:text="@string/tv_empty"
+        android:textAppearance="@style/list_connections_device_details" />
+
+</RelativeLayout>

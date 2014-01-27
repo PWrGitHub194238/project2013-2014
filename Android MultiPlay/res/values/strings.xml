@@ -65,6 +65,8 @@
     <string name="contentDescription_iv_dialog_welcome_requirements_microphone_help">TODO</string>
     <string name="contentDescription_iv_dialog_welcome_requirements_multitouch_true_false">TODO</string>
     <string name="contentDescription_iv_dialog_welcome_requirements_multitouch_help">TODO</string>
+    <string name="contentDescription_list_video_item_icon">TODO</string>
+    <string name="contentDescription_list_video_item_toggle_description">TODO</string>
     <string name="hint_device_name">Device name</string>
     <string name="hint_device_ip">127.0.0.10</string>
     <string name="hint_device_port">8000</string>

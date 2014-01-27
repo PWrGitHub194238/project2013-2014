@@ -12,19 +12,14 @@ import CodeKey.N;
 import Connect.ConnectWifi;
 import Keyboard.Keyboard;
 import Mouse.Mouse;
-import Speaker.Speaker;
 import VJoy.VJoyDriver;
 import VJoy.VJoyDriver32;
 import VJoy.VJoyDriver64;
 
 public class Serverwifi implements Runnable {
-	private int x = 3, y = 3;
-	private Socket socket;
 	private DataInputStream dis;
 	private DataOutputStream dos;
-	private ServerSocket serversocket;
 	private int port;
-	private int i = 0;
 	private ConnectWifi connect = null;
 
 	public Serverwifi(int port, ConnectWifi connect) {
@@ -38,7 +33,6 @@ public class Serverwifi implements Runnable {
 		VJoyDriver vjoy = null;
 		Mouse mouse = new Mouse();
 		Keyboard keyboard = new Keyboard();
-		Speaker speak = new Speaker();
 		Robot robot;
 		try {
 			robot = new Robot();
@@ -61,10 +55,8 @@ public class Serverwifi implements Runnable {
 					socket = serversocket.accept();
 					dis = new DataInputStream(socket.getInputStream());
 					dos = new DataOutputStream(socket.getOutputStream());
-					this.socket = socket;
 					this.dis = dis;
 					this.dos = dos;
-					this.serversocket = serversocket;
 					int i = 0;
 					while (true) {
 						try {

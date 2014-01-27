@@ -5,12 +5,15 @@ import java.awt.Point;
 import java.awt.PointerInfo;
 /*
  * @author Piotr Baczkiewicz
+ * @see Pos
  */
 public class Pos {
 	public Pos() {
 
 	}
-
+	/*
+	 * @see run
+	 */
 	public void run() {
 		while (true) {
 			PointerInfo a = MouseInfo.getPointerInfo();

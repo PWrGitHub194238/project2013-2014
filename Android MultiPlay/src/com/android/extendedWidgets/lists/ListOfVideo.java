@@ -1,7 +1,5 @@
 package com.android.extendedWidgets.lists;
 
-import java.util.Collection;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,20 +16,19 @@ import com.android.multiplay.R;
 public class ListOfVideo extends BaseAdapter implements OnClickListener {
  
     private Context ctx;
-    private VideoListItem[] data = null;
+    private VideoListItem[] videoList = null;
  
-    public ListOfVideo(Context ctx, Collection<VideoListItem> listElements) {
-    	data = new VideoListItem[listElements.size()];
-    	listElements.toArray(data);
+    public ListOfVideo(Context ctx, VideoListItem[] videoList) {
+    	this.videoList = videoList;
 	    this.ctx = ctx;
     }
  
     public int getCount() {
-    	return data.length;
+    	return videoList.length;
     }
  
     public VideoListItem getItem(int position) {
-    	return data[position];
+    	return videoList[position];
     }
  
     public long getItemId(int position) {
@@ -78,7 +75,7 @@ public class ListOfVideo extends BaseAdapter implements OnClickListener {
         view_holder = (ViewHolderPattern) convertView.getTag();
     }
  
-    view_holder.setElement(data[position]);
+    view_holder.setElement(videoList[position]);
  
     return convertView;
     }

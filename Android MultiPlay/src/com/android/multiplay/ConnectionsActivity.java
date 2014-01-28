@@ -326,6 +326,10 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 		    startActivityForResult(
 		    		new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), 
 		    		REQUEST_ENABLE_BT);
+		} else {
+			runLogAsyncThread(
+					OnAsyncTaskFinished.TAG.ConnectionActivity_BT_search,
+					OnAsyncTaskFinished.TAG.ConnectionActivity_BT_search_failed);
 		}
 	}
 	
@@ -374,6 +378,7 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 	}
 	
 	public void refresh() {
+		Log.d("ListView","REFRESH");
 		if (lv_connections_activity_device_list_visibly == false) {
 			int index = 0;
 			int childrenCounter = rl_connections_activity_device_list_background_layout.getChildCount();
@@ -742,7 +747,9 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 							asyncCallOnError).execute(selectedConfig);
 					break;
 				case OnAsyncTaskFinished.TAG.ConnectionActivity_BT_search:
-					new GenerateConnectionList(listOfElements).execute();
+					new GenerateConnectionList(this,
+							asyncTaskDialog,asyncCallReason,
+							asyncCallOnError).execute();
 					break;
 			}
 		}
@@ -760,7 +767,11 @@ public class ConnectionsActivity extends Activity implements OnItemClickListener
 			break;
 			
 		case OnAsyncTaskFinished.TAG.ConnectionActivity_onDialogPositiveClick:
-			refreshConnectionList();
+			refresh();
+			break;
+		case OnAsyncTaskFinished.TAG.ConnectionActivity_BT_search:
+			refresh();
+			break;
 		}
 	}
 

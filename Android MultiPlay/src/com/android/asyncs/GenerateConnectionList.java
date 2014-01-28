@@ -1,15 +1,15 @@
 package com.android.asyncs;
 
-import java.util.Collection;
 import java.util.Set;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ProgressBar;
 
-import com.android.extendedWidgets.lists.ConnectionsListItem;
+import com.android.application.BluetoothConfigurationClass;
+import com.android.application.MultiPlayApplication;
+import com.android.dialogs.AsyncTaskDialog;
 
 /** Topic searches for available connections to servers based on the ability to detect devices through a mobile device. 
  * 
@@ -19,82 +19,140 @@ import com.android.extendedWidgets.lists.ConnectionsListItem;
  *
  */
 
-public class GenerateConnectionList extends AsyncTask<String, String, String> {
-		 
-	/**
-	 * 
-	 */
-	private Collection<ConnectionsListItem> listOfElements = null;
-	/**
-	 * 
-	 */
-	private ProgressBar progressBar = null;
+public class GenerateConnectionList extends AsyncTask<String, String, Integer> {
 			
 	/**
-	 * @param listOfElements
+	 * 
 	 */
-	public GenerateConnectionList(Collection<ConnectionsListItem> listOfElements) {
-		super();
-		this.listOfElements = listOfElements;
-		this.progressBar = progressBar;
-		Log.d("connections","BT IS OK 1");
-	}
+	private AsyncTaskDialog dialog = null;
+	/**
+	 * 
+	 */
+	private OnAsyncTaskFinished activity = null;
+	/**
+	 * 
+	 */
+	private Integer asyncCallReason = null;
+	/**
+	 * 
+	 */
+	private Integer asyncCallOnError = null;
+	
+	/**
+	 * @param activity
+	 * @param dialog
+	 * @param asyncCallReason
+	 * @param asyncCallOnerror
+	 */
+	public GenerateConnectionList(OnAsyncTaskFinished activity, AsyncTaskDialog dialog, Integer asyncCallReason, Integer asyncCallOnerror) {
+		this.activity = activity;
+		this.dialog = dialog;
+		this.asyncCallReason = asyncCallReason;
+		this.asyncCallOnError = asyncCallOnerror;
+	};
 
+	@Override
+	protected Integer doInBackground(String... params) {
+		Log.d("connections","BT IS OK 2");
+		publishProgress("Establishing connection...");
+		
+		BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+		Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
+		
+		// If there are paired devices
+		if (pairedDevices.size() > 0) {
+		    // Loop through paired devices
+		    for (BluetoothDevice device : pairedDevices) {
+		        BluetoothConfigurationClass btConfiguration = new BluetoothConfigurationClass(
+		        		BluetoothConfigurationClass.generateUUIDfromMAC(
+		    					BluetoothConfigurationClass.Profiles.SSP,
+		    					device.getAddress()), device.getAddress());
+				Log.d("Connections","> UUID: " + btConfiguration.getUuid());
+				Log.d("Connections","> Address: " + btConfiguration.getAdress());
+	
+				btConfiguration.setName(device.getName());
+				
+				btConfiguration.setStored(false);
+				
+				new CheckConnectionStatus().execute(btConfiguration);
+
+				MultiPlayApplication.getDiscoveredBluetoothDevices().add(btConfiguration);
+
+		    }
+		}
+		Log.d("connections","BT IS OK 3");
+		
+		return OnAsyncTaskFinished.TAG.ConnectionActivity_BT_search;
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
+	 */
 	/* (non-Javadoc)
 	 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
 	 */
 	@Override
 	protected void onProgressUpdate(String... values) {
 		super.onProgressUpdate(values);
-		}
-	 
+		updateDialogLogStatus(values[0]);
+	}
+
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+	 */
 	/* (non-Javadoc)
 	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
 	 */
 	@Override
-	protected void onPostExecute(String result) {
+	protected void onPostExecute(Integer result) {
+		// TODO Auto-generated method stub
 		super.onPostExecute(result);
-		progressBar.setVisibility(ProgressBar.INVISIBLE);
+		Log.d("THREAD","Thread closing.");
+		returnToActivity(result);
+		dismissDialog();
 	}
-	 
+
 	/* (non-Javadoc)
-	 * @see android.os.AsyncTask#onPreExecute()
+	 * @see android.os.AsyncTask#onCancelled(java.lang.Object)
+	 */
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onCancelled(java.lang.Object)
 	 */
 	@Override
-	protected void onPreExecute() {
-		super.onPreExecute();
+	protected void onCancelled(Integer result) {
+		// TODO Auto-generated method stub
+		super.onCancelled(result);
+		Log.d("THREAD","Interupted by: " + asyncCallOnError);
+		returnToActivity(asyncCallOnError);
+		dismissDialog();
 	}
-	 
-	/* (non-Javadoc)
-	 * @see android.os.AsyncTask#doInBackground(Params[])
+
+	/**
+	 * @param asyncCallReason
 	 */
-	@Override
-	protected String doInBackground(String... params) {
-		Log.d("connections","BT IS OK 2");
-		BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-		Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
-		// If there are paired devices
-		if (pairedDevices.size() > 0) {
-		    // Loop through paired devices
-		    for (BluetoothDevice device : pairedDevices) {
-		        // Add the name and address to an array adapter to show in a ListView
-//		        listOfElements.add(new ElementOfConnectionsList(0,
-//		        		"AAA"+device.getName(), device.getAddress(), ConnectionHelper.STATUS_NOT_IN_RANGE,
-//						ElementOfConnectionsList.STORED_NO,
-//						N.System.WINDOWS,
-//						-1,
-//						-1,
-//						ConnectionHelper.CONNECTION_TYPE_BT));
-		    }
+	private void returnToActivity(int asyncCallReason) {
+		if ( activity != null ) {
+			activity.onBackgroundFinished(
+					asyncCallReason);
 		}
-		Log.d("connections","BT IS OK 3");
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return "Wykonano wszystkie działania";
 	}
+	
+	/**
+	 * @param message
+	 */
+	private void updateDialogLogStatus(String message) {
+		if (dialog != null ) {
+			dialog.updateDialogLogStatus(message);
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	private void dismissDialog() {
+		if (dialog != null ) {
+			dialog.dismiss();
+		}
+	}
+
 }

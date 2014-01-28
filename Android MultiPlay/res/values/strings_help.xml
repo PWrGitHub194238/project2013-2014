@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="tv_controller_help_keyboard_screen_1_help_1">TODO</string>
+    
+    	<string name="help_keyboard_page_title_1">TODO</string>
+    	<string name="help_keyboard_page_title_2">Video Tutorials</string>    
+    
+    <string name="tv_controller_help_gyromouse_screen_1_help_1">TODO</string>
+    
+    	<string name="help_gyromouse_page_title_1">TODO</string>
+    	<string name="help_gyromouse_page_title_2">Video Tutorials</string>    
+    
+    <string name="tv_controller_help_steeringwheel_screen_1_help_1">TODO</string>
+    
+    	<string name="help_steeringwheel_page_title_1">TODO</string>
+    	<string name="help_steeringwheel_page_title_2">Video Tutorials</string> 
+    
+    <string name="tv_controller_help_gamepad_screen_1_help_1">TODO</string>
+    
+    	<string name="help_gamepad_page_title_1">TODO</string>
+    	<string name="help_gamepad_page_title_2">Video Tutorials</string> 
+    
+    <string name="tv_controller_help_mouse_screen_1_help_1">TODO</string>
+    
+    	<string name="help_mouse_page_title_1">TODO</string>
+    	<string name="help_mouse_page_title_2">Video Tutorials</string> 
+    
+    <string name="tv_controller_help_speaker_screen_1_help_1">TODO</string>
+    
+    	<string name="help_speaker_page_title_1">TODO</string>
+    	<string name="help_speaker_page_title_2">Video Tutorials</string> 
+    
+    <string name="tv_controller_help_touchpad_screen_1_help_1">TODO</string>
+    
+    	<string name="help_touchpad_page_title_1">TODO</string>
+    	<string name="help_touchpad_page_title_2">TODO</string>
+    	<string name="help_touchpad_page_title_3">TODO</string>
+    	<string name="help_touchpad_page_title_4">TODO</string>
+    	<string name="help_touchpad_page_title_5">Video Tutorials</string>
+    	
+</resources>

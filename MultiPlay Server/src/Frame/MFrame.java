@@ -27,7 +27,7 @@ import javax.swing.JPanel;
 import Connect.ConnectWifi;
 import XML.appParser;
 /**
- * 
+ * Main Frame Class
  * @author Piotr B¹czkiewicz
  *
  */
@@ -38,7 +38,7 @@ public class MFrame extends JFrame {
 	List<String> listy;
 	appParser xml;
 /**
- * 
+ * Constructor. Show a computer ip, port, username, architecture and drag and drop list
  * @param connect
  * @param model
  * @param list
@@ -99,19 +99,17 @@ public class MFrame extends JFrame {
 		MenuBar mb = new MenuBar();
 		Menu file = new Menu("File");
 		Menu help = new Menu("Help");
-		Menu options = new Menu("Options");
+	
 		mb.add(file);
 		mb.add(help);
-		mb.add(options);
+
 		MenuItem exit = new MenuItem("Exit");
 		MenuItem about = new MenuItem("About");
 		MenuItem helps = new MenuItem("Help");
-		MenuItem controllers = new MenuItem("Controllers");
-		MenuItem connects = new MenuItem("Connect");
+
 		help.add(about);
 		help.add(helps);
-		options.add(controllers);
-		options.add(connects);
+	
 
 		// ----------------------- settings controllers-------------------
 		JPanel mainPanel = new JPanel();

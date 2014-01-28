@@ -16,7 +16,7 @@ import Connect.ConnectWifi;
 /**
  * 
  * @author Piotr B¹czkiewicz
- *
+ * Thread waiting for a connection from a client
  */
 public class Wifi implements Runnable {
 	private static DataInputStream dis = null;
@@ -25,13 +25,16 @@ public class Wifi implements Runnable {
 	private int i = 0;
 	appParser xml;
 /**
- * 
+ * Constructor
  * @param listy
  */
 	public Wifi(List<String> listy) {
 		this.listy = listy;
 	}
 /**
+ * Method waiting for signals NEED_AUTHORIZATION, NEED_ CONNECTION,
+	 * NEED_APPLICATION, RUN_APPLICATION. Sends basic information about the
+	 * system, such as system name, architecture, etc..
  * @see java.lang.Runnable#run()
  */
 	@Override
@@ -117,8 +120,10 @@ public class Wifi implements Runnable {
 							xml = new appParser();
 							if (xml.getName(index) == nazwa) {
 								nazwa = nazwa.toLowerCase();
+								String path = xml.getPath(index);
+								path=path.replace("\\", "\\\\");
 								ProcessBuilder pb = new ProcessBuilder("cmd",
-										"/c", nazwa);
+										"/c", xml.getPath(index));
 							}
 
 						} else if (System.getProperty("os.name").contains(

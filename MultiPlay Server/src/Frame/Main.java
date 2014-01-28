@@ -12,7 +12,7 @@ import Bluetooth.Bluetooth;
 import Connect.ConnectWifi;
 import Wifi.Wifi;
 /**
- * 
+ * Main Class
  * @author Piotr B¹czkiewicz
  *
  */

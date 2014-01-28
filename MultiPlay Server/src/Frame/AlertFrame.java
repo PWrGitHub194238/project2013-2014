@@ -3,9 +3,9 @@ package Frame;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 /**
- * 
+ * Window minor error
  * @author Piotr B¹czkiewicz
- *
+ *	
  */
 public class AlertFrame extends JFrame {
 /**

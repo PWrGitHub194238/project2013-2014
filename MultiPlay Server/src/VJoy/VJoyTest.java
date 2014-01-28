@@ -3,7 +3,10 @@ package VJoy;
 import java.util.Scanner;
 
 public class VJoyTest {
-	
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 			
 		VJoyDriver driver=new VJoyDriver64(true);

@@ -2,15 +2,21 @@ package Frame;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-/*
- * @author Piotr Baczkiewicz
- * @see PPanel
+/**
+ * 
+ * @author Piotr B¹czkiewicz
+ *
  */
 public class PPanel extends JPanel {
-	/*
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1481970208803953523L;
+
+	/**
+	 * 
 	 * @param dev
 	 * @param system
-	 * @see PPanel
 	 */
 	public PPanel(String dev, String system) {
 		super();

@@ -2,15 +2,16 @@ package Frame;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-/*
- * @author Piotr Baczkiewicz
- * @see AlertFrame
+/**
+ * 
+ * @author Piotr B¹czkiewicz
+ *
  */
 public class AlertFrame extends JFrame {
-	/*
-	 * @param name 
-	 * @see AlertFrame 
-	 */
+/**
+ * 
+ * @param name
+ */
 	public AlertFrame(String name){
 		super(name);
 		this.setSize(500, 100);

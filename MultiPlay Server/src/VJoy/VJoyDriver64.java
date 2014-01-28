@@ -8,7 +8,11 @@ import Frame.AlertFrame;
 import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.jna.Structure;
-
+/**
+ * 
+ * @author Lucjan Koperkiewicz
+ *
+ */
 public class VJoyDriver64 extends VJoyDriver {
 	public interface VJoy64 extends Library {
 	    VJoy64 INSTANCE = (VJoy64)Native.loadLibrary("VJoy64", VJoy64.class);
@@ -42,11 +46,16 @@ public class VJoyDriver64 extends VJoyDriver {
 	
 	VJoy64.JOYSTICK_STATE.ByReference m_joyState;
 	VJoy64 vDLL;
-	
+	/**
+	 * 
+	 * @param autoInit
+	 */
 	public VJoyDriver64(boolean autoInit) {
 		super(autoInit);
 	}
-	
+	/**
+	 * @see VJoy.VJoyDriver#VJoyInit()
+	 */
 	public void VJoyInit()
 	{
 		String myLibraryPath = System.getProperty("user.dir")+"\\dll\\";
@@ -68,7 +77,9 @@ public class VJoyDriver64 extends VJoyDriver {
 		
 		vDLL.VJoy_UpdateJoyState(0, m_joyState);
 	}
-	
+	/**
+	 * @see VJoy.VJoyDriver#updateButtons()
+	 */
 	public boolean updateButtons()
 	{
 		//aktualizujemy stan przycisków
@@ -103,7 +114,9 @@ public class VJoyDriver64 extends VJoyDriver {
 		return true;
 		else return false;
 	}
-	
+	/**
+	 * @see VJoy.VJoyDriver#updateAxes(int, int, int)
+	 */
 	public boolean updateAxes(int axisNr,int cordX,int cordY)
 	{
 		//aktualizujemy stan ga³ki axisNr (1 lub 2) i ustawiamy j¹ na [cordX,cordY], ka¿da oœ w zakresie [-127,127]
@@ -122,7 +135,9 @@ public class VJoyDriver64 extends VJoyDriver {
 		return true;
 		else return false;
 	}
-	
+	/**
+	 * @see VJoy.VJoyDriver#close()
+	 */
 	public void close()
 	{
 		vDLL.VJoy_Shutdown();

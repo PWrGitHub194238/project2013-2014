@@ -12,11 +12,24 @@ public class CarouselViewItem extends RelativeLayout {
 	int maxWeight = 0;
 	ScalableImageView scalableImageView = null;
 	TextView icon_title = null;
-
+/**
+ * 
+ * @param context
+ * @param attrs
+ */
 	public CarouselViewItem(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
-
+/**
+ * 
+ * @param context
+ * @param icon
+ * @param title
+ * @param icon_title_colorID
+ * @param icon_title_size
+ * @param maxHeight
+ * @param maxWeight
+ */
 	public CarouselViewItem(Context context, Bitmap icon, String title, int icon_title_colorID, int icon_title_size, int maxHeight, int maxWeight) {
 		super(context);
 		this.maxHeight = maxHeight;

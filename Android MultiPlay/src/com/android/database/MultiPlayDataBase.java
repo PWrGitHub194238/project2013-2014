@@ -12,10 +12,16 @@ public class MultiPlayDataBase extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "MultiplayDataBase.db";
 	private static final String DEBUG_TAG = "DB";
-
+/**
+ * 
+ * @param context
+ */
     public MultiPlayDataBase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+    /**
+     * @see android.database.sqlite.SQLiteOpenHelper#onCreate(android.database.sqlite.SQLiteDatabase)
+     */
     public void onCreate(SQLiteDatabase db) {
     	Log.d(DEBUG_TAG, "Database creating...");
     	for (DBHelper.SQL_CREATE_DATABASE value : DBHelper.SQL_CREATE_DATABASE.values()) {
@@ -24,6 +30,9 @@ public class MultiPlayDataBase extends SQLiteOpenHelper {
     	}
         Log.d(DEBUG_TAG, "All data is lost.");
     }
+    /**
+     * @see android.database.sqlite.SQLiteOpenHelper#onUpgrade(android.database.sqlite.SQLiteDatabase, int, int)
+     */
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     	 Log.d(DEBUG_TAG, "Database updating...");
         // This database is only a cache for online data, so its upgrade policy is
@@ -36,6 +45,9 @@ public class MultiPlayDataBase extends SQLiteOpenHelper {
         Log.d(DEBUG_TAG, "All data is lost.");
         onCreate(db);
     }
+    /**
+     * @see android.database.sqlite.SQLiteOpenHelper#onDowngrade(android.database.sqlite.SQLiteDatabase, int, int)
+     */
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
     }

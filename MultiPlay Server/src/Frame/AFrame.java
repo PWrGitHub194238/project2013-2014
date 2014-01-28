@@ -2,11 +2,13 @@ package Frame;
 // About Frame
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-/*
- * @author Piotr Baczkiewicz
+/**
+ * 
+ * @author Piotr B¹czkiewicz
+ *
  */
 public class AFrame extends JFrame {
-/*
+/*@
  * @see AFrame window with information about the authors
  */
 	public AFrame() {

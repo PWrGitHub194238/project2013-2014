@@ -13,12 +13,18 @@ import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.application.N.Helper;
 import com.android.multiplay.R;
-
+/**
+ * 
+ * @author Piotr B¹czkiewicz
+ *
+ */
 public class TouchpadActivity extends Activity {
 	private double oldx = 245.0, oldy = 175.0;
 	private TextView txv;
 	private int multi=5;		//mno¿nik do ustawieñ szybkoœci ruchu
-
+/**
+ * @param savedInstanceState
+ */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,7 +39,9 @@ public class TouchpadActivity extends Activity {
 
 	
 	}
-
+/**
+ * @param event
+ */
 	public boolean onTouchEvent(MotionEvent event) {
 		double oldoldx = event.getX(), oldoldy = event.getY();
 
@@ -99,7 +107,11 @@ public class TouchpadActivity extends Activity {
 		oldy = event.getY();
 		return true;
 	}
-
+/**
+ * @param keyCode
+ * @param event
+ * @return true
+ */
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		super.onKeyDown(keyCode, event);
 		if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {

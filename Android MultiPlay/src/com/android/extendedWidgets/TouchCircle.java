@@ -65,7 +65,14 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 	
 	Button button1 = null;
 
-
+/**
+ * 
+ * @param context
+ * @param left
+ * @param top
+ * @param radius
+ * @param screenSize
+ */
 	// CONSTRUCTOR
 	public TouchCircle(Context context, float left, float top, float radius, Point screenSize ) {
 		super(context);
@@ -99,7 +106,13 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 		touchCircleButtons.add(new TouchCircleButton(270, 45, 13, Color.CYAN));
 		touchCircleButtons.add(new TouchCircleButton(315, 45, 14, Color.MAGENTA));
 	}
-
+/**
+ * 
+ * @param left
+ * @param top
+ * @param radius
+ * @param screenSize
+ */
 	private void initSizes(float left, float top, float radius, Point screenSize) {
 		this.left = left;
 		this.top = top;
@@ -126,7 +139,12 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 		Log.d("APP","HX: "+hotPointX+" HY: "+hotPointY);
 		
 	}
-
+/**
+ * 
+ * @param lifeOuterCycleRatio
+ * @param buttonRectangledSize
+ * @return
+ */
 	private RectF getScaledButtonRectangledSize(float lifeOuterCycleRatio, RectF buttonRectangledSize) {
 		float widthDiff = buttonRectangledSize.width()*(1-lifeOuterCycleRatio)/2;
 		float heightDiff = buttonRectangledSize.height()*(1-lifeOuterCycleRatio)/2;
@@ -135,7 +153,9 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 				buttonRectangledSize.right-widthDiff,
 				buttonRectangledSize.bottom-heightDiff);
 	}
-
+/**
+ * 
+ */
 	private void initPaint() {
 		paint = new Paint();
 		paint.setAntiAlias(true);
@@ -143,7 +163,14 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 		paint.setStyle(Paint.Style.STROKE); 
 	}
 
-	
+	/**
+	 * 
+	 * @param a
+	 * @param b
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	private float getParametricAngle(float a, float b, float x, float y) {
 		float partialDiff1 = x - a;
 		float partialDiff2 = y - b;
@@ -154,7 +181,9 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 		}
 		return (float) multitouchAngle;
 	}
-	
+	/**
+	 * @see android.view.View#onDraw(android.graphics.Canvas)
+	 */
 	@Override
 	protected void onDraw(Canvas canvas) {
 		
@@ -185,7 +214,9 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 
 		paint.setColor(Color.WHITE);
 	}
-
+/**
+ * @see android.view.View.OnTouchListener#onTouch(android.view.View, android.view.MotionEvent)
+ */
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		touchRadius = Math.sqrt(Math.pow(event.getX(0)-hotPointX,2) + Math.pow(event.getY(0)-hotPointY,2));
@@ -262,7 +293,9 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 		}
 		return true;
 	}
-
+/**
+ * @see android.view.View.OnLongClickListener#onLongClick(android.view.View)
+ */
 	@Override
 	public boolean onLongClick(View v) {
 		// TODO Auto-generated method stub
@@ -273,11 +306,16 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 	private class TouchCircleConfigDialog extends FullScreenDialog implements AsyncTaskDialogInterface, OnClickListener {
 		
 		private TextView tv_dialog_asynchtask_working = null;
-
+/**
+ * 
+ * @param context
+ */
 		public TouchCircleConfigDialog(Context context) {
 			super(context,R.layout.dialog_touch_circle_config);
 		}
-
+/**
+ * @see com.android.dialogs.FullScreenDialog#dialogInnerViewLogic()
+ */
 		@Override
 		protected void dialogInnerViewLogic() {
 			super.dialogInnerViewLogic();
@@ -285,7 +323,9 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 			button1 =  (Button) super.getLayout().findViewById(R.id.button1);
 			button1.setOnClickListener(this);
 		}
-		
+		/**
+		 * @see com.android.dialogs.AsyncTaskDialogInterface#updateDialogLogStatus(java.lang.String)
+		 */
 		@Override
 		public void updateDialogLogStatus(String log) {
 			if (tv_dialog_asynchtask_working == null) {
@@ -294,7 +334,9 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 			tv_dialog_asynchtask_working.setText(log);
 		
 		}
-
+/**
+ * @see android.view.View.OnClickListener#onClick(android.view.View)
+ */
 		@Override
 		public void onClick(View v) {
 			

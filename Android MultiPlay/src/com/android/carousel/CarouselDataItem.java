@@ -8,7 +8,14 @@ public class CarouselDataItem {
 	private Class<? extends Activity> controllerActivity = null;
 	private Class<? extends Activity> optionsActivity = null;
 	private Class<? extends Activity> helperActivity = null;
-	
+	/**
+	 * 
+	 * @param title
+	 * @param iconId
+	 * @param controllerActivity
+	 * @param optionsActivity
+	 * @param helperActivity
+	 */
 	public CarouselDataItem(String title, int iconId, 
 			Class<? extends Activity> controllerActivity, 
 			Class<? extends Activity> optionsActivity,

@@ -1,14 +1,9 @@
 package Frame;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.PointerInfo;
 import java.awt.Toolkit;
 import java.awt.dnd.DropTarget;
 import java.awt.event.ActionEvent;
@@ -16,17 +11,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.lang.management.ManagementFactory;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.bluetooth.BluetoothStateException;
 import javax.bluetooth.LocalDevice;
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -35,14 +23,13 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTabbedPane;
-
-import XML.appParser;
 
 import Connect.ConnectWifi;
-/*
- * @author Piotr Baczkiewicz
+import XML.appParser;
+/**
+ * 
+ * @author Piotr B¹czkiewicz
+ *
  */
 //Menu Frame
 public class MFrame extends JFrame {
@@ -50,10 +37,10 @@ public class MFrame extends JFrame {
 	private DefaultListModel model;
 	List<String> listy;
 	appParser xml;
-/*
- * @see MFrame Constructor
+/**
+ * 
  * @param connect
- * @param model 
+ * @param model
  * @param list
  * @param listy
  */

@@ -27,7 +27,13 @@ public class CarouselViewAdapter extends BaseAdapter {
 
 	private List<CarouselDataItem> mDocus;
 	int m_w, m_h;
-
+/**
+ * 
+ * @param context
+ * @param docuList
+ * @param image_max_w
+ * @param image_max_h
+ */
 	public CarouselViewAdapter(Context context, List<CarouselDataItem> docuList,
 			int image_max_w, int image_max_h) {
 		m_w = image_max_w;
@@ -35,7 +41,11 @@ public class CarouselViewAdapter extends BaseAdapter {
 		mDocus = docuList;
 		this.context = context;
 	}
-
+/**
+ * 
+ * @param bmp
+ * @return
+ */
 	private Bitmap createReflectedImage(Bitmap bmp) {
 		if (bmp == null) return null;
 		// The gap we want between the reflection and the original image
@@ -81,12 +91,16 @@ public class CarouselViewAdapter extends BaseAdapter {
     	return bitmapWithReflection;
 
 	}
-
+/**
+ * @see android.widget.Adapter#getCount()
+ */
      public int getCount() {
          //return mDocus.length;
     	 return Integer.MAX_VALUE; 
      }
-
+/**
+ * @see android.widget.Adapter#getItem(int)
+ */
 	public CarouselDataItem getItem(int position) {
 		if (mDocus.size() == 0)
 			return null;
@@ -97,7 +111,9 @@ public class CarouselViewAdapter extends BaseAdapter {
 		// return position;
 		return mDocus.get(position);
 	}
-
+/**
+ * @see android.widget.Adapter#getItemId(int)
+ */
 	public long getItemId(int position) {
 		if (mDocus.size() == 0)
 			return 0; // fix divide by zero on filtering
@@ -106,7 +122,9 @@ public class CarouselViewAdapter extends BaseAdapter {
 		}
 		return position;
 	}
-
+/**
+ * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+ */
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// empty items
 		if (mDocus.size() ==0) {
@@ -141,7 +159,11 @@ public class CarouselViewAdapter extends BaseAdapter {
 
 		return scaIv;
 	}
-
+/**
+ * 
+ * @param position
+ * @return
+ */
 	public int checkPosition(int position) {
 		if (position >= mDocus.size()) {
 			position = position % mDocus.size();

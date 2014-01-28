@@ -26,13 +26,19 @@ import android.widget.RelativeLayout;
  * For more information on the GPL, please go to:
  * http://www.gnu.org/copyleft/gpl.html
  *
- */ 
+ */
 
 public class AppUtils {
 	final String LOG_TAG = Singleton.PRJNAME + "::AppUtils";
 
 	public static int MAX_TEXT_LEN = 18;
 
+	/**
+	 * 
+	 * @param label
+	 * @param max
+	 * @return
+	 */
 	public static String ShortText(String label, int max) {
 		if (label != null && label.length() > max)
 			return label.substring(0, max) + "..";
@@ -40,6 +46,10 @@ public class AppUtils {
 			return label;
 	}
 
+	/**
+	 * 
+	 * @param ms
+	 */
 	public static void Sleep(int ms) {
 		try {
 			Thread.sleep(ms);
@@ -48,9 +58,20 @@ public class AppUtils {
 		}
 	}
 
+	/**
+	 * 
+	 * @param vw
+	 * @param vh
+	 * @param styles
+	 * @param left
+	 * @param top
+	 * @return
+	 */
 	// interface elements
-	public static RelativeLayout.LayoutParams GetRLP(int vw, int vh, int styles[][], int left, int top) {
-		RelativeLayout.LayoutParams lpv = new RelativeLayout.LayoutParams(vw,vh);
+	public static RelativeLayout.LayoutParams GetRLP(int vw, int vh,
+			int styles[][], int left, int top) {
+		RelativeLayout.LayoutParams lpv = new RelativeLayout.LayoutParams(vw,
+				vh);
 		if (styles != null) {
 			for (int i = 0; i < styles.length; i++) {
 				if (styles[i] != null) {
@@ -72,11 +93,31 @@ public class AppUtils {
 		return lpv;
 	}
 
+	/**
+	 * 
+	 * @param panel
+	 * @param v
+	 * @param vw
+	 * @param vh
+	 * @param styles
+	 * @param left
+	 * @param top
+	 */
 	public static void AddView(RelativeLayout panel, View v, int vw, int vh,
 			int styles[][], int left, int top) {
 		panel.addView(v, GetRLP(vw, vh, styles, left, top));
 	}
 
+	/**
+	 * 
+	 * @param panel
+	 * @param v
+	 * @param vw
+	 * @param vh
+	 * @param styles
+	 * @param left
+	 * @param top
+	 */
 	public static void UpdateView(RelativeLayout panel, View v, int vw, int vh,
 			int styles[][], int left, int top) {
 		panel.updateViewLayout(v, GetRLP(vw, vh, styles, left, top));

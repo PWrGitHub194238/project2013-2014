@@ -3,16 +3,20 @@ package Mouse;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
-/*
- * @author Piotr Baczkiewicz
- * @see Pos
+/**
+ * 
+ * @author Piotr B¹czkiewicz
+ *
  */
 public class Pos {
+	/**
+	 * 
+	 */
 	public Pos() {
 
 	}
-	/*
-	 * @see run
+	/**
+	 * 
 	 */
 	public void run() {
 		while (true) {

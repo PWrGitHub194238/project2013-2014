@@ -8,18 +8,18 @@ import java.awt.PointerInfo;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.InputEvent;
-import java.awt.event.MouseEvent;
 
 import CodeKey.N;
-/*
- * @author Piotr Baczkiewicz
- * @see Mouse
+/**
+ * 
+ * @author Piotr B¹czkiewicz
+ *
  */
 public class Mouse {
-	/*
-	 * @param x add x to position mouse
-	 * @param y add y to position mouse
-	 * @see run change position mouse
+	/**
+	 * 
+	 * @param x
+	 * @param y
 	 */
 	public void run(int x, int y) {
 		try {
@@ -40,8 +40,8 @@ public class Mouse {
 			e.printStackTrace();
 		}
 	}
-/*
- * @see click
+/**
+ * 
  * @param pm
  */
 	public void click(int pm) {

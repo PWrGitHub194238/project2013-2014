@@ -3,10 +3,15 @@ package com.android.animations;
 import android.view.View;
 import android.support.v4.view.ViewPager.PageTransformer;
 
-
+/*
+ * @author Piotr Baczkiewicz
+ * @see DepthPageTransformer
+ */
 public class DepthPageTransformer implements PageTransformer {
     private static float MIN_SCALE = 0.75f;
-
+/*
+ * @see android.support.v4.view.ViewPager.PageTransformer#transformPage(android.view.View, float)
+ */
     public void transformPage(View view, float position) {
         int pageWidth = view.getWidth();
 

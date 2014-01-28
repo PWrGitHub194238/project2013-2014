@@ -1,14 +1,23 @@
 package VJoy;
-
+/**
+ * 
+ * @author Lucjan Koperkiewicz
+ *
+ */
 public class VJoyReinit implements Runnable {
 	
 	VJoyDriver driver;
-	
+	/**
+	 * 
+	 * @param driver
+	 */
 	VJoyReinit(VJoyDriver driver)
 	{
 		this.driver=driver;
 	}
-	
+	/**
+	 * @see java.lang.Runnable#run()
+	 */
 	public void run()
 	{
 		while(true)

@@ -31,23 +31,41 @@ public class CarouselView extends Gallery  {
      * 
      */
    private float selectedElementSensitive = 0.5f;
-    
+    /**
+     * 
+     * @param context
+     */
    public CarouselView(Context context) {
 	   super(context);
        this.setStaticTransformationsEnabled(true);
    }
-   
+   /**
+    * 
+    * @param context
+    * @param selectedElementSensitive
+    */
     public CarouselView(Context context, float selectedElementSensitive) {
     	super(context);
     	this.selectedElementSensitive = selectedElementSensitive;
         this.setStaticTransformationsEnabled(true);
     }
- 
+ /**
+  * 
+  * @param context
+  * @param attrs
+  * @param defStyle
+  */
     public CarouselView(Context context, AttributeSet attrs, int defStyle) {
     	super(context, attrs, defStyle);
     	this.setStaticTransformationsEnabled(true);   
     }
-    
+    /**
+     * 
+     * @param context
+     * @param attrs
+     * @param defStyle
+     * @param selectedElementSensitive
+     */
     public CarouselView(Context context, AttributeSet attrs, int defStyle, float selectedElementSensitive) {
     	super(context, attrs, defStyle);
     	this.selectedElementSensitive = selectedElementSensitive;

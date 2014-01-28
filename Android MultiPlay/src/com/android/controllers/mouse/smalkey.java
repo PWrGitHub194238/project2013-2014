@@ -1,7 +1,11 @@
 package com.android.controllers.mouse;
 
 import android.widget.Button;
-
+/**
+ * 
+ * @author Piotr B¹czkiewicz
+ *
+ */
 public class smalkey {
 
 	public smalkey(Button button1, Button button2, Button button3,

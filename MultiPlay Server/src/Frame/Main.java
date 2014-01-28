@@ -1,15 +1,7 @@
 package Frame;
 
 import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.lang.management.ManagementFactory;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,22 +9,18 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
 import Bluetooth.Bluetooth;
-import CodeKey.N;
 import Connect.ConnectWifi;
-import Mouse.Mouse;
-import Mouse.Pos;
-import VJoy.VJoyDriver;
-import VJoy.VJoyDriver32;
-import VJoy.VJoyDriver64;
-import VJoy.VJoyDriver32.VJoy32;
-import Wifi.Serverwifi;
 import Wifi.Wifi;
-
+/**
+ * 
+ * @author Piotr B¹czkiewicz
+ *
+ */
 public class Main {
-	/*@author Piotr Baczkiewicz
-	 * @param arg - array from command line
-	 * @return no return value
-	 */
+/**
+ * 
+ * @param args
+ */
 	public static void main(String[] args) {
 		JList list = new JList();
 		DefaultListModel model = new DefaultListModel();

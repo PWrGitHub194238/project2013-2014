@@ -51,7 +51,9 @@ private ImageButton b_goback = null;
 ////////////////////Methods
 
 
-
+/**
+ * @see android.app.Activity#onCreate(android.os.Bundle)
+ */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -65,21 +67,27 @@ private ImageButton b_goback = null;
 		
 		init();
 	}
-
+/**
+ * @see android.app.Activity#onResume()
+ */
 	@Override
 	protected void onResume() {
 		super.onResume();
 		Log.i("Main", "Resume");
 		init();
 	}
-	
+	/**
+	 * @see android.app.Activity#onRestart()
+	 */
 	@Override
 	protected void onRestart() {
 		super.onRestart();
 		init();
 	}
 	
-
+/**
+ * @see android.app.Activity#onDestroy()
+ */
 	@Override 
 	protected void onDestroy() {
 		super.onDestroy();
@@ -90,23 +98,35 @@ private ImageButton b_goback = null;
 //////////////////// Methods for onClick events
 
 	
-	
+	/**
+	 * 
+	 * @param view
+	 */
 	public void explorer_help_OnClick( View view ) {
 		Intent intent = new Intent(this, Movie_activity.class);
 		super.startActivity(intent);
 	}
 	
-	
+	/**
+	 * 
+	 * @param view
+	 */
 	public void controllers_help_OnClick( View view ) {
 		Intent intent = new Intent(this, SystemControllerHelpActivity.class);
 		super.startActivity(intent);
 	}
-	
+	/**
+	 * 
+	 * @param view
+	 */
 	public void options_help_OnClick( View view ) {
 		Intent intent = new Intent(this, OptionsHelpActivity.class);
 		super.startActivity(intent);
 	}
-	
+	/**
+	 * 
+	 * @param view
+	 */
 	public void go_back_OnClick( View view ) {
 		super.finish();
 	}

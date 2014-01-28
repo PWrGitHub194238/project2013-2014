@@ -8,7 +8,11 @@ import Frame.AlertFrame;
 import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.jna.Structure;
-
+/**
+ * 
+ * @author Lucjan Koperkiewicz
+ *
+ */
 public class VJoyDriver32 extends VJoyDriver {
 	public interface VJoy32 extends Library {
 		VJoy32 INSTANCE = (VJoy32) Native.loadLibrary("VJoy32", VJoy32.class);
@@ -50,11 +54,16 @@ public class VJoyDriver32 extends VJoyDriver {
 
 	VJoy32.JOYSTICK_STATE.ByReference m_joyState;
 	VJoy32 vDLL;
-
+/**
+ * 
+ * @param autoInit
+ */
 	public VJoyDriver32(boolean autoInit) {
 		super(autoInit);
 	}
-
+/**
+ * @see VJoy.VJoyDriver#VJoyInit()
+ */
 	public void VJoyInit() {
 		String myLibraryPath = System.getProperty("user.dir") + "\\dll\\";
 		System.setProperty("jna.library.path", myLibraryPath);
@@ -75,7 +84,9 @@ public class VJoyDriver32 extends VJoyDriver {
 
 		vDLL.VJoy_UpdateJoyState(0, m_joyState);
 	}
-
+/**
+ * @see VJoy.VJoyDriver#updateButtons()
+ */
 	public boolean updateButtons() {
 		// aktualizujemy stan przycisków
 		short valueWheel = 0;
@@ -108,7 +119,9 @@ public class VJoyDriver32 extends VJoyDriver {
 		else
 			return false;
 	}
-
+/**
+ * @see VJoy.VJoyDriver#updateAxes(int, int, int)
+ */
 	public boolean updateAxes(int axisNr, int cordX, int cordY) {
 		// aktualizujemy stan ga³ki axisNr (1 lub 2) i ustawiamy j¹ na
 		// [cordX,cordY], ka¿da oœ w zakresie [-127,127]
@@ -125,7 +138,9 @@ public class VJoyDriver32 extends VJoyDriver {
 		else
 			return false;
 	}
-
+/**
+ * @see VJoy.VJoyDriver#close()
+ */
 	public void close() {
 		vDLL.VJoy_Shutdown();
 	}

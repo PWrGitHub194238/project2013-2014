@@ -24,7 +24,11 @@ import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.application.N.Helper;
 import com.android.multiplay.R;
-
+/**
+ * 
+ * @author Piotr B¹czkiewicz
+ *
+ */
 public class SteeringwheelActivity extends Activity implements
 		SensorEventListener, OnSeekBarChangeListener {
 
@@ -42,7 +46,10 @@ public class SteeringwheelActivity extends Activity implements
 	private TextView tv;
 	private int up = 0, down = 0, stop = 0;
 	private Button b1, b2,nitro;
-
+/**
+ @param savedInstanceState
+ * @see android.app.Activity#onCreate(android.os.Bundle)
+ */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -120,13 +127,22 @@ public class SteeringwheelActivity extends Activity implements
 
 	}
 
+/**
 
+ * @see android.hardware.SensorEventListener#onAccuracyChanged(android.hardware.Sensor, int)
+ * @param  arg0
+ * @param arg1
+ */
 	@Override
 	public void onAccuracyChanged(Sensor arg0, int arg1) {
 		// TODO Auto-generated method stub
 
 	}
+/**
 
+ * @see android.hardware.SensorEventListener#onSensorChanged(android.hardware.SensorEvent)
+ * @param arg0
+ */
 	@Override
 	public void onSensorChanged(SensorEvent arg0) {
 		if (stop == 0) {
@@ -149,36 +165,55 @@ public class SteeringwheelActivity extends Activity implements
 			}
 		}
 	}
-
+/**
+ * @see android.app.Activity#onPause()
+ */
 	protected void onPause() {
 		super.onPause();
 		stop = 1;
 	}
+/**
+ * @see android.app.Activity#onResume()
 
+ */
 	protected void onResume() {
 		super.onResume();
 		stop = 0;
 	}
-
+/**
+ * @param seekBar
+ * @param progress
+ * @param fromUser
+ * @see android.widget.SeekBar.OnSeekBarChangeListener#onProgressChanged(android.widget.SeekBar, int, boolean)
+ */
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
 		scale = progress / 100f;
 
 	}
-
+/**
+ * @param seekBar
+ * @see android.widget.SeekBar.OnSeekBarChangeListener#onStartTrackingTouch(android.widget.SeekBar)
+ */
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
 		// TODO Auto-generated method stub
 
 	}
-
+/**
+ * @param seekBar
+ * @see android.widget.SeekBar.OnSeekBarChangeListener#onStopTrackingTouch(android.widget.SeekBar)
+ */
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
 		// TODO Auto-generated method stub
 
 	}
-
+/**
+ * 
+ * @param view
+ */
 	public void onRadioButtonClicked(View view) {
 		// Is the button now checked?
 		((RadioButton) view).toggle();

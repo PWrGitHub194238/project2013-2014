@@ -15,18 +15,28 @@ import Mouse.Mouse;
 import VJoy.VJoyDriver;
 import VJoy.VJoyDriver32;
 import VJoy.VJoyDriver64;
-
+/**
+ * 
+ * @author Piotr B¹czkiewicz
+ *
+ */
 public class Serverwifi implements Runnable {
 	private DataInputStream dis;
 	private DataOutputStream dos;
 	private int port;
 	private ConnectWifi connect = null;
-
+/**
+ * 
+ * @param port
+ * @param connect
+ */
 	public Serverwifi(int port, ConnectWifi connect) {
 		this.port = port;
 		this.connect = connect;
 	}
-
+	/**
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() {
 		System.out.println("WIFI Server");
@@ -42,7 +52,6 @@ public class Serverwifi implements Runnable {
 				else
 					vjoy = new VJoyDriver32(true);
 			}
-
 			int signals = 0;
 			byte data;
 			System.out.println("watek");

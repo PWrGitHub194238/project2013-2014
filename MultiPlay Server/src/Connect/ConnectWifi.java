@@ -8,11 +8,10 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Random;
 
-import javax.bluetooth.UUID;
-
-/*
- * @author Piotr Baczkiewicz
- * @see ConnectWifi
+/**
+ * 
+ * @author Piotr B¹czkiewicz
+ *
  */
 public class ConnectWifi {
 	private int portdefault = 1234;
@@ -21,12 +20,9 @@ public class ConnectWifi {
 	private String IP = null;
 	private ArrayList<Integer> arrlist = new ArrayList<Integer>();
 
-	/*
-	 * @see getIP
+	/**
 	 * 
-	 * @return ip return ip to Wifi connection
-	 * 
-	 * @see getIP
+	 * @return ip
 	 */
 	public String getIP() {
 		String ip = null;
@@ -60,19 +56,17 @@ public class ConnectWifi {
 		return ip;
 	}
 
-	/*
-	 * @see getportdefault get a defaultport 1234 to wifi connection
+	/**
 	 * 
-	 * @return portdefault
+	 * @return default port 1234
 	 */
 	public int getportdefault() {
 		return portdefault;
 	}
 
-	/*
-	 * @see getport get a random unique random port to wifi connection
+	/**
 	 * 
-	 * @return arrlist.get(arrlist.size() - 1) unique port
+	 * @return get unique random port
 	 */
 	public int getport() {
 		Random r = new Random();
@@ -89,7 +83,10 @@ public class ConnectWifi {
 		arrlist.add(port);
 		return arrlist.get(arrlist.size() - 1);
 	}
-
+	/**
+	 * delete unused port from list
+	 * @param port
+	 */
 	public void delport(int port) {
 		int i = arrlist.indexOf(port);
 		arrlist.remove(i);

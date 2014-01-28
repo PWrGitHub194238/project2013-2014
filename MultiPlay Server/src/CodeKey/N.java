@@ -54,7 +54,11 @@ import java.math.BigInteger;
  * }
  * </pre>
  */
-
+/**
+ * 
+ * @author Piotr B¹czkiewicz, Tomasz Strzalka
+ *
+ */
 public final class N {
 
 	public static final class Shift {
@@ -75,8 +79,8 @@ public final class N {
 		public static final int SYSTEM = 1;
 	}
 
-	/**
-	 *
+	/*
+	 * 
 	 */
 	protected static final class Bitmasks {
 		/** */
@@ -235,7 +239,7 @@ public final class N {
 			return integer;
 		}
 
-		// may be useful
+		
 		public static String KEYBOARD_KEY_TO_STRING(int i) {
 			BigInteger b = BigInteger.valueOf(i);
 			String w = new String(b.toByteArray());
@@ -275,6 +279,9 @@ public final class N {
 
 		/**
 		 * 
+		 * @param signal
+		 * @param signalID
+		 * @return signal
 		 */
 		public static final int getSignal(int signal, int signalID) {
 			switch (signalID) {
@@ -296,8 +303,12 @@ public final class N {
 		}
 
 		/**
-    	 * 
-    	 */
+		 * 
+		 * @param device
+		 * @param dev_data_counter
+		 * @param dev_signal_1
+		 * @return Method return encode single signal
+		 */
 		public static final int encodeSignal(int device, int dev_data_counter,
 				int dev_signal_1) {
 			return device + (dev_data_counter << Shift.DEV_DATA_COUNTER)
@@ -306,8 +317,13 @@ public final class N {
 		}
 
 		/**
-    	 * 
-    	 */
+		 * 
+		 * @param device
+		 * @param dev_data_counter
+		 * @param dev_signal_1
+		 * @param dev_signal_2
+		 * @return method return a encode double signal
+		 */
 		public static final int encodeSignal(int device, int dev_data_counter,
 				int dev_signal_1, int dev_signal_2) {
 			return device + (dev_data_counter << Shift.DEV_DATA_COUNTER)
@@ -317,9 +333,11 @@ public final class N {
 					+ (Math.abs(dev_signal_2) << Shift.DEV_SIGNAL_2);
 		}
 
-		/**
-    	 * 
-    	 */
+	/**
+	 * 
+	 * @param signal
+	 * @return output
+	 */
 		public static final int[] decodeSignal(int signal) {
 			int[] output = new int[4];
 			output[0] = getSignal(signal, Helper.DEVICE);
@@ -336,7 +354,11 @@ public final class N {
 			}
 			return output;
 		}
-
+/**
+ * 
+ * @param signal
+ * @return output
+ */
 		public static final int[] decodeSignalFull(int signal) {
 			int[] output = new int[6];
 			output[0] = getSignal(signal, Helper.DEVICE);
@@ -355,7 +377,11 @@ public final class N {
 			}
 			return output;
 		}
-		
+		/**
+		 * 
+		 * @param signal
+		 * @return output
+		 */
 		public static final int[] decodeSignalDataOnly(int signal) {
 			int[] output = new int[2];
 			if ( getSignal(signal, Helper.DEV_DATA_COUNTER) == N.DeviceDataCounter.SINGLE ) {

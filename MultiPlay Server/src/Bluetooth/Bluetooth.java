@@ -5,8 +5,6 @@ import java.awt.Toolkit;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 
 import javax.bluetooth.BluetoothStateException;
@@ -20,10 +18,9 @@ import javax.microedition.io.StreamConnectionNotifier;
 import CodeKey.N;
 import Connect.BluetoothConfigurationClass;
 import Connect.ConnectWifi;
-import Wifi.Serverwifi;
 import XML.appParser;
 
-/*
+/**
  * @author Piotr Baczkiewicz
  */
 public class Bluetooth implements Runnable {
@@ -38,7 +35,7 @@ public class Bluetooth implements Runnable {
 		this.listy = listy;
 	}
 
-	/*
+	/**
 	 * 
 	 * @see java.lang.Runnable#run()
 	 */
@@ -47,14 +44,13 @@ public class Bluetooth implements Runnable {
 		try {
 			waitForConnection();
 		} catch (BluetoothStateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
-	/*
-	 * exception BluetoothStateException
-	 */
+/**
+ * 
+ * @throws BluetoothStateException
+ */
 	private void waitForConnection() throws BluetoothStateException {
 
 		byte data;
@@ -167,7 +163,6 @@ public class Bluetooth implements Runnable {
 					notifier.close();
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

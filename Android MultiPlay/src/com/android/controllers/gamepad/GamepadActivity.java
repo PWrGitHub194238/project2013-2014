@@ -1,3 +1,4 @@
+
 package com.android.controllers.gamepad;
 
 import java.io.IOException;
@@ -15,7 +16,9 @@ import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.application.N.Helper;
 import com.android.multiplay.R;
-
+/*@author Piotr Baczkiewicz
+ * @see GamepadActivity
+ */
 public class GamepadActivity extends Activity {
 	private ImageButton bup, bdown, bleft, bright, bcircle, bsharp, btrinagle,
 			bsquere, bstart;
@@ -23,7 +26,10 @@ public class GamepadActivity extends Activity {
 	private TextView lefttxt, righttxt;
 	private double lefty_center;
 	private double leftx_center, rightx_center, righty_center;
-
+/*
+ * 
+ * @see android.app.Activity#onCreate(android.os.Bundle)
+ */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

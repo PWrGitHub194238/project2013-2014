@@ -1,7 +1,5 @@
 package Bluetooth;
 
-import java.awt.AWTException;
-import java.awt.Robot;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -21,7 +19,7 @@ import VJoy.VJoyDriver;
 import VJoy.VJoyDriver32;
 import VJoy.VJoyDriver64;
 
-/*
+/**
  * @author Piotr Baczkiewicz
  */
 public class Serverbluetooth implements Runnable {
@@ -31,17 +29,16 @@ public class Serverbluetooth implements Runnable {
 	private DataInputStream dis = null;
 	String url = null;
 
-	/*
-	 * @param uuid uuid to bluetooth connection
+	/**
 	 * 
-	 * @param url url to bluetooth connection
+	 * @param uuid
+	 * @param url
 	 */
 	public Serverbluetooth(UUID uuid, String url) {
 		this.url = url;
 	}
 
-	/*
-	 * 
+	/**
 	 * @see java.lang.Runnable#run()
 	 */
 	@Override

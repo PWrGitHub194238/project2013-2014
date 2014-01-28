@@ -6,8 +6,13 @@ import java.util.List;
 import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.jna.Structure;
-
+/**
+ * 
+ * @author Lucjan Koperkiewicz
+ *
+ */
 public class VJoyDriver {
+
 	public interface VJoy32 extends Library {
 	    VJoy32 INSTANCE = (VJoy32)Native.loadLibrary("VJoy32", VJoy32.class);
 	    boolean VJoy_Initialize(String name,String serial);
@@ -52,7 +57,10 @@ public class VJoyDriver {
 	
 	//klasa z w¹tkiem reinicjalizuj¹cym sterownik co 5 minut
 	VJoyReinit reinit;
-	
+	/**
+	 * 
+	 * @param autoInit
+	 */
 	public VJoyDriver(boolean autoInit)
 	{
 		//autoInit - jeœli true to automatycznie inicjalizujemy sterownik i uruchamiamy w¹tek reinicjalizuj¹cy
@@ -113,7 +121,11 @@ public class VJoyDriver {
 		
 		vDLL.VJoy_UpdateJoyState(0, m_joyState);
 	}
-	
+	/**
+	 * 
+	 * @param buttonNumber
+	 * @return boolean value
+	 */
 	public boolean buttonPress(int buttonNumber)
 	{
 		//wciskamy przycisk o podanym numerze
@@ -122,7 +134,11 @@ public class VJoyDriver {
 		return true;
 		else return false;
 	}
-	
+	/**
+	 * 
+	 * @param buttonNumber
+	 * @return
+	 */
 	public boolean buttonRelease(int buttonNumber)
 	{
 		//puszczamy przycisk o podanym numerze
@@ -131,7 +147,10 @@ public class VJoyDriver {
 		return true;
 		else return false;
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean updateButtons()
 	{
 		//aktualizujemy stan przycisków
@@ -166,7 +185,13 @@ public class VJoyDriver {
 		return true;
 		else return false;
 	}
-	
+	/**
+	 * 
+	 * @param axisNr
+	 * @param cordX
+	 * @param cordY
+	 * @return
+	 */
 	public boolean updateAxes(int axisNr,int cordX,int cordY)
 	{
 		//aktualizujemy stan ga³ki axisNr (1 lub 2) i ustawiamy j¹ na [cordX,cordY], ka¿da oœ w zakresie [-127,127]
@@ -185,12 +210,16 @@ public class VJoyDriver {
 		return true;
 		else return false;
 	}
-	
+
 	public void close()
 	{
 		vDLL.VJoy_Shutdown();
 	}
-	
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
 	public boolean testButtons(short i)
 	{
 

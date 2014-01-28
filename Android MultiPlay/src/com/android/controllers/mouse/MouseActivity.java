@@ -14,13 +14,19 @@ import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.application.N.Helper;
 import com.android.multiplay.R;
-
+/**
+ * 
+ * @author Piotr B¹czkiewicz
+ *
+ */
 public class MouseActivity extends Activity {
 	private String tx;
 	private TextView txv;
 	private int hotx = 245, hoty = 176;
 	private int multi=1;		//mno¿nik do ustawieñ szybkoœci ruchu
-
+/**
+ * @param savedInstanceState
+ */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,7 +44,11 @@ public class MouseActivity extends Activity {
 	
 	}
 
-
+/**
+ * @param keyCode
+ * @param event
+ * @return true
+ */
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		super.onKeyDown(keyCode, event);
 		if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
@@ -59,7 +69,10 @@ public class MouseActivity extends Activity {
 		}
 		return true;
 	}
-
+/**
+ * @param event
+ * @return true
+ */
 	public boolean onTouchEvent(MotionEvent event) {
 		int maskedAction = event.getActionMasked();
 		String x = Integer.toString((int)(((hotx - (int) event.getX()) * (-1))/multi*10));
@@ -84,7 +97,10 @@ public class MouseActivity extends Activity {
 		return true;
 		// RETURN SUPER.ONTOUCHEVENT(EVENT);
 	}
-
+/**
+ * 
+ * @param arg0
+ */
 	public void onClick(View arg0) {
 		/*
 		 * switch (arg0.getId()) { case R.id.left: Sender sender = new Sender();

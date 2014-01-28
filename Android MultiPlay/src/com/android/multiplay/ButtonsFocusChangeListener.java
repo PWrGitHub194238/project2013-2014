@@ -10,12 +10,19 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 	private TextView title_of_selected_item = null;
 	private TextView describtion_of_selected_item = null;
 	private int sourseID;
-	
+	/**
+	 * 
+	 * @param activity
+	 * @param sourseID
+	 */
 	public ButtonsFocusChangeListener( Activity activity, int sourseID ) {
 		this.sourseID = sourseID;
 		title_of_selected_item = (TextView) activity.findViewById(R.id.tv_title_of_selected_item);
 		describtion_of_selected_item = (TextView) activity.findViewById(R.id.tv_describtion_of_selected_item);
 	}
+	/**
+	 * @see android.view.View.OnFocusChangeListener#onFocusChange(android.view.View, boolean)
+	 */
 	@Override
 	public void onFocusChange( View view, boolean hasFocus ) {
 		if ( hasFocus ) {
@@ -52,7 +59,9 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 			}
 		}
 	}
-	
+	/*
+	 * 
+	 */
 	private void multiplay_explorer_hasFocus() {
 		hasFocus(
 				R.drawable.activity_title_icon_blue,
@@ -142,7 +151,14 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 				R.drawable.main_activity_2_title_big_background_icon,
 				R.string.tv_option_2_title_description_in_help_activity);	
 	}
-	
+	/**
+	 * 
+	 * @param titleIconID
+	 * @param titleTextID
+	 * @param titleBackgroundID
+	 * @param descBackgroundID
+	 * @param descTextID
+	 */
 	private void hasFocus(int titleIconID, int titleTextID, int titleBackgroundID, int descBackgroundID, int descTextID ) {
 		title_of_selected_item.setCompoundDrawablesWithIntrinsicBounds(
 				titleIconID, 0, 0, 0);

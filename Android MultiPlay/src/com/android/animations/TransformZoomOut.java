@@ -2,12 +2,18 @@ package com.android.animations;
 
 import android.support.v4.view.ViewPager.PageTransformer;
 import android.view.View;
-
+/*
+ * @author Piotr Bazkiewicz
+ * @see TransformZoomOut
+ */
 public class TransformZoomOut implements PageTransformer {
 	private static float MIN_SCALE = 0.85f;
 	private static float MIN_ALPHA = 0.5f;
 
 	@Override
+	/*
+	 * @see android.support.v4.view.ViewPager.PageTransformer#transformPage(android.view.View, float)
+	 */
 	public void transformPage(View arg0, float arg1) {
 		int pageWidth = arg0.getWidth();
 		int pageHeight = arg0.getHeight();

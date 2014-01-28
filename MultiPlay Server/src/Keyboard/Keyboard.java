@@ -5,16 +5,17 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 
 import CodeKey.N;
-/*
- * @author Piotr Baczkiewicz
- * @see Keyboard
+/**
+ * 
+ * @author Piotr B¹czkiewicz
+ *
  */
 public class Keyboard {
 	private Robot robot;
-	/*
-	 * @see click
-	 * @param  key
-	 */
+/**
+ * 
+ * @param key
+ */
 	public void click(int key) {
 		try {
 			robot = new Robot();
@@ -299,10 +300,10 @@ public class Keyboard {
 			e.printStackTrace();
 		}
 	}
-	/*
-	 * @see clickandrelease
-	 * @param  key
-	 */
+/**
+ * 
+ * @param key
+ */
 	public void clickandrelease(int key) {
 		try {
 			robot = new Robot();
@@ -731,9 +732,9 @@ public class Keyboard {
 			e.printStackTrace();
 		}
 	}
-	/*
-	 * @see release
-	 * @param  key
+	/**
+	 * 
+	 * @param key
 	 */
 	public void release(int key) {
 		try {

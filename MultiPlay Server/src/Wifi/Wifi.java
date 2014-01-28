@@ -7,35 +7,38 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
 
 import XML.appParser;
 
 import CodeKey.N;
 import Connect.ConnectWifi;
-import Frame.MFrame;
-
+/**
+ * 
+ * @author Piotr B¹czkiewicz
+ *
+ */
 public class Wifi implements Runnable {
 	private static DataInputStream dis = null;
 	private static DataOutputStream dos = null;
 	private List<String> listy;
 	private int i = 0;
 	appParser xml;
-
+/**
+ * 
+ * @param listy
+ */
 	public Wifi(List<String> listy) {
 		this.listy = listy;
 	}
-
+/**
+ * @see java.lang.Runnable#run()
+ */
 	@Override
 	public void run() {
 		byte data;
 		ConnectWifi connect = new ConnectWifi();
 		System.out.println("Wifi Thread");
-
 		while (true) {
 			data = 0;
 			ServerSocket serversocket;

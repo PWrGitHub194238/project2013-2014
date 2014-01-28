@@ -18,7 +18,9 @@ import com.android.controllers.mouse.smalkey;
 import com.android.dialogs.DialogButtonClickListener;
 import com.android.multiplay.ConnectionsActivity;
 import com.android.multiplay.R;
-
+/**@author Piotr Baczkiewicz
+ * @see KeyboardActivity
+ */
 public class KeyboardActivity extends Activity implements OnClickListener,
 		DialogButtonClickListener {
 	private int shiftflag = 0, altflag = 0;
@@ -28,7 +30,11 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 			button20, button21, button22, button23, button24, button25,
 			button26, button27, button28, button29, button30, button31,
 			button32, button33, button34, button35, button36;
-
+	/**
+	
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 * @param savedInstanceState
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -2511,7 +2517,10 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 
 	}
 
+/*
 
+ * @see android.view.View.OnClickListener#onClick(android.view.View)
+ */
 	public void onClick(View arg0) {
 		int i;
 		int signal;
@@ -2712,16 +2721,27 @@ public class KeyboardActivity extends Activity implements OnClickListener,
 			break;
 		}
 	}
+/**
 
+ * @see com.android.dialogs.DialogButtonClickListener#onDialogPositiveClick(android.app.DialogFragment)
+ * @param dialog
+ */
 	public void onDialogPositiveClick(DialogFragment dialog) {
 		Intent intent = new Intent(this, ConnectionsActivity.class);
 		super.startActivity(intent);
 		this.finish();
 	}
+/**
 
+ * @see com.android.dialogs.DialogButtonClickListener#onDialogNeutralClick(android.app.DialogFragment)
+ *  * @param dialog
+ */
 	public void onDialogNeutralClick(DialogFragment dialog) {
 	}
-
+/**
+ * @see com.android.dialogs.DialogButtonClickListener#onDialogNegativeClick(android.app.DialogFragment)
+ *  * @param dialog
+ */
 	public void onDialogNegativeClick(DialogFragment dialog) {
 		this.finish();
 	}

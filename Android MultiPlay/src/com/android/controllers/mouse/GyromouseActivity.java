@@ -22,7 +22,9 @@ import com.android.application.N;
 import com.android.application.N.Helper;
 import com.android.multiplay.R;
 
-//myszka oparta na żyroskopie(beta).
+/**@author Piotr Baczkiewicz
+ * @see  GyromouseActivity
+ */
 public class GyromouseActivity extends Activity implements SensorEventListener,
 		OnTouchListener {
 	private int shiftflag = 0, altflag = 0;
@@ -37,7 +39,11 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 			button32, button33, button34, button35, button36;
 	int e, signal;
 	private int stop = 0;
+/**
 
+ * @see android.app.Activity#onCreate(android.os.Bundle)
+ * @param savedInstanceState
+ */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -2524,13 +2530,21 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 		}	
 
 	}
+/**
 
+ * @see android.hardware.SensorEventListener#onAccuracyChanged(android.hardware.Sensor, int)
+ * @param arg0
+ * @param arg1
+ */
 	@Override
 	public void onAccuracyChanged(Sensor arg0, int arg1) {
 		// TODO Auto-generated method stub
 
 	}
-
+/**
+ * @see android.hardware.SensorEventListener#onSensorChanged(android.hardware.SensorEvent)
+ * @param arg0
+ */
 	@Override
 	public void onSensorChanged(SensorEvent arg0) {
 		if (stop == 0) {
@@ -2538,13 +2552,25 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 					(int) (arg0.values[1] * multi), (int) (arg0.values[0] * multi)));
 		}
 	}
+/**
 
+ * @see android.app.Activity#onKeyLongPress(int, android.view.KeyEvent)
+ * @param keyCode
+ * @param event
+ * @return false
+ */
 	public boolean onKeyLongPress(int keyCode, KeyEvent event) {
 		super.onKeyLongPress(keyCode, event);
 		return false;
 	}
 
-	// volume and camera button
+	/**
+	 *  volume and camera button
+	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
+	 * @param keyCode
+	 * @param event
+	 * @return true
+	 */
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		super.onKeyDown(keyCode, event);
@@ -2576,7 +2602,10 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 		}
 		return true;
 	}
-
+/**
+ * @see onClick
+ * @param arg0
+ */
 	public void onClick(View arg0) {
 		int i;
 		int signal;
@@ -2778,18 +2807,28 @@ public class GyromouseActivity extends Activity implements SensorEventListener,
 		}
 		
 	}
-
+/**
+ 
+ * @see android.view.View.OnTouchListener#onTouch(android.view.View, android.view.MotionEvent)
+ * @param arg0
+ * @param arg1
+ * @return true
+ */
 	@Override
 	public boolean onTouch(View arg0, MotionEvent arg1) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+/**
+ * @see onPause
+ */
 	protected void onPause() {
 		super.onPause();
 		stop = 1;
 	}
-
+/**
+ * @see onResume
+ */
 	protected void onResume() {
 		super.onResume();
 		stop = 0;

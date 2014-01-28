@@ -4,7 +4,6 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
-import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
@@ -12,16 +11,15 @@ import java.awt.dnd.DropTargetListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
 import XML.appParser;
-/*
- * @author Piotr Baczkiewicz
- * @see DragnDropListener
+/**
+ * 
+ * @author Piotr B¹czkiewicz
+ *
  */
 public class DragnDropListener implements DropTargetListener {
 	private DataFlavor Linux = null;
@@ -29,19 +27,17 @@ public class DragnDropListener implements DropTargetListener {
 	private MFrame frame;
 	List<String> listy;
 	JList list;
-	/*
-	 * @see DragnDropListener constructor to class
-	 * @param frame main frame
-	 * @param list a list of applications that we see	
-	 * @param listy list with application
-	 */
+/** 
+ * @param frame
+ * @param list
+ * @param listy
+ */
 	public DragnDropListener(MFrame frame, JList list, List<String> listy) {
 		this.frame = frame;
 		this.list = list;
 		this.listy = listy;
 	}
-	/*
-	 * @see drop
+	/**
 	 * @see java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
 	 */
 	public void drop(DropTargetDropEvent dropEvent) {
@@ -70,12 +66,14 @@ public class DragnDropListener implements DropTargetListener {
 		}
 
 	}
-	/*
-	 * @see handleDrop
-	 * @see dropEvent
-	 * @see droppedItem
-	 * @see flavor
-	 */
+/**
+ * 
+ * @param dropEvent
+ * @param droppedItem
+ * @param flavor
+ * @throws UnsupportedFlavorException
+ * @throws IOException
+ */
 	private void handleDrop(DropTargetDropEvent dropEvent,
 			Transferable droppedItem, DataFlavor flavor)
 			throws UnsupportedFlavorException, IOException {
@@ -88,11 +86,13 @@ public class DragnDropListener implements DropTargetListener {
 			dropEvent.rejectDrop();
 		}
 	}
-/*
- * @see acceptWindowsDrop
- * @see dropTargetEvent
- * @see droppedItem
- * @see flavor
+/**
+ * 
+ * @param dropTargetEvent
+ * @param droppedItem
+ * @param flavor
+ * @throws UnsupportedFlavorException
+ * @throws IOException
  */
 	private void acceptWindowsDrop(DropTargetDropEvent dropTargetEvent,
 			Transferable droppedItem, DataFlavor flavor)
@@ -150,12 +150,14 @@ public class DragnDropListener implements DropTargetListener {
 		// Inform that the drop is complete
 		dropTargetEvent.dropComplete(true);
 	}
-	/*
-	 * @see acceptLinuxDrop
-	 * @see dropTargetEvent
-	 * @see tr
-	 * @see flavor
-	 */
+/**
+ * 
+ * @param dropTargetEvent
+ * @param tr
+ * @param flavor
+ * @throws UnsupportedFlavorException
+ * @throws IOException
+ */
 	private void acceptLinuxDrop(DropTargetDropEvent dropTargetEvent,
 			Transferable tr, DataFlavor flavor)
 			throws UnsupportedFlavorException, IOException {
@@ -193,26 +195,25 @@ public class DragnDropListener implements DropTargetListener {
 			list.setListData(m);
 		}
 	}
-	/*
-	 * 
+	/**
 	 * @see java.awt.dnd.DropTargetListener#dragEnter(java.awt.dnd.DropTargetDragEvent)
 	 */
 	@Override
 	public void dragEnter(DropTargetDragEvent event) {
 	}
-	/*
+	/**
 	 * @see java.awt.dnd.DropTargetListener#dragExit(java.awt.dnd.DropTargetEvent)
 	 */
 	@Override
 	public void dragExit(DropTargetEvent event) {
 	}
-	/*
+	/**
 	 * @see java.awt.dnd.DropTargetListener#dragOver(java.awt.dnd.DropTargetDragEvent)
 	 */
 	@Override
 	public void dragOver(DropTargetDragEvent event) {
 	}
-	/*
+	/**
 
 	 * @see java.awt.dnd.DropTargetListener#dropActionChanged(java.awt.dnd.DropTargetDragEvent)
 	 */

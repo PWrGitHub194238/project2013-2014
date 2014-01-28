@@ -18,9 +18,15 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+/**
+ * @author Lucjan Koperkiewicz
 
+ */
 public class appParser {
-
+	/**
+	 * 
+	 * @param lista
+	 */
 	public static void saveXML(ArrayList<elementApp> lista) {
 		try {
 
@@ -64,7 +70,10 @@ public class appParser {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * 
+	 * @return lista
+	 */
 	public static ArrayList<elementApp> loadXML() {
 		File fileList = new File("list.xml");
 		ArrayList<elementApp> lista = new ArrayList<elementApp>();
@@ -101,7 +110,12 @@ public class appParser {
 
 		return lista;
 	}
-
+	/**
+	 * 
+	 * @param name
+	 * @param path
+	 * @return lista size
+	 */
 	public static int addApp(String name, String path) {
 		ArrayList<elementApp> lista = loadXML();
 		lista.add(new elementApp(name, path));
@@ -109,6 +123,11 @@ public class appParser {
 		saveXML(lista);
 		return lista.size() - 1;
 	}
+	/**
+	 * 
+	 * @param ind
+	 * @return lista size
+	 */
 
 	public static int deleteApp(int ind) {
 		ArrayList<elementApp> lista = loadXML();
@@ -117,16 +136,28 @@ public class appParser {
 		return lista.size();
 	}
 
+/**
+ * 
+ * @param ID
+ * @return get path to application
+ */
 	public static String getPath(int ID) {
 		ArrayList<elementApp> lista = loadXML();
 		return lista.get(ID).path;
 	}
-
+/**
+ * 
+ * @param ID
+ * @return get application name
+ */
 	public static String getName(int ID) {
 		ArrayList<elementApp> lista = loadXML();
 		return lista.get(ID).name;
 	}
-
+/**
+ * 
+ * @return lista size
+ */
 	public static int getSize() {
 		ArrayList<elementApp> lista = loadXML();
 		return lista.size();
@@ -136,11 +167,17 @@ public class appParser {
 class elementApp {
 	public String name;
 	String path;
-
+/**
+ * 
+ */
 	elementApp() {
 
 	}
-
+	/**
+	 * 
+	 * @param name
+	 * @param path
+	 */
 	elementApp(String name, String path) {
 		this.name = name;
 		this.path = path;

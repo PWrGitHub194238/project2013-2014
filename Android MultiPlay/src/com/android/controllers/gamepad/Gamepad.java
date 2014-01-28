@@ -15,15 +15,19 @@ import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.application.N.Helper;
 import com.android.multiplay.R;
-
+/*
+ * @author Piotr Baczkiewicz
+ * @see Gamepad
+ */
 public class Gamepad extends Activity {
 	private ImageButton bup, bdown, bleft, bright, bcircle, bsharp, btrinagle,
 			bsquere, bstart;
 	private ImageView left, right;
-	private TextView lefttxt, righttxt;
 	private double lefty_center;
 	private double leftx_center, rightx_center, righty_center;
-
+	/*
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -51,8 +55,7 @@ public class Gamepad extends Activity {
 					/ 2.0;
 			righty_center = (double) img_coordinates[1] + right.getHeight()
 					/ 2.0;
-			lefttxt = (TextView) super.findViewById(R.id.lefttext);
-			righttxt = (TextView) super.findViewById(R.id.righttxt);
+			
 			bstart.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
@@ -127,7 +130,6 @@ public class Gamepad extends Activity {
 					} else if (event.getAction() == MotionEvent.ACTION_UP) {
 						String x = Integer.toString(0);
 						String y = Integer.toString(0);
-						righttxt.setText(x + " " + y);
 						 signal = Helper.encodeSignal(
 								N.Device.VJOYJOYSTICKRIGHT,
 								N.DeviceDataCounter.DOUBLE,
@@ -323,7 +325,6 @@ public class Gamepad extends Activity {
 				}
 			});
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

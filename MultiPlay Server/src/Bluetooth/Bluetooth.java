@@ -22,7 +22,8 @@ import Connect.ConnectWifi;
 import XML.appParser;
 
 /**
- * @author Piotr Baczkiewicz
+ * @author Piotr Baczkiewicz 
+ * Thread waiting for a connection from a client
  */
 public class Bluetooth implements Runnable {
 	appParser xml;
@@ -32,6 +33,11 @@ public class Bluetooth implements Runnable {
 	private List<String> listy;
 	private int i = 0;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param listy
+	 */
 	public Bluetooth(List<String> listy) {
 		this.listy = listy;
 	}
@@ -48,10 +54,14 @@ public class Bluetooth implements Runnable {
 			e.printStackTrace();
 		}
 	}
-/**
- * 
- * @throws BluetoothStateException
- */
+
+	/**
+	 * Method waiting for signals NEED_AUTHORIZATION, NEED_ CONNECTION,
+	 * NEED_APPLICATION, RUN_APPLICATION. Sends basic information about the
+	 * system, such as system name, architecture, etc..
+	 * 
+	 * @throws BluetoothStateException
+	 */
 	private void waitForConnection() throws BluetoothStateException {
 
 		byte data;
@@ -147,6 +157,7 @@ public class Bluetooth implements Runnable {
 									appParser.getPath(index).replace("\\", "\\\\"));
 							pb.start();
 							dos.writeByte(N.Signal.APPLICATION_RUNNING);
+							
 						}
 
 					} else if (System.getProperty("os.name").contains("Linux")) {

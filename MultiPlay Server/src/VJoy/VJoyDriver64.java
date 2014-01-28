@@ -9,6 +9,7 @@ import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.jna.Structure;
 /**
+ * The version of VJoyDriver for use on 64-bit systems. For more details on use, see VJoyDriver
  * 
  * @author Lucjan Koperkiewicz
  *
@@ -47,7 +48,7 @@ public class VJoyDriver64 extends VJoyDriver {
 	VJoy64.JOYSTICK_STATE.ByReference m_joyState;
 	VJoy64 vDLL;
 	/**
-	 * 
+	 * @see VJoy.VJoyDriver
 	 * @param autoInit
 	 */
 	public VJoyDriver64(boolean autoInit) {

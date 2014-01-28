@@ -17,19 +17,23 @@ import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.application.N.Helper;
 import com.android.multiplay.R;
+
 /**
+ * Class of speech to text processing
+ * 
  * @author Piotr Baczkiewicz
- * @see SpeakerActivity
+ * 
  */
 public class SpeakerActivity extends Activity {
 	private ImageButton btnSpeak;
 	protected static final int RESULT_SPEECH = 1;
 	private int Punctuation = 0, Commands = 0;
-/**
 
- * @see android.app.Activity#onCreate(android.os.Bundle)
- * @param savedInstanceState
- */
+	/**
+	 * 
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 * @param savedInstanceState
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,10 +48,10 @@ public class SpeakerActivity extends Activity {
 		}
 	}
 
-/**
- * @see onClick
- * @param arg0
- */
+	/**
+	 * @see onClick
+	 * @param arg0
+	 */
 	public void onClick(View arg0) {
 		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
@@ -63,12 +67,13 @@ public class SpeakerActivity extends Activity {
 			t.show();
 		}
 	}
-/**
- * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
- * @param keyCode
- * @param event
- * @return true
- */
+
+	/**
+	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
+	 * @param keyCode
+	 * @param event
+	 * @return true
+	 */
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		int e;
 		if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
@@ -78,7 +83,7 @@ public class SpeakerActivity extends Activity {
 			if (Punctuation == 0 && Commands == 0) {
 				Punctuation = 1;
 				Commands = 0;
-				
+
 				Intent intent = new Intent(
 						RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 				intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
@@ -118,13 +123,15 @@ public class SpeakerActivity extends Activity {
 		return true;
 
 	}
-/**
 
- * @see android.app.Activity#onActivityResult(int, int, android.content.Intent)
- * @param requestCode
- * @param resultCode
- * @param data
- */
+	/**
+	 * 
+	 * @see android.app.Activity#onActivityResult(int, int,
+	 *      android.content.Intent)
+	 * @param requestCode
+	 * @param resultCode
+	 * @param data
+	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		int e;

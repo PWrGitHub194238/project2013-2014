@@ -15,9 +15,9 @@ import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.application.N.Helper;
 import com.android.multiplay.R;
-/*
+/**
  * @author Piotr Baczkiewicz
- * @see Gamepad
+ * Simulate a Gamepad. We have a 9 buttons and 2  joystick
  */
 public class Gamepad extends Activity {
 	private ImageButton bup, bdown, bleft, bright, bcircle, bsharp, btrinagle,
@@ -25,7 +25,8 @@ public class Gamepad extends Activity {
 	private ImageView left, right;
 	private double lefty_center;
 	private double leftx_center, rightx_center, righty_center;
-	/*
+	/**
+	 * 
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 	@Override

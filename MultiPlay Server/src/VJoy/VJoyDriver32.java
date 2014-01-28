@@ -9,6 +9,7 @@ import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.jna.Structure;
 /**
+ * The version of VJoyDriver for use on 32-bit systems. For more details on use, see VJoyDriver
  * 
  * @author Lucjan Koperkiewicz
  *
@@ -55,7 +56,7 @@ public class VJoyDriver32 extends VJoyDriver {
 	VJoy32.JOYSTICK_STATE.ByReference m_joyState;
 	VJoy32 vDLL;
 /**
- * 
+ * @see VJoy.VJoyDriver
  * @param autoInit
  */
 	public VJoyDriver32(boolean autoInit) {

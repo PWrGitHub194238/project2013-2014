@@ -6,7 +6,7 @@ import java.math.BigInteger;
  * Configuration class for network communication within Android and PC devices.
  * 
  * It defines 32-bit integer signal type as follow:
- * 
+ * @author Piotr B¹czkiewicz, Tomasz Strzalka
  * <pre>
  * {@code
  * 	DDDDDDDDDDDD S dddddddddddd s C IIIII
@@ -54,11 +54,7 @@ import java.math.BigInteger;
  * }
  * </pre>
  */
-/**
- * 
- * @author Piotr B¹czkiewicz, Tomasz Strzalka
- *
- */
+
 public final class N {
 
 	public static final class Shift {

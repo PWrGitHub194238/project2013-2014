@@ -19,7 +19,7 @@ import com.android.dialogs.DialogButtonClickListener;
 import com.android.multiplay.ConnectionsActivity;
 import com.android.multiplay.R;
 /**@author Piotr Baczkiewicz
- * @see KeyboardActivity
+ * Simulate a Keyboard
  */
 public class KeyboardActivity extends Activity implements OnClickListener,
 		DialogButtonClickListener {

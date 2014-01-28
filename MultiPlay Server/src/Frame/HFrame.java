@@ -1,20 +1,22 @@
 package Frame;
 
-//Help Frame
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+
 /**
+ * Help Frame
  * 
  * @author Piotr B¹czkiewicz
- *
+ * 
  */
 public class HFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-/**
- * 
- */
+
+	/**
+	 * Constructor
+	 */
 	public HFrame() {
 		super();
 

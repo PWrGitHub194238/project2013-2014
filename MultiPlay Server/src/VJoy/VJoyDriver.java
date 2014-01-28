@@ -8,6 +8,10 @@ import com.sun.jna.Native;
 import com.sun.jna.Structure;
 /**
  * 
+ * Class handling the interaction with VJoy driver and, subsequently, with virtual gamepads created by it. It uses JNA to create interface
+ * that maps functionality of VJoy dll and allows for its use in Java.
+ * NOTE: You should use either 32 or 64-bit version of this class, depending on the OS.
+ * 
  * @author Lucjan Koperkiewicz
  *
  */
@@ -58,8 +62,11 @@ public class VJoyDriver {
 	//klasa z w¹tkiem reinicjalizuj¹cym sterownik co 5 minut
 	VJoyReinit reinit;
 	/**
+	 * Creates new VJoyDriver containing necessary interfaces required for handling virtual gamepad and optionally immediately initializes it (recommended).
+	 * NOTE: You should create either 32 or 64-bit version of this class, depending on the OS.
 	 * 
-	 * @param autoInit
+	 * @param autoInit if true it will automatically initialize driver and start reinitialization thread. Otherwise it will require manual startup
+	 * at a later time - see VJoyStart
 	 */
 	public VJoyDriver(boolean autoInit)
 	{
@@ -95,12 +102,18 @@ public class VJoyDriver {
 		
 	}
 	
+	/**
+	 * Initializes the driver and starts reinitialization thread.
+	 */
 	public void VJoyStart()
 	{
 		VJoyInit();
 		new Thread(reinit).start();
 	}
 	
+	/**
+	 * Initializes the driver from appropiate dll in \dll\ directory. 
+	 */
 	public void VJoyInit()
 	{
 		String myLibraryPath = System.getProperty("user.dir")+"\\dll\\";
@@ -122,9 +135,11 @@ public class VJoyDriver {
 		vDLL.VJoy_UpdateJoyState(0, m_joyState);
 	}
 	/**
+	 * Simulates press of the button with given number on virtual gamepad. Supports buttons from 1 to 24. The pressed button will remain pressed
+	 * until its release - see buttonRelease
 	 * 
-	 * @param buttonNumber
-	 * @return boolean value
+	 * @param buttonNumber number of button to press
+	 * @return true if button was pressed successfully, false if not
 	 */
 	public boolean buttonPress(int buttonNumber)
 	{
@@ -135,9 +150,12 @@ public class VJoyDriver {
 		else return false;
 	}
 	/**
+	 * Releases previously pressed button.
+	 * <p>
+	 * If button was not pressed it does nothing.
 	 * 
-	 * @param buttonNumber
-	 * @return
+	 * @param buttonNumber number of button to release
+	 * @return true if button was released successfully, false if not
 	 */
 	public boolean buttonRelease(int buttonNumber)
 	{
@@ -148,8 +166,11 @@ public class VJoyDriver {
 		else return false;
 	}
 	/**
+	 * Updates the current state of buttons, reflecting it in virtual gamepad.
+	 * It is called automatically by functions responsible for changing buttons' state, but if such a need arises, it can be called to fix
+	 * potential stuck buttons.
 	 * 
-	 * @return
+	 * @return true if driver updated successfully, false if not
 	 */
 	public boolean updateButtons()
 	{
@@ -186,11 +207,14 @@ public class VJoyDriver {
 		else return false;
 	}
 	/**
+	 * Changes the state of chosen analog stick axisNr to coordinates of cordX, cordY.
+	 * The stick will remain in such state until it's changed again, so it is important to remember that returning it to neutral position
+	 * requires calling this function with (cordX,cordY)=(0,0).
 	 * 
-	 * @param axisNr
-	 * @param cordX
-	 * @param cordY
-	 * @return
+	 * @param axisNr the number of analog stick updated. It is 1 for the left stick and 2 for right stick.
+	 * @param cordX the new X position of stick. It is contained in range from -127 to -127, with 0 being central neutral position 
+	 * @param cordY the new Y position of stick. It is contained in range from -127 to -127, with 0 being central neutral position
+	 * @return true if analog stick updated successfully, false if not
 	 */
 	public boolean updateAxes(int axisNr,int cordX,int cordY)
 	{
@@ -211,23 +235,13 @@ public class VJoyDriver {
 		else return false;
 	}
 
+	
+	/**
+	 * Closes the driver and its actions.
+	 */
 	public void close()
 	{
 		vDLL.VJoy_Shutdown();
-	}
-	/**
-	 * 
-	 * @param i
-	 * @return
-	 */
-	public boolean testButtons(short i)
-	{
-
-			m_joyState.Wheel=i;
-		
-		if(vDLL.VJoy_UpdateJoyState(0,m_joyState))
-		return true;
-		else return false;
 	}
 
 }

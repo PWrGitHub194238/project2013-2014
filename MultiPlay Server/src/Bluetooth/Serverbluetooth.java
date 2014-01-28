@@ -20,6 +20,8 @@ import VJoy.VJoyDriver32;
 import VJoy.VJoyDriver64;
 
 /**
+ * Thread receiving and interpreting signals from the controllers
+ * 
  * @author Piotr Baczkiewicz
  */
 public class Serverbluetooth implements Runnable {
@@ -30,6 +32,7 @@ public class Serverbluetooth implements Runnable {
 	String url = null;
 
 	/**
+	 * Constructor
 	 * 
 	 * @param uuid
 	 * @param url
@@ -39,6 +42,8 @@ public class Serverbluetooth implements Runnable {
 	}
 
 	/**
+	 * Method receiving and interpreting signals from the controllers
+	 * 
 	 * @see java.lang.Runnable#run()
 	 */
 	@Override

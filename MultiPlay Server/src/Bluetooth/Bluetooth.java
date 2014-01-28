@@ -16,6 +16,7 @@ import javax.microedition.io.StreamConnection;
 import javax.microedition.io.StreamConnectionNotifier;
 
 import CodeKey.N;
+import CodeKey.N.Helper;
 import Connect.BluetoothConfigurationClass;
 import Connect.ConnectWifi;
 import XML.appParser;
@@ -115,11 +116,15 @@ public class Bluetooth implements Runnable {
 					Serverbluetooth bt = new Serverbluetooth(uuid, url);
 					bt.run();
 				} else if (data == N.Signal.NEED_APPLICATIONS) {
+					System.out.println("NEED_APPS");
+
 					int size = listy.size();
 					i = 0;
-					dos.writeInt(size);
+					dos.writeInt(Helper.encodeSignal(
+							0, N.DeviceDataCounter.DOUBLE, data,size));
+
 					while (i < size) {
-						dos.writeUTF(String.valueOf(i) + "." + listy.get(i));
+						dos.writeUTF(String.valueOf(i) + "_" + listy.get(i));
 						i++;
 					}
 					dis.close();
@@ -127,34 +132,37 @@ public class Bluetooth implements Runnable {
 					connection.close();
 					notifier.close();
 				} else if (data == N.Signal.RUN_APPLICATION) {
+					dos.writeByte(data);
 					// Windows
 					if (System.getProperty("os.name").startsWith("Win")) {
 						String id = dis.readUTF();
 						// --------miejsce na odczyt z xml danych
-						String[] name = id.split(".", 1);
+						String[] name = id.split("_",2);
 						int index = Integer.parseInt(name[0]);
 						String nazwa = name[1];
-
 						xml = new appParser();
-						if (xml.getName(index) == nazwa) {
+						if (appParser.getName(index).equals(nazwa)) {
 							nazwa = nazwa.toLowerCase();
 							ProcessBuilder pb = new ProcessBuilder("cmd", "/c",
-									nazwa);
+									appParser.getPath(index).replace("\\", "\\\\"));
+							pb.start();
+							dos.writeByte(N.Signal.APPLICATION_RUNNING);
 						}
 
 					} else if (System.getProperty("os.name").contains("Linux")) {
 						String id = dis.readUTF();
 						// --------miejsce na odczyt z xml danych
-						String[] name = id.split(".", 1);
+						String[] name = id.split("_",2);
 						int index = Integer.parseInt(name[0]);
 						String nazwa = name[1];
 
 						xml = new appParser();
-						if (xml.getName(index) == nazwa) {
+						if (appParser.getName(index) == nazwa) {
 							nazwa = nazwa.toLowerCase();
 							String[] cmd = new String[] { "/bin/bash", "-c",
 									nazwa };
 							Runtime.getRuntime().exec(cmd);
+							dos.writeByte(N.Signal.APPLICATION_RUNNING);
 						}
 					}
 					dis.close();

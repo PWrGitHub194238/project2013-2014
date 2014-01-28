@@ -78,7 +78,7 @@ public class WelcomeDialogCheckRequirements_1Step extends ScrollViewDialog imple
 			et_dialog_welcome_device_name.setTag(DEVICE_NAME);
 			et_dialog_welcome_device_name.setOnEditorActionListener(this);
 			tv_dialog_welcome_3 = (TextView) dialogInnerView.findViewById(R.id.tv_dialog_welcome_3);
-			tv_dialog_welcome_3.setVisibility(TextView.INVISIBLE);
+			tv_dialog_welcome_3.setVisibility(TextView.GONE);
 			
 			pb_dialog_welcome_requirements = (ExtendedProgressBar) dialogInnerView.findViewById(R.id.pb_dialog_welcome_requirements);
 			pb_dialog_welcome_requirements.setOnProgressChangedListener(this);

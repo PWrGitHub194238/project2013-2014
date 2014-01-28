@@ -8,6 +8,8 @@
     <string name="dialog_ID_TITLE_CONNECT_CONFIRMATION">Confirmation</string>
     <string name="dialog_ID_TITLE_CONNECT_DENY">Not in range</string>
     <string name="dialog_ID_TITLE_NO_CONNECTION_FOUND">Connection not found</string>
+    <string name="dialog_ID_TITLE_APPLICATION_CHECKOUT_FAILURE">Cannot check out apps</string>
+    <string name="dialog_ID_TITLE_APPLICATION_RUN_FAILURE">Unable to run application</string>
     
     <string name="dialog_ID_TITLE_WELCOME_1">Welcome in MultiPlay!</string>
    	<string name="dialog_ID_TITLE_WELCOME_2">Welcome in MultiPlay!</string>
@@ -31,6 +33,8 @@
 	<string name="dialog_ID_MESSAGE_CONNECT_DENY">I cannot establish the connection. \nTry recheck it or choose other configuration.</string>
 	<string name="dialog_ID_MESSAGE_RESET_DB">Are you sure to reset entire application data?</string>
 	<string name="dialog_ID_MESSAGE_WORKING">Working &#8230;</string>
+	<string name="dialog_ID_MESSAGE_APPLICATION_CHECKOUT_FAILURE"></string>
+	<string name="dialog_ID_MESSAGE_APPLICATION_RUN_FAILURE"></string>
 	
 	<string name="dialog_ID_BUTTON_CANCEL">Cancel</string>
 	<string name="dialog_ID_BUTTON_OPTIONS">Options</string>

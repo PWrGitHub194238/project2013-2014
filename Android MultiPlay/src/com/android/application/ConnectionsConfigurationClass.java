@@ -1,5 +1,12 @@
 package com.android.application;
 
+/** It stores all data collected from the server during establishing connection that application needs. 
+ * 
+ * It is the base class for different types of connections that are possible to establish ({@link BluetoothConfigurationClass} and {@link WirelessConfigurationClass}).
+ * 
+ * @author tomasz
+ *
+ */
 public class ConnectionsConfigurationClass {
 
 	private String name = null;

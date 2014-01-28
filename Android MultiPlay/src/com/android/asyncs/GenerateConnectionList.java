@@ -9,15 +9,30 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ProgressBar;
 
-import com.android.application.N;
 import com.android.extendedWidgets.lists.ConnectionsListItem;
-import com.android.services.ConnectionHelper;
+
+/** Topic searches for available connections to servers based on the ability to detect devices through a mobile device. 
+ * 
+ * Adds found a connection to the appropriate list.
+ * 
+ * @author tomasz
+ *
+ */
 
 public class GenerateConnectionList extends AsyncTask<String, String, String> {
 		 
+	/**
+	 * 
+	 */
 	private Collection<ConnectionsListItem> listOfElements = null;
+	/**
+	 * 
+	 */
 	private ProgressBar progressBar = null;
 			
+	/**
+	 * @param listOfElements
+	 */
 	public GenerateConnectionList(Collection<ConnectionsListItem> listOfElements) {
 		super();
 		this.listOfElements = listOfElements;
@@ -25,22 +40,34 @@ public class GenerateConnectionList extends AsyncTask<String, String, String> {
 		Log.d("connections","BT IS OK 1");
 	}
 
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
+	 */
 	@Override
 	protected void onProgressUpdate(String... values) {
 		super.onProgressUpdate(values);
 		}
 	 
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+	 */
 	@Override
 	protected void onPostExecute(String result) {
 		super.onPostExecute(result);
 		progressBar.setVisibility(ProgressBar.INVISIBLE);
 	}
 	 
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onPreExecute()
+	 */
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
 	}
 	 
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#doInBackground(Params[])
+	 */
 	@Override
 	protected String doInBackground(String... params) {
 		Log.d("connections","BT IS OK 2");

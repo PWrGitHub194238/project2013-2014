@@ -40,20 +40,21 @@ public class appParser {
 			doc.appendChild(root);
 
 			Element app, temp;
-			for (int i = 0; i < lista.size(); i++) {
-				app = doc.createElement("app");
-
-				temp = doc.createElement("name");
-				temp.appendChild(doc.createTextNode(lista.get(i).name));
-				app.appendChild(temp);
-
-				temp = doc.createElement("path");
-				temp.appendChild(doc.createTextNode(lista.get(i).path));
-				app.appendChild(temp);
-
-				root.appendChild(app);
+			if (lista != null ) {
+				for (int i = 0; i < lista.size(); i++) {
+					app = doc.createElement("app");
+	
+					temp = doc.createElement("name");
+					temp.appendChild(doc.createTextNode(lista.get(i).name));
+					app.appendChild(temp);
+	
+					temp = doc.createElement("path");
+					temp.appendChild(doc.createTextNode(lista.get(i).path));
+					app.appendChild(temp);
+	
+					root.appendChild(app);
+				}
 			}
-
 			TransformerFactory transformerFactory = TransformerFactory
 					.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
@@ -76,6 +77,11 @@ public class appParser {
 	 */
 	public static ArrayList<elementApp> loadXML() {
 		File fileList = new File("list.xml");
+		
+		if ( !fileList.exists() ) {
+			saveXML(null);
+			fileList = new File("list.xml");
+		}
 		ArrayList<elementApp> lista = new ArrayList<elementApp>();
 
 		try {

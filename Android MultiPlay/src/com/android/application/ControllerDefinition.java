@@ -2,6 +2,15 @@ package com.android.application;
 
 import android.app.Activity;
 
+/** It defines the structure of each controller, located in the application. 
+ * 
+ * Each controller should be assigned a unique signal, after which the receiving server uniquely identifies it, 
+ * the icon, the class where the controller is implemented, where there is help for it and where the implementation of its configuration is. 
+ * Additionally, requirements have to be specified for the controller: both system and on the side of the mobile device (e.g. sensors). The list of requirements can be empty.
+ * 
+ * @author tomasz
+ *
+ */
 public class ControllerDefinition {
 	
 	public static final boolean STAND_ALONE = true;
@@ -17,6 +26,18 @@ public class ControllerDefinition {
 	private int systemRequirement = C.Requirements.OS_EVERY;
 	private String[] requirements = null;
 	
+	/**
+	 * 
+	 * @param signal
+	 * @param name
+	 * @param iconID
+	 * @param isStandAlone
+	 * @param controllerActivity
+	 * @param optionsActivity
+	 * @param helperActivity
+	 * @param systemRequirement
+	 * @param requirements
+	 */
 	public ControllerDefinition(int signal, String name, int iconID, boolean isStandAlone,
 			Class<? extends Activity> controllerActivity, Class<? extends Activity> optionsActivity,
 			Class<? extends Activity> helperActivity, int systemRequirement, String[] requirements) {

@@ -150,14 +150,6 @@
 	        android:layout_centerHorizontal="true"
 	        android:layout_marginBottom="25dp"
 	        android:text="@string/tv_connections_activity_need_refresh_1" />
-
-	    <ProgressBar
-	        android:id="@+id/pb_connections_activity_refreshing"
-	        style="?android:attr/progressBarStyleLarge"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_centerInParent="true"
-	        android:visibility="visible" />
 	    
 	</RelativeLayout>
 

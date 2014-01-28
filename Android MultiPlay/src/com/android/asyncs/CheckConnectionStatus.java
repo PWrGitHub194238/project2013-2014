@@ -21,32 +21,94 @@ import com.android.application.WirelessConfigurationClass;
 import com.android.dialogs.AsyncTaskDialog;
 import com.android.services.ConnectionHelper;
 
+
+/** Topic check the status of the selected call to the server. 
+ * 
+ * In case of failure the result is returned after a set time from the start of the connection attempt.
+ * 
+ * @author tomasz
+ *
+ */
 public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationClass, String, Integer> {
 
+	/**
+	 * 
+	 */
 	public static int TIMEOUT = 3000;
 	
+	/**
+	 * 
+	 */
 	private Socket socket = null;
+	/**
+	 * 
+	 */
 	private InetSocketAddress socketAddress = null;
+	/**
+	 * 
+	 */
 	private WirelessConfigurationClass wirelessConfiguration = null;
 	
+	/**
+	 * 
+	 */
 	private BluetoothSocket bluetoothSocket = null;
+	/**
+	 * 
+	 */
 	private BluetoothAdapter bluetoothAdapter = null;
+	/**
+	 * 
+	 */
 	private BluetoothDevice bluetoothDevice = null;
+	/**
+	 * 
+	 */
 	private UUID uuid = null;
+	/**
+	 * 
+	 */
 	private BluetoothConfigurationClass bluetoothConfiguration = null;
 	
+	/**
+	 * 
+	 */
 	private DataInputStream dis = null;
+	/**
+	 * 
+	 */
 	private DataOutputStream dos = null;
+	/**
+	 * 
+	 */
 	byte recivedAuthorizationConfirmation = 0;
 	
+	/**
+	 * 
+	 */
 	private ConnectionsConfigurationClass networkConfiguration = null;
 	
+	/**
+	 * 
+	 */
 	private AsyncTaskDialog dialog = null;
+	/**
+	 * 
+	 */
 	private OnAsyncTaskFinished activity = null;
+	/**
+	 * 
+	 */
 	private Integer asyncCallReason = null;
+	/**
+	 * 
+	 */
 	private Integer asyncCallOnError = null;
 
 	
+	/**
+	 * 
+	 */
 	public CheckConnectionStatus() {
 		this.dialog = null;
 		this.activity = null;
@@ -54,6 +116,10 @@ public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationCla
 		this.asyncCallOnError = OnAsyncTaskFinished.TAG.ConnectionActivity_Empty;
 	};
 
+	/**
+	 * @param activity
+	 * @param dialog
+	 */
 	public CheckConnectionStatus(OnAsyncTaskFinished activity, AsyncTaskDialog dialog) {
 		this.activity = activity;
 		this.dialog = dialog;
@@ -61,6 +127,11 @@ public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationCla
 		this.asyncCallOnError = OnAsyncTaskFinished.TAG.ConnectionActivity_Empty;
 	};
 	
+	/**
+	 * @param activity
+	 * @param dialog
+	 * @param asyncCallReason
+	 */
 	public CheckConnectionStatus(OnAsyncTaskFinished activity, AsyncTaskDialog dialog, Integer asyncCallReason) {
 		this.activity = activity;
 		this.dialog = dialog;
@@ -68,6 +139,12 @@ public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationCla
 		this.asyncCallOnError = OnAsyncTaskFinished.TAG.ConnectionActivity_Empty;
 	};
 	
+	/**
+	 * @param activity
+	 * @param dialog
+	 * @param asyncCallReason
+	 * @param asyncCallOnerror
+	 */
 	public CheckConnectionStatus(OnAsyncTaskFinished activity, AsyncTaskDialog dialog, Integer asyncCallReason, Integer asyncCallOnerror) {
 		this.activity = activity;
 		this.dialog = dialog;
@@ -76,6 +153,9 @@ public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationCla
 	};
 	
 	
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#doInBackground(Params[])
+	 */
 	@Override
 	protected synchronized Integer doInBackground(ConnectionsConfigurationClass... params) {
 
@@ -241,10 +321,17 @@ public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationCla
 		return asyncCallOnError;
 	}
 	
+	/**
+	 * @param recivedAuthorizationConfirmation
+	 * @return
+	 */
 	private boolean isAuthorizationSuccess(byte recivedAuthorizationConfirmation) {
 		return N.Signal.NEED_AUTHORIZATION == N.Signal.decodeSignal(recivedAuthorizationConfirmation);
 	}
 
+	/**
+	 * @param data
+	 */
 	private void getServerScreenDimension(int data) {
 		int[] serverSideScreenDimensions = new int[5];
 		serverSideScreenDimensions = N.Helper.decodeSignal(data);
@@ -261,6 +348,10 @@ public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationCla
 		
 	}
 
+	/**
+	 * @param serverSideScreenDimensions
+	 * @return
+	 */
 	private boolean isDimensionRecived(int[] serverSideScreenDimensions) {
 		return serverSideScreenDimensions[0] == N.Signal.DIMENSION;
 	}
@@ -270,12 +361,18 @@ public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationCla
 	/* (non-Javadoc)
 	 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
 	 */
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
+	 */
 	@Override
 	protected void onProgressUpdate(String... values) {
 		super.onProgressUpdate(values);
 		updateDialogLogStatus(values[0]);
 	}
 
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+	 */
 	/* (non-Javadoc)
 	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
 	 */
@@ -291,6 +388,9 @@ public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationCla
 	/* (non-Javadoc)
 	 * @see android.os.AsyncTask#onCancelled(java.lang.Object)
 	 */
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onCancelled(java.lang.Object)
+	 */
 	@Override
 	protected void onCancelled(Integer result) {
 		// TODO Auto-generated method stub
@@ -300,6 +400,9 @@ public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationCla
 		dismissDialog();
 	}
 
+	/**
+	 * @param asyncCallReason
+	 */
 	private void returnToActivity(int asyncCallReason) {
 		if ( activity != null ) {
 			activity.onBackgroundFinished(
@@ -307,12 +410,18 @@ public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationCla
 		}
 	}
 	
+	/**
+	 * @param message
+	 */
 	private void updateDialogLogStatus(String message) {
 		if (dialog != null ) {
 			dialog.updateDialogLogStatus(message);
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	private void dismissDialog() {
 		if (dialog != null ) {
 			dialog.dismiss();

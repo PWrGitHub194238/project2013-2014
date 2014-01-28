@@ -42,7 +42,6 @@ public class ListOfVideo extends BaseAdapter implements OnClickListener {
     	private ImageView video_icon = null;
     	private TextView video_title = null;
     	private TextView video_duration = null;
-    	private ImageToggleButton toggleDescription = null;
     	private TextView video_description = null;
 
     	
@@ -72,8 +71,6 @@ public class ListOfVideo extends BaseAdapter implements OnClickListener {
         view_holder.video_icon = (ImageView) convertView.findViewById(R.id.list_video_item_icon);
         view_holder.video_title = (TextView) convertView.findViewById(R.id.list_video_item_title);
         view_holder.video_duration = (TextView) convertView.findViewById(R.id.list_video_item_duration);
-        view_holder.toggleDescription = (ImageToggleButton) convertView.findViewById(R.id.list_video_item_toggle_description);
-        view_holder.toggleDescription.setOnClickListener(this);
         view_holder.video_description = (TextView) convertView.findViewById(R.id.list_video_item_description);
 
         convertView.setTag(view_holder);

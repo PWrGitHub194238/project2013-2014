@@ -10,6 +10,15 @@ import android.util.Log;
 
 import com.android.database.tables.General;
 
+/** Checks the availability of services in the mobile device. 
+ * 
+ * If successful, returns a "0" for the item, in the case of "1" it expresses the fact of the successful validation test services, but it is not tested for the particular type of device. 
+ * The "2" represents failure.
+ * 
+ * @author Lucjan Koperkewicz
+ * @author tomasz
+ *
+ */
 
 public class FunctionalityCheck {
 
@@ -20,12 +29,20 @@ public class FunctionalityCheck {
 		android.os.Build.VERSION_CODES.KITKAT
 	};
 	
+	/**
+	 * 
+	 * @param context
+	 */
 	public FunctionalityCheck(Context context)
 	{		
 		packageManager = context.getPackageManager();
 		sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public HashMap<String, Integer> deviceCheck()
 	{
 		HashMap<String, Integer> returnedData=new HashMap<String,Integer>();
@@ -46,6 +63,10 @@ public class FunctionalityCheck {
 		return returnedData;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int checkBluetooth() {
 		if(!packageManager.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH)) {
 			Log.d("REQ","X FEATURE_BLUETOOTH");
@@ -57,6 +78,10 @@ public class FunctionalityCheck {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public int checkBluetoothLE() {
 		if(!packageManager.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
 			Log.d("REQ","X FEATURE_BLUETOOTH_LE");
@@ -66,6 +91,10 @@ public class FunctionalityCheck {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public int checkWifi() {
 		if(!packageManager.hasSystemFeature(PackageManager.FEATURE_WIFI)) {
 			Log.d("REQ","X FEATURE_WIFI");
@@ -75,6 +104,10 @@ public class FunctionalityCheck {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public int checkWifiDirect() {
 		if(!packageManager.hasSystemFeature(PackageManager.FEATURE_WIFI_DIRECT)) {
 			Log.d("REQ","X FEATURE_WIFI_DIRECT");
@@ -84,6 +117,10 @@ public class FunctionalityCheck {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public int checkAccelerometer() {
 		if(sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) == null) {
 			Log.d("REQ","X TYPE_ACCELEROMETER");
@@ -93,6 +130,10 @@ public class FunctionalityCheck {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public int checkGyroscope() {
 		if(sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) == null) {
 			Log.d("REQ","X TYPE_GYROSCOPE");
@@ -102,6 +143,10 @@ public class FunctionalityCheck {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public int checkGravity() {
 		if(sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY) == null) {
 			Log.d("REQ","X TYPE_GRAVITY");
@@ -111,6 +156,10 @@ public class FunctionalityCheck {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public int checkVector() {
 		if(sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR) == null) {
 			Log.d("REQ","X TYPE_ROTATION_VECTOR");
@@ -129,6 +178,11 @@ public class FunctionalityCheck {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param sdkInt
+	 * @return
+	 */
 	private boolean isTestedSDK(int sdkInt) {
 		int versionsCount = BTTestetDevices.length;
 		int i;
@@ -140,6 +194,10 @@ public class FunctionalityCheck {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int checkMicrophone() {
 		if(!packageManager.hasSystemFeature(PackageManager.FEATURE_MICROPHONE)) {
 			Log.d("REQ","X FEATURE_MICROPHONE");
@@ -149,6 +207,10 @@ public class FunctionalityCheck {
 		}
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int checkMultitouch() {
 		if(packageManager.hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH)) {
 			if(packageManager.hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH_DISTINCT) || packageManager.hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH_JAZZHAND)) {

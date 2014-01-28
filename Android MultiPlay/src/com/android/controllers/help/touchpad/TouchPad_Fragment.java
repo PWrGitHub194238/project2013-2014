@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -19,10 +18,9 @@ import android.widget.RelativeLayout;
 
 import com.android.extendedWidgets.lists.ListOfVideo;
 import com.android.extendedWidgets.lists.VideoListItem;
-import com.android.multiplay.MainActivity;
 import com.android.multiplay.R;
 
-public class TouchPad_Fragment extends Fragment implements OnItemClickListener {
+public class TouchPad_Fragment extends Fragment {
 	private int mCurrentPage;
 	private ListOfVideo listOfElementsAdpater;
 	private Collection<VideoListItem> listOfElements;
@@ -98,7 +96,15 @@ public class TouchPad_Fragment extends Fragment implements OnItemClickListener {
 		screen_5 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_touchpad_screen_5);
 
 		screen_5_listView1 = (ListView) v.findViewById(R.id.iv_controller_help_touchpad_screen_5_listView1);
-		screen_5_listView1.setOnItemClickListener(this);
+		screen_5_listView1.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		listOfElements = new ArrayList<VideoListItem>();
 		listOfElements.add(new VideoListItem(0, "Jakiœtam url", VideoListItem.VIDEO_MINIATURE.FIRST, "Jakiœtam tytu³", 12, "Jakiœtam opis"));
 		listOfElements.add(new VideoListItem(0, "Jakiœtam url", VideoListItem.VIDEO_MINIATURE.SECOND, "Jakiœtam tytu³", 12, "Jakiœtam opis"));
@@ -157,14 +163,6 @@ public class TouchPad_Fragment extends Fragment implements OnItemClickListener {
 		
 		return v;
 
-	}
-
-	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		Intent intent = new Intent(context, MainActivity.class);
-		intent.putExtra("VIDEO_URL", "OK");
-		startActivity(intent);
-		
 	}
 
 }

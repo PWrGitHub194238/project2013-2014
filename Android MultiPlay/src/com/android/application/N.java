@@ -53,6 +53,9 @@ import java.math.BigInteger;
  * 	int[] ret = Helper.decodeSignal(signal);
  * }
  * </pre>
+ * 
+ * @author tomasz
+ * @author Piotr Baczkiewicz
  */
 
 public final class N {
@@ -136,14 +139,26 @@ public final class N {
 				"00000011", 2);
 		public static final byte RUN_APPLICATION = (byte) Integer.parseInt(
 				"00000100", 2);
+		public static final byte APPLICATION_RUNNING = (byte) Integer.parseInt(
+				"00000101", 2);
 		public static final byte encodeSignal(byte signal, byte system) {
 			return (byte) (signal + (system << Shift.SYSTEM));
 		}
 		
+		/**
+		 * 
+		 * @param signal
+		 * @return
+		 */
 		public static final byte decodeSignal(byte signal) {
 			return (byte) (signal & Bitmasks.bit_mask(Bitmasks.BIT1));
 		}
 		
+		/**
+		 * 
+		 * @param signal
+		 * @return
+		 */
 		public static final byte decodeSystem(byte signal) {
 			return (byte) ((signal & Bitmasks.bit_mask(Bitmasks.BIT2,Bitmasks.BIT3)) >> Shift.SYSTEM);
 		}
@@ -226,7 +241,11 @@ public final class N {
 				"000000010001", 2);
 		//max 000000010010
 		
-		
+		/**
+		 * 
+		 * @param key
+		 * @return
+		 */
 		public static int KEYBOARD_KEY_TO_INT(String key) {
 			int integer;
 			BigInteger bi = new BigInteger(key.getBytes());
@@ -235,6 +254,11 @@ public final class N {
 		}
 
 		// may be useful
+		/**
+		 * 
+		 * @param i
+		 * @return
+		 */
 		public static String KEYBOARD_KEY_TO_STRING(int i) {
 			BigInteger b = BigInteger.valueOf(i);
 			String w = new String(b.toByteArray());
@@ -255,6 +279,11 @@ public final class N {
 				2);
 	}
 
+	/**
+	 * 
+	 * @author tomasz
+	 *
+	 */
 	public static final class Exit {
 		public static final int EXIT_NO_ERROR = Helper.encodeSignal(
 				N.Device.EXIT, N.DeviceDataCounter.SINGLE, 0);
@@ -336,6 +365,11 @@ public final class N {
 			return output;
 		}
 
+		/**
+		 * 
+		 * @param signal
+		 * @return
+		 */
 		public static final int[] decodeSignalFull(int signal) {
 			int[] output = new int[6];
 			output[0] = getSignal(signal, Helper.DEVICE);
@@ -355,9 +389,14 @@ public final class N {
 			return output;
 		}
 		
+		/**
+		 * 
+		 * @param signal
+		 * @return
+		 */
 		public static final int[] decodeSignalDataOnly(int signal) {
 			int[] output = new int[2];
-			if ( getSignal(signal, Helper.DEV_DATA_COUNTER) == N.DeviceDataCounter.SINGLE ) {
+			if ( getSignal(signal, Helper.DEV_DATA_COUNTER) == N.DeviceDataCounter.DOUBLE ) {
 				if (getSignal(signal, Helper.DEV_SIGNAL_1_SIGN) == 0) {
 					output[0] = getSignal(signal, Helper.DEV_SIGNAL_1);
 				} else {

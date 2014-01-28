@@ -19,19 +19,45 @@ import com.android.application.N.Helper;
 
 
 
+/**
+ * @author tomasz
+ *
+ */
 public class SocketMainBluetoothSender extends AsyncTask<Byte, String, String> {
 
+	/**
+	 * 
+	 */
 	private BluetoothSocket bluetoothSocket = null;
+	/**
+	 * 
+	 */
 	private DataOutputStream dos = null;
+	/**
+	 * 
+	 */
 	private DataInputStream dis = null;
+	/**
+	 * 
+	 */
 	private BluetoothConfigurationClass mainConfiguration = null;
 	
+	/**
+	 * 
+	 */
 	public static LinkedBlockingQueue<Integer> queue = null;
+	/**
+	 * 
+	 */
 	public static Boolean isRuning = false;
 	
 	
 	
 	
+	/**
+	 * @param mainNetworkConfiguration
+	 * @throws IOException
+	 */
 	public SocketMainBluetoothSender(BluetoothConfigurationClass mainNetworkConfiguration) throws IOException {
 		super();
 		this.mainConfiguration = mainNetworkConfiguration;
@@ -40,6 +66,9 @@ public class SocketMainBluetoothSender extends AsyncTask<Byte, String, String> {
 	
 	}
 
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+	 */
 	@Override
 	protected void onPostExecute(String result) {
 		// TODO Auto-generated method stub
@@ -47,6 +76,9 @@ public class SocketMainBluetoothSender extends AsyncTask<Byte, String, String> {
 		Log.d("THREAD","sender stoped.");
 	}
 
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onPreExecute()
+	 */
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
@@ -55,12 +87,18 @@ public class SocketMainBluetoothSender extends AsyncTask<Byte, String, String> {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
+	 */
 	@Override
 	protected void onProgressUpdate(String... values) {
 		// TODO Auto-generated method stub
 		super.onProgressUpdate(values);
 	}
 
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#doInBackground(Params[])
+	 */
 	@Override
 	protected synchronized String doInBackground(Byte... Params) {
 		BluetoothDevice bluetoothDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(

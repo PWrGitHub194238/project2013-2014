@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
     <ImageView
@@ -42,15 +42,6 @@
         android:layout_marginLeft="10dp"
         android:text="@string/tv_empty"
         android:textAppearance="@style/list_connections_device_details" />
-
-    <com.android.extendedWidgets.ImageToggleButton
-        android:id="@+id/list_video_item_toggle_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/list_video_item_icon"
-        android:layout_alignParentLeft="true"
-        android:background="@drawable/list_video_item_toggle_description"
-        android:contentDescription="@string/contentDescription_list_video_item_toggle_description" />
 
     <TextView
         android:id="@+id/list_video_item_description"

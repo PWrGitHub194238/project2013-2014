@@ -25,6 +25,13 @@ import com.android.controllers.steeringwheel.SteeringwheelOptionActivity;
 import com.android.database.tables.General;
 import com.android.multiplay.R;
 
+/** Stores structured information about each controller, by default available in the application, as well as the types of items available for building your own.
+ * 
+ * It also contains a class that defines a list of all the possible requirements that may be needed to run some of the defined controllers.
+ * 
+ * @author tomasz
+ *
+ */
 public final class C {
 	
 	public static final int SIGNAL_MOUSE = 					Integer.parseInt("00000", 2);
@@ -103,6 +110,11 @@ public final class C {
 		CONTROLLER_CUSTOM
 	};
 	
+	/** defines a list of all the possible requirements that may be needed to run some of the defined controllers.
+	 * 
+	 * @author tomasz
+	 *
+	 */
 	
 	public static final class Requirements {
 

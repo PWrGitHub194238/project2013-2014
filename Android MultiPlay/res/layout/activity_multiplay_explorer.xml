@@ -38,39 +38,13 @@
         android:layout_below="@id/tv_activity_title_multiplay_explorer"
         android:background="@drawable/activity_glow_horizontal_line_red"
         android:contentDescription="@string/contentDescription_iv_multiplay_explorer_activity_glow_horizontal_line" />
-	
-	<ImageButton
-	    android:id="@+id/b_connections_activity_testmouse"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_centerHorizontal="true"
-	    android:layout_centerVertical="true"
-	    android:background="@drawable/connections_activity_button_add_new"
-	    android:contentDescription="" />
 
-	<ImageButton
-	    android:id="@+id/b_connections_activity_testright"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_centerVertical="true"
-	    android:layout_marginLeft="105dp"
-	    android:layout_toRightOf="@+id/tv_activity_title_multiplay_explorer"
-	    android:background="@drawable/connections_activity_button_add_new" />
-
-	<ImageButton
-	    android:id="@+id/b_connections_activity_testmove"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@+id/iv_multiplay_explorer_activity_glow_horizontal_line"
-	    android:layout_centerHorizontal="true"
-	    android:background="@drawable/connections_activity_button_add_new" />
-
-	<ImageButton
-	    android:id="@+id/b_connections_activity_testleft"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignRight="@+id/tv_activity_title_multiplay_explorer"
-	    android:layout_alignTop="@+id/b_connections_activity_testmouse"
-	    android:background="@drawable/connections_activity_button_add_new" />
+    <ListView
+        android:id="@+id/lv_multiplay_explorer_activity_applications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" >
+    </ListView>
 
 </RelativeLayout>

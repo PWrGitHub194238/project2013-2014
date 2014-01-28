@@ -17,6 +17,16 @@ import com.android.database.tables.General;
 import com.android.database.tables.NetworkBTSettings;
 import com.android.database.tables.NetworkWiFiSettings;
 
+/** The main class of the application, which stores basic global parameters for the entire application, 
+ * 
+ * such as a reference to the database application, statement of sensors, services and their availability, 
+ * the list of available connections globally, both by Bluetooth and Wi-fi, the main threads to communicate with the server .
+ *  Contains methods to handle communication with the server-level threads, initializes the application parameters, 
+ *  reads the information from the database to the program at the time of its launch.
+ * 
+ * @author tomasz
+ *
+ */
 public class MultiPlayApplication extends Application {
 
 	public final static boolean CONNECTION_TYPE_BT = true;
@@ -52,7 +62,10 @@ public class MultiPlayApplication extends Application {
 	private static SocketMainWiFiSender socketMainWifiThread = null;
 	private static SocketMainBluetoothSender socketMainBluetoothThread = null;
 
-
+	/**
+	 * 
+	 * @throws IOException
+	 */
 	public static void runThread() throws IOException {
 		if ( connectedTo == CONNECTION_TYPE_WIFI ) {
 			if ( socketMainWifiThread != null ) {
@@ -73,6 +86,9 @@ public class MultiPlayApplication extends Application {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public static void closeThread() {
 		Log.d("THREAD","Stoping thread...");
 		if (socketMainWifiThread != null  || socketMainBluetoothThread != null ) {
@@ -82,6 +98,10 @@ public class MultiPlayApplication extends Application {
 		}
 	}
 
+	/**
+	 * 
+	 * @param signal
+	 */
 	public static void add(int signal) {
 		if (socketMainWifiThread != null) {
 			synchronized (socketMainWifiThread) {
@@ -104,6 +124,9 @@ public class MultiPlayApplication extends Application {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -123,11 +146,21 @@ public class MultiPlayApplication extends Application {
 		}
 	}
 
+	/**
+	 * 
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 */
 	private void loadConnectionListFromDB() throws InstantiationException, IllegalAccessException {
 		loadWirelessConnectionListFromDB();
 		loadBluetoothConnectionListFromDB();
 	}
 
+	/**
+	 * 
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 */
 	private void loadWirelessConnectionListFromDB () throws InstantiationException, IllegalAccessException {
 		Cursor cursor = dbHelper.sql_select_by_id(NetworkWiFiSettings.class,true);
 		int deviceIndex = 0;
@@ -150,6 +183,11 @@ public class MultiPlayApplication extends Application {
 		}
 	}
 	
+	/**
+	 * 
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 */
 	private void loadBluetoothConnectionListFromDB () throws InstantiationException, IllegalAccessException {
 		Cursor cursor = dbHelper.sql_select_by_id(NetworkBTSettings.class,true);
 		int deviceIndex = 0;
@@ -172,11 +210,20 @@ public class MultiPlayApplication extends Application {
 		}
 	}
 	
+	/**
+	 * 
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 */
 	private void getMultiPlayRequirementsFromDB() throws InstantiationException, IllegalAccessException {
 			Cursor cursor = dbHelper.sql_select_by_id(General.class, DBHelper.REOPEN_YES);
 			setMultiPlayRequirements(DBHelper.parseMultiPlayRequirements(cursor));
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public final static boolean isFirstStart() {
 		try {
 			return !MultiPlayApplication.getDbHelper().sql_select_by_id(General.class, true).moveToFirst();
@@ -190,30 +237,57 @@ public class MultiPlayApplication extends Application {
 		return true;
 	}
 	
+	/**
+	 * 
+	 */
 	public void onDestroy() {
 		dbHelper.closeConnection();	
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public static final DBHelper getDbHelper() {
 		return dbHelper;
 	}
 
+	/**
+	 * 
+	 * @param dbHelper
+	 */
 	public final void setDbHelper(DBHelper dbHelper) {
 		this.dbHelper = dbHelper;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public static final ArrayList<BluetoothConfigurationClass> getDiscoveredBluetoothDevices() {
 		return discoveredBluetoothDevices;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public static final ArrayList<WirelessConfigurationClass> getDiscoveredWirelessDevices() {
 		return discoveredWirelessDevices;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public static ConnectionsConfigurationClass getMainNetworkConfiguration() {
 		return mainNetworkConfiguration;
 	}
 
+	/**
+	 * 
+	 * @param mainNetworkConfiguration
+	 */
 	public static final void setMainNetworkConfiguration(
 			ConnectionsConfigurationClass mainNetworkConfiguration) {
 		
@@ -235,10 +309,17 @@ public class MultiPlayApplication extends Application {
 		}
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public final MultiPlayDataBase getMultiPlayDataBase() {
 		return multiPlayDataBase;
 	}
 
+	/**
+	 * 
+	 */
 	public final void setMultiPlayDataBase(MultiPlayDataBase multiPlayDataBase) {
 		this.multiPlayDataBase = multiPlayDataBase;
 	}

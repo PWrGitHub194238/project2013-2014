@@ -141,6 +141,8 @@ public final class N {
 				"00000011", 2);
 		public static final byte RUN_APPLICATION = (byte) Integer.parseInt(
 				"00000100", 2);
+		public static final byte APPLICATION_RUNNING = (byte) Integer.parseInt(
+				"00000101", 2);
 		public static final byte encodeSignal(byte signal, byte system) {
 			return (byte) (signal + (system << Shift.SYSTEM));
 		}
@@ -384,7 +386,7 @@ public final class N {
 		 */
 		public static final int[] decodeSignalDataOnly(int signal) {
 			int[] output = new int[2];
-			if ( getSignal(signal, Helper.DEV_DATA_COUNTER) == N.DeviceDataCounter.SINGLE ) {
+			if ( getSignal(signal, Helper.DEV_DATA_COUNTER) == N.DeviceDataCounter.DOUBLE ) {
 				if (getSignal(signal, Helper.DEV_SIGNAL_1_SIGN) == 0) {
 					output[0] = getSignal(signal, Helper.DEV_SIGNAL_1);
 				} else {

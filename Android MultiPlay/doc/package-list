@@ -1,16 +1,1 @@
-com.android.application
-com.android.asychs
-com.android.carousel
 com.android.controllers.keyboard
-com.android.controllers.mouse
-com.android.controllers.steeringwheel
-com.android.database
-com.android.database.tables
-com.android.dialogs
-com.android.dialogs.elements
-com.android.extendedWidgets
-com.android.extendedWidgets.lists
-com.android.multiplay
-com.android.multiplay.fragments
-com.android.service.receivers
-com.android.services

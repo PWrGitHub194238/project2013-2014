@@ -9,9 +9,10 @@ import java.util.Enumeration;
 import java.util.Random;
 
 /**
+ * A class containing a list of data connections Wifi
  * 
  * @author Piotr B¹czkiewicz
- *
+ * 
  */
 public class ConnectWifi {
 	private int portdefault = 1234;
@@ -21,7 +22,7 @@ public class ConnectWifi {
 	private ArrayList<Integer> arrlist = new ArrayList<Integer>();
 
 	/**
-	 * 
+	 * Method returns a computer ip
 	 * @return ip
 	 */
 	public String getIP() {
@@ -57,7 +58,7 @@ public class ConnectWifi {
 	}
 
 	/**
-	 * 
+	 * Method returns default port 1234
 	 * @return default port 1234
 	 */
 	public int getportdefault() {
@@ -65,7 +66,7 @@ public class ConnectWifi {
 	}
 
 	/**
-	 * 
+	 *  Method returns unique random port
 	 * @return get unique random port
 	 */
 	public int getport() {
@@ -83,8 +84,10 @@ public class ConnectWifi {
 		arrlist.add(port);
 		return arrlist.get(arrlist.size() - 1);
 	}
+
 	/**
-	 * delete unused port from list
+	 * method delete unused port from list
+	 * 
 	 * @param port
 	 */
 	public void delport(int port) {

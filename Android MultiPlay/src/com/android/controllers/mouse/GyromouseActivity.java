@@ -22,8 +22,9 @@ import com.android.application.N;
 import com.android.application.N.Helper;
 import com.android.multiplay.R;
 
-/**@author Piotr Baczkiewicz
- * @see  GyromouseActivity
+/**The mouse using an accelerometer. Activity includes the mouse and the keyboard
+ * @author Piotr Baczkiewicz
+ * 
  */
 public class GyromouseActivity extends Activity implements SensorEventListener,
 		OnTouchListener {

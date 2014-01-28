@@ -16,7 +16,7 @@ import VJoy.VJoyDriver;
 import VJoy.VJoyDriver32;
 import VJoy.VJoyDriver64;
 /**
- * 
+ * Thread receiving and interpreting signals from the controllers
  * @author Piotr B¹czkiewicz
  *
  */
@@ -26,7 +26,7 @@ public class Serverwifi implements Runnable {
 	private int port;
 	private ConnectWifi connect = null;
 /**
- * 
+ * Constructor
  * @param port
  * @param connect
  */
@@ -35,6 +35,7 @@ public class Serverwifi implements Runnable {
 		this.connect = connect;
 	}
 	/**
+	 * Method receiving and interpreting signals from the controllers
 	 * @see java.lang.Runnable#run()
 	 */
 	@Override

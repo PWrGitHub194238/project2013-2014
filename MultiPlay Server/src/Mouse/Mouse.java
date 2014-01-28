@@ -11,13 +11,13 @@ import java.awt.event.InputEvent;
 
 import CodeKey.N;
 /**
- * 
+ * method of simulating mouse 
  * @author Piotr B¹czkiewicz
  *
  */
 public class Mouse {
 	/**
-	 * 
+	 * method of simulating mouse offset
 	 * @param x
 	 * @param y
 	 */
@@ -41,7 +41,7 @@ public class Mouse {
 		}
 	}
 /**
- * 
+ * method of simulating mouse click
  * @param pm
  */
 	public void click(int pm) {

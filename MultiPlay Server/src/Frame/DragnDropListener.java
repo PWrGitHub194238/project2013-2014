@@ -17,7 +17,7 @@ import javax.swing.JList;
 
 import XML.appParser;
 /**
- * 
+ * 	 Drag and drop Listener to main frame
  * @author Piotr B¹czkiewicz
  *
  */
@@ -28,9 +28,10 @@ public class DragnDropListener implements DropTargetListener {
 	List<String> listy;
 	JList list;
 /** 
- * @param frame
- * @param list
- * @param listy
+ * Constructor
+ * @param frame Main frame
+ * @param list	
+ * @param listy list with name applications
  */
 	public DragnDropListener(MFrame frame, JList list, List<String> listy) {
 		this.frame = frame;
@@ -38,6 +39,7 @@ public class DragnDropListener implements DropTargetListener {
 		this.listy = listy;
 	}
 	/**
+	 * 
 	 * @see java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
 	 */
 	public void drop(DropTargetDropEvent dropEvent) {
@@ -87,7 +89,7 @@ public class DragnDropListener implements DropTargetListener {
 		}
 	}
 /**
- * 
+ * Method get name and path application and write it on a list - Windows
  * @param dropTargetEvent
  * @param droppedItem
  * @param flavor
@@ -151,7 +153,7 @@ public class DragnDropListener implements DropTargetListener {
 		dropTargetEvent.dropComplete(true);
 	}
 /**
- * 
+ * Method get name and path application and write it on a list - Windows
  * @param dropTargetEvent
  * @param tr
  * @param flavor
@@ -195,26 +197,26 @@ public class DragnDropListener implements DropTargetListener {
 			list.setListData(m);
 		}
 	}
-	/**
+	/** Autogenerate code
 	 * @see java.awt.dnd.DropTargetListener#dragEnter(java.awt.dnd.DropTargetDragEvent)
 	 */
 	@Override
 	public void dragEnter(DropTargetDragEvent event) {
 	}
-	/**
+	/** Autogenerate code
 	 * @see java.awt.dnd.DropTargetListener#dragExit(java.awt.dnd.DropTargetEvent)
 	 */
 	@Override
 	public void dragExit(DropTargetEvent event) {
 	}
-	/**
+	/** Autogenerate code
 	 * @see java.awt.dnd.DropTargetListener#dragOver(java.awt.dnd.DropTargetDragEvent)
 	 */
 	@Override
 	public void dragOver(DropTargetDragEvent event) {
 	}
 	/**
-
+	 * Autogenerate code
 	 * @see java.awt.dnd.DropTargetListener#dropActionChanged(java.awt.dnd.DropTargetDragEvent)
 	 */
 	@Override

@@ -13,7 +13,7 @@ import CodeKey.N;
 public class Keyboard {
 	private Robot robot;
 /**
- * 
+ * Method of simulating a click on the keyboard
  * @param key
  */
 	public void click(int key) {
@@ -301,7 +301,7 @@ public class Keyboard {
 		}
 	}
 /**
- * 
+ * method of simulating a fast click and release on the keyboard
  * @param key
  */
 	public void clickandrelease(int key) {
@@ -733,7 +733,7 @@ public class Keyboard {
 		}
 	}
 	/**
-	 * 
+	 * method of simulating a release on the keyboard
 	 * @param key
 	 */
 	public void release(int key) {

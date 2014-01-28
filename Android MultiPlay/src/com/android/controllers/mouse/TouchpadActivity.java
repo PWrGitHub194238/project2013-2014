@@ -14,7 +14,7 @@ import com.android.application.N;
 import com.android.application.N.Helper;
 import com.android.multiplay.R;
 /**
- * 
+ * Activity simulate a touchpad
  * @author Piotr B¹czkiewicz
  *
  */

@@ -56,7 +56,7 @@ public class Steeringwheel_Fragment extends Fragment implements OnItemClickListe
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
-		v = inflater.inflate(R.layout.help_view_touchpad, container, false);
+		v = inflater.inflate(R.layout.help_view_steeringwheel, container, false);
 
 		initElements();
 

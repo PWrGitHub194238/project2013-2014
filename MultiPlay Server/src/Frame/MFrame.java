@@ -26,24 +26,29 @@ import javax.swing.JPanel;
 
 import Connect.ConnectWifi;
 import XML.appParser;
+
 /**
  * Main Frame Class
+ * 
  * @author Piotr B¹czkiewicz
- *
+ * 
  */
-//Menu Frame
+// Menu Frame
 public class MFrame extends JFrame {
 	private JList list;
 	private DefaultListModel model;
 	List<String> listy;
 	appParser xml;
-/**
- * Constructor. Show a computer ip, port, username, architecture and drag and drop list
- * @param connect
- * @param model
- * @param list
- * @param listy
- */
+
+	/**
+	 * Constructor. Show a computer ip, port, username, architecture and drag
+	 * and drop list
+	 * 
+	 * @param connect
+	 * @param model
+	 * @param list
+	 * @param listy
+	 */
 	public MFrame(ConnectWifi connect, final DefaultListModel model,
 			final JList list, final List<String> listy) {
 		super();
@@ -75,16 +80,18 @@ public class MFrame extends JFrame {
 		bdelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				int index = list.getSelectedIndex();
-				xml.deleteApp(index);
-				listy.remove(index);
-				String[] l = new String[listy.size()];
-				int i = 0;
-				while (i < listy.size()) {
-					l[i] = listy.get(i);
-					i++;
+				if (!list.isSelectionEmpty()) {
+					int index = list.getSelectedIndex();
+					xml.deleteApp(index);
+					listy.remove(index);
+					String[] l = new String[listy.size()];
+					int i = 0;
+					while (i < listy.size()) {
+						l[i] = listy.get(i);
+						i++;
+					}
+					list.setListData(l);
 				}
-				list.setListData(l);
 			}
 		});
 
@@ -99,7 +106,7 @@ public class MFrame extends JFrame {
 		MenuBar mb = new MenuBar();
 		Menu file = new Menu("File");
 		Menu help = new Menu("Help");
-	
+
 		mb.add(file);
 		mb.add(help);
 
@@ -109,7 +116,6 @@ public class MFrame extends JFrame {
 
 		help.add(about);
 		help.add(helps);
-	
 
 		// ----------------------- settings controllers-------------------
 		JPanel mainPanel = new JPanel();

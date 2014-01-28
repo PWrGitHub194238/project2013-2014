@@ -56,7 +56,7 @@ public class Gyromouse_Fragment extends Fragment implements OnItemClickListener 
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
-		v = inflater.inflate(R.layout.help_view_touchpad, container, false);
+		v = inflater.inflate(R.layout.help_view_gyromouse, container, false);
 
 		initElements();
 

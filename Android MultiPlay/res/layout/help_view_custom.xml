@@ -6,7 +6,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context=".MouseHelp" >
+    tools:context=".CustomControllerHelp" >
 
     <RelativeLayout
         android:id="@+id/rl_controller_help_custom_screen_1"
@@ -21,15 +21,17 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:text="@string/tv_controller_help_custom_screen_1_help_1" />
+
          <ImageView
-            android:id="@+id/customhelpimage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/tv_controller_help_custom_screen_1_help_1"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="16dp"
-            android:src="@drawable/list_video_item_icon_1" />
+             android:id="@+id/customhelpimage"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignBottom="@+id/tv_controller_help_custom_screen_1_help_1"
+             android:layout_centerHorizontal="true"
+             android:layout_centerVertical="true"
+             android:layout_marginRight="16dp"
+             android:src="@drawable/custom_screen_help" />
+
     </RelativeLayout>
 
     <RelativeLayout

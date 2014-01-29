@@ -1,4 +1,4 @@
-package com.android.controllers.custom;
+package com.android.controllers.help.custom;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.android.controllers.help.movie.Movie_Activity_Help;
 import com.android.extendedWidgets.lists.ListOfVideo;
 import com.android.extendedWidgets.lists.VideoListItem;
 import com.android.multiplay.MainActivity;
@@ -89,7 +90,7 @@ public class CustomFragment extends Fragment implements OnItemClickListener {
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		Intent intent = new Intent(context, MainActivity.class);
+		Intent intent = new Intent(context, Movie_Activity_Help.class);
 		intent.putExtra("video_url", ((VideoListItem) parent.getItemAtPosition(position)).getVideo_url());
 		super.startActivity(intent);
 	}

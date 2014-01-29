@@ -1,4 +1,4 @@
-package com.android.controllers.custom;
+package com.android.controllers.help.custom;
 
 import android.content.res.Resources;
 import android.os.Bundle;

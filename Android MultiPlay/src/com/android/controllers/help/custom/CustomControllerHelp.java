@@ -1,10 +1,13 @@
-package com.android.multiplay;
+package com.android.controllers.help.custom;
 
 import java.util.Random;
 
 import com.android.animations.DepthPageTransformer;
 import com.android.animations.TransformZoomOut;
 import com.android.controllers.help.keyboard.Keyboard_help_pager;
+import com.android.multiplay.R;
+import com.android.multiplay.R.id;
+import com.android.multiplay.R.layout;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -14,7 +17,7 @@ import android.view.Menu;
 
 public class CustomControllerHelp extends FragmentActivity {
 
-	private Keyboard_help_pager pagerAdapter = null;
+	private Custom_helper_pager pagerAdapter = null;
 	private ViewPager pager;
 	
 	@Override
@@ -26,7 +29,7 @@ public class CustomControllerHelp extends FragmentActivity {
 
 		getRandomTransformation(new Random());
 
-	    pagerAdapter = new Keyboard_help_pager(getSupportFragmentManager(),getResources());
+	    pagerAdapter = new Custom_helper_pager(getSupportFragmentManager(),getResources());
 	    pager.setAdapter(pagerAdapter);
 	    	 
 	}

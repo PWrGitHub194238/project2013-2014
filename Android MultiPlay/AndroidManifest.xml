@@ -373,7 +373,7 @@
             android:theme="@style/MultiPlayTheme" >
         </activity>
         <activity
-            android:name="com.android.multiplay.CustomControllerHelp"
+            android:name="com.android.controllers.help.custom.CustomControllerHelp"
             android:label="@string/title_activity_custom_controller_help"
             android:screenOrientation="landscape"
             android:theme="@style/MultiPlayTheme" >

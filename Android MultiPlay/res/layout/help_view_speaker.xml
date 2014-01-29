@@ -6,7 +6,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context=".KeyboardHelp" >
+    tools:context=".SpeakerHelp" >
 
     <RelativeLayout
         android:id="@+id/rl_controller_help_speaker_screen_1"

@@ -6,7 +6,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context=".KeyboardHelp" >
+    tools:context=".GamepadHelp" >
       
     <RelativeLayout
         android:id="@+id/rl_controller_help_gamepad_screen_1"

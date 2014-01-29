@@ -3,6 +3,7 @@ package com.android.application;
 import com.android.controllers.custom.CustomControllerActivity;
 import com.android.controllers.gamepad.GamepadActivity;
 import com.android.controllers.gamepad.GamepadOptionActivity;
+import com.android.controllers.help.custom.CustomControllerHelp;
 import com.android.controllers.help.gamepad.GamepadHelp;
 import com.android.controllers.help.gyromouse.GyromouseHelp;
 import com.android.controllers.help.keyboard.KeyboardHelp;
@@ -23,7 +24,6 @@ import com.android.controllers.mouse.TouchpadOptionActivity;
 import com.android.controllers.steeringwheel.SteeringwheelActivity;
 import com.android.controllers.steeringwheel.SteeringwheelOptionActivity;
 import com.android.database.tables.General;
-import com.android.multiplay.CustomControllerHelp;
 import com.android.multiplay.R;
 
 /** Stores structured information about each controller, by default available in the application, as well as the types of items available for building your own.

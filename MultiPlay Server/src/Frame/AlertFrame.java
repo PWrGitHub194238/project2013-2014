@@ -9,6 +9,11 @@ import javax.swing.JLabel;
  */
 public class AlertFrame extends JFrame {
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * 
  * @param name
  */

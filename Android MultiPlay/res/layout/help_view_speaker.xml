@@ -6,33 +6,42 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context=".KeyboardHelp" >
-      
+    tools:context=".SpeakerHelp" >
+
     <RelativeLayout
         android:id="@+id/rl_controller_help_speaker_screen_1"
         android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:background="@android:color/transparent" >
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent" >
 
         <TextView
-	        android:id="@+id/tv_controller_help_speaker_screen_1_help_1"
-	        android:layout_width="match_parent"
-	        android:layout_height="match_parent"
-	        android:layout_alignParentLeft="true"
-	        android:layout_alignParentTop="true"
-	        android:text="@string/tv_controller_help_speaker_screen_1_help_1" />
-        
-	</RelativeLayout>
-	
+            android:id="@+id/tv_controller_help_speaker_screen_1_help_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/tv_controller_help_speaker_screen_1_help_1" />
+
+        <ImageView
+            android:id="@+id/speakerhelpimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_controller_help_speaker_screen_1_help_1"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/list_video_item_icon_1" />
+    </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/rl_controller_help_speaker_screen_2"
         android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:paddingBottom="0dp"
-    	android:paddingLeft="0dp"
-    	android:paddingRight="0dp"
-    	android:paddingTop="0dp"
-	    android:background="@android:color/transparent" >
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="0dp" >
 
         <ListView
             android:id="@+id/iv_controller_help_speaker_screen_2_video_list"
@@ -41,7 +50,6 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true" >
         </ListView>
-        
-	</RelativeLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

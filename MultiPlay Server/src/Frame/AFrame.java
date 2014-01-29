@@ -9,6 +9,11 @@ import javax.swing.JLabel;
  */
 public class AFrame extends JFrame {
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * @see AFrame window with information about the authors
  */
 	public AFrame() {

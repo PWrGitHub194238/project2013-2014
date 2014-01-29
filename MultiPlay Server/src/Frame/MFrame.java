@@ -35,6 +35,10 @@ import XML.appParser;
  */
 // Menu Frame
 public class MFrame extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2114449388509793601L;
 	private JList list;
 	private DefaultListModel model;
 	List<String> listy;

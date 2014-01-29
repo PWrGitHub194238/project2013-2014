@@ -16,58 +16,57 @@ import com.android.multiplay.R;
  *
  */
 public class Custom_helper_pager extends FragmentPagerAdapter {
-	
 	/**
 	 * 
 	 */
 	private final int PAGE_COUNT = 2;
-	
-	/**
-	 * 
-	 */
-	private final int[] PAGE_TITLES = {
-			R.string.help_custom_page_title_1,
-			R.string.help_custom_page_title_2
-	};
+    
+    /**
+     * 
+     */
+    private final int[] PAGE_TITLES = {
+                    R.string.help_custom_page_title_1,
+                    R.string.help_custom_page_title_2
+    };
 
-	/**
-	 * 
-	 */
-	Resources resources = null;
-	
-	/**
-	 * @param fragmentManager
-	 * @param resources
-	 */
-	public Custom_helper_pager(FragmentManager fragmentManager, Resources resources) {
-		super(fragmentManager);
-		this.resources = resources;
-	}
+    /**
+     * 
+     */
+    Resources resources = null;
+    
+    /**
+     * @param fragmentManager
+     * @param resources
+     */
+    public Custom_helper_pager(FragmentManager fragmentManager, Resources resources) {
+            super(fragmentManager);
+            this.resources = resources;
+    }
 
-	/* (non-Javadoc)
-	 * @see android.support.v4.app.FragmentPagerAdapter#getItem(int)
-	 */
-	@Override
-	public Fragment getItem(int position) {
-		CustomFragment myFragment = new CustomFragment();
-		Bundle data = new Bundle();
-		data.putInt("current_page", position + 1);
-		myFragment.setArguments(data);
-		return myFragment;
-	}
+    /* (non-Javadoc)
+     * @see android.support.v4.app.FragmentPagerAdapter#getItem(int)
+     */
+    @Override
+    public Fragment getItem(int position) {
+            CustomFragment myFragment = new CustomFragment();
+            Bundle data = new Bundle();
+            data.putInt("current_page", position + 1);
+            myFragment.setArguments(data);
+            return myFragment;
+    }
 
-	/* (non-Javadoc)
-	 * @see android.support.v4.view.PagerAdapter#getCount()
-	 */
-	@Override
-	public int getCount() {
-		return PAGE_COUNT;
-	}
+    /* (non-Javadoc)
+     * @see android.support.v4.view.PagerAdapter#getCount()
+     */
+    @Override
+    public int getCount() {
+            return PAGE_COUNT;
+    }
 
-	/* (non-Javadoc)
-	 * @see android.support.v4.view.PagerAdapter#getPageTitle(int)
-	 */
-	public CharSequence getPageTitle(int position) {
-		return resources.getString(PAGE_TITLES[position]);
-	}
+    /* (non-Javadoc)
+     * @see android.support.v4.view.PagerAdapter#getPageTitle(int)
+     */
+    public CharSequence getPageTitle(int position) {
+            return resources.getString(PAGE_TITLES[position]);
+    }
 }

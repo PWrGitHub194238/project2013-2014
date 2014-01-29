@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -43,8 +44,8 @@ public class Steeringwheel_Fragment extends Fragment implements OnItemClickListe
 	private static final VideoListItem VIDEO_LIST[] = {
 		new VideoListItem(0, 
 				"Jakiœtam url", VideoListItem.VIDEO_MINIATURE.FIRST, 
-				"Jakiœtam tytu³", 12, 
-				"Jakiœtam opis")
+				"Steeringwheel Tutorial", 12, 
+				"Video tutorial to guide Steeringwheel")
 	};
 	
 	/**
@@ -61,7 +62,8 @@ public class Steeringwheel_Fragment extends Fragment implements OnItemClickListe
 	 * 
 	 */
 	private RelativeLayout screen_1 = null;
-	
+	private ImageView screen_1_help_2 = null;
+
 	/**
 	 * 
 	 */

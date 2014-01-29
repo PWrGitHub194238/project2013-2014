@@ -1,44 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
-    <string name="tv_controller_help_keyboard_screen_1_help_1">TODO</string>
-    
-    	<string name="help_keyboard_page_title_1">TODO</string>
-    	<string name="help_keyboard_page_title_2">Video Tutorials</string>    
-    
-     <string name="tv_controller_help_custom_screen_1_help_1">TODO</string>
-    
-    	<string name="help_custom_page_title_1">TODO</string>
-    	<string name="help_custom_page_title_2">Video Tutorials</string>  
-    	  
-    <string name="tv_controller_help_gyromouse_screen_1_help_1">TODO</string>
-    
-    	<string name="help_gyromouse_page_title_1">TODO</string>
-    	<string name="help_gyromouse_page_title_2">Video Tutorials</string>    
-    
-    <string name="tv_controller_help_steeringwheel_screen_1_help_1">TODO</string>
-    
-    	<string name="help_steeringwheel_page_title_1">TODO</string>
-    	<string name="help_steeringwheel_page_title_2">Video Tutorials</string> 
-    
-    <string name="tv_controller_help_gamepad_screen_1_help_1">TODO</string>
-    
-    	<string name="help_gamepad_page_title_1">TODO</string>
-    	<string name="help_gamepad_page_title_2">Video Tutorials</string> 
-    
-    <string name="tv_controller_help_mouse_screen_1_help_1">TODO</string>
-    
-    	<string name="help_mouse_page_title_1">TODO</string>
-    	<string name="help_mouse_page_title_2">Video Tutorials</string> 
-    
-    <string name="tv_controller_help_speaker_screen_1_help_1">TODO</string>
-    
-    	<string name="help_speaker_page_title_1">TODO</string>
-    	<string name="help_speaker_page_title_2">Video Tutorials</string> 
-    
-    <string name="tv_controller_help_touchpad_screen_1_help_1">TODO</string>
-    
-    	<string name="help_touchpad_page_title_1">TODO</string>
-    	<string name="help_touchpad_page_title_2">Video Tutorials</string>
-    	
+
+    <string name="tv_controller_help_keyboard_screen_1_help_1">It is a bit modified standard keyboard. A single click will shift only increases the size of the letters to a single letter, and the next are small. Double-press to shift corresponds to the capslock key. When you press alt keyboard turns to key mode of punctuation.</string>
+    <string name="help_keyboard_page_title_1">Description</string>
+    <string name="help_keyboard_page_title_2">Video Tutorials</string>
+    <string name="tv_controller_help_custom_screen_1_help_1">TODO</string>
+    <string name="help_custom_page_title_1">Description</string>
+    <string name="help_custom_page_title_2">Video Tutorials</string>
+    <string name="tv_controller_help_gyromouse_screen_1_help_1">Gyromouse changing positions the mouse on the screen along with the deviation from the level of cells. The greater the deviation, the mouse is moving szybciejs. Clicking the mouse button as you press the buttons control the volume in the cell. In addition, on-screen keyboard is displayed. You can also operate the keyboard and move the mouse.</string>
+    <string name="help_gyromouse_page_title_1">Description</string>
+    <string name="help_gyromouse_page_title_2">Video Tutorials</string>
+    <string name="tv_controller_help_steeringwheel_screen_1_help_1">Steering uses an accelerometer. Tilting the cell to the left corresponds to a left turn, and tilt to the right corresponds to a right turn. The stronger deflection of the more twisted the wheel in the car. There are three buttons. Left as a brake, right as a gas and one extra as a function</string>
+    <string name="help_steeringwheel_page_title_1">Description</string>
+    <string name="help_steeringwheel_page_title_2">Video Tutorials</string>
+    <string name="tv_controller_help_gamepad_screen_1_help_1">Gamepad is modeled on consoles such as the Xbox or Playstation. Available are two analog stick (left and right). For this there are nine buttons. Four directional left, four function keys on the right (square, circle, cross and triangle) and one key (default "start")</string>
+    <string name="help_gamepad_page_title_1">Description</string>
+    <string name="help_gamepad_page_title_2">Video Tutorials</string>
+    <string name="tv_controller_help_mouse_screen_1_help_1">The mouse is a simulation of a trackpoint. Clicking the mouse button as you press the buttons control the volume in the cell.</string>
+    <string name="help_mouse_page_title_1">Description</string>
+    <string name="help_mouse_page_title_2">Video Tutorials</string>
+    <string name="tv_controller_help_speaker_screen_1_help_1">With the Speaker can write speaking to your smartphone. Text of speech is converted to text and written on the computer. To get started, press on the button in the middle of the screen and start talking. To use punctuation marks, press the volume up and speak the name of the punctuation mark (Polish language)</string>
+    <string name="help_speaker_page_title_1">Description</string>
+    <string name="help_speaker_page_title_2">Video Tutorials</string>
+    <string name="tv_controller_help_touchpad_screen_1_help_1">It is the simulator of the touchpad. To move the mouse pointer must swipe your finger across the screen of your smartphone is in an interesting direction. Clicking the mouse button as you press the buttons control the volume in the cell.</string>
+    <string name="help_touchpad_page_title_1">Description</string>
+    <string name="help_touchpad_page_title_2">Video Tutorials</string>
+
 </resources>

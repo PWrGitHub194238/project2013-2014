@@ -3,7 +3,6 @@ package Bluetooth;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.ServerSocket;
 
 import javax.bluetooth.LocalDevice;
 import javax.bluetooth.UUID;
@@ -59,9 +58,7 @@ public class Serverbluetooth implements Runnable {
 				vjoy = new VJoyDriver32(true);
 		}
 		int signals = 0;
-		byte data;
 		System.out.println("watek\n");
-		ServerSocket serversocket;
 		try {
 			UUID uuid = new UUID(
 					BluetoothConfigurationClass.Profiles.inne.replace("-", "")

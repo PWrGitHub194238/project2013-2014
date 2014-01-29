@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -61,7 +62,8 @@ public class Gamepad_Fragment extends Fragment implements OnItemClickListener {
 	 * 
 	 */
 	private RelativeLayout screen_1 = null;
-	
+	private ImageView screen_1_help_2 = null;
+
 	/**
 	 * 
 	 */
@@ -121,7 +123,7 @@ public class Gamepad_Fragment extends Fragment implements OnItemClickListener {
 	private void initElements() {
 		screen_1 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_gamepad_screen_1);
 		screen_1_help_1 = (TextView) v.findViewById(R.id.tv_controller_help_gamepad_screen_1_help_1);
-			
+		screen_1_help_2 =(ImageView) v.findViewById(R.id.gamepadhelpimage);
 		screen_2 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_gamepad_screen_2);
 		screen_2_video_list = (ListView) v.findViewById(R.id.iv_controller_help_gamepad_screen_2_video_list);
 		screen_2_video_list.setOnItemClickListener(this);

@@ -13,9 +13,9 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.controllers.help.movie.Movie_Activity_Help;
 import com.android.extendedWidgets.lists.ListOfVideo;
 import com.android.extendedWidgets.lists.VideoListItem;
-import com.android.multiplay.MainActivity;
 import com.android.multiplay.R;
 
 /** Fragment describing the appearance of each page within a given activity. 
@@ -41,102 +41,102 @@ public class CustomFragment extends Fragment implements OnItemClickListener {
 	 * 
 	 */
 	private static final VideoListItem VIDEO_LIST[] = {
-		new VideoListItem(0, 
-				"Jakiœtam url", VideoListItem.VIDEO_MINIATURE.FIRST, 
-				"Jakiœtam tytu³", 12, 
-				"Jakiœtam opis")
-	};
-	
-	/**
-	 * 
-	 */
-	private Context context;
-	
-	/**
-	 * 
-	 */
-	private View v = null;
-	
-	/**
-	 * 
-	 */
-	private RelativeLayout screen_1 = null;
-	
-	/**
-	 * 
-	 */
-	private TextView screen_1_help_1 = null;
+        new VideoListItem(0, 
+                        "http://androidmultiplay.url.ph/video_tutorials/scrennrecord.mp4", VideoListItem.VIDEO_MINIATURE.FIRST, 
+                        "CustomController Tutorial", 12, 
+                        "Video tutorial to guide Custom Controller")
+};
 
-	/**
-	 * 
-	 */
-	private RelativeLayout screen_2 = null;
+/**
+ * 
+ */
+private Context context;
 
-	/**
-	 * 
-	 */
-	private ListView screen_2_video_list = null;
+/**
+ * 
+ */
+private View v = null;
 
-	/* (non-Javadoc)
-	 * @see android.support.v4.app.Fragment#onCreate(android.os.Bundle)
-	 */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		/** Getting the arguments to the Bundle object */
-		Bundle data = getArguments();
-		/** Getting integer data of the key current_page from the bundle */
-		currentPage = data.getInt("current_page", 0);
-		
-		context = getActivity().getApplicationContext();
-	}
+/**
+ * 
+ */
+private RelativeLayout screen_1 = null;
 
-	/* (non-Javadoc)
-	 * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
-	 */
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		super.onCreateView(inflater, container, savedInstanceState);
-		v = inflater.inflate(R.layout.help_view_custom, container, false);
+/**
+ * 
+ */
+private TextView screen_1_help_1 = null;
 
-		initElements();
+/**
+ * 
+ */
+private RelativeLayout screen_2 = null;
 
-		switch (currentPage) {
-			case 1:
-				screen_1.setVisibility(RelativeLayout.VISIBLE);
-				screen_2.setVisibility(RelativeLayout.GONE);
-				break;
-	
-			case 2:
-				screen_1.setVisibility(RelativeLayout.GONE);
-				screen_2.setVisibility(RelativeLayout.VISIBLE);
-				break;
-		}
-		
-		return v;
-	}
+/**
+ * 
+ */
+private ListView screen_2_video_list = null;
 
-	/**
-	 * 
-	 */
-	private void initElements() {
-		screen_1 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_custom_screen_1);
-		screen_1_help_1 = (TextView) v.findViewById(R.id.tv_controller_help_custom_screen_1_help_1);
-			
-		screen_2 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_custom_screen_2);
-		screen_2_video_list = (ListView) v.findViewById(R.id.iv_controller_help_custom_screen_2_video_list);
-		screen_2_video_list.setOnItemClickListener(this);
-	
-		videoListAdapter = new ListOfVideo(context, VIDEO_LIST);
-		screen_2_video_list.setAdapter(videoListAdapter);
-	}
+/* (non-Javadoc)
+ * @see android.support.v4.app.Fragment#onCreate(android.os.Bundle)
+ */
+@Override
+public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        /** Getting the arguments to the Bundle object */
+        Bundle data = getArguments();
+        /** Getting integer data of the key current_page from the bundle */
+        currentPage = data.getInt("current_page", 0);
+        
+        context = getActivity().getApplicationContext();
+}
 
-	/* (non-Javadoc)
-	 * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
-	 */
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		Intent intent = new Intent(context, MainActivity.class);
-		intent.putExtra("video_url", ((VideoListItem) parent.getItemAtPosition(position)).getVideo_url());
-		super.startActivity(intent);
-	}
+/* (non-Javadoc)
+ * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
+ */
+public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        v = inflater.inflate(R.layout.help_view_custom, container, false);
+
+        initElements();
+
+        switch (currentPage) {
+                case 1:
+                        screen_1.setVisibility(RelativeLayout.VISIBLE);
+                        screen_2.setVisibility(RelativeLayout.GONE);
+                        break;
+
+                case 2:
+                        screen_1.setVisibility(RelativeLayout.GONE);
+                        screen_2.setVisibility(RelativeLayout.VISIBLE);
+                        break;
+        }
+        
+        return v;
+}
+
+/**
+ * 
+ */
+private void initElements() {
+        screen_1 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_custom_screen_1);
+        screen_1_help_1 = (TextView) v.findViewById(R.id.tv_controller_help_custom_screen_1_help_1);
+                
+        screen_2 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_custom_screen_2);
+        screen_2_video_list = (ListView) v.findViewById(R.id.iv_controller_help_custom_screen_2_video_list);
+        screen_2_video_list.setOnItemClickListener(this);
+
+        videoListAdapter = new ListOfVideo(context, VIDEO_LIST);
+        screen_2_video_list.setAdapter(videoListAdapter);
+}
+
+/* (non-Javadoc)
+ * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
+ */
+@Override
+public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(context, Movie_Activity_Help.class);
+        intent.putExtra("video_url", ((VideoListItem) parent.getItemAtPosition(position)).getVideo_url());
+        super.startActivity(intent);
+}
 }

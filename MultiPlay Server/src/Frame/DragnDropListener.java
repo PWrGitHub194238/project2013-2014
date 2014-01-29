@@ -124,7 +124,7 @@ public class DragnDropListener implements DropTargetListener {
 						e = listy.indexOf(name);
 						if (e == -1) {
 							appParser xml = new appParser();
-							xml.addApp(name, file.getPath());
+							appParser.addApp(name, file.getPath());
 							listy.add(name);
 							String[] l = new String[listy.size()];
 							int i = 0;

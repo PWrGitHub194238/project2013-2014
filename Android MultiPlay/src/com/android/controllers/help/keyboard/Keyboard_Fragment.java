@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,13 +28,14 @@ public class Keyboard_Fragment extends Fragment implements OnItemClickListener {
 	
 	private static final VideoListItem VIDEO_LIST[] = {
 		new VideoListItem(0, 
-				"Jakiœtam url", VideoListItem.VIDEO_MINIATURE.FIRST, 
-				"Jakiœtam tytu³", 12, 
-				"Jakiœtam opis")
+				"http://androidmultiplay.url.ph/video_tutorials/scrennrecord.mp4", VideoListItem.VIDEO_MINIATURE.FIRST, 
+				"Keyboard Tutorial", 12, 
+				"Video tutorial to guide Keyboard")
 	};
 	
 	private Context context;
-	
+	private ImageView screen_1_help_2 = null;
+
 	private View v = null;
 	
 	private RelativeLayout screen_1 = null;
@@ -79,7 +81,8 @@ public class Keyboard_Fragment extends Fragment implements OnItemClickListener {
 	private void initElements() {
 		screen_1 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_keyboard_screen_1);
 		screen_1_help_1 = (TextView) v.findViewById(R.id.tv_controller_help_keyboard_screen_1_help_1);
-			
+		screen_1_help_2 =(ImageView) v.findViewById(R.id.keyboardhelpimage);
+
 		screen_2 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_keyboard_screen_2);
 		screen_2_video_list = (ListView) v.findViewById(R.id.iv_controller_help_keyboard_screen_2_video_list);
 		screen_2_video_list.setOnItemClickListener(this);

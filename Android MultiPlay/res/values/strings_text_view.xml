@@ -73,17 +73,17 @@
    		<string name="tv_default_title_description_in_help_activity">Read about every aspect of MultiPlayer Android application, get knowledge how to use your app in various ways, starting from it\'s configuration up to custom controllers.</string>
    		
    		<string name="tv_option_0_title_in_help_activity">Help: Explorer</string>
-   		<string name="tv_option_0_title_description_in_help_activity">todo</string>
+   		<string name="tv_option_0_title_description_in_help_activity">Come here if you have a problem with the service Explorer</string>
    		
    		<string name="tv_option_1_title_in_help_activity">Help: Controllers</string>
-   		<string name="tv_option_1_title_description_in_help_activity">todo</string>
+   		<string name="tv_option_1_title_description_in_help_activity">Come here if you have a problem with the operation of any of the controllers</string>
    		
    			<string name="tv_activity_title_system_controllers_help">Help: Controllers</string>
    			
    			<string name="tv_list_video_prefix_duration">Duration: </string>
    		
    		<string name="tv_option_2_title_in_help_activity">Help: Options</string>
-   		<string name="tv_option_2_title_description_in_help_activity">todo</string>
+   		<string name="tv_option_2_title_description_in_help_activity">Come here if you have a problem with the options</string>
    		
    		
     <string name="tv_option_2_title_in_main_activity">System controller</string>

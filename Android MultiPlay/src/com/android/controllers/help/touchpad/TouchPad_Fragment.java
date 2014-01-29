@@ -13,6 +13,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.android.controllers.help.movie.Movie_Activity_Help;
 import com.android.extendedWidgets.lists.ListOfVideo;
@@ -24,17 +25,14 @@ public class TouchPad_Fragment extends Fragment implements OnItemClickListener {
 	
 	private int currentPage;
 	
-	private ListOfVideo listOfElementsAdpater;
+	private ListOfVideo videoListAdapter;
 	
 	private static final VideoListItem VIDEO_LIST[] = {
 		new VideoListItem(0, 
 				"Jakiœtam url", VideoListItem.VIDEO_MINIATURE.FIRST, 
-				"Jakiœtam tytu³", 12, 
-				"Jakiœtam opis"),
-		new VideoListItem(0, 
-				"Jakiœtam url", VideoListItem.VIDEO_MINIATURE.FIRST, 
-				"Jakiœtam tytu³", 12, 
-				"Jakiœtam opis")
+				"Touchpad Tutorial", 12, 
+				"Video tutorial to guide Touchpad"),
+		
 	};
 	
 	private Context context;
@@ -43,7 +41,8 @@ public class TouchPad_Fragment extends Fragment implements OnItemClickListener {
 	private RelativeLayout screen_1 = null;
 	
 	private ImageView screen_1_img1 = null;
-	
+	private ImageView screen_1_help_2 = null;
+	private TextView screen_1_help_1 = null;
 	private RelativeLayout screen_2 = null;
 	
 	private ImageView screen_2_img1 = null;
@@ -66,7 +65,7 @@ public class TouchPad_Fragment extends Fragment implements OnItemClickListener {
 	private RelativeLayout screen_5 = null;
 
 	
-	private ListView screen_5_listView1 = null;
+	private ListView screen_2_video_list = null;
 	
 	boolean init = true;
 
@@ -95,46 +94,17 @@ public class TouchPad_Fragment extends Fragment implements OnItemClickListener {
 				Log.d("APP","1");
 				screen_1.setVisibility(RelativeLayout.VISIBLE);
 				screen_2.setVisibility(RelativeLayout.GONE);
-				screen_3.setVisibility(RelativeLayout.GONE);
-				screen_4.setVisibility(RelativeLayout.GONE);
-				screen_5.setVisibility(RelativeLayout.GONE);
+			
 				break;
 	
 			case 2:
 				Log.d("APP","2");
 				screen_1.setVisibility(RelativeLayout.GONE);
 				screen_2.setVisibility(RelativeLayout.VISIBLE);
-				screen_3.setVisibility(RelativeLayout.GONE);
-				screen_4.setVisibility(RelativeLayout.GONE);
-				screen_5.setVisibility(RelativeLayout.GONE);
+				
 				break;
 	
-			case 3:
-				Log.d("APP","3");
-				screen_1.setVisibility(RelativeLayout.GONE);
-				screen_2.setVisibility(RelativeLayout.GONE);
-				screen_3.setVisibility(RelativeLayout.VISIBLE);
-				screen_4.setVisibility(RelativeLayout.GONE);
-				screen_5.setVisibility(RelativeLayout.GONE);
-				break;
-				
-			case 4:
-				Log.d("APP","4");
-				screen_1.setVisibility(RelativeLayout.GONE);
-				screen_2.setVisibility(RelativeLayout.GONE);
-				screen_3.setVisibility(RelativeLayout.GONE);
-				screen_4.setVisibility(RelativeLayout.VISIBLE);
-				screen_5.setVisibility(RelativeLayout.GONE);
-				break;
-				
-			case 5:
-				Log.d("APP","5");
-				screen_1.setVisibility(RelativeLayout.GONE);
-				screen_2.setVisibility(RelativeLayout.GONE);
-				screen_3.setVisibility(RelativeLayout.GONE);
-				screen_4.setVisibility(RelativeLayout.GONE);
-				screen_5.setVisibility(RelativeLayout.VISIBLE);
-				break;
+			
 		}
 		
 		return v;
@@ -143,30 +113,14 @@ public class TouchPad_Fragment extends Fragment implements OnItemClickListener {
 
 	private void initElements() {
 		screen_1 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_touchpad_screen_1);
-		screen_1_img1 = (ImageView) v.findViewById(R.id.iv_controller_help_touchpad_screen_1_img1);
-			
+		screen_1_help_1 = (TextView) v.findViewById(R.id.tv_controller_help_touchpad_screen_1_help_1);
+		screen_1_help_2 =(ImageView) v.findViewById(R.id.touchpadhelpimage);
 		screen_2 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_touchpad_screen_2);
-		screen_2_img1 = (ImageView) v.findViewById(R.id.iv_controller_help_touchpad_screen_2_img1);
-		screen_2_img2 = (ImageView) v.findViewById(R.id.iv_controller_help_touchpad_screen_2_img2);
-
-		screen_3 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_touchpad_screen_3);
-		screen_3_img1 = (ImageView) v.findViewById(R.id.iv_controller_help_touchpad_screen_3_img1);
-		screen_3_img2 = (ImageView) v.findViewById(R.id.iv_controller_help_touchpad_screen_3_img2);
-		screen_3_img3 = (ImageView) v.findViewById(R.id.iv_controller_help_touchpad_screen_3_img3);
-
-		screen_4 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_touchpad_screen_4);
-		screen_4_img1 = (ImageView) v.findViewById(R.id.iv_controller_help_touchpad_screen_4_img1);
-		screen_4_img2 = (ImageView) v.findViewById(R.id.iv_controller_help_touchpad_screen_4_img2);
-		screen_4_img3 = (ImageView) v.findViewById(R.id.iv_controller_help_touchpad_screen_4_img3);
-		screen_4_img4 = (ImageView) v.findViewById(R.id.iv_controller_help_touchpad_screen_4_img4);
-		
-		screen_5 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_touchpad_screen_5);
-
-		screen_5_listView1 = (ListView) v.findViewById(R.id.iv_controller_help_touchpad_screen_5_listView1);
-		screen_5_listView1.setOnItemClickListener(this);
+		screen_2_video_list = (ListView) v.findViewById(R.id.iv_controller_help_touchpad_screen_2_video_list);
+		screen_2_video_list.setOnItemClickListener(this);
 	
-		listOfElementsAdpater = new ListOfVideo(context, VIDEO_LIST);
-		screen_5_listView1.setAdapter(listOfElementsAdpater);
+		videoListAdapter = new ListOfVideo(context, VIDEO_LIST);
+		screen_2_video_list.setAdapter(videoListAdapter);
 	}
 
 	@Override

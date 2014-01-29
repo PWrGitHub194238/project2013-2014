@@ -33,8 +33,7 @@ Uri url;
 	            MediaController mediacontroller = new MediaController(
 	            		Movie_Activity_Help.this);
 	            mediacontroller.setAnchorView(video);
-	            Toast.makeText(getApplicationContext(), urlstring, Toast.LENGTH_SHORT)
-				.show();
+	        
 	            // Get the URL from String VideoURL
 	            video.setMediaController(mediacontroller);
 	            video.setVideoURI(url);

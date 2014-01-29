@@ -14,113 +14,27 @@
 	    android:layout_height="match_parent"
 	    android:background="@android:color/transparent" >
 
+          <TextView
+	        android:id="@+id/tv_controller_help_touchpad_screen_1_help_1"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentTop="true"
+	        android:text="@string/tv_controller_help_touchpad_screen_1_help_1" />
         <ImageView
-            android:id="@+id/iv_controller_help_touchpad_screen_1_img1"
-            android:layout_width="wrap_content"
+            android:id="@+id/touchpadhelpimage"
+          android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_alignBottom="@+id/tv_controller_help_touchpad_screen_1_help_1"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="139dp"
-            android:background="@drawable/activity_button_pending" />
-        
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/list_video_item_icon_1" />
 	</RelativeLayout>
 	
     <RelativeLayout
         android:id="@+id/rl_controller_help_touchpad_screen_2"
-        android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:background="@android:color/transparent" >
-
-        <ImageView
-            android:id="@+id/iv_controller_help_touchpad_screen_2_img1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-
-            android:src="@drawable/activity_button_pending" />
-        
-        <ImageView
-            android:id="@+id/iv_controller_help_touchpad_screen_2_img2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_below="@id/iv_controller_help_touchpad_screen_2_img1"
-            android:src="@drawable/activity_button_pending" />
-        
-	</RelativeLayout>
-	
-    <RelativeLayout
-        android:id="@+id/rl_controller_help_touchpad_screen_3"
-        android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:background="@android:color/transparent" >
-
-        <ImageView
-            android:id="@+id/iv_controller_help_touchpad_screen_3_img1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            
-            android:src="@drawable/activity_button_pending" />
-        
-        <ImageView
-            android:id="@+id/iv_controller_help_touchpad_screen_3_img2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_below="@id/iv_controller_help_touchpad_screen_3_img1"
-            android:src="@drawable/activity_button_pending" />
-         <ImageView
-            android:id="@+id/iv_controller_help_touchpad_screen_3_img3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_below="@id/iv_controller_help_touchpad_screen_3_img2"
-            android:src="@drawable/activity_button_pending" />
-        
-	</RelativeLayout>
-	
-    <RelativeLayout
-        android:id="@+id/rl_controller_help_touchpad_screen_4"
-        android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:background="@android:color/transparent" >
-
-        <ImageView
-            android:id="@+id/iv_controller_help_touchpad_screen_4_img1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-
-            android:src="@drawable/activity_button_pending" />
-        
-        <ImageView
-            android:id="@+id/iv_controller_help_touchpad_screen_4_img2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_below="@id/iv_controller_help_touchpad_screen_4_img1"
-            android:src="@drawable/activity_button_pending" />
-        <ImageView
-            android:id="@+id/iv_controller_help_touchpad_screen_4_img3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_below="@id/iv_controller_help_touchpad_screen_4_img2"
-            android:src="@drawable/activity_button_pending" />
-        <ImageView
-            android:id="@+id/iv_controller_help_touchpad_screen_4_img4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_below="@id/iv_controller_help_touchpad_screen_4_img3"
-            android:src="@drawable/activity_button_pending" />
-        
-	</RelativeLayout>
-	
-    <RelativeLayout
-        android:id="@+id/rl_controller_help_touchpad_screen_5"
-        android:layout_width="match_parent"
+          android:layout_width="match_parent"
 	    android:layout_height="match_parent"
 	    android:paddingBottom="0dp"
     	android:paddingLeft="0dp"
@@ -129,7 +43,7 @@
 	    android:background="@android:color/transparent" >
 
         <ListView
-            android:id="@+id/iv_controller_help_touchpad_screen_5_listView1"
+            android:id="@+id/iv_controller_help_touchpad_screen_2_video_list"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
@@ -137,6 +51,6 @@
         </ListView>
         
 	</RelativeLayout>
-
-
+	
+  
 </RelativeLayout>

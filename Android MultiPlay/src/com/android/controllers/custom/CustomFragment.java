@@ -26,9 +26,9 @@ public class CustomFragment extends Fragment implements OnItemClickListener {
 	
 	private static final VideoListItem VIDEO_LIST[] = {
 		new VideoListItem(0, 
-				"Jakiœtam url", VideoListItem.VIDEO_MINIATURE.FIRST, 
-				"Jakiœtam tytu³", 12, 
-				"Jakiœtam opis")
+				"http://androidmultiplay.url.ph/video_tutorials/scrennrecord.mp4", VideoListItem.VIDEO_MINIATURE.FIRST, 
+				"CustomController Tutorial", 12, 
+				"Video tutorial to guide Custom Controller")
 	};
 	
 	private Context context;

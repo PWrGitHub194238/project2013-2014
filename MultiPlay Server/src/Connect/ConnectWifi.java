@@ -16,9 +16,6 @@ import java.util.Random;
  */
 public class ConnectWifi {
 	private int portdefault = 1234;
-	private int port;
-
-	private String IP = null;
 	private ArrayList<Integer> arrlist = new ArrayList<Integer>();
 
 	/**

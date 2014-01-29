@@ -17,7 +17,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
@@ -370,7 +369,7 @@
         <activity
             android:name="com.android.controllers.help.movie.Movie_activity"
             android:label="@string/title_activity_movie_activity"
-            android:screenOrientation="landscape"
+             android:screenOrientation="landscape"
             android:theme="@style/MultiPlayTheme" >
         </activity>
         <activity
@@ -381,7 +380,9 @@
         </activity>
         <activity
             android:name="com.android.controllers.help.movie.Movie_Activity_Help"
-            android:label="@string/title_activity_movie__activity__help" >
+            android:label="@string/title_activity_movie__activity__help" 
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
         </activity>
     </application>
     <application

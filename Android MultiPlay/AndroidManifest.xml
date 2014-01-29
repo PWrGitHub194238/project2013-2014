@@ -373,6 +373,16 @@
             android:screenOrientation="landscape"
             android:theme="@style/MultiPlayTheme" >
         </activity>
+        <activity
+            android:name="com.android.multiplay.CustomControllerHelp"
+            android:label="@string/title_activity_custom_controller_help"
+            android:screenOrientation="landscape"
+            android:theme="@style/MultiPlayTheme" >
+        </activity>
+        <activity
+            android:name="com.android.controllers.help.movie.Movie_Activity_Help"
+            android:label="@string/title_activity_movie__activity__help" >
+        </activity>
     </application>
     <application
         android:name="com.android.carousel.Singleton"

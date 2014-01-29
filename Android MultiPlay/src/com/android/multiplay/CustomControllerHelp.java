@@ -1,30 +1,32 @@
-package com.android.controllers.help.gyromouse;
+package com.android.multiplay;
 
 import java.util.Random;
 
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
-
 import com.android.animations.DepthPageTransformer;
 import com.android.animations.TransformZoomOut;
-import com.android.multiplay.R;
+import com.android.controllers.help.keyboard.Keyboard_help_pager;
 
-public class GyromouseHelp extends FragmentActivity {
+import android.os.Bundle;
+import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
+import android.view.Menu;
 
-	private Gyromouse_help_pager pagerAdapter = null;
+public class CustomControllerHelp extends FragmentActivity {
+
+	private Keyboard_help_pager pagerAdapter = null;
 	private ViewPager pager;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_gyromouse_help);
+		setContentView(R.layout.activity_custom_controller_help);
 		
-		pager = (ViewPager) findViewById(R.id.vp_help_gyromouse);
+		pager = (ViewPager) findViewById(R.id.vp_help_custom);
 
 		getRandomTransformation(new Random());
 
-	    pagerAdapter = new Gyromouse_help_pager(getSupportFragmentManager(),getResources());
+	    pagerAdapter = new Keyboard_help_pager(getSupportFragmentManager(),getResources());
 	    pager.setAdapter(pagerAdapter);
 	    	 
 	}

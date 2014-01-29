@@ -6,7 +6,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context=".KeyboardHelp" >
+    tools:context=".SteeringwheelHelp" >
       
     <RelativeLayout
         android:id="@+id/rl_controller_help_steeringwheel_screen_1"

@@ -18,9 +18,9 @@ public class SteeringwheelHelp extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_touchpad_help);
+		setContentView(R.layout.activity_steeringwheel_help);
 		
-		pager = (ViewPager) findViewById(R.id.vp_help_touchpad);
+		pager = (ViewPager) findViewById(R.id.vp_help_steeringwheel);
 
 		getRandomTransformation(new Random());
 

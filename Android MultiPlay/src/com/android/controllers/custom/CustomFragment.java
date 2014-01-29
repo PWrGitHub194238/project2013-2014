@@ -1,4 +1,4 @@
-package com.android.controllers.help.steeringwheel;
+package com.android.controllers.custom;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,18 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
-import com.android.controllers.help.movie.Movie_Activity_Help;
 import com.android.extendedWidgets.lists.ListOfVideo;
 import com.android.extendedWidgets.lists.VideoListItem;
 import com.android.multiplay.MainActivity;
 import com.android.multiplay.R;
 
-public class Steeringwheel_Fragment extends Fragment implements OnItemClickListener {
+public class CustomFragment extends Fragment implements OnItemClickListener {
 	
 	private int currentPage;
 	
@@ -57,7 +56,7 @@ public class Steeringwheel_Fragment extends Fragment implements OnItemClickListe
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
-		v = inflater.inflate(R.layout.help_view_steeringwheel, container, false);
+		v = inflater.inflate(R.layout.help_view_custom, container, false);
 
 		initElements();
 
@@ -77,11 +76,11 @@ public class Steeringwheel_Fragment extends Fragment implements OnItemClickListe
 	}
 
 	private void initElements() {
-		screen_1 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_steeringwheel_screen_1);
-		screen_1_help_1 = (TextView) v.findViewById(R.id.tv_controller_help_steeringwheel_screen_1_help_1);
+		screen_1 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_custom_screen_1);
+		screen_1_help_1 = (TextView) v.findViewById(R.id.tv_controller_help_custom_screen_1_help_1);
 			
-		screen_2 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_steeringwheel_screen_2);
-		screen_2_video_list = (ListView) v.findViewById(R.id.iv_controller_help_steeringwheel_screen_2_video_list);
+		screen_2 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_custom_screen_2);
+		screen_2_video_list = (ListView) v.findViewById(R.id.iv_controller_help_custom_screen_2_video_list);
 		screen_2_video_list.setOnItemClickListener(this);
 	
 		videoListAdapter = new ListOfVideo(context, VIDEO_LIST);
@@ -90,7 +89,7 @@ public class Steeringwheel_Fragment extends Fragment implements OnItemClickListe
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		Intent intent = new Intent(context, Movie_Activity_Help.class);
+		Intent intent = new Intent(context, MainActivity.class);
 		intent.putExtra("video_url", ((VideoListItem) parent.getItemAtPosition(position)).getVideo_url());
 		super.startActivity(intent);
 	}

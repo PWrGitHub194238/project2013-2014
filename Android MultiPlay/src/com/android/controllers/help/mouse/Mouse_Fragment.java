@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.controllers.help.movie.Movie_Activity_Help;
 import com.android.extendedWidgets.lists.ListOfVideo;
 import com.android.extendedWidgets.lists.VideoListItem;
 import com.android.multiplay.MainActivity;
@@ -56,7 +57,7 @@ public class Mouse_Fragment extends Fragment implements OnItemClickListener {
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
-		v = inflater.inflate(R.layout.help_view_touchpad, container, false);
+		v = inflater.inflate(R.layout.help_view_mouse, container, false);
 
 		initElements();
 
@@ -89,7 +90,7 @@ public class Mouse_Fragment extends Fragment implements OnItemClickListener {
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		Intent intent = new Intent(context, MainActivity.class);
+		Intent intent = new Intent(context, Movie_Activity_Help.class);
 		intent.putExtra("video_url", ((VideoListItem) parent.getItemAtPosition(position)).getVideo_url());
 		super.startActivity(intent);
 	}

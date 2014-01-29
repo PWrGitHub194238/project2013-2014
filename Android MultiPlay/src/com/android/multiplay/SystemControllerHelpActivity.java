@@ -63,6 +63,8 @@ public class SystemControllerHelpActivity extends CarouselActivity implements Di
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog) {
 		Intent intent = new Intent(this, ConnectionsActivity.class);
+		String url = "http://androidmultiplay.url.ph/video_tutorials/scrennrecord.mp4";
+		intent.putExtra("url", url);
 		super.startActivity(intent);
 		this.finish();
 	}

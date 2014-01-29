@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.android.application.MultiPlayApplication;
-import com.android.controllers.help.movie.Movie_activity;
+import com.android.controllers.help.movie.Movie_Activity_Help;
 import com.android.database.MultiPlayDataBase;
 import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
@@ -103,7 +103,7 @@ private ImageButton b_goback = null;
 	 * @param view
 	 */
 	public void explorer_help_OnClick( View view ) {
-		Intent intent = new Intent(this, Movie_activity.class);
+		Intent intent = new Intent(this, Movie_Activity_Help.class);
 		super.startActivity(intent);
 	}
 	

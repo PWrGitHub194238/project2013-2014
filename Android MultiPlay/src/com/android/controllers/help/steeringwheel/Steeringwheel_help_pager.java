@@ -10,7 +10,7 @@ import com.android.multiplay.R;
 
 public class Steeringwheel_help_pager extends FragmentPagerAdapter {
 	
-	private final int PAGE_COUNT = 5;
+	private final int PAGE_COUNT = 2;
 	
 	private final int[] PAGE_TITLES = {
 			R.string.help_steeringwheel_page_title_1,

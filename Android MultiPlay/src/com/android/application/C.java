@@ -23,6 +23,7 @@ import com.android.controllers.mouse.TouchpadOptionActivity;
 import com.android.controllers.steeringwheel.SteeringwheelActivity;
 import com.android.controllers.steeringwheel.SteeringwheelOptionActivity;
 import com.android.database.tables.General;
+import com.android.multiplay.CustomControllerHelp;
 import com.android.multiplay.R;
 
 /** Stores structured information about each controller, by default available in the application, as well as the types of items available for building your own.
@@ -91,7 +92,7 @@ public final class C {
 	public static final int SIGNAL_CUSTOM = 					Integer.parseInt("01001", 2);
 	private static final ControllerDefinition CONTROLLER_CUSTOM = new ControllerDefinition(
 			C.SIGNAL_CUSTOM, "TouchCircle", R.drawable.carousel_controller_icon_touchcircle, 
-			ControllerDefinition.NOT_STAND_ALONE, CustomControllerActivity.class, null, null,
+			ControllerDefinition.NOT_STAND_ALONE, CustomControllerActivity.class, null, CustomControllerHelp.class,
 			Requirements.OS_WINDOWS, new String[] {
 				
 			});

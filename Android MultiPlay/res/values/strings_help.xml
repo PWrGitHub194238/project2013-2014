@@ -6,6 +6,11 @@
     	<string name="help_keyboard_page_title_1">TODO</string>
     	<string name="help_keyboard_page_title_2">Video Tutorials</string>    
     
+     <string name="tv_controller_help_custom_screen_1_help_1">TODO</string>
+    
+    	<string name="help_custom_page_title_1">TODO</string>
+    	<string name="help_custom_page_title_2">Video Tutorials</string>  
+    	  
     <string name="tv_controller_help_gyromouse_screen_1_help_1">TODO</string>
     
     	<string name="help_gyromouse_page_title_1">TODO</string>
@@ -34,9 +39,6 @@
     <string name="tv_controller_help_touchpad_screen_1_help_1">TODO</string>
     
     	<string name="help_touchpad_page_title_1">TODO</string>
-    	<string name="help_touchpad_page_title_2">TODO</string>
-    	<string name="help_touchpad_page_title_3">TODO</string>
-    	<string name="help_touchpad_page_title_4">TODO</string>
-    	<string name="help_touchpad_page_title_5">Video Tutorials</string>
+    	<string name="help_touchpad_page_title_2">Video Tutorials</string>
     	
 </resources>

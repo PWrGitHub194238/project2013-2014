@@ -2,9 +2,13 @@ package com.android.extendedWidgets;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ProgressBar;
 
+/** Extended {@link ProgressBar} that can handle events where the value of progress bar has changed.
+ * 
+ * @author tomasz
+ *
+ */
 public class ExtendedProgressBar extends ProgressBar {
 
 	OnProgressChangedListener onProgressChangedListener = null;

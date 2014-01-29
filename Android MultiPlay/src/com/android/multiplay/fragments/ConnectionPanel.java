@@ -17,7 +17,7 @@ import com.android.multiplay.R;
 import com.android.service.receivers.ConnectionServiceResponseReceiver;
 import com.android.services.ConnectionService;
 
-/**
+/** Fragment that displays current status of Wifi connection or Bluetooth status of device.
  * 
  * @author tomasz
  *

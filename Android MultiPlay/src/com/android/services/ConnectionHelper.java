@@ -15,6 +15,12 @@ import com.android.database.tables.NetworkBTSettings;
 import com.android.database.tables.NetworkWiFiSettings;
 import com.android.multiplay.R;
 
+/** Helper class contains method for adding new connections to database and MultiPlay configuration class.
+ * Additionally complements the properties of the added connections.
+ * 
+ * @author tomasz
+ *
+ */
 public class ConnectionHelper {
 	
 	public static final int STATUS_ON = R.drawable.activity_button_on;
@@ -55,9 +61,6 @@ public class ConnectionHelper {
 				Log.d("THREAD","EXEC 85");
 				if ( wifiConfiguration != null) {
 					new CheckConnectionStatus().execute(wifiConfiguration);
-
-				} else {
-					Log.d("THREAD","EXEC 85 NULL");
 
 				}
 				
@@ -101,9 +104,6 @@ public class ConnectionHelper {
 				Log.d("THREAD","EXEC 124");
 				if (btConfiguration != null ) {
 					new CheckConnectionStatus().execute(btConfiguration);
-				} else {
-					Log.d("THREAD","EXEC 124 NULL");
-
 				}
 				
 				MultiPlayApplication.getDiscoveredBluetoothDevices().add(btConfiguration);

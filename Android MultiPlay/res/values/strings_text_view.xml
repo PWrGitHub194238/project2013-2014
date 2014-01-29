@@ -59,40 +59,40 @@
     <string name="tv_empty">--</string>
     
     <string name="tv_default_title_in_main_activity">MultiPlay</string>
-    <string name="tv_default_title_description_in_main_activity">Chose one of the options on your right to navigate application. To enable or disable device connections tap leds below.</string>
+    <string name="tv_default_title_description_in_main_activity">Universal controller of your applications - it\'s me :).\nTo read briefly about each menu element, tap one of the icons next to me. To navigate through the application, tap it one more time.</string>
   
     <string name="tv_option_0_title_in_main_activity">MultiPlay Explorer</string>
-    <string name="tv_option_0_title_description_in_main_activity">Connects you to remote server</string>
+    <string name="tv_option_0_title_description_in_main_activity">Download data from the server to which you are connected to control their applications directly from your moblie device.</string>
     
     	<string name="tv_activity_title_multiplay_explorer">MultiPlay Explorer</string>
     	
     <string name="tv_option_1_title_in_main_activity">MultiPlay\'s help</string>
-    <string name="tv_option_1_title_description_in_main_activity">f the options on your right to navigate application. To enable or disable device connections tap leds below.</string>
+    <string name="tv_option_1_title_description_in_main_activity">Take your chance to deeply explore my possibilities, either by watching video tutorials or read text manual as you wish. Hope it\'ll help.</string>
     	
     	<string name="tv_default_title_in_help_activity">Application help</string>
    		<string name="tv_default_title_description_in_help_activity">Read about every aspect of MultiPlayer Android application, get knowledge how to use your app in various ways, starting from it\'s configuration up to custom controllers.</string>
    		
    		<string name="tv_option_0_title_in_help_activity">Help: Explorer</string>
-   		<string name="tv_option_0_title_description_in_help_activity">todo</string>
+   		<string name="tv_option_0_title_description_in_help_activity">Read about server connection, how to make it responding to your requests to run its applications directly through mobile device.</string>
    		
    		<string name="tv_option_1_title_in_help_activity">Help: Controllers</string>
-   		<string name="tv_option_1_title_description_in_help_activity">todo</string>
+   		<string name="tv_option_1_title_description_in_help_activity">Explore the advantages of using different controllers available for you to be able to effectively take control of multiple applications on the server side, or even the whole system.</string>
    		
    			<string name="tv_activity_title_system_controllers_help">Help: Controllers</string>
    			
    			<string name="tv_list_video_prefix_duration">Duration: </string>
    		
-   		<string name="tv_option_2_title_in_help_activity">Help: Options</string>
-   		<string name="tv_option_2_title_description_in_help_activity">todo</string>
+   		<string name="tv_other_2_title_in_help_activity">Help: Basic topics</string>
+   		<string name="tv_option_2_title_description_in_help_activity">Learn how to navigate the application, connect to the server, perform basic tasks within the application.</string>
    		
    		
     <string name="tv_option_2_title_in_main_activity">System controller</string>
-    <string name="tv_option_2_title_description_in_main_activity">ons on your right to navigate application. To enable or disable device connections tap leds below.</string>
+    <string name="tv_option_2_title_description_in_main_activity">Choose the most convenient method to take control of a computer that is running the server, from the usual mouse to advanced, fully configurable controllers that use the full capabilities of your mobile device.</string>
     
     	<string name="tv_activity_title_system_controllers">Choose controller</string>
         	
     <string name="tv_option_3_title_in_main_activity">Configuration</string>
-	<string name="tv_option_3_title_description_in_main_activity"> right to navigate application. To enable or disable device connections tap leds below.</string>
+	<string name="tv_option_3_title_description_in_main_activity">Change application settings, adjusting the controller settings to meet your needs, manage the available connections, reset entire app data.</string>
     
 		<string name="tv_option_0_title_in_options_activity">Connections</string>
 		<string name="tv_option_0_title_description_in_options_activity"> Choose between Wi-Fi and BT connection and search for available devices to connect with.</string>

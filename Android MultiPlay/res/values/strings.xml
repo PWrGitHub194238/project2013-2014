@@ -107,7 +107,7 @@
     <string name="title_activity_touch_circle">TouchCircle</string>
     <string name="title_activity_multiplay_explorer_help">MultiplayExplorerHelpActivity</string>
     <string name="title_activity_system_controller_help">SystemControllerHelpActivity</string>
-    <string name="title_activity_options_help">OptionsHelpActivity</string>
+    <string name="title_activity_other_help">OtherHelpActivity</string>
     <string name="title_activity_movie_activity">Movie_activity</string>
     <string name="title_activity_custom_controller_help">CustomControllerHelp</string>
     <string name="title_activity_movie__activity__help">Movie_Activity_Help</string>

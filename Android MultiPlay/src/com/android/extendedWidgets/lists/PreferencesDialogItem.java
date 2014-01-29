@@ -2,8 +2,19 @@ package com.android.extendedWidgets.lists;
 
 import com.android.multiplay.R;
 
+/** Element to display a list of possible options in the dialog box that opens 
+ * when you call a menu with additional options for the item.
+ * 
+ * @author tomasz
+ *
+ */
 public class PreferencesDialogItem {
 	
+	/** List of id for {@link PreferencesDialogItem} elements.
+	 * 
+	 * @author tomasz
+	 *
+	 */
 	public static final class ID {
 		public static final String ListOfConnections_edit = "ListOfConnections_edit";
 		public static final String ListOfConnections_forget = "ListOfConnections_forget";
@@ -16,10 +27,20 @@ public class PreferencesDialogItem {
 		public static final String returnTAG = "return";
 	};
 	
+	/** List of id for {@link PreferencesDialogItem} icons for elements.
+	 * 
+	 * @author tomasz
+	 *
+	 */
 	public static final class ICON {
 		public static int icon_1 = R.drawable.connections_activity_icon_1;
 	};
 	
+	/** List of id for {@link PreferencesDialogItem} element names.
+	 * 
+	 * @author tomasz
+	 *
+	 */
 	public static final class NAME {
 		public static int dialog_optionID_EMPTY = R.string.dialog_optionID_EMPTY;
 		public static int dialog_optionID_EDIT_CONNECTION = R.string.dialog_optionID_EDIT_CONNECTION;
@@ -35,6 +56,11 @@ public class PreferencesDialogItem {
 	};
 	
 	
+	/**
+	 * @param optionTAG
+	 * @param option_iconID
+	 * @param option_nameID
+	 */
 	public PreferencesDialogItem(String optionTAG, Integer option_iconID, Integer option_nameID) {
 		if (optionTAG != null) {
 			this.optionTAG = optionTAG;
@@ -47,12 +73,24 @@ public class PreferencesDialogItem {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	private String optionTAG = ID.ListOfConnections_edit;
+	/**
+	 * 
+	 */
 	private int option_iconID = ICON.icon_1;
+	/**
+	 * 
+	 */
 	private int option_nameID = NAME.dialog_optionID_EMPTY;
 
 	/**
 	 * @return the option_iconID
+	 */
+	/**
+	 * @return
 	 */
 	public final int getOption_iconID() {
 		return option_iconID;
@@ -60,11 +98,17 @@ public class PreferencesDialogItem {
 	/**
 	 * @param option_iconID the option_iconID to set
 	 */
+	/**
+	 * @param option_iconID
+	 */
 	public final void setOption_iconID(int option_iconID) {
 		this.option_iconID = option_iconID;
 	}
 	/**
 	 * @return the option_nameID
+	 */
+	/**
+	 * @return
 	 */
 	public final int getOption_nameID() {
 		return option_nameID;
@@ -72,17 +116,26 @@ public class PreferencesDialogItem {
 	/**
 	 * @param option_nameID the option_nameID to set
 	 */
+	/**
+	 * @param option_nameID
+	 */
 	public final void setOption_nameID(int option_nameID) {
 		this.option_nameID = option_nameID;
 	}
 	/**
 	 * @return the optionTAG
 	 */
+	/**
+	 * @return
+	 */
 	public final String getOptionTAG() {
 		return optionTAG;
 	}
 	/**
 	 * @param optionTAG the optionTAG to set
+	 */
+	/**
+	 * @param optionTAG
 	 */
 	public final void setOptionTAG(String optionTAG) {
 		this.optionTAG = optionTAG;

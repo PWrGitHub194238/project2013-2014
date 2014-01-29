@@ -13,29 +13,58 @@ import android.widget.TextView;
 
 import com.android.multiplay.R;
  
+/** Adapter for list of elements defined in {@link ExplorerApplicationItem}.
+ * 
+ * @author tomasz
+ *
+ */
 public class ExplorerApplicationList extends BaseAdapter {
  
+    /**
+     * 
+     */
     private Context ctx;
+    /**
+     * 
+     */
     private ExplorerApplicationItem[] data = null;
  
+    /**
+     * @param ctx
+     * @param listElements
+     */
     public ExplorerApplicationList(Context ctx, Collection<ExplorerApplicationItem> listElements) {
     	data = new ExplorerApplicationItem[listElements.size()];
     	listElements.toArray(data);
 	    this.ctx = ctx;
     }
  
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getCount()
+     */
     public int getCount() {
     	return data.length;
     }
  
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getItem(int)
+     */
     public ExplorerApplicationItem getItem(int position) {
     	return data[position];
     }
  
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getItemId(int)
+     */
     public long getItemId(int position) {
     	return 0;
     }
  
+    /** Pattern for list item that holds view configuration to prevent it to load each time new item occurred.
+     * 
+     * @author tomasz
+     *
+     */
     private class ViewHolderPattern {
     	private ImageView application_icon = null;
     	private TextView application_name = null;
@@ -58,6 +87,9 @@ public class ExplorerApplicationList extends BaseAdapter {
 		}
     }
  
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+     */
     public View getView(int position, View convertView, ViewGroup parent) {
  
     ViewHolderPattern view_holder;

@@ -48,6 +48,11 @@ import com.android.extendedWidgets.lists.PreferencesDialogList;
 import com.android.service.receivers.WiFiDirectBroadcastReceiver;
 import com.android.services.ConnectionHelper;
 
+/** Activity for managing connections. It supports add, search, connections both manually which automatically.
+ * 
+ * @author tomasz
+ *
+ */
 public class ConnectionsActivity extends Activity implements OnItemClickListener, OnItemLongClickListener, OnClickListener, OnLongClickListener, DialogButtonClickListener, OnAsyncTaskFinished {
 
 	

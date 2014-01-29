@@ -47,6 +47,8 @@ import com.android.multiplay.R;
  * @see DialogListCore
  * @see DialogListCore#ID_TITLE_NO_TITLE
  * @see DialogListCore#ID_MESSAGE_NO_MESSAGE
+ * 
+ *  @author tomasz
  */
 public class AlertDialogs extends DialogFragment implements OnShowListener {
 	

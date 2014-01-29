@@ -32,14 +32,29 @@ import com.android.database.tables.SteeringWheel;
 import com.android.extendedWidgets.ExtendedProgressBar;
 import com.android.services.ConnectionHelper;
 
+/** Helper class to carry out any operations on the database: adding records, deleting them, editing, processing, return results in the expected form.
+ * 
+ * @author tomasz
+ *
+ */
 public class DBHelper {
 
+	/** Interface that allows {@link DBHelper} class to have access to two of the most important fields 
+	 * for every row in every table in database: table name and artificial key.
+	 * @author tomasz
+	 *
+	 */
 	public interface TableIF {
 		public String getTableName();
 
 		public String getKeyUnique1();
 	}
 
+	/** Helper class contains methods to build the most common SQL queries elements such WHEREs, VALUEs and LIKEs.
+	 * 
+	 * @author tomasz
+	 *
+	 */
 	private static class QueryBuilder {
 		/**
 		 * 
@@ -108,19 +123,52 @@ public class DBHelper {
 		}
 	};
 
+	/**
+	 * 
+	 */
 	private Context context = null;
+	/**
+	 * 
+	 */
 	MultiPlayDataBase dbHelper = null;
+	/**
+	 * 
+	 */
 	private static SQLiteDatabase db = null;
 
 	// SQL types
+	/**
+	 * 
+	 */
 	public static final String TYPE_NULL = "NULL";
+	/**
+	 * 
+	 */
 	public static final String TYPE_TEXT = "TEXT";
+	/**
+	 * 
+	 */
 	public static final String TYPE_INT = "INTEGER";
+	/**
+	 * 
+	 */
 	public static final String TYPE_REAL = "REAL";
+	/**
+	 * 
+	 */
 	public static final String TYPE_BLOB = "BLOB";
 
+	/**
+	 * 
+	 */
 	public static final String DEFAULT_NULL = "DEFAULT NULL";
+	/**
+	 * 
+	 */
 	public static final String DEFAULT_FALSE = "DEFAULT 0";
+	/**
+	 * 
+	 */
 	public static final String DEFAULT_TRUE = "DEFAULT 1";
 
 	/**
@@ -128,7 +176,13 @@ public class DBHelper {
 	 * 
 	 */
 	public static final String TYPE_DATE_AS_INT = "INTEGER";
+	/**
+	 * 
+	 */
 	public static final String TYPE_PK_INT = "INTEGER PRIMARY KEY";
+	/**
+	 * 
+	 */
 	public static final String TYPE_SK_INT = "INTEGER UNIQUE";
 
 	/**
@@ -168,25 +222,68 @@ public class DBHelper {
 	}
 
 	// SQL special characters
+	/**
+	 * 
+	 */
 	public static final String COMMA_SEP = ",";
+	/**
+	 * 
+	 */
 	public static final String SEMICOLON_SEP = ";";
+	/**
+	 * 
+	 */
 	public static final String STAR = "*";
 
 	// SQL special field values
+	/**
+	 * 
+	 */
 	public static final String BUTTON_TYPE_ASCII = "ASCIIButton";
+	/**
+	 * 
+	 */
 	public static final String BUTTON_TYPE_MOVEMENT = "MovementButton";
+	/**
+	 * 
+	 */
 	public static final String BUTTON_TYPE_STEERING = "SteeringWheel";
 
+	/**
+	 * 
+	 */
 	public static final String CONTROLLER_TYPE_MOUSE = "";
+	/**
+	 * 
+	 */
 	public static final String CONTROLLER_TYPE_KEYBOARD = "";
+	/**
+	 * 
+	 */
 	public static final String CONTROLLER_TYPE_PAD = "";
+	/**
+	 * 
+	 */
 	public static final String CONTROLLER_TYPE_STEERING = "";
+	/**
+	 * 
+	 */
 	public static final String CONTROLLER_TYPE_FLIGHT = "";
 
+	/**
+	 * 
+	 */
 	public static final String TRUE = "1";
+	/**
+	 * 
+	 */
 	public static final String FALSE = "0";
 
 	// SQL tables
+	/**
+	 * @author tomasz
+	 *
+	 */
 	public static enum SQL_TABLE_NAME {
 		TABLE_ASCIIButton(ASCIIButton.DBSchema.TABLE_NAME), TABLE_ConnectionHistory(
 				ConnectionHistory.DBSchema.TABLE_NAME), TABLE_Controllers_detail(
@@ -206,6 +303,10 @@ public class DBHelper {
 	};
 
 	// SQL Create table
+	/**
+	 * @author tomasz
+	 *
+	 */
 	public static enum SQL_CREATE_DATABASE {
 		TABLE_ASCIIButton(ASCIIButton.SQL_CREATE_TABLE), TABLE_ConnectionHistory(
 				ConnectionHistory.SQL_CREATE_TABLE), TABLE_Controllers_detail(
@@ -225,6 +326,10 @@ public class DBHelper {
 	};
 
 	// SQL Drop table
+	/**
+	 * @author tomasz
+	 *
+	 */
 	public static enum SQL_DROP_DATABASE {
 		TABLE_ASCIIButton(ASCIIButton.SQL_DROP_TABLE), TABLE_ConnectionHistory(
 				ConnectionHistory.SQL_DROP_TABLE), TABLE_Controllers_detail(
@@ -243,10 +348,22 @@ public class DBHelper {
 		}
 	};
 
+	/**
+	 * 
+	 */
 	public static final boolean CLEAR_YES = true;
+	/**
+	 * 
+	 */
 	public static final boolean CLEAR_NO = false;
 
+	/**
+	 * 
+	 */
 	public static final boolean REOPEN_YES = true;
+	/**
+	 * 
+	 */
 	public static final boolean REOPEN_NO = false;
 
 	/**
@@ -257,6 +374,9 @@ public class DBHelper {
 		this.context = context;
 	}
 
+	/**
+	 * 
+	 */
 	public void openConnection() {
 		if (dbHelper == null) {
 			dbHelper = new MultiPlayDataBase(context);
@@ -271,6 +391,9 @@ public class DBHelper {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public void closeConnection() {
 		Log.d("DB", "CLOSING");
 		if (db != null) {
@@ -1180,6 +1303,12 @@ public class DBHelper {
 		return parsedConfigurations;
 	}
 
+	/**
+	 * @param context
+	 * @param progressBar
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 */
 	public void updateMultiPlayRequirements(Context context,
 			ExtendedProgressBar progressBar) throws InstantiationException,
 			IllegalAccessException {
@@ -1306,6 +1435,9 @@ public class DBHelper {
 		return requirementsMap;
 	}
 
+	/**
+	 * 
+	 */
 	public void recreateDataBase() {
 		MultiPlayApplication.getDbHelper().openConnection();
 

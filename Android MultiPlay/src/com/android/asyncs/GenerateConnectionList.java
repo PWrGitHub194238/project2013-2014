@@ -13,7 +13,7 @@ import com.android.application.N;
 import com.android.dialogs.AsyncTaskDialog;
 import com.android.services.ConnectionHelper;
 
-/** Topic searches for available connections to servers based on the ability to detect devices through a mobile device. 
+/** Thread searches for available connections to servers based on the ability to detect devices through a mobile device. 
  * 
  * Adds found a connection to the appropriate list.
  * 
@@ -87,7 +87,7 @@ public class GenerateConnectionList extends AsyncTask<String, String, Integer> {
 		}
 		Log.d("connections","BT IS OK 3");
 		
-		return OnAsyncTaskFinished.TAG.ConnectionActivity_BT_search;
+		return asyncCallReason;
 	}
 	
 	/* (non-Javadoc)

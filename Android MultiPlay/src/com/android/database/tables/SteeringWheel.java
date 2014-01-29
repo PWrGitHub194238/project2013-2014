@@ -23,6 +23,7 @@ import com.android.database.DBHelper;
  * where the keys are the names of the columns in the corresponding table,
  *  which this class represents.
  *
+ * @author tomasz
  */
 public class SteeringWheel implements DBHelper.TableIF {
 

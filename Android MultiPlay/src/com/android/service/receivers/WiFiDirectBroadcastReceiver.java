@@ -13,6 +13,8 @@ import android.util.Log;
 
 /**
  * A BroadcastReceiver that notifies of important Wi-Fi p2p events.
+ * 
+ * @author tomasz
  */
 public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
 

@@ -25,7 +25,9 @@ import com.android.dialogs.AsyncTaskDialog;
 import com.android.extendedWidgets.lists.ExplorerApplicationItem;
 
 
-/** 
+/** Asks the server to the list of applications that have a server.
+ * 
+ * @author tomasz
  *
  */
 public class CheckOutServerApplications extends AsyncTask<Byte, String, Integer> {

@@ -1,9 +1,8 @@
 package com.android.asyncs;
 
-/** 
-It lets you communicate a specific class of application threads. 
+/** It lets you communicate a specific class of application threads. 
 
-Topic should be taken as a parameter specified TAG and return it.
+Thread should be taken as a parameter specified TAG and return it.
  Allows the application to react to the end of the working thread.
 
  * @author tomasz

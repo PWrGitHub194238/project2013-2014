@@ -1,6 +1,10 @@
 package com.android.extendedWidgets;
 
-
+/** Defines custom buttons for the custom controller {@link TouchCircle}.
+ * 
+ * @author tomasz
+ *
+ */
 public class TouchCircleButton {
 
 	float angleStart;

@@ -10,10 +10,16 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.android.application.MultiPlayApplication;
-import com.android.database.MultiPlayDataBase;
 import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
 import com.android.dialogs.elements.DialogListCore;
+
+
+/** Activity that handles logic for Option menu.
+ * 
+ * @author tomasz
+ *
+ */
 
 public class OptionsActivity extends Activity implements DialogButtonClickListener {
 

@@ -33,7 +33,7 @@
         android:contentDescription="@string/contentDescription_help_activity_explorer_icon"/>
     
     <ImageButton 
-        android:id="@+id/b_help_activity_options_icon"
+        android:id="@+id/b_help_activity_other_icon"
         
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -115,7 +115,7 @@
 	    android:layout_height="fill_parent"
 	    android:layout_alignParentLeft="true"
 	    android:layout_below="@id/tv_title_of_selected_item"
-	    android:layout_toLeftOf="@+id/b_help_activity_options_icon"
+	    android:layout_toLeftOf="@id/b_help_activity_other_icon"
 	    android:paddingLeft="@dimen/activity_horizontal_margin"    
 	    android:layout_marginBottom="20dp"
 	    

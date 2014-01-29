@@ -9,10 +9,14 @@ import android.widget.RelativeLayout;
 import com.android.application.MultiPlayApplication;
 import com.android.carousel.CarouselActivity;
 import com.android.carousel.CarouselDataItem;
-import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
-import com.android.dialogs.elements.DialogListCore;
 
+
+/** Activity that handles logic for Controller Option menu.
+ * 
+ * @author tomasz
+ *
+ */
 public class OptionsControllerActivity extends CarouselActivity implements DialogButtonClickListener {
 
 	private RelativeLayout.LayoutParams mainLayoutParams = null;

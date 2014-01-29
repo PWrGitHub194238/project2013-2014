@@ -10,25 +10,58 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Switch;
 
-import com.android.dialogs.elements.DialogListCore;
-
-/** Displays the alert dialog box that contains {@link ScrollView}. 
+/** Displays the alert dialog box that contains two {@link ScrollView} which can be toggled by a switcher in dialog.
  * 
- * Dialog that extends AlertDialogs
+ * Dialog that extends {@link ScrollViewDialog}
+ * 
+ * @author Windows 7
  *
  */
 public class ScrollViewSwitchDialog extends ScrollViewDialog implements OnCheckedChangeListener {
 
+	/**
+	 * 
+	 */
 	private static final String VIEW_SWITCH_OFF_ID = "view_switchOffID";
+	/**
+	 * 
+	 */
 	private static final String VIEW_SWITCH_ON_ID = "view_switchOnID";
+	/**
+	 * 
+	 */
 	private static final String SWITCHER_ID = "switcherID";
 	
+	/**
+	 * 
+	 */
 	private Switch viewSwitcher = null;
+	/**
+	 * 
+	 */
 	private boolean viewSwitcherState = false;
 
+	/**
+	 * 
+	 */
 	private View view_switchOff = null;
+	/**
+	 * 
+	 */
 	private View view_switchOn = null;
 
+    /**
+     * @param titleIconID
+     * @param titleID
+     * @param view
+     * @param switcherID
+     * @param view_switchOffID
+     * @param view_switchOnID
+     * @param positiveButtonID
+     * @param neutralButtonID
+     * @param negativeButtonID
+     * @return
+     */
     protected static ScrollViewSwitchDialog newInstance( Integer titleIconID, Integer titleID, ScrollView view, Integer switcherID, Integer view_switchOffID, Integer view_switchOnID, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
     	ScrollViewSwitchDialog dialog = new ScrollViewSwitchDialog();
         Bundle args = ScrollViewDialog.newInstance(titleIconID, titleID, view, positiveButtonID, neutralButtonID, negativeButtonID).getArguments();
@@ -41,6 +74,9 @@ public class ScrollViewSwitchDialog extends ScrollViewDialog implements OnChecke
         return dialog;
     }
 
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.ScrollViewDialog#buildDialogContent(android.app.AlertDialog.Builder)
+	 */
 	@Override
 	public void buildDialogContent(Builder builder) {
 		super.buildDialogContent(builder);
@@ -104,6 +140,19 @@ public class ScrollViewSwitchDialog extends ScrollViewDialog implements OnChecke
      * @param neutralButtonID see {@link #newInstance(Integer, Integer, ScrollView, Integer, Integer, Integer, Integer, Integer, Integer)} parameters
      * @param negativeButtonID see {@link #newInstance(Integer, Integer, ScrollView, Integer, Integer, Integer, Integer, Integer, Integer)} parameters
      */
+	/**
+	 * @param activity
+	 * @param dialogIDTag
+	 * @param titleIconID
+	 * @param titleID
+	 * @param view
+	 * @param switcherID
+	 * @param view_switchOffID
+	 * @param view_switchOnID
+	 * @param positiveButtonID
+	 * @param neutralButtonID
+	 * @param negativeButtonID
+	 */
 	public static void showDialog(Activity activity, String dialogIDTag, Integer titleIconID, Integer titleID, ScrollView view, 
 			Integer switcherID, Integer view_switchOffID, Integer view_switchOnID, 
 			Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
@@ -114,6 +163,9 @@ public class ScrollViewSwitchDialog extends ScrollViewDialog implements OnChecke
 	}
 	
     
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.ScrollViewDialog#dialogInnerViewLogic()
+	 */
 	@Override
     public void dialogInnerViewLogic() {
 		super.dialogInnerViewLogic();
@@ -138,6 +190,9 @@ public class ScrollViewSwitchDialog extends ScrollViewDialog implements OnChecke
     	}
     }
 
+	/* (non-Javadoc)
+	 * @see android.widget.CompoundButton.OnCheckedChangeListener#onCheckedChanged(android.widget.CompoundButton, boolean)
+	 */
 	@Override
 	public void onCheckedChanged(CompoundButton view, boolean switchState) {
 		if (view == viewSwitcher) {
@@ -146,6 +201,9 @@ public class ScrollViewSwitchDialog extends ScrollViewDialog implements OnChecke
 		}
 	}
 	
+	/**
+	 * @param switchState
+	 */
 	protected void loadCurrentView(boolean switchState) {
 		viewSwitcherState = switchState;
 
@@ -158,11 +216,17 @@ public class ScrollViewSwitchDialog extends ScrollViewDialog implements OnChecke
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	protected void loadCurrentViewOff() {
 		view_switchOff.setVisibility(RelativeLayout.VISIBLE);
 		view_switchOn.setVisibility(RelativeLayout.INVISIBLE);
 	}
 
+	/**
+	 * 
+	 */
 	protected void loadCurrentViewOn() {
 		view_switchOff.setVisibility(RelativeLayout.INVISIBLE);
 		view_switchOn.setVisibility(RelativeLayout.VISIBLE);
@@ -171,12 +235,18 @@ public class ScrollViewSwitchDialog extends ScrollViewDialog implements OnChecke
 	/**
 	 * @return the viewSwitcher
 	 */
+	/**
+	 * @return
+	 */
 	protected final Switch getViewSwitcher() {
 		return viewSwitcher;
 	}
 
 	/**
 	 * @return the view_switchOff
+	 */
+	/**
+	 * @return
 	 */
 	protected final View getView_switchOff() {
 		return view_switchOff;
@@ -185,14 +255,23 @@ public class ScrollViewSwitchDialog extends ScrollViewDialog implements OnChecke
 	/**
 	 * @return the view_switchOn
 	 */
+	/**
+	 * @return
+	 */
 	protected final View getView_switchOn() {
 		return view_switchOn;
 	}
 
+	/**
+	 * @return
+	 */
 	public final boolean isViewSwitcherState() {
 		return viewSwitcherState;
 	}
 
+	/**
+	 * @param viewSwitcherState
+	 */
 	protected final void setViewSwitcherState(boolean viewSwitcherState) {
 		this.viewSwitcherState = viewSwitcherState;
 	}

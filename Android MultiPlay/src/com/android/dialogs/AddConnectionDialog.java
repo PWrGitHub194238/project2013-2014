@@ -19,45 +19,143 @@ import com.android.multiplay.R;
 
 /** Displays the alert dialog box that contains {@link ScrollView}. 
  * 
- * Dialog that extends AlertDialogs
+ * Dialog that extends {@link ScrollViewSwitchDialog}
  *
+ * @author tomasz
  */
 public class AddConnectionDialog extends ScrollViewSwitchDialog implements TextWatcher {
 
+	/**
+	 * 
+	 */
 	public static final String DEVICE_NAME = "device_name";
+	/**
+	 * 
+	 */
 	public static final String DEVICE_IS_STORED = "device_is_stored";
 
+	/**
+	 * 
+	 */
 	public static final String DEVICE_IP = "device_ip";
+	/**
+	 * 
+	 */
 	public static final String DEVICE_PORT = "device_port";
+	/**
+	 * 
+	 */
 	public static final String DEVICE_MAC = "device_mac";
 	
+	/**
+	 * 
+	 */
 	private static final Pattern PATTERN_NAME = Pattern.compile("^.+?$");
+	/**
+	 * 
+	 */
 	private static final Pattern PATTERN_IP = Pattern.compile("^([0-9]{1,3}[.]){3}[0-9]{1,3}$");
+	/**
+	 * 
+	 */
 	private static final Pattern PATTERN_PORT = Pattern.compile("^[0-9]{4,5}$");
+	/**
+	 * 
+	 */
 	private static final Pattern PATTERN_MAC = Pattern.compile("^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$");
 	
+	/**
+	 * 
+	 */
 	private static final String PATTERN_NAME_ERROR = "Device name cannot be empty.";
+	/**
+	 * 
+	 */
 	private static final String PATTERN_IP_ERROR = "Device IP address is incorrect.";
+	/**
+	 * 
+	 */
 	private static final String PATTERN_PORT_ERROR = "Incorrect port value.";
+	/**
+	 * 
+	 */
 	private static final String PATTERN_MAC_ERROR = "Device hardware address is incorrect.";
 
+	/**
+	 * 
+	 */
 	private static final int BT_ICON_ON = R.drawable.connections_activity_icon_bt_on;
+	/**
+	 * 
+	 */
 	private static final int BT_ICON_OFF = R.drawable.connections_activity_icon_bt_off;
+	/**
+	 * 
+	 */
 	private static final int WIFI_ICON_ON = R.drawable.connections_activity_icon_wifi_on;
+	/**
+	 * 
+	 */
 	private static final int WIFI_ICON_OFF = R.drawable.connections_activity_icon_wifi_off;
 	
+	/**
+	 * 
+	 */
 	private ImageView iv_connections_activity_icon_wifi = null;
+	/**
+	 * 
+	 */
 	private ImageView iv_connections_activity_icon_bt = null;
+	/**
+	 * 
+	 */
 	private EditText et_connections_activity_device_name_wifi = null;
+	/**
+	 * 
+	 */
 	private EditText et_connections_activity_device_name_bt = null;
+	/**
+	 * 
+	 */
 	private EditText et_connections_activity_device_ip = null;
+	/**
+	 * 
+	 */
 	private EditText et_connections_activity_device_port = null;
+	/**
+	 * 
+	 */
 	private EditText et_connections_activity_device_mac = null;
+	/**
+	 * 
+	 */
 	private CheckBox cb_save_connection_wifi = null;
+	/**
+	 * 
+	 */
 	private CheckBox cb_save_connection_bt = null;
+	/**
+	 * 
+	 */
 	private CheckBox cb_set_as_default_wifi = null;
+	/**
+	 * 
+	 */
 	private CheckBox cb_set_as_default_bt = null;
 	
+	/**
+	 * @param activity
+	 * @param dialogIDTag
+	 * @param titleIconID
+	 * @param titleID
+	 * @param view
+	 * @param switcherID
+	 * @param view_switchOffID
+	 * @param view_switchOnID
+	 * @param positiveButtonID
+	 * @param neutralButtonID
+	 * @param negativeButtonID
+	 */
 	public static void showDialog(Activity activity, String dialogIDTag, Integer titleIconID, Integer titleID, ScrollView view, Integer switcherID, Integer view_switchOffID, Integer view_switchOnID, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
 		
 		AddConnectionDialog dialog = new AddConnectionDialog();
@@ -69,6 +167,9 @@ public class AddConnectionDialog extends ScrollViewSwitchDialog implements TextW
         dialog.show(activity.getFragmentManager(), dialogIDTag);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.ScrollViewSwitchDialog#buildDialogContent(android.app.AlertDialog.Builder)
+	 */
 	@Override
 	public void buildDialogContent(Builder builder) {
 		Integer argsID = super.getArguments().getInt(ScrollViewDialog.VIEW_ID);
@@ -81,12 +182,18 @@ public class AddConnectionDialog extends ScrollViewSwitchDialog implements TextW
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.AlertDialogs#onShow(android.content.DialogInterface)
+	 */
 	@Override
 	public void onShow(DialogInterface dialog) {
 		super.onShow(dialog);
 		super.getPositiveButton().setEnabled(false);
 	}
 	
+    /* (non-Javadoc)
+     * @see com.android.dialogs.ScrollViewSwitchDialog#dialogInnerViewLogic()
+     */
     @Override
     public void dialogInnerViewLogic() {
     	super.dialogInnerViewLogic();
@@ -137,6 +244,9 @@ public class AddConnectionDialog extends ScrollViewSwitchDialog implements TextW
 	    cb_set_as_default_bt.setOnCheckedChangeListener(this);
     }
     
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.ScrollViewSwitchDialog#onCheckedChanged(android.widget.CompoundButton, boolean)
+	 */
 	@Override
 	public void onCheckedChanged(CompoundButton view, boolean switchState) {
 		super.onCheckedChanged(view, switchState);
@@ -168,6 +278,9 @@ public class AddConnectionDialog extends ScrollViewSwitchDialog implements TextW
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.ScrollViewSwitchDialog#loadCurrentViewOff()
+	 */
 	@Override
 	protected void loadCurrentViewOff() {
 		super.loadCurrentViewOff();
@@ -175,6 +288,9 @@ public class AddConnectionDialog extends ScrollViewSwitchDialog implements TextW
 		iv_connections_activity_icon_bt.setBackgroundResource(BT_ICON_OFF);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.ScrollViewSwitchDialog#loadCurrentViewOn()
+	 */
 	@Override
 	protected void loadCurrentViewOn() {
 		super.loadCurrentViewOn();
@@ -182,6 +298,9 @@ public class AddConnectionDialog extends ScrollViewSwitchDialog implements TextW
 		iv_connections_activity_icon_bt.setBackgroundResource(BT_ICON_ON);
 	}
 
+	/* (non-Javadoc)
+	 * @see android.text.TextWatcher#afterTextChanged(android.text.Editable)
+	 */
 	@Override
 	public void afterTextChanged(Editable arg0) {
 		Log.d("Dialogs","Validatation 1");
@@ -206,12 +325,18 @@ public class AddConnectionDialog extends ScrollViewSwitchDialog implements TextW
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see android.text.TextWatcher#beforeTextChanged(java.lang.CharSequence, int, int, int)
+	 */
 	@Override
 	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
 			int arg3) {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see android.text.TextWatcher#onTextChanged(java.lang.CharSequence, int, int, int)
+	 */
 	@Override
 	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 		// TODO Auto-generated method stub

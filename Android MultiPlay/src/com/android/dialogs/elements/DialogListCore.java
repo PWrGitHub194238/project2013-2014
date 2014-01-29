@@ -2,6 +2,11 @@ package com.android.dialogs.elements;
 
 import com.android.multiplay.R;
 
+/** Helper class that contains static variables for dialog-like classes that are common for every of them.
+ * 
+ * @author tomasz
+ *
+ */
 public final class DialogListCore {
 	
 	public static final int IT_TITLE_ICON_SUCCES =

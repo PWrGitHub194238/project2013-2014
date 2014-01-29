@@ -10,6 +10,13 @@ import android.util.Log;
 import com.android.multiplay.fragments.ConnectionPanel;
 import com.android.service.receivers.ConnectionServiceResponseReceiver;
 
+/** Service that handle in background events that should be fired 
+ * depending on the phone's network settings (if Wifi is enabled / disabled, 
+ * whether Bluetooth is enabled or disabled).
+ * 
+ * @author tomasz
+ *
+ */
 public class ConnectionService extends IntentService {
 
 	public static final int INIT = 1;

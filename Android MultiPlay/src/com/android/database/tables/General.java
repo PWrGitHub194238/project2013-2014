@@ -28,6 +28,7 @@ import com.android.database.DBHelper;
  * where the keys are the names of the columns in the corresponding table,
  *  which this class represents.
  *
+ * @author tomasz
  */
 public final class General implements DBHelper.TableIF {
 

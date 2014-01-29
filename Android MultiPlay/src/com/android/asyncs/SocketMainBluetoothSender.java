@@ -19,7 +19,10 @@ import com.android.application.N.Helper;
 
 
 
-/**
+/** The main thread to send data via Bluetooth from your mobile device to the server on a desktop computer. 
+ * A thread is put to sleep, when completed all tasks, sends matches any signals. 
+ * At the moment there is a new signal, thread is awakened.
+ * 
  * @author tomasz
  *
  */
@@ -158,7 +161,6 @@ Log.d("THREAD","BT CONNECT");
 		
 		Log.d("THREAD","Sender created.");
 		int data = 0;
-		int i = 0;
 		while(isRuning) {
 			try {
 				Log.d("THREAD","isEmpty "+queue.isEmpty());

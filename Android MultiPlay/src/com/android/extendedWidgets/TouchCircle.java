@@ -23,6 +23,11 @@ import com.android.dialogs.AsyncTaskDialogInterface;
 import com.android.dialogs.FullScreenDialog;
 import com.android.multiplay.R;
 
+/** Personalized controller based on a circle and angles that form between each other each user's fingers when handling multi-touch screen.
+ * 
+ * @author tomasz
+ *
+ */
 public class TouchCircle extends View implements OnLongClickListener, OnTouchListener {
 	 
 	int signal;

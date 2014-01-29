@@ -17,15 +17,30 @@ import android.widget.RelativeLayout;
 import com.android.controllers.help.movie.Movie_Activity_Help;
 import com.android.extendedWidgets.lists.ListOfVideo;
 import com.android.extendedWidgets.lists.VideoListItem;
-import com.android.multiplay.MainActivity;
 import com.android.multiplay.R;
 
+/** Fragment describing the appearance of each page within a given activity. 
+ * 
+ * Creates a logic of movement between the parties through gestures move left and right. 
+ * Describes a list of video tutorials that are available by default on the last page of this activity.
+ * @author tomasz
+ *
+ */
 public class TouchPad_Fragment extends Fragment implements OnItemClickListener {
 	
+	/**
+	 * 
+	 */
 	private int currentPage;
 	
+	/**
+	 * 
+	 */
 	private ListOfVideo listOfElementsAdpater;
 	
+	/**
+	 * 
+	 */
 	private static final VideoListItem VIDEO_LIST[] = {
 		new VideoListItem(0, 
 				"Jakiœtam url", VideoListItem.VIDEO_MINIATURE.FIRST, 
@@ -37,40 +52,100 @@ public class TouchPad_Fragment extends Fragment implements OnItemClickListener {
 				"Jakiœtam opis")
 	};
 	
+	/**
+	 * 
+	 */
 	private Context context;
+	/**
+	 * 
+	 */
 	private View v = null;
 	
+	/**
+	 * 
+	 */
 	private RelativeLayout screen_1 = null;
 	
+	/**
+	 * 
+	 */
 	private ImageView screen_1_img1 = null;
 	
+	/**
+	 * 
+	 */
 	private RelativeLayout screen_2 = null;
 	
+	/**
+	 * 
+	 */
 	private ImageView screen_2_img1 = null;
+	/**
+	 * 
+	 */
 	private ImageView screen_2_img2 = null;
 
+	/**
+	 * 
+	 */
 	private RelativeLayout screen_3 = null;
 	
+	/**
+	 * 
+	 */
 	private ImageView screen_3_img1 = null;
+	/**
+	 * 
+	 */
 	private ImageView screen_3_img2 = null;
+	/**
+	 * 
+	 */
 	private ImageView screen_3_img3 = null;
 	
+	/**
+	 * 
+	 */
 	private RelativeLayout screen_4 = null;
 
+	/**
+	 * 
+	 */
 	private ImageView screen_4_img1 = null;
+	/**
+	 * 
+	 */
 	private ImageView screen_4_img2 = null;
+	/**
+	 * 
+	 */
 	private ImageView screen_4_img3 = null;
+	/**
+	 * 
+	 */
 	private ImageView screen_4_img4 = null;
 
 	
+	/**
+	 * 
+	 */
 	private RelativeLayout screen_5 = null;
 
 	
+	/**
+	 * 
+	 */
 	private ListView screen_5_listView1 = null;
 	
+	/**
+	 * 
+	 */
 	boolean init = true;
 
 
+	/* (non-Javadoc)
+	 * @see android.support.v4.app.Fragment#onCreate(android.os.Bundle)
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -84,6 +159,9 @@ public class TouchPad_Fragment extends Fragment implements OnItemClickListener {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
+	 */
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 		v = inflater.inflate(R.layout.help_view_touchpad, container, false);
@@ -141,6 +219,9 @@ public class TouchPad_Fragment extends Fragment implements OnItemClickListener {
 
 	}
 
+	/**
+	 * 
+	 */
 	private void initElements() {
 		screen_1 = (RelativeLayout) v.findViewById(R.id.rl_controller_help_touchpad_screen_1);
 		screen_1_img1 = (ImageView) v.findViewById(R.id.iv_controller_help_touchpad_screen_1_img1);
@@ -169,6 +250,9 @@ public class TouchPad_Fragment extends Fragment implements OnItemClickListener {
 		screen_5_listView1.setAdapter(listOfElementsAdpater);
 	}
 
+	/* (non-Javadoc)
+	 * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
+	 */
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Intent intent = new Intent(context, Movie_Activity_Help.class);

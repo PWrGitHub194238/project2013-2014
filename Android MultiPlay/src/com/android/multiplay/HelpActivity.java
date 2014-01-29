@@ -9,13 +9,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.android.application.MultiPlayApplication;
 import com.android.controllers.help.movie.Movie_Activity_Help;
-import com.android.database.MultiPlayDataBase;
-import com.android.dialogs.AlertDialogs;
 import com.android.dialogs.DialogButtonClickListener;
-import com.android.dialogs.elements.DialogListCore;
 
+/** Activity that handles logic for Help menu.
+ * 
+ * @author tomasz
+ *
+ */
 public class HelpActivity extends Activity implements DialogButtonClickListener {
 
 ////////////////////Fields
@@ -40,7 +41,7 @@ private ImageButton b_controllers = null;
 
 /** Menu button.
 * 
-* It leaves to next activity: {@link OptionsHelpActivity}.
+* It leaves to next activity: {@link OtherHelpActivity}.
 * This button is not active if no wireless or bluetooth connections were found.
 * On click it call method {@link #connections_OnClick(View)}.
 */
@@ -63,7 +64,7 @@ private ImageButton b_goback = null;
 		
 		initB_explorer(R.id.b_help_activity_explorer_icon);
 		initB_controllers(R.id.b_help_activity_controllers_icon);
-		initB_options(R.id.b_help_activity_options_icon);
+		initB_options(R.id.b_help_activity_other_icon);
 		
 		init();
 	}
@@ -120,7 +121,7 @@ private ImageButton b_goback = null;
 	 * @param view
 	 */
 	public void options_help_OnClick( View view ) {
-		Intent intent = new Intent(this, OptionsHelpActivity.class);
+		Intent intent = new Intent(this, OtherHelpActivity.class);
 		super.startActivity(intent);
 	}
 	/**

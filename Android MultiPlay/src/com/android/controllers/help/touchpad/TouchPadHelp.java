@@ -5,16 +5,31 @@ import java.util.Random;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.widget.RelativeLayout;
 
 import com.android.animations.DepthPageTransformer;
 import com.android.animations.TransformZoomOut;
 import com.android.multiplay.R;
 
+/** Uses, appropriate to the class name, adapter to create the help view, based on the {@link RelativeLayout}'s, which can be scrolled using gestures to the left, to the right in the one activity.
+*
+* @author tomasz
+*
+*/
 public class TouchPadHelp extends FragmentActivity {
 
+	/**
+	 * 
+	 */
 	private TouchPad_help_pager pagerAdapter = null;
+	/**
+	 * 
+	 */
 	private ViewPager pager;
 	
+	/* (non-Javadoc)
+	 * @see android.support.v4.app.FragmentActivity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,12 +45,18 @@ public class TouchPadHelp extends FragmentActivity {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see android.support.v4.app.FragmentActivity#onResume()
+	 */
 	protected void onResume() {
         super.onResume();
 		
         getRandomTransformation(new Random());
     }
 
+	/**
+	 * @param random
+	 */
 	private void getRandomTransformation( Random random) {
 		if (random.nextInt() % 2 == 0) {
 			pager.setPageTransformer(true, new TransformZoomOut());

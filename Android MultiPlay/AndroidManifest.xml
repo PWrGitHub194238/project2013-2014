@@ -114,8 +114,8 @@
                 android:value="com.android.multiplay.HelpActivity" />
         </activity>
         <activity
-            android:name="com.android.multiplay.OptionsHelpActivity"
-            android:label="@string/title_activity_options_help"
+            android:name="com.android.multiplay.OtherHelpActivity"
+            android:label="@string/title_activity_other_help"
             android:parentActivityName="com.android.multiplay.HelpActivity"
             android:screenOrientation="landscape"
             android:theme="@style/MultiPlayTheme" >

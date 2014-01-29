@@ -2,7 +2,6 @@ package com.android.carousel;
 
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.Map;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -31,38 +30,103 @@ import com.android.dialogs.elements.DialogListCore;
 import com.android.multiplay.ConnectionsActivity;
 import com.android.multiplay.R;
 
+/** 
+Represents a layout based on a "carousel". Menu item are moved by gestures to the left and right. T
+he base class for all such views in the application.
+ * 
+ * @author tomasz
+ *
+ */
 public class CarouselActivity extends Activity implements
 		OnItemSelectedListener, OnItemClickListener, OnClickListener,
 		DialogButtonClickListener {
 
+	/**
+	 * 
+	 */
 	private Context context = null;
+	/**
+	 * 
+	 */
 	private RelativeLayout panel = null;
+	/**
+	 * 
+	 */
 	private Singleton m_Inst = Singleton.getInstance();
+	/**
+	 * 
+	 */
 	private CarouselView carouselView = null;
+	/**
+	 * 
+	 */
 	private CarouselViewAdapter carouselViewAdapter = null;
+	/**
+	 * 
+	 */
 	private ArrayList<CarouselDataItem> carouselItemList = null;
 
+	/**
+	 * 
+	 */
 	private float carouselSizeScale = 0.2f;
+	/**
+	 * 
+	 */
 	private float carouselRotationSensitive = 0.2f;
+	/**
+	 * 
+	 */
 	private String layoutColor = Color.GREEN;
 
+	/**
+	 * @author tomasz
+	 *
+	 */
 	protected static final class Color {
 		public static final String GREEN = "green";
 		public static final String RED = "red";
 		public static final String BLUE = "blue";
 	}
 
+	/**
+	 * 
+	 */
 	private RelativeLayout mainLayout = null;
+	/**
+	 * 
+	 */
 	private RelativeLayout.LayoutParams mainLayoutParams = null;
+	/**
+	 * 
+	 */
 	private int mainLayoutBaeckgroundColor = R.color.transparent;
+	/**
+	 * 
+	 */
 	private TextView tv_activity_subtitle_system_controllers = null;
+	/**
+	 * 
+	 */
 	private ImageView iv_system_controllers_miniature_icon = null;
+	/**
+	 * 
+	 */
 	private ImageButton b_system_controllers_search = null;
+	/**
+	 * 
+	 */
 	private ImageButton b_system_controllers_cancel = null;
 
-	private Map<String, String> filterData = null;
+	/**
+	 * 
+	 */
+	//private Map<String, String> filterData = null;
 
 	/**
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
+	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 	@Override
@@ -72,6 +136,14 @@ public class CarouselActivity extends Activity implements
 
 	/**
 	 * 
+	 * @param contentViewtID
+	 * @param miniature_iconID
+	 * @param subtitleID
+	 * @param search_buttonID
+	 * @param cancel_buttonID
+	 * @param mainRealtiveLayoutID
+	 */
+	/**
 	 * @param contentViewtID
 	 * @param miniature_iconID
 	 * @param subtitleID
@@ -97,6 +169,15 @@ public class CarouselActivity extends Activity implements
 	 * @param mainRealtiveLayoutID
 	 * @param layoutColor
 	 */
+	/**
+	 * @param contentViewtID
+	 * @param miniature_iconID
+	 * @param subtitleID
+	 * @param search_buttonID
+	 * @param cancel_buttonID
+	 * @param mainRealtiveLayoutID
+	 * @param layoutColor
+	 */
 	public void initCarouselView(int contentViewtID, int miniature_iconID,
 			int subtitleID, int search_buttonID, int cancel_buttonID,
 			int mainRealtiveLayoutID, String layoutColor) {
@@ -107,6 +188,17 @@ public class CarouselActivity extends Activity implements
 
 	/**
 	 * 
+	 * @param contentViewtID
+	 * @param mainRealtiveLayoutID
+	 * @param miniature_iconID
+	 * @param subtitleID
+	 * @param search_buttonID
+	 * @param cancel_buttonID
+	 * @param carouselSizeScale
+	 * @param carouselRotationSensitive
+	 * @param layoutColor
+	 */
+	/**
 	 * @param contentViewtID
 	 * @param mainRealtiveLayoutID
 	 * @param miniature_iconID
@@ -168,6 +260,19 @@ public class CarouselActivity extends Activity implements
 	 * @param carouselRotationSensitive
 	 * @param layoutColor
 	 */
+	/**
+	 * @param contentViewtID
+	 * @param mainRealtiveLayoutID
+	 * @param miniature_iconID
+	 * @param subtitleID
+	 * @param search_buttonID
+	 * @param cancel_buttonID
+	 * @param mainLayoutParams
+	 * @param mainLayoutBaeckgroundColor
+	 * @param carouselSizeScale
+	 * @param carouselRotationSensitive
+	 * @param layoutColor
+	 */
 	public void initCarouselView(int contentViewtID, int mainRealtiveLayoutID,
 			int miniature_iconID, int subtitleID, int search_buttonID,
 			int cancel_buttonID, RelativeLayout.LayoutParams mainLayoutParams,
@@ -184,6 +289,13 @@ public class CarouselActivity extends Activity implements
 
 	/**
 	 * 
+	 * @param id
+	 * @param miniature_iconID
+	 * @param subtitleID
+	 * @param search_buttonID
+	 * @param cancel_buttonID
+	 */
+	/**
 	 * @param id
 	 * @param miniature_iconID
 	 * @param subtitleID
@@ -211,6 +323,11 @@ public class CarouselActivity extends Activity implements
 	 * @param mainLayoutBaeckgroundColor
 	 * @param mainLayoutParams
 	 */
+	/**
+	 * @param padding
+	 * @param mainLayoutBaeckgroundColor
+	 * @param mainLayoutParams
+	 */
 	private void createRelativeLayout(int padding,
 			int mainLayoutBaeckgroundColor,
 			RelativeLayout.LayoutParams mainLayoutParams) {
@@ -222,6 +339,9 @@ public class CarouselActivity extends Activity implements
 		super.setContentView(mainLayout);
 	}
 
+	/**
+	 * 
+	 */
 	private void createCarouselView() {
 		carouselView = new CarouselView(this, carouselRotationSensitive);
 
@@ -242,6 +362,9 @@ public class CarouselActivity extends Activity implements
 				-1, -1);
 	}
 
+	/**
+	 * 
+	 */
 	private void setCarouselListeners() {
 		if (carouselView != null) {
 			carouselView.setOnItemSelectedListener(this);
@@ -253,6 +376,9 @@ public class CarouselActivity extends Activity implements
 	 * 
 	 * @param carouselDataItem
 	 */
+	/**
+	 * @param carouselDataItem
+	 */
 	public final void addCarouselItem(CarouselDataItem carouselDataItem) {
 		if (carouselItemList == null) {
 			carouselItemList = new ArrayList<CarouselDataItem>();
@@ -261,6 +387,9 @@ public class CarouselActivity extends Activity implements
 		}
 	}
 
+	/**
+	 * 
+	 */
 	protected void generateCarouselItemList() {
 		carouselItemList = new ArrayList<CarouselDataItem>();
 		for (ControllerDefinition controller : C.CONTROLLER_LIST) {
@@ -289,6 +418,10 @@ public class CarouselActivity extends Activity implements
 	 * @param controller
 	 * @return
 	 */
+	/**
+	 * @param controller
+	 * @return
+	 */
 	protected boolean chechRequirements(ControllerDefinition controller) {
 		boolean isValid = true;
 		isValid &= checkOtherRequirements(controller.getRequirements(),
@@ -300,6 +433,11 @@ public class CarouselActivity extends Activity implements
 
 	/**
 	 * 
+	 * @param requirements
+	 * @param allowWarnings
+	 * @return
+	 */
+	/**
 	 * @param requirements
 	 * @param allowWarnings
 	 * @return
@@ -327,6 +465,10 @@ public class CarouselActivity extends Activity implements
  * @param systemRequirement
  * @return
  */
+	/**
+	 * @param systemRequirement
+	 * @return
+	 */
 	protected boolean checkSystemRequirement(int systemRequirement) {
 		if (systemRequirement != C.Requirements.OS_EVERY) {
 			if (MultiPlayApplication.getMainNetworkConfiguration() != null) {
@@ -345,6 +487,10 @@ public class CarouselActivity extends Activity implements
  * @param standAlone
  * @return
  */
+	/**
+	 * @param standAlone
+	 * @return
+	 */
 	protected boolean checkStandAlone(boolean standAlone) {
 		return standAlone;
 	}
@@ -352,6 +498,9 @@ public class CarouselActivity extends Activity implements
  * 
  * @param carouselItemList
  */
+	/**
+	 * @param carouselItemList
+	 */
 	public final void setCarouselItemList(
 			ArrayList<CarouselDataItem> carouselItemList) {
 		this.carouselItemList = carouselItemList;
@@ -359,6 +508,9 @@ public class CarouselActivity extends Activity implements
 /**
  * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
  */
+	/* (non-Javadoc)
+	 * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
+	 */
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
@@ -370,12 +522,19 @@ public class CarouselActivity extends Activity implements
  * @param item
  * @return
  */
+	/**
+	 * @param item
+	 * @return
+	 */
 	protected Class<? extends Activity> toActivity(CarouselDataItem item) {
 		return null;
 	}
 /**
  * @see android.widget.AdapterView.OnItemSelectedListener#onItemSelected(android.widget.AdapterView, android.view.View, int, long)
  */
+	/* (non-Javadoc)
+	 * @see android.widget.AdapterView.OnItemSelectedListener#onItemSelected(android.widget.AdapterView, android.view.View, int, long)
+	 */
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
@@ -395,6 +554,9 @@ public class CarouselActivity extends Activity implements
 /**
  * @see android.widget.AdapterView.OnItemSelectedListener#onNothingSelected(android.widget.AdapterView)
  */
+	/* (non-Javadoc)
+	 * @see android.widget.AdapterView.OnItemSelectedListener#onNothingSelected(android.widget.AdapterView)
+	 */
 	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
 		// TODO
@@ -402,6 +564,9 @@ public class CarouselActivity extends Activity implements
 /**
  * @see android.view.View.OnClickListener#onClick(android.view.View)
  */
+	/* (non-Javadoc)
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 */
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -438,6 +603,9 @@ public class CarouselActivity extends Activity implements
 /**
  * @see com.android.dialogs.DialogButtonClickListener#onDialogPositiveClick(android.app.DialogFragment)
  */
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.DialogButtonClickListener#onDialogPositiveClick(android.app.DialogFragment)
+	 */
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog) {
 		// TODO Auto-generated method stub
@@ -446,6 +614,9 @@ public class CarouselActivity extends Activity implements
 /**
  * @see com.android.dialogs.DialogButtonClickListener#onDialogNeutralClick(android.app.DialogFragment)
  */
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.DialogButtonClickListener#onDialogNeutralClick(android.app.DialogFragment)
+	 */
 	@Override
 	public void onDialogNeutralClick(DialogFragment dialog) {
 		// TODO Auto-generated method stub
@@ -454,6 +625,9 @@ public class CarouselActivity extends Activity implements
 /**
  * @see com.android.dialogs.DialogButtonClickListener#onDialogNegativeClick(android.app.DialogFragment)
  */
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.DialogButtonClickListener#onDialogNegativeClick(android.app.DialogFragment)
+	 */
 	@Override
 	public void onDialogNegativeClick(DialogFragment dialog) {
 		// TODO Auto-generated method stub

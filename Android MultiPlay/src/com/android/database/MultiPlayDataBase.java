@@ -6,6 +6,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/** Carry out data base create, delete and update default methods.
+ * 
+ * @author tomasz
+ *
+ */
 public class MultiPlayDataBase extends SQLiteOpenHelper {
 
 	// If you change the database schema, you must increment the database version.

@@ -9,8 +9,16 @@ import android.view.WindowManager;
 
 import com.android.extendedWidgets.TouchCircle;
 
+/** Creates a Touchcircle custom view.
+ * 
+ * @author tomasz
+ *
+ */
 public class CustomControllerActivity extends Activity {
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

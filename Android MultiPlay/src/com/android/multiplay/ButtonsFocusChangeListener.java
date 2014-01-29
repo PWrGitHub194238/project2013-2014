@@ -5,10 +5,24 @@ import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.TextView;
 
+/** Handles applications menu logic e.i. button focus getting, losing and tapping.
+ * 
+ * @author tomasz
+ *
+ */
 public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 
+	/**
+	 * 
+	 */
 	private TextView title_of_selected_item = null;
+	/**
+	 * 
+	 */
 	private TextView describtion_of_selected_item = null;
+	/**
+	 * 
+	 */
 	private int sourseID;
 	/**
 	 * 
@@ -54,8 +68,8 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 			case R.id.b_help_activity_controllers_icon:
 				controllers_help_hasFocus();
 				break;
-			case R.id.b_help_activity_options_icon:
-				options_help_hasFocus();
+			case R.id.b_help_activity_other_icon:
+				other_help_hasFocus();
 			}
 		}
 	}
@@ -71,6 +85,9 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 				R.string.tv_option_0_title_description_in_main_activity);
 	}
 	
+	/**
+	 * 
+	 */
 	private void help_hasFocus() {
 		hasFocus(
 				R.drawable.activity_title_icon_red,
@@ -80,6 +97,9 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 				R.string.tv_option_1_title_description_in_main_activity);
 	}
 	
+	/**
+	 * 
+	 */
 	private void system_controller_hasFocus() {
 		hasFocus(
 				R.drawable.activity_title_icon_green,
@@ -89,6 +109,9 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 				R.string.tv_option_2_title_description_in_main_activity);
 	}
 	
+	/**
+	 * 
+	 */
 	private void options_hasFocus() {
 		hasFocus(
 				R.drawable.activity_title_icon_pink,
@@ -98,6 +121,9 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 				R.string.tv_option_3_title_description_in_main_activity);
 	}
 	
+	/**
+	 * 
+	 */
 	private void connections_hasFocus() {
 		hasFocus(
 				R.drawable.activity_title_icon_blue,
@@ -107,6 +133,9 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 				R.string.tv_option_0_title_description_in_options_activity);
 	}
 	
+	/**
+	 * 
+	 */
 	private void controllers_hasFocus() {
 		hasFocus(
 				R.drawable.activity_title_icon_red,
@@ -116,6 +145,9 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 				R.string.tv_option_1_title_description_in_options_activity);
 	}
 	
+	/**
+	 * 
+	 */
 	private void resetdata_hasFocus() {
 		hasFocus(
 				R.drawable.activity_title_icon_green,
@@ -125,6 +157,9 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 				R.string.tv_option_2_title_description_in_options_activity);
 	}
 	
+	/**
+	 * 
+	 */
 	private void explorer_help_hasFocus() {
 		hasFocus(
 				R.drawable.activity_title_icon_green,
@@ -134,6 +169,9 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 				R.string.tv_option_0_title_description_in_help_activity);
 	}
 	
+	/**
+	 * 
+	 */
 	private void controllers_help_hasFocus() {
 		hasFocus(
 				R.drawable.activity_title_icon_blue,
@@ -143,12 +181,15 @@ public class ButtonsFocusChangeListener implements OnFocusChangeListener {
 				R.string.tv_option_1_title_description_in_help_activity);
 	}
 	
-	private void options_help_hasFocus() {
+	/**
+	 * 
+	 */
+	private void other_help_hasFocus() {
 		hasFocus(
 				R.drawable.activity_title_icon_red,
-				R.string.tv_option_2_title_in_help_activity,
+				R.string.tv_other_2_title_in_help_activity,
 				R.drawable.activity_title_glow_red,
-				R.drawable.main_activity_2_title_big_background_icon,
+				R.drawable.main_activity_1_title_big_background_icon,
 				R.string.tv_option_2_title_description_in_help_activity);	
 	}
 	/**

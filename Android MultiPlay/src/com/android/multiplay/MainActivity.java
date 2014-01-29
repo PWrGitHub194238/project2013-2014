@@ -31,10 +31,10 @@ import com.android.services.ConnectionService;
  * configuration of the application. Activity consist of menu elements which lead to other activities:
  * 
  * <ul>
- * 	<li>{@link MultiplayExplorerActivity} - TODO</li>
- * 	<li>{@link SystemControllerActivity} - TODO</li>
- * 	<li>{@link OptionsActivity} - TODO</li>
- * 	<li>{@link HelpActivity} - TODO</li>
+ * 	<li>{@link MultiplayExplorerActivity} </li>
+ * 	<li>{@link SystemControllerActivity} </li>
+ * 	<li>{@link OptionsActivity} </li>
+ * 	<li>{@link HelpActivity} </li>
  * </ul>
  * 
  * @see AlertDialogs

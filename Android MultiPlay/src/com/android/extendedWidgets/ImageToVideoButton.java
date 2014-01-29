@@ -4,6 +4,12 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageButton;
 
+/** Extended {@link ImageButton} that in addition has a field contains id 
+ * for video which can be used for redirecting user to appropriate video activity.
+ * 
+ * @author tomasz
+ *
+ */
 public class ImageToVideoButton extends ImageButton {
 
 	private int videoID;

@@ -13,29 +13,58 @@ import android.widget.TextView;
 import com.android.application.N;
 import com.android.multiplay.R;
  
+/** Adapter for list of elements defined in {@link ConnectionsListItem}.
+ * 
+ * @author tomasz
+ *
+ */
 public class ListOfConections extends BaseAdapter {
  
+    /**
+     * 
+     */
     private Context ctx;
+    /**
+     * 
+     */
     private ConnectionsListItem[] data = null;
  
+    /**
+     * @param ctx
+     * @param listElements
+     */
     public ListOfConections(Context ctx, Collection<ConnectionsListItem> listElements) {
     	data = new ConnectionsListItem[listElements.size()];
     	listElements.toArray(data);
 	    this.ctx = ctx;
     }
  
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getCount()
+     */
     public int getCount() {
     	return data.length;
     }
  
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getItem(int)
+     */
     public ConnectionsListItem getItem(int position) {
     	return data[position];
     }
  
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getItemId(int)
+     */
     public long getItemId(int position) {
     	return 0;
     }
  
+    /** Pattern for list item that holds view configuration to prevent it to load each time new item occurred.
+     * 
+     * @author tomasz
+     *
+     */
     private class ViewHolderPattern {
     	private ImageView device_icon = null;
     	private ImageView connectionType = null;
@@ -64,6 +93,9 @@ public class ListOfConections extends BaseAdapter {
 		}
     }
  
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+     */
     public View getView(int position, View convertView, ViewGroup parent) {
  
     ViewHolderPattern view_holder;
@@ -94,6 +126,10 @@ public class ListOfConections extends BaseAdapter {
     return convertView;
     }
     
+    /**
+     * @param system
+     * @return
+     */
     private int setSystem(byte system) {
     	if ( system==N.System.BSD) {
     		return ConnectionsListItem.ICON_BSD;

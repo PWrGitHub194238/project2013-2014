@@ -16,7 +16,6 @@ import android.util.Log;
 
 import com.android.application.BluetoothConfigurationClass;
 import com.android.application.ConnectionsConfigurationClass;
-import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.application.WirelessConfigurationClass;
 import com.android.dialogs.AsyncTaskDialog;

@@ -12,33 +12,41 @@ import java.awt.event.InputEvent;
 import CodeKey.N;
 /**
  * method of simulating mouse 
- * @author Piotr B¹czkiewicz
+ * @author Piotr Bï¿½czkiewicz
  *
  */
 public class Mouse {
+	Robot robot;
+	PointerInfo a;
+	Point b;
+	int x1;
+	int y1;
+	Dimension d;
+	
+	public Mouse() {
+		try {
+			robot = new Robot();
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 d = Toolkit.getDefaultToolkit().getScreenSize();
+	}
 	/**
 	 * method of simulating mouse offset
 	 * @param x
 	 * @param y
 	 */
 	public void run(int x, int y) {
-		try {
-			Robot robot = new Robot();
-			PointerInfo a = MouseInfo.getPointerInfo();
-			Point b = a.getLocation();
-			int x1 = (int) b.getX();
-			int y1 = (int) b.getY();
-			Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-			//if (!(x1 + x > d.getWidth()))
-				robot.mouseMove(x1 + x, y1);
-				System.out.println("X");
-		//	if (!(y1 + y > d.getHeight()) || !(x1 + x > d.getWidth()))
-				robot.mouseMove(x1 + x, y1+y);
-
-		} catch (AWTException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		a = MouseInfo.getPointerInfo();
+		 b = a.getLocation();
+		 x1 = (int) b.getX();
+		 y1 = (int) b.getY();
+		if (!(x1 + x > d.getWidth()))
+			robot.mouseMove(x1 + x, y1);
+		//	System.out.println("X");
+		if (!(y1 + y > d.getHeight()) || !(x1 + x > d.getWidth()))
+			robot.mouseMove(x1 + x, y1+y);
 	}
 /**
  * method of simulating mouse click

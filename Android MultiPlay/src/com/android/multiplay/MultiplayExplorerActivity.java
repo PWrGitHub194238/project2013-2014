@@ -25,6 +25,12 @@ import com.android.dialogs.elements.DialogListCore;
 import com.android.extendedWidgets.lists.ExplorerApplicationItem;
 import com.android.extendedWidgets.lists.ExplorerApplicationList;
 
+
+/** Activity that handles logic for Multiplay Explorer menu.
+ * 
+ * @author tomasz
+ *
+ */
 public class MultiplayExplorerActivity extends Activity implements OnItemClickListener, DialogButtonClickListener, OnAsyncTaskFinished {
 
 	Collection<ExplorerApplicationItem> listElements = null;

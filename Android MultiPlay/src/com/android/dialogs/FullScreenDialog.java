@@ -8,13 +8,31 @@ import android.widget.RelativeLayout;
 
 import com.android.multiplay.R;
 
+/** Dialog adapted to display full screen, darkening the activity content from which it was called.
+ * 
+ * @author tomasz
+ *
+ */
 public abstract class FullScreenDialog extends Dialog implements AsyncTaskDialogInterface {
 	
+	/**
+	 * 
+	 */
 	public static String dialogIDTag = "FullScreenDialog";
 	
+	/**
+	 * 
+	 */
 	private View layout = null;
+	/**
+	 * 
+	 */
 	private boolean isCancelable = false;
 
+	/**
+	 * @param context
+	 * @param layoutID
+	 */
 	public FullScreenDialog(Context context, Integer layoutID) {
 		super(context, R.style.FullScreenDialog);
 
@@ -24,6 +42,11 @@ public abstract class FullScreenDialog extends Dialog implements AsyncTaskDialog
     	dialogInnerViewLogic();
 	}
 	
+	/**
+	 * @param context
+	 * @param layoutID
+	 * @param isCancelable
+	 */
 	public FullScreenDialog(Context context, Integer layoutID, boolean isCancelable) {
 		super(context, R.style.FullScreenDialog);
 		
@@ -34,12 +57,18 @@ public abstract class FullScreenDialog extends Dialog implements AsyncTaskDialog
     	dialogInnerViewLogic();
 	}
 
+	/**
+	 * 
+	 */
 	protected void dialogInnerViewLogic() {
 		this.setCancelable(isCancelable);
 	}
 
 	/**
 	 * @return the layout
+	 */
+	/**
+	 * @return
 	 */
 	public final View getLayout() {
 		return layout;

@@ -20,54 +20,174 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 
+import com.android.carousel.CarouselActivity;
 import com.android.multiplay.R;
 
 
+/** The dialogue form of a filter that displays data in a {@link CarouselActivity}
+ * 
+ * @author tomasz 
+ *
+ */
 public class CarouselIemFilterDialog extends AlertDialogs implements OnCheckedChangeListener, TextWatcher {
 
+	/**
+	 * 
+	 */
 	private static final String VIEW_ID = "viewID";
+	/**
+	 * 
+	 */
 	private static View dialogInnerView = null;
 	
+	/**
+	 * 
+	 */
 	private Map<String,String> returnedData = null;
 	
+	/**
+	 * 
+	 */
 	public static final String DEVICE_NAME = "device_name";
+	/**
+	 * 
+	 */
 	public static final String DEVICE_IS_STORED = "device_is_stored";
 
+	/**
+	 * 
+	 */
 	public static final String DEVICE_IP = "device_ip";
+	/**
+	 * 
+	 */
 	public static final String DEVICE_PORT = "device_port";
+	/**
+	 * 
+	 */
 	public static final String DEVICE_UUID = "device_uuid";
+	/**
+	 * 
+	 */
 	public static final String DEVICE_MAC = "device_mac";
 	
+	/**
+	 * 
+	 */
 	private static final Pattern PATTERN_NAME = Pattern.compile("^.+?$");
+	/**
+	 * 
+	 */
 	private static final Pattern PATTERN_IP = Pattern.compile("^([0-9]{1,3}[.]){3}[0-9]{1,3}$");
+	/**
+	 * 
+	 */
 	private static final Pattern PATTERN_PORT = Pattern.compile("^[0-9]{4,5}$");
+	/**
+	 * 
+	 */
 	private static final Pattern PATTERN_UUID = Pattern.compile("^[0-9A-Fa-f]{8}:([0-9A-Fa-f]{4}:){3}[0-9A-Fa-f]{12}$");
+	/**
+	 * 
+	 */
 	private static final Pattern PATTERN_MAC = Pattern.compile("^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$");
 	
+	/**
+	 * 
+	 */
 	private static final String PATTERN_NAME_ERROR = "Device name cannot be empty.";
+	/**
+	 * 
+	 */
 	private static final String PATTERN_IP_ERROR = "Device IP address is incorrect.";
+	/**
+	 * 
+	 */
 	private static final String PATTERN_PORT_ERROR = "Incorrect port value.";
+	/**
+	 * 
+	 */
 	private static final String PATTERN_UUID_ERROR = "Universally unique identifier is incorrect.";
+	/**
+	 * 
+	 */
 	private static final String PATTERN_MAC_ERROR = "Device hardware address is incorrect.";
 
+	/**
+	 * 
+	 */
 	private static final int BT_ICON_ON = R.drawable.connections_activity_icon_bt_on;
+	/**
+	 * 
+	 */
 	private static final int BT_ICON_OFF = R.drawable.connections_activity_icon_bt_off;
+	/**
+	 * 
+	 */
 	private static final int WIFI_ICON_ON = R.drawable.connections_activity_icon_wifi_on;
+	/**
+	 * 
+	 */
 	private static final int WIFI_ICON_OFF = R.drawable.connections_activity_icon_wifi_off;
 	
+	/**
+	 * 
+	 */
 	private Switch s_connections_activity_connection_type_switch = null;
+	/**
+	 * 
+	 */
 	private boolean s_connections_activity_connection_type_switch_state = false;
+	/**
+	 * 
+	 */
 	private RelativeLayout rl_connections_activity_wifi_configurator_layout = null;
+	/**
+	 * 
+	 */
 	private RelativeLayout rl_connections_activity_bt_configurator_layout = null;
+	/**
+	 * 
+	 */
 	private ImageView iv_connections_activity_icon_wifi = null;
+	/**
+	 * 
+	 */
 	private ImageView iv_connections_activity_icon_bt = null;
+	/**
+	 * 
+	 */
 	private EditText et_connections_activity_device_name = null;
+	/**
+	 * 
+	 */
 	private EditText et_connections_activity_device_ip = null;
+	/**
+	 * 
+	 */
 	private EditText et_connections_activity_device_port = null;
+	/**
+	 * 
+	 */
 	private EditText et_connections_activity_device_uuid = null;
+	/**
+	 * 
+	 */
 	private EditText et_connections_activity_device_mac = null;
+	/**
+	 * 
+	 */
 	private CheckBox cb_save_connection = null;
 
+    /**
+     * @param titleIconID
+     * @param titleID
+     * @param view
+     * @param positiveButtonID
+     * @param neutralButtonID
+     * @param negativeButtonID
+     * @return
+     */
     public static CarouselIemFilterDialog newInstance( Integer titleIconID, Integer titleID, View view, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
     	CarouselIemFilterDialog dialog = new CarouselIemFilterDialog();
 
@@ -79,6 +199,9 @@ public class CarouselIemFilterDialog extends AlertDialogs implements OnCheckedCh
         return dialog;
     }
 
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.AlertDialogs#buildDialogContent(android.app.AlertDialog.Builder)
+	 */
 	@Override
 	public void buildDialogContent(Builder builder) {
 		Integer argsID = super.getArguments().getInt(CarouselIemFilterDialog.VIEW_ID);
@@ -89,16 +212,34 @@ public class CarouselIemFilterDialog extends AlertDialogs implements OnCheckedCh
 		}
 	}
 
+	/**
+	 * @param activity
+	 * @param dialogIDTag
+	 * @param titleIconID
+	 * @param titleID
+	 * @param view
+	 * @param positiveButtonID
+	 * @param neutralButtonID
+	 * @param negativeButtonID
+	 */
 	public static void showDialog(Activity activity, String dialogIDTag, Integer titleIconID, Integer titleID, View view, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
 		CarouselIemFilterDialog dialog = CarouselIemFilterDialog.newInstance(titleIconID,titleID,view,positiveButtonID,neutralButtonID,negativeButtonID);
         dialog.show(activity.getFragmentManager(), dialogIDTag);
 	}
 	
+    /**
+     * @param activity
+     * @param id
+     * @return
+     */
     public static View getViewFromResource(Activity activity, int id) {
     	dialogInnerView = activity.getLayoutInflater().inflate(id, null);
 		return dialogInnerView;
     }
     
+    /**
+     * 
+     */
     public void dialogInnerViewLogic() {
     	s_connections_activity_connection_type_switch = (Switch) dialogInnerView.findViewById(
     			R.id.s_connections_activity_connection_type_switch);
@@ -141,6 +282,9 @@ public class CarouselIemFilterDialog extends AlertDialogs implements OnCheckedCh
     	}
     }
     
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.AlertDialogs#onShow(android.content.DialogInterface)
+	 */
 	@Override
 	public void onShow(DialogInterface dialog) {
 		super.onShow(dialog);
@@ -148,11 +292,17 @@ public class CarouselIemFilterDialog extends AlertDialogs implements OnCheckedCh
 	//	super.getNeutralButton().setBackgroundResource(R.drawable.connections_activity_icon_bt_on);
 	}
 
+	/* (non-Javadoc)
+	 * @see android.widget.CompoundButton.OnCheckedChangeListener#onCheckedChanged(android.widget.CompoundButton, boolean)
+	 */
 	@Override
 	public void onCheckedChanged(CompoundButton arg0, boolean switchState) {
 		loadCurrentView(switchState);
 	}
 	
+	/**
+	 * @param switchState
+	 */
 	private void loadCurrentView(boolean switchState) {
 		s_connections_activity_connection_type_switch_state = switchState;
 		if (s_connections_activity_connection_type_switch != null && rl_connections_activity_wifi_configurator_layout != null) {
@@ -170,23 +320,38 @@ public class CarouselIemFilterDialog extends AlertDialogs implements OnCheckedCh
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	public final Map<String, String> getReturnedData() {
 		return returnedData;
 	}
 
+	/**
+	 * @param returnedData
+	 */
 	public final void setReturnedData(Map<String, String> returnedData) {
 		this.returnedData = returnedData;
 	}
 	
 
+	/**
+	 * @return
+	 */
 	public final boolean isS_connections_activity_connection_type_switch_state() {
 		return s_connections_activity_connection_type_switch_state;
 	}
 
+	/**
+	 * @return
+	 */
 	public final View getDialogInnerView() {
 		return dialogInnerView;
 	}
 
+	/* (non-Javadoc)
+	 * @see android.text.TextWatcher#afterTextChanged(android.text.Editable)
+	 */
 	@Override
 	public void afterTextChanged(Editable arg0) {
 		if ( super.getPositiveButton() != null ) {
@@ -211,6 +376,12 @@ public class CarouselIemFilterDialog extends AlertDialogs implements OnCheckedCh
 		}
 	}
 	
+	/**
+	 * @param toValid
+	 * @param regexp
+	 * @param raiseError
+	 * @return
+	 */
 	private boolean validation(EditText toValid, Pattern regexp, String raiseError) {
 		String text = toValid.getText().toString();
 		String tag = toValid.getTag().toString();
@@ -228,6 +399,9 @@ public class CarouselIemFilterDialog extends AlertDialogs implements OnCheckedCh
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see android.text.TextWatcher#beforeTextChanged(java.lang.CharSequence, int, int, int)
+	 */
 	@Override
 	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
 			int arg3) {
@@ -235,6 +409,9 @@ public class CarouselIemFilterDialog extends AlertDialogs implements OnCheckedCh
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see android.text.TextWatcher#onTextChanged(java.lang.CharSequence, int, int, int)
+	 */
 	@Override
 	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 		// TODO Auto-generated method stub

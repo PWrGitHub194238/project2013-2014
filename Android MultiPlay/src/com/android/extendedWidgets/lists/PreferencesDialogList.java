@@ -12,29 +12,58 @@ import android.widget.TextView;
 
 import com.android.multiplay.R;
  
+/** Adapter for list of elements defined in {@link PreferencesDialogItem}.
+ * 
+ * @author tomasz
+ *
+ */
 public class PreferencesDialogList extends BaseAdapter {
  
+    /**
+     * 
+     */
     private Context ctx;
+    /**
+     * 
+     */
     private PreferencesDialogItem[] data = null;
  
+    /**
+     * @param ctx
+     * @param listElements
+     */
     public PreferencesDialogList(Context ctx, Collection<PreferencesDialogItem> listElements) {
     	data = new PreferencesDialogItem[listElements.size()];
     	listElements.toArray(data);
 	    this.ctx = ctx;
     }
  
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getCount()
+     */
     public int getCount() {
     	return data.length;
     }
  
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getItem(int)
+     */
     public PreferencesDialogItem getItem(int position) {
     	return data[position];
     }
  
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getItemId(int)
+     */
     public long getItemId(int position) {
     	return 0;
     }
  
+    /** Pattern for list item that holds view configuration to prevent it to load each time new item occurred.
+     * 
+     * @author tomasz
+     *
+     */
     private class ViewHolderPattern {
     	private ImageView option_icon = null;
     	private TextView option_name = null;
@@ -46,6 +75,9 @@ public class PreferencesDialogList extends BaseAdapter {
 		}
     }
  
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+     */
     public View getView(int position, View convertView, ViewGroup parent) {
  
     ViewHolderPattern view_holder;

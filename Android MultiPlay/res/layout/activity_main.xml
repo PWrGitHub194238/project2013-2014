@@ -129,7 +129,7 @@
 	    android:layout_marginBottom="20dp"
 	    android:layout_alignParentLeft="true"
 	    android:layout_below="@id/tv_title_of_selected_item"
-	    android:layout_toLeftOf="@+id/b_main_activity_options_icon"
+	    android:layout_toLeftOf="@id/b_main_activity_options_icon"
 	    android:background="@drawable/main_activity_0_title_big_background_icon"
 	    android:paddingLeft="@dimen/activity_horizontal_margin"
 	    android:text="@string/tv_default_title_description_in_main_activity"

@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.Collection;
 import java.util.UUID;
 
 import android.bluetooth.BluetoothAdapter;
@@ -19,13 +18,14 @@ import com.android.application.BluetoothConfigurationClass;
 import com.android.application.ConnectionsConfigurationClass;
 import com.android.application.MultiPlayApplication;
 import com.android.application.N;
-import com.android.application.N.Helper;
 import com.android.application.WirelessConfigurationClass;
 import com.android.dialogs.AsyncTaskDialog;
 import com.android.extendedWidgets.lists.ExplorerApplicationItem;
 
 
-/** 
+/** Sends a request to the server launch the selected application and waits for the result.
+ * 
+ * @author tomasz
  *
  */
 public class RunServerApplications extends AsyncTask<ExplorerApplicationItem, String, Integer> {

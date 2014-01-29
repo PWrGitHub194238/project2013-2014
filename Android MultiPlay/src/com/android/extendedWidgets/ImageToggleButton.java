@@ -4,6 +4,11 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageButton;
 
+/** Extended {@link ImageButton} that recognize two additional states: switch on and of.
+ * 
+ * @author tomasz
+ *
+ */
 public class ImageToggleButton extends ImageButton {
 
 	private boolean isToggle = false;

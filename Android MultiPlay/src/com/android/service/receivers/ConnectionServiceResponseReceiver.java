@@ -13,6 +13,11 @@ import com.android.multiplay.MainActivity;
 import com.android.multiplay.R;
 import com.android.services.ConnectionService;
 
+/** Receiver for a {@link ConnectionService}. It handles every signal of mentioned service.
+ * 
+ * @author tomasz
+ *
+ */
 public class ConnectionServiceResponseReceiver extends BroadcastReceiver {
 	
 	private static final String CLASS = "com.android.service.receivers.ConnectionServiceResponseReceiver";

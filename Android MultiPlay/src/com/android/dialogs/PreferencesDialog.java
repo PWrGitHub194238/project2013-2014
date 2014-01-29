@@ -15,16 +15,36 @@ import com.android.extendedWidgets.lists.PreferencesDialogList;
 
 /** Displays the alert dialog box that contains {@link ScrollView}. 
  * 
- * Dialog that extends AlertDialogs
+ * Dialog that extends {@link ScrollViewDialog}. It usually show additional options after log tapping some button.
+ *
+ */
+/**
+ * @author Windows 7
  *
  */
 public class PreferencesDialog extends ScrollViewDialog {
 	
+	/**
+	 * 
+	 */
 	private static ScrollView scrollView = null;
+	/**
+	 * 
+	 */
 	private static ListView optionElements = null;
+	/**
+	 * 
+	 */
 	private static PreferencesDialogList listAdapter = null;
+	/**
+	 * 
+	 */
 	private static RelativeLayout.LayoutParams adapterLayoutParams = null;
 	
+    /**
+     * @param listAdapter
+     * @return
+     */
     protected static PreferencesDialog newInstance(PreferencesDialogList listAdapter) {
     	PreferencesDialog dialog = new PreferencesDialog();
         Bundle args = AlertDialogs.newInstance(null,null,null,null,null,null).getArguments();
@@ -35,6 +55,9 @@ public class PreferencesDialog extends ScrollViewDialog {
         return dialog;
     }
 
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.ScrollViewDialog#buildDialogContent(android.app.AlertDialog.Builder)
+	 */
 	@Override
 	public void buildDialogContent(Builder builder) {
 		if (PreferencesDialog.listAdapter != null) {
@@ -68,16 +91,27 @@ public class PreferencesDialog extends ScrollViewDialog {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.AlertDialogs#onShow(android.content.DialogInterface)
+	 */
 	@Override
 	public void onShow(DialogInterface dialog) {
 		super.onShow(dialog);
 	}
 
+	/**
+	 * @param activity
+	 * @param dialogIDTag
+	 * @param listAdapter
+	 */
 	public static void showDialog(Activity activity, String dialogIDTag, PreferencesDialogList listAdapter ) {
 		PreferencesDialog dialog = PreferencesDialog.newInstance(listAdapter);
         dialog.show(activity.getFragmentManager(), dialogIDTag);
 	}
     
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.ScrollViewDialog#dialogInnerViewLogic()
+	 */
 	@Override
     public void dialogInnerViewLogic() {
 		super.dialogInnerViewLogic();

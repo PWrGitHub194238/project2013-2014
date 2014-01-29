@@ -13,28 +13,57 @@ import android.widget.TextView;
 import com.android.extendedWidgets.ImageToggleButton;
 import com.android.multiplay.R;
  
+/** Adapter for list of elements defined in {@link VideoListItem}.
+ * 
+ * @author tomasz
+ *
+ */
 public class ListOfVideo extends BaseAdapter implements OnClickListener {
  
+    /**
+     * 
+     */
     private Context ctx;
+    /**
+     * 
+     */
     private VideoListItem[] videoList = null;
  
+    /**
+     * @param ctx
+     * @param videoList
+     */
     public ListOfVideo(Context ctx, VideoListItem[] videoList) {
     	this.videoList = videoList;
 	    this.ctx = ctx;
     }
  
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getCount()
+     */
     public int getCount() {
     	return videoList.length;
     }
  
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getItem(int)
+     */
     public VideoListItem getItem(int position) {
     	return videoList[position];
     }
  
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getItemId(int)
+     */
     public long getItemId(int position) {
     	return 0;
     }
  
+    /** Pattern for list item that holds view configuration to prevent it to load each time new item occurred.
+     * 
+     * @author tomasz
+     *
+     */
     private class ViewHolderPattern {
     	private ImageView video_icon = null;
     	private TextView video_title = null;
@@ -56,6 +85,9 @@ public class ListOfVideo extends BaseAdapter implements OnClickListener {
 		}
     }
  
+    /* (non-Javadoc)
+     * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+     */
     public View getView(int position, View convertView, ViewGroup parent) {
  
     ViewHolderPattern view_holder;
@@ -80,6 +112,9 @@ public class ListOfVideo extends BaseAdapter implements OnClickListener {
     return convertView;
     }
 
+	/* (non-Javadoc)
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 */
 	@Override
 	public void onClick(View v) {
 		((ImageToggleButton) v).toggleButton();

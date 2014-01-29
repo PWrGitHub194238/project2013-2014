@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -16,59 +15,170 @@ import com.android.application.MultiPlayApplication;
 import com.android.database.tables.General;
 import com.android.multiplay.R;
 
-/** Displays the alert dialog box that contains {@link ScrollView}. 
+/** Displays the alert dialog box that contains {@link ScrollView}. It shows 2nd welcome screen to new user.
  * 
- * Dialog that extends AlertDialogs
+ * @author tomasz
  *
  */
 public class WelcomeDialogCheckRequirements_2Step extends ScrollViewDialog implements OnClickListener {
 	
+	/**
+	 * 
+	 */
 	private ImageView iv_dialog_welcome_requirements_bluetooth_true_false = null;
+	/**
+	 * 
+	 */
 	private TextView tv_dialog_welcome_requirements_bluetooth_detail = null;
+	/**
+	 * 
+	 */
 	private ImageButton ib_dialog_welcome_requirements_bluetooth_help = null;
 
+	/**
+	 * 
+	 */
 	private ImageView iv_dialog_welcome_requirements_bluetooth_low_energy_true_false = null;
+	/**
+	 * 
+	 */
 	private TextView tv_dialog_welcome_requirements_bluetooth_low_energy_detail = null;
+	/**
+	 * 
+	 */
 	private ImageButton ib_dialog_welcome_requirements_bluetooth_low_energy_help = null;
 	 
+	/**
+	 * 
+	 */
 	private ImageView iv_dialog_welcome_requirements_wifi_true_false = null;
+	/**
+	 * 
+	 */
 	private TextView tv_dialog_welcome_requirements_wifi_detail = null;
+	/**
+	 * 
+	 */
 	private ImageButton ib_dialog_welcome_requirements_wifi_help = null;
  
+	/**
+	 * 
+	 */
 	private ImageView iv_dialog_welcome_requirements_wifi_direct_true_false = null;
+	/**
+	 * 
+	 */
 	private TextView tv_dialog_welcome_requirements_wifi_direct_detail = null;
+	/**
+	 * 
+	 */
 	private ImageButton ib_dialog_welcome_requirements_wifi_direct_help = null;
 	 
+	/**
+	 * 
+	 */
 	private ImageView iv_dialog_welcome_requirements_accelerometer_true_false = null;
+	/**
+	 * 
+	 */
 	private TextView tv_dialog_welcome_requirements_accelerometer_detail = null;
+	/**
+	 * 
+	 */
 	private ImageButton ib_dialog_welcome_requirements_accelerometer_help = null;
 	 
+	/**
+	 * 
+	 */
 	private ImageView iv_dialog_welcome_requirements_gyroscope_true_false = null;
+	/**
+	 * 
+	 */
 	private TextView tv_dialog_welcome_requirements_gyroscope_detail = null;
+	/**
+	 * 
+	 */
 	private ImageButton ib_dialog_welcome_requirements_gyroscope_help = null;
 	 
+	/**
+	 * 
+	 */
 	private ImageView iv_dialog_welcome_requirements_gravity_true_false = null;
+	/**
+	 * 
+	 */
 	private TextView tv_dialog_welcome_requirements_gravity_detail = null;
+	/**
+	 * 
+	 */
 	private ImageButton ib_dialog_welcome_requirements_gravity_help = null;
 	 
+	/**
+	 * 
+	 */
 	private ImageView iv_dialog_welcome_requirements_rotation_vector_true_false = null;
+	/**
+	 * 
+	 */
 	private TextView tv_dialog_welcome_requirements_rotation_vector_detail = null;
+	/**
+	 * 
+	 */
 	private ImageButton ib_dialog_welcome_requirements_rotation_vector_help = null;
 	 
+	/**
+	 * 
+	 */
 	private ImageView iv_dialog_welcome_requirements_linear_acceleration_true_false = null;
+	/**
+	 * 
+	 */
 	private TextView tv_dialog_welcome_requirements_linear_acceleration_detail = null;
+	/**
+	 * 
+	 */
 	private ImageButton ib_dialog_welcome_requirements_linear_acceleration_help = null;
 	 
+	/**
+	 * 
+	 */
 	private ImageView iv_dialog_welcome_requirements_microphone_true_false = null;
+	/**
+	 * 
+	 */
 	private TextView tv_dialog_welcome_requirements_microphone_detail = null;
+	/**
+	 * 
+	 */
 	private ImageButton ib_dialog_welcome_requirements_microphone_help = null;
 	 
+	/**
+	 * 
+	 */
 	private ImageView iv_dialog_welcome_requirements_multitouch_true_false = null;
+	/**
+	 * 
+	 */
 	private TextView tv_dialog_welcome_requirements_multitouch_detail = null;
+	/**
+	 * 
+	 */
 	private ImageButton ib_dialog_welcome_requirements_multitouch_help = null;
 	
+	/**
+	 * 
+	 */
 	private String queryResult = null;
 	
+    /**
+     * @param titleIconID
+     * @param titleID
+     * @param view
+     * @param positiveButtonID
+     * @param neutralButtonID
+     * @param negativeButtonID
+     * @return
+     */
     protected static WelcomeDialogCheckRequirements_2Step newInstance( Integer titleIconID, Integer titleID, ScrollView view, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
     	WelcomeDialogCheckRequirements_2Step dialog = new WelcomeDialogCheckRequirements_2Step();
         Bundle args = ScrollViewDialog.newInstance(titleIconID, titleID, view, positiveButtonID, neutralButtonID, negativeButtonID).getArguments();
@@ -77,6 +187,9 @@ public class WelcomeDialogCheckRequirements_2Step extends ScrollViewDialog imple
         return dialog;
     }
 
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.ScrollViewDialog#buildDialogContent(android.app.AlertDialog.Builder)
+	 */
 	@Override
 	public void buildDialogContent(Builder builder) {
 		super.buildDialogContent(builder);
@@ -86,18 +199,34 @@ public class WelcomeDialogCheckRequirements_2Step extends ScrollViewDialog imple
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.AlertDialogs#onShow(android.content.DialogInterface)
+	 */
 	@Override
 	public void onShow(DialogInterface dialog) {
 		super.onShow(dialog);
 		super.setWindowFullHorizontal();
 	}
 
+	/**
+	 * @param activity
+	 * @param dialogIDTag
+	 * @param titleIconID
+	 * @param titleID
+	 * @param view
+	 * @param positiveButtonID
+	 * @param neutralButtonID
+	 * @param negativeButtonID
+	 */
 	public static void showDialog(Activity activity, String dialogIDTag, Integer titleIconID, Integer titleID, ScrollView view, Integer positiveButtonID, Integer neutralButtonID, Integer negativeButtonID ) {
 		WelcomeDialogCheckRequirements_2Step dialog = WelcomeDialogCheckRequirements_2Step.newInstance(
 				titleIconID,titleID,view,positiveButtonID,neutralButtonID,negativeButtonID);
         dialog.show(activity.getFragmentManager(), dialogIDTag);
 	}
     
+	/* (non-Javadoc)
+	 * @see com.android.dialogs.ScrollViewDialog#dialogInnerViewLogic()
+	 */
 	@Override
     public void dialogInnerViewLogic() {
 		super.dialogInnerViewLogic();
@@ -302,6 +431,9 @@ public class WelcomeDialogCheckRequirements_2Step extends ScrollViewDialog imple
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 */
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub

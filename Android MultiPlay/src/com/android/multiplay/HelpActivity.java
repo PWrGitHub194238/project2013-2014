@@ -21,6 +21,7 @@ public class HelpActivity extends Activity implements DialogButtonClickListener 
 
 	// //////////////////Fields
 	String url = null;
+	String url2 = null;
 
 
 
@@ -63,6 +64,8 @@ private ImageButton b_goback = null;
 
 		initB_goback(R.id.b_activity_icon_back);
 		url = "http://androidmultiplay.url.ph/video_tutorials/scrennrecord.mp4";
+		url2 = "http://androidmultiplay.url.ph/video_tutorials/connection.mp4";
+
 		initB_explorer(R.id.b_help_activity_explorer_icon);
 		initB_controllers(R.id.b_help_activity_controllers_icon);
 		initB_options(R.id.b_help_activity_other_icon);
@@ -125,7 +128,7 @@ private ImageButton b_goback = null;
 	 */
 	public void options_help_OnClick(View view) {
 		Intent intent = new Intent(this, Movie_Activity_Help.class);
-		intent.putExtra("video_url", url);
+		intent.putExtra("video_url", url2);
 
 		super.startActivity(intent);
 	}

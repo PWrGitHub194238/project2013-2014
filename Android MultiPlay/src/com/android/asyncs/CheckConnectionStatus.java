@@ -16,6 +16,7 @@ import android.util.Log;
 
 import com.android.application.BluetoothConfigurationClass;
 import com.android.application.ConnectionsConfigurationClass;
+import com.android.application.MultiPlayApplication;
 import com.android.application.N;
 import com.android.application.WirelessConfigurationClass;
 import com.android.dialogs.AsyncTaskDialog;
@@ -289,6 +290,7 @@ public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationCla
 				if ( isAuthorizationSuccess(recivedAuthorizationConfirmation) == true ) {
 					networkConfiguration.setConnectionStatus(ConnectionHelper.STATUS_ON);
 					networkConfiguration.setSystem(N.Signal.decodeSystem(recivedAuthorizationConfirmation));
+					
 				} else {
 					Log.d("THREAD","RECIVED: ERROR");
 					publishProgress("Authorization error.");
@@ -301,7 +303,7 @@ public class CheckConnectionStatus extends AsyncTask<ConnectionsConfigurationCla
 				
 				getServerScreenDimension(
 						dis.readInt());
-	
+
 				dis.close();
 				dos.close();
 				bluetoothSocket.close();

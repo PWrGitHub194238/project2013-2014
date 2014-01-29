@@ -75,7 +75,7 @@ public final class C {
 	public static final int SIGNAL_SPEAKER = 					Integer.parseInt("00011", 2);
 	private static final ControllerDefinition CONTROLLER_SPEAKER = new ControllerDefinition(
 			C.SIGNAL_SPEAKER, "Speaker", R.drawable.carousel_controller_icon_speaker, 
-			ControllerDefinition.NOT_STAND_ALONE, SpeakerActivity.class, SpeakerOptionActivity.class, SpeakerHelp.class,
+			ControllerDefinition.STAND_ALONE, SpeakerActivity.class, SpeakerOptionActivity.class, SpeakerHelp.class,
 			Requirements.OS_EVERY, new String[] {
 				
 			});
@@ -83,7 +83,7 @@ public final class C {
 	public static final int SIGNAL_GAMEPAD = 					Integer.parseInt("00100", 2);
 	private static final ControllerDefinition CONTROLLER_GAMEPAD = new ControllerDefinition(
 			C.SIGNAL_GAMEPAD, "Gamepad", R.drawable.carousel_controller_icon_gamepad, 
-			ControllerDefinition.NOT_STAND_ALONE, GamepadActivity.class, GamepadOptionActivity.class, GamepadHelp.class,
+			ControllerDefinition.STAND_ALONE, GamepadActivity.class, GamepadOptionActivity.class, GamepadHelp.class,
 			Requirements.OS_WINDOWS, new String[] {
 				
 			});
@@ -91,7 +91,7 @@ public final class C {
 	public static final int SIGNAL_CUSTOM = 					Integer.parseInt("01001", 2);
 	private static final ControllerDefinition CONTROLLER_CUSTOM = new ControllerDefinition(
 			C.SIGNAL_CUSTOM, "TouchCircle", R.drawable.carousel_controller_icon_touchcircle, 
-			ControllerDefinition.NOT_STAND_ALONE, CustomControllerActivity.class, null, null,
+			ControllerDefinition.STAND_ALONE, CustomControllerActivity.class, null, null,
 			Requirements.OS_WINDOWS, new String[] {
 				
 			});

@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
     
     tools:context=".MainActivity" >
 
@@ -22,9 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="150dp"
+        android:layout_marginRight="165dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         
         android:onClick="multiplay_explorer_OnClick"
         android:focusableInTouchMode="true"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="30dp"
+        android:layout_marginRight="35dp"
         
         android:onClick="system_controller_OnClick"
         android:focusableInTouchMode="true"
@@ -53,9 +53,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="150dp"
+        android:layout_marginRight="165dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="0dp"
         
         android:onClick="help_OnClick"
         android:focusableInTouchMode="true"
@@ -90,6 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="@dimen/activity_horizontal_margin" />
     
@@ -122,16 +123,29 @@
 	
 	<TextView
 	    android:id="@+id/tv_describtion_of_selected_item"
-	    
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
+	    android:layout_alignParentBottom="true"
+	    android:layout_marginBottom="20dp"
 	    android:layout_alignParentLeft="true"
 	    android:layout_below="@id/tv_title_of_selected_item"
 	    android:layout_toLeftOf="@+id/b_main_activity_options_icon"
-	    android:paddingLeft="@dimen/activity_horizontal_margin"    
-	    
 	    android:background="@drawable/main_activity_0_title_big_background_icon"
+	    android:paddingLeft="@dimen/activity_horizontal_margin"
 	    android:text="@string/tv_default_title_description_in_main_activity"
 	    android:textAppearance="@style/main_activity_titles_description" />
+
+	<ImageButton
+	    android:id="@+id/b_main_activity_icon_exit"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentBottom="true"
+	    android:layout_alignParentRight="true"
+	    
+	    android:onClick="exit_OnClick"
+        android:focusableInTouchMode="true"
+        
+	    android:background="@drawable/activity_icon_exit" 
+	    android:contentDescription="@string/contentDescription_b_main_activity_icon_exit"/>
 
 </RelativeLayout>

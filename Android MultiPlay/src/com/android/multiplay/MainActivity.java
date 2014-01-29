@@ -75,6 +75,8 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	 * On click it call method {@link #options_OnClick(Viev)}.
 	 */
 	private ImageButton b_options = null;
+	
+	private ImageButton b_exit = null;
 
 	
 	
@@ -92,6 +94,7 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		initB_exit(R.id.b_main_activity_icon_exit);
 		initB_multiplay_explorer(R.id.b_main_activity_multiplay_explorer_icon);
 		initB_system_controller(R.id.b_main_activity_system_controller_icon);
 		initB_help(R.id.b_main_activity_help_icon);
@@ -150,6 +153,16 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 //////////////////// Methods for onClick events
 
 	
+	
+	/** Method starts new activity: {@link OptionsActivity}.
+	 * 
+	 * It can be trigger by tapping {@link #b_options} button.
+	 * 
+	 * @param view TODO
+	 */
+	public void exit_OnClick(View view) {
+		super.finish();
+	}
 	
 	/** Method starts new activity: {@link MultiplayExplorerActivity}.
 	 * 
@@ -451,7 +464,7 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 	 *  It requests back focus to unfocused any menu items.
 	 */
 	private void init() {
-		super.findViewById(R.id.tv_title_of_selected_item).requestFocus();
+		b_exit.requestFocus();
 	}
 	
 	/** Initialize method that links {@link #b_multiplay_explorer} object with correct {@link View} by id.
@@ -508,6 +521,21 @@ public class MainActivity extends Activity implements DialogButtonClickListener 
 		this.b_options = (ImageButton) super.findViewById(id);
 		this.b_options.setOnFocusChangeListener(
 				new ButtonsFocusChangeListener(this,id));
+	}
+	
+	/** Initialize method that links {@link #b_exit} object with correct View by id.
+	 * 
+	 * Also creates a new listener for this button's events 
+	 * by passing this {@link Activity} and id parameter 
+	 * to {@link ButtonsFocusChangeListener#ButtonsFocusChangeListener(Activity, int)}.
+	 * 
+	 * @param id ID of view in {@link com.android.multiplay.R}
+	 */
+	private void initB_exit( int id ) {
+		this.b_exit = (ImageButton) super.findViewById(id);
+		this.b_exit.setOnFocusChangeListener(
+				new ButtonsFocusChangeListener(this,id));
+		b_exit.requestFocus();
 	}
 	
 }

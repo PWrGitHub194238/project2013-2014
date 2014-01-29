@@ -55,15 +55,11 @@ private ImageButton b_goback = null;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_options);
 
-//		search = (Button) super.findViewById(R.id.search);
-//		IP = (EditText) super.findViewById(R.id.IPeditText);
-//		nextButton = (Button) super.findViewById(R.id.imageButton1);
+		initB_goback(R.id.b_activity_icon_back);
 		
 		initB_connecions(R.id.b_options_activity_connecions_icon);
 		initB_controllers(R.id.b_options_activity_controllers_icon);
-		initB_resetdata(R.id.b_options_activity_resetdata_icon);
-		
-		initB_goback(R.id.b_go_back);
+		initB_resetdata(R.id.b_options_activity_resetdata_icon);	
 		
 		init();
 	}
@@ -128,7 +124,7 @@ private ImageButton b_goback = null;
 	*  It requests back focus to unfocused any menu items.
 	*/
 	private void init() {
-		super.findViewById(R.id.tv_title_of_selected_item).requestFocus();
+		b_goback.requestFocus();
 	}
 
 	/** Initialize method that links {@link #b_connections} object with correct View by id.

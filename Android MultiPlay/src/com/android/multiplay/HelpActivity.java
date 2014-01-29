@@ -59,11 +59,11 @@ private ImageButton b_goback = null;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_help);
 		
+		initB_goback(R.id.b_activity_icon_back);
+		
 		initB_explorer(R.id.b_help_activity_explorer_icon);
 		initB_controllers(R.id.b_help_activity_controllers_icon);
 		initB_options(R.id.b_help_activity_options_icon);
-		
-		initB_goback(R.id.b_go_back);
 		
 		init();
 	}
@@ -141,7 +141,7 @@ private ImageButton b_goback = null;
 	*  It requests back focus to unfocused any menu items.
 	*/
 	private void init() {
-		super.findViewById(R.id.tv_title_of_selected_item).requestFocus();
+		b_goback.requestFocus();
 	}
 
 	/** Initialize method that links {@link #b_explorer} object with correct View by id.

@@ -9,7 +9,9 @@ import android.util.Log;
 
 import com.android.application.BluetoothConfigurationClass;
 import com.android.application.MultiPlayApplication;
+import com.android.application.N;
 import com.android.dialogs.AsyncTaskDialog;
+import com.android.services.ConnectionHelper;
 
 /** Topic searches for available connections to servers based on the ability to detect devices through a mobile device. 
  * 
@@ -73,6 +75,9 @@ public class GenerateConnectionList extends AsyncTask<String, String, Integer> {
 				btConfiguration.setName(device.getName());
 				
 				btConfiguration.setStored(false);
+				
+				btConfiguration.setConnectionStatus(ConnectionHelper.STATUS_WARNING);
+				btConfiguration.setSystem(N.System.UNKNOW);
 				
 				new CheckConnectionStatus().execute(btConfiguration);
 

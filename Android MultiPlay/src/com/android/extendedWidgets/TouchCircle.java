@@ -222,17 +222,14 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 		touchRadius = Math.sqrt(Math.pow(event.getX(0)-hotPointX,2) + Math.pow(event.getY(0)-hotPointY,2));
 		if ( touchRadius <= currentOuterRadius) {
 			pointerCounter = event.getPointerCount();
-			if ( pointerCounter ==2) {
-				if (pointerCounter == 1) {
-//					Log.d("RAD1", "NORMAL");
-				} else if (pointerCounter == 2) {
-					getParametricAngle(event.getY(0),event.getX(0),event.getY(1),event.getX(1));
-//					Log.d("RAD1", "P: "+String.valueOf(pointerCounter) + " A: "+Math.toDegrees(multitouchAngle));
+			if ( pointerCounter >= 2) {
+				getParametricAngle(event.getY(0),event.getX(0),event.getY(1),event.getX(1));
+//				Log.d("RAD1", "P: "+String.valueOf(pointerCounter) + " A: "+Math.toDegrees(multitouchAngle));
 					
-					for ( TouchCircleButton button : touchCircleButtons ) {
-						if (Math.toDegrees(multitouchAngle) > button.angleStart && Math.toDegrees(multitouchAngle) < button.angleStart + button.angleCount) {
-//							Log.d("RAD2", "EXTRA SIGNAL: "+button.signal);
-							switch(event.getAction() & MotionEvent.ACTION_MASK) {
+				for ( TouchCircleButton button : touchCircleButtons ) {
+					if (Math.toDegrees(multitouchAngle) > button.angleStart && Math.toDegrees(multitouchAngle) < button.angleStart + button.angleCount) {
+//						Log.d("RAD2", "EXTRA SIGNAL: "+button.signal);
+						switch(event.getAction() & MotionEvent.ACTION_MASK) {
 							case MotionEvent.ACTION_POINTER_DOWN:
 								if ( signalToRelease == -1 ) {
 //									Log.d("RAD2", "EXTRA SIGNAL DOWN: "+button.signal);
@@ -261,12 +258,9 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 									}
 								}
 								break;
-							}
 						}
 					}
 				}
-
-
 			}
 			historicalPointerCounter = pointerCounter;
 			switch (event.getAction()) {

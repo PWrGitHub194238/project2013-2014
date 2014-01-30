@@ -61,8 +61,8 @@ public class GamepadActivity extends Activity {
 					/ 2.0;
 			righty_center = (double) img_coordinates[1] + right.getHeight()
 					/ 2.0;
-			lefttxt = (TextView) super.findViewById(R.id.lefttext);
-			righttxt = (TextView) super.findViewById(R.id.righttxt);
+//			lefttxt = (TextView) super.findViewById(R.id.lefttext);
+//			righttxt = (TextView) super.findViewById(R.id.righttxt);
 			bstart.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {

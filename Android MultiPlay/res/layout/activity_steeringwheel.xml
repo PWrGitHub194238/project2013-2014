@@ -8,30 +8,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SteeringwheelActivity" >
 
-    <TextView
-        android:id="@+id/stopv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0" />
-
-    <Button
+    <ImageButton
         android:id="@+id/brea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:text="Bre\nak"
-        android:textSize="20pt" />
+        android:background="@drawable/empty" />
 
-    <Button
+    <ImageButton
         android:id="@+id/gaz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="16dp"
-        android:text="Ac\ncel"
-        android:textSize="20pt" />
+       	android:background="@drawable/empty1" />
 
     <SeekBar
         android:id="@+id/seekBar1"
@@ -41,21 +33,12 @@
         android:layout_toLeftOf="@+id/gaz"
         android:layout_toRightOf="@+id/brea" />
 
-    <RadioButton
-        android:id="@+id/checkBox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:onClick="onRadioButtonClicked"
-        android:text="Not send 0" />
-
     <Button
         android:id="@+id/nitro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:text="NITRO!!!" />
 
 </RelativeLayout>

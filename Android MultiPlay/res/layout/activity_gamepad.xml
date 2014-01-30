@@ -9,111 +9,91 @@
     tools:context=".GamepadActivity" >
 
     <ImageButton
-        android:id="@+id/arrup"
+        android:id="@+id/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/arrdown"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/arrow" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/ic_launcher" />
 
-    <ImageButton
-        android:id="@+id/arrright"
+    <ImageView
+        android:id="@+id/leftjoy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/arrdown"
-        android:layout_toRightOf="@+id/arrdown"
-        android:src="@drawable/arrow" />
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/start"
+        android:background="@drawable/main_activity_1_title_big_background_icon" />
 
-    <ImageButton
-        android:id="@+id/arrleft"
+    <ImageView
+        android:id="@+id/rightjoy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/arrup"
-        android:layout_marginLeft="28dp"
-        android:src="@drawable/arrow" />
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/start"
+        android:background="@drawable/main_activity_2_title_big_background_icon" />
 
     <ImageButton
         android:id="@+id/sharp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/arrdown"
-        android:layout_marginRight="78dp"
-        android:src="@drawable/activity_title_icon_blue" />
+        android:layout_above="@+id/rightjoy"
+        android:layout_toRightOf="@+id/rightjoy"
+        android:background="@drawable/gamepad_cross_2" />
 
     <ImageButton
         android:id="@+id/square"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/sharp"
-        android:layout_toLeftOf="@+id/sharp"
-        android:src="@drawable/activity_title_icon_pink" />
-
-    <ImageButton
-        android:id="@+id/tringle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/square"
-        android:layout_toRightOf="@+id/square"
-        android:src="@drawable/activity_title_icon_green" />
+        android:layout_alignRight="@+id/rightjoy"
+        android:background="@drawable/gamepad_square_2" />
 
     <ImageButton
         android:id="@+id/circle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/sharp"
-        android:layout_toRightOf="@+id/tringle"
-        android:src="@drawable/activity_title_icon_red" />
+        android:layout_toRightOf="@+id/sharp"
+        android:background="@drawable/gamepad_circle_2" />
+
+    <ImageButton
+        android:id="@+id/tringle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/circle"
+        android:layout_toLeftOf="@+id/circle"
+        android:background="@drawable/gamepad_triangle_2" />
 
     <ImageButton
         android:id="@+id/arrdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/arrleft"
-        android:layout_toRightOf="@+id/arrleft"
-        android:src="@drawable/arrow" />
-
-    <ImageView
-        android:id="@+id/leftjoy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/arrright"
-        android:layout_below="@+id/arrright"
-        android:layout_marginLeft="17dp"
-        android:src="@drawable/main_activity_1_title_big_background_icon" />
+        android:layout_above="@+id/leftjoy"
+        android:layout_toLeftOf="@+id/leftjoy"
+        android:background="@drawable/gamepad_cross_1" />
 
     <ImageButton
-        android:id="@+id/start"
+        android:id="@+id/arrleft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/rightjoy"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_launcher" />
+        android:layout_above="@+id/arrdown"
+        android:layout_alignLeft="@+id/leftjoy"
+        android:background="@drawable/gamepad_circle_1" />
 
-    <ImageView
-        android:id="@+id/rightjoy"
+    <ImageButton
+        android:id="@+id/arrup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/square"
-        android:layout_toRightOf="@+id/leftjoy"
-        android:src="@drawable/main_activity_2_title_big_background_icon" />
+        android:layout_above="@+id/arrleft"
+        android:layout_toLeftOf="@+id/arrleft"
+        android:background="@drawable/gamepad_triangle_1" />
 
-    <TextView
-        android:id="@+id/lefttext"
+    <ImageButton
+        android:id="@+id/arrright"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="lefttxt" />
-
-    <TextView
-        android:id="@+id/righttxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/lefttext"
-        android:layout_alignLeft="@+id/circle"
-        android:text="TextView" />
+        android:layout_above="@+id/arrdown"
+        android:layout_toLeftOf="@+id/arrdown"
+        android:background="@drawable/gamepad_square_1" />
 
 </RelativeLayout>

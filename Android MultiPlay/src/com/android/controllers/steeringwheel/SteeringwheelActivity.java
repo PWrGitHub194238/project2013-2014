@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -45,7 +46,8 @@ public class SteeringwheelActivity extends Activity implements
 	private SensorManager sm;
 	private TextView tv;
 	private int up = 0, down = 0, stop = 0;
-	private Button b1, b2,nitro;
+	private ImageButton b1, b2;
+	Button nitro;
 /**
  @param savedInstanceState
  * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -56,10 +58,10 @@ public class SteeringwheelActivity extends Activity implements
 		setContentView(R.layout.activity_steeringwheel);
 		try {
 			MultiPlayApplication.runThread();
-			tv = (TextView) findViewById(R.id.stopv);
+//			tv = (TextView) findViewById(R.id.stopv);
 			sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
-			b1 = (Button) super.findViewById(R.id.brea);
-			b2 = (Button) super.findViewById(R.id.gaz);
+			b1 = (ImageButton) super.findViewById(R.id.brea);
+			b2 = (ImageButton) super.findViewById(R.id.gaz);
 			nitro = (Button) super.findViewById(R.id.nitro);
 
 			seekBar1 = (SeekBar) super.findViewById(R.id.seekBar1);

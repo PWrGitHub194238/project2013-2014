@@ -8,6 +8,7 @@ import android.view.Display;
 import android.view.WindowManager;
 
 import com.android.extendedWidgets.TouchCircle;
+import com.android.extendedWidgets.TouchCircleMultitouch;
 
 /** Creates a Touchcircle custom view.
  * 
@@ -28,7 +29,8 @@ public class CustomControllerActivity extends Activity {
 		Point point = new Point();
 		display.getSize(point);
 		
-		TouchCircle view = new TouchCircle(this,200,10,10,point);
+//		TouchCircle view = new TouchCircle(this,200,10,10,point);
+		TouchCircleMultitouch view = new TouchCircleMultitouch(this,200,10,10,point);
 		setContentView(view);
 	}
 

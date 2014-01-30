@@ -28,10 +28,10 @@ import com.android.multiplay.R;
  * @author tomasz
  *
  */
-public class TouchCircle extends View implements OnLongClickListener, OnTouchListener {
+public class TouchCircleMultitouch extends View implements OnLongClickListener, OnTouchListener {
 	 
 	int signal;
-	int signalToRelease = -1;
+	int[] signalToRelease = {-1,-1,-1,-1,-1,-1};
 	
 	float maxRadius;
 	float currentOuterRadius;
@@ -45,9 +45,11 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 	float lifeRadius;
 	
 	double touchRadius;
-	double multitouchRadius;
+	double[] multitouchRadius;
 	
-	double multitouchAngle;
+	boolean lockUP = false;
+	
+	double[] multitouchAngle;
 
 	float left,top,right,bottom;
 	float hotPointX, hotPointY;
@@ -79,7 +81,7 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
  * @param screenSize
  */
 	// CONSTRUCTOR
-	public TouchCircle(Context context, float left, float top, float radius, Point screenSize ) {
+	public TouchCircleMultitouch(Context context, float left, float top, float radius, Point screenSize ) {
 		super(context);
 		setFocusable(true);
 
@@ -90,6 +92,10 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 				MultiPlayApplication.runThread();
 				initSizes(left,top,radius,screenSize);
 				
+				
+				multitouchRadius = new double[6];
+				multitouchAngle = new double[6];
+						
 				initButtons();
 				
 				initPaint();
@@ -176,15 +182,15 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 	 * @param y
 	 * @return
 	 */
-	private float getParametricAngle(float a, float b, float x, float y) {
+	private float getParametricAngle(float a, float b, float x, float y, int index) {
 		float partialDiff1 = x - a;
 		float partialDiff2 = y - b;
-		multitouchRadius = Math.sqrt(Math.pow(partialDiff1,2) + Math.pow(partialDiff2,2));
-		multitouchAngle = Math.acos((partialDiff1)/multitouchRadius);
+		multitouchRadius[index] = Math.sqrt(Math.pow(partialDiff1,2) + Math.pow(partialDiff2,2));
+		multitouchAngle[index] = Math.acos((partialDiff1)/multitouchRadius[index]);
 		if (partialDiff2 < 0) {
-			multitouchAngle = 2*Math.PI - multitouchAngle;
+			multitouchAngle[index] = 2*Math.PI - multitouchAngle[index];
 		}
-		return (float) multitouchAngle;
+		return (float) multitouchAngle[index];
 	}
 	/**
 	 * @see android.view.View#onDraw(android.graphics.Canvas)
@@ -228,44 +234,50 @@ public class TouchCircle extends View implements OnLongClickListener, OnTouchLis
 		if ( touchRadius <= currentOuterRadius) {
 			pointerCounter = event.getPointerCount();
 			if ( pointerCounter >= 2) {
-				getParametricAngle(event.getY(0),event.getX(0),event.getY(1),event.getX(1));
-				Log.d("RAD1", "P: "+String.valueOf(pointerCounter) + " A: "+Math.toDegrees(multitouchAngle));
-					
-				for ( TouchCircleButton button : touchCircleButtons ) {
-					if (Math.toDegrees(multitouchAngle) > button.angleStart && Math.toDegrees(multitouchAngle) < button.angleStart + button.angleCount) {
-						Log.d("RAD2", "EXTRA SIGNAL: "+button.signal);
-						switch(event.getAction() & MotionEvent.ACTION_MASK) {
-							case MotionEvent.ACTION_POINTER_DOWN:
-								if ( signalToRelease == -1 ) {
-									Log.d("RAD2", "EXTRA SIGNAL DOWN: "+button.signal);
-									if ( event.getActionIndex() == 1) {
-										Log.d("RAD2", "EXTRA SIGNAL 1 DOWN: "+button.signal);
-										signalToRelease = button.signal;
-										 signal = N.Helper.encodeSignal(N.Device.CUSTOM_TOUTHCIRCLE_BUTTON, 
-												 N.DeviceDataCounter.DOUBLE,
-												 signalToRelease,
-												 N.DeviceSignal.PRESS);
-										MultiPlayApplication.add(signal);
-									}
+				for ( int i = 1; i < pointerCounter; i += 1 ) {
+					if (lockUP == false ) {
+						getParametricAngle(event.getY(0),event.getX(0),event.getY(i),event.getX(i),i);
+						Log.d("RAD1", "P: "+String.valueOf(pointerCounter) + " A: "+Math.toDegrees(multitouchAngle[i]));
+									
+						for ( TouchCircleButton button : touchCircleButtons ) {
+							if (Math.toDegrees(multitouchAngle[i]) > button.angleStart && Math.toDegrees(multitouchAngle[i]) < button.angleStart + button.angleCount) {
+								//Log.d("RAD2", "EXTRA SIGNAL: "+button.signal);
+								switch(event.getAction() & MotionEvent.ACTION_MASK) {
+									case MotionEvent.ACTION_POINTER_DOWN:
+										if ( signalToRelease[i] == -1 ) {
+											Log.d("RAD2", "EXTRA SIGNAL DOWN: "+button.signal);
+											if ( true ) {
+												Log.d("RAD2", "EXTRA SIGNAL 1 DOWN: "+button.signal);
+												signalToRelease[i] = button.signal;
+												 signal = N.Helper.encodeSignal(N.Device.CUSTOM_TOUTHCIRCLE_BUTTON, 
+														 N.DeviceDataCounter.DOUBLE,
+														 signalToRelease[i],
+														 N.DeviceSignal.PRESS);
+												MultiPlayApplication.add(signal);
+											}
+										}
+										break;
+									case MotionEvent.ACTION_POINTER_UP:
+										if ( signalToRelease[event.getActionIndex()] != -1 ) {
+											Log.d("RAD2", "EXTRA SIGNAL UP: "+signalToRelease[event.getActionIndex()]);
+											if ( true) {
+												Log.d("RAD2", "EXTRA SIGNAL 1 UP: "+signalToRelease[event.getActionIndex()]);
+												signal = N.Helper.encodeSignal(N.Device.CUSTOM_TOUTHCIRCLE_BUTTON, 
+														 N.DeviceDataCounter.DOUBLE,
+														 signalToRelease[event.getActionIndex()],
+														 N.DeviceSignal.RELEASE);
+												signalToRelease[event.getActionIndex()] = -1;
+												MultiPlayApplication.add(signal);
+											}
+											lockUP = true;
+										}
+										break;
 								}
-								break;
-							case MotionEvent.ACTION_POINTER_UP:
-								if ( signalToRelease != -1 ) {
-									Log.d("RAD2", "EXTRA SIGNAL UP: "+signalToRelease);
-									if ( event.getActionIndex() == 1) {
-										Log.d("RAD2", "EXTRA SIGNAL 1 UP: "+signalToRelease);
-										signal = N.Helper.encodeSignal(N.Device.CUSTOM_TOUTHCIRCLE_BUTTON, 
-												 N.DeviceDataCounter.DOUBLE,
-												 signalToRelease,
-												 N.DeviceSignal.RELEASE);
-										signalToRelease = -1;
-										MultiPlayApplication.add(signal);
-									}
-								}
-								break;
+							}
 						}
 					}
 				}
+				lockUP = false;
 			}
 			historicalPointerCounter = pointerCounter;
 			switch (event.getAction()) {

@@ -118,7 +118,7 @@
 	    android:layout_height="fill_parent"
 	    android:layout_alignParentLeft="true"
 	    android:layout_below="@id/tv_title_of_selected_item"
-	    android:layout_toLeftOf="@+id/b_options_activity_controllers_icon"
+	    android:layout_toLeftOf="@+id/b_options_activity_connecions_icon"
 	    android:paddingLeft="@dimen/activity_horizontal_margin" 
 	    android:layout_marginBottom="20dp"   
 	    

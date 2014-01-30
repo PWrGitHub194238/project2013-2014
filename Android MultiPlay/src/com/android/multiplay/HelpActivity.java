@@ -68,7 +68,9 @@ private ImageButton b_goback = null;
 
 		initB_explorer(R.id.b_help_activity_explorer_icon);
 		initB_controllers(R.id.b_help_activity_controllers_icon);
+		
 		initB_options(R.id.b_help_activity_other_icon);
+		
 		
 		init();
 	}

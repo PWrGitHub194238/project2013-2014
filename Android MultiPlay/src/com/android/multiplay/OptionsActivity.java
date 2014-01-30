@@ -155,6 +155,8 @@ private ImageButton b_goback = null;
 	*/
 	private void initB_controllers( int id ) {
 		this.b_controllers = (ImageButton) super.findViewById(id);
+		this.b_controllers.setVisibility(View.GONE);
+
 		this.b_controllers.setOnFocusChangeListener(
 		new ButtonsFocusChangeListener(this,id));
 	}

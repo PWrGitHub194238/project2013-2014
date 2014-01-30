@@ -4,7 +4,7 @@
     <string name="tv_controller_help_keyboard_screen_1_help_1">It is a bit modified standard keyboard. A single click will shift only increases the size of the letters to a single letter, and the next are small. Double-press to shift corresponds to the capslock key. When you press alt keyboard turns to key mode of punctuation.</string>
     <string name="help_keyboard_page_title_1">Description</string>
     <string name="help_keyboard_page_title_2">Video Tutorials</string>
-    <string name="tv_controller_help_custom_screen_1_help_1">TODO</string>
+    <string name="tv_controller_help_custom_screen_1_help_1">Touchcircle is based on a multi-touch controller that can act as both an ordinary game pad, steering wheel, mouse, or many oder. In addition to standard circular touchpad, it offers support for so called "virtual buttons"-user himself defines their location on the screen, because their press is detected based on relative location to the first finger that touches the screen; for convenience it usually control touchpad. </string>
     <string name="help_custom_page_title_1">Description</string>
     <string name="help_custom_page_title_2">Video Tutorials</string>
     <string name="tv_controller_help_gyromouse_screen_1_help_1">Gyromouse changing positions the mouse on the screen along with the deviation from the level of cells. The greater the deviation, the mouse is moving szybciejs. Clicking the mouse button as you press the buttons control the volume in the cell. In addition, on-screen keyboard is displayed. You can also operate the keyboard and move the mouse.</string>

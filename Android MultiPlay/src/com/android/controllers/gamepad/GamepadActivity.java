@@ -40,7 +40,6 @@ public class GamepadActivity extends Activity {
 		setContentView(R.layout.activity_gamepad);
 		try {
 			MultiPlayApplication.runThread();
-
 			bup = (ImageButton) super.findViewById(R.id.arrup);
 			bdown = (ImageButton) super.findViewById(R.id.arrdown);
 			bleft = (ImageButton) super.findViewById(R.id.arrleft);
@@ -126,7 +125,6 @@ public class GamepadActivity extends Activity {
 						String y = Integer
 								.toString((int) (((righty_center - (int) event
 										.getY()) * (-1))));
-
 						signal = Helper.encodeSignal(
 								N.Device.VJOYJOYSTICKRIGHT,
 								N.DeviceDataCounter.DOUBLE,
